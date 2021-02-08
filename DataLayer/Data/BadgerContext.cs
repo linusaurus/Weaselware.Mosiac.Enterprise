@@ -512,6 +512,8 @@ namespace DataLayer.Data
                 entity.ToTable("OrderReciept");
 
                 entity.Property(e => e.ReceiptDate).HasColumnType("date");
+
+               
             });
 
             modelBuilder.Entity<OrderStatus>(entity =>

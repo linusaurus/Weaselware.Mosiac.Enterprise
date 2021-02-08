@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+
 
 #nullable disable
 
@@ -18,6 +20,9 @@ namespace DataLayer.Entity
         public DateTime? ReceiptDate { get; set; }
         public bool? IsOrderComplete { get; set; }
 
+        public virtual Employee Employee { get; set; }
         public virtual ICollection<OrderReceiptItem> OrderReceiptItems { get; set; }
+    
     }
+   
 }

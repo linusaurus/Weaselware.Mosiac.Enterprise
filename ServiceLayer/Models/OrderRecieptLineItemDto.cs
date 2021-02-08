@@ -1,4 +1,4 @@
-﻿using Weaselware.Mosiac.DataAccess.Entities;
+﻿using DataLayer.Data;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

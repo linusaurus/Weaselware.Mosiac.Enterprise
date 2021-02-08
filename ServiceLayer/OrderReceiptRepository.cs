@@ -6,26 +6,71 @@ using Microsoft.EntityFrameworkCore;
 using System.Text;
 using System.Linq.Expressions;
 using System.Linq;
+using ServiceLayer.Models;
 
 namespace ServiceLayer
 {
-    public class OrderReceiptRepository : IOrderReceiptRepository
+    public class OrderReceiptRepository :  GenericRepository<OrderReciept>
     {
+        
         private readonly BadgerContext _ctx;
 
-        public OrderReceiptRepository()
+        public OrderReceiptRepository(BadgerContext context): base(context)
         {
-            _ctx = new BadgerContext();
+            _ctx = context;
         }
 
-        public IEnumerable<OrderReciept> Find(Expression<Func<OrderReciept, bool>> predicate)
+       
+        public void  UpdateOrCreate(OrderReceiptDto dto)
         {
-            return _ctx.OrderReciepts.Where(predicate);
-        }
+            var ctx = _ctx;
+            var orderReciept = ctx.OrderReciepts.Include(p => p.OrderReceiptItems).FirstOrDefault(o => o.OrderNum == dto.PurchaseOrderID);
+            if (orderReciept == null)
+            {
+                orderReciept = new OrderReciept();
+                ctx.OrderReciepts.Add(orderReciept);
+                //ctx.SaveChanges();
+            }
 
-        public OrderReciept Get(int id)
-        {
-            return _ctx.OrderReciepts.Find(id);
+            //Map properties
+            orderReciept.ReceiptDate = dto.ReceiptDate;
+            orderReciept.OrderNum = dto.PurchaseOrderID;
+            orderReciept.IsOrderComplete = dto.IsOrderComplete;
+            orderReciept.EmployeeID = dto.EmployeeId;
+
+            //remove deleted details -
+            orderReciept.OrderReceiptItems
+            .Where(d => !dto.OrderReceiptLineItems.Any(dto => dto.OrderReceiptLineID == d.OrderReceiptLineID)).ToList()
+            .ForEach(deleted => ctx.OrderReceiptItems.Remove(deleted));
+
+            //update or add details
+            dto.OrderReceiptLineItems.ToList().ForEach(detailDTO =>
+            {
+                var detail = orderReciept.OrderReceiptItems.FirstOrDefault(d => d.OrderReceiptLineID == detailDTO.OrderReceiptLineID);
+                if (detail == null || detail.LineID == default )
+                {
+                    detail = new OrderReceiptItem();
+                    ctx.OrderReceiptItems.Add(detail);
+                }
+
+                detail.JobID = detailDTO.JobID;
+                detail.OrderReceiptID = orderReciept.OrderReceiptID;
+                detail.Description = detailDTO.Description;
+                detail.PurchaseOrderID = detailDTO.PurchaseOrderID;
+                detail.PartID = detailDTO.PartID;
+                detail.Price = detailDTO.UnitPrice;
+                detail.UiD = detailDTO.UiD;
+                detail.LineID = detailDTO.LineID;
+                detail.Extended = detailDTO.Extended;
+                detail.QuantityOrdered = detailDTO.QntyOrdered;
+                detail.QuantityReceived = detailDTO.QntyReceived;
+                detail.Balance = detailDTO.QntyBalance;
+                detail.IsComplete = detailDTO.ItemsRecievedComplete;
+
+            });
+
+            _ctx.SaveChanges();
+            
         }
     }
 }

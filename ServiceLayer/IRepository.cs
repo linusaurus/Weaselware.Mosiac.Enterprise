@@ -5,15 +5,13 @@ using System.Text;
 
 namespace ServiceLayer
 {
-    public  interface IRepository<TEntity> where TEntity: class
+    public interface IRepository<T>
     {
-        TEntity Get(int id);
-        IEnumerable<TEntity> GetAll();
-        IEnumerable<TEntity> Find(Expression<Func<TEntity,bool>> predicate);
-        void Add(TEntity entity);
-        void AddRange(IEnumerable<TEntity> entities);
-        void Remove(TEntity entity);
-        void RemoveRange(IEnumerable<TEntity> entities);
-
+        T Add(T entity);
+        T Update(T entity);
+        T Get(int id);
+        IEnumerable<T> All();
+        IEnumerable<T> Find(Expression<Func<T, bool>> predicate);
+        void SaveChanges();
     }
 }

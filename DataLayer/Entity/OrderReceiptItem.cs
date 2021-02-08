@@ -22,6 +22,9 @@ namespace DataLayer.Entity
         public bool? IsComplete { get; set; }
         public int? OrderReceiptID { get; set; }
 
+        public string Note { get; set; }
+
+        public UnitOfMeasure UnitOrMeasure { get; set; }
         public virtual OrderReciept OrderReceipt { get; set; }
     }
 }

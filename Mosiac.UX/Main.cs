@@ -11,23 +11,22 @@ using Microsoft.EntityFrameworkCore;
 using System.Windows.Forms;
 using ServiceLayer;
 using DataLayer.Entity;
+using DataLayer.Data;
 using Mosiac.UX.UXControls;
 
 namespace Mosiac.UX
 {
     public partial class Main : Form
     {
-        IOrderReceiptRepository orderReceiptRepository;
-        public  Main(IOrderReceiptRepository orderReceiptRepository)
+        public  Main(BadgerContext context)
         {
             InitializeComponent();
-            this.orderReceiptRepository = orderReceiptRepository;
-
-            var orders = orderReceiptRepository.Find(p => p.OrderNum == 5000);
-            OrderRecieptManager manager = new OrderRecieptManager(this.orderReceiptRepository);
-            manager.Dock = DockStyle.Fill;
+                            
+            OrderRecieptManager manager = new OrderRecieptManager(new OrderReceiptRepository(context));
           
-            Controls.Add(manager);
+            manager.Dock = DockStyle.Fill;
+            this.tabPage1.Controls.Add(manager);
+           
         }
 
     }

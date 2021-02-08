@@ -11,6 +11,7 @@ namespace DataLayer.Entity
         {
             Attachments = new HashSet<Attachment>();
             OrderFees = new HashSet<OrderFee>();
+            OrderReciepts = new HashSet<OrderReciept>();
             PurchaseLineItems = new HashSet<PurchaseLineItem>();
         }
 
@@ -44,6 +45,7 @@ namespace DataLayer.Entity
         public virtual Supplier Supplier { get; set; }
         public virtual ICollection<Attachment> Attachments { get; set; }
         public virtual ICollection<OrderFee> OrderFees { get; set; }
+        public virtual ICollection<OrderReciept> OrderReciepts { get; set; }
         public virtual ICollection<PurchaseLineItem> PurchaseLineItems { get; set; }
     }
 }

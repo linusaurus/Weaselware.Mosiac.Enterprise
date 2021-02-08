@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
-using Weaselware.Mosiac.DataAccess.Entities;
+using DataLayer.Data;
 
 namespace ServiceLayer.Models
 {

@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using DataLayer.Data;
+using System.Linq;
 using DataLayer.Entity;
 using SimpleInjector;
 using ServiceLayer;
@@ -17,14 +18,17 @@ namespace Mosiac.UX.UXControls
     {
 
 
-        private readonly IOrderReceiptRepository _orderReceiptRepository;
+        private readonly IRepository<OrderReciept> _orderReceiptRepository;
 
-        public OrderRecieptManager(IOrderReceiptRepository orderReceiptRepository)
+        public OrderRecieptManager(IRepository<OrderReciept> orderReceiptRepository)
         {
             InitializeComponent();
             _orderReceiptRepository = orderReceiptRepository;
-    
-
+            var orders = _orderReceiptRepository.Find(c => c.EmployeeID == 8);
+            var or = _orderReceiptRepository.Get(2000);
+            this.dataGridView1.DataSource = orders;
         }
+
+       
     }
 }

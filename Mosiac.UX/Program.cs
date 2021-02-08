@@ -13,6 +13,9 @@ using ServiceLayer;
 using Mosiac.UX;
 using Microsoft.EntityFrameworkCore;
 using System.Composition;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Hosting;
+using ServiceLayer;
 
 namespace Mosiac.UX
 {
@@ -30,50 +33,37 @@ namespace Mosiac.UX
 
             //Application.Run(new Main());
 
-            var container = Bootstrap();
+            var host = Host.CreateDefaultBuilder()
+             .ConfigureAppConfiguration((context, builder) =>
+             {
+                 // Add other configuration files...
+                 builder.AddJsonFile("appsettings.local.json", optional: true);
+             })
+             .ConfigureServices((context, services) =>
+             {
+                 ConfigureServices(context.Configuration, services);
+             })
+             .ConfigureLogging(logging =>
+             {
+                 // Add other loggers...
+             })
+             .Build();
 
-            Application.Run(container.GetInstance<Main>());
+            var services = host.Services;
+            var mainForm = services.GetRequiredService<Main>();
+            Application.Run(mainForm);
+
         }
 
-        class ImportPropertySelectionBehavior : IPropertySelectionBehavior
-        {
-            public bool SelectProperty(Type implementationType, PropertyInfo prop) =>
-                prop.GetCustomAttributes(typeof(ImportAttribute)).Any();
-        }
 
-        private static Container Bootstrap()
+        private static void ConfigureServices(IConfiguration configuration,
+            IServiceCollection services)
         {
-            // Create the container as usual.
-            var container = new Container();
-            container.Options.PropertySelectionBehavior = new ImportPropertySelectionBehavior();
-
-            // Register your types, for instance:
-            container.Register<IOrderReceiptRepository, OrderReceiptRepository>(Lifestyle.Singleton);
-            
+            services.AddDbContext<BadgerContext>(options => 
+                options.UseSqlServer("Server=192.168.10.34;database=Badger;uid=sa;pwd=Kx09a32x"));
            
-
-            AutoRegisterWindowsForms(container);
-
-            container.Verify();
-
-            return container;
-        }
-
-        private static void AutoRegisterWindowsForms(Container container)
-        {
-            var types = container.GetTypesToRegister<Form>(typeof(Program).Assembly);
-
-            foreach (var type in types)
-            {
-                var registration =
-                    Lifestyle.Transient.CreateRegistration(type, container);
-
-                registration.SuppressDiagnosticWarning(
-                    DiagnosticType.DisposableTransientComponent,
-                    "Forms should be disposed by app code; not by the container.");
-
-                container.AddRegistration(type, registration);
-            }
+            
+            services.AddSingleton<Main>();
         }
 
     }
