@@ -22,10 +22,10 @@ namespace Mosiac.UX
         {
             InitializeComponent();
                             
-            OrderRecieptManager manager = new OrderRecieptManager(new OrderReceiptRepository(context));
+            //OrderRecieptManager manager = new OrderRecieptManager(new OrderReceiptRepository(context));
           
-            manager.Dock = DockStyle.Fill;
-            this.tabPage1.Controls.Add(manager);
+            //manager.Dock = DockStyle.Fill;
+            //this.tabPage1.Controls.Add(manager);
            
         }
 

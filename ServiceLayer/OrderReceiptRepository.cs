@@ -10,17 +10,18 @@ using ServiceLayer.Models;
 
 namespace ServiceLayer
 {
-    public class OrderReceiptRepository :  GenericRepository<OrderReciept>
+    public class OrderReceiptRepository 
     {
         
         private readonly BadgerContext _ctx;
 
-        public OrderReceiptRepository(BadgerContext context): base(context)
+        public OrderReceiptRepository(BadgerContext context)
         {
             _ctx = context;
         }
 
-       
+  
+
         public void  UpdateOrCreate(OrderReceiptDto dto)
         {
             var ctx = _ctx;

@@ -8,13 +8,14 @@ using ServiceLayer.Models;
 using ServiceLayer.Mappers;
 using ServiceLayer.Overloads;
 
-namespace MosiacText
+namespace OrderReceipt_repo_Test
 {
     [TestClass]
     public class OrderRecieptUnitTest
     {
         private BadgerContext _context;
         private OrderReceiptRepository _repository;
+        
 
 
         [TestInitialize]
@@ -45,10 +46,12 @@ namespace MosiacText
             var result = _repository.Get(orderReciept.OrderReceiptID);
 
             Assert.IsTrue(orderReciept == result);
+            _context.Remove(result);
+            _context.SaveChanges();
         }
         
         [TestMethod]
-        public void CreateOrderReceiptDTO_Success()
+        public void CreateUpdate_OrderReceiptDTO_Success()
         {
             OrderReceiptDto dto = new OrderReceiptDto
             {
@@ -90,22 +93,9 @@ namespace MosiacText
                 Assert.IsTrue(Orderline.JobID == 2445);
                 Assert.IsTrue(Orderline.OrderReceiptID == 1);
             }
-
+            _context.Remove(result);
+            _context.SaveChanges();
             
-
-        }
-
-        [TestMethod]
-        public void  Should_Retrun_OrderReceiptDTO()
-        {
-            OrderReceiptDto dto = new OrderReceiptDto();
-            int id = 1;
-            OrderReciept orderReceipt = _repository.Get(id);
-            OrderReceiptMapper mapper = new OrderReceiptMapper();
-            mapper.Map(orderReceipt, dto);
-            Assert.IsNotNull(dto);
-            Assert.IsTrue(dto.OrderReceiptId != default);
-          
 
         }
     }

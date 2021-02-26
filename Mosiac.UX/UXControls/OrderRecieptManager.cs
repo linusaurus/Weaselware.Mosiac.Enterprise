@@ -18,16 +18,16 @@ namespace Mosiac.UX.UXControls
     {
 
 
-        private readonly IRepository<OrderReciept> _orderReceiptRepository;
+        //private readonly IRepository<OrderReciept> _orderReceiptRepository;
 
-        public OrderRecieptManager(IRepository<OrderReciept> orderReceiptRepository)
-        {
-            InitializeComponent();
-            _orderReceiptRepository = orderReceiptRepository;
-            var orders = _orderReceiptRepository.Find(c => c.EmployeeID == 8);
-            var or = _orderReceiptRepository.Get(2000);
-            this.dataGridView1.DataSource = orders;
-        }
+        //public OrderRecieptManager(IRepository<OrderReciept> orderReceiptRepository)
+        //{
+        //    InitializeComponent();
+        //    _orderReceiptRepository = orderReceiptRepository;
+        //    var orders = _orderReceiptRepository.Find(c => c.EmployeeID == 8);
+        //    var or = _orderReceiptRepository.Get(2000);
+        //    this.dataGridView1.DataSource = orders;
+        //}
 
        
     }

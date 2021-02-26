@@ -492,6 +492,8 @@ namespace DataLayer.Data
 
                 entity.Property(e => e.Extended).HasColumnType("decimal(18, 2)");
 
+                entity.Property(e => e.Note).HasMaxLength(240);
+
                 entity.Property(e => e.Price).HasColumnType("decimal(18, 2)");
 
                 entity.Property(e => e.QuantityOrdered).HasColumnType("decimal(18, 4)");
@@ -513,7 +515,15 @@ namespace DataLayer.Data
 
                 entity.Property(e => e.ReceiptDate).HasColumnType("date");
 
-               
+                entity.HasOne(d => d.Employee)
+                    .WithMany(p => p.OrderReciepts)
+                    .HasForeignKey(d => d.EmployeeID)
+                    .HasConstraintName("FK_OrderReciept_Employee");
+
+                entity.HasOne(d => d.OrderNumNavigation)
+                    .WithMany(p => p.OrderReciepts)
+                    .HasForeignKey(d => d.OrderNum)
+                    .HasConstraintName("FK_OrderReciept_PurchaseOrder");
             });
 
             modelBuilder.Entity<OrderStatus>(entity =>
