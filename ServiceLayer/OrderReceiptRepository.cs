@@ -7,6 +7,7 @@ using System.Text;
 using System.Linq.Expressions;
 using System.Linq;
 using ServiceLayer.Models;
+using ServiceLayer.Mappers;
 
 namespace ServiceLayer
 {
@@ -14,13 +15,45 @@ namespace ServiceLayer
     {
         
         private readonly BadgerContext _ctx;
+        private readonly OrderReceiptMapper _mapper = new OrderReceiptMapper();
 
         public OrderReceiptRepository(BadgerContext context)
+        { _ctx = context;}
+
+        public List<PendingOrdersDto> PendingOrders()
         {
-            _ctx = context;
+             
+            var purchaseOrders = _ctx.PurchaseOrders.AsNoTracking().Include(s => s.Supplier).Include(j => j.Job).Include(e => e.Employee)
+                .Where(p => p.Recieved == false)
+                .Select(dto => new PendingOrdersDto 
+                { 
+                    PurchaseOrderID = dto.OrderNum,
+                    OrderDate = dto.OrderDate.GetValueOrDefault(),
+                    EmployeeName = dto.Employee.firstname,
+                    JobName = dto.Job.jobname,
+                    Supplier = dto.Supplier.SupplierName
+
+                
+                }).ToList();
+
+            return purchaseOrders;
+            
         }
 
-  
+        //This will return 0 or many order Receipts for anny given Purchaseorder --
+        public List<OrderReceiptDto> GetOrderReceipts(int purchaseOrderID)
+        {
+            var ors = _ctx.OrderReciepts.Include(e => e.Employee).Where(p => p.OrderNum == purchaseOrderID).ToList();
+            List<OrderReceiptDto> dtos = new List<OrderReceiptDto>();
+            //List<OrderReciept> orderReceipts = _ctx.OrderReciepts.Where(o => o.OrderNum == purchaseOrderID).ToList();
+            foreach (var o in ors)
+            {
+                OrderReceiptDto dto = new OrderReceiptDto();
+                _mapper.Map(o, dto);
+                dtos.Add(dto);
+             }
+            return dtos;
+        }
 
         public void  UpdateOrCreate(OrderReceiptDto dto)
         {

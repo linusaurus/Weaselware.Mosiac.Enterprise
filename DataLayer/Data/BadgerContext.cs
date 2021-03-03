@@ -65,7 +65,7 @@ namespace DataLayer.Data
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Server=192.168.10.34;database=Badger;uid=sa;pwd=Kx09a32x");
+                optionsBuilder.UseSqlServer("Server=192.168.10.34;database=Mosaic;uid=sa;pwd=Kx09a32x");
             }
         }
 
@@ -520,7 +520,7 @@ namespace DataLayer.Data
                     .HasForeignKey(d => d.EmployeeID)
                     .HasConstraintName("FK_OrderReciept_Employee");
 
-                entity.HasOne(d => d.OrderNumNavigation)
+                entity.HasOne(d => d.GetPurchaseOrder)
                     .WithMany(p => p.OrderReciepts)
                     .HasForeignKey(d => d.OrderNum)
                     .HasConstraintName("FK_OrderReciept_PurchaseOrder");

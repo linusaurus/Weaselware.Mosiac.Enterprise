@@ -18,17 +18,65 @@ namespace Mosiac.UX.UXControls
     {
 
 
-        //private readonly IRepository<OrderReciept> _orderReceiptRepository;
+        private readonly OrderReceiptRepository _orderReceiptRepository;
+        private BindingSource bsOrderReceipt = new BindingSource();
 
-        //public OrderRecieptManager(IRepository<OrderReciept> orderReceiptRepository)
-        //{
-        //    InitializeComponent();
-        //    _orderReceiptRepository = orderReceiptRepository;
-        //    var orders = _orderReceiptRepository.Find(c => c.EmployeeID == 8);
-        //    var or = _orderReceiptRepository.Get(2000);
-        //    this.dataGridView1.DataSource = orders;
-        //}
+        public OrderRecieptManager()
+        {
+            InitializeComponent();
+            OrderRecieptGrid oGrid = new OrderRecieptGrid();
+            this.splitContainer1.Panel2.Controls.Add(oGrid);
+            oGrid.Dock = DockStyle.Fill;
+            _orderReceiptRepository =  new OrderReceiptRepository(new BadgerContext());
 
-       
+            var orderReceipts = _orderReceiptRepository.GetOrderReceipts(13608);
+            bsOrderReceipt.DataSource = orderReceipts;
+            oGrid.DataSource = orderReceipts;
+
+            bsOrderReceipt.ListChanged += BsOrderReceipt_ListChanged;
+            InitializeOrdersList();
+            BindPendingOrdersList();
+
+
+
+        }
+
+        private void BsOrderReceipt_ListChanged(object sender, ListChangedEventArgs e)
+        {
+            Grids.CheckForDirtyState(e, btnSave);
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            Grids.ToogleButtonStyle(false, btnSave);
+        }
+
+        private void BindPendingOrdersList()
+        {
+            var pendingOrders = _orderReceiptRepository.PendingOrders();
+            foreach (var dto in pendingOrders)
+            {
+                ListViewItem lvi = new ListViewItem(dto.PurchaseOrderID.ToString());
+                lvi.SubItems.Add(dto.JobName);
+                lvi.SubItems.Add(dto.EmployeeName);
+                lvi.SubItems.Add(dto.OrderDate.ToShortDateString());
+                lvUnRecievedOrders.Items.Add(lvi);
+            }
+
+           
+        }
+
+        private void InitializeOrdersList()
+        {
+            lvUnRecievedOrders.View = View.Details;
+            lvUnRecievedOrders.GridLines = true;
+            lvUnRecievedOrders.FullRowSelect = true;
+
+            // Attach Subitems to the ListView
+            lvUnRecievedOrders.Columns.Add("ID", 90, HorizontalAlignment.Left);
+            lvUnRecievedOrders.Columns.Add("Job", 120, HorizontalAlignment.Left);
+            lvUnRecievedOrders.Columns.Add("Employee", 70, HorizontalAlignment.Left);
+            lvUnRecievedOrders.Columns.Add("Date", 100, HorizontalAlignment.Right);
+        }
     }
 }

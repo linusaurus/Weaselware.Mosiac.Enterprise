@@ -9,7 +9,7 @@ namespace ServiceLayer.Mappers
 {
     public class OrderReceiptMapper : IMapper<OrderReciept, OrderReceiptDto>
     {
-        private readonly IMapper<OrderReceiptItem, OrderRecieptLineItemDto> resourceMapper = new OrderReceiptLineMapper();
+        private readonly IMapper<OrderReceiptItem, OrderRecieptLineItemDto> OrderReceiptItemMapper = new OrderReceiptLineMapper();
 
         public void Map(OrderReciept source, OrderReceiptDto destination)
         {
@@ -20,7 +20,8 @@ namespace ServiceLayer.Mappers
             destination.EmployeeName = source.Employee.firstname + " " + source.Employee.lastname;   
             destination.PurchaseOrderID = source.OrderNum.GetValueOrDefault();
             destination.ReceiptDate = source.ReceiptDate.GetValueOrDefault();
-            destination.OrderReceiptLineItems = resourceMapper.MapList(source.OrderReceiptItems);
+            destination.OrderReceiptId = source.OrderReceiptID;
+            destination.OrderReceiptLineItems = OrderReceiptItemMapper.MapList(source.OrderReceiptItems);
         }
 
         private class OrderReceiptLineMapper : IMapper<OrderReceiptItem, OrderRecieptLineItemDto>
