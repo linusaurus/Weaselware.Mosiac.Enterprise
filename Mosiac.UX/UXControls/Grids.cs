@@ -72,6 +72,54 @@ namespace Mosiac.UX.UXControls
 
         }
 
+        public static  void BuildPendingOrdersGrid(DataGridView dg)
+        {
+
+            dg.AutoGenerateColumns = false;
+            dg.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            dg.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+
+            // Currency Decimal Style
+            DataGridViewCellStyle dstyleCurrency = new DataGridViewCellStyle();
+            dstyleCurrency.Format = "C";
+            dstyleCurrency.NullValue = "";
+            dstyleCurrency.Alignment = DataGridViewContentAlignment.MiddleRight;
+            // Currency Decimal Style
+            DataGridViewCellStyle dstyleDecimal = new DataGridViewCellStyle();
+            dstyleDecimal.Format = "N2";
+            dstyleDecimal.NullValue = "0.00";
+            dstyleDecimal.Alignment = DataGridViewContentAlignment.MiddleRight;
+            // Wrapping Text Style
+            DataGridViewCellStyle dstyleWrapText = new DataGridViewCellStyle();
+            dstyleWrapText.NullValue = "";
+            dstyleWrapText.Alignment = DataGridViewContentAlignment.TopLeft;
+            dstyleWrapText.WrapMode = DataGridViewTriState.True;
+
+            // OrderReceiptID Column --
+            DataGridViewTextBoxColumn col_ID = new DataGridViewTextBoxColumn();
+            col_ID.HeaderText = "ID";
+            col_ID.DataPropertyName = "OrderReceiptLineID";
+            col_ID.Width = 55;
+
+            // Receipt Date Column --
+            DataGridViewTextBoxColumn col_Description = new DataGridViewTextBoxColumn();
+            col_Description.HeaderText = "Description";
+            col_Description.DataPropertyName = "Description";
+            col_Description.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            col_Description.DefaultCellStyle = dstyleWrapText;
+
+            // EmployeeName Column --
+            DataGridViewTextBoxColumn col_PartID = new DataGridViewTextBoxColumn();
+            col_PartID.HeaderText = "Supplier";
+            col_PartID.DataPropertyName = "Supplier";
+            col_PartID.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            col_PartID.DefaultCellStyle = dstyleWrapText;
+
+
+            dg.Columns.AddRange(col_ID,  col_Description, col_PartID);
+
+        }
+
 
         public static void CheckForDirtyState(ListChangedEventArgs e, Button btn)
         {

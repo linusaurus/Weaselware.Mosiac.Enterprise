@@ -7,28 +7,25 @@ using DataLayer.Entity;
 
 namespace DataLayer.Data
 {
-    public partial class BadgerContext : DbContext
+    public partial class MosaicContext : DbContext
     {
-        public BadgerContext()
+        public MosaicContext()
         {
         }
 
-        public BadgerContext(DbContextOptions<BadgerContext> options)
+        public MosaicContext(DbContextOptions<MosaicContext> options)
             : base(options)
         {
         }
 
-        public virtual DbSet<Assembly> Assemblies { get; set; }
         public virtual DbSet<Asset> Assets { get; set; }
         public virtual DbSet<Attachment> Attachments { get; set; }
         public virtual DbSet<Claim> Claims { get; set; }
         public virtual DbSet<ClaimDocument> ClaimDocuments { get; set; }
         public virtual DbSet<ClaimItem> ClaimItems { get; set; }
-        public virtual DbSet<CostHistory> CostHistories { get; set; }
         public virtual DbSet<Document> Documents { get; set; }
         public virtual DbSet<DocumentPart> DocumentParts { get; set; }
         public virtual DbSet<Employee> Employees { get; set; }
-        public virtual DbSet<Finish> Finishes { get; set; }
         public virtual DbSet<Global> Globals { get; set; }
         public virtual DbSet<Inventory> Inventories { get; set; }
         public virtual DbSet<Job> Jobs { get; set; }
@@ -37,25 +34,18 @@ namespace DataLayer.Data
         public virtual DbSet<OrderFee> OrderFees { get; set; }
         public virtual DbSet<OrderReceiptItem> OrderReceiptItems { get; set; }
         public virtual DbSet<OrderReciept> OrderReciepts { get; set; }
-        public virtual DbSet<OrderStatus> OrderStatuses { get; set; }
         public virtual DbSet<Part> Parts { get; set; }
         public virtual DbSet<PartCategory> PartCategories { get; set; }
         public virtual DbSet<PartType> PartTypes { get; set; }
-        public virtual DbSet<ProductionGroup> ProductionGroups { get; set; }
         public virtual DbSet<PurchaseLineItem> PurchaseLineItems { get; set; }
         public virtual DbSet<PurchaseOrder> PurchaseOrders { get; set; }
         public virtual DbSet<Resource> Resources { get; set; }
         public virtual DbSet<ResourceVersion> ResourceVersions { get; set; }
-        public virtual DbSet<SDAPCD> SDAPCDs { get; set; }
         public virtual DbSet<ShipBy> ShipBies { get; set; }
-        public virtual DbSet<StockBill> StockBills { get; set; }
-        public virtual DbSet<StockBillItem> StockBillItems { get; set; }
-        public virtual DbSet<SubAssembly> SubAssemblies { get; set; }
         public virtual DbSet<Supplier> Suppliers { get; set; }
         public virtual DbSet<Task> Tasks { get; set; }
         public virtual DbSet<TransActionType> TransActionTypes { get; set; }
         public virtual DbSet<UnitOfMeasure> UnitOfMeasures { get; set; }
-        public virtual DbSet<UnitOfPurchase> UnitOfPurchases { get; set; }
         public virtual DbSet<WorkCenter> WorkCenters { get; set; }
         public virtual DbSet<WorkOrder> WorkOrders { get; set; }
         public virtual DbSet<WorkOrderRouting> WorkOrderRoutings { get; set; }
@@ -65,54 +55,13 @@ namespace DataLayer.Data
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Server=192.168.10.34;database=Mosaic;uid=sa;pwd=Kx09a32x");
+                optionsBuilder.UseSqlServer("Server=192.168.10.3;database=Mosaic;uid=sa;pwd=Kx09a32x");
             }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasAnnotation("Relational:Collation", "SQL_Latin1_General_CP1_CI_AS");
-
-            modelBuilder.Entity<Assembly>(entity =>
-            {
-                entity.HasKey(e => e.ProductID);
-
-                entity.ToTable("Assembly");
-
-                entity.Property(e => e.ArchRef).HasMaxLength(120);
-
-                entity.Property(e => e.Area).HasColumnType("decimal(18, 4)");
-
-                entity.Property(e => e.AssemblyName).HasMaxLength(120);
-
-                entity.Property(e => e.CalculatedCost).HasColumnType("decimal(18, 2)");
-
-                entity.Property(e => e.Depth).HasColumnType("decimal(18, 4)");
-
-                entity.Property(e => e.Height).HasColumnType("decimal(18, 4)");
-
-                entity.Property(e => e.LaborHours).HasColumnType("decimal(18, 4)");
-
-                entity.Property(e => e.Note)
-                    .HasMaxLength(120)
-                    .HasDefaultValueSql("(' ')");
-
-                entity.Property(e => e.Perimeter).HasColumnType("decimal(18, 4)");
-
-                entity.Property(e => e.ProductionDate).HasColumnType("date");
-
-                entity.Property(e => e.ProductionID).HasMaxLength(50);
-
-                entity.Property(e => e.Weight).HasColumnType("decimal(18, 4)");
-
-                entity.Property(e => e.Width).HasColumnType("decimal(18, 4)");
-
-                entity.HasOne(d => d.ProductionGroup)
-                    .WithMany(p => p.Assemblies)
-                    .HasForeignKey(d => d.ProductionGroupID)
-                    .OnDelete(DeleteBehavior.Cascade)
-                    .HasConstraintName("FK_Article_Project");
-            });
 
             modelBuilder.Entity<Asset>(entity =>
             {
@@ -218,23 +167,6 @@ namespace DataLayer.Data
                     .IsUnicode(false);
             });
 
-            modelBuilder.Entity<CostHistory>(entity =>
-            {
-                entity.HasKey(e => e.CostChangeID);
-
-                entity.ToTable("CostHistory");
-
-                entity.Property(e => e.DateStamp).HasColumnType("date");
-
-                entity.Property(e => e.UoP).HasMaxLength(50);
-
-                entity.Property(e => e.UpdatedUnitCost).HasColumnType("decimal(18, 4)");
-
-                entity.Property(e => e.UpdatedUoPCost).HasColumnType("decimal(18, 2)");
-
-                entity.Property(e => e.User).HasMaxLength(50);
-            });
-
             modelBuilder.Entity<Document>(entity =>
             {
                 entity.HasKey(e => e.DocID)
@@ -313,15 +245,6 @@ namespace DataLayer.Data
                     .HasDefaultValueSql("('')");
             });
 
-            modelBuilder.Entity<Finish>(entity =>
-            {
-                entity.ToTable("Finish");
-
-                entity.Property(e => e.FinishName)
-                    .HasMaxLength(70)
-                    .HasDefaultValueSql("(' ')");
-            });
-
             modelBuilder.Entity<Global>(entity =>
             {
                 entity.HasKey(e => e.GiD);
@@ -352,18 +275,11 @@ namespace DataLayer.Data
 
                 entity.Property(e => e.Note).HasMaxLength(240);
 
-                entity.Property(e => e.QntyBackOrdered).HasColumnType("decimal(18, 4)");
-
                 entity.Property(e => e.QntyOrdered)
                     .HasColumnType("decimal(18, 4)")
                     .HasDefaultValueSql("((0.0))");
 
                 entity.Property(e => e.QntyReceived).HasColumnType("decimal(18, 4)");
-
-                entity.HasOne(d => d.StockBill)
-                    .WithMany(p => p.Inventories)
-                    .HasForeignKey(d => d.StockBillID)
-                    .HasConstraintName("FK_Inventory_StockBill");
             });
 
             modelBuilder.Entity<Job>(entity =>
@@ -520,22 +436,10 @@ namespace DataLayer.Data
                     .HasForeignKey(d => d.EmployeeID)
                     .HasConstraintName("FK_OrderReciept_Employee");
 
-                entity.HasOne(d => d.GetPurchaseOrder)
+                entity.HasOne(d => d.OrderNumNavigation)
                     .WithMany(p => p.OrderReciepts)
                     .HasForeignKey(d => d.OrderNum)
                     .HasConstraintName("FK_OrderReciept_PurchaseOrder");
-            });
-
-            modelBuilder.Entity<OrderStatus>(entity =>
-            {
-                entity.ToTable("OrderStatus");
-
-                entity.Property(e => e.OrderStatusID).ValueGeneratedNever();
-
-                entity.Property(e => e.OrderStatus1)
-                    .HasMaxLength(50)
-                    .IsUnicode(false)
-                    .HasColumnName("OrderStatus");
             });
 
             modelBuilder.Entity<Part>(entity =>
@@ -546,8 +450,6 @@ namespace DataLayer.Data
 
                 entity.Property(e => e.Amount_Required).HasColumnType("decimal(18, 2)");
 
-                entity.Property(e => e.CARBlevel).HasMaxLength(50);
-
                 entity.Property(e => e.CARBtrack).HasDefaultValueSql("((0))");
 
                 entity.Property(e => e.Cost)
@@ -555,8 +457,6 @@ namespace DataLayer.Data
                     .HasDefaultValueSql("((0.0))");
 
                 entity.Property(e => e.DateAdded).HasColumnType("datetime");
-
-                entity.Property(e => e.FinishID).HasDefaultValueSql("((0))");
 
                 entity.Property(e => e.ItemDescription)
                     .HasMaxLength(512)
@@ -598,24 +498,7 @@ namespace DataLayer.Data
                     .HasMaxLength(50)
                     .HasDefaultValueSql("(' ')");
 
-                entity.Property(e => e.SupplierDescription)
-                    .HasMaxLength(240)
-                    .HasDefaultValueSql("(' ')")
-                    .IsFixedLength(true);
-
-                entity.Property(e => e.UOP)
-                    .HasMaxLength(50)
-                    .HasDefaultValueSql("(' ')");
-
-                entity.Property(e => e.UOPCost)
-                    .HasColumnType("decimal(18, 4)")
-                    .HasDefaultValueSql("((0.0))");
-
-                entity.Property(e => e.UnitID).HasDefaultValueSql("((1))");
-
-                entity.Property(e => e.UnitToPurchaseFactor)
-                    .HasColumnType("decimal(18, 4)")
-                    .HasDefaultValueSql("((1.0))");
+                entity.Property(e => e.UnitOfMeasureID).HasDefaultValueSql("((1))");
 
                 entity.Property(e => e.UseSupplierNameFlag).HasDefaultValueSql("((1))");
 
@@ -627,14 +510,9 @@ namespace DataLayer.Data
                     .HasColumnType("decimal(18, 4)")
                     .HasDefaultValueSql("((0.0))");
 
-                entity.HasOne(d => d.Supplier)
+                entity.HasOne(d => d.UnitOfMeasure)
                     .WithMany(p => p.Parts)
-                    .HasForeignKey(d => d.SupplierID)
-                    .HasConstraintName("FK_Supplier_Part");
-
-                entity.HasOne(d => d.Unit)
-                    .WithMany(p => p.Parts)
-                    .HasForeignKey(d => d.UnitID)
+                    .HasForeignKey(d => d.UnitOfMeasureID)
                     .OnDelete(DeleteBehavior.Cascade)
                     .HasConstraintName("FK_Part_UnitOfMeasure");
             });
@@ -656,23 +534,6 @@ namespace DataLayer.Data
                     .WithMany(p => p.PartTypes)
                     .HasForeignKey(d => d.PartCategoryID)
                     .HasConstraintName("FK_PartTypes_PartCategory");
-            });
-
-            modelBuilder.Entity<ProductionGroup>(entity =>
-            {
-                entity.ToTable("ProductionGroup");
-
-                entity.Property(e => e.Created)
-                    .HasColumnType("date")
-                    .HasDefaultValueSql("(getdate())");
-
-                entity.Property(e => e.IsContracted).HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.IsVisible).HasDefaultValueSql("((1))");
-
-                entity.Property(e => e.ProductionGroupName)
-                    .HasMaxLength(120)
-                    .IsFixedLength(true);
             });
 
             modelBuilder.Entity<PurchaseLineItem>(entity =>
@@ -742,9 +603,6 @@ namespace DataLayer.Data
 
             modelBuilder.Entity<PurchaseOrder>(entity =>
             {
-                entity.HasKey(e => e.OrderNum)
-                    .HasName("PK_Order");
-
                 entity.ToTable("PurchaseOrder");
 
                 entity.Property(e => e.AddedBy)
@@ -858,23 +716,6 @@ namespace DataLayer.Data
                 entity.Property(e => e.VersionComment).HasMaxLength(50);
             });
 
-            modelBuilder.Entity<SDAPCD>(entity =>
-            {
-                entity.HasNoKey();
-
-                entity.ToTable("SDAPCD");
-
-                entity.Property(e => e.BoilingPoint).HasColumnType("decimal(18, 2)");
-
-                entity.Property(e => e.ID).ValueGeneratedOnAdd();
-
-                entity.Property(e => e.MixRatio).HasColumnType("decimal(18, 2)");
-
-                entity.Property(e => e.VOC_Content).HasColumnType("decimal(18, 2)");
-
-                entity.Property(e => e.VOC_Limit).HasColumnType("decimal(18, 2)");
-            });
-
             modelBuilder.Entity<ShipBy>(entity =>
             {
                 entity.HasKey(e => e.ShipID);
@@ -884,70 +725,6 @@ namespace DataLayer.Data
                 entity.Property(e => e.ShipByName)
                     .HasMaxLength(50)
                     .IsUnicode(false);
-            });
-
-            modelBuilder.Entity<StockBill>(entity =>
-            {
-                entity.ToTable("StockBill");
-
-                entity.Property(e => e.ItemTotal).HasColumnType("money");
-
-                entity.Property(e => e.StockBillDate).HasColumnType("date");
-
-                entity.Property(e => e.Submitted).HasDefaultValueSql("((0))");
-            });
-
-            modelBuilder.Entity<StockBillItem>(entity =>
-            {
-                entity.HasKey(e => e.StockItemID)
-                    .HasName("PK_BomItems");
-
-                entity.ToTable("StockBillItem");
-
-                entity.Property(e => e.Description).HasMaxLength(240);
-
-                entity.Property(e => e.Qnty).HasColumnType("decimal(18, 2)");
-
-                entity.HasOne(d => d.StockBillDNavigation)
-                    .WithMany(p => p.StockBillItems)
-                    .HasForeignKey(d => d.StockBillD)
-                    .HasConstraintName("FK_BomItems_BOM");
-            });
-
-            modelBuilder.Entity<SubAssembly>(entity =>
-            {
-                entity.ToTable("SubAssembly");
-
-                entity.Property(e => e.Area).HasColumnType("decimal(18, 4)");
-
-                entity.Property(e => e.CompositeCost).HasColumnType("decimal(18, 2)");
-
-                entity.Property(e => e.Depth).HasColumnType("decimal(18, 4)");
-
-                entity.Property(e => e.FrameSashType).HasMaxLength(70);
-
-                entity.Property(e => e.Height).HasColumnType("decimal(18, 4)");
-
-                entity.Property(e => e.LaborHr).HasColumnType("decimal(18, 2)");
-
-                entity.Property(e => e.MakeFile).HasMaxLength(120);
-
-                entity.Property(e => e.Perimeter).HasColumnType("decimal(18, 4)");
-
-                entity.Property(e => e.SubAssemblyName).HasMaxLength(100);
-
-                entity.Property(e => e.SystemName).HasMaxLength(120);
-
-                entity.Property(e => e.UnitType).HasMaxLength(50);
-
-                entity.Property(e => e.Weight).HasColumnType("decimal(18, 4)");
-
-                entity.Property(e => e.Width).HasColumnType("decimal(18, 4)");
-
-                entity.HasOne(d => d.Product)
-                    .WithMany(p => p.SubAssemblies)
-                    .HasForeignKey(d => d.ProductID)
-                    .HasConstraintName("FK_SubAssembly_Assembly");
             });
 
             modelBuilder.Entity<Supplier>(entity =>
@@ -1046,32 +823,11 @@ namespace DataLayer.Data
 
             modelBuilder.Entity<UnitOfMeasure>(entity =>
             {
-                entity.HasKey(e => e.UnitID);
-
                 entity.ToTable("UnitOfMeasure");
 
                 entity.Property(e => e.UnitName)
                     .HasMaxLength(12)
                     .IsUnicode(false);
-            });
-
-            modelBuilder.Entity<UnitOfPurchase>(entity =>
-            {
-                entity.HasKey(e => e.UoPID);
-
-                entity.ToTable("UnitOfPurchase");
-
-                entity.Property(e => e.UOPCostUnit).HasColumnType("decimal(18, 4)");
-
-                entity.Property(e => e.UOPName).HasMaxLength(50);
-
-                entity.Property(e => e.UOPRatio).HasColumnType("decimal(18, 4)");
-
-                entity.HasOne(d => d.Part)
-                    .WithMany(p => p.UnitOfPurchases)
-                    .HasForeignKey(d => d.PartID)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_UnitOfPurchase_Part");
             });
 
             modelBuilder.Entity<WorkCenter>(entity =>

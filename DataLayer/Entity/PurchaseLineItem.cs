@@ -10,7 +10,7 @@ namespace DataLayer.Entity
         public int LineID { get; set; }
         public int? PurchaseOrderID { get; set; }
         public int? JobID { get; set; }
-        public int? VendorID { get; set; }
+        public int? SupplierID { get; set; }
         public int? PartID { get; set; }
         public decimal? UnitCost { get; set; }
         public string Description { get; set; }
@@ -18,7 +18,7 @@ namespace DataLayer.Entity
         public decimal? Extended { get; set; }
         public bool? Recieved { get; set; }
         public int? OrderReceiptID { get; set; }
-        public int? UnitID { get; set; }
+        public int? UnitOfMeasureID { get; set; }
         public int? ProductID { get; set; }
         public int? BomID { get; set; }
         public decimal? AmountReceived { get; set; }
@@ -32,7 +32,8 @@ namespace DataLayer.Entity
         public string Note { get; set; }
         public bool? Rejected { get; set; }
 
-        public UnitOfMeasure UnitOfMeasure { get; set; }
+        public virtual UnitOfMeasure UnitOfMeasure { get; set; }
+
         public virtual PurchaseOrder PurchaseOrder { get; set; }
     }
 }

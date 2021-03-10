@@ -11,7 +11,7 @@ namespace DataLayer.Entity
         public int? LineID { get; set; }
         public int? PurchaseOrderID { get; set; }
         public int? JobID { get; set; }
-        public int? UiD { get; set; }
+        public int? UnitOfMeasureID { get; set; }
         public int? PartID { get; set; }
         public decimal? QuantityOrdered { get; set; }
         public decimal? QuantityReceived { get; set; }
@@ -24,6 +24,7 @@ namespace DataLayer.Entity
         public string Note { get; set; }
 
         public UnitOfMeasure UnitOfMeasure { get; set; }
+
         public virtual OrderReciept OrderReceipt { get; set; }
     }
 }

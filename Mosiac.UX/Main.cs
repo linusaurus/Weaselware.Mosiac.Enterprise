@@ -18,7 +18,7 @@ namespace Mosiac.UX
 {
     public partial class Main : Form
     {
-        public  Main(BadgerContext context)
+        public  Main(MosaicContext context)
         {
             InitializeComponent();
                             

@@ -15,7 +15,7 @@ namespace DataLayer.Entity
             PurchaseLineItems = new HashSet<PurchaseLineItem>();
         }
 
-        public int OrderNum { get; set; }
+        public int PurchaseOrderID { get; set; }
         public DateTime? OrderDate { get; set; }
         public DateTime? ExpectedDate { get; set; }
         public int? SupplierID { get; set; }

@@ -20,7 +20,7 @@ namespace ServiceLayer.Models
         private int partID;
         private bool itemReceivedComplete;
         //----
-        private int uid;
+        private int unitOfMeasureID;
         private string unitOfMeasureName;
         private decimal unitToQuantityRatio;
         //----
@@ -28,6 +28,7 @@ namespace ServiceLayer.Models
         private decimal qntyOrdered;
         private decimal qntyRecieved;
         private decimal qntyBalance;
+        private decimal qntyToInventory;
 
         private string description;
         private decimal unitPrice;
@@ -54,6 +55,17 @@ namespace ServiceLayer.Models
                 OnPropertyChange();
             }
         }
+
+        public decimal QntyToInventory
+        {
+            get { return qntyToInventory; }
+            set
+            {
+                qntyToInventory = value;
+                OnPropertyChange();
+            }
+        }
+
 
         public string Note
         {
@@ -112,10 +124,10 @@ namespace ServiceLayer.Models
         }
         public int UiD
         {
-            get { return uid; }
+            get { return unitOfMeasureID; }
             set
             {
-                uid = value;
+                unitOfMeasureID = value;
                 OnPropertyChange();
             }
         }

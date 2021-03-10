@@ -17,7 +17,7 @@ namespace ServiceLayer.Mappers
 
             destination.IsOrderComplete = source.IsOrderComplete.GetValueOrDefault();
             destination.EmployeeId = source.EmployeeID.GetValueOrDefault();
-            destination.EmployeeName = source.Employee.firstname + " " + source.Employee.lastname;   
+            destination.EmployeeName = source.Employee != null ? source.Employee.firstname + " " + source.Employee.lastname : "";   
             destination.PurchaseOrderID = source.OrderNum.GetValueOrDefault();
             destination.ReceiptDate = source.ReceiptDate.GetValueOrDefault();
             destination.OrderReceiptId = source.OrderReceiptID;
@@ -37,7 +37,7 @@ namespace ServiceLayer.Mappers
                 destination.PurchaseOrderID = source.PurchaseOrderID.GetValueOrDefault();
                 destination.Description = source.Description;
                 destination.UnitOfMeasureName = source.UnitOfMeasure.UnitName;
-                destination.UiD = source.UiD.GetValueOrDefault();
+                destination.UiD = source.UnitOfMeasureID.GetValueOrDefault();
                 destination.QntyOrdered = source.QuantityOrdered.GetValueOrDefault();
                 destination.QntyReceived = source.QuantityReceived.GetValueOrDefault();
                 destination.QntyBalance = source.Balance.GetValueOrDefault();

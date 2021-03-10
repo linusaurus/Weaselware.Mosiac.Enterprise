@@ -12,7 +12,7 @@ namespace DataLayer.Entity
             Parts = new HashSet<Part>();
         }
 
-        public int UnitID { get; set; }
+        public int UnitOfMeasureID { get; set; }
         public string UnitName { get; set; }
 
         public virtual ICollection<Part> Parts { get; set; }

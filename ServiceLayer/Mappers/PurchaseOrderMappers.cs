@@ -22,7 +22,7 @@ namespace WServiceLayer.Mappers
             destination.JobName = source.Job.jobname;
             destination.EmployeeID = source.EmployeeID.GetValueOrDefault();
             destination.OrderTotal = source.OrderTotal.GetValueOrDefault();
-            destination.PurchaseOrderID = source.OrderNum;
+            destination.PurchaseOrderID = source.PurchaseOrderID;
             destination.Purchaser = source.Employee.firstname + " " + source.Employee.lastname;
             destination.ShipID = source.ShipID.GetValueOrDefault();
             destination.ShippingCost = source.ShippingCost.GetValueOrDefault();
@@ -61,7 +61,7 @@ namespace WServiceLayer.Mappers
             destination.PurchaseOrderID = source.PurchaseOrderID.GetValueOrDefault();
             destination.Description = source.Description;
             destination.Quantity = source.Qnty.GetValueOrDefault();
-            destination.UiD = source.UnitID.GetValueOrDefault();
+            destination.UiD = source.UnitOfMeasureID.GetValueOrDefault();
             destination.Extended = source.Extended.GetValueOrDefault();
            
         }

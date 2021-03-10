@@ -10,6 +10,8 @@ using System.Linq;
 using DataLayer.Entity;
 using SimpleInjector;
 using ServiceLayer;
+using ServiceLayer.Models;
+using ServiceLayer.Mappers;
 using System.Composition;
 
 namespace Mosiac.UX.UXControls
@@ -19,64 +21,51 @@ namespace Mosiac.UX.UXControls
 
 
         private readonly OrderReceiptRepository _orderReceiptRepository;
-        private BindingSource bsOrderReceipt = new BindingSource();
+        private OrderReceiptDto _orderRecieptDto = new OrderReceiptDto();
+        private OrderReceiptMapper _orMapper = new OrderReceiptMapper();
+        private int _selectedOrderID;
+       
+
+        
+
 
         public OrderRecieptManager()
         {
             InitializeComponent();
-            OrderRecieptGrid oGrid = new OrderRecieptGrid();
-            this.splitContainer1.Panel2.Controls.Add(oGrid);
-            oGrid.Dock = DockStyle.Fill;
-            _orderReceiptRepository =  new OrderReceiptRepository(new BadgerContext());
-
-            var orderReceipts = _orderReceiptRepository.GetOrderReceipts(13608);
-            bsOrderReceipt.DataSource = orderReceipts;
-            oGrid.DataSource = orderReceipts;
-
-            bsOrderReceipt.ListChanged += BsOrderReceipt_ListChanged;
-            InitializeOrdersList();
-            BindPendingOrdersList();
-
-
-
+            Grids.BuildPendingOrdersGrid(dgPendingOrders);
+            _orderReceiptRepository = new OrderReceiptRepository(new MosaicContext());
+            //----------------------------- Pending Grid ------------------------------------
+            var orderReceipts = _orderReceiptRepository.PendingOrders();
+           // DataTable dt = Grids.BuildDataTable(orderReceipts);
+            this.dgPendingOrders.DataSource = orderReceipts;
+            //------------------------------Event Wiring---------------------------------------
+            dgPendingOrders.SelectionChanged += DgPendingOrders_SelectionChanged;
         }
 
-        private void BsOrderReceipt_ListChanged(object sender, ListChangedEventArgs e)
+      
+
+        private void DgPendingOrders_SelectionChanged(object sender, EventArgs e)
         {
-            Grids.CheckForDirtyState(e, btnSave);
+            DataGridView dg = (DataGridView)sender;
+            if (dg.DataSource != null)
+            {
+                if (dg.Rows.Count > 0)
+                {
+                    _selectedOrderID  = ((PendingOrdersDto)dg.CurrentRow.DataBoundItem).PurchaseOrderID;
+                    this.label1.Text = $"Purchase Order {_selectedOrderID}"; 
+                }
+            }
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            Grids.ToogleButtonStyle(false, btnSave);
+            var receipt = _orderReceiptRepository.ReceiveOrder(_selectedOrderID);
+            dataGridView1.DataSource = receipt.OrderReceiptLineItems;
         }
 
-        private void BindPendingOrdersList()
-        {
-            var pendingOrders = _orderReceiptRepository.PendingOrders();
-            foreach (var dto in pendingOrders)
-            {
-                ListViewItem lvi = new ListViewItem(dto.PurchaseOrderID.ToString());
-                lvi.SubItems.Add(dto.JobName);
-                lvi.SubItems.Add(dto.EmployeeName);
-                lvi.SubItems.Add(dto.OrderDate.ToShortDateString());
-                lvUnRecievedOrders.Items.Add(lvi);
-            }
+       
+      
 
-           
-        }
 
-        private void InitializeOrdersList()
-        {
-            lvUnRecievedOrders.View = View.Details;
-            lvUnRecievedOrders.GridLines = true;
-            lvUnRecievedOrders.FullRowSelect = true;
-
-            // Attach Subitems to the ListView
-            lvUnRecievedOrders.Columns.Add("ID", 90, HorizontalAlignment.Left);
-            lvUnRecievedOrders.Columns.Add("Job", 120, HorizontalAlignment.Left);
-            lvUnRecievedOrders.Columns.Add("Employee", 70, HorizontalAlignment.Left);
-            lvUnRecievedOrders.Columns.Add("Date", 100, HorizontalAlignment.Right);
-        }
     }
 }

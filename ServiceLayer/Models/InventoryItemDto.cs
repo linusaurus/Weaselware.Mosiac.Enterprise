@@ -23,6 +23,29 @@ namespace ServiceLayer.Models
         private int transActionType;
         private string transActionName;
 
+        public int StockBillID
+        {
+            get { return stockBillID; }
+            set
+            {
+                stockBillID = value;
+                OnPropertyChange();
+            }
+        }
+
+
+        public int JobID
+        {
+            get { return jobID; }
+            set
+            {
+                jobID = value;
+                OnPropertyChange();
+            }
+        }
+
+
+
         public int StockTransActionID
         {
             get { return stockTransActionID; }

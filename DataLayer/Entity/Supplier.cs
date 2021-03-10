@@ -9,7 +9,6 @@ namespace DataLayer.Entity
     {
         public Supplier()
         {
-            Parts = new HashSet<Part>();
             PurchaseOrders = new HashSet<PurchaseOrder>();
         }
 
@@ -28,7 +27,6 @@ namespace DataLayer.Entity
         public string AccountNumber { get; set; }
         public double? TaxRate { get; set; }
 
-        public virtual ICollection<Part> Parts { get; set; }
         public virtual ICollection<PurchaseOrder> PurchaseOrders { get; set; }
     }
 }
