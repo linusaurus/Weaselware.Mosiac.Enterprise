@@ -11,13 +11,13 @@ namespace ServiceLayer.Overloads
         public override bool Equals(OrderReciept x, OrderReciept y)
         {
             return x.OrderReceiptID == y.OrderReceiptID
-                && x.OrderNum == y.OrderNum;
+                && x.PurchaseOrderID == y.PurchaseOrderID;
         }
 
         public override int GetHashCode([DisallowNull] OrderReciept obj)
         {
             int randomNumber = System.Security.Cryptography.RandomNumberGenerator.GetInt32(int.MaxValue / 2);
-            return (obj.OrderReceiptID + obj.OrderNum + randomNumber).GetHashCode();
+            return (obj.OrderReceiptID + obj.PurchaseOrderID + randomNumber).GetHashCode();
         }
 
 

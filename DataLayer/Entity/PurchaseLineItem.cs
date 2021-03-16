@@ -27,7 +27,6 @@ namespace DataLayer.Entity
         public decimal? Thick { get; set; }
         public decimal? Weight { get; set; }
         public string SupplierPartName { get; set; }
-        public decimal? UoPPrice { get; set; }
         public string BCode { get; set; }
         public string Note { get; set; }
         public bool? Rejected { get; set; }

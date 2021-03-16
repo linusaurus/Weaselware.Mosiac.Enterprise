@@ -32,12 +32,12 @@ namespace Mosiac.UX.UXControls
             this.spcMainContainer = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.dgPendingOrders = new System.Windows.Forms.DataGridView();
+            this.dgOrderReceiptItems = new System.Windows.Forms.DataGridView();
             this.dataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnReceiveOrder = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.spcMainContainer)).BeginInit();
             this.spcMainContainer.Panel1.SuspendLayout();
             this.spcMainContainer.Panel2.SuspendLayout();
@@ -46,12 +46,13 @@ namespace Mosiac.UX.UXControls
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgPendingOrders)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgOrderReceiptItems)).BeginInit();
             this.SuspendLayout();
             // 
             // spcMainContainer
             // 
             this.spcMainContainer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.spcMainContainer.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
             this.spcMainContainer.Location = new System.Drawing.Point(6, 120);
             this.spcMainContainer.Name = "spcMainContainer";
             // 
@@ -61,7 +62,7 @@ namespace Mosiac.UX.UXControls
             // 
             // spcMainContainer.Panel2
             // 
-            this.spcMainContainer.Panel2.Controls.Add(this.dataGridView1);
+            this.spcMainContainer.Panel2.Controls.Add(this.dgOrderReceiptItems);
             this.spcMainContainer.Size = new System.Drawing.Size(1118, 600);
             this.spcMainContainer.SplitterDistance = 300;
             this.spcMainContainer.TabIndex = 1;
@@ -89,6 +90,16 @@ namespace Mosiac.UX.UXControls
             this.dgPendingOrders.RowTemplate.Height = 25;
             this.dgPendingOrders.Size = new System.Drawing.Size(300, 360);
             this.dgPendingOrders.TabIndex = 0;
+            // 
+            // dgOrderReceiptItems
+            // 
+            this.dgOrderReceiptItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgOrderReceiptItems.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgOrderReceiptItems.Location = new System.Drawing.Point(0, 0);
+            this.dgOrderReceiptItems.Name = "dgOrderReceiptItems";
+            this.dgOrderReceiptItems.RowTemplate.Height = 25;
+            this.dgOrderReceiptItems.Size = new System.Drawing.Size(814, 600);
+            this.dgOrderReceiptItems.TabIndex = 0;
             // 
             // dataGridViewCheckBoxColumn1
             // 
@@ -118,32 +129,22 @@ namespace Mosiac.UX.UXControls
             // btnReceiveOrder
             // 
             this.btnReceiveOrder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnReceiveOrder.Location = new System.Drawing.Point(248, 40);
+            this.btnReceiveOrder.Location = new System.Drawing.Point(177, 40);
             this.btnReceiveOrder.Name = "btnReceiveOrder";
             this.btnReceiveOrder.Size = new System.Drawing.Size(143, 34);
             this.btnReceiveOrder.TabIndex = 2;
             this.btnReceiveOrder.Text = "Receive Order";
             this.btnReceiveOrder.UseVisualStyleBackColor = true;
-            this.btnReceiveOrder.Click += new System.EventHandler(this.btnSave_Click);
+            this.btnReceiveOrder.Click += new System.EventHandler(this.btnReceiveOrder_Click);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(485, 50);
+            this.label1.Location = new System.Drawing.Point(411, 40);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(38, 15);
             this.label1.TabIndex = 3;
             this.label1.Text = "label1";
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 0);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowTemplate.Height = 25;
-            this.dataGridView1.Size = new System.Drawing.Size(814, 600);
-            this.dataGridView1.TabIndex = 0;
             // 
             // OrderRecieptManager
             // 
@@ -164,7 +165,7 @@ namespace Mosiac.UX.UXControls
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgPendingOrders)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgOrderReceiptItems)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -179,6 +180,6 @@ namespace Mosiac.UX.UXControls
         private System.Windows.Forms.DataGridView dgPendingOrders;
         private System.Windows.Forms.Button btnReceiveOrder;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgOrderReceiptItems;
     }
 }

@@ -32,18 +32,7 @@ namespace OrderReceipt_repo_Test
         [TestMethod]
         public void Add_OrderReceipt_Success()
         {
-            //OrderReciept orderReciept = new OrderReciept
-            //{
-            //    OrderNum = 6234,
-            //    EmployeeID = 8,
-            //    ReceiptDate = System.DateTime.Today,
-            //    IsOrderComplete = true    
-            //};
-
-            //_repository.Add(orderReciept);
-            //_repository.SaveChanges();
-
-            //var result = _repository.Get(orderReciept.OrderReceiptID);
+           var result =  _repository.GetOrderReceipts(9323);
 
             //Assert.IsTrue(orderReciept == result);
             //_context.Remove(result);

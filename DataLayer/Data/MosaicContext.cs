@@ -436,9 +436,9 @@ namespace DataLayer.Data
                     .HasForeignKey(d => d.EmployeeID)
                     .HasConstraintName("FK_OrderReciept_Employee");
 
-                entity.HasOne(d => d.OrderNumNavigation)
+                entity.HasOne(d => d.GetPurchaseOrder)
                     .WithMany(p => p.OrderReciepts)
-                    .HasForeignKey(d => d.OrderNum)
+                    .HasForeignKey(d => d.PurchaseOrderID)
                     .HasConstraintName("FK_OrderReciept_PurchaseOrder");
             });
 
@@ -582,9 +582,7 @@ namespace DataLayer.Data
                     .HasColumnType("decimal(18, 4)")
                     .HasDefaultValueSql("((0.0))");
 
-                entity.Property(e => e.UoPPrice)
-                    .HasColumnType("decimal(18, 2)")
-                    .HasDefaultValueSql("((0.0))");
+      
 
                 entity.Property(e => e.Weight)
                     .HasColumnType("decimal(18, 4)")

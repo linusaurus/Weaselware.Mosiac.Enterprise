@@ -102,11 +102,36 @@ namespace ServiceLayer
             return dtos;
         }
 
+        public OrderReceiptDto GetOrderReceipt(int orderReceiptID)
+        {
+            OrderReceiptDto dto = new OrderReceiptDto();
+            var or = _ctx.OrderReciepts
+                .Include(l => l.OrderReceiptItems).ThenInclude(o => o.UnitOfMeasure)
+                .Include(e => e.Employee).Where(p => p.OrderReceiptID == orderReceiptID).First();
+
+                //.Select(dto => new OrderReceiptDto
+                // {
+                //     ReceiptDate = dto.ReceiptDate.GetValueOrDefault(),
+                //     EmployeeName = dto.Employee.firstname,
+                //     EmployeeId = dto.EmployeeID.GetValueOrDefault(),
+                //     OrderReceiptId = dto.OrderReceiptID,
+                //     PurchaseOrderID = dto.GetPurchaseOrder.PurchaseOrderID,
+                //     IsOrderComplete = dto.IsOrderComplete.GetValueOrDefault()
+
+                // }).First();
+
+            OrderReceiptMapper mapper = new OrderReceiptMapper();
+            mapper.Map(or, dto);
+                
+            return dto;
+        }
+
 
         //This will return 0 or many order Receipts for anny given Purchaseorder --
+        //This should be replaced with a simple select into for a single ordereceipt
         public List<OrderReceiptDto> GetOrderReceipts(int purchaseOrderID)
         {
-            var ors = _ctx.OrderReciepts.Include(e => e.Employee).Where(p => p.OrderNum == purchaseOrderID).ToList();
+            var ors = _ctx.OrderReciepts.Include(e => e.Employee).Where(p => p.PurchaseOrderID == purchaseOrderID).ToList();
             List<OrderReceiptDto> dtos = new List<OrderReceiptDto>();
             //List<OrderReciept> orderReceipts = _ctx.OrderReciepts.Where(o => o.OrderNum == purchaseOrderID).ToList();
             foreach (var o in ors)
@@ -118,20 +143,21 @@ namespace ServiceLayer
             return dtos;
         }
 
-        public void  UpdateOrCreate(OrderReceiptDto dto)
+        public int  UpdateOrCreate(OrderReceiptDto dto)
         {
             var ctx = _ctx;
-            var orderReciept = ctx.OrderReciepts.Include(p => p.OrderReceiptItems).FirstOrDefault(o => o.OrderNum == dto.PurchaseOrderID);
+            var orderReciept = ctx.OrderReciepts.Include(p => p.OrderReceiptItems)
+                                                .Include(d => d.GetPurchaseOrder).FirstOrDefault(o => o.PurchaseOrderID == dto.PurchaseOrderID);
             if (orderReciept == null)
             {
                 orderReciept = new OrderReciept();
                 ctx.OrderReciepts.Add(orderReciept);
-                //ctx.SaveChanges();
+                ctx.SaveChanges();
             }
 
             //Map properties
             orderReciept.ReceiptDate = dto.ReceiptDate;
-            orderReciept.OrderNum = dto.PurchaseOrderID;
+            orderReciept.PurchaseOrderID = dto.PurchaseOrderID;
             orderReciept.IsOrderComplete = dto.IsOrderComplete;
             orderReciept.EmployeeID = dto.EmployeeId;
 
@@ -163,11 +189,68 @@ namespace ServiceLayer
                 detail.QuantityReceived = detailDTO.QntyReceived;
                 detail.Balance = detailDTO.QntyBalance;
                 detail.IsComplete = detailDTO.ItemsRecievedComplete;
-
+                
             });
 
+            // set the PO order status and Received Date.
+
+            bool iSorderCompleted = dto.OrderReceiptLineItems.Any(p => p.ItemsRecievedComplete == false);
+            orderReciept.IsOrderComplete = !iSorderCompleted;
+            orderReciept.GetPurchaseOrder.Recieved = !iSorderCompleted;
+            orderReciept.GetPurchaseOrder.RecievedDate = DateTime.Today;
+
+            // Push the Item to inventory --
+            foreach (var item in dto.OrderReceiptLineItems)
+            {
+                Inventory inv = new Inventory();
+                inv.DateStamp = DateTime.Now;
+                inv.Description = item.Description;
+                inv.EmpID = orderReciept.EmployeeID;
+                inv.JobID = item.JobID;
+                inv.LineID = item.LineID;
+                inv.OrderReceiptID = orderReciept.OrderReceiptID;
+                inv.PartID = item.PartID;
+                inv.QntyOrdered = item.QntyOrdered;
+                inv.QntyReceived = item.QntyReceived;
+                inv.UnitOfMeasureID = item.UiD;
+                inv.TransActionType = 1;
+
+                _ctx.Inventories.Add(inv);
+            }
+
             _ctx.SaveChanges();
+            return orderReciept.OrderReceiptID;
             
+        }
+
+
+        public class TransactOrderReceiptCommand
+        {
+        //    public Employee newReceiver{ get; set; }
+        //    public Supplier ExistingCustomer { get; set; }
+        //    public List<Product> Cart { get; set; }
+        //    //all the parameters we need, as properties...
+        //    //...
+
+        //    //our UnitOfWork
+        //    StoreContext _context;
+        //    public TransactOrderCommand(StoreContext context)
+        //    {
+        //        //allow it to be injected - though that's only for testing
+        //        _context = context;
+        //    }
+
+        //    public Order Execute()
+        //    {
+        //        //allow for mocking and passing in... otherwise new it up
+        //        _context = _context ?? new StoreContext();
+
+        //        //add products to a new order, assign the customer, etc
+        //        //then...
+        //        _context.SubmitChanges();
+
+        //        return newOrder;
+        //    }
         }
     }
 }

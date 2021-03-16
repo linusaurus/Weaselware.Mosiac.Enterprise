@@ -192,7 +192,8 @@ namespace ServiceLayer.Models
                 itemReceivedComplete = value;
                 if (itemReceivedComplete)
                 {
-                    QntyReceived = QntyOrdered; 
+                  QntyReceived = QntyOrdered;
+                  QntyBalance = 0.0m;
                 } else
                 {
                     QntyReceived = decimal.Zero;
@@ -230,13 +231,11 @@ namespace ServiceLayer.Models
             }
         }
 
-       
-       
-
 
         protected void OnPropertyChange([CallerMemberName] string name = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+          
         }
     }
 }

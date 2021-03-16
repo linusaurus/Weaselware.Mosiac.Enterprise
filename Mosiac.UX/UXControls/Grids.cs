@@ -36,7 +36,7 @@ namespace Mosiac.UX.UXControls
             DataGridViewCellStyle dstyleDecimal = new DataGridViewCellStyle();
             dstyleDecimal.Format = "N2";
             dstyleDecimal.NullValue = "0.00";
-            dstyleDecimal.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dstyleDecimal.Alignment = DataGridViewContentAlignment.MiddleCenter;
             // Wrapping Text Style
             DataGridViewCellStyle dstyleWrapText = new DataGridViewCellStyle();
             dstyleWrapText.NullValue = "";
@@ -44,32 +44,62 @@ namespace Mosiac.UX.UXControls
             dstyleWrapText.WrapMode = DataGridViewTriState.True;
 
             // PartID Column --
-            DataGridViewTextBoxColumn col_ID = new DataGridViewTextBoxColumn();
-            col_ID.HeaderText = "ID";
-            col_ID.DataPropertyName = "OrderReceiptID";
-            col_ID.Width = 55;
+            DataGridViewTextBoxColumn col_OrderReceiptID = new DataGridViewTextBoxColumn();
+            col_OrderReceiptID.HeaderText = "ID";
+            col_OrderReceiptID.DataPropertyName = "OrderReceiptID";
+            col_OrderReceiptID.Width = 55;
 
             // Description Column --
             DataGridViewTextBoxColumn col_Description = new DataGridViewTextBoxColumn();
-            col_Description.HeaderText = "Employee";
-            col_Description.DataPropertyName = "EmployeeName";
+            col_Description.HeaderText = "Description";
+            col_Description.DataPropertyName = "Description";
             col_Description.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             col_Description.DefaultCellStyle = dstyleWrapText;
 
-            // Manufacturer Column --
-            DataGridViewTextBoxColumn colManu = new DataGridViewTextBoxColumn();
-            colManu.HeaderText = "Manufacturer";
-            colManu.DataPropertyName = "Manufacturer";
-            colManu.Width = 150;
+            // Units Of Measure Column --
+            DataGridViewTextBoxColumn col_UnitOfMeasureName = new DataGridViewTextBoxColumn();
+            col_UnitOfMeasureName.HeaderText = "Units";
+            col_UnitOfMeasureName.DataPropertyName = "UnitOfMeasureName";
+            col_UnitOfMeasureName.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            col_UnitOfMeasureName.Width = 60;
 
-            // Orders Column --
-            DataGridViewTextBoxColumn colOrders = new DataGridViewTextBoxColumn();
-            colOrders.HeaderText = "Orders";
-            colOrders.DataPropertyName = "Orders";
-            colOrders.Width = 65;
+            // QntyOrdered Column --
+            DataGridViewTextBoxColumn col_QntyOrdered = new DataGridViewTextBoxColumn();
+            col_QntyOrdered.HeaderText = "Qty-Ordered";
+            col_QntyOrdered.DataPropertyName = "QntyOrdered";
+            col_QntyOrdered.DefaultCellStyle = dstyleDecimal;
+            col_QntyOrdered.ReadOnly = true;
+            col_QntyOrdered.Width = 80;
 
-            dg.Columns.AddRange(col_ID, col_Description, colManu, colOrders);
+            // OrderComplete Column --
+            DataGridViewCheckBoxColumn col_ReceivedComplete = new DataGridViewCheckBoxColumn();
+            col_ReceivedComplete.HeaderText = "Complete";
+            col_ReceivedComplete.DataPropertyName = "ItemsRecievedComplete";        
+            col_ReceivedComplete.Width = 80;
 
+            // QntyReceived Column --
+            DataGridViewTextBoxColumn col_QntyRecieved = new DataGridViewTextBoxColumn();
+            col_QntyRecieved.HeaderText = "Qty-Received";
+            col_QntyRecieved.DataPropertyName = "QntyReceived";
+            col_QntyRecieved.DefaultCellStyle = dstyleDecimal;
+            col_QntyRecieved.Width = 80;
+
+            // QntyBalance Column --
+            DataGridViewTextBoxColumn col_QntyBalance = new DataGridViewTextBoxColumn();
+            col_QntyBalance.HeaderText = "Qty-Balance";
+            col_QntyBalance.DataPropertyName = "QntyBalance";
+            col_QntyBalance.DefaultCellStyle = dstyleDecimal;
+            col_QntyBalance.Width = 80;
+
+            // QntyToInventory Column --
+            DataGridViewTextBoxColumn col_QntyToInventory = new DataGridViewTextBoxColumn();
+            col_QntyToInventory.HeaderText = "Qty-To-Inv";
+            col_QntyToInventory.DataPropertyName = "QntyToInventory";
+            col_QntyToInventory.DefaultCellStyle = dstyleDecimal;
+            col_QntyToInventory.Width = 80;
+
+            dg.Columns.AddRange(col_OrderReceiptID, col_Description, col_UnitOfMeasureName, col_ReceivedComplete, col_QntyOrdered, 
+                col_QntyRecieved, col_QntyBalance, col_QntyToInventory);
         }
 
         public static  void BuildPendingOrdersGrid(DataGridView dg)
@@ -98,25 +128,23 @@ namespace Mosiac.UX.UXControls
             // OrderReceiptID Column --
             DataGridViewTextBoxColumn col_ID = new DataGridViewTextBoxColumn();
             col_ID.HeaderText = "ID";
-            col_ID.DataPropertyName = "OrderReceiptLineID";
+            col_ID.DataPropertyName = "PurchaseOrderID";
             col_ID.Width = 55;
 
             // Receipt Date Column --
-            DataGridViewTextBoxColumn col_Description = new DataGridViewTextBoxColumn();
-            col_Description.HeaderText = "Description";
-            col_Description.DataPropertyName = "Description";
-            col_Description.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            col_Description.DefaultCellStyle = dstyleWrapText;
+            DataGridViewTextBoxColumn col_Supplier = new DataGridViewTextBoxColumn();
+            col_Supplier.HeaderText = "Supplier";
+            col_Supplier.DataPropertyName = "Supplier";
+            col_Supplier.Width = 120;
 
             // EmployeeName Column --
-            DataGridViewTextBoxColumn col_PartID = new DataGridViewTextBoxColumn();
-            col_PartID.HeaderText = "Supplier";
-            col_PartID.DataPropertyName = "Supplier";
-            col_PartID.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            col_PartID.DefaultCellStyle = dstyleWrapText;
+            DataGridViewTextBoxColumn col_OrderDate = new DataGridViewTextBoxColumn();
+            col_OrderDate.HeaderText = "Date";
+            col_OrderDate.DataPropertyName = "OrderDate";
+            col_OrderDate.Width = 90;
 
 
-            dg.Columns.AddRange(col_ID,  col_Description, col_PartID);
+            dg.Columns.AddRange(col_ID, col_Supplier, col_OrderDate);
 
         }
 

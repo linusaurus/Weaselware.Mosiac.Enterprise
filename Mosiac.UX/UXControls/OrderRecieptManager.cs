@@ -24,7 +24,7 @@ namespace Mosiac.UX.UXControls
         private OrderReceiptDto _orderRecieptDto = new OrderReceiptDto();
         private OrderReceiptMapper _orMapper = new OrderReceiptMapper();
         private int _selectedOrderID;
-       
+        private BindingSource bsOrderReceiptItems = new BindingSource();
 
         
 
@@ -33,16 +33,21 @@ namespace Mosiac.UX.UXControls
         {
             InitializeComponent();
             Grids.BuildPendingOrdersGrid(dgPendingOrders);
+            Grids.BuildOrderReceiptItemsGrid(dgOrderReceiptItems);
             _orderReceiptRepository = new OrderReceiptRepository(new MosaicContext());
             //----------------------------- Pending Grid ------------------------------------
             var orderReceipts = _orderReceiptRepository.PendingOrders();
-           // DataTable dt = Grids.BuildDataTable(orderReceipts);
+          
             this.dgPendingOrders.DataSource = orderReceipts;
             //------------------------------Event Wiring---------------------------------------
             dgPendingOrders.SelectionChanged += DgPendingOrders_SelectionChanged;
+            bsOrderReceiptItems.ListChanged += BsOrderReceiptItems_ListChanged;
         }
 
-      
+        private void BsOrderReceiptItems_ListChanged(object sender, ListChangedEventArgs e)
+        {
+            Grids.CheckForDirtyState(e,this.btnSave);
+        }
 
         private void DgPendingOrders_SelectionChanged(object sender, EventArgs e)
         {
@@ -59,13 +64,27 @@ namespace Mosiac.UX.UXControls
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            var receipt = _orderReceiptRepository.ReceiveOrder(_selectedOrderID);
-            dataGridView1.DataSource = receipt.OrderReceiptLineItems;
+
+            int orID =  _orderReceiptRepository.UpdateOrCreate(_orderRecieptDto);
+            _orderRecieptDto = _orderReceiptRepository.GetOrderReceipt(orID);
+
+            BindOrderReciptDTO(_orderRecieptDto);
+            Grids.ToogleButtonStyle(false, btnSave);
+           // _orderRecieptDto = _orderReceiptRepository.GetOrderReceipt(_orderRecieptDto.OrderReceiptId);
+
         }
 
-       
-      
+        private void btnReceiveOrder_Click(object sender, EventArgs e)
+        {
+            _orderRecieptDto = _orderReceiptRepository.ReceiveOrder(_selectedOrderID);
+            BindOrderReciptDTO(_orderRecieptDto);
+        }
 
+        private void BindOrderReciptDTO(OrderReceiptDto dto)
+        {
+            bsOrderReceiptItems.DataSource = dto.OrderReceiptLineItems ?? null;
+            dgOrderReceiptItems.DataSource = bsOrderReceiptItems.DataSource;
 
+        }
     }
 }
