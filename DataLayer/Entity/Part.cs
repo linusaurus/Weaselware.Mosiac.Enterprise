@@ -36,6 +36,7 @@ namespace DataLayer.Entity
         public bool? CARBtrack { get; set; }
         public int? ParentID { get; set; }
         public decimal? Amount_Required { get; set; }
+
         public virtual UnitOfMeasure UnitOfMeasure { get; set; }
         public virtual ICollection<DocumentPart> DocumentParts { get; set; }
         public virtual ICollection<Resource> Resources { get; set; }

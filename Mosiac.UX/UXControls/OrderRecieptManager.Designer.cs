@@ -37,7 +37,13 @@ namespace Mosiac.UX.UXControls
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnReceiveOrder = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
+            this.btnProccessInventory = new System.Windows.Forms.Button();
+            this.btnLoadOrderReciept = new System.Windows.Forms.Button();
+            this.txtPurchaseOrderID = new System.Windows.Forms.TextBox();
+            this.txtReceivedBy = new System.Windows.Forms.TextBox();
+            this.txtOrderReceiptID = new System.Windows.Forms.TextBox();
+            this.txtOrderReceiptDate = new System.Windows.Forms.TextBox();
+            this.ckbCompleted = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.spcMainContainer)).BeginInit();
             this.spcMainContainer.Panel1.SuspendLayout();
             this.spcMainContainer.Panel2.SuspendLayout();
@@ -53,7 +59,7 @@ namespace Mosiac.UX.UXControls
             // 
             this.spcMainContainer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.spcMainContainer.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
-            this.spcMainContainer.Location = new System.Drawing.Point(6, 120);
+            this.spcMainContainer.Location = new System.Drawing.Point(6, 160);
             this.spcMainContainer.Name = "spcMainContainer";
             // 
             // spcMainContainer.Panel1
@@ -63,7 +69,7 @@ namespace Mosiac.UX.UXControls
             // spcMainContainer.Panel2
             // 
             this.spcMainContainer.Panel2.Controls.Add(this.dgOrderReceiptItems);
-            this.spcMainContainer.Size = new System.Drawing.Size(1118, 600);
+            this.spcMainContainer.Size = new System.Drawing.Size(1118, 560);
             this.spcMainContainer.SplitterDistance = 300;
             this.spcMainContainer.TabIndex = 1;
             // 
@@ -77,18 +83,23 @@ namespace Mosiac.UX.UXControls
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.dgPendingOrders);
-            this.splitContainer2.Size = new System.Drawing.Size(300, 600);
-            this.splitContainer2.SplitterDistance = 236;
+            this.splitContainer2.Size = new System.Drawing.Size(300, 560);
+            this.splitContainer2.SplitterDistance = 220;
             this.splitContainer2.TabIndex = 0;
             // 
             // dgPendingOrders
             // 
+            this.dgPendingOrders.AllowUserToAddRows = false;
+            this.dgPendingOrders.AllowUserToDeleteRows = false;
             this.dgPendingOrders.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgPendingOrders.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgPendingOrders.Location = new System.Drawing.Point(0, 0);
             this.dgPendingOrders.Name = "dgPendingOrders";
+            this.dgPendingOrders.ReadOnly = true;
+            this.dgPendingOrders.RowHeadersVisible = false;
             this.dgPendingOrders.RowTemplate.Height = 25;
-            this.dgPendingOrders.Size = new System.Drawing.Size(300, 360);
+            this.dgPendingOrders.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgPendingOrders.Size = new System.Drawing.Size(300, 336);
             this.dgPendingOrders.TabIndex = 0;
             // 
             // dgOrderReceiptItems
@@ -98,7 +109,7 @@ namespace Mosiac.UX.UXControls
             this.dgOrderReceiptItems.Location = new System.Drawing.Point(0, 0);
             this.dgOrderReceiptItems.Name = "dgOrderReceiptItems";
             this.dgOrderReceiptItems.RowTemplate.Height = 25;
-            this.dgOrderReceiptItems.Size = new System.Drawing.Size(814, 600);
+            this.dgOrderReceiptItems.Size = new System.Drawing.Size(814, 560);
             this.dgOrderReceiptItems.TabIndex = 0;
             // 
             // dataGridViewCheckBoxColumn1
@@ -118,9 +129,9 @@ namespace Mosiac.UX.UXControls
             // btnSave
             // 
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSave.Location = new System.Drawing.Point(28, 40);
+            this.btnSave.Location = new System.Drawing.Point(6, 80);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(143, 34);
+            this.btnSave.Size = new System.Drawing.Size(133, 34);
             this.btnSave.TabIndex = 2;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
@@ -129,33 +140,103 @@ namespace Mosiac.UX.UXControls
             // btnReceiveOrder
             // 
             this.btnReceiveOrder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnReceiveOrder.Location = new System.Drawing.Point(177, 40);
+            this.btnReceiveOrder.Location = new System.Drawing.Point(6, 40);
             this.btnReceiveOrder.Name = "btnReceiveOrder";
-            this.btnReceiveOrder.Size = new System.Drawing.Size(143, 34);
+            this.btnReceiveOrder.Size = new System.Drawing.Size(116, 34);
             this.btnReceiveOrder.TabIndex = 2;
-            this.btnReceiveOrder.Text = "Receive Order";
+            this.btnReceiveOrder.Text = "Load Order";
             this.btnReceiveOrder.UseVisualStyleBackColor = true;
             this.btnReceiveOrder.Click += new System.EventHandler(this.btnReceiveOrder_Click);
             // 
-            // label1
+            // btnProccessInventory
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(411, 40);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(38, 15);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "label1";
+            this.btnProccessInventory.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnProccessInventory.Location = new System.Drawing.Point(145, 120);
+            this.btnProccessInventory.Name = "btnProccessInventory";
+            this.btnProccessInventory.Size = new System.Drawing.Size(161, 34);
+            this.btnProccessInventory.TabIndex = 2;
+            this.btnProccessInventory.Text = "Process";
+            this.btnProccessInventory.UseVisualStyleBackColor = true;
+            // 
+            // btnLoadOrderReciept
+            // 
+            this.btnLoadOrderReciept.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLoadOrderReciept.Location = new System.Drawing.Point(145, 80);
+            this.btnLoadOrderReciept.Name = "btnLoadOrderReciept";
+            this.btnLoadOrderReciept.Size = new System.Drawing.Size(161, 34);
+            this.btnLoadOrderReciept.TabIndex = 2;
+            this.btnLoadOrderReciept.Text = "Load Order Receipt";
+            this.btnLoadOrderReciept.UseVisualStyleBackColor = true;
+            this.btnLoadOrderReciept.Click += new System.EventHandler(this.btnLoadOrderReciept_Click);
+            // 
+            // txtPurchaseOrderID
+            // 
+            this.txtPurchaseOrderID.Location = new System.Drawing.Point(354, 80);
+            this.txtPurchaseOrderID.Name = "txtPurchaseOrderID";
+            this.txtPurchaseOrderID.ReadOnly = true;
+            this.txtPurchaseOrderID.Size = new System.Drawing.Size(129, 23);
+            this.txtPurchaseOrderID.TabIndex = 4;
+            this.txtPurchaseOrderID.Text = "PurchaseOrderID";
+            this.txtPurchaseOrderID.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // txtReceivedBy
+            // 
+            this.txtReceivedBy.Location = new System.Drawing.Point(775, 80);
+            this.txtReceivedBy.Name = "txtReceivedBy";
+            this.txtReceivedBy.ReadOnly = true;
+            this.txtReceivedBy.Size = new System.Drawing.Size(129, 23);
+            this.txtReceivedBy.TabIndex = 4;
+            this.txtReceivedBy.Text = "Received By";
+            this.txtReceivedBy.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // txtOrderReceiptID
+            // 
+            this.txtOrderReceiptID.Location = new System.Drawing.Point(489, 80);
+            this.txtOrderReceiptID.Name = "txtOrderReceiptID";
+            this.txtOrderReceiptID.ReadOnly = true;
+            this.txtOrderReceiptID.Size = new System.Drawing.Size(137, 23);
+            this.txtOrderReceiptID.TabIndex = 4;
+            this.txtOrderReceiptID.Text = "OrderReceiptID";
+            this.txtOrderReceiptID.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // txtOrderReceiptDate
+            // 
+            this.txtOrderReceiptDate.Location = new System.Drawing.Point(632, 80);
+            this.txtOrderReceiptDate.Name = "txtOrderReceiptDate";
+            this.txtOrderReceiptDate.ReadOnly = true;
+            this.txtOrderReceiptDate.Size = new System.Drawing.Size(137, 23);
+            this.txtOrderReceiptDate.TabIndex = 4;
+            this.txtOrderReceiptDate.Text = "Receipt Date";
+            this.txtOrderReceiptDate.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // ckbCompleted
+            // 
+            this.ckbCompleted.AutoSize = true;
+            this.ckbCompleted.Enabled = false;
+            this.ckbCompleted.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ckbCompleted.Location = new System.Drawing.Point(923, 82);
+            this.ckbCompleted.Name = "ckbCompleted";
+            this.ckbCompleted.Size = new System.Drawing.Size(82, 19);
+            this.ckbCompleted.TabIndex = 5;
+            this.ckbCompleted.Text = "Completed";
+            this.ckbCompleted.UseVisualStyleBackColor = true;
             // 
             // OrderRecieptManager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.ckbCompleted);
+            this.Controls.Add(this.txtOrderReceiptDate);
+            this.Controls.Add(this.txtOrderReceiptID);
+            this.Controls.Add(this.txtReceivedBy);
+            this.Controls.Add(this.txtPurchaseOrderID);
             this.Controls.Add(this.btnReceiveOrder);
+            this.Controls.Add(this.btnLoadOrderReciept);
+            this.Controls.Add(this.btnProccessInventory);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.spcMainContainer);
             this.Name = "OrderRecieptManager";
-            this.Padding = new System.Windows.Forms.Padding(6, 120, 6, 6);
+            this.Padding = new System.Windows.Forms.Padding(6, 160, 6, 6);
             this.Size = new System.Drawing.Size(1130, 726);
             this.spcMainContainer.Panel1.ResumeLayout(false);
             this.spcMainContainer.Panel2.ResumeLayout(false);
@@ -179,7 +260,13 @@ namespace Mosiac.UX.UXControls
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private System.Windows.Forms.DataGridView dgPendingOrders;
         private System.Windows.Forms.Button btnReceiveOrder;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView dgOrderReceiptItems;
+        private System.Windows.Forms.Button btnProccessInventory;
+        private System.Windows.Forms.Button btnLoadOrderReciept;
+        private System.Windows.Forms.TextBox txtPurchaseOrderID;
+        private System.Windows.Forms.TextBox txtReceivedBy;
+        private System.Windows.Forms.TextBox txtOrderReceiptID;
+        private System.Windows.Forms.TextBox txtOrderReceiptDate;
+        private System.Windows.Forms.CheckBox ckbCompleted;
     }
 }

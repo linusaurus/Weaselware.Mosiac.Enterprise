@@ -408,6 +408,8 @@ namespace DataLayer.Data
 
                 entity.Property(e => e.Extended).HasColumnType("decimal(18, 2)");
 
+                entity.Property(e => e.InventoryAmount).HasColumnType("decimal(18, 4)");
+
                 entity.Property(e => e.Note).HasMaxLength(240);
 
                 entity.Property(e => e.Price).HasColumnType("decimal(18, 2)");
@@ -436,7 +438,7 @@ namespace DataLayer.Data
                     .HasForeignKey(d => d.EmployeeID)
                     .HasConstraintName("FK_OrderReciept_Employee");
 
-                entity.HasOne(d => d.GetPurchaseOrder)
+                entity.HasOne(d => d.PurchaseOrder)
                     .WithMany(p => p.OrderReciepts)
                     .HasForeignKey(d => d.PurchaseOrderID)
                     .HasConstraintName("FK_OrderReciept_PurchaseOrder");
@@ -582,8 +584,6 @@ namespace DataLayer.Data
                     .HasColumnType("decimal(18, 4)")
                     .HasDefaultValueSql("((0.0))");
 
-      
-
                 entity.Property(e => e.Weight)
                     .HasColumnType("decimal(18, 4)")
                     .HasDefaultValueSql("((0.00))");
@@ -597,6 +597,11 @@ namespace DataLayer.Data
                     .HasForeignKey(d => d.PurchaseOrderID)
                     .OnDelete(DeleteBehavior.Cascade)
                     .HasConstraintName("FK_PurchaseLineItem_PurchaseOrder");
+
+                entity.HasOne(d => d.UnitOfMeasure)
+                    .WithMany(p => p.PurchaseLineItems)
+                    .HasForeignKey(d => d.UnitOfMeasureID)
+                    .HasConstraintName("FK_PurchaseLineItem_UnitOfMeasure");
             });
 
             modelBuilder.Entity<PurchaseOrder>(entity =>
@@ -823,9 +828,7 @@ namespace DataLayer.Data
             {
                 entity.ToTable("UnitOfMeasure");
 
-                entity.Property(e => e.UnitName)
-                    .HasMaxLength(12)
-                    .IsUnicode(false);
+                entity.Property(e => e.UnitName).HasMaxLength(50);
             });
 
             modelBuilder.Entity<WorkCenter>(entity =>

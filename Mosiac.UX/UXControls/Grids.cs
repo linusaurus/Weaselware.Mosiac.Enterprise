@@ -37,33 +37,42 @@ namespace Mosiac.UX.UXControls
             dstyleDecimal.Format = "N2";
             dstyleDecimal.NullValue = "0.00";
             dstyleDecimal.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dstyleDecimal.BackColor = Color.Cornsilk;
             // Wrapping Text Style
             DataGridViewCellStyle dstyleWrapText = new DataGridViewCellStyle();
             dstyleWrapText.NullValue = "";
             dstyleWrapText.Alignment = DataGridViewContentAlignment.TopLeft;
             dstyleWrapText.WrapMode = DataGridViewTriState.True;
 
-            // PartID Column --
+            // PartID Column -- 0
             DataGridViewTextBoxColumn col_OrderReceiptID = new DataGridViewTextBoxColumn();
             col_OrderReceiptID.HeaderText = "ID";
             col_OrderReceiptID.DataPropertyName = "OrderReceiptID";
             col_OrderReceiptID.Width = 55;
 
-            // Description Column --
+       
+            // PartID Column -- 0
+            DataGridViewTextBoxColumn col_OrderReceiptLineID = new DataGridViewTextBoxColumn();
+            col_OrderReceiptLineID.HeaderText = "ID";
+            col_OrderReceiptLineID.DataPropertyName = "OrderReceiptLineID";
+            col_OrderReceiptLineID.Width = 55;
+
+
+            // Description Column -- 1
             DataGridViewTextBoxColumn col_Description = new DataGridViewTextBoxColumn();
             col_Description.HeaderText = "Description";
             col_Description.DataPropertyName = "Description";
             col_Description.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             col_Description.DefaultCellStyle = dstyleWrapText;
 
-            // Units Of Measure Column --
+            // Units Of Measure Column -- 2
             DataGridViewTextBoxColumn col_UnitOfMeasureName = new DataGridViewTextBoxColumn();
             col_UnitOfMeasureName.HeaderText = "Units";
             col_UnitOfMeasureName.DataPropertyName = "UnitOfMeasureName";
             col_UnitOfMeasureName.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             col_UnitOfMeasureName.Width = 60;
 
-            // QntyOrdered Column --
+            // QntyOrdered Column -- 3
             DataGridViewTextBoxColumn col_QntyOrdered = new DataGridViewTextBoxColumn();
             col_QntyOrdered.HeaderText = "Qty-Ordered";
             col_QntyOrdered.DataPropertyName = "QntyOrdered";
@@ -71,7 +80,7 @@ namespace Mosiac.UX.UXControls
             col_QntyOrdered.ReadOnly = true;
             col_QntyOrdered.Width = 80;
 
-            // OrderComplete Column --
+            // OrderComplete Column -- 4
             DataGridViewCheckBoxColumn col_ReceivedComplete = new DataGridViewCheckBoxColumn();
             col_ReceivedComplete.HeaderText = "Complete";
             col_ReceivedComplete.DataPropertyName = "ItemsRecievedComplete";        
@@ -96,9 +105,10 @@ namespace Mosiac.UX.UXControls
             col_QntyToInventory.HeaderText = "Qty-To-Inv";
             col_QntyToInventory.DataPropertyName = "QntyToInventory";
             col_QntyToInventory.DefaultCellStyle = dstyleDecimal;
+
             col_QntyToInventory.Width = 80;
 
-            dg.Columns.AddRange(col_OrderReceiptID, col_Description, col_UnitOfMeasureName, col_ReceivedComplete, col_QntyOrdered, 
+            dg.Columns.AddRange(col_OrderReceiptID, col_OrderReceiptLineID,col_Description, col_UnitOfMeasureName, col_ReceivedComplete, col_QntyOrdered, 
                 col_QntyRecieved, col_QntyBalance, col_QntyToInventory);
         }
 
@@ -106,6 +116,7 @@ namespace Mosiac.UX.UXControls
         {
 
             dg.AutoGenerateColumns = false;
+           
             dg.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dg.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
 

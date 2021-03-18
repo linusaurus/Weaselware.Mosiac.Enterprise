@@ -19,7 +19,7 @@ namespace DataLayer.Entity
         public bool? IsOrderComplete { get; set; }
 
         public virtual Employee Employee { get; set; }
-        public virtual PurchaseOrder GetPurchaseOrder { get; set; }
+        public virtual PurchaseOrder PurchaseOrder { get; set; }
         public virtual ICollection<OrderReceiptItem> OrderReceiptItems { get; set; }
     }
 }

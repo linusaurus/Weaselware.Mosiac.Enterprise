@@ -30,6 +30,7 @@ namespace ServiceLayer.Mappers
             public void Map(OrderReceiptItem source, OrderRecieptLineItemDto destination)
             {
                 destination.OrderReceiptID = source.OrderReceiptID.GetValueOrDefault();
+                destination.OrderReceiptLineID = source.OrderReceiptLineID;
                 destination.JobID = source.JobID.GetValueOrDefault();
                 destination.LineID = source.LineID.GetValueOrDefault();
                 destination.PartID = source.PartID.GetValueOrDefault();
@@ -41,6 +42,7 @@ namespace ServiceLayer.Mappers
                 destination.QntyOrdered = source.QuantityOrdered.GetValueOrDefault();
                 destination.QntyReceived = source.QuantityReceived.GetValueOrDefault();
                 destination.QntyBalance = source.Balance.GetValueOrDefault();
+                destination.QntyToInventory = source.InventoryAmount.GetValueOrDefault();
                 destination.Extended = source.Extended.GetValueOrDefault();
                 destination.Note = source.Note;
 

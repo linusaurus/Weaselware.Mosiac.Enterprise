@@ -31,8 +31,7 @@ namespace DataLayer.Entity
         public string Note { get; set; }
         public bool? Rejected { get; set; }
 
-        public virtual UnitOfMeasure UnitOfMeasure { get; set; }
-
         public virtual PurchaseOrder PurchaseOrder { get; set; }
+        public virtual UnitOfMeasure UnitOfMeasure { get; set; }
     }
 }

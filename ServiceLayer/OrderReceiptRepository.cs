@@ -27,46 +27,54 @@ namespace ServiceLayer
         /// <returns></returns>
         public OrderReceiptDto ReceiveOrder(int purchaserOrderID)
         {
+            OrderReceiptDto newReciept;
             // Grab to Purchase Order
-            PurchaseOrder po = _ctx.PurchaseOrders.AsNoTracking().Include(p => p.PurchaseLineItems).ThenInclude(u => u.UnitOfMeasure)
+            PurchaseOrder po = _ctx.PurchaseOrders.AsNoTracking().Include(p => p.PurchaseLineItems).ThenInclude(u => u.UnitOfMeasure).Include(x => x.OrderReciepts)
                                    .Include(e => e.Supplier).Where(o => o.PurchaseOrderID == purchaserOrderID).FirstOrDefault();
 
-           
-       
-            // Populate a new Receipt
-            OrderReceiptDto newReciept = new OrderReceiptDto
+            if (po.OrderReciepts.Any())
             {
-                IsOrderComplete = false,
-                ReceiptDate = DateTime.Today,
-                PurchaseOrderID = purchaserOrderID,
-                EmployeeName = "Rich",
-                EmployeeId = 8
-            };
-
-            foreach (var lines in po.PurchaseLineItems)
+                newReciept = GetOrderReceipt(po.OrderReciepts.FirstOrDefault().OrderReceiptID);
+            }
+            else
             {
-                OrderRecieptLineItemDto item = new OrderRecieptLineItemDto();
-                item.Description = lines.Description;
-                item.PurchaseOrderID = lines.PurchaseOrderID.GetValueOrDefault();
-                item.JobID = po.JobID.GetValueOrDefault();
-                item.LineID = lines.LineID;
-                item.UiD  = lines.UnitOfMeasureID.GetValueOrDefault();
-                item.QntyOrdered = lines.Qnty.GetValueOrDefault();
-                item.QntyBalance = 0.0m;
-                item.QntyReceived = 0.0m;
-                item.ItemsRecievedComplete = false;
-                item.QntyToInventory = lines.Qnty.GetValueOrDefault();
-                item.PartID = lines.PartID.GetValueOrDefault();
-                item.UnitOfMeasureName = lines.UnitOfMeasure.UnitName ?? "Ea";
-                item.UnitToQuantityRatio =  1.00m;
-                item.QntyToInventory = 0.0m;
-                // -- Add the OrderReciptItem to the OrderReciept---->
-                newReciept.OrderReceiptLineItems.Add(item);
+                // Populate a new Receipt
+                newReciept = new OrderReceiptDto
+                {
+                    IsOrderComplete = false,
+                    ReceiptDate = DateTime.Today,
+                    PurchaseOrderID = purchaserOrderID,
+                    EmployeeName = "Rich",
+                    EmployeeId = 8
+                };
+            
+                foreach (var lines in po.PurchaseLineItems)
+                {
+                    OrderRecieptLineItemDto item = new OrderRecieptLineItemDto();
+                    item.Description = lines.Description;
+                    item.PurchaseOrderID = lines.PurchaseOrderID.GetValueOrDefault();
+                    item.JobID = po.JobID.GetValueOrDefault();
+                    item.LineID = lines.LineID;
+                    item.UiD  = lines.UnitOfMeasureID.GetValueOrDefault();
+                    item.QntyOrdered = lines.Qnty.GetValueOrDefault();
+                    item.QntyBalance = 0.0m;
+                    item.QntyReceived = 0.0m;
+                    item.ItemsRecievedComplete = false;
+                    item.QntyToInventory = lines.Qnty.GetValueOrDefault();
+                    item.PartID = lines.PartID.GetValueOrDefault();
+                    item.UnitOfMeasureName = lines.UnitOfMeasure.UnitName ?? "Ea";
+                    item.UnitToQuantityRatio =  1.00m;
+                    item.QntyToInventory = 0.0m;
+                    // -- Add the OrderReciptItem to the OrderReciept---->
+                    newReciept.OrderReceiptLineItems.Add(item);
                 
+                }
             }
 
             return newReciept;
         }
+
+
 
         public List<PendingOrdersDto> PendingOrders()
         {
@@ -109,17 +117,6 @@ namespace ServiceLayer
                 .Include(l => l.OrderReceiptItems).ThenInclude(o => o.UnitOfMeasure)
                 .Include(e => e.Employee).Where(p => p.OrderReceiptID == orderReceiptID).First();
 
-                //.Select(dto => new OrderReceiptDto
-                // {
-                //     ReceiptDate = dto.ReceiptDate.GetValueOrDefault(),
-                //     EmployeeName = dto.Employee.firstname,
-                //     EmployeeId = dto.EmployeeID.GetValueOrDefault(),
-                //     OrderReceiptId = dto.OrderReceiptID,
-                //     PurchaseOrderID = dto.GetPurchaseOrder.PurchaseOrderID,
-                //     IsOrderComplete = dto.IsOrderComplete.GetValueOrDefault()
-
-                // }).First();
-
             OrderReceiptMapper mapper = new OrderReceiptMapper();
             mapper.Map(or, dto);
                 
@@ -143,11 +140,18 @@ namespace ServiceLayer
             return dtos;
         }
 
+        public bool ProcessOrderReceipt()
+        {
+            
+            return true;
+        }
+
         public int  UpdateOrCreate(OrderReceiptDto dto)
         {
             var ctx = _ctx;
             var orderReciept = ctx.OrderReciepts.Include(p => p.OrderReceiptItems)
-                                                .Include(d => d.GetPurchaseOrder).FirstOrDefault(o => o.PurchaseOrderID == dto.PurchaseOrderID);
+                                                .Include(d => d.PurchaseOrder)
+                                                .FirstOrDefault(o => o.PurchaseOrderID == dto.PurchaseOrderID);
             if (orderReciept == null)
             {
                 orderReciept = new OrderReciept();
@@ -189,34 +193,39 @@ namespace ServiceLayer
                 detail.QuantityReceived = detailDTO.QntyReceived;
                 detail.Balance = detailDTO.QntyBalance;
                 detail.IsComplete = detailDTO.ItemsRecievedComplete;
+                detail.InventoryAmount = detailDTO.QntyToInventory;
                 
             });
 
             // set the PO order status and Received Date.
 
-            bool iSorderCompleted = dto.OrderReceiptLineItems.Any(p => p.ItemsRecievedComplete == false);
-            orderReciept.IsOrderComplete = !iSorderCompleted;
-            orderReciept.GetPurchaseOrder.Recieved = !iSorderCompleted;
-            orderReciept.GetPurchaseOrder.RecievedDate = DateTime.Today;
+            bool IsNotComplete = dto.OrderReceiptLineItems.Any(p => p.ItemsRecievedComplete == false);
+            orderReciept.IsOrderComplete = !IsNotComplete;
+            //PurchaseOrder po = _ctx.PurchaseOrders.Find(orderReciept.PurchaseOrderID);
 
-            // Push the Item to inventory --
-            foreach (var item in dto.OrderReceiptLineItems)
-            {
-                Inventory inv = new Inventory();
-                inv.DateStamp = DateTime.Now;
-                inv.Description = item.Description;
-                inv.EmpID = orderReciept.EmployeeID;
-                inv.JobID = item.JobID;
-                inv.LineID = item.LineID;
-                inv.OrderReceiptID = orderReciept.OrderReceiptID;
-                inv.PartID = item.PartID;
-                inv.QntyOrdered = item.QntyOrdered;
-                inv.QntyReceived = item.QntyReceived;
-                inv.UnitOfMeasureID = item.UiD;
-                inv.TransActionType = 1;
+            //po.Recieved = !IsNotComplete;
+            //// orderReciept.GetPurchaseOrder.RecievedDate = DateTime.Today;
 
-                _ctx.Inventories.Add(inv);
-            }
+            //// Push the Item to inventory -------------------------------
+           
+            //foreach (var item in dto.OrderReceiptLineItems)
+            //{
+            //    Inventory inv = new Inventory();
+            //    inv.DateStamp = DateTime.Now;
+            //    inv.Description = item.Description;
+            //    inv.EmpID = orderReciept.EmployeeID;
+            //    inv.JobID = item.JobID;
+            //    inv.LineID = item.LineID;
+            //    inv.OrderReceiptID = orderReciept.OrderReceiptID;
+            //    inv.PartID = item.PartID;
+            //    inv.QntyOrdered = item.QntyOrdered;
+            //    inv.QntyReceived = item.QntyReceived;
+            //    inv.UnitOfMeasureID = item.UiD;
+            //    inv.TransActionType = 1;
+            //    inv.InventoryAmount = item.QntyToInventory;
+              
+            //    _ctx.Inventories.Add(inv);
+            //}
 
             _ctx.SaveChanges();
             return orderReciept.OrderReceiptID;
@@ -224,33 +233,7 @@ namespace ServiceLayer
         }
 
 
-        public class TransactOrderReceiptCommand
-        {
-        //    public Employee newReceiver{ get; set; }
-        //    public Supplier ExistingCustomer { get; set; }
-        //    public List<Product> Cart { get; set; }
-        //    //all the parameters we need, as properties...
-        //    //...
-
-        //    //our UnitOfWork
-        //    StoreContext _context;
-        //    public TransactOrderCommand(StoreContext context)
-        //    {
-        //        //allow it to be injected - though that's only for testing
-        //        _context = context;
-        //    }
-
-        //    public Order Execute()
-        //    {
-        //        //allow for mocking and passing in... otherwise new it up
-        //        _context = _context ?? new StoreContext();
-
-        //        //add products to a new order, assign the customer, etc
-        //        //then...
-        //        _context.SubmitChanges();
-
-        //        return newOrder;
-        //    }
-        }
+      
+       
     }
 }
