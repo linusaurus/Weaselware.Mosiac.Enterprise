@@ -19,15 +19,11 @@ namespace Mosiac.UX.UXControls
     public partial class OrderRecieptManager : UserControl
     {
 
-
         private readonly OrderReceiptRepository _orderReceiptRepository;
         private OrderReceiptDto _orderRecieptDto = new OrderReceiptDto();
         private OrderReceiptMapper _orMapper = new OrderReceiptMapper();
         private int _selectedOrderID;
         private BindingSource bsOrderReceiptItems = new BindingSource();
-
-        
-
 
         public OrderRecieptManager()
         {
@@ -36,27 +32,72 @@ namespace Mosiac.UX.UXControls
             Grids.BuildOrderReceiptItemsGrid(dgOrderReceiptItems);
             _orderReceiptRepository = new OrderReceiptRepository(new MosaicContext());
             //----------------------------- Pending Grid ------------------------------------
-            var orderReceipts = _orderReceiptRepository.PendingOrders();
-          
+
+            var orderReceipts = _orderReceiptRepository.PendingOrders();         
             this.dgPendingOrders.DataSource = orderReceipts;
+
             //------------------------------Event Wiring---------------------------------------
             dgPendingOrders.SelectionChanged += DgPendingOrders_SelectionChanged;
+            dgPendingOrders.CellFormatting += DgPendingOrders_CellFormatting;
+
             bsOrderReceiptItems.ListChanged += BsOrderReceiptItems_ListChanged;
             dgOrderReceiptItems.CellClick += DgOrderReceiptItems_CellClick;
             dgOrderReceiptItems.CellContentClick += DgOrderReceiptItems_CellContentClick;
             dgOrderReceiptItems.CellValueChanged += DgOrderReceiptItems_CellValueChanged;
             dgOrderReceiptItems.CellMouseUp += DgOrderReceiptItems_CellMouseUp;
+            dgOrderReceiptItems.CellFormatting += DgOrderReceiptItems_CellFormatting;
+
         }
+
+
+
+        #region Grid-BindingSource Event Handlers ----------++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+        private void DgPendingOrders_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            DataGridView dg = (DataGridView)sender;
+            if (dg.DataSource != null)
+            {
+                if (dg.Rows.Count > 0)
+                {
+                    DataGridViewRow row = dg.Rows[e.RowIndex];
+                    PendingOrdersDto dat = (PendingOrdersDto)row.DataBoundItem;
+                    if (dat.RecievedComplete )
+                    {
+                        row.DefaultCellStyle.ForeColor = Color.Gray;
+                        row.DefaultCellStyle.BackColor = Color.Gainsboro;
+                        row.ReadOnly = true;
+                    }
+                }
+            }
+        }
+
 
         private void DgOrderReceiptItems_CellMouseUp(object sender, DataGridViewCellMouseEventArgs e)
         {
             if (e.ColumnIndex == 8 && e.RowIndex != -1)
-            {
-                dgOrderReceiptItems.EndEdit();
+            { dgOrderReceiptItems.EndEdit();               
             }
         }
 
-        #region Event Handlers
+        private void DgOrderReceiptItems_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            DataGridView dg = (DataGridView)sender;
+            if (dg.DataSource != null)
+            {
+                if (dg.Rows.Count > 0)
+                {
+                    DataGridViewRow row = dg.Rows[e.RowIndex];
+                    OrderRecieptLineItemDto dat = (OrderRecieptLineItemDto)row.DataBoundItem;
+                    if (dat.ItemsRecievedComplete && dat.QntyToInventory > decimal.Zero)
+                    {
+                        row.DefaultCellStyle.ForeColor = Color.Gray;
+                        row.DefaultCellStyle.BackColor = Color.Gainsboro;
+                        row.ReadOnly = true;
+                    }
+                }
+            }
+        }
 
         private void DgOrderReceiptItems_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
@@ -134,48 +175,41 @@ namespace Mosiac.UX.UXControls
         private void btnSave_Click(object sender, EventArgs e)
         {
           
-            int orID =  _orderReceiptRepository.UpdateOrCreate(_orderRecieptDto);           
-            BindOrderReceipt(orID);
+            int orID =  _orderReceiptRepository.UpdateOrCreate(_orderRecieptDto);
+            _orderRecieptDto = _orderReceiptRepository.GetOrderReceipt(orID);
+            BindOrderReceipt(_orderRecieptDto);
             Grids.ToogleButtonStyle(false, btnSave);
         }
 
         private void btnReceiveOrder_Click(object sender, EventArgs e)
         {
             _orderRecieptDto = _orderReceiptRepository.ReceiveOrder(_selectedOrderID);
-           // BindOrderReceipt(_orderRecieptDto);
+            BindOrderReceipt(_orderRecieptDto);
         }
 
-       
-        /// <summary>
-        /// Test loading and saving changes to existing OrderReceipt
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btnLoadOrderReciept_Click(object sender, EventArgs e)
+ 
+        private void BindOrderReceipt(OrderReceiptDto dto)
         {
-            BindOrderReceipt(9323);
-        }
 
-        private void BindOrderReceipt(int orderReciptID)
-        {
-            _orderRecieptDto = _orderReceiptRepository.GetOrderReceipt(orderReciptID);
-            bsOrderReceiptItems.DataSource = _orderRecieptDto.OrderReceiptLineItems ?? null;
+            bsOrderReceiptItems.DataSource = dto.OrderReceiptLineItems ?? null;
             dgOrderReceiptItems.DataSource = bsOrderReceiptItems.DataSource;
 
             txtPurchaseOrderID.DataBindings.Clear();
-            txtPurchaseOrderID.DataBindings.Add("Text",  _orderRecieptDto, "PurchaseOrderID" ,true);
+            txtPurchaseOrderID.DataBindings.Add("Text",dto, "PurchaseOrderID", true);
 
             txtOrderReceiptID.DataBindings.Clear();
-            txtOrderReceiptID.DataBindings.Add("Text", _orderRecieptDto, "OrderReceiptId", true);
+            txtOrderReceiptID.DataBindings.Add("Text", dto, "OrderReceiptId", true);
 
             txtOrderReceiptDate.DataBindings.Clear();
-            txtOrderReceiptDate.DataBindings.Add("Text", _orderRecieptDto, "ReceiptDate", true);
+            txtOrderReceiptDate.DataBindings.Add("Text", dto, "ReceiptDate", true);
 
             txtReceivedBy.DataBindings.Clear();
-            txtReceivedBy.DataBindings.Add("Text", _orderRecieptDto, "EmployeeName", true);
+            txtReceivedBy.DataBindings.Add("Text", dto, "EmployeeName", true);
 
             ckbCompleted.DataBindings.Clear();
-            ckbCompleted.DataBindings.Add("Checked", _orderRecieptDto, "IsOrderComplete", true);
+            ckbCompleted.DataBindings.Add("Checked", dto, "IsOrderComplete", true);
         }
+
+       
     }
 }

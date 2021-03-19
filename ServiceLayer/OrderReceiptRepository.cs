@@ -31,7 +31,8 @@ namespace ServiceLayer
             // Grab to Purchase Order
             PurchaseOrder po = _ctx.PurchaseOrders.AsNoTracking().Include(p => p.PurchaseLineItems).ThenInclude(u => u.UnitOfMeasure).Include(x => x.OrderReciepts)
                                    .Include(e => e.Supplier).Where(o => o.PurchaseOrderID == purchaserOrderID).FirstOrDefault();
-
+            
+            // Test for existing Order Receipt
             if (po.OrderReciepts.Any())
             {
                 newReciept = GetOrderReceipt(po.OrderReciepts.FirstOrDefault().OrderReceiptID);
@@ -87,9 +88,9 @@ namespace ServiceLayer
                     OrderDate = dto.OrderDate.GetValueOrDefault(),
                     EmployeeName = dto.Employee.firstname,
                     JobName = dto.Job.jobname,
-                    Supplier = dto.Supplier.SupplierName
+                    Supplier = dto.Supplier.SupplierName,
+                    RecievedComplete = dto.Recieved.GetValueOrDefault()
 
-                
                 }).ToList();
 
             return purchaseOrders;
@@ -201,11 +202,12 @@ namespace ServiceLayer
 
             bool IsNotComplete = dto.OrderReceiptLineItems.Any(p => p.ItemsRecievedComplete == false);
             orderReciept.IsOrderComplete = !IsNotComplete;
-            //PurchaseOrder po = _ctx.PurchaseOrders.Find(orderReciept.PurchaseOrderID);
+            PurchaseOrder po = _ctx.PurchaseOrders.Find(orderReciept.PurchaseOrderID);
 
-            //po.Recieved = !IsNotComplete;
-            //// orderReciept.GetPurchaseOrder.RecievedDate = DateTime.Today;
-
+            po.Recieved = !IsNotComplete;
+            po.IsBackOrder = IsNotComplete;
+            po.RecievedDate = orderReciept.ReceiptDate.GetValueOrDefault();
+            
             //// Push the Item to inventory -------------------------------
            
             //foreach (var item in dto.OrderReceiptLineItems)

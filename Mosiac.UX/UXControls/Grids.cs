@@ -147,6 +147,7 @@ namespace Mosiac.UX.UXControls
             col_Supplier.HeaderText = "Supplier";
             col_Supplier.DataPropertyName = "Supplier";
             col_Supplier.Width = 120;
+            col_Supplier.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
             // EmployeeName Column --
             DataGridViewTextBoxColumn col_OrderDate = new DataGridViewTextBoxColumn();
