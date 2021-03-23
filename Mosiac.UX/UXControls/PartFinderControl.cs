@@ -1,18 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using DataLayer.Data;
 using DataLayer.Entity;
-using ServiceLayer.Mappers;
 using ServiceLayer.Models;
 using ServiceLayer;
-using ServiceLayer.Overloads;
 
 
 namespace Mosiac.UX.UXControls
@@ -27,7 +19,7 @@ namespace Mosiac.UX.UXControls
         String currentPartSearch;
         BindingSource bsPart = new BindingSource();
         private  List<SupplierLineItemDto> 
-            supplierLineItems = new List<SupplierLineItemDto>();
+        supplierLineItems = new List<SupplierLineItemDto>();
         
         #region Events
 

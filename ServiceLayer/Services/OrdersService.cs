@@ -296,8 +296,8 @@ namespace ServiceLayer {
             string id = supplierID.ToString();
             
             string sql = @"select Description,PartID,LineID,Qnty,UnitCost,PurchaseOrderID FROM PurchaseLineItem " +
-                          " WHERE OrderReceiptID IN(SELECT OrderReceiptID FROM OrderReciept WHERE OrderNum IN " +
-                          "(SELECT OrderNum FROM PurchaseOrder WHERE SupplierID = {0}))";
+                          " WHERE OrderReceiptID IN(SELECT OrderReceiptID FROM OrderReciept WHERE PurchaseOrderID IN " +
+                          "(SELECT PurchaseOrderID FROM PurchaseOrder WHERE SupplierID = {0}))";
 
             ///TODO pass a parameter to the sql
             var result = context.PurchaseLineItems.FromSqlRaw(sql, id).Select(d => new SupplierLineItemDto

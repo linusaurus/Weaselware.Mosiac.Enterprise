@@ -72,7 +72,7 @@ namespace Mosiac.UX.UXControls
         {
             if (_selectedOrderId != default)
             {
-                Main2 main = (Main2)Application.OpenForms["Main"];
+                Main main = (Main)Application.OpenForms["Main"];
                 main.OpenAnOrder(_selectedOrderId);
             }
         }

@@ -151,14 +151,14 @@ namespace Mosiac.UX
                     break;
                 case TabPageType.PurchaseOrderPage:
                     {                        
-                        // tab.Text = $"Purchase Order :{key}";
-                        // tab.Name = "Order";
+                        tab.Text = $"Purchase Order :{key}";
+                        tab.Name = "Order";
                         //// OrderEditControl ctr = new OrderEditControl();
-                        //OrderEditSplitPanelControl ctr = new OrderEditSplitPanelControl();
-                        // ctr.SetDataSource(ctx,key);
+                        OrderEditSplitPanelControl ctr = new OrderEditSplitPanelControl();
+                        ctr.SetDataSource(ctx,key);
                         //// ctr.LoadByID(key);
-                        // ctr.Dock = DockStyle.Fill;
-                        // tab.Controls.Add(ctr);                
+                        ctr.Dock = DockStyle.Fill;
+                        tab.Controls.Add(ctr);                
                     }
                     break;
 
