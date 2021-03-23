@@ -19,17 +19,14 @@ namespace DataLayer.Entity
         public bool? Recieved { get; set; }
         public int? OrderReceiptID { get; set; }
         public int? UnitOfMeasureID { get; set; }
-        public int? ProductID { get; set; }
         public int? BomID { get; set; }
         public decimal? AmountReceived { get; set; }
         public decimal? Width { get; set; }
         public decimal? Length { get; set; }
         public decimal? Thick { get; set; }
         public decimal? Weight { get; set; }
-        public string SupplierPartName { get; set; }
         public string BCode { get; set; }
-        public string Note { get; set; }
-        public bool? Rejected { get; set; }
+        public bool? Pushed { get; set; }
 
         public virtual PurchaseOrder PurchaseOrder { get; set; }
         public virtual UnitOfMeasure UnitOfMeasure { get; set; }

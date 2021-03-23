@@ -4,7 +4,7 @@ using DataLayer.Entity;
 using ServiceLayer.Models;
 using Boxed.Mapping;
 
-namespace WServiceLayer.Mappers
+namespace ServiceLayer.Mappers
 {
     public class PurchaseOrderMapper : IMapper<PurchaseOrder, OrderDetailDto>
     {

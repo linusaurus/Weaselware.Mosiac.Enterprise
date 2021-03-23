@@ -57,7 +57,15 @@ namespace ServiceLayer.Models
                 OnPropertyChange();
             } 
         }
-        public DateTime CreationDate { get; set; }
+        public DateTime CreationDate 
+        {
+            get {return creationDate; }
+            set
+            {
+               creationDate = value;
+                OnPropertyChange();
+            } 
+        }
         public byte[] Payload 
         {
             get {return payLoad; }

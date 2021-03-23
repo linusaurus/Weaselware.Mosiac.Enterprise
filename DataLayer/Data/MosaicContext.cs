@@ -563,18 +563,14 @@ namespace DataLayer.Data
                     .HasColumnType("decimal(18, 4)")
                     .HasDefaultValueSql("((0.00))");
 
-                entity.Property(e => e.Note).HasMaxLength(254);
-
+             
                 entity.Property(e => e.Qnty)
                     .HasColumnType("decimal(18, 4)")
                     .HasDefaultValueSql("((1.0))");
 
                 entity.Property(e => e.Recieved).HasDefaultValueSql("((0))");
 
-                entity.Property(e => e.SupplierPartName)
-                    .HasMaxLength(120)
-                    .HasDefaultValueSql("(' ')")
-                    .IsFixedLength(true);
+            
 
                 entity.Property(e => e.Thick)
                     .HasColumnType("decimal(18, 4)")

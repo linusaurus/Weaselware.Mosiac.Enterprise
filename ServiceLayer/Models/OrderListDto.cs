@@ -6,7 +6,7 @@ namespace ServiceLayer.Models
 {
     public class OrderListDto
     {
-        public int OrderNum { get; set; }
+        public int PurchaseOrderID { get; set; }
         public DateTime OrderDate { get; set; }     
         public string Supplier { get; set; }
         public string Purchaser { get; set; }
