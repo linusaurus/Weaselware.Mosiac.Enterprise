@@ -93,6 +93,22 @@ namespace ServiceLayer {
             return  result;           
         }
 
+        public List<AttachmentDto> GetAttachmentDtos(int purchaseOrderID)
+        {
+            var result = context.Attachments.AsNoTracking().Where(o => o.OrderNum == purchaseOrderID).Select( dto => new AttachmentDto
+            {
+                Src = dto.src,
+                AttachmentDescription = dto.AttachmentDescription,
+                Creator = dto.Creator,
+                CreatedDate = dto.CreateDate.GetValueOrDefault(),
+                FileSize = dto.FileSize,
+                AttachmentID = dto.AttachmentID
+                
+            }).ToList();
+
+            return result;
+        }
+
         public double GetSupplierTaxRate(int zipcode)
         {
            
@@ -103,18 +119,17 @@ namespace ServiceLayer {
   
         public PurchaseOrder GetOrderByID(int orderNum) {
 
-            using (var ctx = new MosaicContext())
-            {
-                var order = ctx.PurchaseOrders
+           
+                var order = context.PurchaseOrders.AsNoTracking()
                  .Include(p => p.PurchaseLineItems)
                  .Include(j => j.Job)
                  .Include(s => s.Supplier)
-                 .Include(t => t.Attachments)
+                 //.Include(t => t.Attachments)
                  .Include(p => p.OrderFees)
                  .Include(e => e.Employee).Where(c => c.PurchaseOrderID == orderNum).FirstOrDefault();
 
                 return order;
-            }
+            
 
 
         }
@@ -331,7 +346,7 @@ namespace ServiceLayer {
         public void CreateOrUpdateOrder(OrderDetailDto orderDTO)
         {
            var ctx = context;
-           var order = ctx.PurchaseOrders.Include(p => p.PurchaseLineItems).FirstOrDefault(o => o.PurchaseOrderID == orderDTO.PurchaseOrderID);
+           var order = ctx.PurchaseOrders.Include(p => p.PurchaseLineItems).Include(a => a.Attachments).Include(f => f.OrderFees).FirstOrDefault(o => o.PurchaseOrderID == orderDTO.PurchaseOrderID);
             if (order == null)
             {
                 order = new PurchaseOrder();
@@ -442,7 +457,8 @@ namespace ServiceLayer {
             return context.PurchaseOrders
                 .Include(j => j.Job)
                 .Include(e => e.Employee)
-                .Include(s => s.Supplier).OrderByDescending(r => r.OrderDate).Where(c => c.SupplierID == supplierID).AsNoTracking().Select(d => new OrderListDto
+                .Include(s => s.Supplier).OrderByDescending(r => r.OrderDate)
+                            .Where(c => c.SupplierID == supplierID).AsNoTracking().Select(d => new OrderListDto
             {
                 PurchaseOrderID = d.PurchaseOrderID,
                 JobName = d.Job.jobname,

@@ -11,6 +11,8 @@ using ServiceLayer;
 using ServiceLayer.Overloads;
 using Microsoft.Data.SqlClient;
 using Mosiac.UX;
+using System.IO;
+
 
 namespace Mosiac.UX.UXControls { 
     public partial class OrderEditSplitPanelControl : UserControl
@@ -67,6 +69,7 @@ namespace Mosiac.UX.UXControls {
         /// <param name="e"></param>
         private void OrderHeaderVerticalControl1_OnSaveHandler(object sender, EventArgs e)
         {
+            //orderDTO.Attachments = (AttachmentDto)bsAttachments.DataSource;
             _orderService.CreateOrUpdateOrder(orderDTO);
             LoadOrder();
             isDirty = false;
@@ -81,17 +84,15 @@ namespace Mosiac.UX.UXControls {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void OrderHeaderVerticalControl1_OnPrintHandler(object sender, EventArgs e)
-        {
-           
-
-            //if (orderDTO != null || orderDTO.PurchaseOrderID != default)
-            //{
-         
-            //    PrintPOForm printForm = new PrintPOForm(orderDTO);
-            //    printForm.Text = String.Format("Order Number {0}", orderDTO.PurchaseOrderID);               
-            //    printForm.Show();
-
-            //}
+        {        
+            ///TODO  add reporting function
+            if (orderDTO != null || orderDTO.PurchaseOrderID != default)
+            {
+                FastReport.Report report = new FastReport.Report();
+                report.Load($"{ Application.StartupPath}/testreport.frx");
+                report.SetParameterValue("ponumber", orderDTO.PurchaseOrderID);
+                report.Show();
+            }
         }
 
         #endregion
@@ -124,7 +125,7 @@ namespace Mosiac.UX.UXControls {
                 bsOrder.DataSource = orderDTO;
                 bsLineitems.DataSource = orderDTO.LineItems;
 
-                bsAttachments.DataSource = orderDTO.Attachments;
+                bsAttachments.DataSource = _orderService.GetAttachmentDtos(orderDTO.PurchaseOrderID);
                 if (attachmentControl != null){ attachmentControl.SetDatasource(orderDTO, bsAttachments); }
                 
                 bsOrderFees.DataSource = orderDTO.OrderFees;
@@ -158,7 +159,7 @@ namespace Mosiac.UX.UXControls {
                 bsLineitems.DataSource = orderDTO.LineItems;
                 BindLineItemsToGrid(bsLineitems);
                 bsOrderFees.DataSource = orderDTO.OrderFees;
-                bsAttachments.DataSource = orderDTO.Attachments;
+                bsAttachments.DataSource = _orderService.GetAttachmentDtos(orderDTO.PurchaseOrderID);// orderDTO.Attachments;
             }
 
             // Event wiring -------------------------------------------------------------------  

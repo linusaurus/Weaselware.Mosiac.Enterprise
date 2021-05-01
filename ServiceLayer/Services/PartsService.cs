@@ -190,7 +190,7 @@ namespace ServiceLayer
                 detail.ResourceDescription = detailDTO.ResourceDescription;
                 detail.PartID = detailDTO.PartID;
                 detail.payload = detailDTO.Payload;
-                detail.FileSize = FileHelpers.GetSizeInMemory(detailDTO.Payload.Length);
+                detail.FileSize = FileHelperService.GetSizeInMemory(detailDTO.Payload.Length);
 
             });
                 _context.SaveChanges();           

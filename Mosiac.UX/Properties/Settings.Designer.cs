@@ -22,16 +22,5 @@ namespace Mosiac.UX.Properties {
                 return defaultInstance;
             }
         }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        public global::Neodynamic.SDK.Printing.PrinterSettings PrinterSetting {
-            get {
-                return ((global::Neodynamic.SDK.Printing.PrinterSettings)(this["PrinterSetting"]));
-            }
-            set {
-                this["PrinterSetting"] = value;
-            }
-        }
     }
 }

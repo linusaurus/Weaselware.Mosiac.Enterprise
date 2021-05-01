@@ -108,7 +108,7 @@ namespace Mosiac.UX.UXControls
            int ordernumber;
            if (int.TryParse(txtOrderNumber.Text, out ordernumber))
            {
-                Main2 main = (Main2)Application.OpenForms["Main"];
+                Main main = (Main)Application.OpenForms["Main"];
                 main.OpenAnOrder(ordernumber);
            }
             

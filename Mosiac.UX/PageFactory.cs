@@ -63,10 +63,10 @@ namespace Mosiac.UX
                     tab.Controls.Add(myOrdersPage);
                     break;
                 case TabPageType.OrderRecieptPage:
-                    // tab.Text = "Recieve Order";
-                    // RecieveOrderControl orderctr = new RecieveOrderControl(ctx);
-                    // orderctr.Dock = DockStyle.Fill;
-                    //tab.Controls.Add(orderctr);
+                    tab.Text = "Recieve Order";
+                    OrderRecieptManager orderctr = new OrderRecieptManager();
+                    orderctr.Dock = DockStyle.Fill;
+                    tab.Controls.Add(orderctr);
                     break;
                 case TabPageType.ItemSearchPage:
                     //tab.Text = "Item Search";
@@ -101,11 +101,11 @@ namespace Mosiac.UX
                     //tab.Controls.Add(assemblyManagerControl);
                     break;
                 case TabPageType.PartEditorPage:
-                    //tab.Text = "Part Editor";
-                    ////PartEditor partEditorControl = new PartEditor(ctx);
-                    //PartManagerControl partEditorControl = new PartManagerControl(ctx);
-                    //partEditorControl.Dock = DockStyle.Fill;
-                    //tab.Controls.Add(partEditorControl);                
+                    tab.Text = "Part Editor";
+                    //PartEditor partEditorControl = new PartEditor(ctx);
+                    PartManagerControl partEditorControl = new PartManagerControl(ctx);
+                    partEditorControl.Dock = DockStyle.Fill;
+                    tab.Controls.Add(partEditorControl);
                     break;
                 case TabPageType.RecieveOrderControl:
                     {

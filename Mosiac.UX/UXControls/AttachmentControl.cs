@@ -5,6 +5,7 @@ using DataLayer.Data;
 using ServiceLayer.Models;
 using System.IO;
 using System.Diagnostics;
+using ServiceLayer;
 
 namespace Mosiac.UX.UXControls
 {
@@ -52,6 +53,9 @@ namespace Mosiac.UX.UXControls
 
         private void InitializeGrid()
         {
+            dgResources.AutoGenerateColumns = false;
+            dgResources.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            dgResources.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
 
             // Currency Decimal Style
             DataGridViewCellStyle dstyleCurrency = new DataGridViewCellStyle();
@@ -74,13 +78,13 @@ namespace Mosiac.UX.UXControls
             DataGridViewTextBoxColumn colAttachmentID = new DataGridViewTextBoxColumn();
             colAttachmentID.HeaderText = "ID";
             colAttachmentID.DataPropertyName = "AttachmentID";
-            colAttachmentID.Width = 55;
+            colAttachmentID.Width = 75;
 
             // AttachmentID Column --
             DataGridViewTextBoxColumn colCreator = new DataGridViewTextBoxColumn();
             colCreator.HeaderText = "Creator";
             colCreator.DataPropertyName = "Creator";
-            colCreator.Width = 75;
+            colCreator.Width = 115;
 
             // Date Column --
             DataGridViewTextBoxColumn colDate = new DataGridViewTextBoxColumn();
@@ -106,7 +110,7 @@ namespace Mosiac.UX.UXControls
             DataGridViewTextBoxColumn colFileSize = new DataGridViewTextBoxColumn();
             colFileSize.HeaderText = "File Size (KB)";
             colFileSize.DataPropertyName = "FileSize";
-            colFileSize.Width = 95;
+            colFileSize.Width = 125;
 
             dgResources.Columns.AddRange(colAttachmentID, colCreator, colDate, colDescription, colSourceFile, colFileSize);
 
@@ -149,7 +153,7 @@ namespace Mosiac.UX.UXControls
                     FileInfo fileInfo = new FileInfo(filePath);
                     newAttachment.Ext = fileInfo.Extension;
                     newAttachment.Src = fileInfo.Name.ToString();
-                    newAttachment.FileSize = FileHelpers.GetSizeInMemory(fileInfo.Length);
+                    newAttachment.FileSize = FileHelperService.GetSizeInMemory(fileInfo.Length);
                     newAttachment.creator = orderDTO.Purchaser;
                     newAttachment.CreatedDate = DateTime.Today;
                     //Read the bytes of the file into a byte array
@@ -166,15 +170,24 @@ namespace Mosiac.UX.UXControls
             {
                 Attachment attachment;
                 string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-                path += @"\WeaselTurds\";
+                path += @"\ResourceCache\";
+                if (!Directory.Exists(path))
+                {
+                    Directory.CreateDirectory(path);
+                }
+               
                 path += selectedAttachment.Src;
                 using(MosaicContext ctx = new MosaicContext())
-                {
-                    attachment = ctx.Attachments.Find(selectedAttachment.AttachmentID);
-
+                { attachment = ctx.Attachments.Find(selectedAttachment.AttachmentID);
                 }
+
                 File.WriteAllBytes(path, attachment.Filesource);
-                Process.Start(path);
+                var p = new Process();
+                p.StartInfo = new ProcessStartInfo(path)
+                {
+                    UseShellExecute = true
+                };
+                p.Start();
             }
         }
     }

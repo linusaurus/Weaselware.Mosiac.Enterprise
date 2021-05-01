@@ -95,8 +95,8 @@ namespace Mosiac.UX
         private void tsSettingsButton_Click(object sender, EventArgs e)
         {
 
-            LabelService lbService = new LabelService();
-            lbService.SetPrintingOption();
+            //LabelService lbService = new LabelService();
+            //lbService.SetPrintingOption();
         }
 
         private void tsScanBarCode_Click(object sender, EventArgs e)

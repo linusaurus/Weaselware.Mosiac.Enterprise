@@ -8,7 +8,6 @@ using System.Windows.Forms;
 using DataLayer.Data;
 using System.Linq;
 using DataLayer.Entity;
-using SimpleInjector;
 using ServiceLayer;
 using ServiceLayer.Models;
 using ServiceLayer.Mappers;

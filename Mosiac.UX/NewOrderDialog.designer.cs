@@ -40,9 +40,10 @@
             // 
             this.btnGo.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnGo.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnGo.Location = new System.Drawing.Point(252, 78);
+            this.btnGo.Location = new System.Drawing.Point(294, 90);
+            this.btnGo.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnGo.Name = "btnGo";
-            this.btnGo.Size = new System.Drawing.Size(75, 23);
+            this.btnGo.Size = new System.Drawing.Size(88, 27);
             this.btnGo.TabIndex = 2;
             this.btnGo.Text = "Go";
             this.btnGo.UseVisualStyleBackColor = true;
@@ -51,9 +52,10 @@
             // 
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnCancel.Location = new System.Drawing.Point(171, 78);
+            this.btnCancel.Location = new System.Drawing.Point(200, 90);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(75, 23);
+            this.btnCancel.Size = new System.Drawing.Size(88, 27);
             this.btnCancel.TabIndex = 5;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
@@ -62,9 +64,10 @@
             // 
             this.lbJobName.AutoSize = true;
             this.lbJobName.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lbJobName.Location = new System.Drawing.Point(25, 14);
+            this.lbJobName.Location = new System.Drawing.Point(29, 16);
+            this.lbJobName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbJobName.Name = "lbJobName";
-            this.lbJobName.Size = new System.Drawing.Size(50, 13);
+            this.lbJobName.Size = new System.Drawing.Size(55, 15);
             this.lbJobName.TabIndex = 4;
             this.lbJobName.Text = "Jobname";
             // 
@@ -72,33 +75,36 @@
             // 
             this.label1.AutoSize = true;
             this.label1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label1.Location = new System.Drawing.Point(28, 43);
+            this.label1.Location = new System.Drawing.Point(34, 45);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(45, 13);
+            this.label1.Size = new System.Drawing.Size(50, 15);
             this.label1.TabIndex = 3;
             this.label1.Text = "Supplier";
             // 
             // tbJobSelection
             // 
-            this.tbJobSelection.Location = new System.Drawing.Point(97, 11);
+            this.tbJobSelection.Location = new System.Drawing.Point(113, 13);
+            this.tbJobSelection.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.tbJobSelection.Name = "tbJobSelection";
-            this.tbJobSelection.Size = new System.Drawing.Size(231, 20);
+            this.tbJobSelection.Size = new System.Drawing.Size(269, 23);
             this.tbJobSelection.TabIndex = 0;
             // 
             // tbSupplier
             // 
-            this.tbSupplier.Location = new System.Drawing.Point(97, 40);
+            this.tbSupplier.Location = new System.Drawing.Point(113, 42);
+            this.tbSupplier.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.tbSupplier.Name = "tbSupplier";
-            this.tbSupplier.Size = new System.Drawing.Size(231, 20);
+            this.tbSupplier.Size = new System.Drawing.Size(269, 23);
             this.tbSupplier.TabIndex = 1;
             // 
             // NewOrderDialog
             // 
             this.AcceptButton = this.btnGo;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(351, 113);
+            this.ClientSize = new System.Drawing.Size(410, 138);
             this.ControlBox = false;
             this.Controls.Add(this.tbSupplier);
             this.Controls.Add(this.tbJobSelection);
@@ -108,6 +114,7 @@
             this.Controls.Add(this.btnGo);
             this.ForeColor = System.Drawing.SystemColors.ControlLight;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "NewOrderDialog";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Create Purchase Order";

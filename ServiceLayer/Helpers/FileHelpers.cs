@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace ServiceLayer
 {
-    public static class FileHelpers
+    public static class FileHelperService
     {
 
         public static string GetSizeInMemory(this long bytesize)
@@ -29,32 +29,6 @@ namespace ServiceLayer
             return string.Format(CultureInfo.CurrentCulture, "{0:0.##} {1}", len, sizes[order]);
         }
 
-        //public static FileInfo GetFile()
-        //{
-        //    var fileContent = string.Empty;
-        //    var filePath = string.Empty;
-        //    FileInfo result = null;
-
-        //    using (OpenFileDialog openFileDialog = new OpenFileDialog())
-        //    {
-        //        openFileDialog.InitialDirectory = "c:\\";
-        //        openFileDialog.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
-        //        openFileDialog.FilterIndex = 2;
-        //        openFileDialog.RestoreDirectory = true;
-
-        //        if (openFileDialog.ShowDialog() == DialogResult.OK)
-        //        {
-        //            //Get the path of specified file
-        //            filePath = openFileDialog.FileName;
-
-        //            //Read the contents of the file into a stream
-
-        //            result = new FileInfo(filePath);
-
-        //        }
-        //    }
-
-        //    return result;
-        //}
+      
     }
 }

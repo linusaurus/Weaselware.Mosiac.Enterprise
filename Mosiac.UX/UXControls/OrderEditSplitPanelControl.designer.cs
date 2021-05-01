@@ -169,7 +169,7 @@ namespace Mosiac.UX.UXControls
             this.splitContainerMain.Panel2.Controls.Add(this.scLineItems);
             this.splitContainerMain.Panel2.Padding = new System.Windows.Forms.Padding(5, 5, 14, 5);
             this.splitContainerMain.Size = new System.Drawing.Size(1340, 792);
-            this.splitContainerMain.SplitterDistance = 340;
+            this.splitContainerMain.SplitterDistance = 370;
             this.splitContainerMain.SplitterWidth = 5;
             this.splitContainerMain.TabIndex = 1;
             // 
@@ -200,7 +200,7 @@ namespace Mosiac.UX.UXControls
             // scLineItems.Panel2
             // 
             this.scLineItems.Panel2.Padding = new System.Windows.Forms.Padding(5);
-            this.scLineItems.Size = new System.Drawing.Size(976, 782);
+            this.scLineItems.Size = new System.Drawing.Size(946, 782);
             this.scLineItems.SplitterDistance = 472;
             this.scLineItems.SplitterWidth = 5;
             this.scLineItems.TabIndex = 0;
@@ -215,7 +215,7 @@ namespace Mosiac.UX.UXControls
             this.dgOrderLineItem.Name = "dgOrderLineItem";
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgOrderLineItem.RowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.dgOrderLineItem.Size = new System.Drawing.Size(966, 437);
+            this.dgOrderLineItem.Size = new System.Drawing.Size(936, 437);
             this.dgOrderLineItem.TabIndex = 0;
             // 
             // OrderEditSplitPanelControl

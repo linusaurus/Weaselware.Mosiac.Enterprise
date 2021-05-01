@@ -112,7 +112,7 @@ namespace Mosiac.UX.UXControls
             // btnSave
             // 
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSave.Location = new System.Drawing.Point(37, 63);
+            this.btnSave.Location = new System.Drawing.Point(173, 103);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(133, 36);
             this.btnSave.TabIndex = 2;
@@ -123,7 +123,7 @@ namespace Mosiac.UX.UXControls
             // btnReceiveOrder
             // 
             this.btnReceiveOrder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnReceiveOrder.Location = new System.Drawing.Point(37, 23);
+            this.btnReceiveOrder.Location = new System.Drawing.Point(6, 103);
             this.btnReceiveOrder.Name = "btnReceiveOrder";
             this.btnReceiveOrder.Size = new System.Drawing.Size(133, 36);
             this.btnReceiveOrder.TabIndex = 2;
@@ -134,7 +134,7 @@ namespace Mosiac.UX.UXControls
             // btnProccessInventory
             // 
             this.btnProccessInventory.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnProccessInventory.Location = new System.Drawing.Point(37, 103);
+            this.btnProccessInventory.Location = new System.Drawing.Point(6, 34);
             this.btnProccessInventory.Name = "btnProccessInventory";
             this.btnProccessInventory.Size = new System.Drawing.Size(133, 36);
             this.btnProccessInventory.TabIndex = 2;
