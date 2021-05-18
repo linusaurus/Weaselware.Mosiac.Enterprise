@@ -21,6 +21,108 @@ namespace Mosiac.UX.UXControls
                 
             }
         }
+
+        public static void BuildPartSearchGrid(DataGridView dg)
+        {
+            dg.AutoGenerateColumns = false;
+
+            dg.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            dg.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+
+            // Currency Decimal Style
+            DataGridViewCellStyle dstyleCurrency = new DataGridViewCellStyle();
+            dstyleCurrency.Format = "C";
+            dstyleCurrency.NullValue = "";
+            dstyleCurrency.Alignment = DataGridViewContentAlignment.MiddleRight;
+            // Currency Decimal Style
+            DataGridViewCellStyle dstyleDecimal = new DataGridViewCellStyle();
+            dstyleDecimal.Format = "N2";
+            dstyleDecimal.NullValue = "0.00";
+            dstyleDecimal.Alignment = DataGridViewContentAlignment.MiddleRight;
+            // Wrapping Text Style
+            DataGridViewCellStyle dstyleWrapText = new DataGridViewCellStyle();
+            dstyleWrapText.NullValue = "";
+            dstyleWrapText.Alignment = DataGridViewContentAlignment.TopLeft;
+            dstyleWrapText.WrapMode = DataGridViewTriState.True;
+
+            // PartID Column --
+            DataGridViewTextBoxColumn col_ID = new DataGridViewTextBoxColumn();
+            col_ID.HeaderText = "ID";
+            col_ID.DataPropertyName = "PartID";
+            col_ID.Width = 55;
+
+            // Receipt Description Column --
+            DataGridViewTextBoxColumn col_Description = new DataGridViewTextBoxColumn();
+            col_Description.HeaderText = "Description";
+            col_Description.DataPropertyName = "Description";
+            col_Description.Width = 120;
+            col_Description.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+
+            // Manufacturer Column --
+            DataGridViewTextBoxColumn col_Manufacturer = new DataGridViewTextBoxColumn();
+            col_Manufacturer.HeaderText = "Manufacturer";
+            col_Manufacturer.DataPropertyName = "Manufacturer";
+            col_Manufacturer.Width = 110;
+
+            // Orders Column --
+            DataGridViewTextBoxColumn col_Orders = new DataGridViewTextBoxColumn();
+            col_Orders.HeaderText = "Orders";
+            col_Orders.DataPropertyName = "Orders";
+            col_Orders.Width = 70;
+
+            dg.Columns.AddRange(col_ID, col_Description, col_Manufacturer, col_Orders);
+
+        }
+
+        public static void BuildPartResourcesGrid(DataGridView dg)
+        {
+            // Grid Width 430 --
+
+            dg.AutoGenerateColumns = false;
+
+            dg.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            dg.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+
+            // Currency Decimal Style
+            DataGridViewCellStyle dstyleCurrency = new DataGridViewCellStyle();
+            dstyleCurrency.Format = "C";
+            dstyleCurrency.NullValue = "";
+            dstyleCurrency.Alignment = DataGridViewContentAlignment.MiddleRight;
+            // Currency Decimal Style
+            DataGridViewCellStyle dstyleDecimal = new DataGridViewCellStyle();
+            dstyleDecimal.Format = "N2";
+            dstyleDecimal.NullValue = "0.00";
+            dstyleDecimal.Alignment = DataGridViewContentAlignment.MiddleRight;
+            // Wrapping Text Style
+            DataGridViewCellStyle dstyleWrapText = new DataGridViewCellStyle();
+            dstyleWrapText.NullValue = "";
+            dstyleWrapText.Alignment = DataGridViewContentAlignment.TopLeft;
+            dstyleWrapText.WrapMode = DataGridViewTriState.True;
+
+
+            // ResourceID Column --
+            DataGridViewTextBoxColumn col_ID = new DataGridViewTextBoxColumn();
+            col_ID.HeaderText = "ID";
+            col_ID.DataPropertyName = "ResourceID";
+            col_ID.Width = 55;
+
+            // Resource Description Column --
+            DataGridViewTextBoxColumn col_Description = new DataGridViewTextBoxColumn();
+            col_Description.HeaderText = "Description";
+            col_Description.DataPropertyName = "ResourceDescription";
+            col_Description.Width = 120;
+            col_Description.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+
+            //FileSize Column --
+            DataGridViewTextBoxColumn col_Manufacturer = new DataGridViewTextBoxColumn();
+            col_Manufacturer.HeaderText = "FileSize";
+            col_Manufacturer.DataPropertyName = "FileSize";
+            col_Manufacturer.Width = 90;
+
+
+
+            dg.Columns.AddRange(col_ID, col_Description, col_Manufacturer);
+        }
         public static void BuildOrderReceiptItemsGrid(DataGridView dg)
         {
             dg.AutoGenerateColumns = false;

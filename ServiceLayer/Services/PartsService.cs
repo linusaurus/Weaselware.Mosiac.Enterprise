@@ -189,7 +189,7 @@ namespace ServiceLayer
                
                 detail.ResourceDescription = detailDTO.ResourceDescription;
                 detail.PartID = detailDTO.PartID;
-                detail.payload = detailDTO.Payload;
+                //detail.payload = detailDTO.Payload;
                 detail.FileSize = FileHelperService.GetSizeInMemory(detailDTO.Payload.Length);
 
             });
@@ -414,7 +414,7 @@ namespace ServiceLayer
                 resource.Lastmod = DateTime.Today;
                 resource.PartID = pr.PartID;
                 resource.ResourceDescription = pr.ResourceDescription;
-                resource.payload = pr.Payload;
+               // resource.payload = pr.Payload;
 
 
             });

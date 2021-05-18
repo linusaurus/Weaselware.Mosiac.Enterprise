@@ -56,7 +56,7 @@ namespace ServiceLayer.Mappers
             destination.ResourceID = source.ResourceID;
             destination.Filesize = source.FileSize;
             destination.Filesource = source.filesource;
-            destination.Payload = source.payload;
+           // destination.Re = source.payload;
         }
     }
 }

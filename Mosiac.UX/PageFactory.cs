@@ -103,7 +103,7 @@ namespace Mosiac.UX
                 case TabPageType.PartEditorPage:
                     tab.Text = "Part Editor";
                     //PartEditor partEditorControl = new PartEditor(ctx);
-                    PartManagerControl partEditorControl = new PartManagerControl(ctx);
+                    PartManager partEditorControl = new PartManager(ctx);
                     partEditorControl.Dock = DockStyle.Fill;
                     tab.Controls.Add(partEditorControl);
                     break;
