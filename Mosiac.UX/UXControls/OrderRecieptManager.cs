@@ -11,7 +11,7 @@ using DataLayer.Entity;
 using ServiceLayer;
 using ServiceLayer.Models;
 using ServiceLayer.Mappers;
-using System.Composition;
+
 
 namespace Mosiac.UX.UXControls
 {
@@ -61,13 +61,20 @@ namespace Mosiac.UX.UXControls
                 {
                     DataGridViewRow row = dg.Rows[e.RowIndex];
                     PendingOrdersDto dat = (PendingOrdersDto)row.DataBoundItem;
-                    if (dat.RecievedComplete )
+                    if (dat.OrderState == 1)
                     {
-                        row.DefaultCellStyle.ForeColor = Color.Gray;
-                        row.DefaultCellStyle.BackColor = Color.Gainsboro;
+                        row.DefaultCellStyle.ForeColor = Color.Black;
+                        row.DefaultCellStyle.BackColor = Color.White;
                         row.ReadOnly = true;
                     }
-                }
+                       else if (dat.OrderState == 3)
+                        {
+                            row.DefaultCellStyle.ForeColor = Color.Gray;
+                            row.DefaultCellStyle.BackColor = Color.LightGoldenrodYellow;
+                            row.ReadOnly = true;
+                        }
+
+                    }
             }
         }
 
@@ -164,6 +171,14 @@ namespace Mosiac.UX.UXControls
                 if (dg.Rows.Count > 0)
                 {
                     _selectedOrderID  = ((PendingOrdersDto)dg.CurrentRow.DataBoundItem).PurchaseOrderID;
+                    if (((PendingOrdersDto)dg.CurrentRow.DataBoundItem).OrderState ==1)
+                    {
+                        btnReceiveOrder.Text = "Create Order Receipt";
+                    }
+                    else
+                    {
+                        btnReceiveOrder.Text = "Open Order Receipt";
+                    }
                     
                 }
             }
@@ -173,7 +188,7 @@ namespace Mosiac.UX.UXControls
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-          
+         
             int orID =  _orderReceiptRepository.UpdateOrCreate(_orderRecieptDto);
             _orderRecieptDto = _orderReceiptRepository.GetOrderReceipt(orID);
             BindOrderReceipt(_orderRecieptDto);
@@ -209,6 +224,26 @@ namespace Mosiac.UX.UXControls
             ckbCompleted.DataBindings.Add("Checked", dto, "IsOrderComplete", true);
         }
 
-       
+        private int GetOrderState(OrderReceiptDto orderReceiptDto)
+        {
+            int resultState = 0;
+
+            bool linesIncomplete =  orderReceiptDto.OrderReceiptLineItems.Any(r => r.ItemsRecievedComplete == false);
+            // If any lineitems are not completet the make state as ReceivedIncomplete --
+
+            if (linesIncomplete)
+            { resultState = 3;}
+            // the lines are all recieved so mark state as ReceivedComplete
+
+            else if(!linesIncomplete)
+            {resultState = 2;}
+
+            return resultState;
+        }
+
+        private void OrderRecieptManager_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

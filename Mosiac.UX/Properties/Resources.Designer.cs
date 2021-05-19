@@ -223,6 +223,26 @@ namespace Mosiac.UX.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap baseline_launch_black_24dp1 {
+            get {
+                object obj = ResourceManager.GetObject("baseline_launch_black_24dp1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap baseline_launch_black_24dp2 {
+            get {
+                object obj = ResourceManager.GetObject("baseline_launch_black_24dp2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap baseline_post_add_black_24dp {
             get {
                 object obj = ResourceManager.GetObject("baseline_post_add_black_24dp", resourceCulture);
@@ -483,6 +503,16 @@ namespace Mosiac.UX.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap outline_delete_black_24dp4 {
+            get {
+                object obj = ResourceManager.GetObject("outline_delete_black_24dp4", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap outline_launch_black_24dp {
             get {
                 object obj = ResourceManager.GetObject("outline_launch_black_24dp", resourceCulture);
@@ -646,6 +676,16 @@ namespace Mosiac.UX.Properties {
         internal static System.Drawing.Bitmap round_add_circle_outline_black_24dp {
             get {
                 object obj = ResourceManager.GetObject("round_add_circle_outline_black_24dp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap round_add_circle_outline_black_24dp1 {
+            get {
+                object obj = ResourceManager.GetObject("round_add_circle_outline_black_24dp1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

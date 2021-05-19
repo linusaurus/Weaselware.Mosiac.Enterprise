@@ -123,7 +123,7 @@ namespace Mosiac.UX.UXControls
             // 
             this.btnAddManu.FlatAppearance.BorderSize = 0;
             this.btnAddManu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAddManu.Image = global::Mosiac.UX.Properties.Resources.round_add_circle_black_24dp;
+            this.btnAddManu.Image = global::Mosiac.UX.Properties.Resources.round_add_circle_outline_black_24dp1;
             this.btnAddManu.Location = new System.Drawing.Point(197, 212);
             this.btnAddManu.Name = "btnAddManu";
             this.btnAddManu.Size = new System.Drawing.Size(25, 23);
@@ -507,7 +507,7 @@ namespace Mosiac.UX.UXControls
             // 
             this.btnDeleteResource.FlatAppearance.BorderSize = 0;
             this.btnDeleteResource.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDeleteResource.Image = global::Mosiac.UX.Properties.Resources.outline_delete_black_24dp;
+            this.btnDeleteResource.Image = global::Mosiac.UX.Properties.Resources.outline_delete_black_24dp4;
             this.btnDeleteResource.Location = new System.Drawing.Point(99, 25);
             this.btnDeleteResource.Name = "btnDeleteResource";
             this.btnDeleteResource.Size = new System.Drawing.Size(25, 23);
@@ -519,7 +519,7 @@ namespace Mosiac.UX.UXControls
             // 
             this.btnOpenResource.FlatAppearance.BorderSize = 0;
             this.btnOpenResource.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnOpenResource.Image = global::Mosiac.UX.Properties.Resources.baseline_visibility_black_24dp;
+            this.btnOpenResource.Image = global::Mosiac.UX.Properties.Resources.baseline_launch_black_24dp2;
             this.btnOpenResource.Location = new System.Drawing.Point(50, 25);
             this.btnOpenResource.Name = "btnOpenResource";
             this.btnOpenResource.Size = new System.Drawing.Size(25, 23);
@@ -531,7 +531,7 @@ namespace Mosiac.UX.UXControls
             // 
             this.btnNewResource.FlatAppearance.BorderSize = 0;
             this.btnNewResource.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnNewResource.Image = global::Mosiac.UX.Properties.Resources.round_add_circle_black_24dp;
+            this.btnNewResource.Image = global::Mosiac.UX.Properties.Resources.round_add_circle_outline_black_24dp1;
             this.btnNewResource.Location = new System.Drawing.Point(14, 25);
             this.btnNewResource.Name = "btnNewResource";
             this.btnNewResource.Size = new System.Drawing.Size(25, 23);

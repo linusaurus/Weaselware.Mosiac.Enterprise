@@ -42,12 +42,18 @@ namespace Mosiac.UX.UXControls
             this.txtOrderReceiptID = new System.Windows.Forms.TextBox();
             this.txtOrderReceiptDate = new System.Windows.Forms.TextBox();
             this.ckbCompleted = new System.Windows.Forms.CheckBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.spcMainContainer)).BeginInit();
             this.spcMainContainer.Panel1.SuspendLayout();
             this.spcMainContainer.Panel2.SuspendLayout();
             this.spcMainContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgPendingOrders)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgOrderReceiptItems)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // spcMainContainer
@@ -112,7 +118,7 @@ namespace Mosiac.UX.UXControls
             // btnSave
             // 
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSave.Location = new System.Drawing.Point(173, 103);
+            this.btnSave.Location = new System.Drawing.Point(173, 109);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(133, 36);
             this.btnSave.TabIndex = 2;
@@ -123,7 +129,7 @@ namespace Mosiac.UX.UXControls
             // btnReceiveOrder
             // 
             this.btnReceiveOrder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnReceiveOrder.Location = new System.Drawing.Point(6, 103);
+            this.btnReceiveOrder.Location = new System.Drawing.Point(15, 108);
             this.btnReceiveOrder.Name = "btnReceiveOrder";
             this.btnReceiveOrder.Size = new System.Drawing.Size(133, 36);
             this.btnReceiveOrder.TabIndex = 2;
@@ -143,7 +149,7 @@ namespace Mosiac.UX.UXControls
             // 
             // txtPurchaseOrderID
             // 
-            this.txtPurchaseOrderID.Location = new System.Drawing.Point(325, 116);
+            this.txtPurchaseOrderID.Location = new System.Drawing.Point(7, 46);
             this.txtPurchaseOrderID.Name = "txtPurchaseOrderID";
             this.txtPurchaseOrderID.ReadOnly = true;
             this.txtPurchaseOrderID.Size = new System.Drawing.Size(129, 23);
@@ -153,7 +159,7 @@ namespace Mosiac.UX.UXControls
             // 
             // txtReceivedBy
             // 
-            this.txtReceivedBy.Location = new System.Drawing.Point(746, 116);
+            this.txtReceivedBy.Location = new System.Drawing.Point(428, 46);
             this.txtReceivedBy.Name = "txtReceivedBy";
             this.txtReceivedBy.ReadOnly = true;
             this.txtReceivedBy.Size = new System.Drawing.Size(129, 23);
@@ -163,7 +169,7 @@ namespace Mosiac.UX.UXControls
             // 
             // txtOrderReceiptID
             // 
-            this.txtOrderReceiptID.Location = new System.Drawing.Point(460, 116);
+            this.txtOrderReceiptID.Location = new System.Drawing.Point(142, 46);
             this.txtOrderReceiptID.Name = "txtOrderReceiptID";
             this.txtOrderReceiptID.ReadOnly = true;
             this.txtOrderReceiptID.Size = new System.Drawing.Size(137, 23);
@@ -173,7 +179,7 @@ namespace Mosiac.UX.UXControls
             // 
             // txtOrderReceiptDate
             // 
-            this.txtOrderReceiptDate.Location = new System.Drawing.Point(603, 116);
+            this.txtOrderReceiptDate.Location = new System.Drawing.Point(285, 46);
             this.txtOrderReceiptDate.Name = "txtOrderReceiptDate";
             this.txtOrderReceiptDate.ReadOnly = true;
             this.txtOrderReceiptDate.Size = new System.Drawing.Size(137, 23);
@@ -186,22 +192,72 @@ namespace Mosiac.UX.UXControls
             this.ckbCompleted.AutoSize = true;
             this.ckbCompleted.Enabled = false;
             this.ckbCompleted.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ckbCompleted.Location = new System.Drawing.Point(894, 118);
+            this.ckbCompleted.Location = new System.Drawing.Point(639, 39);
             this.ckbCompleted.Name = "ckbCompleted";
             this.ckbCompleted.Size = new System.Drawing.Size(82, 19);
             this.ckbCompleted.TabIndex = 5;
             this.ckbCompleted.Text = "Completed";
             this.ckbCompleted.UseVisualStyleBackColor = true;
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.ckbCompleted);
+            this.groupBox1.Controls.Add(this.txtOrderReceiptDate);
+            this.groupBox1.Controls.Add(this.txtOrderReceiptID);
+            this.groupBox1.Controls.Add(this.txtReceivedBy);
+            this.groupBox1.Controls.Add(this.txtPurchaseOrderID);
+            this.groupBox1.Location = new System.Drawing.Point(312, 70);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(811, 84);
+            this.groupBox1.TabIndex = 6;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Order Receipt";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(460, 24);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(51, 15);
+            this.label4.TabIndex = 6;
+            this.label4.Text = "Receiver";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(318, 24);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(73, 15);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "Receipt Date";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(163, 24);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(89, 15);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "Order Receipt #";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(11, 24);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(110, 15);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "Purchase Order No.";
+            // 
             // OrderRecieptManager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.ckbCompleted);
-            this.Controls.Add(this.txtOrderReceiptDate);
-            this.Controls.Add(this.txtOrderReceiptID);
-            this.Controls.Add(this.txtReceivedBy);
-            this.Controls.Add(this.txtPurchaseOrderID);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnReceiveOrder);
             this.Controls.Add(this.btnProccessInventory);
             this.Controls.Add(this.btnSave);
@@ -209,14 +265,16 @@ namespace Mosiac.UX.UXControls
             this.Name = "OrderRecieptManager";
             this.Padding = new System.Windows.Forms.Padding(6, 160, 6, 6);
             this.Size = new System.Drawing.Size(1130, 726);
+            this.Load += new System.EventHandler(this.OrderRecieptManager_Load);
             this.spcMainContainer.Panel1.ResumeLayout(false);
             this.spcMainContainer.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.spcMainContainer)).EndInit();
             this.spcMainContainer.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgPendingOrders)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgOrderReceiptItems)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -234,5 +292,10 @@ namespace Mosiac.UX.UXControls
         private System.Windows.Forms.TextBox txtOrderReceiptID;
         private System.Windows.Forms.TextBox txtOrderReceiptDate;
         private System.Windows.Forms.CheckBox ckbCompleted;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
     }
 }

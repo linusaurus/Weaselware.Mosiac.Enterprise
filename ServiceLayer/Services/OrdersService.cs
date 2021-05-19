@@ -119,16 +119,25 @@ namespace ServiceLayer {
   
         public PurchaseOrder GetOrderByID(int orderNum) {
 
-           
+
+            try
+            {
                 var order = context.PurchaseOrders.AsNoTracking()
-                 .Include(p => p.PurchaseLineItems)
-                 .Include(j => j.Job)
-                 .Include(s => s.Supplier)
-                 //.Include(t => t.Attachments)
-                 .Include(p => p.OrderFees)
-                 .Include(e => e.Employee).Where(c => c.PurchaseOrderID == orderNum).FirstOrDefault();
+                .Include(p => p.PurchaseLineItems)
+                .Include(j => j.Job)
+                .Include(s => s.Supplier)
+                //.Include(t => t.Attachments)
+                .Include(p => p.OrderFees)
+                .Include(e => e.Employee).Where(c => c.PurchaseOrderID == orderNum).FirstOrDefault();
 
                 return order;
+            }
+            catch (Exception ex)
+            {
+                string message = ex.Message.ToString();
+                throw;
+            }
+               
             
 
 

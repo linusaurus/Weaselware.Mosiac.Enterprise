@@ -251,23 +251,17 @@ namespace Mosiac.UX.UXControls
         // to better things, a long time coming.
         //---------------------------------------------------------
         private void btnNewResource_Click(object sender, System.EventArgs e)
-        {
-           
-            
+        {            
             if (_partBeingEdited != null)
             {
                 int PartID = _partBeingEdited.PartID;
-                FileInfo info = FileDialogHelpers.GetFile();
-              
+                FileInfo info = FileDialogHelpers.GetFile();             
                 FileOperations.InsertPhoto(PartID,"New Resource",info);
-
             }
-
         }
 
         private void OpenResource(int resourceID)
         {
-
             Resource dto = _ctx.Resources.Find(resourceID);
             string path = System.Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             path += @"\ResourceCache\";
@@ -278,7 +272,6 @@ namespace Mosiac.UX.UXControls
                 FileName = path,
                 UseShellExecute = true,
                 Verb = "open"
-
             };
             using (var proc = Process.Start(psi)) { }
         }
@@ -289,7 +282,6 @@ namespace Mosiac.UX.UXControls
             {               
                 FileOperations.GetResource(_selectedResourceID, "Server = 192.168.10.51; database = Mosaic; Integrated Security=SSPI");
             }
-
         }
 
         private void dgResources_SelectionChanged(object sender, EventArgs e)
