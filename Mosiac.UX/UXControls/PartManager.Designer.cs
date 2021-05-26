@@ -513,7 +513,7 @@ namespace Mosiac.UX.UXControls
             this.btnDeleteResource.Size = new System.Drawing.Size(25, 23);
             this.btnDeleteResource.TabIndex = 12;
             this.btnDeleteResource.UseVisualStyleBackColor = true;
-            this.btnDeleteResource.Click += new System.EventHandler(this.btnOpenResource_Click);
+            this.btnDeleteResource.Click += new System.EventHandler(this.btnDeleteResource_Click);
             // 
             // btnOpenResource
             // 

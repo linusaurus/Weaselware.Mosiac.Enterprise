@@ -30,7 +30,6 @@ namespace Mosiac.UX.UXControls
         private void InitializeComponent()
         {
             this.spcMainContainer = new System.Windows.Forms.SplitContainer();
-            this.dgPendingOrders = new System.Windows.Forms.DataGridView();
             this.dgOrderReceiptItems = new System.Windows.Forms.DataGridView();
             this.dataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -47,13 +46,15 @@ namespace Mosiac.UX.UXControls
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.dgPendingOrders = new System.Windows.Forms.DataGridView();
+            this.panel1 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.spcMainContainer)).BeginInit();
             this.spcMainContainer.Panel1.SuspendLayout();
             this.spcMainContainer.Panel2.SuspendLayout();
             this.spcMainContainer.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgPendingOrders)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgOrderReceiptItems)).BeginInit();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgPendingOrders)).BeginInit();
             this.SuspendLayout();
             // 
             // spcMainContainer
@@ -66,28 +67,14 @@ namespace Mosiac.UX.UXControls
             // spcMainContainer.Panel1
             // 
             this.spcMainContainer.Panel1.Controls.Add(this.dgPendingOrders);
+            this.spcMainContainer.Panel1.Controls.Add(this.panel1);
             // 
             // spcMainContainer.Panel2
             // 
             this.spcMainContainer.Panel2.Controls.Add(this.dgOrderReceiptItems);
-            this.spcMainContainer.Size = new System.Drawing.Size(1118, 560);
+            this.spcMainContainer.Size = new System.Drawing.Size(1111, 560);
             this.spcMainContainer.SplitterDistance = 300;
             this.spcMainContainer.TabIndex = 1;
-            // 
-            // dgPendingOrders
-            // 
-            this.dgPendingOrders.AllowUserToAddRows = false;
-            this.dgPendingOrders.AllowUserToDeleteRows = false;
-            this.dgPendingOrders.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgPendingOrders.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgPendingOrders.Location = new System.Drawing.Point(0, 0);
-            this.dgPendingOrders.Name = "dgPendingOrders";
-            this.dgPendingOrders.ReadOnly = true;
-            this.dgPendingOrders.RowHeadersVisible = false;
-            this.dgPendingOrders.RowTemplate.Height = 25;
-            this.dgPendingOrders.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgPendingOrders.Size = new System.Drawing.Size(300, 560);
-            this.dgPendingOrders.TabIndex = 0;
             // 
             // dgOrderReceiptItems
             // 
@@ -98,7 +85,7 @@ namespace Mosiac.UX.UXControls
             this.dgOrderReceiptItems.Location = new System.Drawing.Point(0, 0);
             this.dgOrderReceiptItems.Name = "dgOrderReceiptItems";
             this.dgOrderReceiptItems.RowTemplate.Height = 25;
-            this.dgOrderReceiptItems.Size = new System.Drawing.Size(814, 560);
+            this.dgOrderReceiptItems.Size = new System.Drawing.Size(807, 560);
             this.dgOrderReceiptItems.TabIndex = 0;
             // 
             // dataGridViewCheckBoxColumn1
@@ -201,6 +188,8 @@ namespace Mosiac.UX.UXControls
             // 
             // groupBox1
             // 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
@@ -212,7 +201,7 @@ namespace Mosiac.UX.UXControls
             this.groupBox1.Controls.Add(this.txtPurchaseOrderID);
             this.groupBox1.Location = new System.Drawing.Point(312, 70);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(811, 84);
+            this.groupBox1.Size = new System.Drawing.Size(804, 84);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Order Receipt";
@@ -253,6 +242,30 @@ namespace Mosiac.UX.UXControls
             this.label1.TabIndex = 6;
             this.label1.Text = "Purchase Order No.";
             // 
+            // dgPendingOrders
+            // 
+            this.dgPendingOrders.AllowUserToAddRows = false;
+            this.dgPendingOrders.AllowUserToDeleteRows = false;
+            this.dgPendingOrders.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgPendingOrders.Dock = System.Windows.Forms.DockStyle.Top;
+            this.dgPendingOrders.Location = new System.Drawing.Point(0, 0);
+            this.dgPendingOrders.Name = "dgPendingOrders";
+            this.dgPendingOrders.ReadOnly = true;
+            this.dgPendingOrders.RowHeadersVisible = false;
+            this.dgPendingOrders.RowTemplate.Height = 25;
+            this.dgPendingOrders.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgPendingOrders.Size = new System.Drawing.Size(300, 391);
+            this.dgPendingOrders.TabIndex = 0;
+            // 
+            // panel1
+            // 
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel1.Location = new System.Drawing.Point(0, 400);
+            this.panel1.Margin = new System.Windows.Forms.Padding(3, 16, 3, 3);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(300, 160);
+            this.panel1.TabIndex = 1;
+            // 
             // OrderRecieptManager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -264,16 +277,16 @@ namespace Mosiac.UX.UXControls
             this.Controls.Add(this.spcMainContainer);
             this.Name = "OrderRecieptManager";
             this.Padding = new System.Windows.Forms.Padding(6, 160, 6, 6);
-            this.Size = new System.Drawing.Size(1130, 726);
+            this.Size = new System.Drawing.Size(1123, 726);
             this.Load += new System.EventHandler(this.OrderRecieptManager_Load);
             this.spcMainContainer.Panel1.ResumeLayout(false);
             this.spcMainContainer.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.spcMainContainer)).EndInit();
             this.spcMainContainer.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgPendingOrders)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgOrderReceiptItems)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgPendingOrders)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -283,7 +296,6 @@ namespace Mosiac.UX.UXControls
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
-        private System.Windows.Forms.DataGridView dgPendingOrders;
         private System.Windows.Forms.Button btnReceiveOrder;
         private System.Windows.Forms.DataGridView dgOrderReceiptItems;
         private System.Windows.Forms.Button btnProccessInventory;
@@ -297,5 +309,7 @@ namespace Mosiac.UX.UXControls
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.DataGridView dgPendingOrders;
+        private System.Windows.Forms.Panel panel1;
     }
 }

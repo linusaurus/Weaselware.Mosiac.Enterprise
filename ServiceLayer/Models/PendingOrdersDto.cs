@@ -12,7 +12,7 @@ namespace ServiceLayer.Models
         public string EmployeeName { get; set; }
         public DateTime OrderDate { get; set; }
         public bool RecievedComplete { get; set; }
-
+        public int OrderState { get; set; }
 
     }
 }

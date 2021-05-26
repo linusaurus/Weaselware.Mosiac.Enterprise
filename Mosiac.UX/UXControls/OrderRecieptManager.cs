@@ -61,20 +61,26 @@ namespace Mosiac.UX.UXControls
                 {
                     DataGridViewRow row = dg.Rows[e.RowIndex];
                     PendingOrdersDto dat = (PendingOrdersDto)row.DataBoundItem;
-                    if (dat.OrderState == 1)
+                    if (dat.OrderState == 1 || dat.OrderState == 0)
                     {
                         row.DefaultCellStyle.ForeColor = Color.Black;
                         row.DefaultCellStyle.BackColor = Color.White;
                         row.ReadOnly = true;
                     }
-                       else if (dat.OrderState == 3)
-                        {
-                            row.DefaultCellStyle.ForeColor = Color.Gray;
-                            row.DefaultCellStyle.BackColor = Color.LightGoldenrodYellow;
-                            row.ReadOnly = true;
-                        }
-
+                    else if (dat.OrderState == 2)
+                    {
+                        row.DefaultCellStyle.ForeColor = Color.Gray;
+                        row.DefaultCellStyle.BackColor = Color.LightGoldenrodYellow;
+                        row.ReadOnly = true;
                     }
+                    else if (dat.OrderState == 3)
+                    {
+                        row.DefaultCellStyle.ForeColor = Color.Gray;
+                        row.DefaultCellStyle.BackColor = Color.LightGoldenrodYellow;
+                        row.ReadOnly = true;
+                    }
+
+                }
             }
         }
 

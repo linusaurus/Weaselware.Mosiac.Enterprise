@@ -43,6 +43,8 @@ namespace Mosiac.UX.UXControls
         private IEnumerable<ManuListDTO> manus;
         private IEnumerable<ManuListDTO> partManus;
         private PartsService partsService;
+        private ResourceService resourceService;
+
         List<PartSearchDto> partsList = new List<PartSearchDto>();
         
 
@@ -50,13 +52,12 @@ namespace Mosiac.UX.UXControls
         DataView dv;
 
 
-       
-
         public PartManager(MosaicContext ctx)
         {
             InitializeComponent();
             _ctx = ctx;
             partsService = new PartsService(ctx);
+            resourceService = new ResourceService(ctx);
             Grids.BuildPartSearchGrid(dgPartsSearch);
             Grids.BuildPartResourcesGrid(dgResources);
 
@@ -82,7 +83,6 @@ namespace Mosiac.UX.UXControls
             cboPartManu.SelectedIndex = -1;
             cboPartManu.Text = "Manufacturer";
             
-
             bsPart.ListChanged += BsPart_ListChanged;
             bsResource.ListChanged += BsResource_ListChanged;
 
@@ -95,8 +95,7 @@ namespace Mosiac.UX.UXControls
 
         private void BsPart_ListChanged(object sender, System.ComponentModel.ListChangedEventArgs e)
         {
-            Grids.CheckForDirtyState(e,btnSave);
-           
+            Grids.CheckForDirtyState(e,btnSave);          
         }
 
         private void txtSearch_TextChanged(object sender, System.EventArgs e)
@@ -117,7 +116,6 @@ namespace Mosiac.UX.UXControls
                 dgPartsSearch.DataSource = dv;
             }
            
-
         }
 
 
@@ -315,6 +313,19 @@ namespace Mosiac.UX.UXControls
                 dgResources.DataSource = _partBeingEdited.Resources.ToList(); 
             }
 
+        }
+        /// <summary>
+        /// Delete a Resource
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnDeleteResource_Click(object sender, EventArgs e)
+        {
+            if (_selectedResource != null)
+            {
+               
+  
+            }
         }
 
         private void ckbUseManufacturer_CheckedChanged(object sender, System.EventArgs e)
