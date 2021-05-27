@@ -14,6 +14,7 @@ using System;
 using System.Diagnostics;
 using System.Drawing;
 using Mosiac.UX;
+using Mosiac.UX.Forms;
 
 namespace Mosiac.UX.UXControls
 {
@@ -252,9 +253,14 @@ namespace Mosiac.UX.UXControls
         {            
             if (_partBeingEdited != null)
             {
-                int PartID = _partBeingEdited.PartID;
-                FileInfo info = FileDialogHelpers.GetFile();             
-                FileOperations.InsertPhoto(PartID,"New Resource",info);
+                CreateResourceForm frm = new CreateResourceForm(_partBeingEdited.PartID);
+                if (frm.ShowDialog() == DialogResult.OK)
+                {
+                    var resrc = frm.NewResource;                    
+                }
+
+                // -- Refresh the Resource list---;
+                
             }
         }
 

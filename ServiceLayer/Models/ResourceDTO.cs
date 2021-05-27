@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Runtime.CompilerServices;
 using System.Text;
 
@@ -8,7 +9,7 @@ namespace ServiceLayer.Models
 {
     public class ResourceDto : INotifyPropertyChanged
     {
-        
+
         // private fields ------------------------------------
         private int resourceID;
         private int partID;
@@ -21,6 +22,21 @@ namespace ServiceLayer.Models
         private DateTime lastmod;
 
         // ---------------------------------------------------
+       
+        public bool IsValid()
+        {
+           bool result = false;
+           if (!String.IsNullOrEmpty(resourceDescription) )
+             {
+                if (partID != default)
+                {
+                    result = true;
+                }
+
+            }
+            
+            return result; 
+        }
         public int ResourceID 
         {
             get { return resourceID; }

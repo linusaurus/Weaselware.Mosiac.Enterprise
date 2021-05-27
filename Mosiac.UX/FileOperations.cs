@@ -98,7 +98,7 @@ namespace Mosiac.UX
            
         }
 
-        public static void InsertPhoto(int partID, string resourcedDesc, FileInfo filename)
+        public static void InsertPhoto(int partID, string resourcedDesc,string filesize, FileInfo filename)
         {
             int resourceID = 0;
             const string InsertCmd = "Resource_INSERT";
@@ -119,6 +119,7 @@ namespace Mosiac.UX
                         cmd.Parameters.Add("@partID", SqlDbType.Int).Value = partID;
                         cmd.Parameters.Add("@resourcedescription", SqlDbType.VarChar).Value = resourcedDesc;
                         cmd.Parameters.Add("@filename", SqlDbType.VarChar).Value = filename.Name;
+                        cmd.Parameters.Add("@filesize", SqlDbType.VarChar).Value = filesize;
                         
                         SqlParameter param = new SqlParameter("@resourceId", SqlDbType.Int);
                         param.Direction = ParameterDirection.Output;

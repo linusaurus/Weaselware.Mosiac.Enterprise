@@ -488,13 +488,16 @@ namespace Mosiac.UX.UXControls
             this.txtResourceCreator.Name = "txtResourceCreator";
             this.txtResourceCreator.Size = new System.Drawing.Size(191, 23);
             this.txtResourceCreator.TabIndex = 13;
+            this.txtResourceCreator.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtSourceFile
             // 
             this.txtSourceFile.Location = new System.Drawing.Point(165, 230);
             this.txtSourceFile.Name = "txtSourceFile";
+            this.txtSourceFile.ReadOnly = true;
             this.txtSourceFile.Size = new System.Drawing.Size(279, 23);
             this.txtSourceFile.TabIndex = 13;
+            this.txtSourceFile.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtResourceCreateDate
             // 
