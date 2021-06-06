@@ -60,13 +60,15 @@ namespace Mosiac.UX.Forms
             // 
             // btnCancel
             // 
-            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.btnCancel.CausesValidation = false;
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Location = new System.Drawing.Point(250, 107);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 1;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // txtSourceFile
             // 
@@ -116,7 +118,9 @@ namespace Mosiac.UX.Forms
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
+            this.CausesValidation = false;
             this.ClientSize = new System.Drawing.Size(430, 146);
+            this.ControlBox = false;
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnBrowse);
@@ -127,6 +131,7 @@ namespace Mosiac.UX.Forms
             this.Controls.Add(this.txtResourceDescription);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "CreateResourceForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Add Resource";
             this.Activated += new System.EventHandler(this.CreateResourceForm_Activated);
             this.ResumeLayout(false);

@@ -26,6 +26,24 @@ namespace Mosiac.UX
 
         }
 
+        public static void OpenCacheFolder()
+        {
+            string Localpath = System.Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            Localpath += @"\ResourceCache\";
+            OpenResource(Localpath);
+        }
+
+        public static void ClearCacheFolder()
+        {
+            string Localpath = System.Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            Localpath += @"\ResourceCache\";            
+            string[] files = Directory.GetFiles(Path.GetDirectoryName(Localpath));
+            foreach (string file in files)
+            {
+                File.Delete(file);
+            }
+        }
+
         public static void GetResource(int resourceId, string conString)
         {
             const string SelectTSql = @"

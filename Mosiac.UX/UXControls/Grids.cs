@@ -62,7 +62,7 @@ namespace Mosiac.UX.UXControls
             DataGridViewTextBoxColumn col_Manufacturer = new DataGridViewTextBoxColumn();
             col_Manufacturer.HeaderText = "Manufacturer";
             col_Manufacturer.DataPropertyName = "Manufacturer";
-            col_Manufacturer.Width = 110;
+            col_Manufacturer.Width = 160;
 
             // Orders Column --
             DataGridViewTextBoxColumn col_Orders = new DataGridViewTextBoxColumn();

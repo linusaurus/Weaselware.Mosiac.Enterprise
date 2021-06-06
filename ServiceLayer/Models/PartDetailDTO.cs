@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Text;
 
+
 namespace ServiceLayer.Models
 {
     // +++++++++++++++++++++++++++++++++++++++++++++
@@ -243,6 +244,8 @@ namespace ServiceLayer.Models
         public List<ResourceDto> Resources { get; set; } = new List<ResourceDto>();
 
         public event PropertyChangedEventHandler PropertyChanged;
+
+      
 
         protected void OnPropertyChange([CallerMemberName] string name = null)
         {

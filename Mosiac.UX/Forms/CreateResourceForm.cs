@@ -18,9 +18,10 @@ namespace Mosiac.UX.Forms
         BindingSource bsResource = new BindingSource();
         FileInfo info;
 
-        //private System.Windows.Forms.ErrorProvider ageErrorProvider;
-        private System.Windows.Forms.ErrorProvider DescriptionErrorProvider;
-       // private System.Windows.Forms.ErrorProvider favoriteColorErrorProvider;
+        // Error Providers --->
+        private ErrorProvider DescriptionErrorProvider;
+        private ErrorProvider sourceFileErrorProvider;
+       
 
         public CreateResourceForm(int partID)
         {
@@ -30,22 +31,35 @@ namespace Mosiac.UX.Forms
             bsResource.ListChanged += BsResource_ListChanged;
             BindResource(bsResource);
             SetValidation();
+       
             txtResourceDescription.Validating += TxtResourceDescription_Validating;
+           //txtSourceFile.Validating += TxtSourceFile_Validating;
         }
 
+
+
+        #region TextBox Validations
         private void TxtResourceDescription_Validating(object sender, CancelEventArgs e)
         {
             if (IsDescriptionValid())
             {
                 // Clear the error, if any, in the error provider.
                 DescriptionErrorProvider.SetError(this.txtResourceDescription, String.Empty);
+                e.Cancel = false; 
             }
             else
             {
                 // Set the error if the name is not valid.
-                DescriptionErrorProvider.SetError(this.txtResourceDescription, "Description is required.");
+                DescriptionErrorProvider.SetError(this.txtResourceDescription, "A Description is required.");
+                e.Cancel = true;
             }
         }
+
+        private void TxtSourceFile_Validating(object sender, CancelEventArgs e)
+        {
+           
+        }
+        #endregion
 
         private void BsResource_ListChanged(object sender, ListChangedEventArgs e)
         {
@@ -89,34 +103,29 @@ namespace Mosiac.UX.Forms
         private void btnBrowse_Click(object sender, EventArgs e)
         {
             info = FileDialogHelpers.GetFile();
-            resourseDto.Filesize = FileHelperService.GetSizeInMemory(info.Length);
-            resourseDto.Filesource = info.Name;
-
+            if (info != null)
+            {
+                resourseDto.Filesize = FileHelperService.GetSizeInMemory(info.Length);
+                resourseDto.Filesource = info.Name;
+            }
+            else
+            {
+                return;
+            }
 
         }
 
-      
 
         // Create and set the ErrorProvider for each data entry control.
         private void SetValidation()
         {
 
-            DescriptionErrorProvider = new System.Windows.Forms.ErrorProvider();
+           DescriptionErrorProvider = new System.Windows.Forms.ErrorProvider();
             DescriptionErrorProvider.SetIconAlignment(this.txtResourceDescription, ErrorIconAlignment.MiddleRight);
             DescriptionErrorProvider.SetIconPadding(this.txtResourceDescription, 2);
             DescriptionErrorProvider.BlinkRate = 1000;
             DescriptionErrorProvider.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.AlwaysBlink;
-
-            //ageErrorProvider = new System.Windows.Forms.ErrorProvider();
-            //ageErrorProvider.SetIconAlignment(this.ageUpDownPicker, ErrorIconAlignment.MiddleRight);
-            //ageErrorProvider.SetIconPadding(this.ageUpDownPicker, 2);
-            //ageErrorProvider.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.BlinkIfDifferentError;
-
-            //favoriteColorErrorProvider = new System.Windows.Forms.ErrorProvider();
-            //favoriteColorErrorProvider.SetIconAlignment(this.favoriteColorComboBox, ErrorIconAlignment.MiddleRight);
-            //favoriteColorErrorProvider.SetIconPadding(this.favoriteColorComboBox, 2);
-            //favoriteColorErrorProvider.BlinkRate = 1000;
-            //favoriteColorErrorProvider.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
+ 
         }
 
         // Functions to verify data.
@@ -129,6 +138,12 @@ namespace Mosiac.UX.Forms
         private void CreateResourceForm_Activated(object sender, EventArgs e)
         {
             txtResourceDescription.Focus();
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            AutoValidate = AutoValidate.Disable;
+            Close();
         }
     }
 }

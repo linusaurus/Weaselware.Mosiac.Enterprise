@@ -102,24 +102,24 @@ namespace Mosiac.UX.UXControls
         private void txtSearch_TextChanged(object sender, System.EventArgs e)
         {
             TextBox tb = (TextBox)sender;
+            SearchParts();
+        }
 
-            if (tb.Text.Length > 2)
+        private void SearchParts()
+        {
+            if (txtSearch.Text.Length > 2)
             {
-                //dgPartsSearch.DataSource = partsService.SearchPart(tb.Text,manuID);
+                
                 startTime = System.DateTime.Now.Millisecond;
-               // partsList = partsService.SearchDTOPart(tb.Text);
-                partsList = partsService.SearchPart(tb.Text, manuID);
+                partsList = partsService.SearchPart(txtSearch.Text, manuID,ManuFilter);
                 ListAsDataTable = Grids.BuildDataTable<PartSearchDto>(partsList);
                 dv = ListAsDataTable.DefaultView;
                 endTime = System.DateTime.Now.Millisecond;
-               lbResults.Text = $"Returned {ListAsDataTable.Rows.Count} Items, Millis = {(endTime - startTime).ToString()} ";
+                lbResults.Text = $"Returned {ListAsDataTable.Rows.Count} Items, Milliseconds = {(endTime - startTime).ToString()} ";
 
                 dgPartsSearch.DataSource = dv;
             }
-           
         }
-
-
 
         private void BindPart(BindingSource bs)
         {
@@ -221,6 +221,16 @@ namespace Mosiac.UX.UXControls
         private void cboManu_SelectedIndexChanged(object sender, System.EventArgs e)
         {
             manuID = (int)cboManu.SelectedValue;
+
+            startTime = System.DateTime.Now.Millisecond;
+            
+            partsList = partsService.GetManufacturerParts(manuID);
+            ListAsDataTable = Grids.BuildDataTable<PartSearchDto>(partsList);
+            dv = ListAsDataTable.DefaultView;
+            endTime = System.DateTime.Now.Millisecond;
+            lbResults.Text = $"Returned {ListAsDataTable.Rows.Count} Items, Milliseconds = {(endTime - startTime).ToString()} ";
+
+            dgPartsSearch.DataSource = dv;
         }
 
         private void button2_Click(object sender, System.EventArgs e)
@@ -260,7 +270,14 @@ namespace Mosiac.UX.UXControls
                 }
 
                 // -- Refresh the Resource list---;
-                
+                _partBeingEdited = partsService.Find(_partBeingEdited.PartID);
+                if (_partBeingEdited != null)
+                {
+                    bsPart.DataSource = _partBeingEdited;
+                    BindPart(bsPart);
+                    bsResource.DataSource = _partBeingEdited.Resources.ToList();
+                    dgResources.DataSource = _partBeingEdited.Resources.ToList();
+                }
             }
         }
 
@@ -283,8 +300,9 @@ namespace Mosiac.UX.UXControls
         private void btnOpenResource_Click(object sender, EventArgs e)
         {
             if (_selectedResourceID != default)
-            {               
-                FileOperations.GetResource(_selectedResourceID, "Server = 192.168.10.51; database = Mosaic; Integrated Security=SSPI");
+            {
+                string conn = Mosiac.UX.Properties.Settings.Default.MosiacConnection;
+                FileOperations.GetResource(_selectedResourceID, Mosiac.UX.Properties.Settings.Default.MosiacConnection);
             }
         }
 
@@ -301,8 +319,7 @@ namespace Mosiac.UX.UXControls
                         _selectedResource = (Resource)dg.CurrentRow.DataBoundItem;
                         bsResource.DataSource = _selectedResource;
                         BindResource(bsResource);
-                    }
-
+                    }                
                 }
             }
         }
@@ -313,12 +330,22 @@ namespace Mosiac.UX.UXControls
             if (partIDlookUp != default)
             {
                 _partBeingEdited = partsService.Find(partIDlookUp);
-                bsPart.DataSource = _partBeingEdited;
-                BindPart(bsPart);
-                bsResource.DataSource = _partBeingEdited.Resources.ToList();
-                dgResources.DataSource = _partBeingEdited.Resources.ToList(); 
+                if (_partBeingEdited != null)
+                {
+                   
+                    bsPart.DataSource = _partBeingEdited;
+                    BindPart(bsPart);
+                    bsResource.DataSource = _partBeingEdited.Resources.ToList();
+                    dgResources.DataSource = _partBeingEdited.Resources.ToList();
+                }
+                else
+                {
+                    MessageBoxButtons buttons = MessageBoxButtons.OK;
+                    MessageBox.Show(String.Format("Part Number {0} does not exist",
+                                                    partIDlookUp),
+                                                    "Part Lookup", buttons);
+                }
             }
-
         }
         /// <summary>
         /// Delete a Resource
@@ -329,9 +356,52 @@ namespace Mosiac.UX.UXControls
         {
             if (_selectedResource != null)
             {
-               
-  
+                var delResource = _ctx.Resources.Find(_selectedResource.ResourceID);
+                _ctx.Resources.Remove(delResource);
+                _ctx.SaveChanges();
+
+                _partBeingEdited = partsService.Find(_partBeingEdited.PartID);
+                if (_partBeingEdited != null)
+                {
+                    bsPart.DataSource = _partBeingEdited;
+                    BindPart(bsPart);
+                    bsResource.DataSource = _partBeingEdited.Resources.ToList();
+                    dgResources.DataSource = _partBeingEdited.Resources.ToList();
+                }
+
             }
+        }
+
+        private void AddNewManufacturer(object sender, EventArgs e)
+        {
+            if (_partBeingEdited != null)
+            {
+                ManuEditForm frm = new ManuEditForm(_ctx);
+                if (frm.ShowDialog() == DialogResult.OK)
+                {
+
+                }
+            }
+        }
+
+        private void btnOpenCache_Click(object sender, EventArgs e)
+        {
+            FileOperations.OpenCacheFolder();
+        }
+
+        private void btnClearCache_Click(object sender, EventArgs e)
+        {
+            FileOperations.ClearCacheFolder();
+        }
+        /// <summary>
+        /// New Part
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            
+            //_partBeingEdited = new PartDetailDTO();
         }
 
         private void ckbUseManufacturer_CheckedChanged(object sender, System.EventArgs e)
@@ -342,11 +412,16 @@ namespace Mosiac.UX.UXControls
                 cboManu.Enabled = true;
                 txtSearch.Clear();
                 ManuFilter = true;
+                cboManu.Refresh();
+                SearchParts();
             }
             else
             {
                 cboManu.Enabled = false;
                 ManuFilter = false;
+                cboManu.SelectedIndex = 0;
+                cboManu.Refresh();
+                SearchParts();
             }
         }
     }

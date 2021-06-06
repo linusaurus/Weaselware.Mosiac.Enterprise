@@ -311,7 +311,6 @@ namespace ServiceLayer
             {
                 ManufacturerName = d.Manufacturer,
                 ManuID = d.ManuID
-
             }).ToList();
             return m;
         }
@@ -328,10 +327,11 @@ namespace ServiceLayer
             return result;
         }
 
-        public List<PartSearchDto> SearchPart(string search, int manufactererID)
+        public List<PartSearchDto> SearchPart(string search, int manufactererID, bool manuFilter)
         {
-          
-            if (manufactererID != 0 || manufactererID == 1)
+
+            // if (manufactererID != 0 || manufactererID == 1)
+            if (manuFilter)
             {
                 var result = _context.Parts.AsNoTracking().Where(p => p.ItemDescription.Contains(search))
                      .Where(m => m.ManuID == manufactererID).Select(d => new PartSearchDto
