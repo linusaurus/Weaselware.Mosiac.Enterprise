@@ -30,7 +30,6 @@ namespace Mosiac.UX
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.mainToolStrip = new System.Windows.Forms.ToolStrip();
             this.tsOrderButton = new System.Windows.Forms.ToolStripButton();
             this.tsMyOrders = new System.Windows.Forms.ToolStripButton();
@@ -54,7 +53,7 @@ namespace Mosiac.UX
             // 
             // mainToolStrip
             // 
-            this.mainToolStrip.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.mainToolStrip.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.mainToolStrip.ImageScalingSize = new System.Drawing.Size(32, 32);
             this.mainToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsOrderButton,
@@ -72,7 +71,7 @@ namespace Mosiac.UX
             this.tsSettingsButton});
             this.mainToolStrip.Location = new System.Drawing.Point(0, 0);
             this.mainToolStrip.Name = "mainToolStrip";
-            this.mainToolStrip.Size = new System.Drawing.Size(1243, 55);
+            this.mainToolStrip.Size = new System.Drawing.Size(1184, 55);
             this.mainToolStrip.TabIndex = 0;
             this.mainToolStrip.Text = "mainToolStrip";
             this.mainToolStrip.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.mainToolStrip_ItemClicked);
@@ -198,9 +197,10 @@ namespace Mosiac.UX
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 805);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 925);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1243, 22);
+            this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 16, 0);
+            this.statusStrip1.Size = new System.Drawing.Size(1184, 22);
             this.statusStrip1.TabIndex = 1;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -216,10 +216,11 @@ namespace Mosiac.UX
             this.MainTabControl.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
             this.MainTabControl.ItemSize = new System.Drawing.Size(58, 24);
             this.MainTabControl.Location = new System.Drawing.Point(0, 55);
+            this.MainTabControl.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.MainTabControl.Name = "MainTabControl";
             this.MainTabControl.SelectedIndex = 0;
             this.MainTabControl.ShowToolTips = true;
-            this.MainTabControl.Size = new System.Drawing.Size(1243, 750);
+            this.MainTabControl.Size = new System.Drawing.Size(1184, 870);
             this.MainTabControl.TabIndex = 2;
             this.MainTabControl.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.MainTabControl_DrawItem);
             this.MainTabControl.SelectedIndexChanged += new System.EventHandler(this.MaintabControl_SelectedIndexChanged);
@@ -227,15 +228,15 @@ namespace Mosiac.UX
             // 
             // Main
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1243, 827);
+            this.ClientSize = new System.Drawing.Size(1184, 947);
             this.Controls.Add(this.MainTabControl);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.mainToolStrip);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
-            this.MinimumSize = new System.Drawing.Size(1025, 860);
+            this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.MinimumSize = new System.Drawing.Size(1200, 800);
             this.Name = "Main";
             this.Text = "Part-Ferrit";
             this.Load += new System.EventHandler(this.Main_Load);

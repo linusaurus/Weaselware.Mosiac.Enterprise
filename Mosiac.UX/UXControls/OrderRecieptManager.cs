@@ -251,5 +251,10 @@ namespace Mosiac.UX.UXControls
         {
 
         }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
     }
 }

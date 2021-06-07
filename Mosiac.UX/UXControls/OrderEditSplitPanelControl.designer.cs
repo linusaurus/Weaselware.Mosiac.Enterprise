@@ -180,7 +180,7 @@ namespace Mosiac.UX.UXControls
             this.orderHeaderVerticalControl1.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
             this.orderHeaderVerticalControl1.MinimumSize = new System.Drawing.Size(379, 0);
             this.orderHeaderVerticalControl1.Name = "orderHeaderVerticalControl1";
-            this.orderHeaderVerticalControl1.Padding = new System.Windows.Forms.Padding(7, 7, 7, 7);
+            this.orderHeaderVerticalControl1.Padding = new System.Windows.Forms.Padding(7);
             this.orderHeaderVerticalControl1.Size = new System.Drawing.Size(379, 782);
             this.orderHeaderVerticalControl1.TabIndex = 0;
             // 

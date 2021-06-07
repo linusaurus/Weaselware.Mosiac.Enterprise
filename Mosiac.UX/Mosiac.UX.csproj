@@ -44,7 +44,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="bin\Debug\netcoreapp3.1\testreport.frx" />
+    <None Include="bin\Debug\netcoreapp3.1\testreport.frx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>
