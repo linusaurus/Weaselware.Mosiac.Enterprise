@@ -76,12 +76,11 @@ namespace ServiceLayer
         }
 
 
-
-        public List<PendingOrdersDto> PendingOrders()
+        public List<PendingOrdersDto> PendingOrders(int orderState)
         {
              
             var purchaseOrders = _ctx.PurchaseOrders.AsNoTracking().Include(s => s.Supplier).Include(j => j.Job).Include(e => e.Employee)
-                .Where(p => p.Recieved == false).OrderBy(d => d.OrderDate)
+                .Where(p => p.OrderState == orderState).OrderBy(d => d.OrderDate)
                 .Select(dto => new PendingOrdersDto 
                 { 
                     PurchaseOrderID = dto.PurchaseOrderID,
@@ -95,6 +94,24 @@ namespace ServiceLayer
 
             return purchaseOrders;
             
+        }
+
+        public List<PendingOrdersDto> UnRecievedOrders(int orderState)
+        {
+
+            var purchaseOrders = _ctx.PurchaseOrders.AsNoTracking().Include(s => s.Supplier)
+                .Where(p => p.OrderState == orderState).OrderBy(d => d.OrderDate)
+                .Select(dto => new PendingOrdersDto
+                {
+                    PurchaseOrderID = dto.PurchaseOrderID,
+                    OrderDate = dto.OrderDate.GetValueOrDefault(),
+                    Supplier = dto.Supplier.SupplierName,
+                    OrderState = dto.OrderState.GetValueOrDefault()
+
+                }).ToList();
+
+            return purchaseOrders;
+
         }
 
         public List<OrderReceiptDto> GetAllOrderReceipts()

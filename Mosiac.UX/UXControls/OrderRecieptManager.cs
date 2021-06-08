@@ -24,15 +24,19 @@ namespace Mosiac.UX.UXControls
         private int _selectedOrderID;
         private BindingSource bsOrderReceiptItems = new BindingSource();
 
+        
+
         public OrderRecieptManager()
         {
             InitializeComponent();
+
+           
             Grids.BuildPendingOrdersGrid(dgPendingOrders);
             Grids.BuildOrderReceiptItemsGrid(dgOrderReceiptItems);
             _orderReceiptRepository = new OrderReceiptRepository(new MosaicContext());
             //----------------------------- Pending Grid ------------------------------------
 
-            var orderReceipts = _orderReceiptRepository.PendingOrders();         
+            var orderReceipts = _orderReceiptRepository.UnRecievedOrders(1);         
             this.dgPendingOrders.DataSource = orderReceipts;
 
             //------------------------------Event Wiring---------------------------------------
@@ -48,7 +52,7 @@ namespace Mosiac.UX.UXControls
 
         }
 
-
+       
 
         #region Grid-BindingSource Event Handlers ----------++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -75,8 +79,8 @@ namespace Mosiac.UX.UXControls
                     }
                     else if (dat.OrderState == 3)
                     {
-                        row.DefaultCellStyle.ForeColor = Color.Gray;
-                        row.DefaultCellStyle.BackColor = Color.LightGoldenrodYellow;
+                        row.DefaultCellStyle.ForeColor = Color.Yellow;
+                        row.DefaultCellStyle.BackColor = Color.Cornsilk;
                         row.ReadOnly = true;
                     }
 
@@ -166,7 +170,7 @@ namespace Mosiac.UX.UXControls
 
         private void BsOrderReceiptItems_ListChanged(object sender, ListChangedEventArgs e)
         {
-            Grids.CheckForDirtyState(e,this.btnSave);
+           // Grids.CheckForDirtyState(e,this.btnSave);
         }
 
         private void DgPendingOrders_SelectionChanged(object sender, EventArgs e)
@@ -179,11 +183,11 @@ namespace Mosiac.UX.UXControls
                     _selectedOrderID  = ((PendingOrdersDto)dg.CurrentRow.DataBoundItem).PurchaseOrderID;
                     if (((PendingOrdersDto)dg.CurrentRow.DataBoundItem).OrderState ==1)
                     {
-                        btnReceiveOrder.Text = "Create Order Receipt";
+                        tsbOrderReciept.Text = "Create Order Receipt";
                     }
                     else
                     {
-                        btnReceiveOrder.Text = "Open Order Receipt";
+                        tsbOrderReciept.Text = "Open Order Receipt";
                     }
                     
                 }
@@ -192,22 +196,6 @@ namespace Mosiac.UX.UXControls
 
         #endregion
 
-        private void btnSave_Click(object sender, EventArgs e)
-        {
-         
-            int orID =  _orderReceiptRepository.UpdateOrCreate(_orderRecieptDto);
-            _orderRecieptDto = _orderReceiptRepository.GetOrderReceipt(orID);
-            BindOrderReceipt(_orderRecieptDto);
-            Grids.ToogleButtonStyle(false, btnSave);
-        }
-
-        private void btnReceiveOrder_Click(object sender, EventArgs e)
-        {
-            _orderRecieptDto = _orderReceiptRepository.ReceiveOrder(_selectedOrderID);
-            BindOrderReceipt(_orderRecieptDto);
-        }
-
- 
         private void BindOrderReceipt(OrderReceiptDto dto)
         {
 
@@ -255,6 +243,48 @@ namespace Mosiac.UX.UXControls
         private void groupBox1_Enter(object sender, EventArgs e)
         {
 
+        }
+
+        private void orToolStrip_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            switch (e.ClickedItem.Name)
+            {
+                case "tsbSaveChanges":
+
+                    int orID = _orderReceiptRepository.UpdateOrCreate(_orderRecieptDto);
+                    _orderRecieptDto = _orderReceiptRepository.GetOrderReceipt(orID);
+                    BindOrderReceipt(_orderRecieptDto);
+                   // Grids.ToogleButtonStyle(false, tsSaveChanges);
+                    break;
+
+                case "tsbOrderReciept":
+                    _orderRecieptDto = _orderReceiptRepository.ReceiveOrder(_selectedOrderID);
+                    BindOrderReceipt(_orderRecieptDto);
+                    break;
+
+                case "tsbProccessInventory":
+                    break;
+
+                case "tsbPrintReceipt":
+                    break;
+
+                case "tsbBarCode":
+                    break;
+
+                default:
+                    break;
+            }
+        }
+
+        private void orToolStrip_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void rbComplete_CheckedChanged(object sender, EventArgs e)
+        {
+            var orderReceipts = _orderReceiptRepository.UnRecievedOrders(2);
+            this.dgPendingOrders.DataSource = orderReceipts;
         }
     }
 }
