@@ -177,7 +177,7 @@ namespace Mosiac.UX.UXControls
                 }
                
                 path += selectedAttachment.Src;
-                using(MosaicContext ctx = new MosaicContext())
+                using(MosaicContext ctx = new MosaicContext(Mosiac.UX.Properties.Settings.Default.MosiacConnection))
                 { attachment = ctx.Attachments.Find(selectedAttachment.AttachmentID);
                 }
 

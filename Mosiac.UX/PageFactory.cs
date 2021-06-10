@@ -64,7 +64,7 @@ namespace Mosiac.UX
                     break;
                 case TabPageType.OrderRecieptPage:
                     tab.Text = "Recieve Order";
-                    OrderRecieptManager orderctr = new OrderRecieptManager();
+                    OrderRecieptManager orderctr = new OrderRecieptManager(new MosaicContext(Mosiac.UX.Properties.Settings.Default.MosiacConnection));
                     orderctr.Dock = DockStyle.Fill;
                     tab.Controls.Add(orderctr);
                     break;

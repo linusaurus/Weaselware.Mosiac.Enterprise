@@ -11,7 +11,8 @@ namespace Mosiac.UX
 {
     public class FileOperations
     {
-        private static string ConnStr = @"Server = 192.168.10.51; database = Mosaic; Integrated Security = SSPI";
+        //private static string ConnStr = @"Server = 192.168.10.51; database = Mosaic; Integrated Security = SSPI";
+        private static string ConnStr = Mosiac.UX.Properties.Settings.Default.MosiacConnection;
         private static void OpenResource(string path)
         {
             ProcessStartInfo psi = new ProcessStartInfo
@@ -26,8 +27,26 @@ namespace Mosiac.UX
 
         }
 
+        private static void FolderExist()
+        {
+           
+            string Localpath = System.Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            Localpath += @"\ResourceCache\";
+            if(Directory.Exists(Localpath))
+            {
+                return;
+            }
+            else
+            {
+                Directory.CreateDirectory(Localpath);
+            }
+
+            
+        }
+
         public static void OpenCacheFolder()
         {
+            FolderExist();
             string Localpath = System.Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             Localpath += @"\ResourceCache\";
             OpenResource(Localpath);
@@ -35,6 +54,7 @@ namespace Mosiac.UX
 
         public static void ClearCacheFolder()
         {
+            FolderExist();
             string Localpath = System.Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             Localpath += @"\ResourceCache\";            
             string[] files = Directory.GetFiles(Path.GetDirectoryName(Localpath));
@@ -46,6 +66,7 @@ namespace Mosiac.UX
 
         public static void GetResource(int resourceId, string conString)
         {
+            
             const string SelectTSql = @"
             SELECT
                 filesource,

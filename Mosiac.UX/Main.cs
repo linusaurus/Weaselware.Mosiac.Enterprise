@@ -37,7 +37,7 @@ namespace Mosiac.UX
         {
             InitializeComponent();
             // This should be the main contect wireup for everything else
-            _context = new MosaicContext();
+            _context = new MosaicContext(Mosiac.UX.Properties.Settings.Default.MosiacConnection);
             _ordersService = new OrdersService(_context);
             MainTabs = MainTabControl;
             Mediator.GetInstance().OrderOpen += Main_OrderOpen;
@@ -56,7 +56,7 @@ namespace Mosiac.UX
             MainTabs.Padding = new System.Drawing.Point(26, 4);
 
             this.toolStripStatusLabel1.Text = "UserID=" + _loggedOnUserID.ToString();
-            _context = new MosaicContext();
+            //_context = new MosaicContext();
 
             var emp = _context.Employees.Where(p => p.employeeID == LoggedOnUserID).FirstOrDefault();
             this.toolStripStatusLabel1.Text = "User= " + Globals.CurrentUserName;

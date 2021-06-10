@@ -39,7 +39,7 @@ namespace Mosiac.UX.UXControls
         public PartDetailControl()
         {
             InitializeComponent();
-            ctx = new MosaicContext();
+            ctx = new MosaicContext(Mosiac.UX.Properties.Settings.Default.MosiacConnection);
             partService = new PartsService(ctx);
         }
 

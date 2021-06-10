@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore;
 namespace ServiceLayer {
     public class EmployeeService  {
 
-        MosaicContext context = new MosaicContext();
+        MosaicContext context;
 
         public EmployeeService(MosaicContext Context) {
 

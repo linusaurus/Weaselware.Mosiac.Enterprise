@@ -41,6 +41,7 @@ namespace Mosiac.UX.UXControls
         public OrderHeaderVerticalControl()
         {
             InitializeComponent();
+
         }
 
         public void LoadDataSource(BindingSource BSorder)
@@ -138,7 +139,7 @@ namespace Mosiac.UX.UXControls
         {
             int supplierID = ((OrderDetailDto)bsorder.DataSource).SupplierID;
             
-            SupplierEditForm frm = new SupplierEditForm(supplierID);
+            SupplierEditForm frm = new SupplierEditForm(supplierID, new DataLayer.Data.MosaicContext(Mosiac.UX.Properties.Settings.Default.MosiacConnection));
             if (frm.ShowDialog() == DialogResult.OK)
             {               
                 ((OrderDetailDto)bsorder.DataSource).SupplierName = frm._supplierToEdit.SupplierName;

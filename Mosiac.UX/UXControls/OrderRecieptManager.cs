@@ -17,7 +17,7 @@ namespace Mosiac.UX.UXControls
 {
     public partial class OrderRecieptManager : UserControl
     {
-
+        private readonly MosaicContext _context;
         private readonly OrderReceiptRepository _orderReceiptRepository;
         private readonly SuppliersService _suppliersService;
         private OrderReceiptDto _orderRecieptDto = new OrderReceiptDto();
@@ -26,14 +26,14 @@ namespace Mosiac.UX.UXControls
         private BindingSource bsOrderReceiptItems = new BindingSource();
         private OrderRecieptLineItemDto _selectedOrderRecieptLineItemDto;
         
-        public OrderRecieptManager()
+        public OrderRecieptManager(MosaicContext context)
         {
             InitializeComponent();
-              
+            _context = context;   
             Grids.BuildPendingOrdersGrid(dgPendingOrders);
             Grids.BuildOrderReceiptItemsGrid(dgOrderReceiptItems);
-            _orderReceiptRepository = new OrderReceiptRepository(new MosaicContext());
-            _suppliersService = new SuppliersService(new MosaicContext());
+            _orderReceiptRepository = new OrderReceiptRepository(_context);
+            _suppliersService = new SuppliersService(_context);
 
             lbSuppliers.DataSource = _suppliersService.SuppliersWithOpenOrders();
             lbSuppliers.DisplayMember ="SupplierName";
@@ -106,7 +106,8 @@ namespace Mosiac.UX.UXControls
         private void DgOrderReceiptItems_CellMouseUp(object sender, DataGridViewCellMouseEventArgs e)
         {
             if (e.ColumnIndex == 8 && e.RowIndex != -1)
-            { dgOrderReceiptItems.EndEdit();               
+            { dgOrderReceiptItems.EndEdit();
+                dgOrderReceiptItems.InvalidateRow(e.RowIndex);
             }
         }
 
@@ -140,8 +141,9 @@ namespace Mosiac.UX.UXControls
                     {
                         DataGridViewRow row = dg.CurrentRow;
                         OrderRecieptLineItemDto dat = (OrderRecieptLineItemDto)row.DataBoundItem;
-                       // dat.ItemsRecievedComplete = true;
+                       
                         dgOrderReceiptItems.CommitEdit(DataGridViewDataErrorContexts.Commit);
+                        dg.InvalidateRow(dg.CurrentRow.Index);
                     }
                 }
             }
@@ -159,6 +161,7 @@ namespace Mosiac.UX.UXControls
                         DataGridViewRow row = dg.CurrentRow;
                         BindingContext[dg.DataSource].EndCurrentEdit();                     
                         bsOrderReceiptItems.ResetBindings(true);
+                        dg.InvalidateRow(e.RowIndex);
                     }              
                 }
             }
@@ -184,7 +187,11 @@ namespace Mosiac.UX.UXControls
 
         private void BsOrderReceiptItems_ListChanged(object sender, ListChangedEventArgs e)
         {
-           // Grids.CheckForDirtyState(e,this.btnSave);
+            if (e.ListChangedType == ListChangedType.ItemChanged)
+            {
+                orToolStrip.Items[0].BackColor = Color.Cornsilk;           
+            }
+            // Grids.CheckForDirtyState(e,this.btnSave);
         }
 
         private void DgPendingOrders_SelectionChanged(object sender, EventArgs e)
@@ -249,9 +256,10 @@ namespace Mosiac.UX.UXControls
             return resultState;
         }
 
-       
-      
+        private void ToogleToolStripButton()
+        {
 
+        }
         private void orToolStrip_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
             switch (e.ClickedItem.Name)
@@ -261,12 +269,14 @@ namespace Mosiac.UX.UXControls
                     int orID = _orderReceiptRepository.UpdateOrCreate(_orderRecieptDto);
                     _orderRecieptDto = _orderReceiptRepository.GetOrderReceipt(orID);
                     BindOrderReceipt(_orderRecieptDto);
-                   // Grids.ToogleButtonStyle(false, tsSaveChanges);
+                    orToolStrip.Items[0].BackColor = DefaultBackColor;
+
                     break;
 
                 case "tsbOrderReciept":
                     _orderRecieptDto = _orderReceiptRepository.ReceiveOrder(_selectedOrderID);
                     BindOrderReceipt(_orderRecieptDto);
+
                     break;
 
                 case "tsbProccessInventory":
@@ -301,6 +311,15 @@ namespace Mosiac.UX.UXControls
                 dgPendingOrders.DataSource = _orderReceiptRepository.UnRecievedOrders(1, supplierid);
             }
 
+        }
+
+        private void btnRejectLineItem_Click(object sender, EventArgs e)
+        {
+            _selectedOrderRecieptLineItemDto.QntyReceived = Decimal.Zero;
+            _selectedOrderRecieptLineItemDto.Description =$"{_selectedOrderRecieptLineItemDto.Description}  [REJECTED]";
+            _selectedOrderRecieptLineItemDto.ItemsRecievedComplete = false;
+            _selectedOrderRecieptLineItemDto.QntyBalance = _selectedOrderRecieptLineItemDto.QntyOrdered;
+            dgOrderReceiptItems.InvalidateRow(dgOrderReceiptItems.CurrentRow.Index);
         }
     }
 }

@@ -17,10 +17,10 @@ namespace Mosiac.UX
         {
 
         }
-        public SupplierEditForm(int supplierID)
+        public SupplierEditForm(int supplierID, MosaicContext context)
         {
             InitializeComponent();
-            ctx = new MosaicContext();
+            ctx = context;
             _supplierService = new SuppliersService(ctx);
             _supplierToEdit = _supplierService.Find(supplierID);
             BindText();

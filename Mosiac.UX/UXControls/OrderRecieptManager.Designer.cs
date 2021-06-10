@@ -35,6 +35,8 @@ namespace Mosiac.UX.UXControls
             this.panel1 = new System.Windows.Forms.Panel();
             this.lbSuppliers = new System.Windows.Forms.ListBox();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.label5 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.dgOrderReceiptItems = new System.Windows.Forms.DataGridView();
             this.panel2 = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -55,7 +57,7 @@ namespace Mosiac.UX.UXControls
             this.tsbProccessInventory = new System.Windows.Forms.ToolStripButton();
             this.tsbPrintReceipt = new System.Windows.Forms.ToolStripButton();
             this.tsbBarCode = new System.Windows.Forms.ToolStripButton();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.btnRejectLineItem = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.spcMainContainer)).BeginInit();
             this.spcMainContainer.Panel1.SuspendLayout();
             this.spcMainContainer.Panel2.SuspendLayout();
@@ -89,7 +91,7 @@ namespace Mosiac.UX.UXControls
             this.spcMainContainer.Panel2.Controls.Add(this.dgOrderReceiptItems);
             this.spcMainContainer.Panel2.Controls.Add(this.panel2);
             this.spcMainContainer.Panel2.Padding = new System.Windows.Forms.Padding(1);
-            this.spcMainContainer.Size = new System.Drawing.Size(1163, 722);
+            this.spcMainContainer.Size = new System.Drawing.Size(1160, 722);
             this.spcMainContainer.SplitterDistance = 300;
             this.spcMainContainer.TabIndex = 1;
             // 
@@ -133,12 +135,34 @@ namespace Mosiac.UX.UXControls
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.btnRejectLineItem);
+            this.panel3.Controls.Add(this.label5);
             this.panel3.Controls.Add(this.textBox1);
+            this.panel3.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel3.Location = new System.Drawing.Point(1, 611);
+            this.panel3.Location = new System.Drawing.Point(1, 641);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(857, 110);
+            this.panel3.Size = new System.Drawing.Size(854, 80);
             this.panel3.TabIndex = 8;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(17, 12);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(65, 15);
+            this.label5.TabIndex = 1;
+            this.label5.Text = "Item Notes";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.textBox1.Location = new System.Drawing.Point(88, 12);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(415, 51);
+            this.textBox1.TabIndex = 0;
             // 
             // dgOrderReceiptItems
             // 
@@ -148,19 +172,21 @@ namespace Mosiac.UX.UXControls
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgOrderReceiptItems.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgOrderReceiptItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgOrderReceiptItems.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.dgOrderReceiptItems.Location = new System.Drawing.Point(0, 127);
             this.dgOrderReceiptItems.Name = "dgOrderReceiptItems";
             this.dgOrderReceiptItems.RowTemplate.Height = 25;
-            this.dgOrderReceiptItems.Size = new System.Drawing.Size(859, 478);
+            this.dgOrderReceiptItems.Size = new System.Drawing.Size(856, 508);
             this.dgOrderReceiptItems.TabIndex = 0;
             // 
             // panel2
             // 
             this.panel2.Controls.Add(this.groupBox1);
+            this.panel2.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(1, 1);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(857, 120);
+            this.panel2.Size = new System.Drawing.Size(854, 120);
             this.panel2.TabIndex = 7;
             // 
             // groupBox1
@@ -178,7 +204,7 @@ namespace Mosiac.UX.UXControls
             this.groupBox1.Controls.Add(this.txtPurchaseOrderID);
             this.groupBox1.Location = new System.Drawing.Point(10, 16);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(834, 88);
+            this.groupBox1.Size = new System.Drawing.Size(831, 88);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Order Receipt";
@@ -233,6 +259,7 @@ namespace Mosiac.UX.UXControls
             // 
             // txtOrderReceiptDate
             // 
+            this.txtOrderReceiptDate.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.txtOrderReceiptDate.Location = new System.Drawing.Point(285, 46);
             this.txtOrderReceiptDate.Name = "txtOrderReceiptDate";
             this.txtOrderReceiptDate.ReadOnly = true;
@@ -243,6 +270,7 @@ namespace Mosiac.UX.UXControls
             // 
             // txtOrderReceiptID
             // 
+            this.txtOrderReceiptID.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.txtOrderReceiptID.Location = new System.Drawing.Point(142, 46);
             this.txtOrderReceiptID.Name = "txtOrderReceiptID";
             this.txtOrderReceiptID.ReadOnly = true;
@@ -264,6 +292,7 @@ namespace Mosiac.UX.UXControls
             // txtPurchaseOrderID
             // 
             this.txtPurchaseOrderID.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.txtPurchaseOrderID.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.txtPurchaseOrderID.Location = new System.Drawing.Point(7, 46);
             this.txtPurchaseOrderID.Name = "txtPurchaseOrderID";
             this.txtPurchaseOrderID.ReadOnly = true;
@@ -288,6 +317,7 @@ namespace Mosiac.UX.UXControls
             // 
             // orToolStrip
             // 
+            this.orToolStrip.BackColor = System.Drawing.SystemColors.Control;
             this.orToolStrip.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.orToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsSaveChanges,
@@ -297,7 +327,7 @@ namespace Mosiac.UX.UXControls
             this.tsbBarCode});
             this.orToolStrip.Location = new System.Drawing.Point(6, 6);
             this.orToolStrip.Name = "orToolStrip";
-            this.orToolStrip.Size = new System.Drawing.Size(1163, 31);
+            this.orToolStrip.Size = new System.Drawing.Size(1160, 31);
             this.orToolStrip.TabIndex = 2;
             this.orToolStrip.Text = "toolStrip1";
             this.orToolStrip.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.orToolStrip_ItemClicked);
@@ -344,13 +374,15 @@ namespace Mosiac.UX.UXControls
             this.tsbBarCode.Size = new System.Drawing.Size(95, 28);
             this.tsbBarCode.Text = "Item Labels";
             // 
-            // textBox1
+            // btnRejectLineItem
             // 
-            this.textBox1.Location = new System.Drawing.Point(295, 26);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(522, 36);
-            this.textBox1.TabIndex = 0;
+            this.btnRejectLineItem.Location = new System.Drawing.Point(518, 12);
+            this.btnRejectLineItem.Name = "btnRejectLineItem";
+            this.btnRejectLineItem.Size = new System.Drawing.Size(107, 23);
+            this.btnRejectLineItem.TabIndex = 2;
+            this.btnRejectLineItem.Text = "Reject Item";
+            this.btnRejectLineItem.UseVisualStyleBackColor = true;
+            this.btnRejectLineItem.Click += new System.EventHandler(this.btnRejectLineItem_Click);
             // 
             // OrderRecieptManager
             // 
@@ -360,7 +392,7 @@ namespace Mosiac.UX.UXControls
             this.Controls.Add(this.orToolStrip);
             this.Name = "OrderRecieptManager";
             this.Padding = new System.Windows.Forms.Padding(6);
-            this.Size = new System.Drawing.Size(1175, 765);
+            this.Size = new System.Drawing.Size(1172, 765);
             this.spcMainContainer.Panel1.ResumeLayout(false);
             this.spcMainContainer.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.spcMainContainer)).EndInit();
@@ -407,5 +439,7 @@ namespace Mosiac.UX.UXControls
         private System.Windows.Forms.ListBox lbSuppliers;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button btnRejectLineItem;
     }
 }

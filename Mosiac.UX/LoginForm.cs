@@ -38,7 +38,7 @@ namespace Mosiac.UX
         {
             string username = txtUserName.Text;
             string password = txtPassWord.Text;
-            using(_context = new MosaicContext() )
+            using(_context = new MosaicContext(Mosiac.UX.Properties.Settings.Default.MosiacConnection) )
             {
                 _employeeService = new EmployeeService(_context);
 

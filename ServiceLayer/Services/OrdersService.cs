@@ -290,10 +290,9 @@ namespace ServiceLayer {
             List<SupplierOrderDTO> result = new List<SupplierOrderDTO>();
             SupplierOrderDTO dto;
 
-            using (MosaicContext ctx = new MosaicContext())
-            {
+          
             // Get all the Suppliers Orders --
-            var pOrders = ctx.PurchaseOrders.Where(p => p.SupplierID == SupplierID).ToList();
+            var pOrders = context.PurchaseOrders.Where(p => p.SupplierID == SupplierID).ToList();
 
                 foreach (var P in pOrders)
                 {
@@ -310,7 +309,7 @@ namespace ServiceLayer {
                 result.Add(dto);
 
                 }
-             }
+             
             
             return result;           
         }
