@@ -96,22 +96,39 @@ namespace ServiceLayer
             
         }
 
-        public List<PendingOrdersDto> UnRecievedOrders(int orderState)
+        public List<PendingOrdersDto> UnRecievedOrders(int orderState, int supplierid = 0)
         {
+            List<PendingOrdersDto> purchaseOrders = new List<PendingOrdersDto>();
 
-            var purchaseOrders = _ctx.PurchaseOrders.AsNoTracking().Include(s => s.Supplier)
-                .Where(p => p.OrderState == orderState).OrderBy(d => d.OrderDate)
-                .Select(dto => new PendingOrdersDto
-                {
-                    PurchaseOrderID = dto.PurchaseOrderID,
-                    OrderDate = dto.OrderDate.GetValueOrDefault(),
-                    Supplier = dto.Supplier.SupplierName,
-                    OrderState = dto.OrderState.GetValueOrDefault()
 
-                }).ToList();
+            if (supplierid == 0)
+            {
+                purchaseOrders = _ctx.PurchaseOrders.AsNoTracking().Include(s => s.Supplier)
+                    .Where(p => p.OrderState == orderState).OrderBy(d => d.OrderDate)
+                    .Select(dto => new PendingOrdersDto
+                    {
+                        PurchaseOrderID = dto.PurchaseOrderID,
+                        OrderDate = dto.OrderDate.GetValueOrDefault(),
+                        Supplier = dto.Supplier.SupplierName,
+                        OrderState = dto.OrderState.GetValueOrDefault()
+
+                    }).ToList();
+            }
+            else
+            {
+                purchaseOrders = _ctx.PurchaseOrders.AsNoTracking().Include(s => s.Supplier)
+                   .Where(p => p.OrderState == orderState ).Where(s => s.SupplierID == supplierid).OrderBy(d => d.OrderDate)
+                   .Select(dto => new PendingOrdersDto
+                   {
+                       PurchaseOrderID = dto.PurchaseOrderID,
+                       OrderDate = dto.OrderDate.GetValueOrDefault(),
+                       Supplier = dto.Supplier.SupplierName,
+                       OrderState = dto.OrderState.GetValueOrDefault()
+
+                   }).ToList();
+            }
 
             return purchaseOrders;
-
         }
 
         public List<OrderReceiptDto> GetAllOrderReceipts()

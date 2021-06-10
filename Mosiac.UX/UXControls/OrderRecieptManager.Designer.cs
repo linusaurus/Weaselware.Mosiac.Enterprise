@@ -33,10 +33,9 @@ namespace Mosiac.UX.UXControls
             this.spcMainContainer = new System.Windows.Forms.SplitContainer();
             this.dgPendingOrders = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.gbFilters = new System.Windows.Forms.GroupBox();
-            this.rbComplete = new System.Windows.Forms.RadioButton();
-            this.rbPartialReceieved = new System.Windows.Forms.RadioButton();
-            this.rbNotRecieved = new System.Windows.Forms.RadioButton();
+            this.lbSuppliers = new System.Windows.Forms.ListBox();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.dgOrderReceiptItems = new System.Windows.Forms.DataGridView();
             this.panel2 = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -48,7 +47,6 @@ namespace Mosiac.UX.UXControls
             this.txtOrderReceiptID = new System.Windows.Forms.TextBox();
             this.txtReceivedBy = new System.Windows.Forms.TextBox();
             this.txtPurchaseOrderID = new System.Windows.Forms.TextBox();
-            this.dgOrderReceiptItems = new System.Windows.Forms.DataGridView();
             this.dataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.orToolStrip = new System.Windows.Forms.ToolStrip();
@@ -57,16 +55,17 @@ namespace Mosiac.UX.UXControls
             this.tsbProccessInventory = new System.Windows.Forms.ToolStripButton();
             this.tsbPrintReceipt = new System.Windows.Forms.ToolStripButton();
             this.tsbBarCode = new System.Windows.Forms.ToolStripButton();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.spcMainContainer)).BeginInit();
             this.spcMainContainer.Panel1.SuspendLayout();
             this.spcMainContainer.Panel2.SuspendLayout();
             this.spcMainContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgPendingOrders)).BeginInit();
             this.panel1.SuspendLayout();
-            this.gbFilters.SuspendLayout();
+            this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgOrderReceiptItems)).BeginInit();
             this.panel2.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgOrderReceiptItems)).BeginInit();
             this.orToolStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -86,10 +85,11 @@ namespace Mosiac.UX.UXControls
             // 
             // spcMainContainer.Panel2
             // 
-            this.spcMainContainer.Panel2.Controls.Add(this.panel2);
+            this.spcMainContainer.Panel2.Controls.Add(this.panel3);
             this.spcMainContainer.Panel2.Controls.Add(this.dgOrderReceiptItems);
+            this.spcMainContainer.Panel2.Controls.Add(this.panel2);
             this.spcMainContainer.Panel2.Padding = new System.Windows.Forms.Padding(1);
-            this.spcMainContainer.Size = new System.Drawing.Size(1111, 683);
+            this.spcMainContainer.Size = new System.Drawing.Size(1163, 722);
             this.spcMainContainer.SplitterDistance = 300;
             this.spcMainContainer.TabIndex = 1;
             // 
@@ -105,13 +105,13 @@ namespace Mosiac.UX.UXControls
             this.dgPendingOrders.RowHeadersVisible = false;
             this.dgPendingOrders.RowTemplate.Height = 25;
             this.dgPendingOrders.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgPendingOrders.Size = new System.Drawing.Size(288, 551);
+            this.dgPendingOrders.Size = new System.Drawing.Size(288, 590);
             this.dgPendingOrders.TabIndex = 0;
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.gbFilters);
-            this.panel1.Cursor = System.Windows.Forms.Cursors.AppStarting;
+            this.panel1.Controls.Add(this.lbSuppliers);
+            this.panel1.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(6, 6);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 16, 3, 3);
@@ -120,50 +120,39 @@ namespace Mosiac.UX.UXControls
             this.panel1.Size = new System.Drawing.Size(288, 120);
             this.panel1.TabIndex = 1;
             // 
-            // gbFilters
+            // lbSuppliers
             // 
-            this.gbFilters.Controls.Add(this.rbComplete);
-            this.gbFilters.Controls.Add(this.rbPartialReceieved);
-            this.gbFilters.Controls.Add(this.rbNotRecieved);
-            this.gbFilters.Location = new System.Drawing.Point(3, 8);
-            this.gbFilters.Name = "gbFilters";
-            this.gbFilters.Size = new System.Drawing.Size(282, 100);
-            this.gbFilters.TabIndex = 0;
-            this.gbFilters.TabStop = false;
-            this.gbFilters.Text = "Filters";
+            this.lbSuppliers.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lbSuppliers.FormattingEnabled = true;
+            this.lbSuppliers.ItemHeight = 15;
+            this.lbSuppliers.Location = new System.Drawing.Point(0, 5);
+            this.lbSuppliers.Name = "lbSuppliers";
+            this.lbSuppliers.Size = new System.Drawing.Size(288, 110);
+            this.lbSuppliers.TabIndex = 0;
+            this.lbSuppliers.SelectedIndexChanged += new System.EventHandler(this.lbSuppliers_SelectedIndexChanged);
             // 
-            // rbComplete
+            // panel3
             // 
-            this.rbComplete.AutoSize = true;
-            this.rbComplete.Location = new System.Drawing.Point(19, 72);
-            this.rbComplete.Name = "rbComplete";
-            this.rbComplete.Size = new System.Drawing.Size(77, 19);
-            this.rbComplete.TabIndex = 0;
-            this.rbComplete.Text = "Complete";
-            this.rbComplete.UseVisualStyleBackColor = true;
-            this.rbComplete.CheckedChanged += new System.EventHandler(this.rbComplete_CheckedChanged);
+            this.panel3.Controls.Add(this.textBox1);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel3.Location = new System.Drawing.Point(1, 611);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(857, 110);
+            this.panel3.TabIndex = 8;
             // 
-            // rbPartialReceieved
+            // dgOrderReceiptItems
             // 
-            this.rbPartialReceieved.AutoSize = true;
-            this.rbPartialReceieved.Location = new System.Drawing.Point(19, 47);
-            this.rbPartialReceieved.Name = "rbPartialReceieved";
-            this.rbPartialReceieved.Size = new System.Drawing.Size(85, 19);
-            this.rbPartialReceieved.TabIndex = 0;
-            this.rbPartialReceieved.Text = "Incomplete";
-            this.rbPartialReceieved.UseVisualStyleBackColor = true;
-            // 
-            // rbNotRecieved
-            // 
-            this.rbNotRecieved.AutoSize = true;
-            this.rbNotRecieved.Checked = true;
-            this.rbNotRecieved.Location = new System.Drawing.Point(19, 22);
-            this.rbNotRecieved.Name = "rbNotRecieved";
-            this.rbNotRecieved.Size = new System.Drawing.Size(95, 19);
-            this.rbNotRecieved.TabIndex = 0;
-            this.rbNotRecieved.TabStop = true;
-            this.rbNotRecieved.Text = "Not Recieved";
-            this.rbNotRecieved.UseVisualStyleBackColor = true;
+            this.dgOrderReceiptItems.AllowUserToAddRows = false;
+            this.dgOrderReceiptItems.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgOrderReceiptItems.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgOrderReceiptItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgOrderReceiptItems.Location = new System.Drawing.Point(0, 127);
+            this.dgOrderReceiptItems.Name = "dgOrderReceiptItems";
+            this.dgOrderReceiptItems.RowTemplate.Height = 25;
+            this.dgOrderReceiptItems.Size = new System.Drawing.Size(859, 478);
+            this.dgOrderReceiptItems.TabIndex = 0;
             // 
             // panel2
             // 
@@ -171,7 +160,7 @@ namespace Mosiac.UX.UXControls
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(1, 1);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(805, 120);
+            this.panel2.Size = new System.Drawing.Size(857, 120);
             this.panel2.TabIndex = 7;
             // 
             // groupBox1
@@ -189,11 +178,10 @@ namespace Mosiac.UX.UXControls
             this.groupBox1.Controls.Add(this.txtPurchaseOrderID);
             this.groupBox1.Location = new System.Drawing.Point(10, 16);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(782, 88);
+            this.groupBox1.Size = new System.Drawing.Size(834, 88);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Order Receipt";
-            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // label4
             // 
@@ -284,17 +272,6 @@ namespace Mosiac.UX.UXControls
             this.txtPurchaseOrderID.Text = "PurchaseOrderID";
             this.txtPurchaseOrderID.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // dgOrderReceiptItems
-            // 
-            this.dgOrderReceiptItems.AllowUserToAddRows = false;
-            this.dgOrderReceiptItems.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dgOrderReceiptItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgOrderReceiptItems.Location = new System.Drawing.Point(0, 127);
-            this.dgOrderReceiptItems.Name = "dgOrderReceiptItems";
-            this.dgOrderReceiptItems.RowTemplate.Height = 25;
-            this.dgOrderReceiptItems.Size = new System.Drawing.Size(807, 553);
-            this.dgOrderReceiptItems.TabIndex = 0;
-            // 
             // dataGridViewCheckBoxColumn1
             // 
             this.dataGridViewCheckBoxColumn1.DataPropertyName = "IsOrderComplete";
@@ -320,7 +297,7 @@ namespace Mosiac.UX.UXControls
             this.tsbBarCode});
             this.orToolStrip.Location = new System.Drawing.Point(6, 6);
             this.orToolStrip.Name = "orToolStrip";
-            this.orToolStrip.Size = new System.Drawing.Size(1111, 31);
+            this.orToolStrip.Size = new System.Drawing.Size(1163, 31);
             this.orToolStrip.TabIndex = 2;
             this.orToolStrip.Text = "toolStrip1";
             this.orToolStrip.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.orToolStrip_ItemClicked);
@@ -367,6 +344,14 @@ namespace Mosiac.UX.UXControls
             this.tsbBarCode.Size = new System.Drawing.Size(95, 28);
             this.tsbBarCode.Text = "Item Labels";
             // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(295, 26);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(522, 36);
+            this.textBox1.TabIndex = 0;
+            // 
             // OrderRecieptManager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -375,20 +360,19 @@ namespace Mosiac.UX.UXControls
             this.Controls.Add(this.orToolStrip);
             this.Name = "OrderRecieptManager";
             this.Padding = new System.Windows.Forms.Padding(6);
-            this.Size = new System.Drawing.Size(1123, 726);
-            this.Load += new System.EventHandler(this.OrderRecieptManager_Load);
+            this.Size = new System.Drawing.Size(1175, 765);
             this.spcMainContainer.Panel1.ResumeLayout(false);
             this.spcMainContainer.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.spcMainContainer)).EndInit();
             this.spcMainContainer.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgPendingOrders)).EndInit();
             this.panel1.ResumeLayout(false);
-            this.gbFilters.ResumeLayout(false);
-            this.gbFilters.PerformLayout();
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgOrderReceiptItems)).EndInit();
             this.panel2.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgOrderReceiptItems)).EndInit();
             this.orToolStrip.ResumeLayout(false);
             this.orToolStrip.PerformLayout();
             this.ResumeLayout(false);
@@ -419,10 +403,9 @@ namespace Mosiac.UX.UXControls
         private System.Windows.Forms.ToolStripButton tsbProccessInventory;
         private System.Windows.Forms.ToolStripButton tsbPrintReceipt;
         private System.Windows.Forms.ToolStripButton tsbBarCode;
-        private System.Windows.Forms.GroupBox gbFilters;
-        private System.Windows.Forms.RadioButton rbComplete;
-        private System.Windows.Forms.RadioButton rbPartialReceieved;
-        private System.Windows.Forms.RadioButton rbNotRecieved;
         private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.ListBox lbSuppliers;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }

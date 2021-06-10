@@ -19,21 +19,25 @@ namespace Mosiac.UX.UXControls
     {
 
         private readonly OrderReceiptRepository _orderReceiptRepository;
+        private readonly SuppliersService _suppliersService;
         private OrderReceiptDto _orderRecieptDto = new OrderReceiptDto();
         private OrderReceiptMapper _orMapper = new OrderReceiptMapper();
         private int _selectedOrderID;
         private BindingSource bsOrderReceiptItems = new BindingSource();
-
+        private OrderRecieptLineItemDto _selectedOrderRecieptLineItemDto;
         
-
         public OrderRecieptManager()
         {
             InitializeComponent();
-
-           
+              
             Grids.BuildPendingOrdersGrid(dgPendingOrders);
             Grids.BuildOrderReceiptItemsGrid(dgOrderReceiptItems);
             _orderReceiptRepository = new OrderReceiptRepository(new MosaicContext());
+            _suppliersService = new SuppliersService(new MosaicContext());
+
+            lbSuppliers.DataSource = _suppliersService.SuppliersWithOpenOrders();
+            lbSuppliers.DisplayMember ="SupplierName";
+           
             //----------------------------- Pending Grid ------------------------------------
 
             var orderReceipts = _orderReceiptRepository.UnRecievedOrders(1);         
@@ -49,10 +53,20 @@ namespace Mosiac.UX.UXControls
             dgOrderReceiptItems.CellValueChanged += DgOrderReceiptItems_CellValueChanged;
             dgOrderReceiptItems.CellMouseUp += DgOrderReceiptItems_CellMouseUp;
             dgOrderReceiptItems.CellFormatting += DgOrderReceiptItems_CellFormatting;
-
+            dgOrderReceiptItems.SelectionChanged += DgOrderReceiptItems_SelectionChanged;
         }
 
-       
+        private void DgOrderReceiptItems_SelectionChanged(object sender, EventArgs e)
+        {
+            DataGridView dv = (DataGridView)sender;
+            if (dv.DataSource != null)
+            {
+                _selectedOrderRecieptLineItemDto =  (OrderRecieptLineItemDto) dv.CurrentRow.DataBoundItem;
+                this.textBox1.DataBindings.Clear();
+                this.textBox1.DataBindings.Add("Text", _selectedOrderRecieptLineItemDto, "Note", true, DataSourceUpdateMode.OnPropertyChanged);
+            }
+        }
+
 
         #region Grid-BindingSource Event Handlers ----------++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -235,15 +249,8 @@ namespace Mosiac.UX.UXControls
             return resultState;
         }
 
-        private void OrderRecieptManager_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-
-        }
+       
+      
 
         private void orToolStrip_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
@@ -263,6 +270,8 @@ namespace Mosiac.UX.UXControls
                     break;
 
                 case "tsbProccessInventory":
+
+
                     break;
 
                 case "tsbPrintReceipt":
@@ -280,11 +289,18 @@ namespace Mosiac.UX.UXControls
         {
 
         }
+        
 
-        private void rbComplete_CheckedChanged(object sender, EventArgs e)
+        private void lbSuppliers_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var orderReceipts = _orderReceiptRepository.UnRecievedOrders(2);
-            this.dgPendingOrders.DataSource = orderReceipts;
+            ListBox lb = (ListBox)sender;
+            if (lb.DataSource != null)
+            {
+                int supplierid = ((Supplier)lb.SelectedItem).SupplierID;
+                // Filter the list of unReceived Items -->
+                dgPendingOrders.DataSource = _orderReceiptRepository.UnRecievedOrders(1, supplierid);
+            }
+
         }
     }
 }
