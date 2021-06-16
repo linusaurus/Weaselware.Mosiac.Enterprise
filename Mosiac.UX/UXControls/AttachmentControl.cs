@@ -114,7 +114,6 @@ namespace Mosiac.UX.UXControls
 
             dgResources.Columns.AddRange(colAttachmentID, colCreator, colDate, colDescription, colSourceFile, colFileSize);
 
-
         }
 
         private void dgResources_CellContentClick(object sender, DataGridViewCellEventArgs e)

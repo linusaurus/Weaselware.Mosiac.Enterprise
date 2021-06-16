@@ -17,7 +17,6 @@ namespace DataLayer.Entity
         public string filesource { get; set; }
         public Guid RowID { get; set; }
         public byte[] ResourceFile { get; set; }
-
         public virtual Part Part { get; set; }
     }
 }

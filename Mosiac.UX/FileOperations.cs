@@ -221,8 +221,73 @@ namespace Mosiac.UX
 
             return handle;
         }
+        #region AttachmentFunctions
+
+        public static void GetAttachment(int attachmentId, string conString)
+        {
+
+            const string SelectTSql = @"
+            SELECT
+               Filesource,
+                BLOBData.PathName(),
+                GET_FILESTREAM_TRANSACTION_CONTEXT()
+                FROM Attachment
+                WHERE AttachmentID = @attachmentID";
+
+            string fileName;
+            string serverPath;
+            byte[] serverTxn;
+            // set the location for the file to be loaded to local cache
+            string Localpath = System.Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+
+            using (TransactionScope ts = new TransactionScope())
+            {
+                using (SqlConnection conn = new SqlConnection(conString))
+                {
+                    conn.Open();
+                    using (SqlCommand cmd = new SqlCommand(SelectTSql, conn))
+                    {
+                        cmd.Parameters.Add("@attachmentID", SqlDbType.Int).Value = attachmentId;
+                        using (SqlDataReader rdr = cmd.ExecuteReader())
+                        {
+                            rdr.Read();
+                            fileName = rdr.GetSqlString(0).Value;
+                            serverPath = rdr.GetSqlString(1).Value;
+                            serverTxn = rdr.GetSqlBinary(2).Value;
+                            rdr.Close();
+                            Localpath += @"\ResourceCache\";
+                            Localpath += fileName;
+                        }
+                    }
+
+                    byte[] t = LoadResourceFile(serverPath, serverTxn);
+                    File.WriteAllBytes(Localpath, t);
+                    OpenResource(Localpath);
+                }
+                ts.Complete();
+
+            }
+
+        }
 
 
-
+        public static void SaveAttachmentFile(int attachmentId, string filename, SqlTransaction txn)
+        {
+            const int BlockSize = 1024 * 512;
+            FileStream source = new FileStream(filename, FileMode.Open, FileAccess.Read);
+            SafeFileHandle handle = GetOutputFileHandle(attachmentId, txn);
+            using (FileStream dest = new FileStream(handle, FileAccess.Write))
+            {
+                byte[] buffer = new byte[BlockSize];
+                int bytesRead;
+                while ((bytesRead = source.Read(buffer, 0, buffer.Length)) > 0)
+                {
+                    dest.Write(buffer, 0, bytesRead);
+                }
+                dest.Close();
+            }
+            source.Close();
+        }
+        #endregion
     }
 }

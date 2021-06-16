@@ -35,6 +35,7 @@ namespace Mosiac.UX.UXControls
             this.panel1 = new System.Windows.Forms.Panel();
             this.lbSuppliers = new System.Windows.Forms.ListBox();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.btnRejectLineItem = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.dgOrderReceiptItems = new System.Windows.Forms.DataGridView();
@@ -57,7 +58,7 @@ namespace Mosiac.UX.UXControls
             this.tsbProccessInventory = new System.Windows.Forms.ToolStripButton();
             this.tsbPrintReceipt = new System.Windows.Forms.ToolStripButton();
             this.tsbBarCode = new System.Windows.Forms.ToolStripButton();
-            this.btnRejectLineItem = new System.Windows.Forms.Button();
+            this.lborderstatus = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.spcMainContainer)).BeginInit();
             this.spcMainContainer.Panel1.SuspendLayout();
             this.spcMainContainer.Panel2.SuspendLayout();
@@ -145,6 +146,16 @@ namespace Mosiac.UX.UXControls
             this.panel3.Size = new System.Drawing.Size(854, 80);
             this.panel3.TabIndex = 8;
             // 
+            // btnRejectLineItem
+            // 
+            this.btnRejectLineItem.Location = new System.Drawing.Point(518, 12);
+            this.btnRejectLineItem.Name = "btnRejectLineItem";
+            this.btnRejectLineItem.Size = new System.Drawing.Size(107, 23);
+            this.btnRejectLineItem.TabIndex = 2;
+            this.btnRejectLineItem.Text = "Reject Item";
+            this.btnRejectLineItem.UseVisualStyleBackColor = true;
+            this.btnRejectLineItem.Click += new System.EventHandler(this.btnRejectLineItem_Click);
+            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -193,6 +204,7 @@ namespace Mosiac.UX.UXControls
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.lborderstatus);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
@@ -250,7 +262,7 @@ namespace Mosiac.UX.UXControls
             this.ckbCompleted.AutoSize = true;
             this.ckbCompleted.Enabled = false;
             this.ckbCompleted.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ckbCompleted.Location = new System.Drawing.Point(639, 39);
+            this.ckbCompleted.Location = new System.Drawing.Point(582, 46);
             this.ckbCompleted.Name = "ckbCompleted";
             this.ckbCompleted.Size = new System.Drawing.Size(82, 19);
             this.ckbCompleted.TabIndex = 5;
@@ -374,15 +386,14 @@ namespace Mosiac.UX.UXControls
             this.tsbBarCode.Size = new System.Drawing.Size(95, 28);
             this.tsbBarCode.Text = "Item Labels";
             // 
-            // btnRejectLineItem
+            // lborderstatus
             // 
-            this.btnRejectLineItem.Location = new System.Drawing.Point(518, 12);
-            this.btnRejectLineItem.Name = "btnRejectLineItem";
-            this.btnRejectLineItem.Size = new System.Drawing.Size(107, 23);
-            this.btnRejectLineItem.TabIndex = 2;
-            this.btnRejectLineItem.Text = "Reject Item";
-            this.btnRejectLineItem.UseVisualStyleBackColor = true;
-            this.btnRejectLineItem.Click += new System.EventHandler(this.btnRejectLineItem_Click);
+            this.lborderstatus.AutoSize = true;
+            this.lborderstatus.Location = new System.Drawing.Point(691, 48);
+            this.lborderstatus.Name = "lborderstatus";
+            this.lborderstatus.Size = new System.Drawing.Size(74, 15);
+            this.lborderstatus.TabIndex = 7;
+            this.lborderstatus.Text = "Order-Status";
             // 
             // OrderRecieptManager
             // 
@@ -441,5 +452,6 @@ namespace Mosiac.UX.UXControls
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button btnRejectLineItem;
+        private System.Windows.Forms.Label lborderstatus;
     }
 }

@@ -13,8 +13,12 @@ namespace DataLayer.Entity
         public string Ext { get; set; }
         public string src { get; set; }
         public byte[] Filesource { get; set; }
+
+        public byte[] BLOBData { get; set; }
         public string Creator { get; set; }
         public DateTime? CreateDate { get; set; }
+
+        public Guid RowID { get; set; }
         public string FileSize { get; set; }
 
         public virtual PurchaseOrder OrderNumNavigation { get; set; }

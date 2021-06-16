@@ -25,6 +25,7 @@ namespace Mosiac.UX.UXControls
         private int _selectedOrderID;
         private BindingSource bsOrderReceiptItems = new BindingSource();
         private OrderRecieptLineItemDto _selectedOrderRecieptLineItemDto;
+        private int _orderState = 0;
         
         public OrderRecieptManager(MosaicContext context)
         {
@@ -192,6 +193,30 @@ namespace Mosiac.UX.UXControls
                 orToolStrip.Items[0].BackColor = Color.Cornsilk;           
             }
             // Grids.CheckForDirtyState(e,this.btnSave);
+            _orderState = _orderRecieptDto.OrderState;
+            lborderstatus.Text = $"Order-Status = {UpdateReceiptStatus(_orderState)}";
+        }
+
+        private string UpdateReceiptStatus(int orderStatus)
+        {
+            string result = string.Empty;
+            switch (orderStatus)
+            {
+                case 1:
+                    result = "Pending";
+                    break;
+                case 2:
+                    result = "Order Complete";
+                    break;
+                case 3:
+                    result = "Incomplete";
+                    break;
+                default:
+                    break;
+            }
+
+            return result;
+
         }
 
         private void DgPendingOrders_SelectionChanged(object sender, EventArgs e)

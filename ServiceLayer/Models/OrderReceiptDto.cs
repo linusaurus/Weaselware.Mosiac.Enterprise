@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 
@@ -18,6 +19,21 @@ namespace ServiceLayer.Models
         public int PurchaseOrderID { get; set; }
         public DateTime ReceiptDate { get; set; }
         public virtual List<OrderRecieptLineItemDto> OrderReceiptLineItems { get; set; } =  new List<OrderRecieptLineItemDto>();
+
+        public int OrderState
+        {
+            get
+            {
+                if( OrderReceiptLineItems.All(c => c.QntyOrdered == c.QntyReceived))
+                {
+                    return 2;
+                }
+                else
+                {
+                    return 1;
+                }
+            }
+        }
 
         protected void OnPropertyChange([CallerMemberName] string name = null)
         {
