@@ -27,6 +27,19 @@ namespace ServiceLayer.Models
         public string fileSize { get; set; }
 
 
+        public bool IsValid()
+        {
+            bool result = false;
+            if (!String.IsNullOrEmpty(attachmentDescription))
+            {
+                if (orderNum != default)
+                {
+                    result = true;
+                }
+            }
+            return result;
+        }
+
         public string FileSize
         {
             get { return fileSize; }

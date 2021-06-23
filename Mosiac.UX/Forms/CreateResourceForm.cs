@@ -91,7 +91,7 @@ namespace Mosiac.UX.Forms
         {
             if (resourseDto.IsValid())
             {
-                FileOperations.InsertPhoto(resourseDto.PartID, resourseDto.ResourceDescription, resourseDto.Filesize, info);
+                FileOperations.InsertPartResource(resourseDto.PartID, resourseDto.ResourceDescription, resourseDto.Filesize, info);
             }
             else
             {
@@ -144,6 +144,11 @@ namespace Mosiac.UX.Forms
         {
             AutoValidate = AutoValidate.Disable;
             Close();
+        }
+
+        private void CreateResourceForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

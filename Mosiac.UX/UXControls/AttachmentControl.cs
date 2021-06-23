@@ -6,6 +6,7 @@ using ServiceLayer.Models;
 using System.IO;
 using System.Diagnostics;
 using ServiceLayer;
+using Mosiac.UX.Forms;
 
 namespace Mosiac.UX.UXControls
 {
@@ -120,73 +121,38 @@ namespace Mosiac.UX.UXControls
         {
 
         }
-
+        /// <summary>
+        /// Add Attachment
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnAddResource_Click(object sender, EventArgs e)
         {
-            var fileContent = string.Empty;
-            var filePath = string.Empty;
-
-            AttachmentDto newAttachment = new AttachmentDto
+            if (orderDTO != null)
             {
-                OrderNum = orderDTO.PurchaseOrderID,
-                AttachmentDescription = string.Empty,
-                Src = string.Empty,
-                //FileSource = new byte[],
-                Ext = ".pdf",
-
-
-            };
-
-            using (OpenFileDialog openFileDialog = new OpenFileDialog())
-            {
-                openFileDialog.InitialDirectory = "c:\\";
-                openFileDialog.Filter = "All files (*.*)|*.*";
-                openFileDialog.FilterIndex = 2;
-                openFileDialog.RestoreDirectory = true;
-
-                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                CreateAttachmentForm frm = new CreateAttachmentForm(orderDTO.PurchaseOrderID);
+                if (frm.ShowDialog() == DialogResult.OK)
                 {
-
-                    //Get the path of specified file
-                    filePath = openFileDialog.FileName;
-                    FileInfo fileInfo = new FileInfo(filePath);
-                    newAttachment.Ext = fileInfo.Extension;
-                    newAttachment.Src = fileInfo.Name.ToString();
-                    newAttachment.FileSize = FileHelperService.GetSizeInMemory(fileInfo.Length);
-                    newAttachment.creator = orderDTO.Purchaser;
-                    newAttachment.CreatedDate = DateTime.Today;
-                    //Read the bytes of the file into a byte array
-                    newAttachment.FileSource = File.ReadAllBytes(filePath);
+                   var result = frm.NewAttachment;
                 }
-            }
 
-             bsAttachements.Add(newAttachment);
+                //// -- Refresh the Resource list---;
+                //_partBeingEdited = partsService.Find(_partBeingEdited.PartID);
+                //if (_partBeingEdited != null)
+                //{
+                //    bsPart.DataSource = _partBeingEdited;
+                //    BindPart(bsPart);
+                //    bsResource.DataSource = _partBeingEdited.Resources.ToList();
+                //    dgResources.DataSource = _partBeingEdited.Resources.ToList();
+                //}
+            }
         }
 
         private void btnOpenResource_Click(object sender, EventArgs e)
         {
             if (selectedAttachment != null)
             {
-                Attachment attachment;
-                string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-                path += @"\ResourceCache\";
-                if (!Directory.Exists(path))
-                {
-                    Directory.CreateDirectory(path);
-                }
-               
-                path += selectedAttachment.Src;
-                using(MosaicContext ctx = new MosaicContext(Mosiac.UX.Properties.Settings.Default.MosiacConnection))
-                { attachment = ctx.Attachments.Find(selectedAttachment.AttachmentID);
-                }
-
-                File.WriteAllBytes(path, attachment.Filesource);
-                var p = new Process();
-                p.StartInfo = new ProcessStartInfo(path)
-                {
-                    UseShellExecute = true
-                };
-                p.Start();
+                FileOperations.GetAttachment(selectedAttachment.AttachmentID, Mosiac.UX.Properties.Settings.Default.MosiacConnection);
             }
         }
     }

@@ -15,7 +15,7 @@ using ServiceLayer.Mappers;
 using System.Windows.Forms;
 using Mosiac.UX.UXControls;
 using Mosiac.UX.Properties;
-
+using System.Reflection;
 
 namespace Mosiac.UX
 {
@@ -41,7 +41,8 @@ namespace Mosiac.UX
             _ordersService = new OrdersService(_context);
             MainTabs = MainTabControl;
             Mediator.GetInstance().OrderOpen += Main_OrderOpen;
-            this.Text = "Mosiac - [Production] "  + Application.ProductVersion.ToString();
+            string version = Assembly.GetExecutingAssembly().GetName().Version.ToString();
+            this.Text = "Mosaic - [Production] "  + version;
         }
 
         public TabControl GetTabControl()

@@ -126,7 +126,7 @@ namespace ServiceLayer {
                 .Include(p => p.PurchaseLineItems)
                 .Include(j => j.Job)
                 .Include(s => s.Supplier)
-                //.Include(t => t.Attachments)
+                .Include(t => t.Attachments)
                 .Include(p => p.OrderFees)
                 .Include(e => e.Employee).Where(c => c.PurchaseOrderID == orderNum).FirstOrDefault();
 

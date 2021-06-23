@@ -137,7 +137,7 @@ namespace Mosiac.UX
            
         }
 
-        public static void InsertPhoto(int partID, string resourcedDesc,string filesize, FileInfo filename)
+        public static void InsertPartResource(int partID, string resourcedDesc,string filesize, FileInfo filename)
         {
             int resourceID = 0;
             const string InsertCmd = "Resource_INSERT";
@@ -228,7 +228,7 @@ namespace Mosiac.UX
 
             const string SelectTSql = @"
             SELECT
-               Filesource,
+                src,
                 BLOBData.PathName(),
                 GET_FILESTREAM_TRANSACTION_CONTEXT()
                 FROM Attachment
@@ -265,17 +265,41 @@ namespace Mosiac.UX
                     OpenResource(Localpath);
                 }
                 ts.Complete();
-
             }
 
         }
 
+        private static SafeFileHandle GetAttachmentFileHandle(int attachmentId, SqlTransaction txn)
+        {
+            const string GetOutputFileInfoCmd =
+              "SELECT GET_FILESTREAM_TRANSACTION_CONTEXT(), BLOBData.PathName()" +
+              " FROM Attachment" +
+              " WHERE AttachmentID = @attachmentId";
 
+            SqlCommand cmd = new SqlCommand(GetOutputFileInfoCmd, txn.Connection, txn);
+            cmd.Parameters.Add("@attachmentId", SqlDbType.Int).Value = attachmentId;
+
+            string filePath;
+            byte[] txnToken;
+
+            using (SqlDataReader rdr = cmd.ExecuteReader(CommandBehavior.SingleRow))
+            {
+                rdr.Read();
+                txnToken = rdr.GetSqlBinary(0).Value;
+                filePath = rdr.GetSqlString(1).Value;
+                rdr.Close();
+            }
+
+            SafeFileHandle handle =
+                NativeSqlClient.GetSqlFilestreamHandle(filePath, NativeSqlClient.DesiredAccess.ReadWrite, txnToken);
+
+            return handle;
+        }
         public static void SaveAttachmentFile(int attachmentId, string filename, SqlTransaction txn)
         {
             const int BlockSize = 1024 * 512;
             FileStream source = new FileStream(filename, FileMode.Open, FileAccess.Read);
-            SafeFileHandle handle = GetOutputFileHandle(attachmentId, txn);
+            SafeFileHandle handle = GetAttachmentFileHandle(attachmentId, txn);
             using (FileStream dest = new FileStream(handle, FileAccess.Write))
             {
                 byte[] buffer = new byte[BlockSize];
@@ -287,6 +311,47 @@ namespace Mosiac.UX
                 dest.Close();
             }
             source.Close();
+        }
+
+
+        public static void InsertOrderAttachment(int purchaseOrderID, string attachmentDescription, string filesize, FileInfo filename)
+        {
+            int attachmentID = 0;
+            const string InsertCmd = "Attachment_Insert";
+
+            //"INSERT INTO Resource(PartID, ResourceDescription,filesource)" +
+            //" VALUES(@PartID, @Description, @filesource)";
+
+            using (SqlConnection conn = new SqlConnection(ConnStr))
+            {
+                conn.Open();
+
+                using (SqlTransaction txn = conn.BeginTransaction())
+                {
+                    using (SqlCommand cmd = new SqlCommand(InsertCmd, conn, txn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+
+                        cmd.Parameters.Add("@purchaseOrderID", SqlDbType.Int).Value = purchaseOrderID;
+                        cmd.Parameters.Add("@attachmentdescription", SqlDbType.VarChar).Value = attachmentDescription;
+                        cmd.Parameters.Add("@filename", SqlDbType.VarChar).Value = filename.Name;
+                        cmd.Parameters.Add("@filesize", SqlDbType.VarChar).Value = filesize;
+
+                        SqlParameter param = new SqlParameter("@attachmentId", SqlDbType.Int);
+                        param.Direction = ParameterDirection.Output;
+                        cmd.Parameters.Add(param);
+
+
+                        cmd.ExecuteNonQuery();
+                        attachmentID = (int)cmd.Parameters["@attachmentId"].Value;
+                    }
+
+                    SaveAttachmentFile(attachmentID, filename.FullName, txn);
+                    txn.Commit();
+                }
+
+                conn.Close();
+            }
         }
         #endregion
     }

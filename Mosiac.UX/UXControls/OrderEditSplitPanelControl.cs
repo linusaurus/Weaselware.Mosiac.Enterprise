@@ -114,7 +114,10 @@ namespace Mosiac.UX.UXControls {
             }
         }
        
-        
+        /// <summary>
+        /// After update this shoudl relaod all the current data
+        /// </summary>
+        /// <returns></returns>
         private bool LoadOrder()
         {
             bool result= false;
@@ -125,7 +128,8 @@ namespace Mosiac.UX.UXControls {
                 bsOrder.DataSource = orderDTO;
                 bsLineitems.DataSource = orderDTO.LineItems;
 
-                bsAttachments.DataSource = _orderService.GetAttachmentDtos(orderDTO.PurchaseOrderID);
+                //bsAttachments.DataSource = _orderService.GetAttachmentDtos(orderDTO.PurchaseOrderID);
+                bsAttachments.DataSource = orderDTO.Attachments;
                 if (attachmentControl != null){ attachmentControl.SetDatasource(orderDTO, bsAttachments); }
                 
                 bsOrderFees.DataSource = orderDTO.OrderFees;
@@ -159,7 +163,8 @@ namespace Mosiac.UX.UXControls {
                 bsLineitems.DataSource = orderDTO.LineItems;
                 BindLineItemsToGrid(bsLineitems);
                 bsOrderFees.DataSource = orderDTO.OrderFees;
-                bsAttachments.DataSource = _orderService.GetAttachmentDtos(orderDTO.PurchaseOrderID);// orderDTO.Attachments;
+                bsAttachments.DataSource = orderDTO.Attachments;
+               
             }
 
             // Event wiring -------------------------------------------------------------------  

@@ -30,6 +30,7 @@ namespace Mosiac.UX
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.mainToolStrip = new System.Windows.Forms.ToolStrip();
             this.tsOrderButton = new System.Windows.Forms.ToolStripButton();
             this.tsMyOrders = new System.Windows.Forms.ToolStripButton();
@@ -234,11 +235,12 @@ namespace Mosiac.UX
             this.Controls.Add(this.MainTabControl);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.mainToolStrip);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.MinimumSize = new System.Drawing.Size(1200, 800);
             this.Name = "Main";
-            this.Text = "Part-Ferrit";
+            this.Text = "Mosiac";
             this.Load += new System.EventHandler(this.Main_Load);
             this.mainToolStrip.ResumeLayout(false);
             this.mainToolStrip.PerformLayout();
