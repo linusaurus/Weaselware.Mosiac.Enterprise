@@ -314,13 +314,12 @@ namespace Mosiac.UX
         }
 
 
-        public static void InsertOrderAttachment(int purchaseOrderID, string attachmentDescription, string filesize, FileInfo filename)
+        public static int InsertOrderAttachment(int purchaseOrderID, string attachmentDescription, string filesize, FileInfo filename)
         {
             int attachmentID = 0;
             const string InsertCmd = "Attachment_Insert";
 
-            //"INSERT INTO Resource(PartID, ResourceDescription,filesource)" +
-            //" VALUES(@PartID, @Description, @filesource)";
+
 
             using (SqlConnection conn = new SqlConnection(ConnStr))
             {
@@ -352,6 +351,8 @@ namespace Mosiac.UX
 
                 conn.Close();
             }
+
+            return attachmentID;
         }
         #endregion
     }

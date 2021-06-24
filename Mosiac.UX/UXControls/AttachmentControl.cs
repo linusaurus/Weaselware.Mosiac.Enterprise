@@ -16,10 +16,12 @@ namespace Mosiac.UX.UXControls
         private OrderDetailDto orderDTO;
         private BindingSource bsAttachements = new BindingSource();
         private AttachmentDto selectedAttachment;
+        private readonly DataLayer.Data.MosaicContext _ctx;
 
-        public AttachmentControl()
+        public AttachmentControl(MosaicContext context)
         {
             InitializeComponent();
+            _ctx = context;
             this.dgResources.AutoGenerateColumns = false;
             InitializeGrid();
             dgResources.SelectionChanged += DgResources_SelectionChanged;
@@ -134,7 +136,10 @@ namespace Mosiac.UX.UXControls
                 if (frm.ShowDialog() == DialogResult.OK)
                 {
                    var result = frm.NewAttachment;
+                   
+                    bsAttachements.Add(result);
                 }
+
 
                 //// -- Refresh the Resource list---;
                 //_partBeingEdited = partsService.Find(_partBeingEdited.PartID);

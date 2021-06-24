@@ -66,8 +66,10 @@ namespace Mosiac.UX.Forms
         {
             if (newAttachmentDto.IsValid())
             {
-                FileOperations.InsertOrderAttachment(newAttachmentDto.OrderNum,
+               int k =  FileOperations.InsertOrderAttachment(newAttachmentDto.OrderNum,
                     newAttachmentDto.AttachmentDescription, newAttachmentDto.FileSize, info);
+                newAttachmentDto.AttachmentID = k;
+                
             }
             else
             {

@@ -71,6 +71,7 @@ namespace Mosiac.UX.UXControls {
         {
             //orderDTO.Attachments = (AttachmentDto)bsAttachments.DataSource;
             _orderService.CreateOrUpdateOrder(orderDTO);
+
             LoadOrder();
             isDirty = false;
             ToogleButtonStyle(isDirty);
@@ -145,8 +146,8 @@ namespace Mosiac.UX.UXControls {
         {
             // reference the context object
             ctx = context;
-            // create a new DTO to hold the order
-            orderDTO = new OrderDetailDto();
+            // orderDTO is already created when the control is intied
+            //orderDTO = new OrderDetailDto();
             _orderService = new OrdersService(ctx);
             // Init the mapper
            
@@ -383,7 +384,7 @@ namespace Mosiac.UX.UXControls {
 
         private void tsbToggleAttachment_Click(object sender, EventArgs e)
         {
-            attachmentControl = new AttachmentControl();
+            attachmentControl = new AttachmentControl(ctx);
             attachmentControl.SetDatasource(orderDTO, bsAttachments);           
             LoadOrderPanelControl(attachmentControl);
         }
