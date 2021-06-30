@@ -85,11 +85,9 @@ namespace ServiceLayer.Mappers
         public void Map(Attachment source, AttachmentDto destination)
         {
             destination.AttachmentID = source.AttachmentID;
-            destination.OrderNum = source.OrderNum.GetValueOrDefault();
+            destination.PurchaseOrderID = source.PurchaseOrderID.GetValueOrDefault();
             destination.AttachmentDescription = source.AttachmentDescription;
             destination.Src = source.src;
-            destination.Ext = source.Ext;
-            //destination.FileSource = source.Filesource;
             destination.Creator = source.Creator;
             destination.CreatedDate = source.CreateDate.GetValueOrDefault();
             destination.FileSize = source.FileSize;

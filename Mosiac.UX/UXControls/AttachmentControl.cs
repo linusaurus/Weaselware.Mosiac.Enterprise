@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using DataLayer.Entity;
 using DataLayer.Data;
 using ServiceLayer.Models;
+using ServiceLayer.Mappers;
 using System.IO;
 using System.Diagnostics;
 using ServiceLayer;
@@ -70,6 +71,11 @@ namespace Mosiac.UX.UXControls
             dstyleDecimal.Format = "N2";
             dstyleDecimal.NullValue = "0.00";
             dstyleDecimal.Alignment = DataGridViewContentAlignment.MiddleRight;
+            // Date Compact Style
+            DataGridViewCellStyle dstyleDate = new DataGridViewCellStyle();
+            dstyleDate.Format = "d";
+            dstyleDate.NullValue = " ";
+            dstyleDate.Alignment = DataGridViewContentAlignment.MiddleRight;
             // Wrapping Text Style
             DataGridViewCellStyle dstyleWrapText = new DataGridViewCellStyle();
             dstyleWrapText.NullValue = "";
@@ -81,19 +87,20 @@ namespace Mosiac.UX.UXControls
             DataGridViewTextBoxColumn colAttachmentID = new DataGridViewTextBoxColumn();
             colAttachmentID.HeaderText = "ID";
             colAttachmentID.DataPropertyName = "AttachmentID";
-            colAttachmentID.Width = 75;
+            colAttachmentID.Width = 50;
 
             // AttachmentID Column --
             DataGridViewTextBoxColumn colCreator = new DataGridViewTextBoxColumn();
             colCreator.HeaderText = "Creator";
             colCreator.DataPropertyName = "Creator";
-            colCreator.Width = 115;
+            colCreator.Width = 138;
 
             // Date Column --
             DataGridViewTextBoxColumn colDate = new DataGridViewTextBoxColumn();
             colDate.HeaderText = "Date";
             colDate.DataPropertyName = "CreatedDate";
             colDate.Width = 75;
+            colDate.DefaultCellStyle = dstyleDate;
 
             // Description Column --
             DataGridViewTextBoxColumn colDescription = new DataGridViewTextBoxColumn();
@@ -107,13 +114,13 @@ namespace Mosiac.UX.UXControls
             DataGridViewTextBoxColumn colSourceFile = new DataGridViewTextBoxColumn();
             colSourceFile.HeaderText = "Source File";
             colSourceFile.DataPropertyName = "Src";
-            colSourceFile.Width = 115;
+            colSourceFile.Width = 95;
 
             // Filesize Column --
             DataGridViewTextBoxColumn colFileSize = new DataGridViewTextBoxColumn();
-            colFileSize.HeaderText = "File Size (KB)";
+            colFileSize.HeaderText = "Size(KB)";
             colFileSize.DataPropertyName = "FileSize";
-            colFileSize.Width = 125;
+            colFileSize.Width = 95;
 
             dgResources.Columns.AddRange(colAttachmentID, colCreator, colDate, colDescription, colSourceFile, colFileSize);
 
@@ -136,20 +143,15 @@ namespace Mosiac.UX.UXControls
                 if (frm.ShowDialog() == DialogResult.OK)
                 {
                    var result = frm.NewAttachment;
-                   
+                   var att = _ctx.Attachments.Find(result.AttachmentID);
+                    AttachmentMapper mapper = new ServiceLayer.Mappers.AttachmentMapper();
+                    mapper.Map(att, result);
+               
                     bsAttachements.Add(result);
                 }
 
 
-                //// -- Refresh the Resource list---;
-                //_partBeingEdited = partsService.Find(_partBeingEdited.PartID);
-                //if (_partBeingEdited != null)
-                //{
-                //    bsPart.DataSource = _partBeingEdited;
-                //    BindPart(bsPart);
-                //    bsResource.DataSource = _partBeingEdited.Resources.ToList();
-                //    dgResources.DataSource = _partBeingEdited.Resources.ToList();
-                //}
+                
             }
         }
 
@@ -159,6 +161,40 @@ namespace Mosiac.UX.UXControls
             {
                 FileOperations.GetAttachment(selectedAttachment.AttachmentID, Mosiac.UX.Properties.Settings.Default.MosiacConnection);
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+            if (dgResources.DataSource != null)
+            {
+                BindingManagerBase bm = BindingContext[dgResources.DataSource, dgResources.DataMember];
+                if (bm.Count > 0 && bm.Current != null)
+                {
+                    selectedAttachment = (AttachmentDto)bm.Current;
+                    if (selectedAttachment != null)
+                    {
+                        var deletableAttachment = _ctx.Attachments.Find(selectedAttachment.AttachmentID);
+                        if (deletableAttachment != null)
+                        {
+                            if (MessageBox.Show("The attachment will be permantly deleted, you good?", "Delete Attachment",MessageBoxButtons.YesNo) == DialogResult.Yes)
+                            {
+                                _ctx.Remove(deletableAttachment);
+                                _ctx.SaveChanges();
+                                bsAttachements.RemoveCurrent();
+                            }
+                            
+                        }
+                    }
+                   
+                    
+                }
+
+            }
+
+
+
+           
         }
     }
 }

@@ -43,9 +43,10 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgResources.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgResources.Location = new System.Drawing.Point(7, 43);
+            this.dgResources.Location = new System.Drawing.Point(8, 50);
+            this.dgResources.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.dgResources.Name = "dgResources";
-            this.dgResources.Size = new System.Drawing.Size(769, 192);
+            this.dgResources.Size = new System.Drawing.Size(897, 222);
             this.dgResources.TabIndex = 16;
             this.dgResources.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgResources_CellContentClick);
             // 
@@ -53,27 +54,32 @@
             // 
             this.button1.BackColor = System.Drawing.SystemColors.Control;
             this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Image = global::Mosiac.UX.Properties.Resources.outline_delete_black_24dp2;
             this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button1.Location = new System.Drawing.Point(281, 7);
+            this.button1.Location = new System.Drawing.Point(206, 9);
+            this.button1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(118, 30);
+            this.button1.Size = new System.Drawing.Size(67, 35);
             this.button1.TabIndex = 17;
             this.button1.Text = "Delete";
             this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // btnOpenResource
             // 
             this.btnOpenResource.BackColor = System.Drawing.SystemColors.Control;
             this.btnOpenResource.FlatAppearance.BorderSize = 0;
+            this.btnOpenResource.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnOpenResource.Image = global::Mosiac.UX.Properties.Resources.baseline_launch_black_24dp;
             this.btnOpenResource.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnOpenResource.Location = new System.Drawing.Point(145, 7);
+            this.btnOpenResource.Location = new System.Drawing.Point(81, 9);
+            this.btnOpenResource.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnOpenResource.Name = "btnOpenResource";
-            this.btnOpenResource.Size = new System.Drawing.Size(118, 30);
+            this.btnOpenResource.Size = new System.Drawing.Size(72, 35);
             this.btnOpenResource.TabIndex = 19;
-            this.btnOpenResource.Text = "Open Attachment";
+            this.btnOpenResource.Text = "Open";
             this.btnOpenResource.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnOpenResource.UseVisualStyleBackColor = false;
             this.btnOpenResource.Click += new System.EventHandler(this.btnOpenResource_Click);
@@ -82,28 +88,31 @@
             // 
             this.btnAddResource.BackColor = System.Drawing.SystemColors.Control;
             this.btnAddResource.FlatAppearance.BorderSize = 0;
+            this.btnAddResource.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddResource.Image = global::Mosiac.UX.Properties.Resources.round_add_circle_black_24dp1;
             this.btnAddResource.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnAddResource.Location = new System.Drawing.Point(9, 7);
+            this.btnAddResource.Location = new System.Drawing.Point(10, 8);
+            this.btnAddResource.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnAddResource.Name = "btnAddResource";
-            this.btnAddResource.Size = new System.Drawing.Size(118, 30);
+            this.btnAddResource.Size = new System.Drawing.Size(63, 35);
             this.btnAddResource.TabIndex = 20;
-            this.btnAddResource.Text = "Add Attachment";
+            this.btnAddResource.Text = "Add ";
             this.btnAddResource.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnAddResource.UseVisualStyleBackColor = false;
             this.btnAddResource.Click += new System.EventHandler(this.btnAddResource_Click);
             // 
             // AttachmentControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnOpenResource);
             this.Controls.Add(this.btnAddResource);
             this.Controls.Add(this.dgResources);
+            this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "AttachmentControl";
-            this.Padding = new System.Windows.Forms.Padding(4);
-            this.Size = new System.Drawing.Size(783, 242);
+            this.Padding = new System.Windows.Forms.Padding(5);
+            this.Size = new System.Drawing.Size(913, 279);
             this.Load += new System.EventHandler(this.AttachmentControl_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgResources)).EndInit();
             this.ResumeLayout(false);

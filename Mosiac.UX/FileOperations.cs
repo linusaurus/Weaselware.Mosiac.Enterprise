@@ -6,6 +6,10 @@ using System.Data.SqlTypes;
 using System.IO;
 using System.Diagnostics;
 using Microsoft.Win32.SafeHandles;
+using Boxed.Mapping;
+using ServiceLayer.Mappers;
+using ServiceLayer.Models;
+
 
 namespace Mosiac.UX
 {
@@ -313,13 +317,33 @@ namespace Mosiac.UX
             source.Close();
         }
 
+        //public static async Task SaveAttachmentFileAsync(int attachmentId, string filename, SqlTransaction txn)
+        //{
+        //    const int BlockSize = 1024 * 512;
+
+        //    FileStream source = new FileStream(filename, FileMode.Open, FileAccess.Read);
+        //    SafeFileHandle handle = GetAttachmentFileHandle(attachmentId, txn);
+        //    using (FileStream dest = new FileStream(handle, FileAccess.Write))
+        //    {
+        //        byte[] buffer = new byte[BlockSize];
+        //        int bytesRead;
+        //        while ((bytesRead = source.Read(buffer, 0, buffer.Length)) > 0)
+        //        {
+        //            dest.Write(buffer, 0, bytesRead);
+        //        }
+        //        dest.Close();
+        //    }
+        //    source.Close();
+
+        //}
+
 
         public static int InsertOrderAttachment(int purchaseOrderID, string attachmentDescription, string filesize, FileInfo filename)
         {
             int attachmentID = 0;
             const string InsertCmd = "Attachment_Insert";
 
-
+           
 
             using (SqlConnection conn = new SqlConnection(ConnStr))
             {

@@ -26,8 +26,8 @@ namespace Mosiac.UX.Forms
         {
             InitializeComponent();
             bsAttachment.DataSource = newAttachmentDto;
-            newAttachmentDto.OrderNum = purchaseOrderID;
-            this.Text = $"Add Document #Order: {newAttachmentDto.OrderNum}";
+            newAttachmentDto.PurchaseOrderID = purchaseOrderID;
+            this.Text = $"Add Document #Order: {newAttachmentDto.PurchaseOrderID}";
             
             BindAttachment(bsAttachment);
             bsAttachment.ListChanged += BsAttachment_ListChanged;
@@ -66,7 +66,7 @@ namespace Mosiac.UX.Forms
         {
             if (newAttachmentDto.IsValid())
             {
-               int k =  FileOperations.InsertOrderAttachment(newAttachmentDto.OrderNum,
+               int k =  FileOperations.InsertOrderAttachment(newAttachmentDto.PurchaseOrderID,
                     newAttachmentDto.AttachmentDescription, newAttachmentDto.FileSize, info);
                 newAttachmentDto.AttachmentID = k;
                 

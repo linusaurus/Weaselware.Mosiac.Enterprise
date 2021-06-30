@@ -95,7 +95,7 @@ namespace ServiceLayer {
 
         public List<AttachmentDto> GetAttachmentDtos(int purchaseOrderID)
         {
-            var result = context.Attachments.AsNoTracking().Where(o => o.OrderNum == purchaseOrderID).Select( dto => new AttachmentDto
+            var result = context.Attachments.AsNoTracking().Where(o => o.PurchaseOrderID == purchaseOrderID).Select( dto => new AttachmentDto
             {
                 Src = dto.src,
                 AttachmentDescription = dto.AttachmentDescription,
@@ -442,15 +442,14 @@ namespace ServiceLayer {
                     order.Attachments.Add(attachmnt);
                 }
 
-                attachmnt.OrderNum = ad.OrderNum;
+                attachmnt.PurchaseOrderID = ad.PurchaseOrderID;
                 // how to determine if the filesource is empty but existing
-                if (ad.FileSource != null)
+                if (ad.src != null)
                 {
-                    attachmnt.Filesource = ad.FileSource;
+                    attachmnt.src = ad.src;
                 }
                 //attachmnt.Filesource  = ad.FileSource; 
                 attachmnt.AttachmentDescription = ad.AttachmentDescription;
-                attachmnt.Ext = ad.Ext;
                 attachmnt.src = ad.Src;
                 attachmnt.FileSize = ad.FileSize;
                 attachmnt.Creator = ad.Creator;

@@ -18,7 +18,7 @@ namespace ServiceLayer.Models
 
         public int attachmentId { get; set; }
         public string attachmentDescription { get; set; }
-        public int orderNum { get; set; }
+        public int purchaseOrderID { get; set; }
         public string ext { get; set; }
         public string src { get; set; }
         public byte[] filesource { get; set; }
@@ -32,7 +32,7 @@ namespace ServiceLayer.Models
             bool result = false;
             if (!String.IsNullOrEmpty(attachmentDescription))
             {
-                if (orderNum != default)
+                if (PurchaseOrderID != default)
                 {
                     result = true;
                 }
@@ -90,12 +90,12 @@ namespace ServiceLayer.Models
             }
         }
 
-        public int OrderNum
+        public int PurchaseOrderID
         {
-            get { return orderNum; }
+            get { return purchaseOrderID; }
             set
             {
-                orderNum = value;
+                purchaseOrderID = value;
                 OnPropertyChange();
             }
 

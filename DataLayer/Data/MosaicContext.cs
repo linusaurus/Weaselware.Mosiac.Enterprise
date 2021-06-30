@@ -105,10 +105,6 @@ namespace DataLayer.Data
 
                 entity.Property(e => e.Creator).HasMaxLength(30);
 
-                entity.Property(e => e.Ext)
-                    .HasMaxLength(5)
-                    .IsFixedLength(true);
-
                 entity.Property(e => e.FileSize).HasMaxLength(50);
 
                 entity.Property(e => e.src)
@@ -117,7 +113,7 @@ namespace DataLayer.Data
 
                 entity.HasOne(d => d.OrderNumNavigation)
                     .WithMany(p => p.Attachments)
-                    .HasForeignKey(d => d.OrderNum)
+                    .HasForeignKey(d => d.PurchaseOrderID)
                     .HasConstraintName("FK_Attachment_PurchaseOrder");
             });
 

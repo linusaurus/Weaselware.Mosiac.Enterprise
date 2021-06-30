@@ -143,7 +143,6 @@ namespace Mosiac.UX.UXControls
             this.cboPartManu.Name = "cboPartManu";
             this.cboPartManu.Size = new System.Drawing.Size(168, 23);
             this.cboPartManu.TabIndex = 11;
-            this.cboPartManu.SelectedIndexChanged += new System.EventHandler(this.cboPartManu_SelectedIndexChanged);
             // 
             // btnNew
             // 
@@ -407,7 +406,7 @@ namespace Mosiac.UX.UXControls
             this.dgPartsSearch.Name = "dgPartsSearch";
             this.dgPartsSearch.ReadOnly = true;
             this.dgPartsSearch.RowTemplate.Height = 25;
-            this.dgPartsSearch.Size = new System.Drawing.Size(1109, 335);
+            this.dgPartsSearch.Size = new System.Drawing.Size(1109, 344);
             this.dgPartsSearch.TabIndex = 9;
             this.dgPartsSearch.VirtualMode = true;
             this.dgPartsSearch.SelectionChanged += new System.EventHandler(this.dgAttachments_SelectionChanged);

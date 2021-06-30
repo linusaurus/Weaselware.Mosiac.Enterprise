@@ -211,9 +211,7 @@ namespace Mosiac.UX.UXControls
                         BindPart(bsPart);
                         var resources = _partBeingEdited.Resources.ToList();
                         dgResources.DataSource = resources;
-
-                    }
-                    
+                    }                  
                 }
             }
         }
@@ -233,22 +231,22 @@ namespace Mosiac.UX.UXControls
             dgPartsSearch.DataSource = dv;
         }
 
-        private void button2_Click(object sender, System.EventArgs e)
-        {
-            
-        }
-
+        /// <summary>
+        /// Save the Active Part
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnSave_Click(object sender, System.EventArgs e)
         {
+           
             _ctx.SaveChanges();
-           // partsService.CreateOrUpdatePart(_selectedPart,"Richard");
+            // ---  partsService.CreateOrUpdatePart(_selectedPart,"Richard");
             Grids.ToogleButtonStyle(false, btnSave);
+            dgPartsSearch.Enabled = true;
+            _partBeingEdited = partsService.Find(_partBeingEdited.PartID);
+            bsPart.DataSource = _partBeingEdited;
+            BindPart(bsPart);
           
-        }
-
-        private void cboPartManu_SelectedIndexChanged(object sender, System.EventArgs e)
-        {
-
         }
 
         private void gpbResource_Enter(object sender, System.EventArgs e)
@@ -261,7 +259,7 @@ namespace Mosiac.UX.UXControls
         //---------------------------------------------------------
         private void btnNewResource_Click(object sender, System.EventArgs e)
         {            
-            if (_partBeingEdited != null)
+            if (_partBeingEdited != null || _partBeingEdited.PartID != default)
             {
                 CreateResourceForm frm = new CreateResourceForm(_partBeingEdited.PartID);
                 if (frm.ShowDialog() == DialogResult.OK)
@@ -360,6 +358,7 @@ namespace Mosiac.UX.UXControls
                 _ctx.Resources.Remove(delResource);
                 _ctx.SaveChanges();
 
+
                 _partBeingEdited = partsService.Find(_partBeingEdited.PartID);
                 if (_partBeingEdited != null)
                 {
@@ -400,8 +399,27 @@ namespace Mosiac.UX.UXControls
         /// <param name="e"></param>
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            
-            //_partBeingEdited = new PartDetailDTO();
+
+            _partBeingEdited = partsService.New();
+             bsPart.DataSource = _partBeingEdited;
+
+            dgResources.DataSource = null;
+
+            txtResourceCreateDate.DataBindings.Clear();
+            txtResourceCreator.DataBindings.Clear();
+            txtSourceFile.DataBindings.Clear();
+
+            txtResourceCreateDate.Text = string.Empty;
+            txtResourceCreator.Text = string.Empty;
+            txtSourceFile.Text = string.Empty;
+
+            bsResource.DataSource = _partBeingEdited.Resources.ToList();
+             dgResources.DataSource = _partBeingEdited.Resources.ToList();
+             txtPartDescription.PlaceholderText = "Enter a new part Description";
+             bsPart.DataSource = _partBeingEdited;
+            _ctx.Entry(_partBeingEdited).State = EntityState.Added;
+            BindPart(bsPart);
+            dgPartsSearch.Enabled = false;
         }
 
         private void ckbUseManufacturer_CheckedChanged(object sender, System.EventArgs e)

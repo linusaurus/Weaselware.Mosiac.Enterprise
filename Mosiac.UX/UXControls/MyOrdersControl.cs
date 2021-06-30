@@ -67,7 +67,11 @@ namespace Mosiac.UX.UXControls
                 }
             }
         }
-
+        /// <summary>
+        /// Open the selected Order
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void dgMyOrdersGrid_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             if (_selectedOrderId != default)
