@@ -422,6 +422,23 @@ namespace Mosiac.UX.UXControls
             dgPartsSearch.Enabled = false;
         }
 
+        private void lbResults_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtSearch_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            startTime = System.DateTime.Now.Millisecond;
+            partsList = partsService.ReturnAllParts();
+            ListAsDataTable = Grids.BuildDataTable<PartSearchDto>(partsList);
+            dv = ListAsDataTable.DefaultView;
+            endTime = System.DateTime.Now.Millisecond;
+            lbResults.Text = $"Returned {ListAsDataTable.Rows.Count} Items, Milliseconds = {(endTime - startTime).ToString()} ";
+
+            dgPartsSearch.DataSource = dv;
+        }
+
         private void ckbUseManufacturer_CheckedChanged(object sender, System.EventArgs e)
         {
             CheckBox cbx = (CheckBox)sender;

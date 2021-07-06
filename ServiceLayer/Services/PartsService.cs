@@ -315,6 +315,22 @@ namespace ServiceLayer
             return m;
         }
 
+        public List<PartSearchDto> ReturnAllParts()
+        {
+              var result = _context.Parts.AsNoTracking()
+                     .Select(d => new PartSearchDto
+                     {
+                         Description = d.ItemDescription,
+                         PartID = d.PartID,
+                         Manufacturer = d.Manu.Manufacturer,
+                         Orders = _context.PurchaseLineItems.AsNoTracking().Where(p => p.PartID == d.PartID).Count()
+
+                     }).OrderByDescending(p => p.PartID).ToList();
+
+            return result;
+ 
+        }
+
         public List<PartSearchDto> SearchPart(string search)
         {
             var result = _context.Parts.AsNoTracking().Where(p => p.ItemDescription.Contains(search)).Select(d => new PartSearchDto
@@ -339,7 +355,7 @@ namespace ServiceLayer
                          Description = d.ItemDescription,
                          PartID = d.PartID,
                          Manufacturer = d.Manu.Manufacturer,
-                         Orders = _context.PurchaseLineItems.AsTracking().Where(p => p.PartID == d.PartID).Count()
+                         Orders = _context.PurchaseLineItems.AsNoTracking().Where(p => p.PartID == d.PartID).Count()
 
                      }).OrderByDescending(p => p.PartID).ToList();
             
@@ -352,7 +368,7 @@ namespace ServiceLayer
                     Description = d.ItemDescription,
                     PartID = d.PartID,
                     Manufacturer = d.Manu.Manufacturer,
-                    Orders = _context.PurchaseLineItems.AsTracking().Where(p => p.PartID == d.PartID).Count()
+                    Orders = _context.PurchaseLineItems.AsNoTracking().Where(p => p.PartID == d.PartID).Count()
 
                 }).OrderByDescending(p => p.PartID).ToList();
               

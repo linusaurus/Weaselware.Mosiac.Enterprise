@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PartFinderControl));
             this.tbSupplier = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.rbStartsWith = new System.Windows.Forms.RadioButton();
@@ -177,11 +178,12 @@
             // btnAddToOrder
             // 
             this.btnAddToOrder.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAddToOrder.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnAddToOrder.Image = ((System.Drawing.Image)(resources.GetObject("btnAddToOrder.Image")));
+            this.btnAddToOrder.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnAddToOrder.Location = new System.Drawing.Point(477, 10);
             this.btnAddToOrder.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnAddToOrder.Name = "btnAddToOrder";
-            this.btnAddToOrder.Size = new System.Drawing.Size(144, 31);
+            this.btnAddToOrder.Size = new System.Drawing.Size(144, 37);
             this.btnAddToOrder.TabIndex = 4;
             this.btnAddToOrder.Text = "Add to Order";
             this.btnAddToOrder.UseVisualStyleBackColor = true;
@@ -194,7 +196,7 @@
             this.btnNewPart.Location = new System.Drawing.Point(628, 10);
             this.btnNewPart.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnNewPart.Name = "btnNewPart";
-            this.btnNewPart.Size = new System.Drawing.Size(144, 31);
+            this.btnNewPart.Size = new System.Drawing.Size(144, 37);
             this.btnNewPart.TabIndex = 4;
             this.btnNewPart.Text = "Use Supplier Part";
             this.btnNewPart.UseVisualStyleBackColor = true;
@@ -206,7 +208,7 @@
             this.btnAddJobPart.Location = new System.Drawing.Point(778, 10);
             this.btnAddJobPart.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnAddJobPart.Name = "btnAddJobPart";
-            this.btnAddJobPart.Size = new System.Drawing.Size(144, 31);
+            this.btnAddJobPart.Size = new System.Drawing.Size(144, 37);
             this.btnAddJobPart.TabIndex = 4;
             this.btnAddJobPart.Text = "Add Job Part";
             this.btnAddJobPart.UseVisualStyleBackColor = true;
