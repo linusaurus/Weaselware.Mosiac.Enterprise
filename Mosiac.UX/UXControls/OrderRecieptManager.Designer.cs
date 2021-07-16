@@ -41,6 +41,7 @@ namespace Mosiac.UX.UXControls
             this.dgOrderReceiptItems = new System.Windows.Forms.DataGridView();
             this.panel2 = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lborderstatus = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -58,7 +59,6 @@ namespace Mosiac.UX.UXControls
             this.tsbProccessInventory = new System.Windows.Forms.ToolStripButton();
             this.tsbPrintReceipt = new System.Windows.Forms.ToolStripButton();
             this.tsbBarCode = new System.Windows.Forms.ToolStripButton();
-            this.lborderstatus = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.spcMainContainer)).BeginInit();
             this.spcMainContainer.Panel1.SuspendLayout();
             this.spcMainContainer.Panel2.SuspendLayout();
@@ -220,6 +220,15 @@ namespace Mosiac.UX.UXControls
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Order Receipt";
+            // 
+            // lborderstatus
+            // 
+            this.lborderstatus.AutoSize = true;
+            this.lborderstatus.Location = new System.Drawing.Point(691, 48);
+            this.lborderstatus.Name = "lborderstatus";
+            this.lborderstatus.Size = new System.Drawing.Size(74, 15);
+            this.lborderstatus.TabIndex = 7;
+            this.lborderstatus.Text = "Order-Status";
             // 
             // label4
             // 
@@ -385,15 +394,6 @@ namespace Mosiac.UX.UXControls
             this.tsbBarCode.Name = "tsbBarCode";
             this.tsbBarCode.Size = new System.Drawing.Size(95, 28);
             this.tsbBarCode.Text = "Item Labels";
-            // 
-            // lborderstatus
-            // 
-            this.lborderstatus.AutoSize = true;
-            this.lborderstatus.Location = new System.Drawing.Point(691, 48);
-            this.lborderstatus.Name = "lborderstatus";
-            this.lborderstatus.Size = new System.Drawing.Size(74, 15);
-            this.lborderstatus.TabIndex = 7;
-            this.lborderstatus.Text = "Order-Status";
             // 
             // OrderRecieptManager
             // 

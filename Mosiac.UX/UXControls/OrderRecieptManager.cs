@@ -289,7 +289,7 @@ namespace Mosiac.UX.UXControls
         {
             switch (e.ClickedItem.Name)
             {
-                case "tsbSaveChanges":
+                case "tsSaveChanges":
 
                     int orID = _orderReceiptRepository.UpdateOrCreate(_orderRecieptDto);
                     _orderRecieptDto = _orderReceiptRepository.GetOrderReceipt(orID);
@@ -297,16 +297,38 @@ namespace Mosiac.UX.UXControls
                     orToolStrip.Items[0].BackColor = DefaultBackColor;
 
                     break;
-
+                // -- Generate a view of the PO for entering qnty and inventory value
                 case "tsbOrderReciept":
                     _orderRecieptDto = _orderReceiptRepository.ReceiveOrder(_selectedOrderID);
                     BindOrderReceipt(_orderRecieptDto);
 
                     break;
-
+                // -- process the order reciept view and push item to inventory
+                // -- foreach line of the order receipt, mark if the line is complete
+                // -- and push the qnty recieved to inventory line by line
                 case "tsbProccessInventory":
 
+                    foreach (var line in _orderRecieptDto.OrderReceiptLineItems)
+                    {
+                        // init a new inventory object
+                        Inventory inv = new Inventory();
+                        inv.OrderReceiptID = line.OrderReceiptID;
+                        inv.DateStamp = DateTime.Now;
+                        inv.Description = line.Description;
+                        inv.JobID =  line.PurchaseOrderID;
+                        inv.EmpID = _orderRecieptDto.EmployeeId;   
+                        inv.LineID = line.LineID;
+                        inv.TransActionType = (int)TransActionTypeCode.Recieve;
+                        inv.Note = line.Note;
+                        inv.QntyOrdered = line.QntyOrdered;
+                        inv.QntyReceived = line.QntyReceived;
+                        inv.InventoryAmount = line.QntyToInventory;
+                        
+                        
+                        _context.Inventories.Add(inv);
 
+                    }
+                    _context.SaveChanges();
                     break;
 
                 case "tsbPrintReceipt":
