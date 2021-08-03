@@ -110,7 +110,6 @@ namespace Mosiac.UX
             this.tsSupplerOrders.Size = new System.Drawing.Size(92, 52);
             this.tsSupplerOrders.Text = "Supplier Orders";
             this.tsSupplerOrders.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.tsSupplerOrders.Click += new System.EventHandler(this.tsbFindOrder_Click);
             // 
             // tsbReceiveOrder
             // 

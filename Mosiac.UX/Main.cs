@@ -182,13 +182,6 @@ namespace Mosiac.UX
             MainTabControl.SelectedTab = AssembliesTab;
         }
 
-        private void tsbFindOrder_Click(object sender, EventArgs e)
-        {
-            TabPage AssembliesTab = PageFactory.GetNewTabPage(_context, PageFactory.TabPageType.PurchaseOrdersPage);
-            MainTabControl.TabPages.Add(AssembliesTab);
-            MainTabControl.SelectedTab = AssembliesTab;
-        }
-
         private void MainTabControl_DrawItem(object sender, DrawItemEventArgs e)
         {
             Image img = new Bitmap(closeImage);
@@ -244,7 +237,12 @@ namespace Mosiac.UX
                         var order = _ordersService.NewDefault(Globals.CurrentLoggedUserID, supplierID, jobID);
                         _ordersService.Add(order);
                         // Purchase Order Page
-                        MainTabControl.TabPages.Add(PageFactory.GetNewTabPage(_context, PageFactory.TabPageType.PurchaseOrderPage, order.PurchaseOrderID));
+
+                        TabPage orderPage = PageFactory.GetNewTabPage(_context, PageFactory.TabPageType.PurchaseOrderPage, order.PurchaseOrderID);
+                        
+                        MainTabControl.TabPages.Add(orderPage);
+                        MainTabControl.SelectTab(orderPage);
+                       // MainTabControl.TabPages.Add(PageFactory.GetNewTabPage(_context, PageFactory.TabPageType.PurchaseOrderPage, order.PurchaseOrderID));
                     }
 
                     break;
@@ -268,7 +266,19 @@ namespace Mosiac.UX
                     break;
                 case "tsSupplerOrders":
 
+                    TabPage suppliersManager = PageFactory.GetNewTabPage(_context, PageFactory.TabPageType.SupplierOrdersPage);
+                    suppliersManager.Name = "SupplierOrders";
 
+                    if (!MainTabControl.TabPages.ContainsKey("SupplierOrders"))
+                    {
+                        MainTabControl.TabPages.Add(suppliersManager);
+                        MainTabControl.SelectedTab = suppliersManager;
+                    }
+                    else
+                    {
+                        if (MainTabControl.TabPages.ContainsKey("SupplierOrders"))
+                        { MainTabControl.SelectTab("SupplierOrders"); }
+                    }
                     break;
                  //-------------------------------------------------------------------------------------------------------
                  // --------------------------Order Receipt Page ---------------------------------------------------------

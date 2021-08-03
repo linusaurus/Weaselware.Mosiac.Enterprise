@@ -2,6 +2,7 @@
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using DataLayer.Entity;
+using ServiceLayer.Models;
 using DataLayer.Data;
 
 namespace ServiceLayer
@@ -36,6 +37,22 @@ namespace ServiceLayer
             List<Supplier> result;
             result = _context.Suppliers.Where(c => c.SupplierName.StartsWith(supplierName)).ToList();        
             return result;
+        }
+
+        public List<SupplierOrdersListDto> GetSupplierOrders(int SupplierID)
+        {
+            var result = _context.PurchaseOrders.AsNoTracking().Include(j => j.Job).Where(f => f.SupplierID == SupplierID).OrderByDescending(d => d.OrderDate).Select(d => new SupplierOrdersListDto
+            {
+                OrderNumber = d.PurchaseOrderID,
+                OrderDate = d.OrderDate.GetValueOrDefault(),
+                Purchaser = d.Employee.firstname + " " + d.Employee.lastname,
+                JobName = d.Job.jobname,
+                OrderTotal = d.OrderTotal.GetValueOrDefault(),
+                Received = d.Recieved.GetValueOrDefault()
+            }) ;
+
+            return result.ToList();
+
         }
 
         public List<Supplier> SuppliersWithOpenOrders()

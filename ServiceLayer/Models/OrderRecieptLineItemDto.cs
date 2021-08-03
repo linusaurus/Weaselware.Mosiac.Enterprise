@@ -34,6 +34,7 @@ namespace ServiceLayer.Models
         private decimal unitPrice;
         private decimal extended;
         private string note;
+        private bool pushed;
 
         public int StockTransaction
         {
@@ -41,6 +42,16 @@ namespace ServiceLayer.Models
             set
             {
                 stockTransactionID = value;
+                OnPropertyChange();
+            }
+        }
+
+        public bool Pushed
+        {
+            get { return pushed; }
+            set
+            {
+                pushed = value;
                 OnPropertyChange();
             }
         }

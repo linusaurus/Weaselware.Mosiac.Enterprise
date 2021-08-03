@@ -11,6 +11,10 @@ namespace ServiceLayer.Models
 
         public string Purchaser { get; set; }
 
+        public string JobName { get; set; }
+
+        public decimal OrderTotal { get; set; }
+
         public bool Received { get; set; }
 
     }

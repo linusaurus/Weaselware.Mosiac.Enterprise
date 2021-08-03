@@ -25,7 +25,7 @@ namespace ServiceLayer
         /// </summary>
         /// <param name="purchaserOrderID"></param>
         /// <returns></returns>
-        public OrderReceiptDto ReceiveOrder(int purchaserOrderID)
+        public OrderReceiptDto LoadOrderReciept(int purchaserOrderID)
         {
             OrderReceiptDto newReciept;
             // Grab to Purchase Order
@@ -51,6 +51,7 @@ namespace ServiceLayer
             
                 foreach (var lines in po.PurchaseLineItems)
                 {
+                    
                     OrderRecieptLineItemDto item = new OrderRecieptLineItemDto();
                     item.Description = lines.Description;
                     item.PurchaseOrderID = lines.PurchaseOrderID.GetValueOrDefault();
@@ -63,9 +64,13 @@ namespace ServiceLayer
                     item.ItemsRecievedComplete = false;
                     item.QntyToInventory = lines.Qnty.GetValueOrDefault();
                     item.PartID = lines.PartID.GetValueOrDefault();
-                    item.UnitOfMeasureName = lines.UnitOfMeasure.UnitName ?? "Ea";
+                    ////// -- if the partID is null or 0 assign the unit of measure to Each --///////
+                    if (lines.PartID == default) { item.UnitOfMeasureName = "Ea"; }
+                    else if (lines.PartID != default) { item.UnitOfMeasureName = _ctx.Parts.Find(lines.PartID).UnitOfMeasure.UnitName; }
+                   /// ----------------------------- End of Unit of measure assignment --
                     item.UnitToQuantityRatio =  1.00m;
                     item.QntyToInventory = 0.0m;
+                    item.Pushed = lines.Recieved.GetValueOrDefault();
                     // -- Add the OrderReciptItem to the OrderReciept---->
                     newReciept.OrderReceiptLineItems.Add(item);
                 

@@ -17,8 +17,7 @@ namespace Mosiac.UX.UXControls
             get { return isDirty; }
             set 
             {
-                isDirty = value;
-                
+                isDirty = value;              
             }
         }
 
@@ -73,6 +72,73 @@ namespace Mosiac.UX.UXControls
             dg.Columns.AddRange(col_ID, col_Description, col_Manufacturer, col_Orders);
 
         }
+
+        public static void BuildSupplierOrdersGrid(DataGridView dg)
+        {
+            dg.AutoGenerateColumns = false;
+
+            dg.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            dg.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+
+            // Currency Decimal Style
+            DataGridViewCellStyle dstyleCurrency = new DataGridViewCellStyle();
+            dstyleCurrency.Format = "C";
+            dstyleCurrency.NullValue = "";
+            dstyleCurrency.Alignment = DataGridViewContentAlignment.MiddleRight;
+            // Currency Decimal Style
+            DataGridViewCellStyle dstyleDecimal = new DataGridViewCellStyle();
+            dstyleDecimal.Format = "N2";
+            dstyleDecimal.NullValue = "0.00";
+            dstyleDecimal.Alignment = DataGridViewContentAlignment.MiddleRight;
+            // Wrapping Text Style
+            DataGridViewCellStyle dstyleWrapText = new DataGridViewCellStyle();
+            dstyleWrapText.NullValue = "";
+            dstyleWrapText.Alignment = DataGridViewContentAlignment.TopLeft;
+            dstyleWrapText.WrapMode = DataGridViewTriState.True;
+
+            // PurchaseOrderID Column --
+            DataGridViewTextBoxColumn col_ID = new DataGridViewTextBoxColumn();
+            col_ID.HeaderText = "ID";
+            col_ID.DataPropertyName = "OrderNumber";
+            col_ID.Width = 55;
+
+            // Order Date Column --
+            DataGridViewTextBoxColumn col_Date = new DataGridViewTextBoxColumn();
+            col_Date.HeaderText = "Order Date";
+            col_Date.DataPropertyName = "OrderDate";
+            col_Date.Width = 100;
+
+            // Purchaser Column --
+            DataGridViewTextBoxColumn col_purchaser = new DataGridViewTextBoxColumn();
+            col_purchaser.HeaderText = "Purchaser";
+            col_purchaser.DataPropertyName = "Purchaser";
+            col_purchaser.Width = 160;
+
+            // Jobname Column --
+            DataGridViewTextBoxColumn col_Jobname = new DataGridViewTextBoxColumn();
+            col_Jobname.HeaderText = "Job Name";
+            col_Jobname.DataPropertyName = "JobName";
+            col_Jobname.Width = 160;
+            col_Jobname.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+
+            // OrderTotal Column --
+            DataGridViewTextBoxColumn col_orderTotal = new DataGridViewTextBoxColumn();
+            col_orderTotal.HeaderText = "Order Total";
+            col_orderTotal.DataPropertyName = "OrderTotal";
+            col_orderTotal.Width = 100;
+            col_orderTotal.DefaultCellStyle = dstyleCurrency;
+
+            // Recieved COlumn --
+            DataGridViewCheckBoxColumn col_received = new DataGridViewCheckBoxColumn();
+            col_received.HeaderText = "Revd";
+            col_received.DataPropertyName = "Received";
+            col_received.Width = 75;
+
+
+            dg.Columns.AddRange(col_ID, col_Date, col_purchaser, col_Jobname, col_orderTotal, col_received);
+
+        }
+
 
         public static void BuildPartResourcesGrid(DataGridView dg)
         {

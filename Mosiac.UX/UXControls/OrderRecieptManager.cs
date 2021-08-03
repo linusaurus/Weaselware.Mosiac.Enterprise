@@ -44,7 +44,8 @@ namespace Mosiac.UX.UXControls
             var orderReceipts = _orderReceiptRepository.UnRecievedOrders(1);         
             this.dgPendingOrders.DataSource = orderReceipts;
 
-            //------------------------------Event Wiring---------------------------------------
+            ///////////////////////Event Wiring///////////////////////////////////////////////
+            ///
             dgPendingOrders.SelectionChanged += DgPendingOrders_SelectionChanged;
             dgPendingOrders.CellFormatting += DgPendingOrders_CellFormatting;
 
@@ -297,17 +298,19 @@ namespace Mosiac.UX.UXControls
                     orToolStrip.Items[0].BackColor = DefaultBackColor;
 
                     break;
-                // -- Generate a view of the PO for entering qnty and inventory value
+                // -- Generate a new or open existing  PO for entering qnty and inventory value
                 case "tsbOrderReciept":
-                    _orderRecieptDto = _orderReceiptRepository.ReceiveOrder(_selectedOrderID);
+                    _orderRecieptDto = _orderReceiptRepository.LoadOrderReciept(_selectedOrderID);
                     BindOrderReceipt(_orderRecieptDto);
+                    
 
                     break;
                 // -- process the order reciept view and push item to inventory
                 // -- foreach line of the order receipt, mark if the line is complete
                 // -- and push the qnty recieved to inventory line by line
                 case "tsbProccessInventory":
-
+                    // loop orderReceipt items, calculate status of line item, set inventory amount, and resolution
+                    // of the lineitem, is less that qnty order is received the it
                     foreach (var line in _orderRecieptDto.OrderReceiptLineItems)
                     {
                         // init a new inventory object
@@ -322,7 +325,12 @@ namespace Mosiac.UX.UXControls
                         inv.Note = line.Note;
                         inv.QntyOrdered = line.QntyOrdered;
                         inv.QntyReceived = line.QntyReceived;
-                        inv.InventoryAmount = line.QntyToInventory;
+                        if (!line.Pushed )
+                        {
+                            inv.InventoryAmount = line.QntyToInventory;
+                            line.Pushed = true;
+                        }
+                       
                         
                         
                         _context.Inventories.Add(inv);

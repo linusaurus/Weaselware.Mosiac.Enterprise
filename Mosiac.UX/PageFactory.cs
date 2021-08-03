@@ -41,9 +41,10 @@ namespace Mosiac.UX
             {
                 case TabPageType.SupplierOrdersPage:
                     {
-                        //tab.Text = "Supplier Orders";
+                        tab.Text = "Supplier Orders";
                         //tab.Name = "SupplierOrders";
-                        //SupplierOrdersControl ctr = new SupplierOrdersControl(ctx);
+                        SupplierManager ctr = new SupplierManager(ctx);
+                        tab.Controls.Add(ctr);
                         //ctr.Dock = DockStyle.Fill;
                         //tab.Controls.Add(ctr);
                     }
