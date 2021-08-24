@@ -62,28 +62,14 @@ namespace Mosiac.UX.UXControls
             Grids.BuildPartSearchGrid(dgPartsSearch);
             Grids.BuildPartResourcesGrid(dgResources);
 
-            units = partsService.Units();
+     
             manus = partsService.GetManus();
-            partManus = partsService.GetManus();
-
-            cbxUnit.DisplayMember = "UnitName";
-            cbxUnit.ValueMember = "UnitOfMeasureID";
-            cbxUnit.DataSource = units;
-            cbxUnit.ResetText();
-            cbxUnit.SelectedIndex = -1;
-
 
             cboManu.DataSource = manus;
             cboManu.DisplayMember = "ManufacturerName";
             cboManu.ValueMember = "ManuID";
 
-            cboPartManu.DataSource = partManus;
-            cboPartManu.DisplayMember = "ManufacturerName";
-            cboPartManu.ValueMember = "ManuID";
-            cboPartManu.ResetText();
-            cboPartManu.SelectedIndex = -1;
-            cboPartManu.Text = "Manufacturer";
-            
+          
             bsPart.ListChanged += BsPart_ListChanged;
             bsResource.ListChanged += BsResource_ListChanged;
 
@@ -107,7 +93,7 @@ namespace Mosiac.UX.UXControls
 
         private void SearchParts()
         {
-            if (txtSearch.Text.Length > 2)
+            if (txtSearch.Text.Length > 1)
             {
                 
                 startTime = System.DateTime.Now.Millisecond;
@@ -120,7 +106,9 @@ namespace Mosiac.UX.UXControls
                 dgPartsSearch.DataSource = dv;
             }
         }
-
+        // ------------------------------------------------
+        // need to remove this after edti form is working
+        //-------------------------------------------------
         private void BindPart(BindingSource bs)
         {
 
@@ -193,7 +181,11 @@ namespace Mosiac.UX.UXControls
             txtResourceCreateDate.DataBindings.Add("Text", bs, "CreationDate", true, DataSourceUpdateMode.OnPropertyChanged);
             txtSourceFile.DataBindings.Add("Text", bs, "filesource", true, DataSourceUpdateMode.OnPropertyChanged);
         }
-
+        /// <summary>
+        /// this changes the selected part bindings
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void dgAttachments_SelectionChanged(object sender, System.EventArgs e)
         {
             DataGridView dg = (DataGridView)sender;
@@ -205,12 +197,9 @@ namespace Mosiac.UX.UXControls
                     {
                         int i = (int)dg.CurrentRow.Cells[0].Value;
                         _partBeingEdited = partsService.Find(i);
-                                 
-                        bsPart.DataSource = _partBeingEdited;
-                    
-                        BindPart(bsPart);
+                                                
                         var resources = _partBeingEdited.Resources.ToList();
-                        dgResources.DataSource = resources;
+                       dgResources.DataSource = resources;
                     }                  
                 }
             }
@@ -437,6 +426,40 @@ namespace Mosiac.UX.UXControls
             lbResults.Text = $"Returned {ListAsDataTable.Rows.Count} Items, Milliseconds = {(endTime - startTime).ToString()} ";
 
             dgPartsSearch.DataSource = dv;
+        }
+
+        private void dgPartsSearch_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+
+            DataGridView dg = (DataGridView)sender;
+            if (dg.DataSource != null)
+            {
+                if (dg.Rows.Count > 0)
+                {
+                    if (dg.CurrentRow != null)
+                    {
+                        int i = (int)dg.CurrentRow.Cells[0].Value;
+                        _partBeingEdited = partsService.Find(i);
+
+                        bsPart.DataSource = _partBeingEdited;
+
+                        PartEditForm frm = new PartEditForm(bsPart,_ctx);
+                        frm.StartPosition = FormStartPosition.CenterParent;
+                        frm.ShowDialog();
+                        var resources = _partBeingEdited.Resources.ToList();
+                        dgResources.DataSource = resources;
+                    }
+                }
+            }
+
+  
+        
+
+        }
+
+        private void btnOpenPart_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            var x = e.KeyChar;
         }
 
         private void ckbUseManufacturer_CheckedChanged(object sender, System.EventArgs e)

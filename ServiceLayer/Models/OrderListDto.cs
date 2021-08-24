@@ -14,4 +14,15 @@ namespace ServiceLayer.Models
         public decimal? OrderTotal { get; set; }
         public bool Recieved { get; set; }
     }
+
+
+    public class PartOrdersDto
+    {
+        public int PurchaseOrderID { get; set; }
+        public DateTime OrderDate { get; set; }
+        public string Supplier { get; set; }
+        public string JobName { get; set; }
+     
+      
+    }
 }

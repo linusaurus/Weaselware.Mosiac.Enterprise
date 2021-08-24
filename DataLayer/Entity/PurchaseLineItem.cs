@@ -30,5 +30,9 @@ namespace DataLayer.Entity
 
         public virtual PurchaseOrder PurchaseOrder { get; set; }
         public virtual UnitOfMeasure UnitOfMeasure { get; set; }
+
+        public virtual Job Job { get; set; }
+
+        public virtual Supplier Supplier { get; set; }
     }
 }

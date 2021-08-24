@@ -131,8 +131,8 @@ namespace ServiceLayer
             {
                 Description = d.ItemDescription,
                 PartID = d.PartID,
-                Manufacturer = d.Manu.Manufacturer,
-                Orders = _context.PurchaseLineItems.AsNoTracking().Where(o => o.PartID == d.PartID).Count()
+                Manufacturer = d.Manu.Manufacturer
+                //Orders = _context.PurchaseLineItems.AsNoTracking().Where(o => o.PartID == d.PartID).Count()
 
             }).ToList();
 
@@ -322,8 +322,8 @@ namespace ServiceLayer
                      {
                          Description = d.ItemDescription,
                          PartID = d.PartID,
-                         Manufacturer = d.Manu.Manufacturer,
-                         Orders = _context.PurchaseLineItems.AsNoTracking().Where(p => p.PartID == d.PartID).Count()
+                         Manufacturer = d.Manu.Manufacturer
+                       
 
                      }).OrderByDescending(p => p.PartID).ToList();
 
@@ -354,8 +354,8 @@ namespace ServiceLayer
                      {
                          Description = d.ItemDescription,
                          PartID = d.PartID,
-                         Manufacturer = d.Manu.Manufacturer,
-                         Orders = _context.PurchaseLineItems.AsNoTracking().Where(p => p.PartID == d.PartID).Count()
+                         Manufacturer = d.Manu.Manufacturer
+                        
 
                      }).OrderByDescending(p => p.PartID).ToList();
             
@@ -377,6 +377,20 @@ namespace ServiceLayer
             }
 
 
+        }
+
+        public List<PartOrdersDto> GetPartOrders(int partID)
+        {
+            var result = _context.PurchaseLineItems.Include(j => j.Job).AsNoTracking().Where(p => p.PurchaseOrderID == partID).Select(d => new PartOrdersDto
+            {
+                PurchaseOrderID = d.PurchaseOrderID.GetValueOrDefault(),
+                JobName = d.Job.jobname,
+                Supplier = d.Supplier.SupplierName,
+                OrderDate = d.PurchaseOrder.OrderDate.GetValueOrDefault()
+              
+
+            }).OrderByDescending(p => p.OrderDate).ToList();
+            return result;
         }
 
       

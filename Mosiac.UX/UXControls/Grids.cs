@@ -63,13 +63,9 @@ namespace Mosiac.UX.UXControls
             col_Manufacturer.DataPropertyName = "Manufacturer";
             col_Manufacturer.Width = 160;
 
-            // Orders Column --
-            DataGridViewTextBoxColumn col_Orders = new DataGridViewTextBoxColumn();
-            col_Orders.HeaderText = "Orders";
-            col_Orders.DataPropertyName = "Orders";
-            col_Orders.Width = 70;
+           
 
-            dg.Columns.AddRange(col_ID, col_Description, col_Manufacturer, col_Orders);
+            dg.Columns.AddRange(col_ID, col_Description, col_Manufacturer);
 
         }
 
