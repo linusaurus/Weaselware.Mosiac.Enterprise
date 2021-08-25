@@ -127,8 +127,8 @@ namespace Mosiac.UX
             this.tsPartEditor.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsPartEditor.Margin = new System.Windows.Forms.Padding(15, 2, 15, 2);
             this.tsPartEditor.Name = "tsPartEditor";
-            this.tsPartEditor.Size = new System.Drawing.Size(66, 51);
-            this.tsPartEditor.Text = "Part Editor";
+            this.tsPartEditor.Size = new System.Drawing.Size(82, 51);
+            this.tsPartEditor.Text = "Part Manager";
             this.tsPartEditor.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.tsPartEditor.ToolTipText = "Parts Manager";
             // 

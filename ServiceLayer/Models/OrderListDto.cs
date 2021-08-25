@@ -20,7 +20,7 @@ namespace ServiceLayer.Models
     {
         public int PurchaseOrderID { get; set; }
         public DateTime OrderDate { get; set; }
-        public string Supplier { get; set; }
+        public string SupplierName { get; set; }
         public string JobName { get; set; }
      
       

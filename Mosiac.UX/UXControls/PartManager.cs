@@ -196,9 +196,10 @@ namespace Mosiac.UX.UXControls
                     if (dg.CurrentRow != null)
                     {
                         int i = (int)dg.CurrentRow.Cells[0].Value;
-                        _partBeingEdited = partsService.Find(i);
-                                                
+                        _partBeingEdited = partsService.Find(i);                                               
                         var resources = _partBeingEdited.Resources.ToList();
+                        var orders = partsService.GetPartOrders(_partBeingEdited.PartID);
+                        dgPartOrders.DataSource = orders;
                        dgResources.DataSource = resources;
                     }                  
                 }
@@ -452,14 +453,36 @@ namespace Mosiac.UX.UXControls
                 }
             }
 
-  
-        
-
         }
 
         private void btnOpenPart_KeyPress(object sender, KeyPressEventArgs e)
         {
             var x = e.KeyChar;
+        }
+
+        private void dgResources_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (_selectedResourceID != default)
+            {
+                string conn = Mosiac.UX.Properties.Settings.Default.MosiacConnection;
+                FileOperations.GetResource(_selectedResourceID, Mosiac.UX.Properties.Settings.Default.MosiacConnection);
+            }
+
+        }
+
+        private void dgPartOrders_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            DataGridView dv = (DataGridView)sender;
+            if (dv.DataSource != null)
+            {
+                if (dv.CurrentRow != null)
+                {
+                    int poID = (int)dv.CurrentRow.Cells[0].Value;
+                    Main main = (Main)Application.OpenForms["Main"];
+                    main.OpenAnOrder(poID);
+                }
+
+            }
         }
 
         private void ckbUseManufacturer_CheckedChanged(object sender, System.EventArgs e)

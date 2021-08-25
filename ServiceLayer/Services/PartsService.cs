@@ -381,15 +381,24 @@ namespace ServiceLayer
 
         public List<PartOrdersDto> GetPartOrders(int partID)
         {
-            var result = _context.PurchaseLineItems.Include(j => j.Job).AsNoTracking().Where(p => p.PurchaseOrderID == partID).Select(d => new PartOrdersDto
-            {
-                PurchaseOrderID = d.PurchaseOrderID.GetValueOrDefault(),
-                JobName = d.Job.jobname,
-                Supplier = d.Supplier.SupplierName,
-                OrderDate = d.PurchaseOrder.OrderDate.GetValueOrDefault()
-              
+           
+            List<PartOrdersDto> result;
+            var dynamicParameters = new DynamicParameters();
+            dynamicParameters.Add("PartID", partID);
 
-            }).OrderByDescending(p => p.OrderDate).ToList();
+            string con = "Data Source=FILE-SERVER;Initial Catalog=Mosaic;Integrated Security=True";
+            string sql = "select p.PurchaseOrderID, s.SupplierName,j.jobname,p.OrderDate FROM PurchaseOrder AS p " +
+                            "INNER JOIN Supplier s ON p.SupplierID = p.SupplierID " +
+                            "INNER JOIN Job j ON p.JobID = j.jobID " +
+                            "where PurchaseOrderID in (select PurchaseOrderID from PurchaseLineItem where PartID = @ID ) " +
+                            "and p.SupplierID = s.SupplierID " +
+                            "and p.JobID = p.JobID";
+
+            using (var connection = new SqlConnection(con))
+            {
+                connection.Open();
+                result = connection.Query<PartOrdersDto>(sql, new { ID = partID }).ToList();
+            }
             return result;
         }
 
