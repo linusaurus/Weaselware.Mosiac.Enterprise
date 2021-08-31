@@ -17,11 +17,12 @@ namespace Mosiac.UX.Forms
     public partial class PartEditForm : Form
     {
         
-        private BindingSource bsPart = new BindingSource();
+        public  BindingSource bsPart = new BindingSource();
         private IEnumerable<ManuListDTO> manus;
         private IEnumerable<ManuListDTO> partManus;
         private PartsService partsService;
         private List<UnitOfMeasure> units;
+        
 
         public PartEditForm(BindingSource source,MosaicContext context)
         {
@@ -56,7 +57,7 @@ namespace Mosiac.UX.Forms
 
         private void BsPart_ListChanged(object sender, ListChangedEventArgs e)
         {
-            Grids.CheckForDirtyState(e, btnSave);
+            Grids.CheckForDirtyState(e, this.btnSave);
         }
 
         private void PartEditForm_Load(object sender, EventArgs e)
@@ -122,6 +123,16 @@ namespace Mosiac.UX.Forms
                 txtPartName.DataBindings.Add("Text", bsPart, "ItemName", true, DataSourceUpdateMode.OnPropertyChanged);
                 cboPartManu.DataBindings.Add("SelectedValue", bsPart, "ManuID", true, DataSourceUpdateMode.OnPropertyChanged);
             }
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnAddManu_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

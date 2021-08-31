@@ -378,7 +378,11 @@ namespace ServiceLayer
 
 
         }
-
+        /// <summary>
+        /// dapper query result orders with this partID in the items
+        /// </summary>
+        /// <param name="partID"></param>
+        /// <returns></returns>
         public List<PartOrdersDto> GetPartOrders(int partID)
         {
            

@@ -226,18 +226,18 @@ namespace Mosiac.UX.UXControls
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnSave_Click(object sender, System.EventArgs e)
-        {
+        //private void btnSave_Click(object sender, System.EventArgs e)
+        //{
            
-            _ctx.SaveChanges();
-            // ---  partsService.CreateOrUpdatePart(_selectedPart,"Richard");
-            Grids.ToogleButtonStyle(false, btnSave);
-            dgPartsSearch.Enabled = true;
-            _partBeingEdited = partsService.Find(_partBeingEdited.PartID);
-            bsPart.DataSource = _partBeingEdited;
-            BindPart(bsPart);
+        //    _ctx.SaveChanges();
+        //    // ---  partsService.CreateOrUpdatePart(_selectedPart,"Richard");
+        //    Grids.ToogleButtonStyle(false, btnSave);
+        //    dgPartsSearch.Enabled = true;
+        //    _partBeingEdited = partsService.Find(_partBeingEdited.PartID);
+        //    bsPart.DataSource = _partBeingEdited;
+        //    BindPart(bsPart);
           
-        }
+        //}
 
         private void gpbResource_Enter(object sender, System.EventArgs e)
         {
@@ -311,7 +311,11 @@ namespace Mosiac.UX.UXControls
                 }
             }
         }
-
+        /// <summary>
+        /// open part by Part ID
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button1_Click(object sender, EventArgs e)
         {
             int partIDlookUp = int.Parse(txtPartIDLookup.Text);
@@ -387,7 +391,7 @@ namespace Mosiac.UX.UXControls
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnCancel_Click(object sender, EventArgs e)
+        private void newPart()
         {
 
             _partBeingEdited = partsService.New();
@@ -395,21 +399,29 @@ namespace Mosiac.UX.UXControls
 
             dgResources.DataSource = null;
 
-            txtResourceCreateDate.DataBindings.Clear();
-            txtResourceCreator.DataBindings.Clear();
-            txtSourceFile.DataBindings.Clear();
+            //txtResourceCreateDate.DataBindings.Clear();
+            //txtResourceCreator.DataBindings.Clear();
+            //txtSourceFile.DataBindings.Clear();
 
-            txtResourceCreateDate.Text = string.Empty;
-            txtResourceCreator.Text = string.Empty;
-            txtSourceFile.Text = string.Empty;
+            //txtResourceCreateDate.Text = string.Empty;
+            //txtResourceCreator.Text = string.Empty;
+            //txtSourceFile.Text = string.Empty;
 
-            bsResource.DataSource = _partBeingEdited.Resources.ToList();
-             dgResources.DataSource = _partBeingEdited.Resources.ToList();
-             txtPartDescription.PlaceholderText = "Enter a new part Description";
-             bsPart.DataSource = _partBeingEdited;
-            _ctx.Entry(_partBeingEdited).State = EntityState.Added;
-            BindPart(bsPart);
-            dgPartsSearch.Enabled = false;
+            PartEditForm frm = new PartEditForm(bsPart, _ctx);
+            if(frm.ShowDialog() == DialogResult.OK)
+            {
+                _partBeingEdited = (Part)frm.bsPart.DataSource;
+                _ctx.Entry(_partBeingEdited).State = EntityState.Added;
+                _ctx.SaveChanges();
+            }
+
+           // bsResource.DataSource = _partBeingEdited.Resources.ToList();
+           //  dgResources.DataSource = _partBeingEdited.Resources.ToList();
+            // txtPartDescription.PlaceholderText = "Enter a new part Description";
+            // bsPart.DataSource = _partBeingEdited;
+            //_ctx.Entry(_partBeingEdited).State = EntityState.Added;
+            //BindPart(bsPart);
+           // dgPartsSearch.Enabled = false;
         }
 
         private void lbResults_Click(object sender, EventArgs e)
@@ -428,7 +440,11 @@ namespace Mosiac.UX.UXControls
 
             dgPartsSearch.DataSource = dv;
         }
-
+        /// <summary>
+        /// open the selected part in list --
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void dgPartsSearch_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
 
@@ -483,6 +499,15 @@ namespace Mosiac.UX.UXControls
                 }
 
             }
+        }
+        /// <summary>
+        /// create a new part
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnNewPart_Click(object sender, EventArgs e)
+        {
+            newPart();
         }
 
         private void ckbUseManufacturer_CheckedChanged(object sender, System.EventArgs e)

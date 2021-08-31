@@ -49,8 +49,8 @@ namespace Mosiac.UX.UXControls {
             this.orderHeaderVerticalControl1.OnSaveHandler += OrderHeaderVerticalControl1_OnSaveHandler;
             this.orderHeaderVerticalControl1.OnPrintHandler += OrderHeaderVerticalControl1_OnPrintHandler;
             mapper = new PurchaseOrderMapper();
-          
-           // LoadOrderPanelControl(partFinderControl);   
+
+           
         }
 
         public OrderEditSplitPanelControl(MosaicContext context, BindingSource BSorder)
@@ -60,7 +60,7 @@ namespace Mosiac.UX.UXControls {
             orderDTO =(OrderDetailDto) BSorder.DataSource;
             this.orderHeaderVerticalControl1.OnSaveHandler += OrderHeaderVerticalControl1_OnSaveHandler;
             this.orderHeaderVerticalControl1.OnPrintHandler += OrderHeaderVerticalControl1_OnPrintHandler;
-            
+           
         }
         /// <summary>
         /// TODO
@@ -75,7 +75,7 @@ namespace Mosiac.UX.UXControls {
             LoadOrder();
             isDirty = false;
             ToogleButtonStyle(isDirty);
-  
+          
         }
 
         /// <summary>
@@ -165,7 +165,7 @@ namespace Mosiac.UX.UXControls {
                 BindLineItemsToGrid(bsLineitems);
                 bsOrderFees.DataSource = orderDTO.OrderFees;
                 bsAttachments.DataSource = orderDTO.Attachments;
-               
+                
             }
 
             // Event wiring -------------------------------------------------------------------  
@@ -186,7 +186,7 @@ namespace Mosiac.UX.UXControls {
             // start with the PartFinder
            //partFinderControl.LoadDatasource(ctx, orderDTO.SupplierID);
            orderHeaderVerticalControl1.LoadDataSource(bsOrder);
-
+            LoadPartFinder();
         }
       
         public void SaveChanges()
@@ -389,14 +389,27 @@ namespace Mosiac.UX.UXControls {
             LoadOrderPanelControl(attachmentControl);
         }
 
-        private void tsbLoadPartFinder_Click(object sender, EventArgs e)
+        //TODO   fix this
+        private void LoadPartFinder()
         {
             partFinderControl = new PartFinderControl();
             partFinderControl.LoadDatasource(ctx, orderDTO.SupplierID);
 
             partFinderControl.OnJobPartAdded += PartFinderControl_OnJobPartAdded1;
             partFinderControl.OnPartAdded += PartFinderControl_OnPartAdded1;
-            LoadOrderPanelControl(partFinderControl);         
+            LoadOrderPanelControl(partFinderControl);
+        }
+
+        private void tsbLoadPartFinder_Click(object sender, EventArgs e)
+        {
+
+            LoadPartFinder();
+            //partFinderControl = new PartFinderControl();
+            //partFinderControl.LoadDatasource(ctx, orderDTO.SupplierID);
+
+            //partFinderControl.OnJobPartAdded += PartFinderControl_OnJobPartAdded1;
+            //partFinderControl.OnPartAdded += PartFinderControl_OnPartAdded1;
+            //LoadOrderPanelControl(partFinderControl);         
         }
 
         private void tsbToogleOrderFee_Click(object sender, EventArgs e)

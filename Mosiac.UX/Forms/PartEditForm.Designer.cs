@@ -32,7 +32,7 @@ namespace Mosiac.UX.Forms
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnAddManu = new System.Windows.Forms.Button();
             this.cboPartManu = new System.Windows.Forms.ComboBox();
-            this.btnNew = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.btnApply = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.cbxCarbTrack = new System.Windows.Forms.CheckBox();
@@ -64,7 +64,7 @@ namespace Mosiac.UX.Forms
             // 
             this.groupBox1.Controls.Add(this.btnAddManu);
             this.groupBox1.Controls.Add(this.cboPartManu);
-            this.groupBox1.Controls.Add(this.btnNew);
+            this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Controls.Add(this.btnApply);
             this.groupBox1.Controls.Add(this.btnSave);
             this.groupBox1.Controls.Add(this.cbxCarbTrack);
@@ -106,6 +106,7 @@ namespace Mosiac.UX.Forms
             this.btnAddManu.Size = new System.Drawing.Size(25, 23);
             this.btnAddManu.TabIndex = 12;
             this.btnAddManu.UseVisualStyleBackColor = true;
+            this.btnAddManu.Click += new System.EventHandler(this.btnAddManu_Click);
             // 
             // cboPartManu
             // 
@@ -115,15 +116,16 @@ namespace Mosiac.UX.Forms
             this.cboPartManu.Size = new System.Drawing.Size(168, 23);
             this.cboPartManu.TabIndex = 11;
             // 
-            // btnNew
+            // button1
             // 
-            this.btnNew.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnNew.Location = new System.Drawing.Point(319, 212);
-            this.btnNew.Name = "btnNew";
-            this.btnNew.Size = new System.Drawing.Size(68, 28);
-            this.btnNew.TabIndex = 10;
-            this.btnNew.Text = "New";
-            this.btnNew.UseVisualStyleBackColor = true;
+            this.button1.Enabled = false;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Location = new System.Drawing.Point(319, 212);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(68, 28);
+            this.button1.TabIndex = 10;
+            this.button1.Text = "Cancel";
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // btnApply
             // 
@@ -145,6 +147,7 @@ namespace Mosiac.UX.Forms
             this.btnSave.TabIndex = 10;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // cbxCarbTrack
             // 
@@ -357,10 +360,13 @@ namespace Mosiac.UX.Forms
             // 
             // PartEditForm
             // 
+            this.AcceptButton = this.btnSave;
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.button1;
             this.ClientSize = new System.Drawing.Size(600, 300);
             this.Controls.Add(this.groupBox1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "PartEditForm";
             this.Text = "PartEditForm";
             this.Load += new System.EventHandler(this.PartEditForm_Load);
@@ -375,7 +381,6 @@ namespace Mosiac.UX.Forms
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button btnAddManu;
         private System.Windows.Forms.ComboBox cboPartManu;
-        private System.Windows.Forms.Button btnNew;
         private System.Windows.Forms.Button btnApply;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.CheckBox cbxCarbTrack;
@@ -400,5 +405,6 @@ namespace Mosiac.UX.Forms
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox txtPartID;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button button1;
     }
 }

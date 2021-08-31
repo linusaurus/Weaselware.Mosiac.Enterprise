@@ -55,6 +55,7 @@ namespace Mosiac.UX.UXControls
             this.lbResourceID = new System.Windows.Forms.Label();
             this.dgPartOrders = new System.Windows.Forms.DataGridView();
             this.gbPartOrders = new System.Windows.Forms.GroupBox();
+            this.btnNewPart = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgPartsSearch)).BeginInit();
             this.panel1.SuspendLayout();
             this.gpbResource.SuspendLayout();
@@ -81,11 +82,11 @@ namespace Mosiac.UX.UXControls
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgPartsSearch.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgPartsSearch.Location = new System.Drawing.Point(22, 49);
+            this.dgPartsSearch.Location = new System.Drawing.Point(22, 90);
             this.dgPartsSearch.Name = "dgPartsSearch";
             this.dgPartsSearch.ReadOnly = true;
             this.dgPartsSearch.RowTemplate.Height = 25;
-            this.dgPartsSearch.Size = new System.Drawing.Size(1096, 385);
+            this.dgPartsSearch.Size = new System.Drawing.Size(1101, 384);
             this.dgPartsSearch.TabIndex = 9;
             this.dgPartsSearch.VirtualMode = true;
             this.dgPartsSearch.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgPartsSearch_CellMouseDoubleClick);
@@ -104,7 +105,7 @@ namespace Mosiac.UX.UXControls
             this.panel1.Controls.Add(this.txtSearch);
             this.panel1.Location = new System.Drawing.Point(22, 8);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1096, 35);
+            this.panel1.Size = new System.Drawing.Size(1101, 45);
             this.panel1.TabIndex = 11;
             // 
             // btnOpenPart
@@ -178,9 +179,9 @@ namespace Mosiac.UX.UXControls
             this.gpbResource.Controls.Add(this.label1);
             this.gpbResource.Controls.Add(this.label3);
             this.gpbResource.Controls.Add(this.lbResourceID);
-            this.gpbResource.Location = new System.Drawing.Point(602, 453);
+            this.gpbResource.Location = new System.Drawing.Point(607, 480);
             this.gpbResource.Name = "gpbResource";
-            this.gpbResource.Size = new System.Drawing.Size(516, 315);
+            this.gpbResource.Size = new System.Drawing.Size(516, 290);
             this.gpbResource.TabIndex = 12;
             this.gpbResource.TabStop = false;
             this.gpbResource.Text = "Part Resources";
@@ -190,7 +191,7 @@ namespace Mosiac.UX.UXControls
             // 
             this.txtResourceCreator.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtResourceCreator.Location = new System.Drawing.Point(386, 253);
+            this.txtResourceCreator.Location = new System.Drawing.Point(386, 229);
             this.txtResourceCreator.Name = "txtResourceCreator";
             this.txtResourceCreator.Size = new System.Drawing.Size(111, 23);
             this.txtResourceCreator.TabIndex = 13;
@@ -200,7 +201,7 @@ namespace Mosiac.UX.UXControls
             // 
             this.txtSourceFile.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtSourceFile.Location = new System.Drawing.Point(165, 281);
+            this.txtSourceFile.Location = new System.Drawing.Point(165, 257);
             this.txtSourceFile.Name = "txtSourceFile";
             this.txtSourceFile.ReadOnly = true;
             this.txtSourceFile.Size = new System.Drawing.Size(332, 23);
@@ -209,14 +210,14 @@ namespace Mosiac.UX.UXControls
             // 
             // txtModDate
             // 
-            this.txtModDate.Location = new System.Drawing.Point(226, 252);
+            this.txtModDate.Location = new System.Drawing.Point(226, 228);
             this.txtModDate.Name = "txtModDate";
             this.txtModDate.Size = new System.Drawing.Size(80, 23);
             this.txtModDate.TabIndex = 13;
             // 
             // txtResourceCreateDate
             // 
-            this.txtResourceCreateDate.Location = new System.Drawing.Point(77, 252);
+            this.txtResourceCreateDate.Location = new System.Drawing.Point(77, 228);
             this.txtResourceCreateDate.Name = "txtResourceCreateDate";
             this.txtResourceCreateDate.Size = new System.Drawing.Size(80, 23);
             this.txtResourceCreateDate.TabIndex = 13;
@@ -291,7 +292,7 @@ namespace Mosiac.UX.UXControls
             this.dgResources.Location = new System.Drawing.Point(14, 58);
             this.dgResources.Name = "dgResources";
             this.dgResources.RowTemplate.Height = 25;
-            this.dgResources.Size = new System.Drawing.Size(483, 177);
+            this.dgResources.Size = new System.Drawing.Size(483, 162);
             this.dgResources.TabIndex = 8;
             this.dgResources.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgResources_CellMouseDoubleClick);
             this.dgResources.SelectionChanged += new System.EventHandler(this.dgResources_SelectionChanged);
@@ -300,7 +301,7 @@ namespace Mosiac.UX.UXControls
             // 
             this.label2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label2.Location = new System.Drawing.Point(14, 281);
+            this.label2.Location = new System.Drawing.Point(14, 257);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(143, 23);
             this.label2.TabIndex = 6;
@@ -311,7 +312,7 @@ namespace Mosiac.UX.UXControls
             // 
             this.label1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label1.Location = new System.Drawing.Point(309, 253);
+            this.label1.Location = new System.Drawing.Point(309, 229);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(71, 23);
             this.label1.TabIndex = 6;
@@ -322,7 +323,7 @@ namespace Mosiac.UX.UXControls
             // 
             this.label3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label3.Location = new System.Drawing.Point(163, 252);
+            this.label3.Location = new System.Drawing.Point(163, 228);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(57, 23);
             this.label3.TabIndex = 6;
@@ -333,7 +334,7 @@ namespace Mosiac.UX.UXControls
             // 
             this.lbResourceID.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lbResourceID.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lbResourceID.Location = new System.Drawing.Point(14, 252);
+            this.lbResourceID.Location = new System.Drawing.Point(14, 228);
             this.lbResourceID.Name = "lbResourceID";
             this.lbResourceID.Size = new System.Drawing.Size(57, 23);
             this.lbResourceID.TabIndex = 6;
@@ -349,7 +350,7 @@ namespace Mosiac.UX.UXControls
             this.dgPartOrders.Location = new System.Drawing.Point(18, 58);
             this.dgPartOrders.Name = "dgPartOrders";
             this.dgPartOrders.RowTemplate.Height = 25;
-            this.dgPartOrders.Size = new System.Drawing.Size(532, 246);
+            this.dgPartOrders.Size = new System.Drawing.Size(537, 221);
             this.dgPartOrders.TabIndex = 13;
             this.dgPartOrders.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgPartOrders_CellMouseDoubleClick);
             // 
@@ -358,24 +359,35 @@ namespace Mosiac.UX.UXControls
             this.gbPartOrders.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gbPartOrders.Controls.Add(this.dgPartOrders);
-            this.gbPartOrders.Location = new System.Drawing.Point(22, 453);
+            this.gbPartOrders.Location = new System.Drawing.Point(22, 480);
             this.gbPartOrders.Name = "gbPartOrders";
-            this.gbPartOrders.Size = new System.Drawing.Size(567, 319);
+            this.gbPartOrders.Size = new System.Drawing.Size(572, 294);
             this.gbPartOrders.TabIndex = 14;
             this.gbPartOrders.TabStop = false;
             this.gbPartOrders.Text = "Part Orders";
+            // 
+            // btnNewPart
+            // 
+            this.btnNewPart.Location = new System.Drawing.Point(22, 59);
+            this.btnNewPart.Name = "btnNewPart";
+            this.btnNewPart.Size = new System.Drawing.Size(122, 25);
+            this.btnNewPart.TabIndex = 15;
+            this.btnNewPart.Text = "New Part";
+            this.btnNewPart.UseVisualStyleBackColor = true;
+            this.btnNewPart.Click += new System.EventHandler(this.btnNewPart_Click);
             // 
             // PartManager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnNewPart);
             this.Controls.Add(this.gbPartOrders);
             this.Controls.Add(this.gpbResource);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.dgPartsSearch);
             this.MinimumSize = new System.Drawing.Size(1095, 795);
             this.Name = "PartManager";
-            this.Size = new System.Drawing.Size(1166, 795);
+            this.Size = new System.Drawing.Size(1171, 797);
             ((System.ComponentModel.ISupportInitialize)(this.dgPartsSearch)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -443,5 +455,6 @@ namespace Mosiac.UX.UXControls
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.DataGridView dgPartOrders;
         private System.Windows.Forms.GroupBox gbPartOrders;
+        private System.Windows.Forms.Button btnNewPart;
     }
 }
