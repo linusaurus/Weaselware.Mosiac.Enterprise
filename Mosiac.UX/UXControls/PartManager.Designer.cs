@@ -56,6 +56,7 @@ namespace Mosiac.UX.UXControls
             this.dgPartOrders = new System.Windows.Forms.DataGridView();
             this.gbPartOrders = new System.Windows.Forms.GroupBox();
             this.btnNewPart = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgPartsSearch)).BeginInit();
             this.panel1.SuspendLayout();
             this.gpbResource.SuspendLayout();
@@ -82,11 +83,11 @@ namespace Mosiac.UX.UXControls
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgPartsSearch.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgPartsSearch.Location = new System.Drawing.Point(22, 90);
+            this.dgPartsSearch.Location = new System.Drawing.Point(22, 106);
             this.dgPartsSearch.Name = "dgPartsSearch";
             this.dgPartsSearch.ReadOnly = true;
             this.dgPartsSearch.RowTemplate.Height = 25;
-            this.dgPartsSearch.Size = new System.Drawing.Size(1101, 384);
+            this.dgPartsSearch.Size = new System.Drawing.Size(1101, 368);
             this.dgPartsSearch.TabIndex = 9;
             this.dgPartsSearch.VirtualMode = true;
             this.dgPartsSearch.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgPartsSearch_CellMouseDoubleClick);
@@ -368,18 +369,29 @@ namespace Mosiac.UX.UXControls
             // 
             // btnNewPart
             // 
-            this.btnNewPart.Location = new System.Drawing.Point(22, 59);
+            this.btnNewPart.Location = new System.Drawing.Point(311, 62);
             this.btnNewPart.Name = "btnNewPart";
-            this.btnNewPart.Size = new System.Drawing.Size(122, 25);
+            this.btnNewPart.Size = new System.Drawing.Size(122, 32);
             this.btnNewPart.TabIndex = 15;
             this.btnNewPart.Text = "New Part";
             this.btnNewPart.UseVisualStyleBackColor = true;
             this.btnNewPart.Click += new System.EventHandler(this.btnNewPart_Click);
             // 
+            // btnSave
+            // 
+            this.btnSave.Location = new System.Drawing.Point(22, 62);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(122, 32);
+            this.btnSave.TabIndex = 15;
+            this.btnSave.Text = "Save Changes";
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
             // PartManager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnNewPart);
             this.Controls.Add(this.gbPartOrders);
             this.Controls.Add(this.gpbResource);
@@ -403,20 +415,7 @@ namespace Mosiac.UX.UXControls
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button btnNew;
-        private System.Windows.Forms.Button btnApply;
-        private System.Windows.Forms.Button btnSave;
-        private System.Windows.Forms.CheckBox cbxCarbTrack;
-        private System.Windows.Forms.CheckBox cbxObsolete;
-        private System.Windows.Forms.ComboBox cbxUnit;
-        private System.Windows.Forms.TextBox txtLocation;
-        private System.Windows.Forms.TextBox txtWaste;
-        private System.Windows.Forms.TextBox txtMarkUp;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.TextBox txtWeight;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.TextBox txtStockLevel;
-        private System.Windows.Forms.TextBox txtUnitPrice;
+        private System.Windows.Forms.Button btnNew;   
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label13;
@@ -456,5 +455,6 @@ namespace Mosiac.UX.UXControls
         private System.Windows.Forms.DataGridView dgPartOrders;
         private System.Windows.Forms.GroupBox gbPartOrders;
         private System.Windows.Forms.Button btnNewPart;
+        private System.Windows.Forms.Button btnSave;
     }
 }

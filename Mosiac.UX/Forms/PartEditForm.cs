@@ -127,12 +127,17 @@ namespace Mosiac.UX.Forms
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-
+            Close();
         }
 
         private void btnAddManu_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

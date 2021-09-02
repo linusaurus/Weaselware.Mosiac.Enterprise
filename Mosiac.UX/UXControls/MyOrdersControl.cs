@@ -31,6 +31,30 @@ namespace Mosiac.UX.UXControls
             dgMyOrdersGrid.CellFormatting += DgMyOrdersGrid_CellFormatting;
         }
 
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if ((keyData == Keys.Enter) || (keyData == Keys.Return) )
+               
+            {
+                int ordernumber;
+                if (int.TryParse(txtOrderNumber.Text, out ordernumber))
+                {
+                    if (_ordersService.GetOrderByID(ordernumber)!= null)
+                    {
+                        Main main = (Main)Application.OpenForms["Main"];
+                        main.OpenAnOrder(ordernumber);
+                    }
+                   
+                }
+                return true;
+            }
+            else
+            {
+                return base.ProcessCmdKey(ref msg, keyData);
+            }
+        }
+
         private void DgMyOrdersGrid_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             // Compare the column to the column you want to format
@@ -112,9 +136,12 @@ namespace Mosiac.UX.UXControls
            int ordernumber;
            if (int.TryParse(txtOrderNumber.Text, out ordernumber))
            {
-                Main main = (Main)Application.OpenForms["Main"];
-                main.OpenAnOrder(ordernumber);
-           }
+                if (_ordersService.GetOrderByID(ordernumber) != null)
+                {
+                    Main main = (Main)Application.OpenForms["Main"];
+                    main.OpenAnOrder(ordernumber);
+                }
+            }
             
 
         }

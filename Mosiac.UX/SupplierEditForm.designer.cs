@@ -75,9 +75,9 @@
             this.txtSupplierName.Location = new System.Drawing.Point(14, 14);
             this.txtSupplierName.Margin = new System.Windows.Forms.Padding(2);
             this.txtSupplierName.Name = "txtSupplierName";
+            this.txtSupplierName.PlaceholderText = "Supplier Name";
             this.txtSupplierName.Size = new System.Drawing.Size(367, 23);
             this.txtSupplierName.TabIndex = 2;
-            this.txtSupplierName.Text = "SupplierName";
             // 
             // txtSupplierID
             // 
@@ -94,18 +94,18 @@
             this.txtAddress.Location = new System.Drawing.Point(14, 42);
             this.txtAddress.Margin = new System.Windows.Forms.Padding(2);
             this.txtAddress.Name = "txtAddress";
+            this.txtAddress.PlaceholderText = "Address";
             this.txtAddress.Size = new System.Drawing.Size(207, 23);
             this.txtAddress.TabIndex = 2;
-            this.txtAddress.Text = "Address";
             // 
             // txtState
             // 
             this.txtState.Location = new System.Drawing.Point(344, 42);
             this.txtState.Margin = new System.Windows.Forms.Padding(2);
             this.txtState.Name = "txtState";
+            this.txtState.PlaceholderText = "State";
             this.txtState.Size = new System.Drawing.Size(37, 23);
             this.txtState.TabIndex = 2;
-            this.txtState.Text = "St";
             // 
             // txtAccountNumber
             // 
@@ -121,18 +121,18 @@
             this.txtCity.Location = new System.Drawing.Point(226, 42);
             this.txtCity.Margin = new System.Windows.Forms.Padding(2);
             this.txtCity.Name = "txtCity";
+            this.txtCity.PlaceholderText = "City";
             this.txtCity.Size = new System.Drawing.Size(112, 23);
             this.txtCity.TabIndex = 2;
-            this.txtCity.Text = "City";
             // 
             // txtZip
             // 
             this.txtZip.Location = new System.Drawing.Point(386, 42);
             this.txtZip.Margin = new System.Windows.Forms.Padding(2);
             this.txtZip.Name = "txtZip";
+            this.txtZip.PlaceholderText = "Zip";
             this.txtZip.Size = new System.Drawing.Size(68, 23);
             this.txtZip.TabIndex = 2;
-            this.txtZip.Text = "Zip";
             // 
             // mtxtPhone
             // 
@@ -189,18 +189,18 @@
             this.txtAddress2.Location = new System.Drawing.Point(14, 68);
             this.txtAddress2.Margin = new System.Windows.Forms.Padding(2);
             this.txtAddress2.Name = "txtAddress2";
+            this.txtAddress2.PlaceholderText = "Address 2";
             this.txtAddress2.Size = new System.Drawing.Size(207, 23);
             this.txtAddress2.TabIndex = 2;
-            this.txtAddress2.Text = "Address2";
             // 
             // txtTaxRate
             // 
             this.txtTaxRate.Location = new System.Drawing.Point(358, 69);
             this.txtTaxRate.Margin = new System.Windows.Forms.Padding(2);
             this.txtTaxRate.Name = "txtTaxRate";
+            this.txtTaxRate.PlaceholderText = "Tax Rate";
             this.txtTaxRate.Size = new System.Drawing.Size(95, 23);
             this.txtTaxRate.TabIndex = 2;
-            this.txtTaxRate.Text = "Tax Rate";
             // 
             // label3
             // 

@@ -389,7 +389,7 @@ namespace Mosiac.UX.UXControls {
             LoadOrderPanelControl(attachmentControl);
         }
 
-        //TODO   fix this
+        
         private void LoadPartFinder()
         {
             partFinderControl = new PartFinderControl();
@@ -402,14 +402,11 @@ namespace Mosiac.UX.UXControls {
 
         private void tsbLoadPartFinder_Click(object sender, EventArgs e)
         {
-
-            LoadPartFinder();
-            //partFinderControl = new PartFinderControl();
-            //partFinderControl.LoadDatasource(ctx, orderDTO.SupplierID);
-
-            //partFinderControl.OnJobPartAdded += PartFinderControl_OnJobPartAdded1;
-            //partFinderControl.OnPartAdded += PartFinderControl_OnPartAdded1;
-            //LoadOrderPanelControl(partFinderControl);         
+            if(!scLineItems.Panel2.Controls.Contains(partFinderControl))
+            {
+                LoadPartFinder();
+            }
+           
         }
 
         private void tsbToogleOrderFee_Click(object sender, EventArgs e)

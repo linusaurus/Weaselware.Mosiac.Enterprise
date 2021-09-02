@@ -118,7 +118,7 @@ namespace Mosiac.UX.Forms
             // 
             // button1
             // 
-            this.button1.Enabled = false;
+            this.button1.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Location = new System.Drawing.Point(319, 212);
             this.button1.Name = "button1";
@@ -126,10 +126,10 @@ namespace Mosiac.UX.Forms
             this.button1.TabIndex = 10;
             this.button1.Text = "Cancel";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // btnApply
             // 
-            this.btnApply.Enabled = false;
             this.btnApply.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnApply.Location = new System.Drawing.Point(393, 212);
             this.btnApply.Name = "btnApply";
@@ -140,6 +140,7 @@ namespace Mosiac.UX.Forms
             // 
             // btnSave
             // 
+            this.btnSave.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.Location = new System.Drawing.Point(467, 212);
             this.btnSave.Name = "btnSave";

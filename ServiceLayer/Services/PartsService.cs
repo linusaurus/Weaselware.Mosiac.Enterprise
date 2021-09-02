@@ -342,9 +342,24 @@ namespace ServiceLayer
 
             return result;
         }
-
-        public List<PartSearchDto> SearchPart(string search, int manufactererID, bool manuFilter)
+        public List<PartSearchDto> SearchPart(int partID)
         {
+
+
+            var result = _context.Parts.AsNoTracking().Where(p => p.PartID.Equals(partID)).Select(d => new PartSearchDto
+                 {
+                     Description = d.ItemDescription,
+                     PartID = d.PartID,
+                     Manufacturer = d.Manu.Manufacturer
+
+
+                 }).OrderByDescending(p => p.PartID).ToList();
+
+            return result;
+        }
+
+            public List<PartSearchDto> SearchPart(string search, int manufactererID, bool manuFilter)
+            {
 
             // if (manufactererID != 0 || manufactererID == 1)
             if (manuFilter)

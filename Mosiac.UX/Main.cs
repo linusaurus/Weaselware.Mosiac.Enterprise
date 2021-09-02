@@ -152,22 +152,7 @@ namespace Mosiac.UX
             }
         }
 
-        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
-        {
-            if (keyData == (Keys.F7))
-            {
-                this.tsScanBarCode.PerformClick();
-            }
-            if (keyData == (Keys.F8))
-            {
-                this.tsbJobItems.PerformClick();
-            }
-            if (keyData == (Keys.Escape))
-            {
-                CloseActiveTab();
-            }
-            return base.ProcessCmdKey(ref msg, keyData);
-        }
+ 
 
         private void mainToolStrip_MouseEnter(object sender, EventArgs e)
         {

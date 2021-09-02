@@ -4,8 +4,9 @@ using System.Linq;
 using DataLayer.Data;
 using DataLayer.Entity;
 using ServiceLayer;
+using System.Diagnostics;
 using System.Windows.Forms;
-
+using System.Drawing;
 
 namespace Mosiac.UX
 {
@@ -22,6 +23,19 @@ namespace Mosiac.UX
         {
             InitializeComponent();
 
+        }
+
+        private static void Shake(Form form)
+        {
+            var original = form.Location;
+            var rnd = new Random(1337);
+            const int shake_amplitude = 10;
+            for (int i = 0; i < 10; i++)
+            {
+                form.Location = new Point(original.X + rnd.Next(-shake_amplitude, shake_amplitude), original.Y + rnd.Next(-shake_amplitude, shake_amplitude));
+                System.Threading.Thread.Sleep(20);
+            }
+            form.Location = original;
         }
 
         public int EmployeeID
@@ -59,7 +73,7 @@ namespace Mosiac.UX
                 {
                     isValidated = false;
                     txtPassWord.Clear();
-                    
+                    Shake(this);
                     
                 }
                 }
@@ -95,9 +109,9 @@ namespace Mosiac.UX
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;
-           
-            
-            Application.Exit();
+           // Shake(this);
+            System.Diagnostics.Process.GetCurrentProcess().Kill();
+          
         }
     }
 }

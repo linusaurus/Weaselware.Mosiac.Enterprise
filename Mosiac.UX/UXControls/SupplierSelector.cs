@@ -61,5 +61,10 @@ namespace Mosiac.UX.UXControls
             }
          
         }
+
+        private void btnNewSupplier_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

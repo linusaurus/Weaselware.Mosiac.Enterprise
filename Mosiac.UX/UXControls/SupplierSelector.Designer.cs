@@ -31,8 +31,8 @@ namespace Mosiac.UX.UXControls
         {
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.bntStats = new System.Windows.Forms.Button();
+            this.btnNewSupplierOrder = new System.Windows.Forms.Button();
             this.btnNewSupplier = new System.Windows.Forms.Button();
             this.lbSuppliersList = new System.Windows.Forms.ListBox();
             this.panel1.SuspendLayout();
@@ -51,8 +51,8 @@ namespace Mosiac.UX.UXControls
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.button3);
-            this.panel1.Controls.Add(this.button2);
+            this.panel1.Controls.Add(this.bntStats);
+            this.panel1.Controls.Add(this.btnNewSupplierOrder);
             this.panel1.Controls.Add(this.btnNewSupplier);
             this.panel1.Location = new System.Drawing.Point(3, 32);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 0, 3, 3);
@@ -60,35 +60,36 @@ namespace Mosiac.UX.UXControls
             this.panel1.Size = new System.Drawing.Size(284, 47);
             this.panel1.TabIndex = 1;
             // 
-            // button3
+            // bntStats
             // 
-            this.button3.Location = new System.Drawing.Point(194, 15);
-            this.button3.Margin = new System.Windows.Forms.Padding(15);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 0;
-            this.button3.Text = "button1";
-            this.button3.UseVisualStyleBackColor = true;
+            this.bntStats.Location = new System.Drawing.Point(171, 15);
+            this.bntStats.Margin = new System.Windows.Forms.Padding(15);
+            this.bntStats.Name = "bntStats";
+            this.bntStats.Size = new System.Drawing.Size(98, 23);
+            this.bntStats.TabIndex = 0;
+            this.bntStats.Text = "Stats";
+            this.bntStats.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // btnNewSupplierOrder
             // 
-            this.button2.Location = new System.Drawing.Point(107, 15);
-            this.button2.Margin = new System.Windows.Forms.Padding(15);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 0;
-            this.button2.Text = "button1";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnNewSupplierOrder.Location = new System.Drawing.Point(89, 15);
+            this.btnNewSupplierOrder.Margin = new System.Windows.Forms.Padding(15);
+            this.btnNewSupplierOrder.Name = "btnNewSupplierOrder";
+            this.btnNewSupplierOrder.Size = new System.Drawing.Size(75, 23);
+            this.btnNewSupplierOrder.TabIndex = 0;
+            this.btnNewSupplierOrder.Text = "New Order";
+            this.btnNewSupplierOrder.UseVisualStyleBackColor = true;
             // 
             // btnNewSupplier
             // 
-            this.btnNewSupplier.Location = new System.Drawing.Point(15, 15);
+            this.btnNewSupplier.Location = new System.Drawing.Point(2, 15);
             this.btnNewSupplier.Margin = new System.Windows.Forms.Padding(15);
             this.btnNewSupplier.Name = "btnNewSupplier";
             this.btnNewSupplier.Size = new System.Drawing.Size(75, 23);
             this.btnNewSupplier.TabIndex = 0;
             this.btnNewSupplier.Text = "New";
             this.btnNewSupplier.UseVisualStyleBackColor = true;
+            this.btnNewSupplier.Click += new System.EventHandler(this.btnNewSupplier_Click);
             // 
             // lbSuppliersList
             // 
@@ -96,7 +97,7 @@ namespace Mosiac.UX.UXControls
             this.lbSuppliersList.ItemHeight = 15;
             this.lbSuppliersList.Location = new System.Drawing.Point(3, 90);
             this.lbSuppliersList.Name = "lbSuppliersList";
-            this.lbSuppliersList.Size = new System.Drawing.Size(284, 259);
+            this.lbSuppliersList.Size = new System.Drawing.Size(284, 409);
             this.lbSuppliersList.TabIndex = 2;
             this.lbSuppliersList.SelectedIndexChanged += new System.EventHandler(this.lbSuppliersList_SelectedIndexChanged);
             // 
@@ -121,8 +122,8 @@ namespace Mosiac.UX.UXControls
 
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button bntStats;
+        private System.Windows.Forms.Button btnNewSupplierOrder;
         private System.Windows.Forms.Button btnNewSupplier;
         private System.Windows.Forms.ListBox lbSuppliersList;
     }

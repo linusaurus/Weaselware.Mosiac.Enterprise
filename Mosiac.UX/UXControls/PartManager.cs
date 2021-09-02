@@ -59,10 +59,11 @@ namespace Mosiac.UX.UXControls
             _ctx = ctx;
             partsService = new PartsService(ctx);
             resourceService = new ResourceService(ctx);
+            //-------------Build the Grids ---------------
             Grids.BuildPartSearchGrid(dgPartsSearch);
             Grids.BuildPartResourcesGrid(dgResources);
-
-     
+            Grids.BuildPartOrdersGrid(dgPartOrders);
+            // -------------------------------------------
             manus = partsService.GetManus();
 
             cboManu.DataSource = manus;
@@ -73,6 +74,21 @@ namespace Mosiac.UX.UXControls
             bsPart.ListChanged += BsPart_ListChanged;
             bsResource.ListChanged += BsResource_ListChanged;
 
+        }
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if ((keyData == Keys.Enter) || (keyData == Keys.Return))             
+            {
+                //Do custom stuff
+                //true if key was processed by control, false otherwise
+                OpenPartbyNumber();
+                return true;
+            }
+            else
+            {
+                return base.ProcessCmdKey(ref msg, keyData);
+            }
         }
 
         private void BsResource_ListChanged(object sender, System.ComponentModel.ListChangedEventArgs e)
@@ -106,70 +122,24 @@ namespace Mosiac.UX.UXControls
                 dgPartsSearch.DataSource = dv;
             }
         }
-        // ------------------------------------------------
-        // need to remove this after edti form is working
-        //-------------------------------------------------
-        private void BindPart(BindingSource bs)
-        {
 
-            if (bs.Current.GetType() == typeof(PartDetailDTO))
+        private void SearchParts(int partID)
+         {
+            if (partID != default)
             {
-          
-                txtPartID.DataBindings.Clear();
-                cbxObsolete.DataBindings.Clear();
-                cbxUnit.DataBindings.Clear();
-                txtLocation.DataBindings.Clear();
-                txtWaste.DataBindings.Clear();
-                txtMarkUp.DataBindings.Clear();
-                txtWeight.DataBindings.Clear();
-                txtStockLevel.DataBindings.Clear();
-                txtUnitPrice.DataBindings.Clear();
-                txtPartDescription.DataBindings.Clear();
-                txtPartName.DataBindings.Clear();
+                startTime = System.DateTime.Now.Millisecond;
+                partsList = partsService.SearchPart(partID);
+                ListAsDataTable = Grids.BuildDataTable<PartSearchDto>(partsList);
+                dv = ListAsDataTable.DefaultView;
+                endTime = System.DateTime.Now.Millisecond;
+                lbResults.Text = $"Returned {ListAsDataTable.Rows.Count} Items, Milliseconds = {(endTime - startTime).ToString()} ";
 
-                txtPartID.DataBindings.Add("Text", bsPart, "PartID", true, DataSourceUpdateMode.OnPropertyChanged);
-                cbxObsolete.DataBindings.Add("Checked", bsPart, "Obsolete", true, DataSourceUpdateMode.OnPropertyChanged);
-                cbxUnit.DataBindings.Add("SelectedValue", bsPart, "UID", true, DataSourceUpdateMode.OnPropertyChanged);
-                txtLocation.DataBindings.Add("Text", bsPart, "Location", true, DataSourceUpdateMode.OnPropertyChanged);
-                txtWaste.DataBindings.Add("Text", bsPart, "Waste", true, DataSourceUpdateMode.OnPropertyChanged);
-                txtMarkUp.DataBindings.Add("Text", bsPart, "MarkUp", true, DataSourceUpdateMode.OnPropertyChanged);
-                txtWeight.DataBindings.Add("Text", bsPart, "Weight", true, DataSourceUpdateMode.OnPropertyChanged);
-                //txtStockLevel.DataBindings.Add("Text", bsPart, "PartID", true, DataSourceUpdateMode.OnPropertyChanged);
-                txtUnitPrice.DataBindings.Add("Text", bsPart, "UnitCost", true, DataSourceUpdateMode.OnPropertyChanged);
-                txtPartDescription.DataBindings.Add("Text", bsPart, "ItemDescription", true, DataSourceUpdateMode.OnPropertyChanged);
-                txtPartName.DataBindings.Add("Text", bsPart, "ItemName", true, DataSourceUpdateMode.OnPropertyChanged);
+                dgPartsSearch.DataSource = dv;
             }
-            else if (bs.Current.GetType() == typeof(Part))
-            {
-                txtPartID.DataBindings.Clear();
-                cbxObsolete.DataBindings.Clear();
-                cbxUnit.DataBindings.Clear();
-                txtLocation.DataBindings.Clear();
-                txtWaste.DataBindings.Clear();
-                txtMarkUp.DataBindings.Clear();
-                txtWeight.DataBindings.Clear();
-                txtStockLevel.DataBindings.Clear();
-                txtUnitPrice.DataBindings.Clear();
-                txtPartDescription.DataBindings.Clear();
-                txtPartName.DataBindings.Clear();
-                cboPartManu.DataBindings.Clear();
-
-                txtPartID.DataBindings.Add("Text", bsPart, "PartID", true, DataSourceUpdateMode.OnPropertyChanged);
-                cbxObsolete.DataBindings.Add("Checked", bsPart, "ObsoluteFlag", true, DataSourceUpdateMode.OnPropertyChanged);
-                cbxUnit.DataBindings.Add("SelectedValue", bsPart, "UnitOfMeasureID", true, DataSourceUpdateMode.OnPropertyChanged);
-                txtLocation.DataBindings.Add("Text", bsPart, "Location", true, DataSourceUpdateMode.OnPropertyChanged);
-                txtWaste.DataBindings.Add("Text", bsPart, "Waste", true, DataSourceUpdateMode.OnPropertyChanged);
-                txtMarkUp.DataBindings.Add("Text", bsPart, "MarkUp", true, DataSourceUpdateMode.OnPropertyChanged);
-                txtWeight.DataBindings.Add("Text", bsPart, "Weight", true, DataSourceUpdateMode.OnPropertyChanged);
-                //txtStockLevel.DataBindings.Add("Text", bsPart, "PartID", true, DataSourceUpdateMode.OnPropertyChanged);
-                txtUnitPrice.DataBindings.Add("Text", bsPart, "Cost", true, DataSourceUpdateMode.OnPropertyChanged);
-                txtPartDescription.DataBindings.Add("Text", bsPart, "ItemDescription", true, DataSourceUpdateMode.OnPropertyChanged);
-                txtPartName.DataBindings.Add("Text", bsPart, "ItemName", true, DataSourceUpdateMode.OnPropertyChanged);
-                cboPartManu.DataBindings.Add("SelectedValue", bsPart, "ManuID", true, DataSourceUpdateMode.OnPropertyChanged);
-            }
-                    
-
+               
+            
         }
+
 
         private void BindResource(BindingSource bs)
         {
@@ -226,18 +196,18 @@ namespace Mosiac.UX.UXControls
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        //private void btnSave_Click(object sender, System.EventArgs e)
-        //{
+        private void btnSave_Click(object sender, System.EventArgs e)
+        {
+
+            _ctx.SaveChanges();
+            // ---  partsService.CreateOrUpdatePart(_selectedPart,"Richard");
+            Grids.ToogleButtonStyle(false, btnSave);
+            dgPartsSearch.Enabled = true;
+            _partBeingEdited = partsService.Find(_partBeingEdited.PartID);
+            bsPart.DataSource = _partBeingEdited;
            
-        //    _ctx.SaveChanges();
-        //    // ---  partsService.CreateOrUpdatePart(_selectedPart,"Richard");
-        //    Grids.ToogleButtonStyle(false, btnSave);
-        //    dgPartsSearch.Enabled = true;
-        //    _partBeingEdited = partsService.Find(_partBeingEdited.PartID);
-        //    bsPart.DataSource = _partBeingEdited;
-        //    BindPart(bsPart);
-          
-        //}
+
+        }
 
         private void gpbResource_Enter(object sender, System.EventArgs e)
         {
@@ -261,8 +231,7 @@ namespace Mosiac.UX.UXControls
                 _partBeingEdited = partsService.Find(_partBeingEdited.PartID);
                 if (_partBeingEdited != null)
                 {
-                    bsPart.DataSource = _partBeingEdited;
-                    BindPart(bsPart);
+                    bsPart.DataSource = _partBeingEdited;                  
                     bsResource.DataSource = _partBeingEdited.Resources.ToList();
                     dgResources.DataSource = _partBeingEdited.Resources.ToList();
                 }
@@ -318,15 +287,21 @@ namespace Mosiac.UX.UXControls
         /// <param name="e"></param>
         private void button1_Click(object sender, EventArgs e)
         {
+            OpenPartbyNumber();
+        }
+
+        private void OpenPartbyNumber()
+        {
             int partIDlookUp = int.Parse(txtPartIDLookup.Text);
             if (partIDlookUp != default)
             {
                 _partBeingEdited = partsService.Find(partIDlookUp);
                 if (_partBeingEdited != null)
                 {
-                   
-                    bsPart.DataSource = _partBeingEdited;
-                    BindPart(bsPart);
+
+                    SearchParts(partIDlookUp);
+
+                    
                     bsResource.DataSource = _partBeingEdited.Resources.ToList();
                     dgResources.DataSource = _partBeingEdited.Resources.ToList();
                 }
@@ -339,6 +314,7 @@ namespace Mosiac.UX.UXControls
                 }
             }
         }
+
         /// <summary>
         /// Delete a Resource
         /// </summary>
@@ -356,8 +332,7 @@ namespace Mosiac.UX.UXControls
                 _partBeingEdited = partsService.Find(_partBeingEdited.PartID);
                 if (_partBeingEdited != null)
                 {
-                    bsPart.DataSource = _partBeingEdited;
-                    BindPart(bsPart);
+                    bsPart.DataSource = _partBeingEdited;                 
                     bsResource.DataSource = _partBeingEdited.Resources.ToList();
                     dgResources.DataSource = _partBeingEdited.Resources.ToList();
                 }
@@ -398,30 +373,23 @@ namespace Mosiac.UX.UXControls
              bsPart.DataSource = _partBeingEdited;
 
             dgResources.DataSource = null;
-
-            //txtResourceCreateDate.DataBindings.Clear();
-            //txtResourceCreator.DataBindings.Clear();
-            //txtSourceFile.DataBindings.Clear();
-
-            //txtResourceCreateDate.Text = string.Empty;
-            //txtResourceCreator.Text = string.Empty;
-            //txtSourceFile.Text = string.Empty;
-
             PartEditForm frm = new PartEditForm(bsPart, _ctx);
-            if(frm.ShowDialog() == DialogResult.OK)
+            frm.Text = "New Part";
+            var result = frm.ShowDialog();
+            if (result == DialogResult.OK)
             {
                 _partBeingEdited = (Part)frm.bsPart.DataSource;
                 _ctx.Entry(_partBeingEdited).State = EntityState.Added;
                 _ctx.SaveChanges();
+                Grids.ToogleButtonStyle(false, btnSave);
             }
-
-           // bsResource.DataSource = _partBeingEdited.Resources.ToList();
-           //  dgResources.DataSource = _partBeingEdited.Resources.ToList();
-            // txtPartDescription.PlaceholderText = "Enter a new part Description";
-            // bsPart.DataSource = _partBeingEdited;
-            //_ctx.Entry(_partBeingEdited).State = EntityState.Added;
-            //BindPart(bsPart);
-           // dgPartsSearch.Enabled = false;
+            else if (result == DialogResult.Cancel)
+            {
+                Grids.ToogleButtonStyle(false, btnSave);
+            }
+           
+           bsResource.DataSource = _partBeingEdited.Resources.ToList();
+           dgResources.DataSource = _partBeingEdited.Resources.ToList();
         }
 
         private void lbResults_Click(object sender, EventArgs e)
@@ -461,8 +429,21 @@ namespace Mosiac.UX.UXControls
                         bsPart.DataSource = _partBeingEdited;
 
                         PartEditForm frm = new PartEditForm(bsPart,_ctx);
+                        frm.Text = $"Editing Part = {_partBeingEdited.PartID.ToString()} ";
                         frm.StartPosition = FormStartPosition.CenterParent;
-                        frm.ShowDialog();
+                        var result = frm.ShowDialog();
+                        if (result == DialogResult.OK)
+                        {
+                           // _partBeingEdited = (Part)bsPart.DataSource;
+                            _ctx.SaveChanges();
+                            Grids.ToogleButtonStyle(false, btnSave);
+
+                        }
+                        else if (result == DialogResult.Cancel)
+                        {
+                            bsPart.CancelEdit();
+                            Grids.ToogleButtonStyle(false, btnSave);
+                        }
                         var resources = _partBeingEdited.Resources.ToList();
                         dgResources.DataSource = resources;
                     }
@@ -497,7 +478,6 @@ namespace Mosiac.UX.UXControls
                     Main main = (Main)Application.OpenForms["Main"];
                     main.OpenAnOrder(poID);
                 }
-
             }
         }
         /// <summary>
