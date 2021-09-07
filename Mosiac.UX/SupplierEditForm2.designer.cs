@@ -1,6 +1,6 @@
 ﻿namespace Mosiac.UX
 {
-    partial class SupplierEditForm
+    partial class SupplierEditForm2
     {
         /// <summary>
         /// Required designer variable.

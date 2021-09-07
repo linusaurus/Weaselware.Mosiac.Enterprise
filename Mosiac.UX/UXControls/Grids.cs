@@ -53,14 +53,14 @@ namespace Mosiac.UX.UXControls
             // Receipt Description Column --
             DataGridViewTextBoxColumn col_Description = new DataGridViewTextBoxColumn();
             col_Description.HeaderText = "Description";
-            col_Description.DataPropertyName = "Description";
+            col_Description.DataPropertyName = "ItemDescription";
             col_Description.Width = 120;
             col_Description.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
             // Manufacturer Column --
             DataGridViewTextBoxColumn col_Manufacturer = new DataGridViewTextBoxColumn();
-            col_Manufacturer.HeaderText = "Manufacturer";
-            col_Manufacturer.DataPropertyName = "Manufacturer";
+            col_Manufacturer.HeaderText = "PartNum";
+            col_Manufacturer.DataPropertyName = "PartNumber";
             col_Manufacturer.Width = 160;
 
            
@@ -102,6 +102,7 @@ namespace Mosiac.UX.UXControls
             DataGridViewTextBoxColumn col_Date = new DataGridViewTextBoxColumn();
             col_Date.HeaderText = "Order Date";
             col_Date.DataPropertyName = "OrderDate";
+            col_Date.DefaultCellStyle.Format = "d";
             col_Date.Width = 100;
 
             // Purchaser Column --
@@ -376,6 +377,71 @@ namespace Mosiac.UX.UXControls
 
             dg.Columns.AddRange(col_ID, col_Supplier, col_OrderDate);
 
+        }
+
+        public static void BuildSupplierOrderItems(DataGridView dg)
+        {
+            dg.AutoGenerateColumns = false;
+
+            dg.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            dg.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+
+            // Currency Decimal Style
+            DataGridViewCellStyle dstyleCurrency = new DataGridViewCellStyle();
+            dstyleCurrency.Format = "C";
+            dstyleCurrency.NullValue = "";
+            dstyleCurrency.Alignment = DataGridViewContentAlignment.MiddleRight;
+            // Currency Decimal Style
+            DataGridViewCellStyle dstyleDecimal = new DataGridViewCellStyle();
+            dstyleDecimal.Format = "N2";
+            dstyleDecimal.NullValue = "0.00";
+            dstyleDecimal.Alignment = DataGridViewContentAlignment.MiddleRight;
+            // Wrapping Text Style
+            DataGridViewCellStyle dstyleWrapText = new DataGridViewCellStyle();
+            dstyleWrapText.NullValue = "";
+            dstyleWrapText.Alignment = DataGridViewContentAlignment.TopLeft;
+            dstyleWrapText.WrapMode = DataGridViewTriState.True;
+
+            // LineID Column --
+            DataGridViewTextBoxColumn col_ID = new DataGridViewTextBoxColumn();
+            col_ID.HeaderText = "ID";
+            col_ID.DataPropertyName = "LineID";
+            col_ID.Width = 55;
+
+            // PartID Column --
+            DataGridViewTextBoxColumn col_partid = new DataGridViewTextBoxColumn();
+            col_partid.HeaderText = "ID";
+            col_partid.DataPropertyName = "LineID";
+            col_partid.Width = 55;
+
+
+            // Description Column --
+            DataGridViewTextBoxColumn col_description = new DataGridViewTextBoxColumn();
+            col_description.HeaderText = "Description";
+            col_description.DataPropertyName = "Description";
+            col_description.Width = 120;
+            col_description.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+
+            // UnitCost Column --
+            DataGridViewTextBoxColumn col_unitCost = new DataGridViewTextBoxColumn();
+            col_unitCost.HeaderText = "UnitCost";
+            col_unitCost.DataPropertyName = "UnitCost";
+            col_unitCost.Width = 90;
+
+            // Qnty Column --
+            DataGridViewTextBoxColumn col_qnty = new DataGridViewTextBoxColumn();
+            col_qnty.HeaderText = "Qnty";
+            col_qnty.DataPropertyName = "Qnty";
+            col_qnty.Width = 90;
+
+            // extended Column --
+            DataGridViewTextBoxColumn col_extended = new DataGridViewTextBoxColumn();
+            col_extended.HeaderText = "Extension";
+            col_extended.DataPropertyName = "Extended";
+            col_extended.Width = 90;
+
+
+            dg.Columns.AddRange(col_ID, col_partid,col_description, col_unitCost, col_qnty, col_extended);
         }
 
 

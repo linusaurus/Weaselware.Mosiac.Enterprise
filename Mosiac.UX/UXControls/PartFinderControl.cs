@@ -5,7 +5,7 @@ using DataLayer.Data;
 using DataLayer.Entity;
 using ServiceLayer.Models;
 using ServiceLayer;
-
+using System.Data;
 
 namespace Mosiac.UX.UXControls
 {
@@ -16,11 +16,15 @@ namespace Mosiac.UX.UXControls
         OrdersService _ordersService;
         SearchOptions _searchOptions = SearchOptions.Contains;
         private Part _selectedPart;
+        
         String currentPartSearch;
         BindingSource bsPart = new BindingSource();
         private  List<SupplierLineItemDto> 
         supplierLineItems = new List<SupplierLineItemDto>();
-        
+
+        DataTable ListAsDataTable;
+        DataView dv;
+
         #region Events
 
         // Standard Part --------------+
@@ -116,7 +120,9 @@ namespace Mosiac.UX.UXControls
         private void SearchParts(string search)
         {
             var parts = partsService.SearchParts(search, _searchOptions);
-            this.dgvPartsSearchResults.DataSource = parts;
+            ListAsDataTable = Grids.BuildDataTable<PartFastSearchDto>(parts);
+            dv = ListAsDataTable.DefaultView;
+            this.dgvPartsSearchResults.DataSource = dv;
         }
         #region Search Options
 
@@ -146,7 +152,14 @@ namespace Mosiac.UX.UXControls
             if (dgv.DataSource != null)
             {
                 if (dgv.Rows.Count > 0)
-                {_selectedPart = (Part)dgv.CurrentRow.DataBoundItem; } 
+                {
+                    if (dgv.CurrentRow != null)
+                    {
+                    int partNumber = (int)dgv.CurrentRow.Cells[0].Value;
+                    _selectedPart = partsService.Find(partNumber); 
+                    }
+                    
+                } 
             }           
         }
 

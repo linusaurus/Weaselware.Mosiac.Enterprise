@@ -64,7 +64,50 @@ namespace Mosiac.UX.UXControls
 
         private void btnNewSupplier_Click(object sender, EventArgs e)
         {
+            Forms.SupplierEditForm frm = new Forms.SupplierEditForm(_service, default);
+            frm.Text = "New Supplier";
+            
+            DialogResult result = frm.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                // Save Changes
+                _service.InsertOrUpdate(frm._supplierToEdit);
+                _service.Save();
+            }
+            else if (result == DialogResult.Cancel)
+            {
+                // Cancel changes
+            }
 
+        }
+        // Edit selected supplier ---
+        private void bntStats_Click(object sender, EventArgs e)
+        {
+            if (lbSuppliersList.DataSource != null)
+            {
+                if (lbSuppliersList.Items.Count > 0)
+                {
+                    if (_selectedSupplierID != default)
+                    {
+                        
+                        Forms.SupplierEditForm frm = new Forms.SupplierEditForm(_service,_selectedSupplierID);
+                       
+                        frm.Text = $"Edit {frm._supplierToEdit.SupplierName}";
+
+                        DialogResult result = frm.ShowDialog();
+                        if (result == DialogResult.OK)
+                        {
+                            // Save Changes
+                            _service.InsertOrUpdate(frm._supplierToEdit);
+                            _service.Save();
+                        }
+                        else if (result == DialogResult.Cancel)
+                        {
+                            // Cancel changes
+                        }
+                    }
+                }
+            }
         }
     }
 }

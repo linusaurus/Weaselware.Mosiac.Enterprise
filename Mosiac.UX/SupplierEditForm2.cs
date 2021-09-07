@@ -6,18 +6,18 @@ using ServiceLayer;
 
 namespace Mosiac.UX
 {
-    public partial class SupplierEditForm : Form
+    public partial class SupplierEditForm2 : Form
     {
         private readonly MosaicContext ctx;
        
         private SuppliersService _supplierService;
         public Supplier _supplierToEdit { get; set; }
 
-        public SupplierEditForm()
+        public SupplierEditForm2()
         {
 
         }
-        public SupplierEditForm(int supplierID, MosaicContext context)
+        public SupplierEditForm2(int supplierID, MosaicContext context)
         {
             InitializeComponent();
             ctx = context;

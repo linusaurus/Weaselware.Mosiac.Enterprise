@@ -45,7 +45,7 @@ namespace Mosiac.UX
                         //tab.Name = "SupplierOrders";
                         SupplierManager ctr = new SupplierManager(ctx);
                         tab.Controls.Add(ctr);
-                        //ctr.Dock = DockStyle.Fill;
+                        ctr.Dock = DockStyle.Fill;
                         //tab.Controls.Add(ctr);
                     }
                     break;

@@ -30,7 +30,7 @@ namespace Mosiac.UX.UXControls
         private int _selectedResourceID;
         private Resource _selectedResource;
 
-        IEnumerable<PartSearchDto> parts;
+        //IEnumerable<PartSearchDto> parts;
         PartMapper partMapper = new PartMapper();
 
         private bool ManuFilter = false;
@@ -46,7 +46,7 @@ namespace Mosiac.UX.UXControls
         private PartsService partsService;
         private ResourceService resourceService;
 
-        List<PartSearchDto> partsList = new List<PartSearchDto>();
+        List<PartFastSearchDto> partsList = new List<PartFastSearchDto>();
         
 
         DataTable ListAsDataTable;
@@ -114,7 +114,8 @@ namespace Mosiac.UX.UXControls
                 
                 startTime = System.DateTime.Now.Millisecond;
                 partsList = partsService.SearchPart(txtSearch.Text, manuID,ManuFilter);
-                ListAsDataTable = Grids.BuildDataTable<PartSearchDto>(partsList);
+                // ListAsDataTable = Grids.BuildDataTable<PartSearchDto>(partsList);
+                ListAsDataTable = Grids.BuildDataTable<PartFastSearchDto>(partsList);
                 dv = ListAsDataTable.DefaultView;
                 endTime = System.DateTime.Now.Millisecond;
                 lbResults.Text = $"Returned {ListAsDataTable.Rows.Count} Items, Milliseconds = {(endTime - startTime).ToString()} ";
@@ -129,7 +130,7 @@ namespace Mosiac.UX.UXControls
             {
                 startTime = System.DateTime.Now.Millisecond;
                 partsList = partsService.SearchPart(partID);
-                ListAsDataTable = Grids.BuildDataTable<PartSearchDto>(partsList);
+                ListAsDataTable = Grids.BuildDataTable<PartFastSearchDto>(partsList);
                 dv = ListAsDataTable.DefaultView;
                 endTime = System.DateTime.Now.Millisecond;
                 lbResults.Text = $"Returned {ListAsDataTable.Rows.Count} Items, Milliseconds = {(endTime - startTime).ToString()} ";
@@ -183,7 +184,7 @@ namespace Mosiac.UX.UXControls
             startTime = System.DateTime.Now.Millisecond;
             
             partsList = partsService.GetManufacturerParts(manuID);
-            ListAsDataTable = Grids.BuildDataTable<PartSearchDto>(partsList);
+            ListAsDataTable = Grids.BuildDataTable<PartFastSearchDto>(partsList);
             dv = ListAsDataTable.DefaultView;
             endTime = System.DateTime.Now.Millisecond;
             lbResults.Text = $"Returned {ListAsDataTable.Rows.Count} Items, Milliseconds = {(endTime - startTime).ToString()} ";
@@ -401,7 +402,7 @@ namespace Mosiac.UX.UXControls
         {
             startTime = System.DateTime.Now.Millisecond;
             partsList = partsService.ReturnAllParts();
-            ListAsDataTable = Grids.BuildDataTable<PartSearchDto>(partsList);
+            ListAsDataTable = Grids.BuildDataTable<PartFastSearchDto>(partsList);
             dv = ListAsDataTable.DefaultView;
             endTime = System.DateTime.Now.Millisecond;
             lbResults.Text = $"Returned {ListAsDataTable.Rows.Count} Items, Milliseconds = {(endTime - startTime).ToString()} ";

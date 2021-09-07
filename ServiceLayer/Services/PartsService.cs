@@ -87,16 +87,46 @@ namespace ServiceLayer
 
             return result;
         }
+        // this needs to be refined for more speed. ----
+        //public List<Part> SearchParts(string searchTerm ,SearchOptions option )
+        //{
+        //    if (option == SearchOptions.Contains)
+        //    {
+        //        return _context.Parts.Where(p => p.ItemDescription.Contains( searchTerm)).ToList();
+        //    }
+        //    else if (option == SearchOptions.StartsWith)
+        //    {
+        //        return _context.Parts.Where(p => p.ItemDescription.StartsWith(searchTerm)).ToList();
+        //    }
+        //    else
+        //    {
+        //        return null;
+        //    }
 
-        public List<Part> SearchParts(string searchTerm ,SearchOptions option )
+
+        //}
+
+        public List<PartFastSearchDto> SearchParts(string searchTerm, SearchOptions option)
         {
             if (option == SearchOptions.Contains)
             {
-                return _context.Parts.Where(p => p.ItemDescription.Contains( searchTerm)).ToList();
+                return _context.Parts.AsNoTracking().Where(p => p.ItemDescription.Contains(searchTerm)).Select(d => new PartFastSearchDto
+                {
+                    PartID = d.PartID,
+                    Itemdescription = d.ItemDescription,
+                    PartNumber = d.PartNum
+
+                }).ToList();
+                
             }
             else if (option == SearchOptions.StartsWith)
             {
-                return _context.Parts.Where(p => p.ItemDescription.StartsWith(searchTerm)).ToList();
+                return _context.Parts.AsNoTracking().Where(p => p.ItemDescription.StartsWith(searchTerm)).Select(d => new PartFastSearchDto
+                {
+                    PartID = d.PartID,
+                    Itemdescription = d.ItemDescription,
+                    PartNumber = d.PartNum
+                }).ToList();
             }
             else
             {
@@ -125,13 +155,13 @@ namespace ServiceLayer
             return _context.Parts.ToList();
         }
 
-        public List<PartSearchDto> GetManufacturerParts(int ManuID)
+        public List<PartFastSearchDto> GetManufacturerParts(int ManuID)
         {
-            var result = _context.Parts.AsNoTracking().Where(p => p.ManuID == ManuID).Select(d => new PartSearchDto
+            var result = _context.Parts.AsNoTracking().Where(p => p.ManuID == ManuID).Select(d => new PartFastSearchDto
             {
-                Description = d.ItemDescription,
+                Itemdescription = d.ItemDescription,
                 PartID = d.PartID,
-                Manufacturer = d.Manu.Manufacturer
+                PartNumber = d.PartNum
                 //Orders = _context.PurchaseLineItems.AsNoTracking().Where(o => o.PartID == d.PartID).Count()
 
             }).ToList();
@@ -315,14 +345,14 @@ namespace ServiceLayer
             return m;
         }
 
-        public List<PartSearchDto> ReturnAllParts()
+        public List<PartFastSearchDto> ReturnAllParts()
         {
               var result = _context.Parts.AsNoTracking()
-                     .Select(d => new PartSearchDto
+                     .Select(d => new PartFastSearchDto
                      {
-                         Description = d.ItemDescription,
+                         Itemdescription= d.ItemDescription,
                          PartID = d.PartID,
-                         Manufacturer = d.Manu.Manufacturer
+                         PartNumber = d.PartNum
                        
 
                      }).OrderByDescending(p => p.PartID).ToList();
@@ -342,15 +372,15 @@ namespace ServiceLayer
 
             return result;
         }
-        public List<PartSearchDto> SearchPart(int partID)
+        public List<PartFastSearchDto> SearchPart(int partID)
         {
 
 
-            var result = _context.Parts.AsNoTracking().Where(p => p.PartID.Equals(partID)).Select(d => new PartSearchDto
+            var result = _context.Parts.AsNoTracking().Where(p => p.PartID.Equals(partID)).Select(d => new PartFastSearchDto
                  {
-                     Description = d.ItemDescription,
+                     Itemdescription = d.ItemDescription,
                      PartID = d.PartID,
-                     Manufacturer = d.Manu.Manufacturer
+                     PartNumber = d.PartNum
 
 
                  }).OrderByDescending(p => p.PartID).ToList();
@@ -358,18 +388,18 @@ namespace ServiceLayer
             return result;
         }
 
-            public List<PartSearchDto> SearchPart(string search, int manufactererID, bool manuFilter)
+            public List<PartFastSearchDto> SearchPart(string search, int manufactererID, bool manuFilter)
             {
 
             // if (manufactererID != 0 || manufactererID == 1)
             if (manuFilter)
             {
                 var result = _context.Parts.AsNoTracking().Where(p => p.ItemDescription.Contains(search))
-                     .Where(m => m.ManuID == manufactererID).Select(d => new PartSearchDto
+                     .Where(m => m.ManuID == manufactererID).Select(d => new PartFastSearchDto
                      {
-                         Description = d.ItemDescription,
+                         Itemdescription = d.ItemDescription,
                          PartID = d.PartID,
-                         Manufacturer = d.Manu.Manufacturer
+                         PartNumber = d.PartNum
                         
 
                      }).OrderByDescending(p => p.PartID).ToList();
@@ -378,12 +408,11 @@ namespace ServiceLayer
             }
             else
             {
-                var result = _context.Parts.AsNoTracking().Where(p => p.ItemDescription.Contains(search)).Select(d => new PartSearchDto
+                var result = _context.Parts.AsNoTracking().Where(p => p.ItemDescription.Contains(search)).Select(d => new PartFastSearchDto
                 {
-                    Description = d.ItemDescription,
-                    PartID = d.PartID,
-                    Manufacturer = d.Manu.Manufacturer,
-                    Orders = _context.PurchaseLineItems.AsNoTracking().Where(p => p.PartID == d.PartID).Count()
+                    Itemdescription = d.ItemDescription,
+                    PartID = d.PartID
+                   // Orders = _context.PurchaseLineItems.AsNoTracking().Where(p => p.PartID == d.PartID).Count()
 
                 }).OrderByDescending(p => p.PartID).ToList();
               

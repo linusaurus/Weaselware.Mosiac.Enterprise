@@ -428,11 +428,11 @@ namespace Mosiac.UX.UXControls {
                     Quantity = 1.0m,
                     PartID = e.selectPart.PartID,
                     Price = e.selectPart.Cost.GetValueOrDefault(),
-                    UiD = e.selectPart.UnitOfMeasureID.GetValueOrDefault()                  
+                    UiD = e.selectPart.UnitOfMeasureID.GetValueOrDefault()
                 };
 
                 bsLineitems.Add(newLineItem);
-                
+
             }
         }
 
