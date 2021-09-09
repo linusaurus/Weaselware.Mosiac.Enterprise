@@ -69,6 +69,54 @@ namespace Mosiac.UX.UXControls
 
         }
 
+        public static void BuildJobOrdersGrid(DataGridView dg)
+        {
+            dg.AutoGenerateColumns = false;
+
+            dg.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            dg.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+
+            // Currency Decimal Style
+            DataGridViewCellStyle dstyleCurrency = new DataGridViewCellStyle();
+            dstyleCurrency.Format = "C";
+            dstyleCurrency.NullValue = "";
+            dstyleCurrency.Alignment = DataGridViewContentAlignment.MiddleRight;
+            // Currency Decimal Style
+            DataGridViewCellStyle dstyleDecimal = new DataGridViewCellStyle();
+            dstyleDecimal.Format = "N2";
+            dstyleDecimal.NullValue = "0.00";
+            dstyleDecimal.Alignment = DataGridViewContentAlignment.MiddleRight;
+            // Wrapping Text Style
+            DataGridViewCellStyle dstyleWrapText = new DataGridViewCellStyle();
+            dstyleWrapText.NullValue = "";
+            dstyleWrapText.Alignment = DataGridViewContentAlignment.TopLeft;
+            dstyleWrapText.WrapMode = DataGridViewTriState.True;
+
+            // PartID Column --
+            DataGridViewTextBoxColumn col_ID = new DataGridViewTextBoxColumn();
+            col_ID.HeaderText = "ID";
+            col_ID.DataPropertyName = "PurchaseOrderID";
+            col_ID.Width = 55;
+
+            // Receipt Description Column --
+            DataGridViewTextBoxColumn col_Description = new DataGridViewTextBoxColumn();
+            col_Description.HeaderText = "Description";
+            col_Description.DataPropertyName = "ItemDescription";
+            col_Description.Width = 120;
+            col_Description.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+
+            // Manufacturer Column --
+            DataGridViewTextBoxColumn col_Manufacturer = new DataGridViewTextBoxColumn();
+            col_Manufacturer.HeaderText = "PartNum";
+            col_Manufacturer.DataPropertyName = "PartNumber";
+            col_Manufacturer.Width = 160;
+
+
+
+            dg.Columns.AddRange(col_ID, col_Description, col_Manufacturer);
+
+        }
+
         public static void BuildSupplierOrdersGrid(DataGridView dg)
         {
             dg.AutoGenerateColumns = false;

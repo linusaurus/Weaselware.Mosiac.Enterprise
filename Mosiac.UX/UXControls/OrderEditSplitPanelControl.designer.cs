@@ -68,7 +68,7 @@ namespace Mosiac.UX.UXControls
             this.tsToogleHeader,
             this.toolStripSeparator1,
             this.tsbToggleAttachment});
-            this.tsOrderEditToolBar.Location = new System.Drawing.Point(7, 799);
+            this.tsOrderEditToolBar.Location = new System.Drawing.Point(7, 696);
             this.tsOrderEditToolBar.Name = "tsOrderEditToolBar";
             this.tsOrderEditToolBar.Size = new System.Drawing.Size(1340, 31);
             this.tsOrderEditToolBar.TabIndex = 0;
@@ -168,7 +168,7 @@ namespace Mosiac.UX.UXControls
             // 
             this.splitContainerMain.Panel2.Controls.Add(this.scLineItems);
             this.splitContainerMain.Panel2.Padding = new System.Windows.Forms.Padding(5, 5, 14, 5);
-            this.splitContainerMain.Size = new System.Drawing.Size(1340, 792);
+            this.splitContainerMain.Size = new System.Drawing.Size(1340, 689);
             this.splitContainerMain.SplitterDistance = 370;
             this.splitContainerMain.SplitterWidth = 5;
             this.splitContainerMain.TabIndex = 1;
@@ -181,11 +181,12 @@ namespace Mosiac.UX.UXControls
             this.orderHeaderVerticalControl1.MinimumSize = new System.Drawing.Size(379, 0);
             this.orderHeaderVerticalControl1.Name = "orderHeaderVerticalControl1";
             this.orderHeaderVerticalControl1.Padding = new System.Windows.Forms.Padding(7);
-            this.orderHeaderVerticalControl1.Size = new System.Drawing.Size(379, 782);
+            this.orderHeaderVerticalControl1.Size = new System.Drawing.Size(379, 679);
             this.orderHeaderVerticalControl1.TabIndex = 0;
             // 
             // scLineItems
             // 
+            this.scLineItems.Cursor = System.Windows.Forms.Cursors.HSplit;
             this.scLineItems.Dock = System.Windows.Forms.DockStyle.Fill;
             this.scLineItems.Location = new System.Drawing.Point(5, 5);
             this.scLineItems.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -200,8 +201,8 @@ namespace Mosiac.UX.UXControls
             // scLineItems.Panel2
             // 
             this.scLineItems.Panel2.Padding = new System.Windows.Forms.Padding(5);
-            this.scLineItems.Size = new System.Drawing.Size(946, 782);
-            this.scLineItems.SplitterDistance = 472;
+            this.scLineItems.Size = new System.Drawing.Size(946, 679);
+            this.scLineItems.SplitterDistance = 282;
             this.scLineItems.SplitterWidth = 5;
             this.scLineItems.TabIndex = 0;
             // 
@@ -215,7 +216,7 @@ namespace Mosiac.UX.UXControls
             this.dgOrderLineItem.Name = "dgOrderLineItem";
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgOrderLineItem.RowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.dgOrderLineItem.Size = new System.Drawing.Size(936, 437);
+            this.dgOrderLineItem.Size = new System.Drawing.Size(936, 247);
             this.dgOrderLineItem.TabIndex = 0;
             // 
             // OrderEditSplitPanelControl
@@ -227,7 +228,7 @@ namespace Mosiac.UX.UXControls
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "OrderEditSplitPanelControl";
             this.Padding = new System.Windows.Forms.Padding(7);
-            this.Size = new System.Drawing.Size(1354, 837);
+            this.Size = new System.Drawing.Size(1354, 734);
             this.tsOrderEditToolBar.ResumeLayout(false);
             this.tsOrderEditToolBar.PerformLayout();
             this.splitContainerMain.Panel1.ResumeLayout(false);

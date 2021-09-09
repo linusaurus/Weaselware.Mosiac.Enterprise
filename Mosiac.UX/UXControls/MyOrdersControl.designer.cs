@@ -43,6 +43,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.cbJobName = new System.Windows.Forms.ComboBox();
             this.ckbShowRecieved = new System.Windows.Forms.CheckBox();
+            this.ckbShowAll = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgMyOrdersGrid)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -121,6 +122,7 @@
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ControlLight;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.ckbShowAll);
             this.panel1.Controls.Add(this.btnOpenOrder);
             this.panel1.Controls.Add(this.txtOrderNumber);
             this.panel1.Controls.Add(this.label1);
@@ -188,6 +190,17 @@
             this.ckbShowRecieved.UseVisualStyleBackColor = true;
             this.ckbShowRecieved.CheckedChanged += new System.EventHandler(this.ckbShowRecieved_CheckedChanged);
             // 
+            // ckbShowAll
+            // 
+            this.ckbShowAll.AutoSize = true;
+            this.ckbShowAll.Location = new System.Drawing.Point(532, 28);
+            this.ckbShowAll.Name = "ckbShowAll";
+            this.ckbShowAll.Size = new System.Drawing.Size(132, 19);
+            this.ckbShowAll.TabIndex = 6;
+            this.ckbShowAll.Text = "Show All Purchasers";
+            this.ckbShowAll.UseVisualStyleBackColor = true;
+            this.ckbShowAll.CheckedChanged += new System.EventHandler(this.ckbShowAll_CheckedChanged);
+            // 
             // MyOrdersControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -222,5 +235,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colJobName;
         private System.Windows.Forms.DataGridViewTextBoxColumn colOrderTotal;
         private System.Windows.Forms.DataGridViewCheckBoxColumn colRecieved;
+        private System.Windows.Forms.CheckBox ckbShowAll;
     }
 }

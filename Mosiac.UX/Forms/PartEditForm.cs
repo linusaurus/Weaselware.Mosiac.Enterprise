@@ -22,12 +22,14 @@ namespace Mosiac.UX.Forms
         private IEnumerable<ManuListDTO> partManus;
         private PartsService partsService;
         private List<UnitOfMeasure> units;
+        private readonly MosaicContext _ctx;
         
 
         public PartEditForm(BindingSource source,MosaicContext context)
         {
             InitializeComponent();
-            partsService = new PartsService(context);
+            _ctx = context;
+            partsService = new PartsService(_ctx);
             bsPart = source;
             BindPart(bsPart);
 
@@ -41,18 +43,18 @@ namespace Mosiac.UX.Forms
             cbxUnit.ResetText();
             cbxUnit.SelectedIndex = -1;
 
+            LoadManus();
+            bsPart.ListChanged += BsPart_ListChanged;
+        }
 
-            //cboManu.DataSource = manus;
-            //cboManu.DisplayMember = "ManufacturerName";
-            //cboManu.ValueMember = "ManuID";
-
+        private void LoadManus()
+        {
             cboPartManu.DataSource = partManus;
             cboPartManu.DisplayMember = "ManufacturerName";
             cboPartManu.ValueMember = "ManuID";
             cboPartManu.ResetText();
             cboPartManu.SelectedIndex = -1;
             cboPartManu.Text = "Manufacturer";
-            bsPart.ListChanged += BsPart_ListChanged;
         }
 
         private void BsPart_ListChanged(object sender, ListChangedEventArgs e)
@@ -132,12 +134,33 @@ namespace Mosiac.UX.Forms
 
         private void btnAddManu_Click(object sender, EventArgs e)
         {
-
+            if (bsPart.DataSource != null)
+            {
+                ManuEditForm frm = new ManuEditForm(_ctx);
+                frm.StartPosition = FormStartPosition.CenterParent;
+                DialogResult result = frm.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    //Save the Manufactoer and return new ID -->
+                    //Retrive the updated list of Manufacturers
+                    partManus = partsService.GetManus();
+                    // Load the Combobox with new list
+                    LoadManus();
+                    // Set the selected value to the newly created manufacturer
+                    this.cboPartManu.SelectedValue =  frm.Manu.ManuID;
+                    
+                }
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }

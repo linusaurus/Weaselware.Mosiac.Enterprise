@@ -27,6 +27,7 @@ namespace ServiceLayer
             EmployeeService empService = new EmployeeService(_context);           
             user = empService.FullName(8);
             
+            
         }
 
         public List<UnitOfMeasure> Units()
@@ -87,24 +88,8 @@ namespace ServiceLayer
 
             return result;
         }
-        // this needs to be refined for more speed. ----
-        //public List<Part> SearchParts(string searchTerm ,SearchOptions option )
-        //{
-        //    if (option == SearchOptions.Contains)
-        //    {
-        //        return _context.Parts.Where(p => p.ItemDescription.Contains( searchTerm)).ToList();
-        //    }
-        //    else if (option == SearchOptions.StartsWith)
-        //    {
-        //        return _context.Parts.Where(p => p.ItemDescription.StartsWith(searchTerm)).ToList();
-        //    }
-        //    else
-        //    {
-        //        return null;
-        //    }
-
-
-        //}
+      
+       
 
         public List<PartFastSearchDto> SearchParts(string searchTerm, SearchOptions option)
         {
@@ -337,7 +322,7 @@ namespace ServiceLayer
 
         public List<ManuListDTO> GetManus()
         {
-            var m = _context.Manus.AsNoTracking().Select(d => new ManuListDTO
+            var m = _context.Manus.AsNoTracking().OrderBy(s => s.Manufacturer).Select(d => new ManuListDTO
             {
                 ManufacturerName = d.Manufacturer,
                 ManuID = d.ManuID

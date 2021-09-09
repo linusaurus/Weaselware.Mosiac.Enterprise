@@ -30,6 +30,17 @@ namespace ServiceLayer {
             return _emps; 
         }
 
+        public List<EmployeeListDto> Active()
+        {
+            var _emps = context.Employees.AsNoTracking().OrderBy(p => p.lastname).Where(a => a.Show==true).Select(d => new EmployeeListDto
+            {
+                EmployeeID = d.employeeID,
+                FullName = String.Format("{0} {1}", d.firstname, d.lastname)
+
+            }).ToList();
+            return _emps;
+        }
+
         public List<Employee> AllIncluding(params System.Linq.Expressions.Expression<Func<Employee, object>>[] includeProperties) {
             throw new NotImplementedException();
         }

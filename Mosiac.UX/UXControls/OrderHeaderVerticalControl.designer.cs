@@ -365,7 +365,7 @@
             this.gbSpecialnstruction.Location = new System.Drawing.Point(21, 342);
             this.gbSpecialnstruction.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.gbSpecialnstruction.Name = "gbSpecialnstruction";
-            this.gbSpecialnstruction.Padding = new System.Windows.Forms.Padding(7, 7, 7, 7);
+            this.gbSpecialnstruction.Padding = new System.Windows.Forms.Padding(7);
             this.gbSpecialnstruction.Size = new System.Drawing.Size(334, 103);
             this.gbSpecialnstruction.TabIndex = 41;
             this.gbSpecialnstruction.TabStop = false;
@@ -516,8 +516,8 @@
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.MinimumSize = new System.Drawing.Size(379, 0);
             this.Name = "OrderHeaderVerticalControl";
-            this.Padding = new System.Windows.Forms.Padding(7, 7, 7, 7);
-            this.Size = new System.Drawing.Size(379, 801);
+            this.Padding = new System.Windows.Forms.Padding(7);
+            this.Size = new System.Drawing.Size(379, 798);
             this.Load += new System.EventHandler(this.OrderHeaderVerticalControl_Load);
             this.gbCOst.ResumeLayout(false);
             this.gbCOst.PerformLayout();

@@ -14,15 +14,20 @@ namespace Mosiac.UX
     {
         MosaicContext _context;
         bool isValidated = false;
-        int _employeeID;
-        string _userName;
+        private int _employeeID;
+        private string _userName;
         EmployeeService _employeeService;
 
         
         public LoginForm()
         {
             InitializeComponent();
-
+            if (Mosiac.UX.Properties.Settings.Default.SaveUserName)
+            {
+                this.ckbSaveUserName.Checked = true;
+                this.txtUserName.Text = Mosiac.UX.Properties.Settings.Default.UserName;
+            }
+             
         }
 
         private static void Shake(Form form)
@@ -52,6 +57,7 @@ namespace Mosiac.UX
         {
             string username = txtUserName.Text;
             string password = txtPassWord.Text;
+
             using(_context = new MosaicContext(Mosiac.UX.Properties.Settings.Default.MosiacConnection) )
             {
                 _employeeService = new EmployeeService(_context);
@@ -59,7 +65,8 @@ namespace Mosiac.UX
                 var user = _context.Employees.Where(c => c.Login == username).FirstOrDefault();
                 if (user != null)
                 {
-                    
+                    _userName = username;
+                    _employeeID = user.employeeID;
                 
                 if (password == user.Password)
                 {
@@ -68,7 +75,10 @@ namespace Mosiac.UX
                     this._employeeID = user.employeeID;
                     Globals.CurrentLoggedUserID = user.employeeID;
                     Globals.CurrentUserName = _employeeService.FullName(user.employeeID);
-                }
+                    Mosiac.UX.Properties.Settings.Default.UserName = _userName;
+                    Mosiac.UX.Properties.Settings.Default.Save();
+
+                    }
                 else
                 {
                     isValidated = false;
@@ -92,7 +102,7 @@ namespace Mosiac.UX
             {
                 e.Cancel = true;
                 txtUserName.Focus();
-                Application.Exit();
+               
             }
         }
 
@@ -112,6 +122,16 @@ namespace Mosiac.UX
            // Shake(this);
             System.Diagnostics.Process.GetCurrentProcess().Kill();
           
+        }
+
+        private void ckbSaveUserName_CheckedChanged(object sender, EventArgs e)
+        {
+            CheckBox cbx = (CheckBox)sender;
+            if (cbx.Checked)
+            {
+                Mosiac.UX.Properties.Settings.Default.SaveUserName = true;                
+                Mosiac.UX.Properties.Settings.Default.Save();
+            }
         }
     }
 }

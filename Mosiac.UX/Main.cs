@@ -306,7 +306,7 @@ namespace Mosiac.UX
 
                 case "tsbJobOrders":
 
-                    TabPage jobOrdersPage = PageFactory.GetNewTabPage(_context, PageFactory.TabPageType.JobOrdersPage);
+                    TabPage jobOrdersPage = PageFactory.GetNewTabPage(_context, PageFactory.TabPageType.JobManagerPage);
 
                     jobOrdersPage.Name = "JobOrderPage";
                     if (!MainTabControl.TabPages.ContainsKey("JobOrderPage"))

@@ -73,7 +73,7 @@ namespace Mosiac.UX.UXControls
         private void MyOrdersControl_Load(object sender, EventArgs e)
         {
 
-            cbJobName.DataSource = _employeeService.All();
+            cbJobName.DataSource = _employeeService.Active();
             cbJobName.DisplayMember = "FullName";
             cbJobName.ValueMember = "EmployeeID";
             this.dgMyOrdersGrid.DataSource = _ordersService.GetMyOrders(_employeeID, _showRecieved);
@@ -144,6 +144,19 @@ namespace Mosiac.UX.UXControls
             }
             
 
+        }
+
+        private void ckbShowAll_CheckedChanged(object sender, EventArgs e)
+        {
+            CheckBox cb = (CheckBox)sender;
+            if (cb.Checked)
+            {
+                cbJobName.DataSource = _employeeService.All();
+            }
+            else if (!cb.Checked)
+            {
+                cbJobName.DataSource = _employeeService.Active();
+            }
         }
     }
 }

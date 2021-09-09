@@ -34,6 +34,7 @@
             this.txtPassWord = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.ckbSaveUserName = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // btnLogin
@@ -97,6 +98,17 @@
             this.label2.TabIndex = 5;
             this.label2.Text = "Password";
             // 
+            // ckbSaveUserName
+            // 
+            this.ckbSaveUserName.AutoSize = true;
+            this.ckbSaveUserName.Location = new System.Drawing.Point(82, 75);
+            this.ckbSaveUserName.Name = "ckbSaveUserName";
+            this.ckbSaveUserName.Size = new System.Drawing.Size(106, 19);
+            this.ckbSaveUserName.TabIndex = 6;
+            this.ckbSaveUserName.Text = "Save Username";
+            this.ckbSaveUserName.UseVisualStyleBackColor = true;
+            this.ckbSaveUserName.CheckedChanged += new System.EventHandler(this.ckbSaveUserName_CheckedChanged);
+            // 
             // LoginForm
             // 
             this.AcceptButton = this.btnLogin;
@@ -106,6 +118,7 @@
             this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(335, 150);
             this.ControlBox = false;
+            this.Controls.Add(this.ckbSaveUserName);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtPassWord);
@@ -133,5 +146,6 @@
         private System.Windows.Forms.TextBox txtPassWord;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.CheckBox ckbSaveUserName;
     }
 }

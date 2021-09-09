@@ -47,6 +47,9 @@ namespace Mosiac.UX
         {      
             _ctx.Manus.Add(_manu);
             _ctx.SaveChanges();
+            // This is not strickly necessary but confirms creation of new manufactorer
+            _manu = _ctx.Manus.Find(_manu.ManuID);
+            Close();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)

@@ -23,7 +23,7 @@ namespace Mosiac.UX
             ItemSearchPage,
             RecieptManagerPage,
             LabelEditorPage,
-            JobOrdersPage,
+            JobManagerPage,
             StockBill,
             PartEditorPage,
             PartDetailEdit,
@@ -41,12 +41,10 @@ namespace Mosiac.UX
             {
                 case TabPageType.SupplierOrdersPage:
                     {
-                        tab.Text = "Supplier Orders";
-                        //tab.Name = "SupplierOrders";
+                        tab.Text = "Supplier Orders";                    
                         SupplierManager ctr = new SupplierManager(ctx);
                         tab.Controls.Add(ctr);
                         ctr.Dock = DockStyle.Fill;
-                        //tab.Controls.Add(ctr);
                     }
                     break;
                 // Order Seach/Display Page
@@ -75,13 +73,13 @@ namespace Mosiac.UX
                     //searchctr.Dock = DockStyle.Fill;
                     //tab.Controls.Add(searchctr);
                     break;
-                case TabPageType.JobOrdersPage:
+                case TabPageType.JobManagerPage:
                      
-                    // TabPage jobTab = new TabPage("Job Orders");
-                    // JobOrdersControl jobControl = new JobOrdersControl(ctx);
-                    // jobControl.Dock = DockStyle.Fill;
-                    // jobTab.Controls.Add(jobControl);
-                    //return jobTab;
+                    TabPage jobTab = new TabPage("Job Manager");
+                    JobManager jobControl = new JobManager(ctx);
+                    jobControl.Dock = DockStyle.Fill;
+                    jobTab.Controls.Add(jobControl);
+                    return jobTab;
                     break;
                 case TabPageType.RecieptManagerPage:
                     //tab.Text = "Order Reciepts";

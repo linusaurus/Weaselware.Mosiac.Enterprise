@@ -341,17 +341,7 @@ namespace Mosiac.UX.UXControls
             }
         }
 
-        private void AddNewManufacturer(object sender, EventArgs e)
-        {
-            if (_partBeingEdited != null)
-            {
-                ManuEditForm frm = new ManuEditForm(_ctx);
-                if (frm.ShowDialog() == DialogResult.OK)
-                {
-
-                }
-            }
-        }
+       
 
         private void btnOpenCache_Click(object sender, EventArgs e)
         {
@@ -383,6 +373,8 @@ namespace Mosiac.UX.UXControls
                 _ctx.Entry(_partBeingEdited).State = EntityState.Added;
                 _ctx.SaveChanges();
                 Grids.ToogleButtonStyle(false, btnSave);
+
+                //OpenPartbyNumber();
             }
             else if (result == DialogResult.Cancel)
             {

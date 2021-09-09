@@ -68,7 +68,21 @@ namespace ServiceLayer {
         public Job Find(int jobNumber) 
         {
 
-            return context.Jobs.Where(c => c.jobID == jobNumber).FirstOrDefault();
+            return context.Jobs.Include(p => p.PurchaseOrders).Where(c => c.jobID == jobNumber).FirstOrDefault();
+        }
+
+        public List<JobListDto> Recent()
+        {
+            var jobs = context.Jobs.AsNoTracking().OrderByDescending(p => p.jobID).Take(30)
+
+                                  .Select(j => new JobListDto()
+                                  {
+                                      JobID = j.jobID,
+                                      JobName = j.jobname
+                                  }).ToList();
+
+
+            return jobs;
         }
 
         public List<JobListDto> All()

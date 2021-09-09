@@ -57,11 +57,13 @@ namespace Mosiac.UX.Forms
             this.label8 = new System.Windows.Forms.Label();
             this.txtPartID = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.textBox1);
             this.groupBox1.Controls.Add(this.btnAddManu);
             this.groupBox1.Controls.Add(this.cboPartManu);
             this.groupBox1.Controls.Add(this.button1);
@@ -95,6 +97,7 @@ namespace Mosiac.UX.Forms
             this.groupBox1.TabIndex = 9;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Part Details";
+            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // btnAddManu
             // 
@@ -163,7 +166,7 @@ namespace Mosiac.UX.Forms
             // cbxObsolete
             // 
             this.cbxObsolete.AutoSize = true;
-            this.cbxObsolete.Location = new System.Drawing.Point(215, 179);
+            this.cbxObsolete.Location = new System.Drawing.Point(205, 179);
             this.cbxObsolete.Name = "cbxObsolete";
             this.cbxObsolete.Size = new System.Drawing.Size(73, 19);
             this.cbxObsolete.TabIndex = 8;
@@ -359,6 +362,13 @@ namespace Mosiac.UX.Forms
             this.label4.Text = "PartID";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(293, 174);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(139, 23);
+            this.textBox1.TabIndex = 13;
+            // 
             // PartEditForm
             // 
             this.AcceptButton = this.btnSave;
@@ -407,5 +417,6 @@ namespace Mosiac.UX.Forms
         private System.Windows.Forms.TextBox txtPartID;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }
