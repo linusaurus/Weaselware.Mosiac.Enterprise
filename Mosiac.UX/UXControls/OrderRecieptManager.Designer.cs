@@ -362,6 +362,7 @@ namespace Mosiac.UX.UXControls
             this.tsSaveChanges.Name = "tsSaveChanges";
             this.tsSaveChanges.Size = new System.Drawing.Size(108, 28);
             this.tsSaveChanges.Text = "Save Changes";
+            this.tsSaveChanges.Click += new System.EventHandler(this.tsSaveChanges_Click);
             // 
             // tsbOrderReciept
             // 

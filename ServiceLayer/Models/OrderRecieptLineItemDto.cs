@@ -205,9 +205,11 @@ namespace ServiceLayer.Models
                 {
                   QntyReceived = QntyOrdered;
                   QntyBalance = 0.0m;
+                  QntyToInventory = QntyReceived;
                 } else
                 {
                     QntyReceived = decimal.Zero;
+                    QntyToInventory = decimal.Zero;
                 }
                 OnPropertyChange();
             }

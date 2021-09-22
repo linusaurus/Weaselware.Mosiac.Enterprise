@@ -32,10 +32,11 @@ namespace ServiceLayer
             PurchaseOrder po = _ctx.PurchaseOrders.AsNoTracking().Include(p => p.PurchaseLineItems).ThenInclude(u => u.UnitOfMeasure).Include(x => x.OrderReciepts)
                                    .Include(e => e.Supplier).Where(o => o.PurchaseOrderID == purchaserOrderID).FirstOrDefault();
             
-            // Test for existing Order Receipt
+            // Test for existing Order Receipt-if true that one exist, retrieve it and copy into new receipt
             if (po.OrderReciepts.Any())
             {
                 newReciept = GetOrderReceipt(po.OrderReciepts.FirstOrDefault().OrderReceiptID);
+
             }
             else
             {
@@ -63,10 +64,11 @@ namespace ServiceLayer
                     item.QntyReceived = 0.0m;
                     item.ItemsRecievedComplete = false;
                     item.QntyToInventory = lines.Qnty.GetValueOrDefault();
-                    item.PartID = lines.PartID.GetValueOrDefault();
+                    
+                   
                     ////// -- if the partID is null or 0 assign the unit of measure to Each --///////
-                    if (lines.PartID == default) { item.UnitOfMeasureName = "Ea"; }
-                    else if (lines.PartID != default) { item.UnitOfMeasureName = _ctx.Parts.Find(lines.PartID).UnitOfMeasure.UnitName; }
+                    if (lines.PartID == default || lines.PartID==0) { item.UnitOfMeasureName = "Ea"; }
+                    else if (lines.PartID != default) { item.UnitOfMeasureName = _ctx.Parts.Find(lines.PartID).UnitOfMeasure.UnitName.ToString(); }
                    /// ----------------------------- End of Unit of measure assignment --
                     item.UnitToQuantityRatio =  1.00m;
                     item.QntyToInventory = 0.0m;
@@ -100,16 +102,17 @@ namespace ServiceLayer
             return purchaseOrders;
             
         }
-
+        // ----------------------------------------------------------------------------++
+        // Return Order that are either UnRecieved or Incomplete ----------------------++
+        // ----------------------------------------------------------------------------++
         public List<PendingOrdersDto> UnRecievedOrders(int orderState, int supplierid = 0)
         {
             List<PendingOrdersDto> purchaseOrders = new List<PendingOrdersDto>();
 
-
             if (supplierid == 0)
             {
                 purchaseOrders = _ctx.PurchaseOrders.AsNoTracking().Include(s => s.Supplier)
-                    .Where(p => p.OrderState == orderState).OrderBy(d => d.OrderDate)
+                    .Where(p => p.OrderState == orderState || p.OrderState == 3).OrderBy(d => d.OrderDate)
                     .Select(dto => new PendingOrdersDto
                     {
                         PurchaseOrderID = dto.PurchaseOrderID,
@@ -122,7 +125,7 @@ namespace ServiceLayer
             else
             {
                 purchaseOrders = _ctx.PurchaseOrders.AsNoTracking().Include(s => s.Supplier)
-                   .Where(p => p.OrderState == orderState ).Where(s => s.SupplierID == supplierid).OrderBy(d => d.OrderDate)
+                   .Where(p => p.OrderState == orderState || p.OrderState == 3).Where(s => s.SupplierID == supplierid).OrderBy(d => d.OrderDate)
                    .Select(dto => new PendingOrdersDto
                    {
                        PurchaseOrderID = dto.PurchaseOrderID,
@@ -149,6 +152,20 @@ namespace ServiceLayer
             }
             return dtos;
         }
+
+        public OrderReceiptDto GetPurchaseOrderReceipt(int purchaseOrderID)
+        {
+            OrderReceiptDto dto = new OrderReceiptDto();
+            var or = _ctx.OrderReciepts
+                .Include(l => l.OrderReceiptItems).ThenInclude(o => o.UnitOfMeasure)
+                .Include(e => e.Employee).Where(p => p.PurchaseOrderID == purchaseOrderID).First();
+
+            OrderReceiptMapper mapper = new OrderReceiptMapper();
+            mapper.Map(or, dto);
+
+            return dto;
+        }
+
 
         public OrderReceiptDto GetOrderReceipt(int orderReceiptID)
         {
@@ -234,7 +251,11 @@ namespace ServiceLayer
                 detail.Balance = detailDTO.QntyBalance;
                 detail.IsComplete = detailDTO.ItemsRecievedComplete;
                 detail.InventoryAmount = detailDTO.QntyToInventory;
-                
+                if (detailDTO.QntyToInventory == detailDTO.QntyReceived)
+                {
+                    detailDTO.Pushed = true;
+                }
+                detail.Pushed = detailDTO.Pushed;
             });
 
             // set the PO order status and Received Date.

@@ -28,6 +28,10 @@ namespace ServiceLayer.Models
                 {
                     return 2;
                 }
+                else if(OrderReceiptLineItems.Any(c => c.QntyOrdered > c.QntyReceived))
+                {
+                    return 3;
+                }
                 else
                 {
                     return 1;

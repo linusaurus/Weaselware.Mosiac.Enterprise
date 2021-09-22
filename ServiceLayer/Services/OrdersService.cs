@@ -220,6 +220,20 @@ namespace ServiceLayer {
             context.PurchaseOrders.Remove(po);
 
         }
+
+
+        public bool ProcessOrderReciept(OrderReceiptDto orderReciept)
+        {
+            bool result = false;
+
+            foreach (var item in orderReciept.OrderReceiptLineItems)
+            {
+
+            }
+
+
+            return result;
+        }
         //Recieve Order --
         public OrderReciept RecievedOrder(PurchaseOrder order, int employeeID) {
 

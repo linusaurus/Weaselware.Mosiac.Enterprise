@@ -47,7 +47,7 @@ namespace Mosiac.UX.UXControls
             this.txtSearch.Margin = new System.Windows.Forms.Padding(6);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.PlaceholderText = "Search...";
-            this.txtSearch.Size = new System.Drawing.Size(326, 23);
+            this.txtSearch.Size = new System.Drawing.Size(343, 23);
             this.txtSearch.TabIndex = 0;
             this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             // 
@@ -61,13 +61,13 @@ namespace Mosiac.UX.UXControls
             this.panel1.Location = new System.Drawing.Point(15, 49);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 0, 3, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(322, 47);
+            this.panel1.Size = new System.Drawing.Size(339, 47);
             this.panel1.TabIndex = 1;
             // 
             // bntEdit
             // 
             this.bntEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.bntEdit.Location = new System.Drawing.Point(216, 8);
+            this.bntEdit.Location = new System.Drawing.Point(233, 8);
             this.bntEdit.Margin = new System.Windows.Forms.Padding(15);
             this.bntEdit.Name = "bntEdit";
             this.bntEdit.Size = new System.Drawing.Size(94, 30);
@@ -79,7 +79,7 @@ namespace Mosiac.UX.UXControls
             // btnNewSupplierOrder
             // 
             this.btnNewSupplierOrder.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnNewSupplierOrder.Location = new System.Drawing.Point(126, 8);
+            this.btnNewSupplierOrder.Location = new System.Drawing.Point(143, 8);
             this.btnNewSupplierOrder.Margin = new System.Windows.Forms.Padding(15);
             this.btnNewSupplierOrder.Name = "btnNewSupplierOrder";
             this.btnNewSupplierOrder.Size = new System.Drawing.Size(88, 30);
@@ -106,7 +106,7 @@ namespace Mosiac.UX.UXControls
             this.lbSuppliersList.ItemHeight = 15;
             this.lbSuppliersList.Location = new System.Drawing.Point(15, 102);
             this.lbSuppliersList.Name = "lbSuppliersList";
-            this.lbSuppliersList.Size = new System.Drawing.Size(322, 424);
+            this.lbSuppliersList.Size = new System.Drawing.Size(339, 424);
             this.lbSuppliersList.TabIndex = 2;
             this.lbSuppliersList.SelectedIndexChanged += new System.EventHandler(this.lbSuppliersList_SelectedIndexChanged);
             // 
@@ -118,9 +118,10 @@ namespace Mosiac.UX.UXControls
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.txtSearch);
             this.Margin = new System.Windows.Forms.Padding(6);
+            this.MinimumSize = new System.Drawing.Size(350, 0);
             this.Name = "SupplierSelector";
             this.Padding = new System.Windows.Forms.Padding(10);
-            this.Size = new System.Drawing.Size(352, 700);
+            this.Size = new System.Drawing.Size(369, 700);
             this.Load += new System.EventHandler(this.SupplierSelector_Load);
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);

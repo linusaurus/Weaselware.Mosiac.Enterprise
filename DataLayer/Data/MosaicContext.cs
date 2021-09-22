@@ -566,8 +566,7 @@ namespace DataLayer.Data
                     .HasDefaultValueSql("((1.0))");
 
                 entity.Property(e => e.Recieved).HasDefaultValueSql("((0))");
-
-            
+         
 
                 entity.Property(e => e.Thick)
                     .HasColumnType("decimal(18, 4)")

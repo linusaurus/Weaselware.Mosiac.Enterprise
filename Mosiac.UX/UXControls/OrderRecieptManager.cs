@@ -96,7 +96,7 @@ namespace Mosiac.UX.UXControls
                     else if (dat.OrderState == 3)
                     {
                         row.DefaultCellStyle.ForeColor = Color.Yellow;
-                        row.DefaultCellStyle.BackColor = Color.Cornsilk;
+                        row.DefaultCellStyle.BackColor = Color.Black;
                         row.ReadOnly = true;
                     }
 
@@ -124,9 +124,9 @@ namespace Mosiac.UX.UXControls
                     OrderRecieptLineItemDto dat = (OrderRecieptLineItemDto)row.DataBoundItem;
                     if (dat.ItemsRecievedComplete && dat.QntyToInventory > decimal.Zero)
                     {
-                        row.DefaultCellStyle.ForeColor = Color.Gray;
-                        row.DefaultCellStyle.BackColor = Color.Gainsboro;
-                        row.ReadOnly = true;
+                        row.DefaultCellStyle.ForeColor = Color.White;
+                        row.DefaultCellStyle.BackColor = Color.Blue;
+                        //row.ReadOnly = true;
                     }
                 }
             }
@@ -355,7 +355,7 @@ namespace Mosiac.UX.UXControls
 
         }
         
-
+        // Select POs from the selected Suppliers ------------------++
         private void lbSuppliers_SelectedIndexChanged(object sender, EventArgs e)
         {
             ListBox lb = (ListBox)sender;
@@ -375,6 +375,11 @@ namespace Mosiac.UX.UXControls
             _selectedOrderRecieptLineItemDto.ItemsRecievedComplete = false;
             _selectedOrderRecieptLineItemDto.QntyBalance = _selectedOrderRecieptLineItemDto.QntyOrdered;
             dgOrderReceiptItems.InvalidateRow(dgOrderReceiptItems.CurrentRow.Index);
+        }
+
+        private void tsSaveChanges_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
