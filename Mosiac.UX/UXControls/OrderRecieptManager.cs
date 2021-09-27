@@ -26,7 +26,29 @@ namespace Mosiac.UX.UXControls
         private BindingSource bsOrderReceiptItems = new BindingSource();
         private OrderRecieptLineItemDto _selectedOrderRecieptLineItemDto;
         private int _orderState = 0;
-        
+        private bool _isLocked = false;
+
+        public bool IsLocked
+        {
+            get {return _isLocked; }
+            set {
+                _isLocked = value;
+                if (_isLocked==true)
+                {
+                    dgPendingOrders.Enabled = false;
+                    lbSuppliers.Enabled = false;
+                   
+                    spcMainContainer.Panel1Collapsed = true;
+                }
+                else
+                {
+                    dgPendingOrders.Enabled = true;           
+                    lbSuppliers.Enabled = true;
+                    spcMainContainer.Panel1Collapsed = false;
+                }
+            }
+        }
+
         public OrderRecieptManager(MosaicContext context)
         {
             InitializeComponent();
@@ -66,6 +88,7 @@ namespace Mosiac.UX.UXControls
                 _selectedOrderRecieptLineItemDto =  (OrderRecieptLineItemDto) dv.CurrentRow.DataBoundItem;
                 this.textBox1.DataBindings.Clear();
                 this.textBox1.DataBindings.Add("Text", _selectedOrderRecieptLineItemDto, "Note", true, DataSourceUpdateMode.OnPropertyChanged);
+              
             }
         }
 
@@ -125,7 +148,7 @@ namespace Mosiac.UX.UXControls
                     if (dat.ItemsRecievedComplete && dat.QntyToInventory > decimal.Zero)
                     {
                         row.DefaultCellStyle.ForeColor = Color.White;
-                        row.DefaultCellStyle.BackColor = Color.Blue;
+                        row.DefaultCellStyle.BackColor = Color.LightGray;
                         //row.ReadOnly = true;
                     }
                 }
@@ -229,14 +252,9 @@ namespace Mosiac.UX.UXControls
                 {
                     _selectedOrderID  = ((PendingOrdersDto)dg.CurrentRow.DataBoundItem).PurchaseOrderID;
                     if (((PendingOrdersDto)dg.CurrentRow.DataBoundItem).OrderState ==1)
-                    {
-                        tsbOrderReciept.Text = "Create Order Receipt";
-                    }
+                    { tsbOrderReciept.Text = "Create Order Receipt";}
                     else
-                    {
-                        tsbOrderReciept.Text = "Open Order Receipt";
-                    }
-                    
+                    {tsbOrderReciept.Text = "Additional Receipt";}                    
                 }
             }
         }
@@ -254,7 +272,7 @@ namespace Mosiac.UX.UXControls
 
             txtOrderReceiptID.DataBindings.Clear();
             txtOrderReceiptID.DataBindings.Add("Text", dto, "OrderReceiptId", true);
-
+   
             txtOrderReceiptDate.DataBindings.Clear();
             txtOrderReceiptDate.DataBindings.Add("Text", dto, "ReceiptDate", true);
 
@@ -291,19 +309,33 @@ namespace Mosiac.UX.UXControls
             switch (e.ClickedItem.Name)
             {
                 case "tsSaveChanges":
-
+                    // Send the OrderReceipt back to the database
                     int orID = _orderReceiptRepository.UpdateOrCreate(_orderRecieptDto);
                     _orderRecieptDto = _orderReceiptRepository.GetOrderReceipt(orID);
                     BindOrderReceipt(_orderRecieptDto);
                     orToolStrip.Items[0].BackColor = DefaultBackColor;
+                    IsLocked = false;
 
                     break;
                 // -- Generate a new or open existing  PO for entering qnty and inventory value
                 case "tsbOrderReciept":
+                   
                     _orderRecieptDto = _orderReceiptRepository.LoadOrderReciept(_selectedOrderID);
                     BindOrderReceipt(_orderRecieptDto);
-                    
+                    IsLocked = true;
 
+                    break;
+                case "tsbCancel":
+                   
+                    string msg = "Do you want to discard all changes and cancel the current Receipt";
+                    if (MessageBox.Show(msg,"Discard Changes",MessageBoxButtons.YesNo,MessageBoxIcon.Hand,MessageBoxDefaultButton.Button2)== DialogResult.Yes)
+                    {
+                        _orderRecieptDto = new OrderReceiptDto();
+                        BindOrderReceipt(_orderRecieptDto);
+                        IsLocked = false;
+                    }
+          
+                    // --------------------------------------------------------------
                     break;
                 // -- process the order reciept view and push item to inventory
                 // -- foreach line of the order receipt, mark if the line is complete
@@ -311,27 +343,30 @@ namespace Mosiac.UX.UXControls
                 case "tsbProccessInventory":
                     // loop orderReceipt items, calculate status of line item, set inventory amount, and resolution
                     // of the lineitem, is less that qnty order is received the it
+  
                     foreach (var line in _orderRecieptDto.OrderReceiptLineItems)
                     {
                         // init a new inventory object
                         Inventory inv = new Inventory();
-                        inv.OrderReceiptID = line.OrderReceiptID;
-                        inv.DateStamp = DateTime.Now;
-                        inv.Description = line.Description;
-                        inv.JobID =  line.PurchaseOrderID;
-                        inv.EmpID = _orderRecieptDto.EmployeeId;   
-                        inv.LineID = line.LineID;
-                        inv.TransActionType = (int)TransActionTypeCode.Recieve;
-                        inv.Note = line.Note;
-                        inv.QntyOrdered = line.QntyOrdered;
-                        inv.QntyReceived = line.QntyReceived;
-                        if (!line.Pushed )
+                        if (line.Pushed != true)
                         {
-                            inv.InventoryAmount = line.QntyToInventory;
-                            line.Pushed = true;
-                        }
                        
-                        
+                            inv.OrderReceiptID = line.OrderReceiptID;
+                            inv.DateStamp = DateTime.Now;
+                            inv.Description = line.Description;
+                            inv.JobID = line.PurchaseOrderID;
+                            inv.EmpID = _orderRecieptDto.EmployeeId;
+                            inv.LineID = line.LineID;
+                            inv.TransActionType = (int)TransActionTypeCode.Recieve;
+                            inv.Note = line.Note;
+                            inv.QntyOrdered = line.QntyOrdered;
+                            inv.QntyReceived = line.QntyReceived;
+                            if (!line.Pushed)
+                            {
+                                inv.InventoryAmount = line.QntyToInventory;
+                                line.Pushed = true;
+                            }
+                        }
                         
                         _context.Inventories.Add(inv);
 
@@ -378,6 +413,11 @@ namespace Mosiac.UX.UXControls
         }
 
         private void tsSaveChanges_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void spcMainContainer_Panel2_Paint(object sender, PaintEventArgs e)
         {
 
         }

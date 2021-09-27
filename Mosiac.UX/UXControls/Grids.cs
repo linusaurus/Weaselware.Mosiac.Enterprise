@@ -311,19 +311,21 @@ namespace Mosiac.UX.UXControls
             dstyleWrapText.Alignment = DataGridViewContentAlignment.TopLeft;
             dstyleWrapText.WrapMode = DataGridViewTriState.True;
 
-            // PartID Column -- 0
-            DataGridViewTextBoxColumn col_OrderReceiptID = new DataGridViewTextBoxColumn();
-            col_OrderReceiptID.HeaderText = "ID";
-            col_OrderReceiptID.DataPropertyName = "OrderReceiptID";
-            col_OrderReceiptID.Width = 55;
+
 
        
-            // PartID Column -- 0
+            // OrderReceiptLineID Column -- 0
             DataGridViewTextBoxColumn col_OrderReceiptLineID = new DataGridViewTextBoxColumn();
             col_OrderReceiptLineID.HeaderText = "ID";
             col_OrderReceiptLineID.DataPropertyName = "OrderReceiptLineID";
             col_OrderReceiptLineID.Width = 55;
 
+            // OrderReceiptLineID Column -- 0
+            DataGridViewTextBoxColumn col_partID = new DataGridViewTextBoxColumn();
+            col_partID.HeaderText = "PartID";
+            col_partID.DataPropertyName = "PartID";
+            col_partID.Width = 55;
+            col_partID.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
             // Description Column -- 1
             DataGridViewTextBoxColumn col_Description = new DataGridViewTextBoxColumn();
@@ -375,7 +377,7 @@ namespace Mosiac.UX.UXControls
 
             col_QntyToInventory.Width = 80;
 
-            dg.Columns.AddRange(col_OrderReceiptID, col_OrderReceiptLineID,col_Description, col_UnitOfMeasureName, col_ReceivedComplete, col_QntyOrdered, 
+            dg.Columns.AddRange( col_OrderReceiptLineID, col_partID, col_Description, col_UnitOfMeasureName, col_ReceivedComplete, col_QntyOrdered, 
                 col_QntyRecieved, col_QntyBalance, col_QntyToInventory);
         }
 

@@ -64,11 +64,13 @@ namespace ServiceLayer
                     item.QntyReceived = 0.0m;
                     item.ItemsRecievedComplete = false;
                     item.QntyToInventory = lines.Qnty.GetValueOrDefault();
-                    
-                   
+                    item.UnitOfMeasureName = String.Empty;
+                    item.PartID = lines.PartID.GetValueOrDefault();
+
                     ////// -- if the partID is null or 0 assign the unit of measure to Each --///////
                     if (lines.PartID == default || lines.PartID==0) { item.UnitOfMeasureName = "Ea"; }
-                    else if (lines.PartID != default) { item.UnitOfMeasureName = _ctx.Parts.Find(lines.PartID).UnitOfMeasure.UnitName.ToString(); }
+                    else if (lines.PartID != default)
+                    { item.UnitOfMeasureName = _ctx.Parts.Where(p => p.PartID == lines.PartID).Include(u => u.UnitOfMeasure).Select(s => s.UnitOfMeasure.UnitName).FirstOrDefault(); }
                    /// ----------------------------- End of Unit of measure assignment --
                     item.UnitToQuantityRatio =  1.00m;
                     item.QntyToInventory = 0.0m;
@@ -251,6 +253,7 @@ namespace ServiceLayer
                 detail.Balance = detailDTO.QntyBalance;
                 detail.IsComplete = detailDTO.ItemsRecievedComplete;
                 detail.InventoryAmount = detailDTO.QntyToInventory;
+               
                 if (detailDTO.QntyToInventory == detailDTO.QntyReceived)
                 {
                     detailDTO.Pushed = true;
@@ -267,27 +270,32 @@ namespace ServiceLayer
             po.Recieved = !IsNotComplete;
             po.IsBackOrder = IsNotComplete;
             po.RecievedDate = orderReciept.ReceiptDate.GetValueOrDefault();
-            
-            //// Push the Item to inventory -------------------------------
-           
-            //foreach (var item in dto.OrderReceiptLineItems)
-            //{
-            //    Inventory inv = new Inventory();
-            //    inv.DateStamp = DateTime.Now;
-            //    inv.Description = item.Description;
-            //    inv.EmpID = orderReciept.EmployeeID;
-            //    inv.JobID = item.JobID;
-            //    inv.LineID = item.LineID;
-            //    inv.OrderReceiptID = orderReciept.OrderReceiptID;
-            //    inv.PartID = item.PartID;
-            //    inv.QntyOrdered = item.QntyOrdered;
-            //    inv.QntyReceived = item.QntyReceived;
-            //    inv.UnitOfMeasureID = item.UiD;
-            //    inv.TransActionType = 1;
-            //    inv.InventoryAmount = item.QntyToInventory;
-              
-            //    _ctx.Inventories.Add(inv);
-            //}
+            po.OrderState = 2;
+
+            // Push the Item to inventory -------------------------------
+
+            foreach (var item in dto.OrderReceiptLineItems)
+            {
+                if (item.Pushed == true)
+                {
+                    Inventory inv = new Inventory();
+                    inv.DateStamp = DateTime.Now;
+                    inv.Description = item.Description;
+                    inv.EmpID = orderReciept.EmployeeID;
+                    inv.JobID = item.JobID;
+                    inv.LineID = item.LineID;
+                    inv.OrderReceiptID = orderReciept.OrderReceiptID;
+                    inv.PartID = item.PartID;
+                    inv.QntyOrdered = item.QntyOrdered;
+                    inv.QntyReceived = item.QntyReceived;
+                    inv.UnitOfMeasureID = item.UiD;
+                    inv.TransActionType = 1;
+                    inv.InventoryAmount = item.QntyToInventory;
+
+                    _ctx.Inventories.Add(inv);
+                }
+                
+            }
 
             _ctx.SaveChanges();
             return orderReciept.OrderReceiptID;

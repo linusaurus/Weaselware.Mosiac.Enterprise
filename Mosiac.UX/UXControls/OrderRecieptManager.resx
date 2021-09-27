@@ -70,6 +70,17 @@
         nVHV6IMD5t2JTVmVsgCYxt2XIYC4CAAAAABJRU5ErkJggg==
 </value>
   </data>
+  <data name="tsbCancel.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAEKSURBVGhD7ZixDcJAEAQdEFISXVAIhRBQAgVQBAElERLA
+        LWilD97G9t/776UdaSXsAM/IFkgehBBCCNERO9vVdvge+XK0nX8f6wD5m+1te9o8IyD/suG7LzhRA8pz
+        XhGpPFflTpxs6UWw0oicPI5xvgqeEZvLE4+IZvKkJKK5PFkTEUaeLIkIJ0/mRISVJ1MR4eXJWEQX8iQX
+        kS60PBmL6EIe5J557N9PbAjG5LnQETn5bu7EmDzOz/mfaMqUPAkbMUeehItYIk/CRKyRJ80jSuRJswgP
+        ebJ5hKc82TTibksvVCpPchF4eebO3vawecqTNALvn/ASrQqIwJ3wlCeIqCovhBBCCF+G4QPscQpeK0P8
+        qAAAAABJRU5ErkJggg==
+</value>
+  </data>
   <data name="tsbOrderReciept.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8

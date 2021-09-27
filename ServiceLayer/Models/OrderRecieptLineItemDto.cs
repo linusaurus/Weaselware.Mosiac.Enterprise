@@ -206,10 +206,12 @@ namespace ServiceLayer.Models
                   QntyReceived = QntyOrdered;
                   QntyBalance = 0.0m;
                   QntyToInventory = QntyReceived;
+                  Pushed = true;
                 } else
                 {
                     QntyReceived = decimal.Zero;
                     QntyToInventory = decimal.Zero;
+
                 }
                 OnPropertyChange();
             }

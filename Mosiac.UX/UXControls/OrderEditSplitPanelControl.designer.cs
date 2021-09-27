@@ -183,6 +183,7 @@ namespace Mosiac.UX.UXControls
             this.orderHeaderVerticalControl1.Padding = new System.Windows.Forms.Padding(7);
             this.orderHeaderVerticalControl1.Size = new System.Drawing.Size(379, 679);
             this.orderHeaderVerticalControl1.TabIndex = 0;
+            this.orderHeaderVerticalControl1.Load += new System.EventHandler(this.orderHeaderVerticalControl1_Load);
             // 
             // scLineItems
             // 

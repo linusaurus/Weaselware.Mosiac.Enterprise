@@ -114,6 +114,12 @@ namespace Mosiac.UX.UXControls {
                 orderHeaderVerticalControl1.btnSave.FlatAppearance.BorderColor = Color.Cornsilk;
             }
         }
+
+        private void LockOrderUX()
+        {
+            dgOrderLineItem.ReadOnly = true;
+            
+        }
        
         /// <summary>
         /// After update this shoudl relaod all the current data
@@ -125,6 +131,10 @@ namespace Mosiac.UX.UXControls {
             if (orderDTO != null )
             {
                 _purchaseOrder = _orderService.GetOrderByID(orderDTO.PurchaseOrderID);
+                if (_purchaseOrder.OrderState == 2 || _purchaseOrder.Recieved == true)
+                {
+                    LockOrderUX();
+                }
                 mapper.Map(_purchaseOrder, orderDTO);
                 bsOrder.DataSource = orderDTO;
                 bsLineitems.DataSource = orderDTO.LineItems;
@@ -137,6 +147,7 @@ namespace Mosiac.UX.UXControls {
                 if (orderFeeControl != null) { orderFeeControl.SetDataSource(orderDTO, bsOrderFees); }
 
                 BindLineItemsToGrid(bsLineitems);
+     
             }
 
             return result;
@@ -489,6 +500,9 @@ namespace Mosiac.UX.UXControls {
 
         }
 
-       
+        private void orderHeaderVerticalControl1_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

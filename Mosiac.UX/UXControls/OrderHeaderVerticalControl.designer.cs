@@ -210,6 +210,7 @@
             this.txtOtherFees.Location = new System.Drawing.Point(202, 98);
             this.txtOtherFees.Margin = new System.Windows.Forms.Padding(2);
             this.txtOtherFees.Name = "txtOtherFees";
+            this.txtOtherFees.ReadOnly = true;
             this.txtOtherFees.Size = new System.Drawing.Size(116, 23);
             this.txtOtherFees.TabIndex = 26;
             this.txtOtherFees.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -274,6 +275,7 @@
             this.txtSubTotal.Location = new System.Drawing.Point(202, 18);
             this.txtSubTotal.Margin = new System.Windows.Forms.Padding(2);
             this.txtSubTotal.Name = "txtSubTotal";
+            this.txtSubTotal.ReadOnly = true;
             this.txtSubTotal.Size = new System.Drawing.Size(116, 23);
             this.txtSubTotal.TabIndex = 28;
             this.txtSubTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -284,6 +286,7 @@
             this.txtOrderTotal.Location = new System.Drawing.Point(202, 126);
             this.txtOrderTotal.Margin = new System.Windows.Forms.Padding(2);
             this.txtOrderTotal.Name = "txtOrderTotal";
+            this.txtOrderTotal.ReadOnly = true;
             this.txtOrderTotal.Size = new System.Drawing.Size(116, 23);
             this.txtOrderTotal.TabIndex = 29;
             this.txtOrderTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -294,6 +297,7 @@
             this.txtTax.Location = new System.Drawing.Point(202, 44);
             this.txtTax.Margin = new System.Windows.Forms.Padding(2);
             this.txtTax.Name = "txtTax";
+            this.txtTax.ReadOnly = true;
             this.txtTax.Size = new System.Drawing.Size(116, 23);
             this.txtTax.TabIndex = 30;
             this.txtTax.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -322,6 +326,7 @@
             this.txtTaxRate.Location = new System.Drawing.Point(202, 70);
             this.txtTaxRate.Margin = new System.Windows.Forms.Padding(2);
             this.txtTaxRate.Name = "txtTaxRate";
+            this.txtTaxRate.ReadOnly = true;
             this.txtTaxRate.Size = new System.Drawing.Size(116, 23);
             this.txtTaxRate.TabIndex = 38;
             this.txtTaxRate.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
