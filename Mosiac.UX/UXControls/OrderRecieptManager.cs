@@ -55,7 +55,7 @@ namespace Mosiac.UX.UXControls
             _context = context;   
             Grids.BuildPendingOrdersGrid(dgPendingOrders);
             Grids.BuildOrderReceiptItemsGrid(dgOrderReceiptItems);
-            _orderReceiptRepository = new OrderReceiptRepository(_context);
+            _orderReceiptRepository = new OrderReceiptRepository(_context,Globals.CurrentUserName,Globals.CurrentLoggedUserID);
             _suppliersService = new SuppliersService(_context);
 
             lbSuppliers.DataSource = _suppliersService.SuppliersWithOpenOrders();
@@ -314,7 +314,11 @@ namespace Mosiac.UX.UXControls
                     _orderRecieptDto = _orderReceiptRepository.GetOrderReceipt(orID);
                     BindOrderReceipt(_orderRecieptDto);
                     orToolStrip.Items[0].BackColor = DefaultBackColor;
+
+                    _orderRecieptDto = new OrderReceiptDto();
+                    BindOrderReceipt(_orderRecieptDto);
                     IsLocked = false;
+   
 
                     break;
                 // -- Generate a new or open existing  PO for entering qnty and inventory value
@@ -344,34 +348,34 @@ namespace Mosiac.UX.UXControls
                     // loop orderReceipt items, calculate status of line item, set inventory amount, and resolution
                     // of the lineitem, is less that qnty order is received the it
   
-                    foreach (var line in _orderRecieptDto.OrderReceiptLineItems)
-                    {
-                        // init a new inventory object
-                        Inventory inv = new Inventory();
-                        if (line.Pushed != true)
-                        {
+                    //foreach (var line in _orderRecieptDto.OrderReceiptLineItems)
+                    //{
+                    //    // init a new inventory object
+                    //    Inventory inv = new Inventory();
+                    //    if (line.Pushed != true)
+                    //    {
                        
-                            inv.OrderReceiptID = line.OrderReceiptID;
-                            inv.DateStamp = DateTime.Now;
-                            inv.Description = line.Description;
-                            inv.JobID = line.PurchaseOrderID;
-                            inv.EmpID = _orderRecieptDto.EmployeeId;
-                            inv.LineID = line.LineID;
-                            inv.TransActionType = (int)TransActionTypeCode.Recieve;
-                            inv.Note = line.Note;
-                            inv.QntyOrdered = line.QntyOrdered;
-                            inv.QntyReceived = line.QntyReceived;
-                            if (!line.Pushed)
-                            {
-                                inv.InventoryAmount = line.QntyToInventory;
-                                line.Pushed = true;
-                            }
-                        }
+                    //        inv.OrderReceiptID = line.OrderReceiptID;
+                    //        inv.DateStamp = DateTime.Now;
+                    //        inv.Description = line.Description;
+                    //        inv.JobID = line.PurchaseOrderID;
+                    //        inv.EmpID = _orderRecieptDto.EmployeeId;
+                    //        inv.LineID = line.LineID;
+                    //        inv.TransActionType = (int)TransActionTypeCode.Recieve;
+                    //        inv.Note = line.Note;
+                    //        inv.QntyOrdered = line.QntyOrdered;
+                    //        inv.QntyReceived = line.QntyReceived;
+                    //        if (!line.Pushed)
+                    //        {
+                    //            inv.InventoryAmount = line.QntyToInventory;
+                    //            line.Pushed = true;
+                    //        }
+                    //    }
                         
-                        _context.Inventories.Add(inv);
+                    //    _context.Inventories.Add(inv);
 
-                    }
-                    _context.SaveChanges();
+                    //}
+                    //_context.SaveChanges();
                     break;
 
                 case "tsbPrintReceipt":

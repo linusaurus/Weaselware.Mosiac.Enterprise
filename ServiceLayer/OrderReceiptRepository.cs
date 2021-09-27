@@ -16,9 +16,18 @@ namespace ServiceLayer
         
         private readonly MosaicContext _ctx;
         private readonly OrderReceiptMapper _mapper = new OrderReceiptMapper();
+        private string _user;
+        private int _userid;
 
-        public OrderReceiptRepository(MosaicContext context)
-        { _ctx = context;}
+        //public OrderReceiptRepository(MosaicContext context)
+        //{ _ctx = context;}
+
+        public OrderReceiptRepository(MosaicContext context, string user,int id)
+        { 
+            _ctx = context;
+            _user = user;
+            _userid = id;
+        }
 
         /// <summary>
         /// the big Kohuna --<>
@@ -46,8 +55,9 @@ namespace ServiceLayer
                     IsOrderComplete = false,
                     ReceiptDate = DateTime.Today,
                     PurchaseOrderID = purchaserOrderID,
-                    EmployeeName = "Rich",
-                    EmployeeId = 8
+                    EmployeeName = _user,
+                    
+                    EmployeeId = _userid
                 };
             
                 foreach (var lines in po.PurchaseLineItems)

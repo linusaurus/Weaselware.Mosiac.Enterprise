@@ -57,9 +57,9 @@ namespace Mosiac.UX.UXControls
             this.tsSaveChanges = new System.Windows.Forms.ToolStripButton();
             this.tsbCancel = new System.Windows.Forms.ToolStripButton();
             this.tsbOrderReciept = new System.Windows.Forms.ToolStripButton();
-            this.tsbProccessInventory = new System.Windows.Forms.ToolStripButton();
             this.tsbPrintReceipt = new System.Windows.Forms.ToolStripButton();
             this.tsbBarCode = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             ((System.ComponentModel.ISupportInitialize)(this.spcMainContainer)).BeginInit();
             this.spcMainContainer.Panel1.SuspendLayout();
             this.spcMainContainer.Panel2.SuspendLayout();
@@ -344,10 +344,10 @@ namespace Mosiac.UX.UXControls
             this.orToolStrip.BackColor = System.Drawing.SystemColors.Control;
             this.orToolStrip.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.orToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsSaveChanges,
-            this.tsbCancel,
             this.tsbOrderReciept,
-            this.tsbProccessInventory,
+            this.tsbCancel,
+            this.toolStripSeparator1,
+            this.tsSaveChanges,
             this.tsbPrintReceipt,
             this.tsbBarCode});
             this.orToolStrip.Location = new System.Drawing.Point(6, 6);
@@ -364,8 +364,8 @@ namespace Mosiac.UX.UXControls
             this.tsSaveChanges.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsSaveChanges.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsSaveChanges.Name = "tsSaveChanges";
-            this.tsSaveChanges.Size = new System.Drawing.Size(108, 28);
-            this.tsSaveChanges.Text = "Save Changes";
+            this.tsSaveChanges.Size = new System.Drawing.Size(123, 28);
+            this.tsSaveChanges.Text = "Proccess Receipt";
             this.tsSaveChanges.Click += new System.EventHandler(this.tsSaveChanges_Click);
             // 
             // tsbCancel
@@ -384,14 +384,6 @@ namespace Mosiac.UX.UXControls
             this.tsbOrderReciept.Size = new System.Drawing.Size(111, 28);
             this.tsbOrderReciept.Text = "Create Receipt";
             // 
-            // tsbProccessInventory
-            // 
-            this.tsbProccessInventory.Image = ((System.Drawing.Image)(resources.GetObject("tsbProccessInventory.Image")));
-            this.tsbProccessInventory.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbProccessInventory.Name = "tsbProccessInventory";
-            this.tsbProccessInventory.Size = new System.Drawing.Size(128, 28);
-            this.tsbProccessInventory.Text = "Push to Inventory";
-            // 
             // tsbPrintReceipt
             // 
             this.tsbPrintReceipt.Image = ((System.Drawing.Image)(resources.GetObject("tsbPrintReceipt.Image")));
@@ -407,6 +399,11 @@ namespace Mosiac.UX.UXControls
             this.tsbBarCode.Name = "tsbBarCode";
             this.tsbBarCode.Size = new System.Drawing.Size(95, 28);
             this.tsbBarCode.Text = "Item Labels";
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 31);
             // 
             // OrderRecieptManager
             // 
@@ -456,7 +453,6 @@ namespace Mosiac.UX.UXControls
         private System.Windows.Forms.ToolStrip orToolStrip;
         private System.Windows.Forms.ToolStripButton tsSaveChanges;
         private System.Windows.Forms.ToolStripButton tsbOrderReciept;
-        private System.Windows.Forms.ToolStripButton tsbProccessInventory;
         private System.Windows.Forms.ToolStripButton tsbPrintReceipt;
         private System.Windows.Forms.ToolStripButton tsbBarCode;
         private System.Windows.Forms.Panel panel2;
@@ -467,5 +463,6 @@ namespace Mosiac.UX.UXControls
         private System.Windows.Forms.Button btnRejectLineItem;
         private System.Windows.Forms.Label lborderstatus;
         private System.Windows.Forms.ToolStripButton tsbCancel;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
     }
 }
