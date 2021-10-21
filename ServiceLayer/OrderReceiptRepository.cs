@@ -9,6 +9,7 @@ using System.Linq;
 using ServiceLayer.Models;
 using ServiceLayer.Mappers;
 
+
 namespace ServiceLayer
 {
     public class OrderReceiptRepository 
@@ -18,10 +19,8 @@ namespace ServiceLayer
         private readonly OrderReceiptMapper _mapper = new OrderReceiptMapper();
         private string _user;
         private int _userid;
-
-        //public OrderReceiptRepository(MosaicContext context)
-        //{ _ctx = context;}
-
+     
+    
         public OrderReceiptRepository(MosaicContext context, string user,int id)
         { 
             _ctx = context;
@@ -55,8 +54,7 @@ namespace ServiceLayer
                     IsOrderComplete = false,
                     ReceiptDate = DateTime.Today,
                     PurchaseOrderID = purchaserOrderID,
-                    EmployeeName = _user,
-                    
+                    EmployeeName = _user,         
                     EmployeeId = _userid
                 };
             
@@ -124,13 +122,15 @@ namespace ServiceLayer
             if (supplierid == 0)
             {
                 purchaseOrders = _ctx.PurchaseOrders.AsNoTracking().Include(s => s.Supplier)
-                    .Where(p => p.OrderState == orderState || p.OrderState == 3).OrderBy(d => d.OrderDate)
+                    .Where(p => p.OrderState == orderState || p.OrderState == 3 ).OrderBy(d => d.OrderDate)
                     .Select(dto => new PendingOrdersDto
                     {
                         PurchaseOrderID = dto.PurchaseOrderID,
                         OrderDate = dto.OrderDate.GetValueOrDefault(),
                         Supplier = dto.Supplier.SupplierName,
-                        OrderState = dto.OrderState.GetValueOrDefault()
+                        OrderState = dto.OrderState.GetValueOrDefault(),
+                        JobName = dto.Job.jobname,
+                        EmployeeName = dto.Employee.firstname
 
                     }).ToList();
             }
@@ -143,7 +143,9 @@ namespace ServiceLayer
                        PurchaseOrderID = dto.PurchaseOrderID,
                        OrderDate = dto.OrderDate.GetValueOrDefault(),
                        Supplier = dto.Supplier.SupplierName,
-                       OrderState = dto.OrderState.GetValueOrDefault()
+                       OrderState = dto.OrderState.GetValueOrDefault(),
+                       JobName = dto.Job.jobname,
+                       EmployeeName = dto.Employee.firstname
 
                    }).ToList();
             }
@@ -272,7 +274,7 @@ namespace ServiceLayer
             });
 
             // set the PO order status and Received Date.
-
+            // determine if the order is incomplete if any order are incomplete
             bool IsNotComplete = dto.OrderReceiptLineItems.Any(p => p.ItemsRecievedComplete == false);
             orderReciept.IsOrderComplete = !IsNotComplete;
             PurchaseOrder po = _ctx.PurchaseOrders.Find(orderReciept.PurchaseOrderID);
@@ -280,7 +282,16 @@ namespace ServiceLayer
             po.Recieved = !IsNotComplete;
             po.IsBackOrder = IsNotComplete;
             po.RecievedDate = orderReciept.ReceiptDate.GetValueOrDefault();
-            po.OrderState = 2;
+            if (IsNotComplete)
+            {
+                po.OrderState = 3;
+            }
+            else
+            {
+                 po.OrderState = 2;
+            }
+
+        
 
             // Push the Item to inventory -------------------------------
 
@@ -306,8 +317,9 @@ namespace ServiceLayer
                 }
                 
             }
-
+            NotificationService.SendNotificaion("rich@designsynthesis.net", dto);
             _ctx.SaveChanges();
+            
             return orderReciept.OrderReceiptID;
             
         }

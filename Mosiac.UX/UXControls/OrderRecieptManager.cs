@@ -28,6 +28,14 @@ namespace Mosiac.UX.UXControls
         private int _orderState = 0;
         private bool _isLocked = false;
 
+        private enum BState
+        {
+            readyToRecieve = 0,
+            recieving  = 1,
+            canceled = 2,
+            processed = 3
+        }
+
         public bool IsLocked
         {
             get {return _isLocked; }
@@ -37,7 +45,7 @@ namespace Mosiac.UX.UXControls
                 {
                     dgPendingOrders.Enabled = false;
                     lbSuppliers.Enabled = false;
-                   
+                    orToolStrip.Items[0].Enabled = false;
                     spcMainContainer.Panel1Collapsed = true;
                 }
                 else
@@ -45,6 +53,7 @@ namespace Mosiac.UX.UXControls
                     dgPendingOrders.Enabled = true;           
                     lbSuppliers.Enabled = true;
                     spcMainContainer.Panel1Collapsed = false;
+                    orToolStrip.Items[0].Enabled = true;
                 }
             }
         }
@@ -62,9 +71,9 @@ namespace Mosiac.UX.UXControls
             lbSuppliers.DisplayMember ="SupplierName";
            
             //----------------------------- Pending Grid ------------------------------------
-
-            var orderReceipts = _orderReceiptRepository.UnRecievedOrders(1);         
-            this.dgPendingOrders.DataSource = orderReceipts;
+            // Retrieve all unrecieved and partially orders ---
+            //var orderReceipts = _orderReceiptRepository.UnRecievedOrders(1);         
+            //this.dgPendingOrders.DataSource = orderReceipts;
 
             ///////////////////////Event Wiring///////////////////////////////////////////////
             ///
@@ -78,6 +87,8 @@ namespace Mosiac.UX.UXControls
             dgOrderReceiptItems.CellMouseUp += DgOrderReceiptItems_CellMouseUp;
             dgOrderReceiptItems.CellFormatting += DgOrderReceiptItems_CellFormatting;
             dgOrderReceiptItems.SelectionChanged += DgOrderReceiptItems_SelectionChanged;
+
+            ButtonSwitcher(BState.readyToRecieve);
         }
 
         private void DgOrderReceiptItems_SelectionChanged(object sender, EventArgs e)
@@ -104,7 +115,7 @@ namespace Mosiac.UX.UXControls
                 {
                     DataGridViewRow row = dg.Rows[e.RowIndex];
                     PendingOrdersDto dat = (PendingOrdersDto)row.DataBoundItem;
-                    if (dat.OrderState == 1 || dat.OrderState == 0)
+                    if (dat.OrderState == 1 || dat.OrderState == 2)
                     {
                         row.DefaultCellStyle.ForeColor = Color.Black;
                         row.DefaultCellStyle.BackColor = Color.White;
@@ -214,7 +225,7 @@ namespace Mosiac.UX.UXControls
         {
             if (e.ListChangedType == ListChangedType.ItemChanged)
             {
-                orToolStrip.Items[0].BackColor = Color.Cornsilk;           
+                orToolStrip.Items[3].BackColor = Color.Cornsilk;           
             }
             // Grids.CheckForDirtyState(e,this.btnSave);
             _orderState = _orderRecieptDto.OrderState;
@@ -241,6 +252,35 @@ namespace Mosiac.UX.UXControls
 
             return result;
 
+        }
+
+        private void ButtonSwitcher(int btnState)
+        {
+            for (int i = 0; i < 5; i++)
+            { 
+                orToolStrip.Items[i].BackColor = DefaultBackColor;
+                
+            }
+            //-------------------------------------------------------++
+            switch (btnState)
+            {
+                case  0:
+                    orToolStrip.Items[0].BackColor = Color.Cornsilk;
+                    orToolStrip.Items[1].Visible = false;
+                    orToolStrip.Items[2].Visible = false;
+                    orToolStrip.Items[3].Visible = false;
+                    orToolStrip.Items[4].Visible = false;
+                    break;
+                case 1:
+                    break;
+                case 2:
+                    break;
+                case 3:
+                    break;
+                default:
+                    break;
+            }
+            
         }
 
         private void DgPendingOrders_SelectionChanged(object sender, EventArgs e)
@@ -318,7 +358,7 @@ namespace Mosiac.UX.UXControls
                     _orderRecieptDto = new OrderReceiptDto();
                     BindOrderReceipt(_orderRecieptDto);
                     IsLocked = false;
-   
+                    ButtonSwitcher(3);
 
                     break;
                 // -- Generate a new or open existing  PO for entering qnty and inventory value
@@ -327,6 +367,7 @@ namespace Mosiac.UX.UXControls
                     _orderRecieptDto = _orderReceiptRepository.LoadOrderReciept(_selectedOrderID);
                     BindOrderReceipt(_orderRecieptDto);
                     IsLocked = true;
+                    ButtonSwitcher(2);
 
                     break;
                 case "tsbCancel":
@@ -337,6 +378,7 @@ namespace Mosiac.UX.UXControls
                         _orderRecieptDto = new OrderReceiptDto();
                         BindOrderReceipt(_orderRecieptDto);
                         IsLocked = false;
+                        ButtonSwitcher(0);
                     }
           
                     // --------------------------------------------------------------

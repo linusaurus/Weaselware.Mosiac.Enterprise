@@ -14,6 +14,9 @@ using Mosiac.UX;
 
 namespace Mosiac.UX.UXControls
 { 
+    /// <summary>
+    /// Control for suppliers and order totals
+    /// </summary>
     public partial class OrderHeaderVerticalControl : UserControl
     {
         

@@ -230,6 +230,8 @@
             // 
             this.cbTaxable.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.cbTaxable.AutoSize = true;
+            this.cbTaxable.Checked = true;
+            this.cbTaxable.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbTaxable.Location = new System.Drawing.Point(122, 45);
             this.cbTaxable.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.cbTaxable.Name = "cbTaxable";

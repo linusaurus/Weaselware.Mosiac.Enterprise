@@ -57,7 +57,7 @@ namespace ServiceLayer
 
         public List<Supplier> SuppliersWithOpenOrders()
         {
-            return _context.Suppliers.FromSqlRaw("select * FROM Supplier WHERE SupplierID IN (SELECT supplierID from PurchaseOrder WHERE RECIEVED = 0)").ToList();
+            return _context.Suppliers.FromSqlRaw("select * FROM Supplier WHERE SupplierID IN (SELECT supplierID from PurchaseOrder WHERE OrderState = 1 Or OrderState = 3)").ToList();
         }
 
         public void InsertOrUpdate(Supplier supplier) {

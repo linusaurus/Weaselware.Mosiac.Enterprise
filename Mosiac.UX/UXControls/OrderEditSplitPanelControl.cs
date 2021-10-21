@@ -131,10 +131,12 @@ namespace Mosiac.UX.UXControls {
             if (orderDTO != null )
             {
                 _purchaseOrder = _orderService.GetOrderByID(orderDTO.PurchaseOrderID);
+                _purchaseOrder.TaxRate = _purchaseOrder.Supplier.TaxRate;
                 if (_purchaseOrder.OrderState == 2 || _purchaseOrder.Recieved == true)
                 {
                     LockOrderUX();
                 }
+               
                 mapper.Map(_purchaseOrder, orderDTO);
                 bsOrder.DataSource = orderDTO;
                 bsLineitems.DataSource = orderDTO.LineItems;
@@ -164,7 +166,7 @@ namespace Mosiac.UX.UXControls {
            
             // Retrieve to PurchaseOrder Entity
             _purchaseOrder = _orderService.GetOrderByID(orderID);
-
+            _purchaseOrder.TaxRate = _purchaseOrder.Supplier.TaxRate.GetValueOrDefault();
             if (_purchaseOrder != null)
             {
                 // Map to the DTO detached data transfer object
