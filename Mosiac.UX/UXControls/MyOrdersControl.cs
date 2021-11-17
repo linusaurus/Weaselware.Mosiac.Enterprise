@@ -1,9 +1,13 @@
 ﻿using System;
+using System.Data;
+using System.Data.Common;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using DataLayer.Data;
 using DataLayer.Entity;
+using Microsoft.EntityFrameworkCore;
 using ServiceLayer;
 using ServiceLayer.Models;
 
@@ -29,8 +33,39 @@ namespace Mosiac.UX.UXControls
             dgMyOrdersGrid.AutoGenerateColumns = false;
             //---
             dgMyOrdersGrid.CellFormatting += DgMyOrdersGrid_CellFormatting;
+            dgMyOrdersGrid.CellContentClick += DgMyOrdersGrid_CellContentClick;
+            dgMyOrdersGrid.CellValueChanged += DgMyOrdersGrid_CellValueChanged;
         }
 
+        private void DgMyOrdersGrid_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dgMyOrdersGrid.DataSource != null)
+            {
+                if (e.ColumnIndex == 5 && e.RowIndex != -1)  // It the Recieved checkbox
+                {
+
+                    if (dgMyOrdersGrid.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString() == "True")
+                    {
+                        int po = _selectedOrderId;
+                        ctx.Database.ExecuteSqlRaw("dbo.sproc_recieved_order {0}, {1}",po, _employeeID);
+                        this.dgMyOrdersGrid.DataSource = _ordersService.GetMyOrders(_employeeID, _showRecieved);
+                        ctx.Database.ExecuteSqlRaw("dbo.pushlines {0} , {1}", po, _employeeID);
+                    }
+
+                }
+            }
+            
+        }
+
+        private void DgMyOrdersGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == 5)
+            {
+                dgMyOrdersGrid.CommitEdit(DataGridViewDataErrorContexts.Commit );
+            }
+        }
+
+ 
 
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {

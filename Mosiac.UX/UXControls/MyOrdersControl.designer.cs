@@ -31,19 +31,19 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgMyOrdersGrid = new System.Windows.Forms.DataGridView();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.ckbShowAll = new System.Windows.Forms.CheckBox();
+            this.btnOpenOrder = new System.Windows.Forms.Button();
+            this.txtOrderNumber = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.cbJobName = new System.Windows.Forms.ComboBox();
+            this.ckbShowRecieved = new System.Windows.Forms.CheckBox();
             this.colOrderNum = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colOrderDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colSupplier = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colJobName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colOrderTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colRecieved = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.btnOpenOrder = new System.Windows.Forms.Button();
-            this.txtOrderNumber = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.cbJobName = new System.Windows.Forms.ComboBox();
-            this.ckbShowRecieved = new System.Windows.Forms.CheckBox();
-            this.ckbShowAll = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgMyOrdersGrid)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -70,54 +70,6 @@
             this.dgMyOrdersGrid.SelectionChanged += new System.EventHandler(this.dgMyOrdersGrid_SelectionChanged);
             this.dgMyOrdersGrid.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dgMyOrdersGrid_MouseDoubleClick);
             // 
-            // colOrderNum
-            // 
-            this.colOrderNum.DataPropertyName = "PurchaseOrderID";
-            this.colOrderNum.HeaderText = "Order#";
-            this.colOrderNum.Name = "colOrderNum";
-            // 
-            // colOrderDate
-            // 
-            this.colOrderDate.DataPropertyName = "OrderDate";
-            dataGridViewCellStyle1.Format = "d";
-            dataGridViewCellStyle1.NullValue = null;
-            this.colOrderDate.DefaultCellStyle = dataGridViewCellStyle1;
-            this.colOrderDate.HeaderText = "Order Date";
-            this.colOrderDate.Name = "colOrderDate";
-            // 
-            // colSupplier
-            // 
-            this.colSupplier.DataPropertyName = "Supplier";
-            this.colSupplier.HeaderText = "Supplier";
-            this.colSupplier.Name = "colSupplier";
-            this.colSupplier.Width = 200;
-            // 
-            // colJobName
-            // 
-            this.colJobName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colJobName.DataPropertyName = "JobName";
-            this.colJobName.HeaderText = "Jobname";
-            this.colJobName.Name = "colJobName";
-            // 
-            // colOrderTotal
-            // 
-            this.colOrderTotal.DataPropertyName = "OrderTotal";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle2.Format = "C2";
-            dataGridViewCellStyle2.NullValue = null;
-            this.colOrderTotal.DefaultCellStyle = dataGridViewCellStyle2;
-            this.colOrderTotal.HeaderText = "Total";
-            this.colOrderTotal.Name = "colOrderTotal";
-            this.colOrderTotal.Width = 125;
-            // 
-            // colRecieved
-            // 
-            this.colRecieved.DataPropertyName = "Recieved";
-            this.colRecieved.HeaderText = "Received";
-            this.colRecieved.Name = "colRecieved";
-            this.colRecieved.ReadOnly = true;
-            this.colRecieved.Width = 75;
-            // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ControlLight;
@@ -134,6 +86,17 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1220, 72);
             this.panel1.TabIndex = 1;
+            // 
+            // ckbShowAll
+            // 
+            this.ckbShowAll.AutoSize = true;
+            this.ckbShowAll.Location = new System.Drawing.Point(532, 28);
+            this.ckbShowAll.Name = "ckbShowAll";
+            this.ckbShowAll.Size = new System.Drawing.Size(132, 19);
+            this.ckbShowAll.TabIndex = 6;
+            this.ckbShowAll.Text = "Show All Purchasers";
+            this.ckbShowAll.UseVisualStyleBackColor = true;
+            this.ckbShowAll.CheckedChanged += new System.EventHandler(this.ckbShowAll_CheckedChanged);
             // 
             // btnOpenOrder
             // 
@@ -190,16 +153,52 @@
             this.ckbShowRecieved.UseVisualStyleBackColor = true;
             this.ckbShowRecieved.CheckedChanged += new System.EventHandler(this.ckbShowRecieved_CheckedChanged);
             // 
-            // ckbShowAll
+            // colOrderNum
             // 
-            this.ckbShowAll.AutoSize = true;
-            this.ckbShowAll.Location = new System.Drawing.Point(532, 28);
-            this.ckbShowAll.Name = "ckbShowAll";
-            this.ckbShowAll.Size = new System.Drawing.Size(132, 19);
-            this.ckbShowAll.TabIndex = 6;
-            this.ckbShowAll.Text = "Show All Purchasers";
-            this.ckbShowAll.UseVisualStyleBackColor = true;
-            this.ckbShowAll.CheckedChanged += new System.EventHandler(this.ckbShowAll_CheckedChanged);
+            this.colOrderNum.DataPropertyName = "PurchaseOrderID";
+            this.colOrderNum.HeaderText = "Order#";
+            this.colOrderNum.Name = "colOrderNum";
+            // 
+            // colOrderDate
+            // 
+            this.colOrderDate.DataPropertyName = "OrderDate";
+            dataGridViewCellStyle1.Format = "d";
+            dataGridViewCellStyle1.NullValue = null;
+            this.colOrderDate.DefaultCellStyle = dataGridViewCellStyle1;
+            this.colOrderDate.HeaderText = "Order Date";
+            this.colOrderDate.Name = "colOrderDate";
+            // 
+            // colSupplier
+            // 
+            this.colSupplier.DataPropertyName = "Supplier";
+            this.colSupplier.HeaderText = "Supplier";
+            this.colSupplier.Name = "colSupplier";
+            this.colSupplier.Width = 200;
+            // 
+            // colJobName
+            // 
+            this.colJobName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colJobName.DataPropertyName = "JobName";
+            this.colJobName.HeaderText = "Jobname";
+            this.colJobName.Name = "colJobName";
+            // 
+            // colOrderTotal
+            // 
+            this.colOrderTotal.DataPropertyName = "OrderTotal";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle2.Format = "C2";
+            dataGridViewCellStyle2.NullValue = null;
+            this.colOrderTotal.DefaultCellStyle = dataGridViewCellStyle2;
+            this.colOrderTotal.HeaderText = "Total";
+            this.colOrderTotal.Name = "colOrderTotal";
+            this.colOrderTotal.Width = 125;
+            // 
+            // colRecieved
+            // 
+            this.colRecieved.DataPropertyName = "Recieved";
+            this.colRecieved.HeaderText = "Received";
+            this.colRecieved.Name = "colRecieved";
+            this.colRecieved.Width = 75;
             // 
             // MyOrdersControl
             // 
@@ -229,12 +228,12 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnOpenOrder;
         private System.Windows.Forms.TextBox txtOrderNumber;
+        private System.Windows.Forms.CheckBox ckbShowAll;
         private System.Windows.Forms.DataGridViewTextBoxColumn colOrderNum;
         private System.Windows.Forms.DataGridViewTextBoxColumn colOrderDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn colSupplier;
         private System.Windows.Forms.DataGridViewTextBoxColumn colJobName;
         private System.Windows.Forms.DataGridViewTextBoxColumn colOrderTotal;
         private System.Windows.Forms.DataGridViewCheckBoxColumn colRecieved;
-        private System.Windows.Forms.CheckBox ckbShowAll;
     }
 }

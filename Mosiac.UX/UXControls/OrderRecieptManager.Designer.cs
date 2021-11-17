@@ -47,6 +47,7 @@ namespace Mosiac.UX.UXControls
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.ckbCompleted = new System.Windows.Forms.CheckBox();
+            this.txtPurchaser = new System.Windows.Forms.TextBox();
             this.txtOrderReceiptDate = new System.Windows.Forms.TextBox();
             this.txtOrderReceiptID = new System.Windows.Forms.TextBox();
             this.txtReceivedBy = new System.Windows.Forms.TextBox();
@@ -55,12 +56,11 @@ namespace Mosiac.UX.UXControls
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.orToolStrip = new System.Windows.Forms.ToolStrip();
             this.tsbOrderReciept = new System.Windows.Forms.ToolStripButton();
-            this.tsbCancel = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsbCancel = new System.Windows.Forms.ToolStripButton();
             this.tsSaveChanges = new System.Windows.Forms.ToolStripButton();
             this.tsbPrintReceipt = new System.Windows.Forms.ToolStripButton();
             this.tsbBarCode = new System.Windows.Forms.ToolStripButton();
-            this.txtPurchaser = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.spcMainContainer)).BeginInit();
             this.spcMainContainer.Panel1.SuspendLayout();
             this.spcMainContainer.Panel2.SuspendLayout();
@@ -282,6 +282,17 @@ namespace Mosiac.UX.UXControls
             this.ckbCompleted.Text = "Completed";
             this.ckbCompleted.UseVisualStyleBackColor = true;
             // 
+            // txtPurchaser
+            // 
+            this.txtPurchaser.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.txtPurchaser.Location = new System.Drawing.Point(438, 40);
+            this.txtPurchaser.Name = "txtPurchaser";
+            this.txtPurchaser.ReadOnly = true;
+            this.txtPurchaser.Size = new System.Drawing.Size(137, 23);
+            this.txtPurchaser.TabIndex = 4;
+            this.txtPurchaser.Text = "Receipt Date";
+            this.txtPurchaser.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // txtOrderReceiptDate
             // 
             this.txtOrderReceiptDate.Cursor = System.Windows.Forms.Cursors.Arrow;
@@ -347,9 +358,9 @@ namespace Mosiac.UX.UXControls
             this.orToolStrip.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.orToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsbOrderReciept,
-            this.tsbCancel,
             this.toolStripSeparator1,
             this.tsSaveChanges,
+            this.tsbCancel,
             this.tsbPrintReceipt,
             this.tsbBarCode});
             this.orToolStrip.Location = new System.Drawing.Point(6, 6);
@@ -368,6 +379,11 @@ namespace Mosiac.UX.UXControls
             this.tsbOrderReciept.Size = new System.Drawing.Size(111, 28);
             this.tsbOrderReciept.Text = "Create Receipt";
             // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 31);
+            // 
             // tsbCancel
             // 
             this.tsbCancel.Image = ((System.Drawing.Image)(resources.GetObject("tsbCancel.Image")));
@@ -375,11 +391,6 @@ namespace Mosiac.UX.UXControls
             this.tsbCancel.Name = "tsbCancel";
             this.tsbCancel.Size = new System.Drawing.Size(71, 28);
             this.tsbCancel.Text = "Cancel";
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 31);
             // 
             // tsSaveChanges
             // 
@@ -406,17 +417,6 @@ namespace Mosiac.UX.UXControls
             this.tsbBarCode.Name = "tsbBarCode";
             this.tsbBarCode.Size = new System.Drawing.Size(95, 28);
             this.tsbBarCode.Text = "Item Labels";
-            // 
-            // txtPurchaser
-            // 
-            this.txtPurchaser.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.txtPurchaser.Location = new System.Drawing.Point(438, 40);
-            this.txtPurchaser.Name = "txtPurchaser";
-            this.txtPurchaser.ReadOnly = true;
-            this.txtPurchaser.Size = new System.Drawing.Size(137, 23);
-            this.txtPurchaser.TabIndex = 4;
-            this.txtPurchaser.Text = "Receipt Date";
-            this.txtPurchaser.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // OrderRecieptManager
             // 

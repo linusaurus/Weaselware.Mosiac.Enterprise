@@ -88,7 +88,7 @@ namespace Mosiac.UX.UXControls
             dgOrderReceiptItems.CellFormatting += DgOrderReceiptItems_CellFormatting;
             dgOrderReceiptItems.SelectionChanged += DgOrderReceiptItems_SelectionChanged;
 
-            ButtonSwitcher(BState.readyToRecieve);
+            ButtonSwitcher((int)BState.readyToRecieve);
         }
 
         private void DgOrderReceiptItems_SelectionChanged(object sender, EventArgs e)
@@ -256,7 +256,7 @@ namespace Mosiac.UX.UXControls
 
         private void ButtonSwitcher(int btnState)
         {
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < 6; i++)
             { 
                 orToolStrip.Items[i].BackColor = DefaultBackColor;
                 
@@ -264,14 +264,22 @@ namespace Mosiac.UX.UXControls
             //-------------------------------------------------------++
             switch (btnState)
             {
-                case  0:
-                    orToolStrip.Items[0].BackColor = Color.Cornsilk;
+                case  0: // Ready for Recieving
+                    orToolStrip.Items[0].BackColor = Color.Cornsilk; // Open receipt button only
                     orToolStrip.Items[1].Visible = false;
                     orToolStrip.Items[2].Visible = false;
                     orToolStrip.Items[3].Visible = false;
                     orToolStrip.Items[4].Visible = false;
+                    orToolStrip.Items[5].Visible = false;
                     break;
-                case 1:
+                case 1: // In Receiving Mode
+                    orToolStrip.Items[0].Visible = false;
+                    orToolStrip.Items[1].BackColor = Color.Cornsilk;
+                    orToolStrip.Items[1].Visible = true;
+                    orToolStrip.Items[2].Visible = true;
+                    orToolStrip.Items[3].Visible = true;
+                    orToolStrip.Items[4].Visible = false;
+                    orToolStrip.Items[5].Visible = false;
                     break;
                 case 2:
                     break;
@@ -367,7 +375,7 @@ namespace Mosiac.UX.UXControls
                     _orderRecieptDto = _orderReceiptRepository.LoadOrderReciept(_selectedOrderID);
                     BindOrderReceipt(_orderRecieptDto);
                     IsLocked = true;
-                    ButtonSwitcher(2);
+                    ButtonSwitcher((int)BState.recieving);
 
                     break;
                 case "tsbCancel":
