@@ -48,6 +48,7 @@ namespace Mosiac.UX
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.MainTabControl = new System.Windows.Forms.TabControl();
+            this.toolStripTextBox1 = new System.Windows.Forms.ToolStripTextBox();
             this.mainToolStrip.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -69,7 +70,8 @@ namespace Mosiac.UX
             this.tsbJobOrders,
             this.toolStripSeparator3,
             this.tsScanBarCode,
-            this.tsSettingsButton});
+            this.tsSettingsButton,
+            this.toolStripTextBox1});
             this.mainToolStrip.Location = new System.Drawing.Point(0, 0);
             this.mainToolStrip.Name = "mainToolStrip";
             this.mainToolStrip.Size = new System.Drawing.Size(1184, 55);
@@ -226,6 +228,11 @@ namespace Mosiac.UX
             this.MainTabControl.SelectedIndexChanged += new System.EventHandler(this.MaintabControl_SelectedIndexChanged);
             this.MainTabControl.MouseClick += new System.Windows.Forms.MouseEventHandler(this.MainTabControl_MouseClick);
             // 
+            // toolStripTextBox1
+            // 
+            this.toolStripTextBox1.Name = "toolStripTextBox1";
+            this.toolStripTextBox1.Size = new System.Drawing.Size(100, 55);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -273,6 +280,8 @@ namespace Mosiac.UX
         private System.Windows.Forms.ToolStripButton tsJobsManager;
 
         #endregion
+
+        private System.Windows.Forms.ToolStripTextBox toolStripTextBox1;
     }
 }
 

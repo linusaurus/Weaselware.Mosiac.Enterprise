@@ -180,9 +180,9 @@ namespace Mosiac.UX.UXControls
             this.gpbResource.Controls.Add(this.label1);
             this.gpbResource.Controls.Add(this.label3);
             this.gpbResource.Controls.Add(this.lbResourceID);
-            this.gpbResource.Location = new System.Drawing.Point(607, 480);
+            this.gpbResource.Location = new System.Drawing.Point(558, 480);
             this.gpbResource.Name = "gpbResource";
-            this.gpbResource.Size = new System.Drawing.Size(516, 274);
+            this.gpbResource.Size = new System.Drawing.Size(565, 274);
             this.gpbResource.TabIndex = 12;
             this.gpbResource.TabStop = false;
             this.gpbResource.Text = "Part Resources";
@@ -194,7 +194,7 @@ namespace Mosiac.UX.UXControls
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtResourceCreator.Location = new System.Drawing.Point(386, 198);
             this.txtResourceCreator.Name = "txtResourceCreator";
-            this.txtResourceCreator.Size = new System.Drawing.Size(111, 23);
+            this.txtResourceCreator.Size = new System.Drawing.Size(160, 23);
             this.txtResourceCreator.TabIndex = 13;
             this.txtResourceCreator.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -205,7 +205,7 @@ namespace Mosiac.UX.UXControls
             this.txtSourceFile.Location = new System.Drawing.Point(165, 226);
             this.txtSourceFile.Name = "txtSourceFile";
             this.txtSourceFile.ReadOnly = true;
-            this.txtSourceFile.Size = new System.Drawing.Size(332, 23);
+            this.txtSourceFile.Size = new System.Drawing.Size(381, 23);
             this.txtSourceFile.TabIndex = 13;
             this.txtSourceFile.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -229,7 +229,7 @@ namespace Mosiac.UX.UXControls
             this.btnClearCache.FlatAppearance.BorderSize = 0;
             this.btnClearCache.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClearCache.Image = ((System.Drawing.Image)(resources.GetObject("btnClearCache.Image")));
-            this.btnClearCache.Location = new System.Drawing.Point(453, 22);
+            this.btnClearCache.Location = new System.Drawing.Point(502, 22);
             this.btnClearCache.Name = "btnClearCache";
             this.btnClearCache.Size = new System.Drawing.Size(44, 23);
             this.btnClearCache.TabIndex = 12;
@@ -242,7 +242,7 @@ namespace Mosiac.UX.UXControls
             this.btnOpenCache.FlatAppearance.BorderSize = 0;
             this.btnOpenCache.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnOpenCache.Image = ((System.Drawing.Image)(resources.GetObject("btnOpenCache.Image")));
-            this.btnOpenCache.Location = new System.Drawing.Point(401, 22);
+            this.btnOpenCache.Location = new System.Drawing.Point(450, 22);
             this.btnOpenCache.Name = "btnOpenCache";
             this.btnOpenCache.Size = new System.Drawing.Size(46, 23);
             this.btnOpenCache.TabIndex = 12;
@@ -293,7 +293,7 @@ namespace Mosiac.UX.UXControls
             this.dgResources.Location = new System.Drawing.Point(14, 58);
             this.dgResources.Name = "dgResources";
             this.dgResources.RowTemplate.Height = 25;
-            this.dgResources.Size = new System.Drawing.Size(483, 131);
+            this.dgResources.Size = new System.Drawing.Size(532, 131);
             this.dgResources.TabIndex = 8;
             this.dgResources.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgResources_CellMouseDoubleClick);
             this.dgResources.SelectionChanged += new System.EventHandler(this.dgResources_SelectionChanged);
@@ -351,7 +351,7 @@ namespace Mosiac.UX.UXControls
             this.dgPartOrders.Location = new System.Drawing.Point(18, 42);
             this.dgPartOrders.Name = "dgPartOrders";
             this.dgPartOrders.RowTemplate.Height = 25;
-            this.dgPartOrders.Size = new System.Drawing.Size(537, 207);
+            this.dgPartOrders.Size = new System.Drawing.Size(495, 207);
             this.dgPartOrders.TabIndex = 13;
             this.dgPartOrders.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgPartOrders_CellMouseDoubleClick);
             // 
@@ -362,7 +362,7 @@ namespace Mosiac.UX.UXControls
             this.gbPartOrders.Controls.Add(this.dgPartOrders);
             this.gbPartOrders.Location = new System.Drawing.Point(22, 480);
             this.gbPartOrders.Name = "gbPartOrders";
-            this.gbPartOrders.Size = new System.Drawing.Size(572, 274);
+            this.gbPartOrders.Size = new System.Drawing.Size(530, 274);
             this.gbPartOrders.TabIndex = 14;
             this.gbPartOrders.TabStop = false;
             this.gbPartOrders.Text = "Part Orders";

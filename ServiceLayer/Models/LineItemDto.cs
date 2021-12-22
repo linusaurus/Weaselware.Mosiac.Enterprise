@@ -16,6 +16,7 @@ namespace ServiceLayer.Models
         private int jobID;
         private int partID;
         private int uid;
+        private string unitOfMeasureName;
         private decimal quantity;
         private string description;
         private decimal price;
@@ -31,6 +32,15 @@ namespace ServiceLayer.Models
             set
             {
                 lineID = value;
+                OnPropertyChange();
+            }
+        }
+        public string UnitOrderMeasureName
+        {
+            get { return unitOfMeasureName; }
+            set
+            {
+                unitOfMeasureName = value;
                 OnPropertyChange();
             }
         }

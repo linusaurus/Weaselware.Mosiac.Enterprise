@@ -27,7 +27,7 @@ namespace ServiceLayer
             EmployeeService empService = new EmployeeService(_context);           
             user = empService.FullName(8);
             
-            
+           
         }
 
         public List<UnitOfMeasure> Units()
@@ -236,9 +236,10 @@ namespace ServiceLayer
             result.SKU= string.Empty;
             result.Waste = 0.0m;
             result.Weight = 0.0m;
-            result.AddedBy = user;
+            result.AddedBy = "Rich";
             result.MarkUp = 0.0m;
-                
+           
+              
             return result;
         }
 

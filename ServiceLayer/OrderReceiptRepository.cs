@@ -115,29 +115,14 @@ namespace ServiceLayer
         // ----------------------------------------------------------------------------++
         // Return Order that are either UnRecieved or Incomplete ----------------------++
         // ----------------------------------------------------------------------------++
-        public List<PendingOrdersDto> UnRecievedOrders(int orderState, int supplierid = 0)
+        public List<PendingOrdersDto> UnRecievedOrders()
         {
             List<PendingOrdersDto> purchaseOrders = new List<PendingOrdersDto>();
 
-            if (supplierid == 0)
-            {
+          
+             
                 purchaseOrders = _ctx.PurchaseOrders.AsNoTracking().Include(s => s.Supplier)
-                    .Where(p => p.OrderState == orderState || p.OrderState == 3 ).OrderBy(d => d.OrderDate)
-                    .Select(dto => new PendingOrdersDto
-                    {
-                        PurchaseOrderID = dto.PurchaseOrderID,
-                        OrderDate = dto.OrderDate.GetValueOrDefault(),
-                        Supplier = dto.Supplier.SupplierName,
-                        OrderState = dto.OrderState.GetValueOrDefault(),
-                        JobName = dto.Job.jobname,
-                        EmployeeName = dto.Employee.firstname
-
-                    }).ToList();
-            }
-            else
-            {
-                purchaseOrders = _ctx.PurchaseOrders.AsNoTracking().Include(s => s.Supplier)
-                   .Where(p => p.OrderState == orderState || p.OrderState == 3).Where(s => s.SupplierID == supplierid).OrderBy(d => d.OrderDate)
+                   .Where(p => p.OrderState == 1 || p.OrderState == 3).OrderBy(d => d.OrderDate)
                    .Select(dto => new PendingOrdersDto
                    {
                        PurchaseOrderID = dto.PurchaseOrderID,
@@ -148,7 +133,7 @@ namespace ServiceLayer
                        EmployeeName = dto.Employee.firstname
 
                    }).ToList();
-            }
+          
 
             return purchaseOrders;
         }

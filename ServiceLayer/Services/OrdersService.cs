@@ -51,7 +51,7 @@ namespace ServiceLayer {
                 Tax = d.Tax.HasValue ? d.Tax.Value : Decimal.Zero,
                 TaxRate = d.TaxRate.GetValueOrDefault(),
                 Taxable = d.SuppressTax.HasValue ? d.SuppressTax.Value : false,
-                //LineItems = d.PurchaseLineItem
+                //LineItems = d.PurchaseLineItems.ToList()
 
             }); 
             return _order.FirstOrDefault();
@@ -67,6 +67,7 @@ namespace ServiceLayer {
                 Price = d.UnitCost.Value,
                 Extended = d.Extended.Value,
                 PartID = d.PartID.GetValueOrDefault(),
+                UnitOrderMeasureName = d.UnitOfMeasure.UnitName,
                 PurchaseOrderID = d.PurchaseOrderID.GetValueOrDefault(),
             });
             return _lineItems.ToList();

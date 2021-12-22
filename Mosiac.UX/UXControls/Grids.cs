@@ -68,6 +68,79 @@ namespace Mosiac.UX.UXControls
             dg.Columns.AddRange(col_ID, col_Description, col_Manufacturer);
 
         }
+        /// <summary>
+        /// OrderRecipt Line Items
+        /// </summary>
+        /// <param name="dg"></param>
+        internal static void BuildOrderLineItemsGrid(DataGridView dg)
+        {
+            dg.AutoGenerateColumns = false;
+
+            dg.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            dg.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+
+            // Currency Decimal Style
+            DataGridViewCellStyle dstyleCurrency = new DataGridViewCellStyle();
+            dstyleCurrency.Format = "C";
+            dstyleCurrency.NullValue = "";
+            dstyleCurrency.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            // Currency Decimal Style
+            DataGridViewCellStyle dstyleDecimal = new DataGridViewCellStyle();
+            dstyleDecimal.Format = "N2";
+            dstyleDecimal.NullValue = "0.00";
+            dstyleDecimal.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            // Wrapping Text Style
+            DataGridViewCellStyle dstyleWrapText = new DataGridViewCellStyle();
+            dstyleWrapText.NullValue = "";
+            dstyleWrapText.Alignment = DataGridViewContentAlignment.TopLeft;
+            dstyleWrapText.WrapMode = DataGridViewTriState.True;
+
+            // LineID Column --
+            DataGridViewTextBoxColumn col_ID = new DataGridViewTextBoxColumn();
+            col_ID.HeaderText = "ID";
+            col_ID.DataPropertyName = "LineID";
+            col_ID.Width = 55;
+
+            //Description Column --
+            DataGridViewTextBoxColumn col_Description = new DataGridViewTextBoxColumn();
+            col_Description.HeaderText = "Description";
+            col_Description.DataPropertyName = "description";
+            col_Description.Width = 120;
+            col_Description.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+
+            // Unit Column --
+            DataGridViewTextBoxColumn col_Unit = new DataGridViewTextBoxColumn();
+            col_Unit.HeaderText = "Unit";
+            col_Unit.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            col_Unit.DataPropertyName = "UnitOrderMeasureName";
+            col_Unit.Width = 80;
+
+            // Qnty Column --
+            DataGridViewTextBoxColumn col_Qnty = new DataGridViewTextBoxColumn();
+            col_Qnty.DefaultCellStyle = dstyleDecimal;
+            col_Qnty.HeaderText = "Qnty";
+            col_Qnty.DataPropertyName = "Quantity";
+            col_Qnty.Width = 100;
+
+            // Cost Column --
+            DataGridViewTextBoxColumn col_Price = new DataGridViewTextBoxColumn();
+            col_Price.DefaultCellStyle = dstyleDecimal;
+            col_Price.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            col_Price.HeaderText = "Unit Cost";
+            col_Price.DataPropertyName = "Price";
+            col_Price.Width = 100;
+
+            // Extended Column --
+            DataGridViewTextBoxColumn col_Extended = new DataGridViewTextBoxColumn();
+            col_Extended.DefaultCellStyle = dstyleDecimal;
+            col_Extended.HeaderText = "Extension";
+            col_Extended.DataPropertyName = "Extended";
+            col_Extended.Width = 100;
+
+
+
+            dg.Columns.AddRange(col_ID, col_Description, col_Unit, col_Qnty, col_Price, col_Extended);
+        }
 
         public static void BuildJobOrdersGrid(DataGridView dg)
         {
@@ -293,6 +366,7 @@ namespace Mosiac.UX.UXControls
             dg.AutoGenerateColumns = false;
             dg.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dg.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+            
 
             // Currency Decimal Style
             DataGridViewCellStyle dstyleCurrency = new DataGridViewCellStyle();
@@ -380,12 +454,15 @@ namespace Mosiac.UX.UXControls
             dg.Columns.AddRange( col_OrderReceiptLineID, col_partID, col_Description, col_UnitOfMeasureName, col_ReceivedComplete, col_QntyOrdered, 
                 col_QntyRecieved, col_QntyBalance, col_QntyToInventory);
         }
-
+         //-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+         // Pending Order Grid View
+         //-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
         public static  void BuildPendingOrdersGrid(DataGridView dg)
         {
 
             dg.AutoGenerateColumns = false;
-           
+            dg.AllowUserToAddRows = false;
+            dg.AllowUserToDeleteRows = false;
             dg.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dg.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
 
@@ -411,21 +488,33 @@ namespace Mosiac.UX.UXControls
             col_ID.DataPropertyName = "PurchaseOrderID";
             col_ID.Width = 55;
 
-            // Receipt Date Column --
+            // JobNamee Column --
+            DataGridViewTextBoxColumn col_JobName = new DataGridViewTextBoxColumn();
+            col_JobName.HeaderText = "JobName";
+            col_JobName.DataPropertyName = "JobName";
+            col_JobName.Width = 160;
+            col_JobName.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+
+            // Supplier Name Column --
             DataGridViewTextBoxColumn col_Supplier = new DataGridViewTextBoxColumn();
             col_Supplier.HeaderText = "Supplier";
             col_Supplier.DataPropertyName = "Supplier";
-            col_Supplier.Width = 120;
-            col_Supplier.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            col_Supplier.Width = 260;
 
-            // EmployeeName Column --
+            // Employee Name Column --
+            DataGridViewTextBoxColumn col_Employee = new DataGridViewTextBoxColumn();
+            col_Employee.HeaderText = "Purchaser";
+            col_Employee.DataPropertyName = "EmployeeName";
+            col_Employee.Width = 90;
+
+            // Order Date Column --
             DataGridViewTextBoxColumn col_OrderDate = new DataGridViewTextBoxColumn();
-            col_OrderDate.HeaderText = "Date";
+            col_OrderDate.HeaderText = "Order Date";
             col_OrderDate.DataPropertyName = "OrderDate";
             col_OrderDate.Width = 90;
 
 
-            dg.Columns.AddRange(col_ID, col_Supplier, col_OrderDate);
+            dg.Columns.AddRange(col_ID, col_JobName,col_Supplier,  col_Employee, col_OrderDate);
 
         }
 

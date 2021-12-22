@@ -10,6 +10,7 @@ using DataLayer.Entity;
 using Microsoft.EntityFrameworkCore;
 using ServiceLayer;
 using ServiceLayer.Models;
+using ServiceLayer.Mappers;
 
 namespace Mosiac.UX.UXControls
 {
@@ -18,6 +19,7 @@ namespace Mosiac.UX.UXControls
         private readonly OrdersService _ordersService;
         private readonly EmployeeService _employeeService;
         private readonly MosaicContext ctx;
+        private PurchaseOrderToOrderReceiptMapper orderMapper;
         private int _employeeID;
         private int _selectedOrderId;
         private bool _showRecieved = false;
@@ -29,6 +31,7 @@ namespace Mosiac.UX.UXControls
             _employeeID = employeeID;
             _ordersService = new OrdersService(ctx);
             _employeeService = new EmployeeService(ctx);
+            orderMapper = new PurchaseOrderToOrderReceiptMapper();
             //---
             dgMyOrdersGrid.AutoGenerateColumns = false;
             //---
@@ -47,9 +50,16 @@ namespace Mosiac.UX.UXControls
                     if (dgMyOrdersGrid.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString() == "True")
                     {
                         int po = _selectedOrderId;
+                        // Recieve the order
                         ctx.Database.ExecuteSqlRaw("dbo.sproc_recieved_order {0}, {1}",po, _employeeID);
                         this.dgMyOrdersGrid.DataSource = _ordersService.GetMyOrders(_employeeID, _showRecieved);
+                        // Push the lineitem into inventory
                         ctx.Database.ExecuteSqlRaw("dbo.pushlines {0} , {1}", po, _employeeID);
+                        var order = _ordersService.GetOrderByID(_selectedOrderId);
+                        OrderReceiptDto dto = new OrderReceiptDto();
+                        orderMapper.Map(order, dto);
+                        NotificationService.SendNotificaion("rich@designsynthesis.net", dto);
+                        
                     }
 
                 }
@@ -163,6 +173,12 @@ namespace Mosiac.UX.UXControls
                     _employeeID = (int)cb.SelectedValue;
                     this.dgMyOrdersGrid.DataSource = _ordersService.GetMyOrders(_employeeID, _showRecieved);
                 }
+                else
+                {
+                    this.dgMyOrdersGrid.DataSource = _ordersService.GetMyOrders(81, _showRecieved);
+                }
+
+
             }
         }
 

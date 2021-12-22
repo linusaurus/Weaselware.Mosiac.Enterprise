@@ -16,16 +16,23 @@ using System.Windows.Forms;
 using Mosiac.UX.UXControls;
 using Mosiac.UX.Properties;
 using System.Reflection;
+using SocketMobile.Capture;
 
 namespace Mosiac.UX
 {
     public partial class Main : Form
     {
-        
+
         MosaicContext _context;
         int _loggedOnUserID;
         readonly OrdersService _ordersService;
         public TabControl MainTabs { get; set; }
+        CaptureHelper mCapture;
+
+        string appId = "windows: Designsynthesis.Mosiac.App";
+        string developerId = "2c926d9e-0821-eb11-a813-000d3a33be69";
+        string appKey = "MCwCFEJpEn5SjoP8LoeeCC0WNS9tCVOsAhRiU8TQRxWmP48X3MBdGH9Rbe2+Eg==";
+
 
         public int LoggedOnUserID
         {
@@ -36,13 +43,67 @@ namespace Mosiac.UX
         public Main()
         {
             InitializeComponent();
+
+            // 3- instantiate and configure CaptureHelper
+            mCapture = new CaptureHelper { ContextForEvents = WindowsFormsSynchronizationContext.Current };
+            mCapture.DeviceArrival += mCapture_DeviceArrival;
+            mCapture.DeviceRemoval += mCapture_DeviceRemoval;
+            mCapture.DecodedData += mCapture_DecodedData;
+
+
+
+            OpenScanner();
+
+           
+
             // This should be the main contect wireup for everything else
             _context = new MosaicContext(Mosiac.UX.Properties.Settings.Default.MosiacConnection);
             _ordersService = new OrdersService(_context);
             MainTabs = MainTabControl;
             Mediator.GetInstance().OrderOpen += Main_OrderOpen;
             string version = Assembly.GetExecutingAssembly().GetName().Version.ToString();
-            this.Text = "Mosaic - [Production] "  + version;
+            this.Text = "Mosaic - [Production] " + version;
+
+
+        }
+       
+        private async void OpenScanner()
+        {
+            long Result = await mCapture.OpenAsync(appId, developerId, appKey);
+            //if (!SktErrors.SKTSUCCESS(Result))
+            //{
+            //    toolStripTextBox1.Text = "Unable to connect to Socket Mobile Companion";
+            //}
+        }
+
+        private void Capture_DecodedData(object sender, CaptureHelper.DecodedDataArgs e)
+        {
+            this.toolStripTextBox1.Text = e.DecodedData.DataToUTF8String; ;
+        }
+   
+
+        private void Terminate(object sender, CaptureHelper.TerminateArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+   
+
+        private void mCapture_DecodedData(object sender, CaptureHelper.DecodedDataArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+       
+
+        private void mCapture_DeviceRemoval(object sender, CaptureHelper.DeviceArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void mCapture_DeviceArrival(object sender, CaptureHelper.DeviceArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         public TabControl GetTabControl()
@@ -53,7 +114,7 @@ namespace Mosiac.UX
         private void Main_Load(object sender, EventArgs e)
         {
 
-            closeImage = Properties.Resources.baseline_close_black_18dp;
+            closeImage = Properties.Resources._8kuxe;
             MainTabs.Padding = new System.Drawing.Point(26, 4);
 
             this.toolStripStatusLabel1.Text = "UserID=" + _loggedOnUserID.ToString();

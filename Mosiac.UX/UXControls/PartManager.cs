@@ -38,11 +38,8 @@ namespace Mosiac.UX.UXControls
 
         private BindingSource bsPart = new BindingSource();
         private BindingSource bsResource = new BindingSource();
-
-        private List<UnitOfMeasure> units;
        
         private IEnumerable<ManuListDTO> manus;
-        private IEnumerable<ManuListDTO> partManus;
         private PartsService partsService;
         private ResourceService resourceService;
 
@@ -82,7 +79,8 @@ namespace Mosiac.UX.UXControls
             {
                 //Do custom stuff
                 //true if key was processed by control, false otherwise
-                OpenPartbyNumber();
+                int id = int.Parse(txtPartIDLookup.Text);
+                OpenPartbyNumber(id);
                 return true;
             }
             else
@@ -200,13 +198,15 @@ namespace Mosiac.UX.UXControls
         private void btnSave_Click(object sender, System.EventArgs e)
         {
 
-            _ctx.SaveChanges();
-            // ---  partsService.CreateOrUpdatePart(_selectedPart,"Richard");
+            // _ctx.SaveChanges();
+            partMapper.Map(_partBeingEdited, _selectedPart);
+
+            partsService.CreateOrUpdatePart(_selectedPart,"Richard");
             Grids.ToogleButtonStyle(false, btnSave);
             dgPartsSearch.Enabled = true;
             _partBeingEdited = partsService.Find(_partBeingEdited.PartID);
             bsPart.DataSource = _partBeingEdited;
-           
+            OpenPartbyNumber(_selectedPart.PartID);
 
         }
 
@@ -288,12 +288,13 @@ namespace Mosiac.UX.UXControls
         /// <param name="e"></param>
         private void button1_Click(object sender, EventArgs e)
         {
-            OpenPartbyNumber();
+            int id = int.Parse(txtPartIDLookup.Text);
+            OpenPartbyNumber(id);
         }
 
-        private void OpenPartbyNumber()
+        private void OpenPartbyNumber(int partid)
         {
-            int partIDlookUp = int.Parse(txtPartIDLookup.Text);
+            int partIDlookUp = partid;
             if (partIDlookUp != default)
             {
                 _partBeingEdited = partsService.Find(partIDlookUp);
@@ -370,11 +371,14 @@ namespace Mosiac.UX.UXControls
             if (result == DialogResult.OK)
             {
                 _partBeingEdited = (Part)frm.bsPart.DataSource;
-                _ctx.Entry(_partBeingEdited).State = EntityState.Added;
-                _ctx.SaveChanges();
+                partMapper.Map(_partBeingEdited, _selectedPart);
+                partsService.InsertOrUpdate(_selectedPart,Globals.CurrentUserName);
+                int id = partsService.Find(_selectedPart.PartID).PartID;
+               // _ctx.Entry(_partBeingEdited).State = EntityState.Added;
+               // _ctx.SaveChanges();
                 Grids.ToogleButtonStyle(false, btnSave);
 
-                //OpenPartbyNumber();
+                OpenPartbyNumber(id);
             }
             else if (result == DialogResult.Cancel)
             {

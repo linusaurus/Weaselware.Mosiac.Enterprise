@@ -57,27 +57,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="orToolStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <metadata name="tsOrderReceipts.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="tsbOrderReciept.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAABjSURBVEhL3ZWxCcAwEAN/wczk0TJKRrFTROAiAlluhAXH
-        q3hznb+OS5vmTqfpL/c3dzoNFh8TvKfBwmWSJUBXyRM4ZAnQVfIEDlkCdJU8gUOO4O8rVpAE7pGZOw07
-        gav9mFQN25zx7TRgaQYAAAAASUVORK5CYII=
-</value>
-  </data>
-  <data name="tsbPrintReceipt.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACZSURBVEhL7ZCxDcMwDARVZDsjdcoM4MJDZI8skRXSp/BA
-        8RMQG/EjkjLgJj7gABnQ/wsuJ3v4Jk3DSnqm0eDV8Y8GLvABV6ihrC84QcoMWWjEBRr05U/IfkXPW1Wy
-        0vGBBl1nBZ7vqpy1x7Bn4F6Vc3hAv6O2OcOvi1HDA60eLCMa2CXRg2VEl+jFcGHLYQNR07CSnicjlLIB
-        sRjEB/k9LuYAAAAASUVORK5CYII=
-</value>
-  </data>
+  <metadata name="tsBottomToolStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>155, 3</value>
+  </metadata>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>25</value>
   </metadata>
