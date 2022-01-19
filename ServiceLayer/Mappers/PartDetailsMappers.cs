@@ -37,7 +37,7 @@ namespace ServiceLayer.Mappers
             destination.Weight = source.Weight.GetValueOrDefault();
             destination.Waste = source.Waste.GetValueOrDefault();
             destination.Obsolete = source.ObsoluteFlag.GetValueOrDefault();
-            destination.CarbTrack = source.CARBtrack.GetValueOrDefault();
+
            destination.Resources = resourceMapper.MapList(source.Resources);
            
         }

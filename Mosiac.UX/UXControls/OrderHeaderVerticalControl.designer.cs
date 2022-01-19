@@ -65,6 +65,7 @@
             this.btnPrint = new System.Windows.Forms.Button();
             this.mtxtPhone = new System.Windows.Forms.MaskedTextBox();
             this.mtxtFax = new System.Windows.Forms.MaskedTextBox();
+            this.btnChangeSupplier = new System.Windows.Forms.Button();
             this.gbCOst.SuspendLayout();
             this.gbSpecialnstruction.SuspendLayout();
             this.gbDetails.SuspendLayout();
@@ -498,10 +499,27 @@
             this.mtxtFax.Size = new System.Drawing.Size(103, 23);
             this.mtxtFax.TabIndex = 50;
             // 
+            // btnChangeSupplier
+            // 
+            this.btnChangeSupplier.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.btnChangeSupplier.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnChangeSupplier.Image = global::Mosiac.UX.Properties.Resources.outline_published_with_changes_black_24dp1;
+            this.btnChangeSupplier.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnChangeSupplier.Location = new System.Drawing.Point(83, 167);
+            this.btnChangeSupplier.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.btnChangeSupplier.Name = "btnChangeSupplier";
+            this.btnChangeSupplier.Size = new System.Drawing.Size(133, 31);
+            this.btnChangeSupplier.TabIndex = 51;
+            this.btnChangeSupplier.Text = "Switch Supplier";
+            this.btnChangeSupplier.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnChangeSupplier.UseVisualStyleBackColor = true;
+            this.btnChangeSupplier.Click += new System.EventHandler(this.btnChangeSupplier_Click);
+            // 
             // OrderHeaderVerticalControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnChangeSupplier);
             this.Controls.Add(this.mtxtFax);
             this.Controls.Add(this.mtxtPhone);
             this.Controls.Add(this.btnEditSupplier);
@@ -577,5 +595,6 @@
         private System.Windows.Forms.Button btnEditSupplier;
         private System.Windows.Forms.MaskedTextBox mtxtPhone;
         private System.Windows.Forms.MaskedTextBox mtxtFax;
+        private System.Windows.Forms.Button btnChangeSupplier;
     }
 }

@@ -12,7 +12,7 @@ using ServiceLayer.Overloads;
 using Microsoft.Data.SqlClient;
 using Mosiac.UX;
 using System.IO;
-
+using Mosiac.UX.Forms;
 
 namespace Mosiac.UX.UXControls { 
     public partial class OrderEditSplitPanelControl : UserControl
@@ -25,7 +25,9 @@ namespace Mosiac.UX.UXControls {
         private MosaicContext ctx;
         private OrderDetailDto orderDTO = new OrderDetailDto();
         private OrdersService _orderService;
+        private PartsService _partsService;
         private PurchaseOrder _purchaseOrder;
+        private Part _partBeingEdited;
 
         private AttachmentControl attachmentControl;
         private PartFinderControl partFinderControl;
@@ -163,7 +165,7 @@ namespace Mosiac.UX.UXControls {
             //orderDTO = new OrderDetailDto();
             _orderService = new OrdersService(ctx);
             // Init the mapper
-           
+            _partsService = new PartsService(ctx);
             // Retrieve to PurchaseOrder Entity
             _purchaseOrder = _orderService.GetOrderByID(orderID);
             _purchaseOrder.TaxRate = _purchaseOrder.Supplier.TaxRate.GetValueOrDefault();
@@ -188,7 +190,7 @@ namespace Mosiac.UX.UXControls {
             dgOrderLineItem.CellEndEdit += DgOrderLineItem_CellEndEdit;
             dgOrderLineItem.CellValueChanged += DgOrderLineItem_CellValueChanged;
             bsLineitems.ListChanged += BslineItems_ListChanged;
-           
+            dgOrderLineItem.CellContentClick += DgOrderLineItem_CellContentClick;
 
             bsOrder.ListChanged += BsOrder_ListChanged;
             bsOrderFees.ListChanged += BsOrderFees_ListChanged; ;
@@ -201,7 +203,45 @@ namespace Mosiac.UX.UXControls {
            orderHeaderVerticalControl1.LoadDataSource(bsOrder);
             LoadPartFinder();
         }
-      
+
+        private void DgOrderLineItem_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int partID = 0;
+            if (e.ColumnIndex == 1)
+            {
+                partID = int.Parse(dgOrderLineItem.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString());
+                if (partID > 0)
+                {
+                    _partBeingEdited = _partsService.Find(partID);
+                    BindingSource bsPart = new BindingSource();
+                    bsPart.DataSource = _partBeingEdited;
+
+                    PartEditForm frm = new PartEditForm(bsPart, ctx);
+                    frm.Text = $"Editing Part = {_partBeingEdited.PartID.ToString()} ";
+                    frm.StartPosition = FormStartPosition.CenterParent;
+                    var result = frm.ShowDialog();
+                    if (result == DialogResult.OK)
+                    {
+                        _partBeingEdited = (Part)bsPart.DataSource;
+                        ctx.SaveChanges();
+
+                        LineItemDto lineitem = (LineItemDto)bsLineitems.Current;
+                        // change the lineitem text
+                        lineitem.Description = _partBeingEdited.ItemDescription;
+                        lineitem.Price = _partBeingEdited.Cost.GetValueOrDefault();
+                  
+
+                    }
+                    else if (result == DialogResult.Cancel)
+                    {
+                        bsPart.CancelEdit();
+                       
+                    }
+                   
+                }
+            }
+        }
+
         public void SaveChanges()
         {
             _orderService.CreateOrUpdateOrder(orderDTO);      
@@ -336,6 +376,7 @@ namespace Mosiac.UX.UXControls {
         {
             DataGridViewRow row = ((DataGridView)sender).CurrentRow;
             decimal qnty = decimal.Zero;
+           
             // Description -----------------------
             if (e.ColumnIndex == 2)
             {

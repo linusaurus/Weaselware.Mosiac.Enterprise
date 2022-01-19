@@ -112,13 +112,14 @@ namespace Mosiac.UX.UXControls
                 
                 startTime = System.DateTime.Now.Millisecond;
                 partsList = partsService.SearchPart(txtSearch.Text, manuID,ManuFilter);
-                // ListAsDataTable = Grids.BuildDataTable<PartSearchDto>(partsList);
+                //ListAsDataTable = Grids.BuildDataTable<PartSearchDto>(partsList);
                 ListAsDataTable = Grids.BuildDataTable<PartFastSearchDto>(partsList);
                 dv = ListAsDataTable.DefaultView;
                 endTime = System.DateTime.Now.Millisecond;
                 lbResults.Text = $"Returned {ListAsDataTable.Rows.Count} Items, Milliseconds = {(endTime - startTime).ToString()} ";
 
                 dgPartsSearch.DataSource = dv;
+
             }
         }
 
@@ -142,12 +143,8 @@ namespace Mosiac.UX.UXControls
 
         private void BindResource(BindingSource bs)
         {
-            txtResourceCreateDate.DataBindings.Clear();
-            txtResourceCreator.DataBindings.Clear();
+           
             txtSourceFile.DataBindings.Clear();
-
-            txtResourceCreator.DataBindings.Add("Text", bs, "Createdby", true, DataSourceUpdateMode.OnPropertyChanged);
-            txtResourceCreateDate.DataBindings.Add("Text", bs, "CreationDate", true, DataSourceUpdateMode.OnPropertyChanged);
             txtSourceFile.DataBindings.Add("Text", bs, "filesource", true, DataSourceUpdateMode.OnPropertyChanged);
         }
         /// <summary>
@@ -165,12 +162,12 @@ namespace Mosiac.UX.UXControls
                     if (dg.CurrentRow != null)
                     {
                         int i = (int)dg.CurrentRow.Cells[0].Value;
-                        _partBeingEdited = partsService.Find(i);                                               
+                        _partBeingEdited = partsService.Find(i);
                         var resources = _partBeingEdited.Resources.ToList();
                         var orders = partsService.GetPartOrders(_partBeingEdited.PartID);
                         dgPartOrders.DataSource = orders;
-                       dgResources.DataSource = resources;
-                    }                  
+                        dgResources.DataSource = resources;
+                    }
                 }
             }
         }
@@ -485,6 +482,11 @@ namespace Mosiac.UX.UXControls
         private void btnNewPart_Click(object sender, EventArgs e)
         {
             newPart();
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
         }
 
         private void ckbUseManufacturer_CheckedChanged(object sender, System.EventArgs e)

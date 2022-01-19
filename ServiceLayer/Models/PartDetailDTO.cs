@@ -36,7 +36,7 @@ namespace ServiceLayer.Models
         private decimal waste;
         private decimal markUp;
         private bool obsolete;
-        private bool carbTrack;
+       
         // +++++++++++++++++++++++++++++++
 
         public string ItemName
@@ -229,15 +229,7 @@ namespace ServiceLayer.Models
             }
         }
 
-        public bool CarbTrack
-        {
-            get { return carbTrack; }
-            set
-            {
-                carbTrack = value;
-                OnPropertyChange();
-            }
-        }
+      
 
         public List<Document> Documents { get; set; } = new List<Document>();
 

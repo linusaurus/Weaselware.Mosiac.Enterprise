@@ -4,9 +4,10 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Text;
+using System.Linq;
 using DataLayer.Data;
 using DataLayer.Entity;
-using DataLayer.Data;
+using Microsoft.EntityFrameworkCore;
 using ServiceLayer.Models;
 using System.Windows.Forms;
 using Mosiac.UX.UXControls;
@@ -23,7 +24,7 @@ namespace Mosiac.UX.Forms
         private PartsService partsService;
         private List<UnitOfMeasure> units;
         private readonly MosaicContext _ctx;
-        
+        private decimal _stockLevel;
 
         public PartEditForm(BindingSource source,MosaicContext context)
         {
@@ -64,7 +65,8 @@ namespace Mosiac.UX.Forms
 
         private void PartEditForm_Load(object sender, EventArgs e)
         {
-
+            // _ctx.Inventories.
+           
         }
 
         private void BindPart(BindingSource bs)
@@ -84,6 +86,7 @@ namespace Mosiac.UX.Forms
                 txtUnitPrice.DataBindings.Clear();
                 txtPartDescription.DataBindings.Clear();
                 txtPartName.DataBindings.Clear();
+                txtPartNum.DataBindings.Clear();
 
                 txtPartID.DataBindings.Add("Text", bsPart, "PartID", true, DataSourceUpdateMode.OnPropertyChanged);
                 cbxObsolete.DataBindings.Add("Checked", bsPart, "Obsolete", true, DataSourceUpdateMode.OnPropertyChanged);
@@ -92,13 +95,15 @@ namespace Mosiac.UX.Forms
                 txtWaste.DataBindings.Add("Text", bsPart, "Waste", true, DataSourceUpdateMode.OnPropertyChanged);
                 txtMarkUp.DataBindings.Add("Text", bsPart, "MarkUp", true, DataSourceUpdateMode.OnPropertyChanged);
                 txtWeight.DataBindings.Add("Text", bsPart, "Weight", true, DataSourceUpdateMode.OnPropertyChanged);
-                //txtStockLevel.DataBindings.Add("Text", bsPart, "PartID", true, DataSourceUpdateMode.OnPropertyChanged);
+                txtStockLevel.DataBindings.Add("Text", bsPart, "PartID", true, DataSourceUpdateMode.OnPropertyChanged);
                 txtUnitPrice.DataBindings.Add("Text", bsPart, "UnitCost", true, DataSourceUpdateMode.OnPropertyChanged);
                 txtPartDescription.DataBindings.Add("Text", bsPart, "ItemDescription", true, DataSourceUpdateMode.OnPropertyChanged);
                 txtPartName.DataBindings.Add("Text", bsPart, "ItemName", true, DataSourceUpdateMode.OnPropertyChanged);
             }
             else if (bs.Current.GetType() == typeof(Part))
             {
+                _stockLevel = _ctx.Inventories.Where(c => c.PartID == ((Part)bsPart.DataSource).PartID).Sum(i => i.InventoryAmount).GetValueOrDefault();
+
                 txtPartID.DataBindings.Clear();
                 cbxObsolete.DataBindings.Clear();
                 cbxUnit.DataBindings.Clear();
@@ -106,11 +111,12 @@ namespace Mosiac.UX.Forms
                 txtWaste.DataBindings.Clear();
                 txtMarkUp.DataBindings.Clear();
                 txtWeight.DataBindings.Clear();
-                txtStockLevel.DataBindings.Clear();
+                txtPartNum.DataBindings.Clear();
                 txtUnitPrice.DataBindings.Clear();
                 txtPartDescription.DataBindings.Clear();
                 txtPartName.DataBindings.Clear();
                 cboPartManu.DataBindings.Clear();
+
 
                 txtPartID.DataBindings.Add("Text", bsPart, "PartID", true, DataSourceUpdateMode.OnPropertyChanged);
                 cbxObsolete.DataBindings.Add("Checked", bsPart, "ObsoluteFlag", true, DataSourceUpdateMode.OnPropertyChanged);
@@ -119,7 +125,8 @@ namespace Mosiac.UX.Forms
                 txtWaste.DataBindings.Add("Text", bsPart, "Waste", true, DataSourceUpdateMode.OnPropertyChanged);
                 txtMarkUp.DataBindings.Add("Text", bsPart, "MarkUp", true, DataSourceUpdateMode.OnPropertyChanged);
                 txtWeight.DataBindings.Add("Text", bsPart, "Weight", true, DataSourceUpdateMode.OnPropertyChanged);
-                //txtStockLevel.DataBindings.Add("Text", bsPart, "PartID", true, DataSourceUpdateMode.OnPropertyChanged);
+                txtStockLevel.Text = _stockLevel.ToString();
+                txtPartNum.DataBindings.Add("Text", bsPart, "PartNum", true, DataSourceUpdateMode.OnPropertyChanged);
                 txtUnitPrice.DataBindings.Add("Text", bsPart, "Cost", true, DataSourceUpdateMode.OnPropertyChanged);
                 txtPartDescription.DataBindings.Add("Text", bsPart, "ItemDescription", true, DataSourceUpdateMode.OnPropertyChanged);
                 txtPartName.DataBindings.Add("Text", bsPart, "ItemName", true, DataSourceUpdateMode.OnPropertyChanged);

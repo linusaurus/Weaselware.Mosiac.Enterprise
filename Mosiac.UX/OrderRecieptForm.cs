@@ -78,6 +78,9 @@ namespace Mosiac.UX
                 case "tsCancel":
                     this.Close();
                     break;
+                case "tsPrintLabels":
+                    NotificationService.SendNotificaion("rich@designsynthesis.net", receiptDto);
+                    break;
                 default:
                     break;
             }
@@ -105,7 +108,7 @@ namespace Mosiac.UX
                     }
                    
                     break;
-
+              
                 default:
                     break;
             }

@@ -36,12 +36,15 @@ namespace ServiceLayer {
 
             System.Net.Mail.MailMessage msg = new MailMessage("alerts@designsynthesis.net", toAddress);
             msg.IsBodyHtml = true;
-            msg.From = new MailAddress("alerts@designsynthesis.net", "Knoodle-Receiving");
+            msg.From = new MailAddress("alerts@designsynthesis.net", "Mosiac-Receiving");
             msg.Subject = string.Format("Order Number : {0} ", order.PurchaseOrderID.ToString());
+
+            sb.AppendLine($"Recieved by {order.EmployeeName.ToString()}");
+            sb.AppendLine();
 
             foreach (var line in order.OrderReceiptLineItems)
             {
-                sb.Append(line.LineID.ToString());
+                sb.AppendLine($"{line.LineID.ToString()}- {line.Description.ToString()}");
             }
 
             msg.Body = sb.ToString();

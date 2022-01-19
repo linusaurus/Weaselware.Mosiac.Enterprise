@@ -450,7 +450,6 @@ namespace ServiceLayer
             }
             // Map Properties --
             part.Amount_Required= 0;
-            part.CARBtrack = partdto.CarbTrack;
             part.Cost = partdto.UnitCost;
             part.ItemDescription = partdto.ItemDescription;
             part.ModifiedDate = DateTime.Today;

@@ -30,12 +30,12 @@ namespace Mosiac.UX.Forms
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtPartNum = new System.Windows.Forms.TextBox();
             this.btnAddManu = new System.Windows.Forms.Button();
             this.cboPartManu = new System.Windows.Forms.ComboBox();
             this.button1 = new System.Windows.Forms.Button();
             this.btnApply = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
-            this.cbxCarbTrack = new System.Windows.Forms.CheckBox();
             this.cbxObsolete = new System.Windows.Forms.CheckBox();
             this.cbxUnit = new System.Windows.Forms.ComboBox();
             this.txtLocation = new System.Windows.Forms.TextBox();
@@ -57,19 +57,19 @@ namespace Mosiac.UX.Forms
             this.label8 = new System.Windows.Forms.Label();
             this.txtPartID = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.textBox1);
+            this.groupBox1.Controls.Add(this.txtPartNum);
             this.groupBox1.Controls.Add(this.btnAddManu);
             this.groupBox1.Controls.Add(this.cboPartManu);
             this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Controls.Add(this.btnApply);
             this.groupBox1.Controls.Add(this.btnSave);
-            this.groupBox1.Controls.Add(this.cbxCarbTrack);
             this.groupBox1.Controls.Add(this.cbxObsolete);
             this.groupBox1.Controls.Add(this.cbxUnit);
             this.groupBox1.Controls.Add(this.txtLocation);
@@ -82,6 +82,8 @@ namespace Mosiac.UX.Forms
             this.groupBox1.Controls.Add(this.txtUnitPrice);
             this.groupBox1.Controls.Add(this.label10);
             this.groupBox1.Controls.Add(this.label7);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.label13);
             this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Controls.Add(this.label6);
@@ -93,18 +95,25 @@ namespace Mosiac.UX.Forms
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(556, 270);
+            this.groupBox1.Size = new System.Drawing.Size(576, 270);
             this.groupBox1.TabIndex = 9;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Part Details";
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
+            // 
+            // txtPartNum
+            // 
+            this.txtPartNum.Location = new System.Drawing.Point(319, 174);
+            this.txtPartNum.Name = "txtPartNum";
+            this.txtPartNum.Size = new System.Drawing.Size(217, 23);
+            this.txtPartNum.TabIndex = 13;
             // 
             // btnAddManu
             // 
             this.btnAddManu.FlatAppearance.BorderSize = 0;
             this.btnAddManu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddManu.Image = global::Mosiac.UX.Properties.Resources.round_add_circle_outline_black_24dp1;
-            this.btnAddManu.Location = new System.Drawing.Point(197, 212);
+            this.btnAddManu.Location = new System.Drawing.Point(195, 231);
             this.btnAddManu.Name = "btnAddManu";
             this.btnAddManu.Size = new System.Drawing.Size(25, 23);
             this.btnAddManu.TabIndex = 12;
@@ -114,7 +123,7 @@ namespace Mosiac.UX.Forms
             // cboPartManu
             // 
             this.cboPartManu.FormattingEnabled = true;
-            this.cboPartManu.Location = new System.Drawing.Point(23, 212);
+            this.cboPartManu.Location = new System.Drawing.Point(23, 231);
             this.cboPartManu.Name = "cboPartManu";
             this.cboPartManu.Size = new System.Drawing.Size(168, 23);
             this.cboPartManu.TabIndex = 11;
@@ -153,20 +162,10 @@ namespace Mosiac.UX.Forms
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
-            // cbxCarbTrack
-            // 
-            this.cbxCarbTrack.AutoSize = true;
-            this.cbxCarbTrack.Location = new System.Drawing.Point(438, 178);
-            this.cbxCarbTrack.Name = "cbxCarbTrack";
-            this.cbxCarbTrack.Size = new System.Drawing.Size(98, 19);
-            this.cbxCarbTrack.TabIndex = 9;
-            this.cbxCarbTrack.Text = "C.A.R.B. Track";
-            this.cbxCarbTrack.UseVisualStyleBackColor = true;
-            // 
             // cbxObsolete
             // 
             this.cbxObsolete.AutoSize = true;
-            this.cbxObsolete.Location = new System.Drawing.Point(205, 179);
+            this.cbxObsolete.Location = new System.Drawing.Point(27, 87);
             this.cbxObsolete.Name = "cbxObsolete";
             this.cbxObsolete.Size = new System.Drawing.Size(73, 19);
             this.cbxObsolete.TabIndex = 8;
@@ -237,6 +236,7 @@ namespace Mosiac.UX.Forms
             // 
             // txtStockLevel
             // 
+            this.txtStockLevel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtStockLevel.Location = new System.Drawing.Point(110, 175);
             this.txtStockLevel.Name = "txtStockLevel";
             this.txtStockLevel.Size = new System.Drawing.Size(81, 23);
@@ -277,11 +277,11 @@ namespace Mosiac.UX.Forms
             // 
             this.label13.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label13.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label13.Location = new System.Drawing.Point(23, 175);
+            this.label13.Location = new System.Drawing.Point(23, 205);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(81, 23);
+            this.label13.Size = new System.Drawing.Size(167, 23);
             this.label13.TabIndex = 6;
-            this.label13.Text = "Stock Level";
+            this.label13.Text = "Manufacturer";
             this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label9
@@ -327,9 +327,9 @@ namespace Mosiac.UX.Forms
             // 
             // txtPartName
             // 
-            this.txtPartName.Location = new System.Drawing.Point(264, 29);
+            this.txtPartName.Location = new System.Drawing.Point(281, 29);
             this.txtPartName.Name = "txtPartName";
-            this.txtPartName.Size = new System.Drawing.Size(273, 23);
+            this.txtPartName.Size = new System.Drawing.Size(256, 23);
             this.txtPartName.TabIndex = 5;
             // 
             // label8
@@ -338,9 +338,9 @@ namespace Mosiac.UX.Forms
             this.label8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label8.Location = new System.Drawing.Point(187, 29);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(73, 23);
+            this.label8.Size = new System.Drawing.Size(89, 23);
             this.label8.TabIndex = 6;
-            this.label8.Text = "Name";
+            this.label8.Text = "Short Name";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // txtPartID
@@ -362,12 +362,27 @@ namespace Mosiac.UX.Forms
             this.label4.Text = "PartID";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // textBox1
+            // label1
             // 
-            this.textBox1.Location = new System.Drawing.Point(293, 174);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(139, 23);
-            this.textBox1.TabIndex = 13;
+            this.label1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.label1.Location = new System.Drawing.Point(23, 174);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(81, 23);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "Stock Level";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label2
+            // 
+            this.label2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.label2.Location = new System.Drawing.Point(232, 174);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(81, 23);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "Manu-Part#";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // PartEditForm
             // 
@@ -375,7 +390,7 @@ namespace Mosiac.UX.Forms
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.button1;
-            this.ClientSize = new System.Drawing.Size(600, 300);
+            this.ClientSize = new System.Drawing.Size(615, 302);
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "PartEditForm";
@@ -394,7 +409,6 @@ namespace Mosiac.UX.Forms
         private System.Windows.Forms.ComboBox cboPartManu;
         private System.Windows.Forms.Button btnApply;
         private System.Windows.Forms.Button btnSave;
-        private System.Windows.Forms.CheckBox cbxCarbTrack;
         private System.Windows.Forms.CheckBox cbxObsolete;
         private System.Windows.Forms.ComboBox cbxUnit;
         private System.Windows.Forms.TextBox txtLocation;
@@ -417,6 +431,8 @@ namespace Mosiac.UX.Forms
         private System.Windows.Forms.TextBox txtPartID;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtPartNum;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
     }
 }

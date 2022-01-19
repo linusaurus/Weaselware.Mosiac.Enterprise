@@ -25,7 +25,20 @@ namespace Mosiac.UX.UXControls
         public event EventHandler  OnSaveHandler;
         public event EventHandler OnPrintHandler;
 
-      
+        public delegate void SupplierChangedEventHandler(object sender, SupplierChangeArgs args);
+        public event SupplierChangedEventHandler OnChangeSupplierHandler;
+
+        public class SupplierChangeArgs : EventArgs
+        {
+            public SupplierChangeArgs(int supplierID)
+            {
+                SupplierID = supplierID;
+            }
+
+            public int SupplierID { get; set; }
+        }
+
+
         protected virtual void OnSave(EventArgs e)
         {
             if (OnSaveHandler != null)
@@ -39,8 +52,16 @@ namespace Mosiac.UX.UXControls
                 OnPrintHandler(this, e);
             }
         }
-    
-        
+
+        protected virtual void OnSupplierChanged(SupplierChangeArgs e)
+        {
+            if (OnChangeSupplierHandler != null)
+            {
+                OnChangeSupplierHandler(this, e);
+            }
+        }
+
+
         public OrderHeaderVerticalControl()
         {
             InitializeComponent();
@@ -156,6 +177,16 @@ namespace Mosiac.UX.UXControls
                 ((OrderDetailDto)bsorder.DataSource).TaxRate = frm._supplierToEdit.TaxRate.GetValueOrDefault();
             }
 
+        }
+
+        private void btnChangeSupplier_Click(object sender, EventArgs e)
+        {
+           // Show dialog and retrieve SUpplier ID to pass into the event
+            
+            SupplierChangeArgs ars = new SupplierChangeArgs(123);
+            OnSupplierChanged(ars);
+            // if the return value is true
+            //btnSave.Enabled = false;
         }
     }
 }

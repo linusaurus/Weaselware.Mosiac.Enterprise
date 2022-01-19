@@ -59,7 +59,7 @@ namespace Mosiac.UX.UXControls
 
             // Manufacturer Column --
             DataGridViewTextBoxColumn col_Manufacturer = new DataGridViewTextBoxColumn();
-            col_Manufacturer.HeaderText = "PartNum";
+            col_Manufacturer.HeaderText = "Manu-PartNumber";
             col_Manufacturer.DataPropertyName = "PartNumber";
             col_Manufacturer.Width = 160;
 
@@ -352,14 +352,29 @@ namespace Mosiac.UX.UXControls
             col_Description.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
             //FileSize Column --
-            DataGridViewTextBoxColumn col_Manufacturer = new DataGridViewTextBoxColumn();
-            col_Manufacturer.HeaderText = "FileSize";
-            col_Manufacturer.DataPropertyName = "FileSize";
-            col_Manufacturer.Width = 90;
+            DataGridViewTextBoxColumn col_filesize = new DataGridViewTextBoxColumn();
+            col_filesize.HeaderText = "FileSize";
+            col_filesize.DataPropertyName = "FileSize";
+            col_filesize.Width = 90;
+
+            //Create Colum--------
+            DataGridViewTextBoxColumn col_Created = new DataGridViewTextBoxColumn();
+            col_Created.HeaderText = "Created";
+            col_Created.DataPropertyName = "CreationDate";
+            col_Created.Width = 100;
+            // Creator------------------------
+            DataGridViewTextBoxColumn col_Createdby = new DataGridViewTextBoxColumn();
+            col_Createdby.HeaderText = "Createdby";
+            col_Createdby.DataPropertyName = "Createdby";
+            col_Createdby.Width = 110;
+            // LastMod------------------------
+            DataGridViewTextBoxColumn col_LastMod = new DataGridViewTextBoxColumn();
+            col_LastMod.HeaderText = "LastMod";
+            col_LastMod.DataPropertyName = "LastMod";
+            col_LastMod.Width = 90;
 
 
-
-            dg.Columns.AddRange(col_ID, col_Description, col_Manufacturer);
+            dg.Columns.AddRange(col_ID, col_Description, col_filesize, col_Created,col_Createdby, col_LastMod);
         }
         public static void BuildOrderReceiptItemsGrid(DataGridView dg)
         {
