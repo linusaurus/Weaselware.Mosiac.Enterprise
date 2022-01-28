@@ -15,6 +15,7 @@ using System.Diagnostics;
 using System.Drawing;
 using Mosiac.UX;
 using Mosiac.UX.Forms;
+using System.ComponentModel;
 
 namespace Mosiac.UX.UXControls
 {
@@ -30,6 +31,8 @@ namespace Mosiac.UX.UXControls
         private int _selectedResourceID;
         private Resource _selectedResource;
 
+        
+
         //IEnumerable<PartSearchDto> parts;
         PartMapper partMapper = new PartMapper();
 
@@ -44,7 +47,7 @@ namespace Mosiac.UX.UXControls
         private ResourceService resourceService;
 
         List<PartFastSearchDto> partsList = new List<PartFastSearchDto>();
-        
+      
 
         DataTable ListAsDataTable;
         DataView dv;
@@ -53,6 +56,7 @@ namespace Mosiac.UX.UXControls
         public PartManager(MosaicContext ctx)
         {
             InitializeComponent();
+
             _ctx = ctx;
             partsService = new PartsService(ctx);
             resourceService = new ResourceService(ctx);
@@ -66,13 +70,13 @@ namespace Mosiac.UX.UXControls
             cboManu.DataSource = manus;
             cboManu.DisplayMember = "ManufacturerName";
             cboManu.ValueMember = "ManuID";
-
-          
+            
             bsPart.ListChanged += BsPart_ListChanged;
             bsResource.ListChanged += BsResource_ListChanged;
 
         }
 
+     
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
             if ((keyData == Keys.Enter) || (keyData == Keys.Return))             
@@ -112,14 +116,14 @@ namespace Mosiac.UX.UXControls
                 
                 startTime = System.DateTime.Now.Millisecond;
                 partsList = partsService.SearchPart(txtSearch.Text, manuID,ManuFilter);
-                //ListAsDataTable = Grids.BuildDataTable<PartSearchDto>(partsList);
+                //partsList = (List<PartFastSearchDto>)partsService.FastPartSearch(txtSearch.Text);
                 ListAsDataTable = Grids.BuildDataTable<PartFastSearchDto>(partsList);
                 dv = ListAsDataTable.DefaultView;
                 endTime = System.DateTime.Now.Millisecond;
                 lbResults.Text = $"Returned {ListAsDataTable.Rows.Count} Items, Milliseconds = {(endTime - startTime).ToString()} ";
 
                 dgPartsSearch.DataSource = dv;
-
+                //dgPartsSearch.DataSource = partsList;
             }
         }
 
@@ -136,10 +140,8 @@ namespace Mosiac.UX.UXControls
 
                 dgPartsSearch.DataSource = dv;
             }
-               
-            
+     
         }
-
 
         private void BindResource(BindingSource bs)
         {
@@ -369,8 +371,8 @@ namespace Mosiac.UX.UXControls
             {
                 _partBeingEdited = (Part)frm.bsPart.DataSource;
                 partMapper.Map(_partBeingEdited, _selectedPart);
-                partsService.InsertOrUpdate(_selectedPart,Globals.CurrentUserName);
-                int id = partsService.Find(_selectedPart.PartID).PartID;
+                int id = partsService.InsertOrUpdate(_selectedPart,Globals.CurrentUserName);
+                //int id = partsService.Find(_selectedPart.PartID).PartID;
                // _ctx.Entry(_partBeingEdited).State = EntityState.Added;
                // _ctx.SaveChanges();
                 Grids.ToogleButtonStyle(false, btnSave);
@@ -393,6 +395,11 @@ namespace Mosiac.UX.UXControls
 
         private void txtSearch_MouseDoubleClick(object sender, MouseEventArgs e)
         {
+            
+        }
+
+        private void FindAll()
+        {
             startTime = System.DateTime.Now.Millisecond;
             partsList = partsService.ReturnAllParts();
             ListAsDataTable = Grids.BuildDataTable<PartFastSearchDto>(partsList);
@@ -402,6 +409,7 @@ namespace Mosiac.UX.UXControls
 
             dgPartsSearch.DataSource = dv;
         }
+
         /// <summary>
         /// open the selected part in list --
         /// </summary>
@@ -487,6 +495,12 @@ namespace Mosiac.UX.UXControls
         private void panel2_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void btnShowAll_Click(object sender, EventArgs e)
+        {
+            FindAll();
+           
         }
 
         private void ckbUseManufacturer_CheckedChanged(object sender, System.EventArgs e)

@@ -102,8 +102,11 @@ namespace Mosiac.UX.Forms
             }
             else if (bs.Current.GetType() == typeof(Part))
             {
-                _stockLevel = _ctx.Inventories.Where(c => c.PartID == ((Part)bsPart.DataSource).PartID).Sum(i => i.InventoryAmount).GetValueOrDefault();
-
+                if (((Part)bs.Current).PartID != 0)
+                {
+                    _stockLevel = _ctx.Inventories.Where(c => c.PartID == ((Part)bsPart.DataSource).PartID).Sum(i => i.InventoryAmount).GetValueOrDefault();
+                }
+               
                 txtPartID.DataBindings.Clear();
                 cbxObsolete.DataBindings.Clear();
                 cbxUnit.DataBindings.Clear();

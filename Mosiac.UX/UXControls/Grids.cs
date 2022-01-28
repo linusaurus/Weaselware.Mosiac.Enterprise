@@ -33,6 +33,12 @@ namespace Mosiac.UX.UXControls
             dstyleCurrency.Format = "C";
             dstyleCurrency.NullValue = "";
             dstyleCurrency.Alignment = DataGridViewContentAlignment.MiddleRight;
+            // Date Style
+            DataGridViewCellStyle dstyleDate = new DataGridViewCellStyle();
+            dstyleCurrency.Format = "d";
+            dstyleCurrency.NullValue = "";
+            dstyleCurrency.Alignment = DataGridViewContentAlignment.MiddleRight;
+
             // Currency Decimal Style
             DataGridViewCellStyle dstyleDecimal = new DataGridViewCellStyle();
             dstyleDecimal.Format = "N2";
@@ -61,11 +67,22 @@ namespace Mosiac.UX.UXControls
             DataGridViewTextBoxColumn col_Manufacturer = new DataGridViewTextBoxColumn();
             col_Manufacturer.HeaderText = "Manu-PartNumber";
             col_Manufacturer.DataPropertyName = "PartNumber";
-            col_Manufacturer.Width = 160;
+            col_Manufacturer.Width = 200;
+            // DateAdded Column --
+            DataGridViewTextBoxColumn col_DateAdded = new DataGridViewTextBoxColumn();
+            col_DateAdded.DefaultCellStyle = dstyleDate;
+            col_DateAdded.HeaderText = "Date Added";
+            col_DateAdded.DataPropertyName = "DateAdded";
+            col_DateAdded.Width = 100;
 
-           
+            // Addedby Column --
+            DataGridViewTextBoxColumn col_Addedby=  new DataGridViewTextBoxColumn();
+            col_Addedby.HeaderText = "Added by";
+            col_Addedby.DataPropertyName = "AddedBy";
+            col_Addedby.Width = 140;
 
-            dg.Columns.AddRange(col_ID, col_Description, col_Manufacturer);
+
+            dg.Columns.AddRange(col_ID, col_Description,col_DateAdded , col_Addedby, col_Manufacturer);
 
         }
         /// <summary>
@@ -366,7 +383,7 @@ namespace Mosiac.UX.UXControls
             DataGridViewTextBoxColumn col_Createdby = new DataGridViewTextBoxColumn();
             col_Createdby.HeaderText = "Createdby";
             col_Createdby.DataPropertyName = "Createdby";
-            col_Createdby.Width = 110;
+            col_Createdby.Width = 150;
             // LastMod------------------------
             DataGridViewTextBoxColumn col_LastMod = new DataGridViewTextBoxColumn();
             col_LastMod.HeaderText = "LastMod";

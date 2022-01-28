@@ -37,7 +37,7 @@ namespace ServiceLayer.Mappers
                 destination.UnitPrice = source.Price.GetValueOrDefault();
                 destination.PurchaseOrderID = source.PurchaseOrderID.GetValueOrDefault();
                 destination.Description = source.Description;
-                destination.UnitOfMeasureName = source.UnitOfMeasure.UnitName ?? "Ea";
+               // destination.UnitOfMeasureName = source.UnitOfMeasure!.UnitName , "Ea";
                 destination.UiD = source.UnitOfMeasureID.GetValueOrDefault();
                 destination.QntyOrdered = source.QuantityOrdered.GetValueOrDefault();
                 destination.QntyReceived = source.QuantityReceived.GetValueOrDefault();

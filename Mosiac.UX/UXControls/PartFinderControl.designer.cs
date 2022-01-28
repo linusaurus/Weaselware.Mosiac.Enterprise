@@ -61,7 +61,7 @@
             this.tbSupplier.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.tbSupplier.Name = "tbSupplier";
             this.tbSupplier.SelectedIndex = 0;
-            this.tbSupplier.Size = new System.Drawing.Size(926, 195);
+            this.tbSupplier.Size = new System.Drawing.Size(926, 222);
             this.tbSupplier.TabIndex = 3;
             // 
             // tabPage1
@@ -74,7 +74,7 @@
             this.tabPage1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.tabPage1.Size = new System.Drawing.Size(918, 167);
+            this.tabPage1.Size = new System.Drawing.Size(918, 194);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Parts Finder";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -118,8 +118,11 @@
             this.dgvPartsSearchResults.Location = new System.Drawing.Point(7, 37);
             this.dgvPartsSearchResults.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.dgvPartsSearchResults.Name = "dgvPartsSearchResults";
-            this.dgvPartsSearchResults.Size = new System.Drawing.Size(902, 174);
+            this.dgvPartsSearchResults.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvPartsSearchResults.Size = new System.Drawing.Size(902, 151);
             this.dgvPartsSearchResults.TabIndex = 1;
+            this.dgvPartsSearchResults.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPartsSearchResults_CellContentDoubleClick);
+            this.dgvPartsSearchResults.RowHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvPartsSearchResults_RowHeaderMouseDoubleClick);
             this.dgvPartsSearchResults.SelectionChanged += new System.EventHandler(this.dgvPartsSearchResults_SelectionChanged);
             // 
             // PartID_Col
@@ -160,7 +163,7 @@
             this.tabPage2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.tabPage2.Size = new System.Drawing.Size(918, 167);
+            this.tabPage2.Size = new System.Drawing.Size(918, 194);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Supplier Purchases";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -172,7 +175,7 @@
             this.dgSupplierParts.Location = new System.Drawing.Point(4, 3);
             this.dgSupplierParts.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.dgSupplierParts.Name = "dgSupplierParts";
-            this.dgSupplierParts.Size = new System.Drawing.Size(910, 161);
+            this.dgSupplierParts.Size = new System.Drawing.Size(910, 188);
             this.dgSupplierParts.TabIndex = 0;
             // 
             // btnAddToOrder
@@ -224,7 +227,7 @@
             this.Controls.Add(this.tbSupplier);
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "PartFinderControl";
-            this.Size = new System.Drawing.Size(933, 231);
+            this.Size = new System.Drawing.Size(933, 258);
             this.Load += new System.EventHandler(this.PartFinderControl_Load);
             this.tbSupplier.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);

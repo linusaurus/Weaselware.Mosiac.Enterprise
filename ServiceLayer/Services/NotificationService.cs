@@ -39,15 +39,20 @@ namespace ServiceLayer {
             msg.From = new MailAddress("alerts@designsynthesis.net", "Mosiac-Receiving");
             msg.Subject = string.Format("Order Number : {0} ", order.PurchaseOrderID.ToString());
 
-            sb.AppendLine($"Recieved by {order.EmployeeName.ToString()}");
+            sb.AppendLine($"Recieved by {order.EmployeeName.ToString()} at {order.ReceiptDate.ToShortDateString()}");
             sb.AppendLine();
+            msg.Body = sb.ToString();
+
+            msg.Body += "<table width='100%' style='border:Solid 1px Black;'>";
 
             foreach (var line in order.OrderReceiptLineItems)
             {
-                sb.AppendLine($"{line.LineID.ToString()}- {line.Description.ToString()}");
+                msg.Body += "<tr>";
+                msg.Body += "<td stlye='color:blue;'>" + line.Description + "</td>" + "<td stlye='color:blue;'>" + line.QntyOrdered + "</td>" + "<td stlye='color:blue;'>" + line.QntyToInventory + "</td>";
+                msg.Body += "</tr>";
             }
 
-            msg.Body = sb.ToString();
+            msg.Body += "</table>";
 
 
 

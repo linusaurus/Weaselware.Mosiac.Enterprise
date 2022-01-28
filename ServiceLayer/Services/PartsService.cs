@@ -155,7 +155,7 @@ namespace ServiceLayer
         }
 
        
-        public void InsertOrUpdate(PartDetailDTO partDTO,string user)
+        public int InsertOrUpdate(PartDetailDTO partDTO,string user)
         {
           
                 
@@ -208,7 +208,8 @@ namespace ServiceLayer
                 detail.FileSize = FileHelperService.GetSizeInMemory(detailDTO.Payload.Length);
 
             });
-                _context.SaveChanges();           
+                _context.SaveChanges();
+            return part.PartID;
         }
 
         public void Save()
@@ -338,8 +339,10 @@ namespace ServiceLayer
                      {
                          Itemdescription= d.ItemDescription,
                          PartID = d.PartID,
-                         PartNumber = d.PartNum
-                       
+                         PartNumber = d.PartNum,
+                         AddedBy = d.AddedBy,
+                         DateAdded = d.DateAdded.GetValueOrDefault().ToShortDateString()
+
 
                      }).OrderByDescending(p => p.PartID).ToList();
 
@@ -366,14 +369,22 @@ namespace ServiceLayer
                  {
                      Itemdescription = d.ItemDescription,
                      PartID = d.PartID,
-                     PartNumber = d.PartNum
+                     PartNumber = d.PartNum,
+                     AddedBy = d.AddedBy,
+                        DateAdded = d.DateAdded.GetValueOrDefault().ToShortDateString()
 
-
-                 }).OrderByDescending(p => p.PartID).ToList();
+            }).OrderByDescending(p => p.PartID).ToList();
 
             return result;
         }
-
+        /// <summary>
+        /// Main Part Searching engine
+        /// needs to be optimized for better preformance
+        /// </summary>
+        /// <param name="search"></param>
+        /// <param name="manufactererID"></param>
+        /// <param name="manuFilter"></param>
+        /// <returns></returns>
             public List<PartFastSearchDto> SearchPart(string search, int manufactererID, bool manuFilter)
             {
 
@@ -385,8 +396,9 @@ namespace ServiceLayer
                      {
                          Itemdescription = d.ItemDescription,
                          PartID = d.PartID,
-                         PartNumber = d.PartNum
-                        
+                         PartNumber = d.PartNum,
+                         AddedBy = d.AddedBy,
+                         DateAdded = d.DateAdded.GetValueOrDefault().ToShortDateString()
 
                      }).OrderByDescending(p => p.PartID).ToList();
             
@@ -397,14 +409,37 @@ namespace ServiceLayer
                 var result = _context.Parts.AsNoTracking().Where(p => p.ItemDescription.Contains(search)).Select(d => new PartFastSearchDto
                 {
                     Itemdescription = d.ItemDescription,
-                    PartID = d.PartID
-                   // Orders = _context.PurchaseLineItems.AsNoTracking().Where(p => p.PartID == d.PartID).Count()
+                    PartID = d.PartID,
+                    PartNumber = d.PartNum,
+                    AddedBy = d.AddedBy,
+                    DateAdded = d.DateAdded.GetValueOrDefault().ToShortDateString()
 
                 }).OrderByDescending(p => p.PartID).ToList();
-              
-              
+
+
                 return result;
             }
+
+
+        }
+
+        public IEnumerable<PartFastSearchDto> FastPartSearch(string term)
+        {
+
+            List<PartFastSearchDto> result;
+            var dynamicParameters = new DynamicParameters();
+            dynamicParameters.Add("TERM", term);
+
+            string con = "Data Source=FILE-SERVER;Initial Catalog=Mosaic;Integrated Security=True";
+            string sql = "select PartID,ItemDescription,AddedBy,CONVERT(CHAR, DateAdded, 1) AS DateAdded,ModifiedBy,PartNum from Part " +
+                            "where ItemDescription LIKE '%' + @term + '%' ";
+
+            using (var connection = new SqlConnection(con))
+            {
+                connection.Open();
+                result = connection.Query<PartFastSearchDto>(sql, new { term = term }).ToList();
+            }
+            return result;
 
 
         }

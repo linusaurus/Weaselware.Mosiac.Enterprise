@@ -6,6 +6,7 @@ using DataLayer.Entity;
 using ServiceLayer.Models;
 using ServiceLayer;
 using System.Data;
+using Mosiac.UX.Forms;
 
 namespace Mosiac.UX.UXControls
 {
@@ -243,6 +244,88 @@ namespace Mosiac.UX.UXControls
 
             //colUnit.DataSource = _partService.Units();
             dgSupplierParts.Columns.AddRange(colID, colQnty, colDescription, colOrderNum);
+        }
+
+        private void dgvPartsSearchResults_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            DataGridView dgv = (DataGridView)sender;
+            if (dgv.DataSource != null)
+            {
+                if (dgv.Rows.Count > 0)
+                {
+                    if (dgv.CurrentRow != null)
+                    {
+                        int partID = (int)dgv.CurrentRow.Cells[0].Value;
+                       Part _partBeingEdited = partsService.Find(partID);
+                        BindingSource bsPart = new BindingSource();
+                        bsPart.DataSource = _partBeingEdited;
+
+                        PartEditForm frm = new PartEditForm(bsPart, _ctx);
+                        frm.Text = $"Editing Part = {_partBeingEdited.PartID.ToString()} ";
+                        frm.StartPosition = FormStartPosition.CenterParent;
+                        var result = frm.ShowDialog();
+                        if (result == DialogResult.OK)
+                        {
+                            _partBeingEdited = (Part)bsPart.DataSource;
+                            // _ctx.SaveChanges();
+
+                            //LineItemDto lineitem = (LineItemDto)bsLineitems.Current;
+                            //// change the lineitem text
+                            //lineitem.Description = _partBeingEdited.ItemDescription;
+                            //lineitem.Price = _partBeingEdited.Cost.GetValueOrDefault();
+
+                        }
+                        else if (result == DialogResult.Cancel)
+                        {
+                            bsPart.CancelEdit();
+
+                        }
+
+                    }
+
+                }
+            }
+        }
+
+        private void dgvPartsSearchResults_RowHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            DataGridView dgv = (DataGridView)sender;
+            if (dgv.DataSource != null)
+            {
+                if (dgv.Rows.Count > 0)
+                {
+                    if (dgv.CurrentRow != null)
+                    {
+                        int partID = (int)dgv.CurrentRow.Cells[0].Value;
+                        Part _partBeingEdited = partsService.Find(partID);
+                        BindingSource bsPart = new BindingSource();
+                        bsPart.DataSource = _partBeingEdited;
+
+                        PartEditForm frm = new PartEditForm(bsPart, _ctx);
+                        frm.Text = $"Editing Part = {_partBeingEdited.PartID.ToString()} ";
+                        frm.StartPosition = FormStartPosition.CenterParent;
+                        var result = frm.ShowDialog();
+                        if (result == DialogResult.OK)
+                        {
+                            _partBeingEdited = (Part)bsPart.DataSource;
+                            // _ctx.SaveChanges();
+
+                            //LineItemDto lineitem = (LineItemDto)bsLineitems.Current;
+                            //// change the lineitem text
+                            //lineitem.Description = _partBeingEdited.ItemDescription;
+                            //lineitem.Price = _partBeingEdited.Cost.GetValueOrDefault();
+
+                        }
+                        else if (result == DialogResult.Cancel)
+                        {
+                            bsPart.CancelEdit();
+
+                        }
+
+                    }
+
+                }
+            }
         }
     }
 }

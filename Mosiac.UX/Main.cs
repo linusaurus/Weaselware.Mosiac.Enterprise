@@ -66,7 +66,7 @@ namespace Mosiac.UX
 
 
         }
-       
+        #region Scanner Code
         private async void OpenScanner()
         {
             long Result = await mCapture.OpenAsync(appId, developerId, appKey);
@@ -105,6 +105,8 @@ namespace Mosiac.UX
         {
             throw new NotImplementedException();
         }
+
+        #endregion
 
         public TabControl GetTabControl()
         {

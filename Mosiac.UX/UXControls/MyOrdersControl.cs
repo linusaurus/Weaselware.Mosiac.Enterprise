@@ -58,7 +58,9 @@ namespace Mosiac.UX.UXControls
                         var order = _ordersService.GetOrderByID(_selectedOrderId);
                         OrderReceiptDto dto = new OrderReceiptDto();
                         orderMapper.Map(order, dto);
-                        NotificationService.SendNotificaion("rich@designsynthesis.net", dto);
+                        var emp = _employeeService.Find(order.EmployeeID.GetValueOrDefault());
+                        emp.EmployeeEmail.ToString();
+                        NotificationService.SendNotificaion(emp.EmployeeEmail.ToString(), dto);
                         
                     }
 
