@@ -50,7 +50,7 @@ namespace Mosiac.UX.UXControls
                     if (dgMyOrdersGrid.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString() == "True")
                     {
                         int po = _selectedOrderId;
-                        // Recieve the order
+                        //---- Recieve the order
                         ctx.Database.ExecuteSqlRaw("dbo.sproc_recieved_order {0}, {1}",po, _employeeID);
                         this.dgMyOrdersGrid.DataSource = _ordersService.GetMyOrders(_employeeID, _showRecieved);
                         // Push the lineitem into inventory
@@ -58,6 +58,7 @@ namespace Mosiac.UX.UXControls
                         var order = _ordersService.GetOrderByID(_selectedOrderId);
                         OrderReceiptDto dto = new OrderReceiptDto();
                         orderMapper.Map(order, dto);
+                       
                         var emp = _employeeService.Find(order.EmployeeID.GetValueOrDefault());
                         emp.EmployeeEmail.ToString();
                         NotificationService.SendNotificaion(emp.EmployeeEmail.ToString(), dto);

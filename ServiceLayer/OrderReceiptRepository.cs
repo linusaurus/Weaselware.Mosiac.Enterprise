@@ -302,15 +302,14 @@ namespace ServiceLayer
                 }
                 
             }
-            NotificationService.SendNotificaion("rich@designsynthesis.net", dto);
+
+            int key = _ctx.PurchaseOrders.Find(dto.PurchaseOrderID).EmployeeID.GetValueOrDefault();
+            var emp = _ctx.Employees.Find(key);
+            NotificationService.SendNotificaion(emp.EmployeeEmail, dto);
             _ctx.SaveChanges();
-            
-            return orderReciept.OrderReceiptID;
-            
+           
+            return orderReciept.OrderReceiptID;            
         }
 
-
-      
-       
     }
 }

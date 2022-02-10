@@ -26,26 +26,22 @@ namespace Mosiac.UX.UXControls
         private int _selectedOrderID;
         private BindingSource bsOrderReceiptItems = new BindingSource();
         private OrderRecieptLineItemDto _selectedOrderRecieptLineItemDto;
-      
-
      
 
         public OrderRecieptManager(MosaicContext context)
         {
             InitializeComponent();
-            _context = context;   
+            _context = context;
             Grids.BuildPendingOrdersGrid(dgPendingOrders);
             Grids.BuildOrderLineItemsGrid(dgOrderLineItems);
-            _orderReceiptRepository = new OrderReceiptRepository(_context,Globals.CurrentUserName,Globals.CurrentLoggedUserID);
+            _orderReceiptRepository = new OrderReceiptRepository(_context, Globals.CurrentUserName, Globals.CurrentLoggedUserID);
             ordersService = new OrdersService(_context);
             _suppliersService = new SuppliersService(_context);
 
 
             //----------------------------- Pending Grid ------------------------------------
-         
-            DataTable dt = new DataTable();
-            dt = ServiceLayer.DataBuilders.BuildDataTable(_orderReceiptRepository.UnRecievedOrders());
-            dgPendingOrders.DataSource = dt.DefaultView;
+
+            LoadOrders();
 
             #region Events
 
@@ -65,7 +61,17 @@ namespace Mosiac.UX.UXControls
 
         }
 
+        private void LoadOrders()
+        {
+            DataTable dt = new DataTable();
+            dt = ServiceLayer.DataBuilders.BuildDataTable(_orderReceiptRepository.UnRecievedOrders());
+            dgPendingOrders.DataSource = dt.DefaultView;
+        }
 
+        private void RefreshOrders()
+        {
+
+        }
         #region Grid-BindingSource Event Handlers ----------++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
         private void DgPendingOrders_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
@@ -316,6 +322,8 @@ namespace Mosiac.UX.UXControls
                     frm.StartPosition = FormStartPosition.CenterScreen;
                    
                     frm.ShowDialog();
+                    //Reload changed Orders list --
+                    LoadOrders();
                     break;
   
                 case "tsOpenOrder":

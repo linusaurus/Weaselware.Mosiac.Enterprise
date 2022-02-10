@@ -39,16 +39,19 @@ namespace ServiceLayer {
             msg.From = new MailAddress("alerts@designsynthesis.net", "Mosiac-Receiving");
             msg.Subject = string.Format("Order Number : {0} ", order.PurchaseOrderID.ToString());
 
-            sb.AppendLine($"Recieved by {order.EmployeeName.ToString()} at {order.ReceiptDate.ToShortDateString()}");
+            sb.AppendLine($"Recieved by {order.EmployeeName.ToString()} at {DateTime.Now.DayOfWeek}, {DateTime.Today.ToShortDateString()}, {DateTime.Now.ToShortTimeString()}");
             sb.AppendLine();
             msg.Body = sb.ToString();
 
-            msg.Body += "<table width='100%' style='border:Solid 1px Black;'>";
+            msg.Body += "<table width='100%' style='background-color: #EDE8E3'>";
+            msg.Body += "<th>Description</th>";
+            msg.Body += "<th>Qnty Ordered</th>";
+            msg.Body += "<th>Qnty Received</th>";
 
             foreach (var line in order.OrderReceiptLineItems)
             {
                 msg.Body += "<tr>";
-                msg.Body += "<td stlye='color:blue;'>" + line.Description + "</td>" + "<td stlye='color:blue;'>" + line.QntyOrdered + "</td>" + "<td stlye='color:blue;'>" + line.QntyToInventory + "</td>";
+                msg.Body += "<td style=size= '8';>" + line.Description + "</td>" + "<td style='color:blue;'>" + line.QntyOrdered + "</td>" + "<td style='color:blue;'>" + line.QntyToInventory + "</td>";
                 msg.Body += "</tr>";
             }
 
@@ -57,6 +60,8 @@ namespace ServiceLayer {
 
 
             smtp.Send(msg);
+
+
         }
 
        
