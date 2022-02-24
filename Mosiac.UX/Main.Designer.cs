@@ -45,10 +45,10 @@ namespace Mosiac.UX
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.tsScanBarCode = new System.Windows.Forms.ToolStripLabel();
             this.tsSettingsButton = new System.Windows.Forms.ToolStripButton();
+            this.toolStripTextBox1 = new System.Windows.Forms.ToolStripTextBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.MainTabControl = new System.Windows.Forms.TabControl();
-            this.toolStripTextBox1 = new System.Windows.Forms.ToolStripTextBox();
             this.mainToolStrip.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -74,7 +74,7 @@ namespace Mosiac.UX
             this.toolStripTextBox1});
             this.mainToolStrip.Location = new System.Drawing.Point(0, 0);
             this.mainToolStrip.Name = "mainToolStrip";
-            this.mainToolStrip.Size = new System.Drawing.Size(1184, 55);
+            this.mainToolStrip.Size = new System.Drawing.Size(1218, 55);
             this.mainToolStrip.TabIndex = 0;
             this.mainToolStrip.Text = "mainToolStrip";
             this.mainToolStrip.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.mainToolStrip_ItemClicked);
@@ -195,14 +195,19 @@ namespace Mosiac.UX
             this.tsSettingsButton.Text = "search";
             this.tsSettingsButton.Click += new System.EventHandler(this.tsSettingsButton_Click);
             // 
+            // toolStripTextBox1
+            // 
+            this.toolStripTextBox1.Name = "toolStripTextBox1";
+            this.toolStripTextBox1.Size = new System.Drawing.Size(100, 55);
+            // 
             // statusStrip1
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 925);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 739);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 16, 0);
-            this.statusStrip1.Size = new System.Drawing.Size(1184, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(1218, 22);
             this.statusStrip1.TabIndex = 1;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -222,29 +227,24 @@ namespace Mosiac.UX
             this.MainTabControl.Name = "MainTabControl";
             this.MainTabControl.SelectedIndex = 0;
             this.MainTabControl.ShowToolTips = true;
-            this.MainTabControl.Size = new System.Drawing.Size(1184, 870);
+            this.MainTabControl.Size = new System.Drawing.Size(1218, 684);
             this.MainTabControl.TabIndex = 2;
             this.MainTabControl.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.MainTabControl_DrawItem);
             this.MainTabControl.SelectedIndexChanged += new System.EventHandler(this.MaintabControl_SelectedIndexChanged);
             this.MainTabControl.MouseClick += new System.Windows.Forms.MouseEventHandler(this.MainTabControl_MouseClick);
             // 
-            // toolStripTextBox1
-            // 
-            this.toolStripTextBox1.Name = "toolStripTextBox1";
-            this.toolStripTextBox1.Size = new System.Drawing.Size(100, 55);
-            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1184, 947);
+            this.ClientSize = new System.Drawing.Size(1218, 761);
             this.Controls.Add(this.MainTabControl);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.mainToolStrip);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.MinimumSize = new System.Drawing.Size(1200, 800);
+            this.MinimumSize = new System.Drawing.Size(1200, 700);
             this.Name = "Main";
             this.Text = "Mosiac";
             this.Load += new System.EventHandler(this.Main_Load);

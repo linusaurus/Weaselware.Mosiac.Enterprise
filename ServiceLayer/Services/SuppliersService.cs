@@ -22,6 +22,16 @@ namespace ServiceLayer
             return _context.Suppliers.ToList();
         }
 
+        public List<SuppliersListDto> Search(string term)
+        {
+            var result = _context.Suppliers.AsNoTracking().Where(f => f.SupplierName.Contains(term)).Select(d => new SuppliersListDto
+            {
+               SupplierID = d.SupplierID,
+               SupplierName = d.SupplierName
+            });
+            return result.ToList();
+        }
+
         public bool Exist(int supplierID) {
                        
             return _context.Suppliers.Any(c => c.SupplierID == supplierID);          

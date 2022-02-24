@@ -307,7 +307,7 @@ namespace Mosiac.UX.Forms
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "SupplierEditForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "SupplierEditForm";
+            this.Text = "Edit Supplier";
             this.Load += new System.EventHandler(this.SupplierEditForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

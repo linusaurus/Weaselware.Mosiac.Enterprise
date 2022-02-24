@@ -303,16 +303,6 @@ namespace Mosiac.UX.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap checklist {
-            get {
-                object obj = ResourceManager.GetObject("checklist", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap close {
             get {
                 object obj = ResourceManager.GetObject("close", resourceCulture);
@@ -336,16 +326,6 @@ namespace Mosiac.UX.Properties {
         internal static System.Drawing.Bitmap data_find_icon {
             get {
                 object obj = ResourceManager.GetObject("data-find-icon", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap delivery_truck {
-            get {
-                object obj = ResourceManager.GetObject("delivery-truck", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -623,49 +603,9 @@ namespace Mosiac.UX.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap print {
-            get {
-                object obj = ResourceManager.GetObject("print", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap print_ok {
-            get {
-                object obj = ResourceManager.GetObject("print-ok", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap print_quick {
-            get {
-                object obj = ResourceManager.GetObject("print_quick", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap printer {
             get {
                 object obj = ResourceManager.GetObject("printer", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap product_in_progress {
-            get {
-                object obj = ResourceManager.GetObject("product_in_progress", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -966,16 +906,6 @@ namespace Mosiac.UX.Properties {
         internal static System.Drawing.Bitmap twotone_view_list_black_24dp {
             get {
                 object obj = ResourceManager.GetObject("twotone_view_list_black_24dp", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap wish_list {
-            get {
-                object obj = ResourceManager.GetObject("wish-list", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

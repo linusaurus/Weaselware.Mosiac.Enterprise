@@ -50,9 +50,28 @@ namespace Mosiac.UX.UXControls {
             InitializeGrid();
             this.orderHeaderVerticalControl1.OnSaveHandler += OrderHeaderVerticalControl1_OnSaveHandler;
             this.orderHeaderVerticalControl1.OnPrintHandler += OrderHeaderVerticalControl1_OnPrintHandler;
+            this.orderHeaderVerticalControl1.OnChangeSupplierHandler += OrderHeaderVerticalControl1_OnChangeSupplierHandler;
             mapper = new PurchaseOrderMapper();
 
            
+        }
+
+        private void OrderHeaderVerticalControl1_OnChangeSupplierHandler(object sender, OrderHeaderVerticalControl.SupplierChangeArgs args)
+        {
+            int id = args.SupplierID;
+            Supplier supplier = ctx.Suppliers.Find(id);
+            if (supplier != null)
+            {
+                orderDTO.SupplierID = supplier.SupplierID;
+                orderDTO.SupplierName = supplier.SupplierName;
+                orderDTO.SupplierAddress = supplier.Address1.ToString();
+                orderDTO.SupplierCity = supplier.City.ToString();
+                orderDTO.SupplierState = supplier.State;
+                orderDTO.SupplierZip = supplier.Zip;
+                orderDTO.AccountNumber = supplier.AccountNumber;
+                orderDTO.SupplierPhone = supplier.Phone;
+            }
+
         }
 
         public OrderEditSplitPanelControl(MosaicContext context, BindingSource BSorder)

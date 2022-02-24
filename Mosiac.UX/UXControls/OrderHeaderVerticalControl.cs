@@ -181,12 +181,16 @@ namespace Mosiac.UX.UXControls
 
         private void btnChangeSupplier_Click(object sender, EventArgs e)
         {
-           // Show dialog and retrieve SUpplier ID to pass into the event
+            // Show dialog and retrieve SUpplier ID to pass into the event
+            FindSupplierForm frm = new FindSupplierForm();
+           
+            if (frm.ShowDialog() == DialogResult.OK)
+            {
+                SupplierChangeArgs ars = new SupplierChangeArgs(frm.SelectedSupplier.SupplierID);
+                OnSupplierChanged(ars);
+            }
             
-            SupplierChangeArgs ars = new SupplierChangeArgs(123);
-            OnSupplierChanged(ars);
-            // if the return value is true
-            //btnSave.Enabled = false;
+          
         }
     }
 }

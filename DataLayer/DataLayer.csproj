@@ -18,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="bin\publish\" />
     <Folder Include="Data\" />
     <Folder Include="Entity\" />
   </ItemGroup>

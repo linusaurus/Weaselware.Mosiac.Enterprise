@@ -124,9 +124,6 @@
   <data name="Graphic-Design-Tools-21" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Graphic-Design-Tools-21.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="print_quick" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\print_quick.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="round_keyboard_arrow_up_black_24dp" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\round_keyboard_arrow_up_black_24dp.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -135,12 +132,6 @@
   </data>
   <data name="outline_link_black_24dp1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\outline_link_black_24dp1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="print-ok" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\print-ok.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="wish-list" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\wish-list.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="barcode-folded-icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\barcode-folded-icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -171,9 +162,6 @@
   </data>
   <data name="round_add_circle_black_24dp1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\round_add_circle_black_24dp1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="checklist" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\checklist.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="twotone_delete_black_24dp" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\twotone_delete_black_24dp.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -265,9 +253,6 @@
   <data name="035-clipboard" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\035-clipboard.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="product_in_progress" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\product_in_progress.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="034-printer" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\034-printer.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -325,9 +310,6 @@
   <data name="baseline_announcement_black_18dp" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\baseline_announcement_black_18dp.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="print" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\print.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="illustrations_-07" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\illustrations_-07.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -348,9 +330,6 @@
   </data>
   <data name="twotone_face_black_24dp" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\twotone_face_black_24dp.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="delivery-truck" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\delivery-truck.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="round_print_black_24dp" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\round_print_black_24dp.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
