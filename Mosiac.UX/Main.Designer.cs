@@ -37,6 +37,7 @@ namespace Mosiac.UX
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsSupplerOrders = new System.Windows.Forms.ToolStripButton();
             this.tsbReceiveOrder = new System.Windows.Forms.ToolStripButton();
+            this.tsbReceipts = new System.Windows.Forms.ToolStripButton();
             this.tsPartEditor = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.tsJobsManager = new System.Windows.Forms.ToolStripButton();
@@ -63,6 +64,7 @@ namespace Mosiac.UX
             this.toolStripSeparator1,
             this.tsSupplerOrders,
             this.tsbReceiveOrder,
+            this.tsbReceipts,
             this.tsPartEditor,
             this.toolStripSeparator2,
             this.tsJobsManager,
@@ -122,6 +124,16 @@ namespace Mosiac.UX
             this.tsbReceiveOrder.Text = "Recieve Orders";
             this.tsbReceiveOrder.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.tsbReceiveOrder.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            // 
+            // tsbReceipts
+            // 
+            this.tsbReceipts.Image = ((System.Drawing.Image)(resources.GetObject("tsbReceipts.Image")));
+            this.tsbReceipts.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbReceipts.Name = "tsbReceipts";
+            this.tsbReceipts.Size = new System.Drawing.Size(55, 52);
+            this.tsbReceipts.Text = "Receipts";
+            this.tsbReceipts.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.tsbReceipts.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
             // tsPartEditor
             // 
@@ -282,6 +294,7 @@ namespace Mosiac.UX
         #endregion
 
         private System.Windows.Forms.ToolStripTextBox toolStripTextBox1;
+        private System.Windows.Forms.ToolStripButton tsbReceipts;
     }
 }
 

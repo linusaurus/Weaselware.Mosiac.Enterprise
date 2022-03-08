@@ -615,7 +615,85 @@ namespace Mosiac.UX.UXControls
             dg.Columns.AddRange(col_ID, col_partid,col_description, col_unitCost, col_qnty, col_extended);
         }
 
+        public static void BuildReceiptsHistoryGrid(DataGridView dg)
+        {
+            dg.AutoGenerateColumns = false;
 
+            dg.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            dg.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+
+            // Currency Decimal Style
+            DataGridViewCellStyle dstyleCurrency = new DataGridViewCellStyle();
+            dstyleCurrency.Format = "C";
+            dstyleCurrency.NullValue = "";
+            dstyleCurrency.Alignment = DataGridViewContentAlignment.MiddleRight;
+            // Currency Decimal Style
+            DataGridViewCellStyle dstyleDecimal = new DataGridViewCellStyle();
+            dstyleDecimal.Format = "N2";
+            dstyleDecimal.NullValue = "0.00";
+            dstyleDecimal.Alignment = DataGridViewContentAlignment.MiddleRight;
+            // Wrapping Text Style
+            DataGridViewCellStyle dstyleWrapText = new DataGridViewCellStyle();
+            dstyleWrapText.NullValue = "";
+            dstyleWrapText.Alignment = DataGridViewContentAlignment.TopLeft;
+            dstyleWrapText.WrapMode = DataGridViewTriState.True;
+
+            // PartID Column --
+            DataGridViewTextBoxColumn col_ID = new DataGridViewTextBoxColumn();
+            col_ID.HeaderText = "ID";
+            col_ID.DataPropertyName = "OrderReceiptID";
+            col_ID.Width = 55;
+
+            // Receipt Recieved On Column --
+            DataGridViewTextBoxColumn col_ReceiveOn = new DataGridViewTextBoxColumn();
+            col_ReceiveOn.HeaderText = "Received On";
+            col_ReceiveOn.DataPropertyName = "ReceivedOn";
+            col_ReceiveOn.Width = 120;
+            
+
+            // PurchaseOrderID Column --
+            DataGridViewTextBoxColumn col_PurchaseOrderID = new DataGridViewTextBoxColumn();
+            col_PurchaseOrderID.HeaderText = "PO";
+            col_PurchaseOrderID.DataPropertyName = "PurchaseOrderID";
+            col_PurchaseOrderID.Width = 55;
+
+            // Employee Column --
+            DataGridViewTextBoxColumn col_Employee = new DataGridViewTextBoxColumn();
+            col_Employee.HeaderText = "Employee";
+            col_Employee.DataPropertyName = "Employee";
+            col_Employee.Width = 110;
+
+            // Manufacturer Column --
+            DataGridViewTextBoxColumn col_SupplierName = new DataGridViewTextBoxColumn();
+            col_SupplierName.HeaderText = "Supplier";
+            col_SupplierName.DataPropertyName = "SupplierName";
+            col_SupplierName.Width = 160;
+            col_SupplierName.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+
+            // JobName Column --
+            DataGridViewTextBoxColumn col_Jobname = new DataGridViewTextBoxColumn();
+            col_Jobname.HeaderText = "JobName";
+            col_Jobname.DataPropertyName = "JobName";
+            col_Jobname.Width = 260;
+
+            // Order Total Column --
+            DataGridViewTextBoxColumn col_OrderTotal = new DataGridViewTextBoxColumn();
+            col_OrderTotal.DefaultCellStyle = dstyleCurrency;
+            col_OrderTotal.HeaderText = "Total";
+            col_OrderTotal.DataPropertyName = "OrderTotal";
+            col_OrderTotal.Width = 100;
+
+            // Order State Column --
+            DataGridViewTextBoxColumn col_OrderState = new DataGridViewTextBoxColumn();
+            col_OrderState.HeaderText = "Status";
+            col_OrderState.DataPropertyName = "OrderState";
+            col_OrderState.Width = 140;
+
+
+
+            dg.Columns.AddRange(col_ID, col_ReceiveOn, col_PurchaseOrderID, col_Employee, col_SupplierName, col_Jobname, col_OrderTotal, col_OrderState);
+
+        }
         public static void CheckForDirtyState(ListChangedEventArgs e, Button btn)
         {
 

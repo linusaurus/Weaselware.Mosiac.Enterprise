@@ -348,6 +348,26 @@ namespace Mosiac.UX
 
 
                     break;
+               // Display the Order Receipts Surface ----+|+
+
+                case "tsbReceipts":
+                    TabPage OrderReceiptHistoryTab = PageFactory.GetNewTabPage(_context, PageFactory.TabPageType.OrderReceiptHistoryPage);
+                    OrderReceiptHistoryTab.Name = "OrderReceiptHistoryTab";
+
+                    if (!MainTabControl.TabPages.ContainsKey("OrderReceiptHistoryTab"))
+                    {
+                        MainTabControl.TabPages.Add(OrderReceiptHistoryTab);
+                        MainTabControl.SelectedTab = OrderReceiptHistoryTab;
+                    }
+                    else
+                    {
+                        if (MainTabControl.TabPages.ContainsKey("OrderReceiptTab"))
+                        { MainTabControl.SelectTab("OrderReceiptHistoryTab"); }
+                    }
+
+
+                    break;
+
                  ///TODO  insert new part editor
                 case "tsPartEditor":
 

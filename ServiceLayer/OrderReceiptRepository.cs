@@ -8,7 +8,7 @@ using System.Linq.Expressions;
 using System.Linq;
 using ServiceLayer.Models;
 using ServiceLayer.Mappers;
-
+using Microsoft.Data.SqlClient;
 
 namespace ServiceLayer
 {
@@ -309,6 +309,49 @@ namespace ServiceLayer
             _ctx.SaveChanges();
            
             return orderReciept.OrderReceiptID;            
+        }
+
+
+        public List<OrderReceiptHistoryDto> ReceiptHistory()
+        {
+            List<OrderReceiptHistoryDto> dtos = new List<OrderReceiptHistoryDto>();
+
+            string sql = $@"select o.OrderReceiptID, o.ReceiptDate as [Recieved On],p.PurchaseOrderID," +
+                "e.firstname as [EmployeeName], s.SupplierName, j.jobname as [JobName], p.OrderTotal, os.OrderStateName FROM OrderReciept o " +
+                "JOIN Employee e ON o.EmployeeID = e.employeeID " +
+                "JOIN PurchaseOrder p ON o.PurchaseOrderID = p.PurchaseOrderID " +
+                "JOIN Supplier s ON p.SupplierID = s.SupplierID " +
+                "JOIN Job j ON p.JobID = j.jobID " +
+                "JOIN OrderState os ON p.OrderState = os.OrderStateID " +
+                "ORDER By o.ReceiptDate Desc";
+
+            SqlConnection con = (SqlConnection)_ctx.Database.GetDbConnection();
+            
+            SqlCommand command = con.CreateCommand();
+            command.CommandText = sql;
+  
+            con.Open();
+            SqlDataReader reader = command.ExecuteReader();
+            
+            while(reader.Read())
+            {
+                OrderReceiptHistoryDto d = new OrderReceiptHistoryDto();
+                d.OrderReceiptID =  reader.GetInt32(0);
+                d.ReceivedOn = reader.GetDateTime(1);
+                d.PurchaseOrderID = reader.GetInt32(2);
+                d.Employee = reader.GetString(3);
+                d.SupplierName = reader.GetString(4);
+                d.JobName = reader.GetString(5);
+                d.OrderTotal = reader.GetDecimal(6);
+                d.OrderState = reader.GetString(7);
+                dtos.Add(d);
+
+            }
+            reader.Close();
+
+            var ors = _ctx.Database.ExecuteSqlRaw(sql);
+            con.Close();
+            return dtos;
         }
 
     }

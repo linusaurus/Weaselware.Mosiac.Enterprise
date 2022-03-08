@@ -139,6 +139,10 @@ namespace Mosiac.UX.UXControls {
         private void LockOrderUX()
         {
             dgOrderLineItem.ReadOnly = true;
+            foreach (Control item in this.Controls)
+            {
+                item.Enabled = false;
+            }
             
         }
        
@@ -221,6 +225,11 @@ namespace Mosiac.UX.UXControls {
            //partFinderControl.LoadDatasource(ctx, orderDTO.SupplierID);
            orderHeaderVerticalControl1.LoadDataSource(bsOrder);
             LoadPartFinder();
+            if (_purchaseOrder.OrderState == 2)
+            {
+                LockOrderUX();
+            }
+            
         }
 
         private void DgOrderLineItem_CellContentClick(object sender, DataGridViewCellEventArgs e)

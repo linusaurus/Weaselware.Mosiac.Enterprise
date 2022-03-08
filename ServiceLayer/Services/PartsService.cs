@@ -430,7 +430,7 @@ namespace ServiceLayer
             var dynamicParameters = new DynamicParameters();
             dynamicParameters.Add("TERM", term);
 
-            string con = "Data Source=FILE-SERVER;Initial Catalog=Mosaic;Integrated Security=True";
+            string con = "Data Source=DBServer;Initial Catalog=Mosaic;Integrated Security=True";
             string sql = "select PartID,ItemDescription,AddedBy,CONVERT(CHAR, DateAdded, 1) AS DateAdded,ModifiedBy,PartNum from Part " +
                             "where ItemDescription LIKE '%' + @term + '%' ";
 
@@ -454,8 +454,7 @@ namespace ServiceLayer
             List<PartOrdersDto> result;
             var dynamicParameters = new DynamicParameters();
             dynamicParameters.Add("PartID", partID);
-
-            string con = "Data Source=FILE-SERVER;Initial Catalog=Mosaic;Integrated Security=True";
+            string con = "Data Source=Dbserver;Initial Catalog=Mosaic;Integrated Security=True";
             string sql = "select p.PurchaseOrderID, s.SupplierName,j.jobname,p.OrderDate FROM PurchaseOrder AS p " +
                             "INNER JOIN Supplier s ON p.SupplierID = p.SupplierID " +
                             "INNER JOIN Job j ON p.JobID = j.jobID " +

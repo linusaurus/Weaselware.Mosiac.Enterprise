@@ -91,7 +91,7 @@ namespace Mosiac.UX.UXControls
             // txtPurchaseOrderID
             // 
             this.txtPurchaseOrderID.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtPurchaseOrderID.Location = new System.Drawing.Point(623, 41);
+            this.txtPurchaseOrderID.Location = new System.Drawing.Point(782, 41);
             this.txtPurchaseOrderID.Name = "txtPurchaseOrderID";
             this.txtPurchaseOrderID.ReadOnly = true;
             this.txtPurchaseOrderID.Size = new System.Drawing.Size(117, 23);
@@ -102,7 +102,7 @@ namespace Mosiac.UX.UXControls
             // 
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label3.Location = new System.Drawing.Point(623, 14);
+            this.label3.Location = new System.Drawing.Point(782, 14);
             this.label3.Name = "label3";
             this.label3.Padding = new System.Windows.Forms.Padding(2);
             this.label3.Size = new System.Drawing.Size(117, 23);
@@ -134,7 +134,7 @@ namespace Mosiac.UX.UXControls
             // 
             this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label5.Location = new System.Drawing.Point(500, 14);
+            this.label5.Location = new System.Drawing.Point(659, 14);
             this.label5.Name = "label5";
             this.label5.Padding = new System.Windows.Forms.Padding(2);
             this.label5.Size = new System.Drawing.Size(117, 23);
@@ -145,7 +145,7 @@ namespace Mosiac.UX.UXControls
             // txtOrderDate
             // 
             this.txtOrderDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtOrderDate.Location = new System.Drawing.Point(500, 41);
+            this.txtOrderDate.Location = new System.Drawing.Point(659, 41);
             this.txtOrderDate.Name = "txtOrderDate";
             this.txtOrderDate.ReadOnly = true;
             this.txtOrderDate.Size = new System.Drawing.Size(117, 23);
@@ -160,14 +160,14 @@ namespace Mosiac.UX.UXControls
             this.groupBox2.Margin = new System.Windows.Forms.Padding(12);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(12);
-            this.groupBox2.Size = new System.Drawing.Size(785, 122);
+            this.groupBox2.Size = new System.Drawing.Size(944, 122);
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Receipt Details";
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.PapayaWhip;
+            this.panel1.BackColor = System.Drawing.Color.LightSteelBlue;
             this.panel1.Controls.Add(this.txtOrderDate);
             this.panel1.Controls.Add(this.txtPurchaseOrderID);
             this.panel1.Controls.Add(this.label1);
@@ -181,7 +181,7 @@ namespace Mosiac.UX.UXControls
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(12, 28);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(761, 82);
+            this.panel1.Size = new System.Drawing.Size(920, 82);
             this.panel1.TabIndex = 0;
             // 
             // dgReceiptItems
@@ -193,7 +193,7 @@ namespace Mosiac.UX.UXControls
             this.dgReceiptItems.Location = new System.Drawing.Point(24, 149);
             this.dgReceiptItems.Name = "dgReceiptItems";
             this.dgReceiptItems.RowTemplate.Height = 25;
-            this.dgReceiptItems.Size = new System.Drawing.Size(761, 369);
+            this.dgReceiptItems.Size = new System.Drawing.Size(920, 358);
             this.dgReceiptItems.TabIndex = 4;
             // 
             // OrderReciept
@@ -204,7 +204,7 @@ namespace Mosiac.UX.UXControls
             this.Controls.Add(this.groupBox2);
             this.Name = "OrderReciept";
             this.Padding = new System.Windows.Forms.Padding(12);
-            this.Size = new System.Drawing.Size(809, 564);
+            this.Size = new System.Drawing.Size(968, 553);
             this.groupBox2.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

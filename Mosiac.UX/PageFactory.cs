@@ -20,6 +20,7 @@ namespace Mosiac.UX
             PurchaseOrdersPage,
             MyOrdersPage,
             OrderRecieptPage,
+            OrderReceiptHistoryPage,
             ItemSearchPage,
             RecieptManagerPage,
             LabelEditorPage,
@@ -81,11 +82,19 @@ namespace Mosiac.UX
                     jobTab.Controls.Add(jobControl);
                     return jobTab;
                     break;
+
                 case TabPageType.RecieptManagerPage:
                     //tab.Text = "Order Reciepts";
                     //OrderReceiptsControl recieptsManagerControl = new OrderReceiptsControl(ctx);
                     //recieptsManagerControl.Dock = DockStyle.Fill;
                     //tab.Controls.Add(recieptsManagerControl);
+                    break;
+
+                case TabPageType.OrderReceiptHistoryPage:
+                    tab.Text = "Order Reciepts";
+                    OrderReceiptHistoryPage orderHistoryControl = new OrderReceiptHistoryPage(ctx);
+                    orderHistoryControl.Dock = DockStyle.Fill;
+                    tab.Controls.Add(orderHistoryControl);
                     break;
                 case TabPageType.StockBill:
                     //tab.Text = "Stock Bill";
