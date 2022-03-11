@@ -17,6 +17,7 @@ using Mosiac.UX.UXControls;
 using Mosiac.UX.Properties;
 using System.Reflection;
 using SocketMobile.Capture;
+using ServiceLayer;
 
 namespace Mosiac.UX
 {
@@ -26,6 +27,7 @@ namespace Mosiac.UX
         MosaicContext _context;
         int _loggedOnUserID;
         readonly OrdersService _ordersService;
+       
         public TabControl MainTabs { get; set; }
         CaptureHelper mCapture;
 
@@ -43,7 +45,7 @@ namespace Mosiac.UX
         public Main()
         {
             InitializeComponent();
-
+           
             // 3- instantiate and configure CaptureHelper
             mCapture = new CaptureHelper { ContextForEvents = WindowsFormsSynchronizationContext.Current };
             mCapture.DeviceArrival += mCapture_DeviceArrival;
@@ -151,6 +153,7 @@ namespace Mosiac.UX
             {
                 this.toolStripStatusLabel1.Text = tabControl.SelectedTab.Text;
                 Mediator.GetInstance().OnTabChanged(tabControl, tabControl.SelectedTab);
+                
             }
 
         }
@@ -230,22 +233,31 @@ namespace Mosiac.UX
             MainTabControl.SelectedTab = AssembliesTab;
         }
 
+       
+
         private void MainTabControl_DrawItem(object sender, DrawItemEventArgs e)
         {
+            TabControl tabControl = (TabControl)sender;
             Image img = new Bitmap(closeImage);
             Rectangle r = e.Bounds;
+
             r = this.MainTabs.GetTabRect(e.Index);
+
             r.Offset(2, 2);
             Brush TitleBrush = new SolidBrush(Color.Black);
             Font f = this.Font;
             string title = this.MainTabs.TabPages[e.Index].Text;
+            //e.Graphics.FillRectangle(new SolidBrush(Color.LightBlue), e.Bounds);
             e.Graphics.DrawString(title, f, TitleBrush, new PointF(r.X, r.Y));
             e.Graphics.DrawImage(img, new Point(r.X + (this.MainTabs.GetTabRect(e.Index).Width - _imageLocation.X), _imageLocation.Y));
+            
+
         }
 
         private void MainTabControl_MouseClick(object sender, MouseEventArgs e)
         {
             TabControl tabControl = (TabControl)sender;
+ 
             Point p = e.Location;
             int _tabWidth = 0;
             _tabWidth = this.MainTabs.GetTabRect(tabControl.SelectedIndex).Width - (_imgHitArea.X);

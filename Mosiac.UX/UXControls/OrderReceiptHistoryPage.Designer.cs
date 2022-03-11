@@ -36,6 +36,7 @@ namespace Mosiac.UX.UXControls
             this.tsbOpenOrder = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tscboFilter = new System.Windows.Forms.ToolStripComboBox();
+            this.tsRecordsReturned = new System.Windows.Forms.ToolStripLabel();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -56,7 +57,8 @@ namespace Mosiac.UX.UXControls
             this.tsbViewReceipt,
             this.tsbOpenOrder,
             this.toolStripSeparator1,
-            this.tscboFilter});
+            this.tscboFilter,
+            this.tsRecordsReturned});
             this.toolStrip1.Location = new System.Drawing.Point(10, 10);
             this.toolStrip1.Margin = new System.Windows.Forms.Padding(0, 0, 0, 16);
             this.toolStrip1.Name = "toolStrip1";
@@ -98,6 +100,12 @@ namespace Mosiac.UX.UXControls
             this.tscboFilter.Size = new System.Drawing.Size(121, 25);
             this.tscboFilter.SelectedIndexChanged += new System.EventHandler(this.tscboFilter_SelectedIndexChanged);
             // 
+            // tsRecordsReturned
+            // 
+            this.tsRecordsReturned.Name = "tsRecordsReturned";
+            this.tsRecordsReturned.Size = new System.Drawing.Size(22, 22);
+            this.tsRecordsReturned.Text = ".....";
+            // 
             // OrderReceiptHistoryPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -123,5 +131,6 @@ namespace Mosiac.UX.UXControls
         private System.Windows.Forms.ToolStripButton tsbOpenOrder;
         private System.Windows.Forms.ToolStripComboBox tscboFilter;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripLabel tsRecordsReturned;
     }
 }

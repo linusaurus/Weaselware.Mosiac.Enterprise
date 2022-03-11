@@ -11,6 +11,8 @@ using System.Runtime.InteropServices.ComTypes;
 using ServiceLayer.Mappers;
 using ServiceLayer.Models;
 using Mosiac.UX;
+using Mosiac.UX.Forms;
+using DataLayer.Data;
 
 namespace Mosiac.UX.UXControls
 { 
@@ -21,12 +23,22 @@ namespace Mosiac.UX.UXControls
     {
         
         private BindingSource bsorder = new BindingSource();
-       
+        private Boolean locked = false;
+
+        public bool Locked { get => locked; set => locked = value; }
+
+        //-----------------------------------------------------
         public event EventHandler  OnSaveHandler;
         public event EventHandler OnPrintHandler;
-
+        public event EventHandler OnOrderCanceledHandler;
+        //-----------------------------------------------------
         public delegate void SupplierChangedEventHandler(object sender, SupplierChangeArgs args);
         public event SupplierChangedEventHandler OnChangeSupplierHandler;
+
+        public delegate void   OnJobChangedEventHandlerHandler(object sender, JobChangedArgs args);
+        public event OnJobChangedEventHandlerHandler OnJobChangedHandler;
+
+       
 
         public class SupplierChangeArgs : EventArgs
         {
@@ -36,6 +48,16 @@ namespace Mosiac.UX.UXControls
             }
 
             public int SupplierID { get; set; }
+        }
+
+        public class JobChangedArgs : EventArgs
+        {
+            public JobChangedArgs(int jobID)
+            {
+                JobID = jobID;
+            }
+
+            public int JobID { get; set; }
         }
 
 
@@ -50,6 +72,14 @@ namespace Mosiac.UX.UXControls
             if (OnPrintHandler != null)
             {
                 OnPrintHandler(this, e);
+            }
+        }
+
+        protected virtual void OnCancel(EventArgs e)
+        {
+            if (OnOrderCanceledHandler != null)
+            {
+                OnOrderCanceledHandler(this, e);
             }
         }
 
@@ -182,15 +212,46 @@ namespace Mosiac.UX.UXControls
         private void btnChangeSupplier_Click(object sender, EventArgs e)
         {
             // Show dialog and retrieve SUpplier ID to pass into the event
-            FindSupplierForm frm = new FindSupplierForm();
-           
+            FindSupplierForm frm = new FindSupplierForm();          
             if (frm.ShowDialog() == DialogResult.OK)
             {
                 SupplierChangeArgs ars = new SupplierChangeArgs(frm.SelectedSupplier.SupplierID);
                 OnSupplierChanged(ars);
             }
+ 
+        }
+
+        private void gbCOst_Enter(object sender, EventArgs e)
+        {
+
+        }
+        /// <summary>
+        /// Cancel To Order and put in locked state
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnCancelOrder_Click(object sender, EventArgs e)
+        {
+            OnOrderCanceledHandler(this, e);
+        }
+        /// <summary>
+        /// Change to current Job for the PurchaseOrder
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnJobChange_Click(object sender, EventArgs e)
+        {
+            using (var ctx = new MosaicContext(Mosiac.UX.Properties.Settings.Default.MosiacConnection))
+            {
+                SelectJobForm frm = new SelectJobForm(ctx);
+                if (frm.ShowDialog() == DialogResult.OK)
+                {
+
+                }
+            }
             
-          
+            
+           
         }
     }
 }

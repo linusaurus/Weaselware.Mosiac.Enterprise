@@ -25,6 +25,7 @@
   <ItemGroup>
     <PackageReference Include="FastReport.Net.Demo" Version="2021.3.6" />
     <PackageReference Include="FluentEmail.Smtp" Version="3.0.0" />
+    <PackageReference Include="Neodynamic.SDK.ThermalLabel.WindowsPrinting.NetCore" Version="11.0.0" />
     <PackageReference Include="SocketMobile.Capture" Version="1.0.513.13" />
     <PackageReference Include="System.Composition.AttributedModel" Version="6.0.0-preview.5.21301.5" />
   </ItemGroup>

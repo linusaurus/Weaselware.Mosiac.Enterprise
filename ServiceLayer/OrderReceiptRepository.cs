@@ -72,7 +72,7 @@ namespace ServiceLayer
                     item.QntyReceived = 0.0m;
                     item.ItemsRecievedComplete = false;
                     item.QntyToInventory = lines.Qnty.GetValueOrDefault();
-                    item.UnitOfMeasureName = String.Empty;
+                    item.UnitOfMeasureName = lines.UnitOfMeasure.UnitName;
                     item.PartID = lines.PartID.GetValueOrDefault();
 
                     ////// -- if the partID is null or 0 assign the unit of measure to Each --///////
@@ -312,18 +312,57 @@ namespace ServiceLayer
         }
 
 
-        public List<OrderReceiptHistoryDto> ReceiptHistory()
+        public List<OrderReceiptHistoryDto> ReceiptHistory(int orderState)
         {
+            String sql = String.Empty;
+         
             List<OrderReceiptHistoryDto> dtos = new List<OrderReceiptHistoryDto>();
 
-            string sql = $@"select o.OrderReceiptID, o.ReceiptDate as [Recieved On],p.PurchaseOrderID," +
-                "e.firstname as [EmployeeName], s.SupplierName, j.jobname as [JobName], p.OrderTotal, os.OrderStateName FROM OrderReciept o " +
-                "JOIN Employee e ON o.EmployeeID = e.employeeID " +
-                "JOIN PurchaseOrder p ON o.PurchaseOrderID = p.PurchaseOrderID " +
-                "JOIN Supplier s ON p.SupplierID = s.SupplierID " +
-                "JOIN Job j ON p.JobID = j.jobID " +
-                "JOIN OrderState os ON p.OrderState = os.OrderStateID " +
-                "ORDER By o.ReceiptDate Desc";
+            switch (orderState)
+            {
+                case 2:
+
+                    sql = $@"select TOP(200) o.OrderReceiptID, o.ReceiptDate as [Recieved On],p.PurchaseOrderID," +
+                     "e.firstname as [EmployeeName], s.SupplierName, j.jobname as [JobName], p.OrderTotal, os.OrderStateName FROM OrderReciept o " +
+                    "JOIN Employee e ON o.EmployeeID = e.employeeID " +
+                    "JOIN PurchaseOrder p ON o.PurchaseOrderID = p.PurchaseOrderID " +
+                    "JOIN Supplier s ON p.SupplierID = s.SupplierID " +
+                    "JOIN Job j ON p.JobID = j.jobID " +
+                    "JOIN OrderState os ON p.OrderState = os.OrderStateID " +
+                    "WHERE p.OrderState = 2 " +
+                    "ORDER By o.ReceiptDate Desc";
+
+                    break;
+                case 3:
+
+                    sql = $@"select TOP(200) o.OrderReceiptID, o.ReceiptDate as [Recieved On],p.PurchaseOrderID," +
+                    "e.firstname as [EmployeeName], s.SupplierName, j.jobname as [JobName], p.OrderTotal, os.OrderStateName FROM OrderReciept o " +
+                   "JOIN Employee e ON o.EmployeeID = e.employeeID " +
+                   "JOIN PurchaseOrder p ON o.PurchaseOrderID = p.PurchaseOrderID " +
+                   "JOIN Supplier s ON p.SupplierID = s.SupplierID " +
+                   "JOIN Job j ON p.JobID = j.jobID " +
+                   "JOIN OrderState os ON p.OrderState = os.OrderStateID " +
+                   "WHERE p.OrderState = 3 " +
+                   "ORDER By o.ReceiptDate Desc";
+
+                    break;
+                case 1:
+                    sql = $@"select  o.OrderReceiptID, o.ReceiptDate as [Recieved On],p.PurchaseOrderID," +
+                  "e.firstname as [EmployeeName], s.SupplierName, j.jobname as [JobName], p.OrderTotal, os.OrderStateName FROM OrderReciept o " +
+                 "JOIN Employee e ON o.EmployeeID = e.employeeID " +
+                 "JOIN PurchaseOrder p ON o.PurchaseOrderID = p.PurchaseOrderID " +
+                 "JOIN Supplier s ON p.SupplierID = s.SupplierID " +
+                 "JOIN Job j ON p.JobID = j.jobID " +
+                 "JOIN OrderState os ON p.OrderState = os.OrderStateID " +
+                 "ORDER By o.ReceiptDate Desc";
+
+
+                    break;
+                default:
+                    break;
+            }
+
+
 
             SqlConnection con = (SqlConnection)_ctx.Database.GetDbConnection();
             

@@ -175,6 +175,7 @@ namespace Mosiac.UX.UXControls
             // 
             // orderHeaderVerticalControl1
             // 
+            this.orderHeaderVerticalControl1.AutoScroll = true;
             this.orderHeaderVerticalControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.orderHeaderVerticalControl1.Location = new System.Drawing.Point(5, 5);
             this.orderHeaderVerticalControl1.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);

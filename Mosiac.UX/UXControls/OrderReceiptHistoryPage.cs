@@ -28,8 +28,8 @@ namespace Mosiac.UX.UXControls
             Grids.BuildReceiptsHistoryGrid(dataGridView1);
             _ctx = context;
             _service = new OrderReceiptRepository(_ctx, Globals.CurrentUserName, Globals.CurrentLoggedUserID);
-            var ordersHistory = _service.ReceiptHistory();
-            this.dataGridView1.DataSource = ordersHistory;
+
+            tscboFilter.SelectedIndex = 1;
         }
 
         private void DataGridView1_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -73,14 +73,27 @@ namespace Mosiac.UX.UXControls
         private void tscboFilter_SelectedIndexChanged(object sender, EventArgs e)
         {
             ToolStripComboBox tscb = (ToolStripComboBox)sender;
+            List<OrderReceiptHistoryDto> ordersHistory = new List<OrderReceiptHistoryDto>();
+
             switch (tscb.SelectedItem.ToString())
             {
                 case "All":
-
+                    ordersHistory = _service.ReceiptHistory(1);
+                    this.dataGridView1.DataSource = ordersHistory;
+                    tsRecordsReturned.Text = $" Records Returned {ordersHistory.Count.ToString()}";
                     break;
                 case "Completed":
+
+                   ordersHistory = _service.ReceiptHistory(2);
+                   
+                    this.dataGridView1.DataSource = ordersHistory;
+                    tsRecordsReturned.Text = $" Records Returned {ordersHistory.Count.ToString()}";
                     break;
                 case "Not Complete":
+
+                    ordersHistory = _service.ReceiptHistory(3);
+                    this.dataGridView1.DataSource = ordersHistory;
+                    tsRecordsReturned.Text = $" Records Returned {ordersHistory.Count.ToString()}";
                     break;
 
                 default:

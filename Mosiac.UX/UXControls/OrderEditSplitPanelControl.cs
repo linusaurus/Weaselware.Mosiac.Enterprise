@@ -51,9 +51,21 @@ namespace Mosiac.UX.UXControls {
             this.orderHeaderVerticalControl1.OnSaveHandler += OrderHeaderVerticalControl1_OnSaveHandler;
             this.orderHeaderVerticalControl1.OnPrintHandler += OrderHeaderVerticalControl1_OnPrintHandler;
             this.orderHeaderVerticalControl1.OnChangeSupplierHandler += OrderHeaderVerticalControl1_OnChangeSupplierHandler;
+            this.orderHeaderVerticalControl1.OnJobChangedHandler += OrderHeaderVerticalControl1_OnJobChangedHandler;
+            this.orderHeaderVerticalControl1.OnOrderCanceledHandler += OrderHeaderVerticalControl1_OnOrderCanceledHandler;
             mapper = new PurchaseOrderMapper();
 
            
+        }
+
+        private void OrderHeaderVerticalControl1_OnOrderCanceledHandler(object sender, EventArgs e)
+        {
+            ;
+        }
+
+        private void OrderHeaderVerticalControl1_OnJobChangedHandler(object sender, OrderHeaderVerticalControl.JobChangedArgs args)
+        {
+           ;
         }
 
         private void OrderHeaderVerticalControl1_OnChangeSupplierHandler(object sender, OrderHeaderVerticalControl.SupplierChangeArgs args)
@@ -141,8 +153,10 @@ namespace Mosiac.UX.UXControls {
             dgOrderLineItem.ReadOnly = true;
             foreach (Control item in this.Controls)
             {
+               
                 item.Enabled = false;
             }
+           
             
         }
        
@@ -228,6 +242,11 @@ namespace Mosiac.UX.UXControls {
             if (_purchaseOrder.OrderState == 2)
             {
                 LockOrderUX();
+            }
+            if (_purchaseOrder.Attachments.Count > 0)
+            {
+                tsbLoadPartFinder.BackColor = Color.DarkTurquoise;
+                LoadAttachmentControls();
             }
             
         }
@@ -466,12 +485,16 @@ namespace Mosiac.UX.UXControls {
 
         private void tsbToggleAttachment_Click(object sender, EventArgs e)
         {
+            LoadAttachmentControls();
+        }
+
+        private void LoadAttachmentControls()
+        {
             attachmentControl = new AttachmentControl(ctx);
-            attachmentControl.SetDatasource(orderDTO, bsAttachments);           
+            attachmentControl.SetDatasource(orderDTO, bsAttachments);
             LoadOrderPanelControl(attachmentControl);
         }
 
-        
         private void LoadPartFinder()
         {
             partFinderControl = new PartFinderControl();
