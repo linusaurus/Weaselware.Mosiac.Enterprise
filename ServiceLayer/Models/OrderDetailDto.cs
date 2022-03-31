@@ -37,6 +37,7 @@ namespace ServiceLayer.Models
         private decimal subTotal;
         private double taxRate;
         private string accountNumber;
+        private int orderState;
  
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -52,6 +53,17 @@ namespace ServiceLayer.Models
                 OnPropertyChange();
             }
         }
+
+        public int OrderState
+        {
+            get { return orderState; }
+            set
+            {
+                orderState = value;
+                OnPropertyChange();
+            }
+        }
+
 
         // TaxRate
         public double TaxRate

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using DataLayer.Data;
 using DataLayer.Entity;
+using Microsoft.EntityFrameworkCore;
+using System.Linq;
 using ServiceLayer.Models;
 using ServiceLayer;
 using System.Data;
@@ -62,6 +64,13 @@ namespace Mosiac.UX.UXControls
         {
             InitializeComponent();
             BuildSupplierPartGrid();
+        }
+
+        public void Lock()
+        {
+            this.btnAddJobPart.Enabled = false;
+            this.btnAddToOrder.Enabled = false;
+            this.dgSupplierParts.Enabled = false;
         }
 
 
@@ -325,6 +334,27 @@ namespace Mosiac.UX.UXControls
                     }
 
                 }
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            int result;
+            if (! String.IsNullOrEmpty (txtPartNumber.Text) )
+            {
+                if (int.TryParse(txtPartNumber.Text,out result))
+                {
+                   _selectedPart = _ctx.Parts.AsNoTracking().Where(p => p.PartID == result).FirstOrDefault();
+                    if (OnPartAdded != null)
+                    {
+                        if (_selectedPart != null)
+                        { OnPartAdded(this, new PartAddedArgs { selectPart = _selectedPart }); }
+
+                    }
+
+                }
+
+
             }
         }
     }

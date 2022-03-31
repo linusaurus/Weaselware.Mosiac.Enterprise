@@ -40,6 +40,7 @@ namespace Mosiac.UX.UXControls
             this.tsToogleHeader = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbToggleAttachment = new System.Windows.Forms.ToolStripButton();
+            this.tsOrderState = new System.Windows.Forms.ToolStripLabel();
             this.splitContainerMain = new System.Windows.Forms.SplitContainer();
             this.orderHeaderVerticalControl1 = new Mosiac.UX.UXControls.OrderHeaderVerticalControl();
             this.scLineItems = new System.Windows.Forms.SplitContainer();
@@ -67,7 +68,8 @@ namespace Mosiac.UX.UXControls
             this.tsbToogleOrderFee,
             this.tsToogleHeader,
             this.toolStripSeparator1,
-            this.tsbToggleAttachment});
+            this.tsbToggleAttachment,
+            this.tsOrderState});
             this.tsOrderEditToolBar.Location = new System.Drawing.Point(7, 696);
             this.tsOrderEditToolBar.Name = "tsOrderEditToolBar";
             this.tsOrderEditToolBar.Size = new System.Drawing.Size(1340, 31);
@@ -151,6 +153,15 @@ namespace Mosiac.UX.UXControls
             this.tsbToggleAttachment.ToolTipText = "find parts";
             this.tsbToggleAttachment.Click += new System.EventHandler(this.tsbLoadPartFinder_Click);
             // 
+            // tsOrderState
+            // 
+            this.tsOrderState.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.tsOrderState.IsLink = true;
+            this.tsOrderState.Name = "tsOrderState";
+            this.tsOrderState.Size = new System.Drawing.Size(72, 28);
+            this.tsOrderState.Text = "Order Status";
+            this.tsOrderState.Click += new System.EventHandler(this.tsOrderState_Click);
+            // 
             // splitContainerMain
             // 
             this.splitContainerMain.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -184,6 +195,7 @@ namespace Mosiac.UX.UXControls
             this.orderHeaderVerticalControl1.Padding = new System.Windows.Forms.Padding(7);
             this.orderHeaderVerticalControl1.Size = new System.Drawing.Size(379, 679);
             this.orderHeaderVerticalControl1.TabIndex = 0;
+            this.orderHeaderVerticalControl1.Tag = "lock";
             this.orderHeaderVerticalControl1.Load += new System.EventHandler(this.orderHeaderVerticalControl1_Load);
             // 
             // scLineItems
@@ -220,6 +232,7 @@ namespace Mosiac.UX.UXControls
             this.dgOrderLineItem.RowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgOrderLineItem.Size = new System.Drawing.Size(936, 247);
             this.dgOrderLineItem.TabIndex = 0;
+            this.dgOrderLineItem.Tag = "lock";
             // 
             // OrderEditSplitPanelControl
             // 
@@ -261,5 +274,6 @@ namespace Mosiac.UX.UXControls
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripLabel tsOrderState;
     }
 }

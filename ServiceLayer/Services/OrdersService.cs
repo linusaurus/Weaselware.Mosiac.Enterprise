@@ -51,7 +51,8 @@ namespace ServiceLayer {
                 Tax = d.Tax.HasValue ? d.Tax.Value : Decimal.Zero,
                 TaxRate = d.TaxRate.GetValueOrDefault(),
                 Taxable = d.SuppressTax.HasValue ? d.SuppressTax.Value : false,
-                //LineItems = d.PurchaseLineItems.ToList()
+                OrderState = d.OrderState.GetValueOrDefault()
+                
 
             }); 
             return _order.FirstOrDefault();

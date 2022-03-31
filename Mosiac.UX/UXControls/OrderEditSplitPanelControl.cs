@@ -24,8 +24,12 @@ namespace Mosiac.UX.UXControls {
         private BindingSource bsAttachments = new BindingSource();
         private MosaicContext ctx;
         private OrderDetailDto orderDTO = new OrderDetailDto();
+        // -------------------------------------------------------
+        // Services
+        // -----------------------------------------------------
         private OrdersService _orderService;
         private PartsService _partsService;
+        private OrderReceiptRepository _receiptRepository;
         private PurchaseOrder _purchaseOrder;
         private Part _partBeingEdited;
 
@@ -60,7 +64,12 @@ namespace Mosiac.UX.UXControls {
 
         private void OrderHeaderVerticalControl1_OnOrderCanceledHandler(object sender, EventArgs e)
         {
-            ;
+            var po = _orderService.GetOrderByID(orderDTO.PurchaseOrderID);
+            ctx.Entry(po).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            po.OrderState = 4 ;
+            ctx.SaveChanges();
+            LoadOrder();
+
         }
 
         private void OrderHeaderVerticalControl1_OnJobChangedHandler(object sender, OrderHeaderVerticalControl.JobChangedArgs args)
@@ -107,6 +116,7 @@ namespace Mosiac.UX.UXControls {
 
             LoadOrder();
             isDirty = false;
+          
             ToogleButtonStyle(isDirty);
           
         }
@@ -147,19 +157,57 @@ namespace Mosiac.UX.UXControls {
                 orderHeaderVerticalControl1.btnSave.FlatAppearance.BorderColor = Color.Cornsilk;
             }
         }
-
+        // XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+        // XX       Lock the Order                      XX
+        // XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
         private void LockOrderUX()
         {
-            dgOrderLineItem.ReadOnly = true;
-            foreach (Control item in this.Controls)
+            // DisableControls(this);
+            orderHeaderVerticalControl1.Lock();
+            _receiptRepository = new OrderReceiptRepository(ctx, Globals.CurrentUserName,Globals.CurrentLoggedUserID);
+            var receipt = _receiptRepository.LoadOrderReciept(orderDTO.PurchaseOrderID);
+            string message = $" Order Received on {receipt.ReceiptDate.ToShortDateString()} ";
+            this.orderHeaderVerticalControl1.btnSave.Enabled = false;
+            this.dgOrderLineItem.Enabled = false;
+            this.partFinderControl.Enabled = false;
+            this.tsOrderState.Text = message;
+           
+            partFinderControl.Lock();
+            tsbToggleAttachment.Enabled = false;
+            tsbLoadPartFinder.Enabled = true;
+            tsbToogleOrderFee.Enabled = false;
+            if (attachmentControl != null)
             {
-               
-                item.Enabled = false;
+                this.attachmentControl.Lock();
             }
            
             
+
         }
-       
+
+        private void DisableControls(Control con)
+        {
+            foreach (Control c in con.Controls)
+            {
+                DisableControls(c);
+            }
+            if (con.Name != "tsOrderEditToolBar")
+            {
+                con.Enabled = false;
+            }
+            con.Enabled = false;
+            
+        }
+
+        private void EnableControls(Control con)
+        {
+            if (con != null)
+            {
+                con.Enabled = true;
+                EnableControls(con.Parent);
+            }
+        }
+
         /// <summary>
         /// After update this shoudl relaod all the current data
         /// </summary>
@@ -188,6 +236,7 @@ namespace Mosiac.UX.UXControls {
                 if (orderFeeControl != null) { orderFeeControl.SetDataSource(orderDTO, bsOrderFees); }
 
                 BindLineItemsToGrid(bsLineitems);
+
      
             }
 
@@ -237,9 +286,9 @@ namespace Mosiac.UX.UXControls {
 
             // start with the PartFinder
            //partFinderControl.LoadDatasource(ctx, orderDTO.SupplierID);
-           orderHeaderVerticalControl1.LoadDataSource(bsOrder);
+            orderHeaderVerticalControl1.LoadDataSource(bsOrder);
             LoadPartFinder();
-            if (_purchaseOrder.OrderState == 2)
+            if (orderDTO.OrderState == 2)
             {
                 LockOrderUX();
             }
@@ -313,20 +362,27 @@ namespace Mosiac.UX.UXControls {
 
         private void CheckForDirtyState(ListChangedEventArgs e)
         {
-            if (e.ListChangedType == System.ComponentModel.ListChangedType.ItemChanged)
-            {   orderHeaderVerticalControl1.btnSave.Enabled = true;                 
-                isDirty = true;
-                ToogleButtonStyle(isDirty);
-            }
-            if (e.ListChangedType == ListChangedType.ItemDeleted)
-            { orderHeaderVerticalControl1.btnSave.Enabled = true;
-                isDirty = true;
-                ToogleButtonStyle(isDirty);
-            }
-            if (e.ListChangedType == ListChangedType.ItemAdded)
-            { orderHeaderVerticalControl1.btnSave.Enabled = true;
-                isDirty = true;
-                ToogleButtonStyle(isDirty);
+            if (orderDTO.OrderState != 2)// check for the order being Received --
+            {
+                
+                if (e.ListChangedType == System.ComponentModel.ListChangedType.ItemChanged)
+                {
+                    orderHeaderVerticalControl1.btnSave.Enabled = true;
+                    isDirty = true;
+                    ToogleButtonStyle(isDirty);
+                }
+                if (e.ListChangedType == ListChangedType.ItemDeleted)
+                {
+                    orderHeaderVerticalControl1.btnSave.Enabled = true;
+                    isDirty = true;
+                    ToogleButtonStyle(isDirty);
+                }
+                if (e.ListChangedType == ListChangedType.ItemAdded)
+                {
+                    orderHeaderVerticalControl1.btnSave.Enabled = true;
+                    isDirty = true;
+                    ToogleButtonStyle(isDirty);
+                }
             }
         }
 
@@ -492,6 +548,10 @@ namespace Mosiac.UX.UXControls {
         {
             attachmentControl = new AttachmentControl(ctx);
             attachmentControl.SetDatasource(orderDTO, bsAttachments);
+            if (orderDTO.OrderState == 2)
+            {
+                attachmentControl.Lock();
+            }
             LoadOrderPanelControl(attachmentControl);
         }
 
@@ -597,6 +657,17 @@ namespace Mosiac.UX.UXControls {
         private void orderHeaderVerticalControl1_Load(object sender, EventArgs e)
         {
 
+        }
+        // Open the Reciept ------
+        private void tsOrderState_Click(object sender, EventArgs e)
+        {
+            OrderReceiptViewerForm form = new OrderReceiptViewerForm();
+            var receipt = _receiptRepository.LoadOrderReciept(orderDTO.PurchaseOrderID);
+            OrderReciept veiwer = new OrderReciept(receipt);
+            veiwer.Dock = DockStyle.Fill;
+            form.Controls.Add(veiwer);
+            form.Text = $"Order Reciept {receipt.OrderReceiptId.ToString()}";
+            form.Show();
         }
     }
 }

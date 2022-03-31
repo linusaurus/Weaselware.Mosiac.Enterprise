@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.dgResources = new System.Windows.Forms.DataGridView();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnDeleteResource = new System.Windows.Forms.Button();
             this.btnOpenResource = new System.Windows.Forms.Button();
             this.btnAddResource = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgResources)).BeginInit();
@@ -50,22 +50,22 @@
             this.dgResources.TabIndex = 16;
             this.dgResources.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgResources_CellContentClick);
             // 
-            // button1
+            // btnDeleteResource
             // 
-            this.button1.BackColor = System.Drawing.SystemColors.Control;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Image = global::Mosiac.UX.Properties.Resources.outline_delete_black_24dp2;
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button1.Location = new System.Drawing.Point(206, 9);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(67, 35);
-            this.button1.TabIndex = 17;
-            this.button1.Text = "Delete";
-            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnDeleteResource.BackColor = System.Drawing.SystemColors.Control;
+            this.btnDeleteResource.FlatAppearance.BorderSize = 0;
+            this.btnDeleteResource.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDeleteResource.Image = global::Mosiac.UX.Properties.Resources.outline_delete_black_24dp2;
+            this.btnDeleteResource.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnDeleteResource.Location = new System.Drawing.Point(206, 9);
+            this.btnDeleteResource.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.btnDeleteResource.Name = "btnDeleteResource";
+            this.btnDeleteResource.Size = new System.Drawing.Size(67, 35);
+            this.btnDeleteResource.TabIndex = 17;
+            this.btnDeleteResource.Text = "Delete";
+            this.btnDeleteResource.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnDeleteResource.UseVisualStyleBackColor = false;
+            this.btnDeleteResource.Click += new System.EventHandler(this.button1_Click);
             // 
             // btnOpenResource
             // 
@@ -105,7 +105,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnDeleteResource);
             this.Controls.Add(this.btnOpenResource);
             this.Controls.Add(this.btnAddResource);
             this.Controls.Add(this.dgResources);
@@ -123,6 +123,6 @@
         private System.Windows.Forms.Button btnOpenResource;
         private System.Windows.Forms.Button btnAddResource;
         private System.Windows.Forms.DataGridView dgResources;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnDeleteResource;
     }
 }

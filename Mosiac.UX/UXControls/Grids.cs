@@ -82,7 +82,7 @@ namespace Mosiac.UX.UXControls
             col_Addedby.Width = 140;
 
 
-            dg.Columns.AddRange(col_ID, col_Description,col_DateAdded , col_Addedby, col_Manufacturer);
+            dg.Columns.AddRange(col_ID, col_Description, col_Manufacturer,col_DateAdded, col_Addedby);
 
         }
         /// <summary>

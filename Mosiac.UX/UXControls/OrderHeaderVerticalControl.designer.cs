@@ -81,6 +81,7 @@
             this.txtJobName.ReadOnly = true;
             this.txtJobName.Size = new System.Drawing.Size(265, 23);
             this.txtJobName.TabIndex = 19;
+            this.txtJobName.Tag = "lock";
             // 
             // label2
             // 
@@ -110,6 +111,7 @@
             this.txtZip.ReadOnly = true;
             this.txtZip.Size = new System.Drawing.Size(109, 23);
             this.txtZip.TabIndex = 11;
+            this.txtZip.Tag = "lock";
             this.txtZip.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtState
@@ -120,6 +122,7 @@
             this.txtState.ReadOnly = true;
             this.txtState.Size = new System.Drawing.Size(42, 23);
             this.txtState.TabIndex = 13;
+            this.txtState.Tag = "lock";
             this.txtState.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtCity
@@ -130,6 +133,7 @@
             this.txtCity.ReadOnly = true;
             this.txtCity.Size = new System.Drawing.Size(180, 23);
             this.txtCity.TabIndex = 14;
+            this.txtCity.Tag = "lock";
             // 
             // txtSupplierAddress
             // 
@@ -139,6 +143,7 @@
             this.txtSupplierAddress.ReadOnly = true;
             this.txtSupplierAddress.Size = new System.Drawing.Size(342, 23);
             this.txtSupplierAddress.TabIndex = 15;
+            this.txtSupplierAddress.Tag = "lock";
             // 
             // txtSupplierName
             // 
@@ -148,6 +153,7 @@
             this.txtSupplierName.ReadOnly = true;
             this.txtSupplierName.Size = new System.Drawing.Size(342, 23);
             this.txtSupplierName.TabIndex = 16;
+            this.txtSupplierName.Tag = "lock";
             // 
             // label5
             // 
@@ -166,6 +172,7 @@
             this.txtPurchaser.Name = "txtPurchaser";
             this.txtPurchaser.Size = new System.Drawing.Size(85, 23);
             this.txtPurchaser.TabIndex = 20;
+            this.txtPurchaser.Tag = "lock";
             this.txtPurchaser.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label6
@@ -185,6 +192,7 @@
             this.txtAttention.Name = "txtAttention";
             this.txtAttention.Size = new System.Drawing.Size(135, 23);
             this.txtAttention.TabIndex = 22;
+            this.txtAttention.Tag = "lock";
             this.txtAttention.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtMemo
@@ -195,6 +203,7 @@
             this.txtMemo.Name = "txtMemo";
             this.txtMemo.Size = new System.Drawing.Size(329, 53);
             this.txtMemo.TabIndex = 25;
+            this.txtMemo.Tag = "lock";
             // 
             // label10
             // 
@@ -216,6 +225,7 @@
             this.txtOtherFees.ReadOnly = true;
             this.txtOtherFees.Size = new System.Drawing.Size(116, 23);
             this.txtOtherFees.TabIndex = 26;
+            this.txtOtherFees.Tag = "lock";
             this.txtOtherFees.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // NetTotalLabel
@@ -240,6 +250,7 @@
             this.cbTaxable.Name = "cbTaxable";
             this.cbTaxable.Size = new System.Drawing.Size(65, 19);
             this.cbTaxable.TabIndex = 36;
+            this.cbTaxable.Tag = "lock";
             this.cbTaxable.Text = "Taxable";
             this.cbTaxable.UseVisualStyleBackColor = true;
             // 
@@ -283,6 +294,7 @@
             this.txtSubTotal.ReadOnly = true;
             this.txtSubTotal.Size = new System.Drawing.Size(116, 23);
             this.txtSubTotal.TabIndex = 28;
+            this.txtSubTotal.Tag = "lock";
             this.txtSubTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtOrderTotal
@@ -294,6 +306,7 @@
             this.txtOrderTotal.ReadOnly = true;
             this.txtOrderTotal.Size = new System.Drawing.Size(116, 23);
             this.txtOrderTotal.TabIndex = 29;
+            this.txtOrderTotal.Tag = "lock";
             this.txtOrderTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtTax
@@ -305,6 +318,7 @@
             this.txtTax.ReadOnly = true;
             this.txtTax.Size = new System.Drawing.Size(116, 23);
             this.txtTax.TabIndex = 30;
+            this.txtTax.Tag = "lock";
             this.txtTax.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtOrderDate
@@ -314,6 +328,7 @@
             this.txtOrderDate.Name = "txtOrderDate";
             this.txtOrderDate.Size = new System.Drawing.Size(135, 23);
             this.txtOrderDate.TabIndex = 31;
+            this.txtOrderDate.Tag = "lock";
             this.txtOrderDate.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtOrderNumber
@@ -323,6 +338,7 @@
             this.txtOrderNumber.Name = "txtOrderNumber";
             this.txtOrderNumber.Size = new System.Drawing.Size(85, 23);
             this.txtOrderNumber.TabIndex = 32;
+            this.txtOrderNumber.Tag = "lock";
             this.txtOrderNumber.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtTaxRate
@@ -334,6 +350,7 @@
             this.txtTaxRate.ReadOnly = true;
             this.txtTaxRate.Size = new System.Drawing.Size(59, 23);
             this.txtTaxRate.TabIndex = 38;
+            this.txtTaxRate.Tag = "lock";
             this.txtTaxRate.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // lbTaxRate
@@ -409,6 +426,7 @@
             this.btnJobChange.Name = "btnJobChange";
             this.btnJobChange.Size = new System.Drawing.Size(58, 25);
             this.btnJobChange.TabIndex = 36;
+            this.btnJobChange.Tag = "lock";
             this.btnJobChange.Text = "Edit";
             this.btnJobChange.UseVisualStyleBackColor = true;
             this.btnJobChange.Click += new System.EventHandler(this.btnJobChange_Click);
@@ -420,6 +438,7 @@
             this.txtAccountNumber.Name = "txtAccountNumber";
             this.txtAccountNumber.Size = new System.Drawing.Size(262, 23);
             this.txtAccountNumber.TabIndex = 43;
+            this.txtAccountNumber.Tag = "lock";
             this.txtAccountNumber.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label3
@@ -441,6 +460,7 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(90, 33);
             this.button1.TabIndex = 47;
+            this.button1.Tag = "lock";
             this.button1.Text = "Clone";
             this.button1.UseVisualStyleBackColor = true;
             // 
@@ -455,6 +475,7 @@
             this.btnEditSupplier.Name = "btnEditSupplier";
             this.btnEditSupplier.Size = new System.Drawing.Size(133, 31);
             this.btnEditSupplier.TabIndex = 48;
+            this.btnEditSupplier.Tag = "lock";
             this.btnEditSupplier.Text = "Edit Supplier";
             this.btnEditSupplier.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnEditSupplier.UseVisualStyleBackColor = true;
@@ -472,6 +493,7 @@
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(149, 33);
             this.btnSave.TabIndex = 46;
+            this.btnSave.Tag = "lock";
             this.btnSave.Text = "Save Changes";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSave.UseVisualStyleBackColor = true;
@@ -502,6 +524,7 @@
             this.mtxtPhone.ReadOnly = true;
             this.mtxtPhone.Size = new System.Drawing.Size(96, 23);
             this.mtxtPhone.TabIndex = 49;
+            this.mtxtPhone.Tag = "lock";
             // 
             // mtxtFax
             // 
@@ -512,6 +535,7 @@
             this.mtxtFax.ReadOnly = true;
             this.mtxtFax.Size = new System.Drawing.Size(109, 23);
             this.mtxtFax.TabIndex = 50;
+            this.mtxtFax.Tag = "lock";
             // 
             // btnChangeSupplier
             // 
@@ -524,6 +548,7 @@
             this.btnChangeSupplier.Name = "btnChangeSupplier";
             this.btnChangeSupplier.Size = new System.Drawing.Size(133, 31);
             this.btnChangeSupplier.TabIndex = 51;
+            this.btnChangeSupplier.Tag = "lock";
             this.btnChangeSupplier.Text = "Switch Supplier";
             this.btnChangeSupplier.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnChangeSupplier.UseVisualStyleBackColor = true;
@@ -535,6 +560,7 @@
             this.btnCancelOrder.Name = "btnCancelOrder";
             this.btnCancelOrder.Size = new System.Drawing.Size(92, 27);
             this.btnCancelOrder.TabIndex = 52;
+            this.btnCancelOrder.Tag = "lock";
             this.btnCancelOrder.Text = "Cancel Order";
             this.btnCancelOrder.UseVisualStyleBackColor = true;
             this.btnCancelOrder.Click += new System.EventHandler(this.btnCancelOrder_Click);
@@ -569,6 +595,7 @@
             this.Name = "OrderHeaderVerticalControl";
             this.Padding = new System.Windows.Forms.Padding(7);
             this.Size = new System.Drawing.Size(399, 724);
+            this.Tag = "lock";
             this.Load += new System.EventHandler(this.OrderHeaderVerticalControl_Load);
             this.gbCOst.ResumeLayout(false);
             this.gbCOst.PerformLayout();

@@ -43,10 +43,12 @@ namespace ServiceLayer.Mappers
             destination.Memo = source.Memo;
             destination.TaxRate = source.TaxRate.GetValueOrDefault();
             destination.AccountNumber = source.Supplier.AccountNumber;
+            destination.OrderState = source.OrderState.GetValueOrDefault();
 
             destination.LineItems = lineMapper.MapList(source.PurchaseLineItems);
             destination.Attachments = attachmentMapper.MapList(source.Attachments);
             destination.OrderFees = orderFeeMapper.MapList(source.OrderFees);
+        
  
         }
     }

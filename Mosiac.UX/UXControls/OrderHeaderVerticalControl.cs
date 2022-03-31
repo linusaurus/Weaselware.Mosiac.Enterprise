@@ -23,9 +23,7 @@ namespace Mosiac.UX.UXControls
     {
         
         private BindingSource bsorder = new BindingSource();
-        private Boolean locked = false;
-
-        public bool Locked { get => locked; set => locked = value; }
+      
 
         //-----------------------------------------------------
         public event EventHandler  OnSaveHandler;
@@ -37,8 +35,6 @@ namespace Mosiac.UX.UXControls
 
         public delegate void   OnJobChangedEventHandlerHandler(object sender, JobChangedArgs args);
         public event OnJobChangedEventHandlerHandler OnJobChangedHandler;
-
-       
 
         public class SupplierChangeArgs : EventArgs
         {
@@ -60,6 +56,24 @@ namespace Mosiac.UX.UXControls
             public int JobID { get; set; }
         }
 
+
+        public void Lock()
+        {
+            btnCancelOrder.Enabled = false;
+            btnSave.Enabled = false;
+            txtAccountNumber.Enabled = false;
+            txtMemo.Enabled = false;
+            btnJobChange.Enabled = false;
+            btnEditSupplier.Enabled = false;
+            btnChangeSupplier.Enabled = false;
+            cbTaxable.Enabled = false;
+            txtPurchaser.Enabled = false;
+            txtAttention.Enabled = false;
+            txtOrderNumber.Enabled = false;
+            txtPurchaser.Enabled = false;
+            btnPrint.Enabled = true;
+        }
+      
 
         protected virtual void OnSave(EventArgs e)
         {
@@ -170,8 +184,6 @@ namespace Mosiac.UX.UXControls
             txtAccountNumber.DataBindings.Add("Text", bsorder, "AccountNumber", true, DataSourceUpdateMode.OnPropertyChanged);
         }
 
-     
-
         private void btnSave_Click(object sender, EventArgs e)
         {
             OnSaveHandler(this,e);
@@ -249,9 +261,7 @@ namespace Mosiac.UX.UXControls
 
                 }
             }
-            
-            
-           
+
         }
     }
 }

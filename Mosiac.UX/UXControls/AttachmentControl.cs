@@ -28,6 +28,12 @@ namespace Mosiac.UX.UXControls
             dgResources.SelectionChanged += DgResources_SelectionChanged;
         }
 
+        public void Lock()
+        {
+            btnAddResource.Enabled = false;
+            btnDeleteResource.Enabled = false;
+        }
+
         private void DgResources_SelectionChanged(object sender, EventArgs e)
         {
             if (dgResources.DataSource != null)
