@@ -180,7 +180,8 @@ namespace Mosiac.UX.UXControls {
             {
                 this.attachmentControl.Lock();
             }
-           
+
+            this.BackColor = Color.DarkGray;
             
 
         }

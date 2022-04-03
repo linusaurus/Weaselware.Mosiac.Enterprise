@@ -158,8 +158,7 @@ namespace Mosiac.UX.UXControls
             this.tsOrderState.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.tsOrderState.IsLink = true;
             this.tsOrderState.Name = "tsOrderState";
-            this.tsOrderState.Size = new System.Drawing.Size(72, 28);
-            this.tsOrderState.Text = "Order Status";
+            this.tsOrderState.Size = new System.Drawing.Size(0, 28);
             this.tsOrderState.Click += new System.EventHandler(this.tsOrderState_Click);
             // 
             // splitContainerMain
