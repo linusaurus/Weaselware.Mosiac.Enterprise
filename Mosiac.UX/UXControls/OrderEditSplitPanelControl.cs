@@ -64,11 +64,11 @@ namespace Mosiac.UX.UXControls {
 
         private void OrderHeaderVerticalControl1_OnOrderCanceledHandler(object sender, EventArgs e)
         {
-            var po = _orderService.GetOrderByID(orderDTO.PurchaseOrderID);
-            ctx.Entry(po).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
-            po.OrderState = 4 ;
-            ctx.SaveChanges();
-            LoadOrder();
+
+            _orderService.CancelOrder(orderDTO.PurchaseOrderID);
+            TabPage page = (TabPage)this.Parent;
+            var currentForm =(Main)Application.OpenForms[0];
+            currentForm.MainTabs.TabPages.Remove(page);
 
         }
 
@@ -115,8 +115,7 @@ namespace Mosiac.UX.UXControls {
             _orderService.CreateOrUpdateOrder(orderDTO);
 
             LoadOrder();
-            isDirty = false;
-          
+            isDirty = false;        
             ToogleButtonStyle(isDirty);
           
         }

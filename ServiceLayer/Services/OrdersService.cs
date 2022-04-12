@@ -74,6 +74,13 @@ namespace ServiceLayer {
             return _lineItems.ToList();
         }
 
+        public void CancelOrder(int id)
+        {
+           PurchaseOrder po = context.PurchaseOrders.Find(id);
+            po.OrderState = 4;
+            context.SaveChanges();
+        }
+
         public void SaveOrder(OrderDetailDto order)
         {
 
@@ -510,7 +517,7 @@ namespace ServiceLayer {
                 return context.PurchaseOrders
                    .Include(j => j.Job)
                    .Include(e => e.Employee)
-                   .Include(s => s.Supplier).Where(c => c.EmployeeID == employeeID).Where(r => r.Recieved == true).OrderByDescending(r => r.OrderDate)
+                   .Include(s => s.Supplier).Where(c => c.EmployeeID == employeeID).Where(r => r.Recieved == true).Where(o =>  o.OrderState != 4).OrderByDescending(r => r.OrderDate)
                    .AsNoTracking().Select(d => new OrderListDto
                    {
                        PurchaseOrderID = d.PurchaseOrderID,
@@ -529,7 +536,7 @@ namespace ServiceLayer {
                 return context.PurchaseOrders
                    .Include(j => j.Job)
                    .Include(e => e.Employee)
-                   .Include(s => s.Supplier).Where(c => c.EmployeeID == employeeID).Where(r => r.Recieved == false).OrderByDescending(r => r.OrderDate)
+                   .Include(s => s.Supplier).Where(c => c.EmployeeID == employeeID).Where(r => r.Recieved == false).Where(o => o.OrderState != 4).OrderByDescending(r => r.OrderDate)
                    .AsNoTracking().Select(d => new OrderListDto
                    {
                        PurchaseOrderID = d.PurchaseOrderID,

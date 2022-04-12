@@ -33,9 +33,10 @@ namespace Mosiac.UX.UXControls
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.dgPartsSearch = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.txtSecondTerm = new System.Windows.Forms.TextBox();
+            this.txtThirdTerm = new System.Windows.Forms.TextBox();
             this.btnOpenPart = new System.Windows.Forms.Button();
             this.txtPartIDLookup = new System.Windows.Forms.TextBox();
-            this.lbResults = new System.Windows.Forms.Label();
             this.ckbUseManufacturer = new System.Windows.Forms.CheckBox();
             this.cboManu = new System.Windows.Forms.ComboBox();
             this.txtSourceFile = new System.Windows.Forms.TextBox();
@@ -58,6 +59,7 @@ namespace Mosiac.UX.UXControls
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.btnShowAll = new System.Windows.Forms.Button();
+            this.btnSearch = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgPartsSearch)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgResources)).BeginInit();
@@ -78,7 +80,7 @@ namespace Mosiac.UX.UXControls
             this.txtSearch.Location = new System.Drawing.Point(6, 5);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.PlaceholderText = "Enter Search ....";
-            this.txtSearch.Size = new System.Drawing.Size(276, 23);
+            this.txtSearch.Size = new System.Drawing.Size(186, 23);
             this.txtSearch.TabIndex = 10;
             this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             this.txtSearch.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.txtSearch_MouseDoubleClick);
@@ -104,9 +106,11 @@ namespace Mosiac.UX.UXControls
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.btnSearch);
+            this.panel1.Controls.Add(this.txtSecondTerm);
+            this.panel1.Controls.Add(this.txtThirdTerm);
             this.panel1.Controls.Add(this.btnOpenPart);
             this.panel1.Controls.Add(this.txtPartIDLookup);
-            this.panel1.Controls.Add(this.lbResults);
             this.panel1.Controls.Add(this.ckbUseManufacturer);
             this.panel1.Controls.Add(this.cboManu);
             this.panel1.Controls.Add(this.txtSearch);
@@ -114,6 +118,20 @@ namespace Mosiac.UX.UXControls
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1122, 45);
             this.panel1.TabIndex = 11;
+            // 
+            // txtSecondTerm
+            // 
+            this.txtSecondTerm.Location = new System.Drawing.Point(209, 6);
+            this.txtSecondTerm.Name = "txtSecondTerm";
+            this.txtSecondTerm.Size = new System.Drawing.Size(100, 23);
+            this.txtSecondTerm.TabIndex = 18;
+            // 
+            // txtThirdTerm
+            // 
+            this.txtThirdTerm.Location = new System.Drawing.Point(317, 6);
+            this.txtThirdTerm.Name = "txtThirdTerm";
+            this.txtThirdTerm.Size = new System.Drawing.Size(100, 23);
+            this.txtThirdTerm.TabIndex = 18;
             // 
             // btnOpenPart
             // 
@@ -137,21 +155,10 @@ namespace Mosiac.UX.UXControls
             this.txtPartIDLookup.TabIndex = 16;
             this.txtPartIDLookup.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // lbResults
-            // 
-            this.lbResults.AutoSize = true;
-            this.lbResults.Location = new System.Drawing.Point(576, 9);
-            this.lbResults.Name = "lbResults";
-            this.lbResults.Size = new System.Drawing.Size(44, 15);
-            this.lbResults.TabIndex = 15;
-            this.lbResults.Text = "Results";
-            this.lbResults.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lbResults.Click += new System.EventHandler(this.lbResults_Click);
-            // 
             // ckbUseManufacturer
             // 
             this.ckbUseManufacturer.AutoSize = true;
-            this.ckbUseManufacturer.Location = new System.Drawing.Point(458, 8);
+            this.ckbUseManufacturer.Location = new System.Drawing.Point(770, 8);
             this.ckbUseManufacturer.Name = "ckbUseManufacturer";
             this.ckbUseManufacturer.Size = new System.Drawing.Size(98, 19);
             this.ckbUseManufacturer.TabIndex = 14;
@@ -163,7 +170,7 @@ namespace Mosiac.UX.UXControls
             // 
             this.cboManu.Enabled = false;
             this.cboManu.FormattingEnabled = true;
-            this.cboManu.Location = new System.Drawing.Point(288, 5);
+            this.cboManu.Location = new System.Drawing.Point(605, 5);
             this.cboManu.Name = "cboManu";
             this.cboManu.Size = new System.Drawing.Size(159, 23);
             this.cboManu.TabIndex = 13;
@@ -425,6 +432,15 @@ namespace Mosiac.UX.UXControls
             this.btnShowAll.UseVisualStyleBackColor = true;
             this.btnShowAll.Click += new System.EventHandler(this.btnShowAll_Click);
             // 
+            // btnSearch
+            // 
+            this.btnSearch.Location = new System.Drawing.Point(441, 6);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(122, 23);
+            this.btnSearch.TabIndex = 19;
+            this.btnSearch.Text = "Search";
+            this.btnSearch.UseVisualStyleBackColor = true;
+            // 
             // PartManager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -479,7 +495,6 @@ namespace Mosiac.UX.UXControls
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.ComboBox cboManu;
         private System.Windows.Forms.CheckBox ckbUseManufacturer;
-        private System.Windows.Forms.Label lbResults;
         private System.Windows.Forms.ComboBox cboPartManu;
         private System.Windows.Forms.Button btnAddManu;
         private System.Windows.Forms.Button btnNewResource;
@@ -504,5 +519,8 @@ namespace Mosiac.UX.UXControls
         private System.Windows.Forms.ToolStripButton toolStripButton1;
         private System.Windows.Forms.ToolStripButton toolStripButton2;
         private System.Windows.Forms.Button btnShowAll;
+        private System.Windows.Forms.TextBox txtSecondTerm;
+        private System.Windows.Forms.TextBox txtThirdTerm;
+        private System.Windows.Forms.Button btnSearch;
     }
 }

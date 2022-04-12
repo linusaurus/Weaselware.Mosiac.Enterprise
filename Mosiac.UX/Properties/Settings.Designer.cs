@@ -26,7 +26,7 @@ namespace Mosiac.UX.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DBserver;Initial Catalog=Mosaic;Integrated Security=True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=dbserver;Initial Catalog=Mosaic;Integrated Security=True")]
         public string MosiacConnection {
             get {
                 return ((string)(this["MosiacConnection"]));

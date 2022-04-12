@@ -385,13 +385,15 @@ namespace ServiceLayer
         /// <param name="manufactererID"></param>
         /// <param name="manuFilter"></param>
         /// <returns></returns>
-            public List<PartFastSearchDto> SearchPart(string search, int manufactererID, bool manuFilter)
+            public async Task<List<PartFastSearchDto>> SearchPartAsync(string search, int manufactererID, bool manuFilter, string term2="")
             {
 
+            
+     
             // if (manufactererID != 0 || manufactererID == 1)
             if (manuFilter)
             {
-                var result = _context.Parts.AsNoTracking().Where(p => p.ItemDescription.Contains(search))
+                 var result = _context.Parts.AsNoTracking().Where(p => p.ItemDescription.Contains(search))
                      .Where(m => m.ManuID == manufactererID).Select(d => new PartFastSearchDto
                      {
                          Itemdescription = d.ItemDescription,
@@ -400,28 +402,32 @@ namespace ServiceLayer
                          AddedBy = d.AddedBy,
                          DateAdded = d.DateAdded.GetValueOrDefault().ToShortDateString()
 
-                     }).OrderByDescending(p => p.PartID).ToList();
+                     }).OrderByDescending(p => p.PartID).ToListAsync();
             
-                return result;
+                return await result;
             }
             else
             {
-                var result = _context.Parts.AsNoTracking().Where(p => p.ItemDescription.Contains(search)).Select(d => new PartFastSearchDto
-                {
-                    Itemdescription = d.ItemDescription,
-                    PartID = d.PartID,
-                    PartNumber = d.PartNum,
-                    AddedBy = d.AddedBy,
-                    DateAdded = d.DateAdded.GetValueOrDefault().ToShortDateString()
+                
+                
+                    var  result = _context.Parts.AsNoTracking().Where(p => p.ItemDescription.Contains(search)).Select(d => new PartFastSearchDto
+                    {
+                        Itemdescription = d.ItemDescription,
+                        PartID = d.PartID,
+                        PartNumber = d.PartNum,
+                        AddedBy = d.AddedBy,
+                        DateAdded = d.DateAdded.GetValueOrDefault().ToShortDateString()
 
-                }).OrderByDescending(p => p.PartID).ToList();
-
-
-                return result;
+                    }).ToListAsync();
+                    
+                
+               
+            return await result;
             }
 
-
         }
+
+
 
         public IEnumerable<PartFastSearchDto> FastPartSearch(string term)
         {
