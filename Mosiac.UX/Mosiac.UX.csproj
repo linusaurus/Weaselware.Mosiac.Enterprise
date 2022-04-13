@@ -4,9 +4,9 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UseWindowsForms>true</UseWindowsForms>
-    <AssemblyVersion>1.4.6.2</AssemblyVersion>
+    <AssemblyVersion>1.5.6.3</AssemblyVersion>
     <ApplicationIcon>mosaic-_1_.ico</ApplicationIcon>
-    <FileVersion>1.4.6.2</FileVersion>
+    <FileVersion>1.5.6.3</FileVersion>
     <Authors>Dick Danger</Authors>
     <Company>Weaselware</Company>
     <Product>Mosiac Enterprise</Product>

@@ -389,7 +389,7 @@ namespace ServiceLayer
             {
 
             
-     
+           
             // if (manufactererID != 0 || manufactererID == 1)
             if (manuFilter)
             {
@@ -409,7 +409,6 @@ namespace ServiceLayer
             else
             {
                 
-                
                     var  result = _context.Parts.AsNoTracking().Where(p => p.ItemDescription.Contains(search)).Select(d => new PartFastSearchDto
                     {
                         Itemdescription = d.ItemDescription,
@@ -424,6 +423,48 @@ namespace ServiceLayer
                
             return await result;
             }
+
+        }
+
+
+        /// <summary>
+        /// Main Part Searching engine
+        /// needs to be optimized for better preformance
+        /// </summary>
+        /// <param name="search"></param>
+        /// <param name="manufactererID"></param>
+        /// <param name="manuFilter"></param>
+        /// <returns></returns>
+        public async Task<List<PartFastSearchDto>> SearchPartQueryAsync(string search, int manufactererID, bool manuFilter, string[] parms)
+        {
+            
+            var query =   _context.Parts.Select(f => f);
+
+            query = query.AsNoTracking().Where(p => p.ItemDescription.Contains(search));
+
+            if (parms[0].ToString() != "")
+            {
+                query = query.Where(f => f.ItemDescription.Contains(parms[0].ToString()));
+            }
+            if (parms[1].ToString() != "")
+            {
+                query = query.Where(f => f.ItemDescription.Contains(parms[1].ToString()));
+            }
+                
+               var result = query.Select(d => new PartFastSearchDto
+                {
+                    Itemdescription = d.ItemDescription,
+                    PartID = d.PartID,
+                    PartNumber = d.PartNum,
+                    AddedBy = d.AddedBy,
+                    DateAdded = d.DateAdded.GetValueOrDefault().ToShortDateString()
+
+                });
+
+
+
+
+            return await result.ToListAsync();
 
         }
 

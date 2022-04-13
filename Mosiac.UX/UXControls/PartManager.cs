@@ -31,17 +31,11 @@ namespace Mosiac.UX.UXControls
         private int _selectedResourceID;
         private Resource _selectedResource;
 
-        private bool UseSecondTerm = false;
-        private bool UseThirdTerm = false;
-
-        
-
         //IEnumerable<PartSearchDto> parts;
         PartMapper partMapper = new PartMapper();
 
         private bool ManuFilter = false;
-        int startTime, endTime;
-
+     
         private BindingSource bsPart = new BindingSource();
         private BindingSource bsResource = new BindingSource();
        
@@ -96,7 +90,15 @@ namespace Mosiac.UX.UXControls
                     SearchParts();
                 }
 
-
+                return true;
+            }
+            else if (keyData == Keys.Escape) //clear the textboxes, null the dg source
+            {
+                txtSearch.Text = string.Empty;
+                txtSecondTerm.Text = string.Empty;
+                txtThirdTerm.Text = string.Empty;
+                txtPartIDLookup.Text = string.Empty;
+                dgPartsSearch.DataSource = null;
                 return true;
             }
             else
@@ -118,37 +120,38 @@ namespace Mosiac.UX.UXControls
         private void txtSearch_TextChanged(object sender, System.EventArgs e)
         {
             TextBox tb = (TextBox)sender;
-           // SearchParts();
+            txtPartIDLookup.Text = "";          
         }
-
-        private  async void SearchParts()
+       
+        private async void SearchParts()
         {
-            string term = txtSearch.Text;
-            string term2 = txtSecondTerm.Text;
+            string searchMain = txtSearch.Text;
+            string term = txtSecondTerm.Text;
+            string term2 = txtThirdTerm.Text;
 
-            if (txtSearch.Text.Length > 2)
+            string[] parms = { term, term2 };
+
+            if (txtSearch.Text.Length > 1)
             {
-                partsList = await partsService.SearchPartAsync(txtSearch.Text, manuID, ManuFilter,term2);
-               
+                partsList = await partsService.SearchPartQueryAsync(searchMain, manuID, ManuFilter, parms);
+
                 ListAsDataTable = Grids.BuildDataTable<PartFastSearchDto>(partsList);
                 dv = ListAsDataTable.DefaultView;
                 dgPartsSearch.DataSource = dv;
+            }
+            else
+            {
 
             }
-
-
         }
 
         private void SearchParts(int partID)
          {
             if (partID != default)
             {
-                
                 partsList = partsService.SearchPart(partID);
                 ListAsDataTable = Grids.BuildDataTable<PartFastSearchDto>(partsList);
                 dv = ListAsDataTable.DefaultView;
-               
-
                 dgPartsSearch.DataSource = dv;
             }
      
@@ -188,15 +191,9 @@ namespace Mosiac.UX.UXControls
         private void cboManu_SelectedIndexChanged(object sender, System.EventArgs e)
         {
             manuID = (int)cboManu.SelectedValue;
-
-            //startTime = System.DateTime.Now.Millisecond;
-            
             partsList = partsService.GetManufacturerParts(manuID);
             ListAsDataTable = Grids.BuildDataTable<PartFastSearchDto>(partsList);
             dv = ListAsDataTable.DefaultView;
-           // endTime = System.DateTime.Now.Millisecond;
-            //lbResults.Text = $"Returned {ListAsDataTable.Rows.Count} Items, Milliseconds = {(endTime - startTime).ToString()} ";
-
             dgPartsSearch.DataSource = dv;
         }
 
@@ -352,8 +349,6 @@ namespace Mosiac.UX.UXControls
             }
         }
 
-       
-
         private void btnOpenCache_Click(object sender, EventArgs e)
         {
             FileOperations.OpenCacheFolder();
@@ -411,13 +406,9 @@ namespace Mosiac.UX.UXControls
 
         private void FindAll()
         {
-           // startTime = System.DateTime.Now.Millisecond;
             partsList = partsService.ReturnAllParts();
             ListAsDataTable = Grids.BuildDataTable<PartFastSearchDto>(partsList);
             dv = ListAsDataTable.DefaultView;
-            //endTime = System.DateTime.Now.Millisecond;
-            //lbResults.Text = $"Returned {ListAsDataTable.Rows.Count} Items, Milliseconds = {(endTime - startTime).ToString()} ";
-
             dgPartsSearch.DataSource = dv;
         }
 
@@ -514,6 +505,11 @@ namespace Mosiac.UX.UXControls
            
         }
 
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            SearchParts();
+        }
+
         private void ckbUseManufacturer_CheckedChanged(object sender, System.EventArgs e)
         {
             CheckBox cbx = (CheckBox)sender;
@@ -532,6 +528,42 @@ namespace Mosiac.UX.UXControls
                 cboManu.SelectedIndex = 0;
                 cboManu.Refresh();
                 SearchParts();
+            }
+        }
+
+        private void tsResources_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            switch (e.ClickedItem.Name)
+            {
+                case "tsbCollapsePanel":
+                    splitContainer1.Panel2Collapsed = true;
+                    break;
+                
+                default:
+                    break;
+            }
+        }
+
+        private void tsResources_ItemClicked_1(object sender, ToolStripItemClickedEventArgs e)
+        {
+            switch (e.ClickedItem.Name)
+            {
+                case "tsbCollapsePanel":
+                    if (splitContainer1.Panel2Collapsed == false)
+                    {
+                        splitContainer1.Panel2Collapsed = true;
+                        e.ClickedItem.Image = Mosiac.UX.Properties.Resources.round_keyboard_arrow_up_black_24dp;
+                    }
+                    else if (splitContainer1.Panel2Collapsed==true)
+                    {
+                        splitContainer1.Panel2Collapsed = false;
+                        e.ClickedItem.Image = Mosiac.UX.Properties.Resources.round_keyboard_arrow_down_black_24dp;
+                    }
+                    
+                    break;
+
+                default:
+                    break;
             }
         }
     }

@@ -33,6 +33,7 @@ namespace Mosiac.UX.UXControls
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.dgPartsSearch = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnSearch = new System.Windows.Forms.Button();
             this.txtSecondTerm = new System.Windows.Forms.TextBox();
             this.txtThirdTerm = new System.Windows.Forms.TextBox();
             this.btnOpenPart = new System.Windows.Forms.Button();
@@ -55,11 +56,11 @@ namespace Mosiac.UX.UXControls
             this.tabResourceManager = new System.Windows.Forms.TabPage();
             this.panel2 = new System.Windows.Forms.Panel();
             this.tabOrderHistory = new System.Windows.Forms.TabPage();
+            this.btnShowAll = new System.Windows.Forms.Button();
             this.tsResources = new System.Windows.Forms.ToolStrip();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
-            this.btnShowAll = new System.Windows.Forms.Button();
-            this.btnSearch = new System.Windows.Forms.Button();
+            this.tsbCollapsePanel = new System.Windows.Forms.ToolStripButton();
             ((System.ComponentModel.ISupportInitialize)(this.dgPartsSearch)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgResources)).BeginInit();
@@ -77,11 +78,11 @@ namespace Mosiac.UX.UXControls
             // 
             // txtSearch
             // 
-            this.txtSearch.Location = new System.Drawing.Point(6, 5);
+            this.txtSearch.Location = new System.Drawing.Point(6, 6);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.PlaceholderText = "Enter Search ....";
-            this.txtSearch.Size = new System.Drawing.Size(186, 23);
-            this.txtSearch.TabIndex = 10;
+            this.txtSearch.Size = new System.Drawing.Size(173, 23);
+            this.txtSearch.TabIndex = 1;
             this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             this.txtSearch.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.txtSearch_MouseDoubleClick);
             // 
@@ -95,7 +96,7 @@ namespace Mosiac.UX.UXControls
             this.dgPartsSearch.Name = "dgPartsSearch";
             this.dgPartsSearch.ReadOnly = true;
             this.dgPartsSearch.RowTemplate.Height = 25;
-            this.dgPartsSearch.Size = new System.Drawing.Size(1122, 306);
+            this.dgPartsSearch.Size = new System.Drawing.Size(1122, 310);
             this.dgPartsSearch.TabIndex = 9;
             this.dgPartsSearch.VirtualMode = true;
             this.dgPartsSearch.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgPartsSearch_CellMouseDoubleClick);
@@ -119,28 +120,38 @@ namespace Mosiac.UX.UXControls
             this.panel1.Size = new System.Drawing.Size(1122, 45);
             this.panel1.TabIndex = 11;
             // 
+            // btnSearch
+            // 
+            this.btnSearch.Location = new System.Drawing.Point(417, 6);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(91, 23);
+            this.btnSearch.TabIndex = 19;
+            this.btnSearch.Text = "Search";
+            this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            // 
             // txtSecondTerm
             // 
-            this.txtSecondTerm.Location = new System.Drawing.Point(209, 6);
+            this.txtSecondTerm.Location = new System.Drawing.Point(199, 6);
             this.txtSecondTerm.Name = "txtSecondTerm";
             this.txtSecondTerm.Size = new System.Drawing.Size(100, 23);
-            this.txtSecondTerm.TabIndex = 18;
+            this.txtSecondTerm.TabIndex = 2;
             // 
             // txtThirdTerm
             // 
-            this.txtThirdTerm.Location = new System.Drawing.Point(317, 6);
+            this.txtThirdTerm.Location = new System.Drawing.Point(306, 6);
             this.txtThirdTerm.Name = "txtThirdTerm";
             this.txtThirdTerm.Size = new System.Drawing.Size(100, 23);
-            this.txtThirdTerm.TabIndex = 18;
+            this.txtThirdTerm.TabIndex = 3;
             // 
             // btnOpenPart
             // 
             this.btnOpenPart.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.btnOpenPart.FlatAppearance.BorderSize = 2;
             this.btnOpenPart.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnOpenPart.Location = new System.Drawing.Point(909, 5);
+            this.btnOpenPart.Location = new System.Drawing.Point(948, 5);
             this.btnOpenPart.Name = "btnOpenPart";
-            this.btnOpenPart.Size = new System.Drawing.Size(75, 25);
+            this.btnOpenPart.Size = new System.Drawing.Size(65, 25);
             this.btnOpenPart.TabIndex = 17;
             this.btnOpenPart.Text = "PartID";
             this.btnOpenPart.UseVisualStyleBackColor = true;
@@ -149,16 +160,16 @@ namespace Mosiac.UX.UXControls
             // 
             // txtPartIDLookup
             // 
-            this.txtPartIDLookup.Location = new System.Drawing.Point(990, 6);
+            this.txtPartIDLookup.Location = new System.Drawing.Point(1023, 6);
             this.txtPartIDLookup.Name = "txtPartIDLookup";
-            this.txtPartIDLookup.Size = new System.Drawing.Size(100, 23);
+            this.txtPartIDLookup.Size = new System.Drawing.Size(79, 23);
             this.txtPartIDLookup.TabIndex = 16;
             this.txtPartIDLookup.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // ckbUseManufacturer
             // 
             this.ckbUseManufacturer.AutoSize = true;
-            this.ckbUseManufacturer.Location = new System.Drawing.Point(770, 8);
+            this.ckbUseManufacturer.Location = new System.Drawing.Point(829, 8);
             this.ckbUseManufacturer.Name = "ckbUseManufacturer";
             this.ckbUseManufacturer.Size = new System.Drawing.Size(98, 19);
             this.ckbUseManufacturer.TabIndex = 14;
@@ -170,7 +181,7 @@ namespace Mosiac.UX.UXControls
             // 
             this.cboManu.Enabled = false;
             this.cboManu.FormattingEnabled = true;
-            this.cboManu.Location = new System.Drawing.Point(605, 5);
+            this.cboManu.Location = new System.Drawing.Point(664, 5);
             this.cboManu.Name = "cboManu";
             this.cboManu.Size = new System.Drawing.Size(159, 23);
             this.cboManu.TabIndex = 13;
@@ -179,7 +190,7 @@ namespace Mosiac.UX.UXControls
             // txtSourceFile
             // 
             this.txtSourceFile.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.txtSourceFile.Location = new System.Drawing.Point(314, 225);
+            this.txtSourceFile.Location = new System.Drawing.Point(314, 255);
             this.txtSourceFile.Name = "txtSourceFile";
             this.txtSourceFile.ReadOnly = true;
             this.txtSourceFile.Size = new System.Drawing.Size(498, 23);
@@ -262,7 +273,7 @@ namespace Mosiac.UX.UXControls
             this.dgResources.Location = new System.Drawing.Point(27, 40);
             this.dgResources.Name = "dgResources";
             this.dgResources.RowTemplate.Height = 25;
-            this.dgResources.Size = new System.Drawing.Size(1061, 179);
+            this.dgResources.Size = new System.Drawing.Size(1061, 209);
             this.dgResources.TabIndex = 8;
             this.dgResources.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgResources_CellMouseDoubleClick);
             this.dgResources.SelectionChanged += new System.EventHandler(this.dgResources_SelectionChanged);
@@ -272,7 +283,7 @@ namespace Mosiac.UX.UXControls
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.label2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label2.Location = new System.Drawing.Point(163, 225);
+            this.label2.Location = new System.Drawing.Point(163, 255);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(143, 23);
             this.label2.TabIndex = 6;
@@ -332,9 +343,8 @@ namespace Mosiac.UX.UXControls
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.tabPartDetail);
-            this.splitContainer1.Panel2.Controls.Add(this.tsResources);
-            this.splitContainer1.Size = new System.Drawing.Size(1122, 624);
-            this.splitContainer1.SplitterDistance = 306;
+            this.splitContainer1.Size = new System.Drawing.Size(1122, 633);
+            this.splitContainer1.SplitterDistance = 310;
             this.splitContainer1.TabIndex = 16;
             // 
             // tabPartDetail
@@ -342,10 +352,10 @@ namespace Mosiac.UX.UXControls
             this.tabPartDetail.Controls.Add(this.tabResourceManager);
             this.tabPartDetail.Controls.Add(this.tabOrderHistory);
             this.tabPartDetail.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabPartDetail.Location = new System.Drawing.Point(0, 25);
+            this.tabPartDetail.Location = new System.Drawing.Point(0, 0);
             this.tabPartDetail.Name = "tabPartDetail";
             this.tabPartDetail.SelectedIndex = 0;
-            this.tabPartDetail.Size = new System.Drawing.Size(1122, 289);
+            this.tabPartDetail.Size = new System.Drawing.Size(1122, 319);
             this.tabPartDetail.TabIndex = 1;
             // 
             // tabResourceManager
@@ -360,7 +370,7 @@ namespace Mosiac.UX.UXControls
             this.tabResourceManager.Location = new System.Drawing.Point(4, 24);
             this.tabResourceManager.Name = "tabResourceManager";
             this.tabResourceManager.Padding = new System.Windows.Forms.Padding(3);
-            this.tabResourceManager.Size = new System.Drawing.Size(1114, 261);
+            this.tabResourceManager.Size = new System.Drawing.Size(1114, 291);
             this.tabResourceManager.TabIndex = 0;
             this.tabResourceManager.Text = "Resource Manager";
             this.tabResourceManager.UseVisualStyleBackColor = true;
@@ -373,7 +383,7 @@ namespace Mosiac.UX.UXControls
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(3, 3);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1108, 255);
+            this.panel2.Size = new System.Drawing.Size(1108, 285);
             this.panel2.TabIndex = 14;
             this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
@@ -383,22 +393,39 @@ namespace Mosiac.UX.UXControls
             this.tabOrderHistory.Location = new System.Drawing.Point(4, 24);
             this.tabOrderHistory.Name = "tabOrderHistory";
             this.tabOrderHistory.Padding = new System.Windows.Forms.Padding(3);
-            this.tabOrderHistory.Size = new System.Drawing.Size(1114, 261);
+            this.tabOrderHistory.Size = new System.Drawing.Size(1114, 291);
             this.tabOrderHistory.TabIndex = 1;
             this.tabOrderHistory.Text = "Part Order History";
             this.tabOrderHistory.UseVisualStyleBackColor = true;
             // 
+            // btnShowAll
+            // 
+            this.btnShowAll.AutoSize = true;
+            this.btnShowAll.FlatAppearance.BorderColor = System.Drawing.Color.Sienna;
+            this.btnShowAll.FlatAppearance.BorderSize = 2;
+            this.btnShowAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnShowAll.Location = new System.Drawing.Point(328, 62);
+            this.btnShowAll.Name = "btnShowAll";
+            this.btnShowAll.Size = new System.Drawing.Size(110, 29);
+            this.btnShowAll.TabIndex = 17;
+            this.btnShowAll.Text = "Show All";
+            this.btnShowAll.UseVisualStyleBackColor = true;
+            this.btnShowAll.Click += new System.EventHandler(this.btnShowAll_Click);
+            // 
             // tsResources
             // 
+            this.tsResources.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.tsResources.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripButton1,
-            this.toolStripButton2});
-            this.tsResources.Location = new System.Drawing.Point(0, 0);
+            this.toolStripButton2,
+            this.tsbCollapsePanel});
+            this.tsResources.Location = new System.Drawing.Point(0, 739);
             this.tsResources.Margin = new System.Windows.Forms.Padding(3);
             this.tsResources.Name = "tsResources";
-            this.tsResources.Size = new System.Drawing.Size(1122, 25);
-            this.tsResources.TabIndex = 0;
+            this.tsResources.Size = new System.Drawing.Size(1192, 25);
+            this.tsResources.TabIndex = 18;
             this.tsResources.Text = "toolStrip1";
+            this.tsResources.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.tsResources_ItemClicked_1);
             // 
             // toolStripButton1
             // 
@@ -418,33 +445,20 @@ namespace Mosiac.UX.UXControls
             this.toolStripButton2.Size = new System.Drawing.Size(84, 22);
             this.toolStripButton2.Text = "Add Resource";
             // 
-            // btnShowAll
+            // tsbCollapsePanel
             // 
-            this.btnShowAll.AutoSize = true;
-            this.btnShowAll.FlatAppearance.BorderColor = System.Drawing.Color.Sienna;
-            this.btnShowAll.FlatAppearance.BorderSize = 2;
-            this.btnShowAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnShowAll.Location = new System.Drawing.Point(328, 62);
-            this.btnShowAll.Name = "btnShowAll";
-            this.btnShowAll.Size = new System.Drawing.Size(110, 29);
-            this.btnShowAll.TabIndex = 17;
-            this.btnShowAll.Text = "Show All";
-            this.btnShowAll.UseVisualStyleBackColor = true;
-            this.btnShowAll.Click += new System.EventHandler(this.btnShowAll_Click);
-            // 
-            // btnSearch
-            // 
-            this.btnSearch.Location = new System.Drawing.Point(441, 6);
-            this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(122, 23);
-            this.btnSearch.TabIndex = 19;
-            this.btnSearch.Text = "Search";
-            this.btnSearch.UseVisualStyleBackColor = true;
+            this.tsbCollapsePanel.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbCollapsePanel.Image = global::Mosiac.UX.Properties.Resources.baseline_get_app_black_24dp;
+            this.tsbCollapsePanel.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbCollapsePanel.Name = "tsbCollapsePanel";
+            this.tsbCollapsePanel.Size = new System.Drawing.Size(23, 22);
+            this.tsbCollapsePanel.Text = "toolStripButton3";
             // 
             // PartManager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.tsResources);
             this.Controls.Add(this.btnShowAll);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.btnSave);
@@ -460,7 +474,6 @@ namespace Mosiac.UX.UXControls
             ((System.ComponentModel.ISupportInitialize)(this.dgPartOrders)).EndInit();
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
-            this.splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             this.tabPartDetail.ResumeLayout(false);
@@ -514,13 +527,14 @@ namespace Mosiac.UX.UXControls
         private System.Windows.Forms.TabControl tabPartDetail;
         private System.Windows.Forms.TabPage tabResourceManager;
         private System.Windows.Forms.TabPage tabOrderHistory;
-        private System.Windows.Forms.ToolStrip tsResources;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.ToolStripButton toolStripButton1;
-        private System.Windows.Forms.ToolStripButton toolStripButton2;
         private System.Windows.Forms.Button btnShowAll;
         private System.Windows.Forms.TextBox txtSecondTerm;
         private System.Windows.Forms.TextBox txtThirdTerm;
         private System.Windows.Forms.Button btnSearch;
+        private System.Windows.Forms.ToolStrip tsResources;
+        private System.Windows.Forms.ToolStripButton toolStripButton1;
+        private System.Windows.Forms.ToolStripButton toolStripButton2;
+        private System.Windows.Forms.ToolStripButton tsbCollapsePanel;
     }
 }
