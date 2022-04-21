@@ -8,6 +8,8 @@ namespace ServiceLayer.Models
     {
         public int PartID { get; set; }
         public string Itemdescription { get; set; }
+
+        public string ManuName { get; set; }
         public string PartNumber { get; set; }
 
         public string DateAdded { get; set; }

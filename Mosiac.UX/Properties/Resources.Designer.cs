@@ -503,6 +503,16 @@ namespace Mosiac.UX.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap outline_ios_share_black_24dp {
+            get {
+                object obj = ResourceManager.GetObject("outline_ios_share_black_24dp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap outline_launch_black_24dp {
             get {
                 object obj = ResourceManager.GetObject("outline_launch_black_24dp", resourceCulture);
@@ -596,6 +606,16 @@ namespace Mosiac.UX.Properties {
         internal static System.Drawing.Bitmap outline_request_quote_black_24dp {
             get {
                 object obj = ResourceManager.GetObject("outline_request_quote_black_24dp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap outline_search_black_24dp {
+            get {
+                object obj = ResourceManager.GetObject("outline_search_black_24dp", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -776,6 +796,16 @@ namespace Mosiac.UX.Properties {
         internal static System.Drawing.Bitmap twotone_add_box_black_24dp1 {
             get {
                 object obj = ResourceManager.GetObject("twotone_add_box_black_24dp1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap twotone_add_box_black_24dp2 {
+            get {
+                object obj = ResourceManager.GetObject("twotone_add_box_black_24dp2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

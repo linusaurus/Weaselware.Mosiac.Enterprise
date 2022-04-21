@@ -58,8 +58,6 @@ namespace Mosiac.UX.UXControls
             this.tabOrderHistory = new System.Windows.Forms.TabPage();
             this.btnShowAll = new System.Windows.Forms.Button();
             this.tsResources = new System.Windows.Forms.ToolStrip();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.tsbCollapsePanel = new System.Windows.Forms.ToolStripButton();
             ((System.ComponentModel.ISupportInitialize)(this.dgPartsSearch)).BeginInit();
             this.panel1.SuspendLayout();
@@ -416,8 +414,6 @@ namespace Mosiac.UX.UXControls
             // 
             this.tsResources.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.tsResources.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripButton1,
-            this.toolStripButton2,
             this.tsbCollapsePanel});
             this.tsResources.Location = new System.Drawing.Point(0, 739);
             this.tsResources.Margin = new System.Windows.Forms.Padding(3);
@@ -427,28 +423,10 @@ namespace Mosiac.UX.UXControls
             this.tsResources.Text = "toolStrip1";
             this.tsResources.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.tsResources_ItemClicked_1);
             // 
-            // toolStripButton1
-            // 
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(91, 22);
-            this.toolStripButton1.Text = "Open Resource";
-            // 
-            // toolStripButton2
-            // 
-            this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
-            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(84, 22);
-            this.toolStripButton2.Text = "Add Resource";
-            // 
             // tsbCollapsePanel
             // 
             this.tsbCollapsePanel.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbCollapsePanel.Image = global::Mosiac.UX.Properties.Resources.baseline_get_app_black_24dp;
+            this.tsbCollapsePanel.Image = global::Mosiac.UX.Properties.Resources.round_keyboard_arrow_down_black_24dp;
             this.tsbCollapsePanel.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbCollapsePanel.Name = "tsbCollapsePanel";
             this.tsbCollapsePanel.Size = new System.Drawing.Size(23, 22);
@@ -533,8 +511,6 @@ namespace Mosiac.UX.UXControls
         private System.Windows.Forms.TextBox txtThirdTerm;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.ToolStrip tsResources;
-        private System.Windows.Forms.ToolStripButton toolStripButton1;
-        private System.Windows.Forms.ToolStripButton toolStripButton2;
         private System.Windows.Forms.ToolStripButton tsbCollapsePanel;
     }
 }

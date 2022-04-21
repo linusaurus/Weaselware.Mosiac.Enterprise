@@ -31,13 +31,15 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PartFinderControl));
             this.tbSupplier = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.btnSearch = new System.Windows.Forms.Button();
+            this.txtTerm3 = new System.Windows.Forms.TextBox();
+            this.txtTerm2 = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.txtPartNumber = new System.Windows.Forms.TextBox();
-            this.rbStartsWith = new System.Windows.Forms.RadioButton();
-            this.rbContains = new System.Windows.Forms.RadioButton();
             this.dgvPartsSearchResults = new System.Windows.Forms.DataGridView();
             this.PartID_Col = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Description_Col = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Manu = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PartNumber_col = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tbSearchParts = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
@@ -63,73 +65,80 @@
             this.tbSupplier.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.tbSupplier.Name = "tbSupplier";
             this.tbSupplier.SelectedIndex = 0;
-            this.tbSupplier.Size = new System.Drawing.Size(806, 215);
+            this.tbSupplier.Size = new System.Drawing.Size(940, 221);
             this.tbSupplier.TabIndex = 3;
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.btnSearch);
+            this.tabPage1.Controls.Add(this.txtTerm3);
+            this.tabPage1.Controls.Add(this.txtTerm2);
             this.tabPage1.Controls.Add(this.button1);
             this.tabPage1.Controls.Add(this.txtPartNumber);
-            this.tabPage1.Controls.Add(this.rbStartsWith);
-            this.tabPage1.Controls.Add(this.rbContains);
             this.tabPage1.Controls.Add(this.dgvPartsSearchResults);
             this.tabPage1.Controls.Add(this.tbSearchParts);
             this.tabPage1.Location = new System.Drawing.Point(4, 24);
             this.tabPage1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.tabPage1.Size = new System.Drawing.Size(798, 187);
+            this.tabPage1.Size = new System.Drawing.Size(932, 193);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Parts Finder";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // btnSearch
+            // 
+            this.btnSearch.Image = global::Mosiac.UX.Properties.Resources.outline_search_black_24dp;
+            this.btnSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSearch.Location = new System.Drawing.Point(331, 8);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(85, 26);
+            this.btnSearch.TabIndex = 3;
+            this.btnSearch.Text = "Search";
+            this.btnSearch.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            // 
+            // txtTerm3
+            // 
+            this.txtTerm3.Location = new System.Drawing.Point(242, 10);
+            this.txtTerm3.Name = "txtTerm3";
+            this.txtTerm3.Size = new System.Drawing.Size(83, 23);
+            this.txtTerm3.TabIndex = 2;
+            // 
+            // txtTerm2
+            // 
+            this.txtTerm2.Location = new System.Drawing.Point(149, 10);
+            this.txtTerm2.Name = "txtTerm2";
+            this.txtTerm2.Size = new System.Drawing.Size(86, 23);
+            this.txtTerm2.TabIndex = 1;
+            // 
             // button1
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Location = new System.Drawing.Point(650, 7);
+            this.button1.Image = global::Mosiac.UX.Properties.Resources.twotone_add_box_black_24dp2;
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button1.Location = new System.Drawing.Point(823, 7);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(137, 23);
+            this.button1.Size = new System.Drawing.Size(100, 27);
             this.button1.TabIndex = 5;
-            this.button1.Text = "Part Number";
+            this.button1.Text = "Add Part #";
+            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // txtPartNumber
             // 
             this.txtPartNumber.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtPartNumber.Location = new System.Drawing.Point(544, 8);
+            this.txtPartNumber.Location = new System.Drawing.Point(736, 10);
             this.txtPartNumber.Name = "txtPartNumber";
-            this.txtPartNumber.Size = new System.Drawing.Size(100, 23);
+            this.txtPartNumber.Size = new System.Drawing.Size(81, 23);
             this.txtPartNumber.TabIndex = 4;
-            // 
-            // rbStartsWith
-            // 
-            this.rbStartsWith.AutoSize = true;
-            this.rbStartsWith.Location = new System.Drawing.Point(425, 11);
-            this.rbStartsWith.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.rbStartsWith.Name = "rbStartsWith";
-            this.rbStartsWith.Size = new System.Drawing.Size(82, 19);
-            this.rbStartsWith.TabIndex = 3;
-            this.rbStartsWith.Text = "Starts With";
-            this.rbStartsWith.UseVisualStyleBackColor = true;
-            this.rbStartsWith.CheckedChanged += new System.EventHandler(this.rbStartsWith_CheckedChanged);
-            // 
-            // rbContains
-            // 
-            this.rbContains.AutoSize = true;
-            this.rbContains.Checked = true;
-            this.rbContains.Location = new System.Drawing.Point(325, 11);
-            this.rbContains.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.rbContains.Name = "rbContains";
-            this.rbContains.Size = new System.Drawing.Size(72, 19);
-            this.rbContains.TabIndex = 2;
-            this.rbContains.TabStop = true;
-            this.rbContains.Text = "Contains";
-            this.rbContains.UseVisualStyleBackColor = true;
-            this.rbContains.CheckedChanged += new System.EventHandler(this.rbContains_CheckedChanged);
             // 
             // dgvPartsSearchResults
             // 
+            this.dgvPartsSearchResults.AllowUserToAddRows = false;
+            this.dgvPartsSearchResults.AllowUserToDeleteRows = false;
             this.dgvPartsSearchResults.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -137,13 +146,15 @@
             this.dgvPartsSearchResults.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.PartID_Col,
             this.Description_Col,
+            this.Manu,
             this.PartNumber_col});
-            this.dgvPartsSearchResults.Location = new System.Drawing.Point(7, 37);
+            this.dgvPartsSearchResults.Location = new System.Drawing.Point(7, 40);
             this.dgvPartsSearchResults.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.dgvPartsSearchResults.Name = "dgvPartsSearchResults";
+            this.dgvPartsSearchResults.ReadOnly = true;
             this.dgvPartsSearchResults.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvPartsSearchResults.Size = new System.Drawing.Size(782, 144);
-            this.dgvPartsSearchResults.TabIndex = 1;
+            this.dgvPartsSearchResults.Size = new System.Drawing.Size(916, 147);
+            this.dgvPartsSearchResults.TabIndex = 9;
             this.dgvPartsSearchResults.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPartsSearchResults_CellContentDoubleClick);
             this.dgvPartsSearchResults.RowHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvPartsSearchResults_RowHeaderMouseDoubleClick);
             this.dgvPartsSearchResults.SelectionChanged += new System.EventHandler(this.dgvPartsSearchResults_SelectionChanged);
@@ -153,6 +164,7 @@
             this.PartID_Col.DataPropertyName = "PartID";
             this.PartID_Col.HeaderText = "PartID";
             this.PartID_Col.Name = "PartID_Col";
+            this.PartID_Col.ReadOnly = true;
             this.PartID_Col.Width = 70;
             // 
             // Description_Col
@@ -161,19 +173,28 @@
             this.Description_Col.DataPropertyName = "ItemDescription";
             this.Description_Col.HeaderText = "Description";
             this.Description_Col.Name = "Description_Col";
+            this.Description_Col.ReadOnly = true;
+            // 
+            // Manu
+            // 
+            this.Manu.DataPropertyName = "ManuName";
+            this.Manu.HeaderText = "Manufacturer";
+            this.Manu.Name = "Manu";
+            this.Manu.ReadOnly = true;
             // 
             // PartNumber_col
             // 
             this.PartNumber_col.DataPropertyName = "PartNumber";
             this.PartNumber_col.HeaderText = "Part Number";
             this.PartNumber_col.Name = "PartNumber_col";
+            this.PartNumber_col.ReadOnly = true;
             // 
             // tbSearchParts
             // 
-            this.tbSearchParts.Location = new System.Drawing.Point(7, 7);
+            this.tbSearchParts.Location = new System.Drawing.Point(7, 10);
             this.tbSearchParts.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.tbSearchParts.Name = "tbSearchParts";
-            this.tbSearchParts.Size = new System.Drawing.Size(261, 23);
+            this.tbSearchParts.Size = new System.Drawing.Size(135, 23);
             this.tbSearchParts.TabIndex = 0;
             this.tbSearchParts.Text = "Search...";
             this.tbSearchParts.TextChanged += new System.EventHandler(this.tbSearchParts_TextChanged);
@@ -186,7 +207,7 @@
             this.tabPage2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.tabPage2.Size = new System.Drawing.Size(918, 194);
+            this.tabPage2.Size = new System.Drawing.Size(932, 193);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Supplier Purchases";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -198,7 +219,7 @@
             this.dgSupplierParts.Location = new System.Drawing.Point(4, 3);
             this.dgSupplierParts.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.dgSupplierParts.Name = "dgSupplierParts";
-            this.dgSupplierParts.Size = new System.Drawing.Size(910, 188);
+            this.dgSupplierParts.Size = new System.Drawing.Size(924, 187);
             this.dgSupplierParts.TabIndex = 0;
             // 
             // btnAddToOrder
@@ -206,10 +227,10 @@
             this.btnAddToOrder.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAddToOrder.Image = ((System.Drawing.Image)(resources.GetObject("btnAddToOrder.Image")));
             this.btnAddToOrder.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAddToOrder.Location = new System.Drawing.Point(357, 10);
+            this.btnAddToOrder.Location = new System.Drawing.Point(491, 10);
             this.btnAddToOrder.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnAddToOrder.Name = "btnAddToOrder";
-            this.btnAddToOrder.Size = new System.Drawing.Size(144, 37);
+            this.btnAddToOrder.Size = new System.Drawing.Size(144, 30);
             this.btnAddToOrder.TabIndex = 4;
             this.btnAddToOrder.Text = "Add to Order";
             this.btnAddToOrder.UseVisualStyleBackColor = true;
@@ -219,10 +240,10 @@
             // 
             this.btnNewPart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnNewPart.Enabled = false;
-            this.btnNewPart.Location = new System.Drawing.Point(508, 10);
+            this.btnNewPart.Location = new System.Drawing.Point(642, 10);
             this.btnNewPart.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnNewPart.Name = "btnNewPart";
-            this.btnNewPart.Size = new System.Drawing.Size(144, 37);
+            this.btnNewPart.Size = new System.Drawing.Size(144, 30);
             this.btnNewPart.TabIndex = 4;
             this.btnNewPart.Text = "Use Supplier Part";
             this.btnNewPart.UseVisualStyleBackColor = true;
@@ -231,10 +252,10 @@
             // btnAddJobPart
             // 
             this.btnAddJobPart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAddJobPart.Location = new System.Drawing.Point(658, 10);
+            this.btnAddJobPart.Location = new System.Drawing.Point(792, 10);
             this.btnAddJobPart.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnAddJobPart.Name = "btnAddJobPart";
-            this.btnAddJobPart.Size = new System.Drawing.Size(144, 37);
+            this.btnAddJobPart.Size = new System.Drawing.Size(144, 30);
             this.btnAddJobPart.TabIndex = 4;
             this.btnAddJobPart.Text = "Add Job Part";
             this.btnAddJobPart.UseVisualStyleBackColor = true;
@@ -250,7 +271,7 @@
             this.Controls.Add(this.tbSupplier);
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "PartFinderControl";
-            this.Size = new System.Drawing.Size(813, 251);
+            this.Size = new System.Drawing.Size(947, 251);
             this.Load += new System.EventHandler(this.PartFinderControl_Load);
             this.tbSupplier.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
@@ -266,12 +287,7 @@
 
         private System.Windows.Forms.TabControl tbSupplier;
         private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.RadioButton rbStartsWith;
-        private System.Windows.Forms.RadioButton rbContains;
         private System.Windows.Forms.DataGridView dgvPartsSearchResults;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PartID_Col;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Description_Col;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PartNumber_col;
         private System.Windows.Forms.TextBox tbSearchParts;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.Button btnAddToOrder;
@@ -280,5 +296,12 @@
         private System.Windows.Forms.DataGridView dgSupplierParts;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox txtPartNumber;
+        private System.Windows.Forms.TextBox txtTerm3;
+        private System.Windows.Forms.TextBox txtTerm2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PartID_Col;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Description_Col;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Manu;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PartNumber_col;
+        private System.Windows.Forms.Button btnSearch;
     }
 }

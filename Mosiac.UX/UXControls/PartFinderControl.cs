@@ -117,18 +117,64 @@ namespace Mosiac.UX.UXControls
 
         }
 
+        private async void PartSearch()
+        {
+            string searchMain = tbSearchParts.Text;
+            string term = txtTerm2.Text;
+            string term2 = txtTerm3.Text;
+
+            string[] parms = { term, term2 };
+
+            if (tbSearchParts.Text.Length > 1)
+            {
+                var partsList = await partsService.SearchPartQueryAsync(searchMain, 1, false, parms);
+
+                ListAsDataTable = Grids.BuildDataTable<PartFastSearchDto>(partsList);
+                dv = ListAsDataTable.DefaultView;
+                dgvPartsSearchResults.DataSource = dv;
+            }
+            else
+            {
+
+            }
+        }
+
         private void tbSearchParts_TextChanged(object sender, EventArgs e)
         {
             TextBox tb = (TextBox)sender;
-            if (tb.Text.Length > 0)
+            //if (tb.Text.Length > 0)
+            //{
+            //    currentPartSearch = tb.Text;
+            //    SearchParts(currentPartSearch);
+            //}
+        }
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if ((keyData == Keys.Enter) || (keyData == Keys.Return))
+            {   
+                PartSearch();
+                return true;
+            }
+            else if (keyData == Keys.Escape) //clear the textboxes, null the dg source
             {
-                currentPartSearch = tb.Text;
-                SearchParts(currentPartSearch);
+                tbSearchParts.Text = string.Empty;
+                txtTerm2.Text = string.Empty;
+                txtTerm3.Text = string.Empty;
+                dgvPartsSearchResults.DataSource = null;
+                tbSearchParts.Focus();
+                return true;
+            }
+            else
+            {
+                return base.ProcessCmdKey(ref msg, keyData);
             }
         }
 
         private void SearchParts(string search)
         {
+           
+            
             var parts = partsService.SearchParts(search, _searchOptions);
             ListAsDataTable = Grids.BuildDataTable<PartFastSearchDto>(parts);
             dv = ListAsDataTable.DefaultView;
@@ -317,13 +363,7 @@ namespace Mosiac.UX.UXControls
                         if (result == DialogResult.OK)
                         {
                             _partBeingEdited = (Part)bsPart.DataSource;
-                            // _ctx.SaveChanges();
-
-                            //LineItemDto lineitem = (LineItemDto)bsLineitems.Current;
-                            //// change the lineitem text
-                            //lineitem.Description = _partBeingEdited.ItemDescription;
-                            //lineitem.Price = _partBeingEdited.Cost.GetValueOrDefault();
-
+                          
                         }
                         else if (result == DialogResult.Cancel)
                         {
@@ -356,6 +396,11 @@ namespace Mosiac.UX.UXControls
 
 
             }
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            PartSearch();
         }
     }
 }

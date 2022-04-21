@@ -438,9 +438,14 @@ namespace ServiceLayer
         public async Task<List<PartFastSearchDto>> SearchPartQueryAsync(string search, int manufactererID, bool manuFilter, string[] parms)
         {
             
-            var query =   _context.Parts.Select(f => f);
+            var query =   _context.Parts.Include(m => m.Manu).Select(f => f);
 
             query = query.AsNoTracking().Where(p => p.ItemDescription.Contains(search));
+
+            if (manuFilter)
+            {
+                query = query.Where(f => f.ManuID== manufactererID);
+            }
 
             if (parms[0].ToString() != "")
             {
@@ -455,14 +460,12 @@ namespace ServiceLayer
                 {
                     Itemdescription = d.ItemDescription,
                     PartID = d.PartID,
+                    ManuName = d.Manu.Manufacturer,
                     PartNumber = d.PartNum,
                     AddedBy = d.AddedBy,
                     DateAdded = d.DateAdded.GetValueOrDefault().ToShortDateString()
 
                 });
-
-
-
 
             return await result.ToListAsync();
 

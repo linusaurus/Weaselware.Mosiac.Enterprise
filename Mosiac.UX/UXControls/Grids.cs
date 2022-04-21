@@ -63,17 +63,23 @@ namespace Mosiac.UX.UXControls
             col_Description.Width = 120;
             col_Description.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
-            // Manufacturer Column --
+            // ManufacturerPartNumber Column --
             DataGridViewTextBoxColumn col_Manufacturer = new DataGridViewTextBoxColumn();
-            col_Manufacturer.HeaderText = "Manu-PartNumber";
-            col_Manufacturer.DataPropertyName = "PartNumber";
-            col_Manufacturer.Width = 200;
+            col_Manufacturer.HeaderText = "Manufacturer";
+            col_Manufacturer.DataPropertyName = "ManuName";
+            col_Manufacturer.Width = 140;
+
+            // ManufacturerPartNumber Column --
+            DataGridViewTextBoxColumn col_ManufacturerPart = new DataGridViewTextBoxColumn();
+            col_ManufacturerPart.HeaderText = "Manu-PartNumber";
+            col_ManufacturerPart.DataPropertyName = "PartNumber";
+            col_ManufacturerPart.Width = 140;
             // DateAdded Column --
             DataGridViewTextBoxColumn col_DateAdded = new DataGridViewTextBoxColumn();
             col_DateAdded.DefaultCellStyle = dstyleDate;
             col_DateAdded.HeaderText = "Date Added";
             col_DateAdded.DataPropertyName = "DateAdded";
-            col_DateAdded.Width = 100;
+            col_DateAdded.Width =85;
 
             // Addedby Column --
             DataGridViewTextBoxColumn col_Addedby=  new DataGridViewTextBoxColumn();
@@ -82,7 +88,7 @@ namespace Mosiac.UX.UXControls
             col_Addedby.Width = 140;
 
 
-            dg.Columns.AddRange(col_ID, col_Description, col_Manufacturer,col_DateAdded, col_Addedby);
+            dg.Columns.AddRange(col_ID, col_Description, col_Manufacturer, col_ManufacturerPart, col_DateAdded, col_Addedby);
 
         }
         /// <summary>
