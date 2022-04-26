@@ -17,6 +17,7 @@
   <ItemGroup>
     <None Remove="Mosiac.UX_TemporaryKey.pfx" />
     <None Remove="Properties\Settings.settings" />
+    <None Remove="testreport.frx" />
   </ItemGroup>
 
   <ItemGroup>
@@ -53,7 +54,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="bin\Debug\netcoreapp3.1\testreport.frx">
+    <Content Include="bin\debug\netcoreapp3.1\*.frx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="bin\publish\testreport.frx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Mosiac.UX_TemporaryKey.pfx" />
@@ -61,10 +65,19 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </Content>
+    <Content Include="testreport.frx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Properties\PublishProfiles\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="bin\debug\netcoreapp3.1\testreport.frx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
 </Project>
