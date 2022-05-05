@@ -98,7 +98,7 @@ namespace Mosiac.UX.UXControls
                 {
                     //int po = ((SupplierOrdersListDto)dv.CurrentRow.DataBoundItem).OrderNumber;
                     int po = (int)dv.CurrentRow.Cells[0].Value;
-                    var lineitems = _ctx.PurchaseLineItems.AsNoTracking().Where(p => p.PurchaseOrderID == po).ToList();
+                    var lineitems = _ctx.PurchaseLineItem.AsNoTracking().Where(p => p.PurchaseOrderID == po).ToList();
                     this.dgOrderLineItems.DataSource = lineitems;
                 }
             }

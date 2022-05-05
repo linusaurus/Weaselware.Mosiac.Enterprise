@@ -45,9 +45,9 @@ namespace ServiceLayer.Mappers
             destination.AccountNumber = source.Supplier.AccountNumber;
             destination.OrderState = source.OrderState.GetValueOrDefault();
 
-            destination.LineItems = lineMapper.MapList(source.PurchaseLineItems);
-            destination.Attachments = attachmentMapper.MapList(source.Attachments);
-            destination.OrderFees = orderFeeMapper.MapList(source.OrderFees);
+            destination.LineItems = lineMapper.MapList(source.PurchaseLineItem);
+            destination.Attachments = attachmentMapper.MapList(source.Attachment);
+            destination.OrderFees = orderFeeMapper.MapList(source.OrderFee);
         
  
         }

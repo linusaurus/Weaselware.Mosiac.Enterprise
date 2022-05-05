@@ -50,12 +50,8 @@ namespace Mosiac.UX.UXControls
             dgPendingOrders.SelectionChanged += DgPendingOrders_SelectionChanged;
             dgPendingOrders.CellFormatting += DgPendingOrders_CellFormatting;
             orToolStrip.ItemClicked += orToolStrip_ItemClicked;
-            //bsOrderReceiptItems.ListChanged += BsOrderReceiptItems_ListChanged;
-            //dgOrderReceiptItems.CellClick += DgOrderReceiptItems_CellClick;
-            //dgOrderReceiptItems.CellContentClick += DgOrderReceiptItems_CellContentClick;
-            //dgOrderReceiptItems.CellValueChanged += DgOrderReceiptItems_CellValueChanged;
-            //dgOrderReceiptItems.CellMouseUp += DgOrderReceiptItems_CellMouseUp;
-            //dgOrderReceiptItems.CellFormatting += DgOrderReceiptItems_CellFormatting;
+
+            
 
             #endregion
 
@@ -76,34 +72,34 @@ namespace Mosiac.UX.UXControls
 
         private void DgPendingOrders_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            //DataGridView dg = (DataGridView)sender;
-            //if (dg.DataSource != null)
-            //{
-            //    if (dg.Rows.Count > 0)
-            //    {
-            //        DataGridViewRow row = dg.Rows[e.RowIndex];
-            //        PendingOrdersDto dat = (PendingOrdersDto)row.DataBoundItem;
-            //        if (dat.OrderState == 1 || dat.OrderState == 2)
-            //        {
-            //            row.DefaultCellStyle.ForeColor = Color.Black;
-            //            row.DefaultCellStyle.BackColor = Color.White;
-            //            row.ReadOnly = true;
-            //        }
-            //        else if (dat.OrderState == 2)
-            //        {
-            //            row.DefaultCellStyle.ForeColor = Color.Gray;
-            //            row.DefaultCellStyle.BackColor = Color.LightGoldenrodYellow;
-            //            row.ReadOnly = true;
-            //        }
-            //        else if (dat.OrderState == 3)
-            //        {
-            //            row.DefaultCellStyle.ForeColor = Color.Yellow;
-            //            row.DefaultCellStyle.BackColor = Color.Black;
-            //            row.ReadOnly = true;
-            //        }
+            DataGridView dg = (DataGridView)sender;
+            if (dg.DataSource != null)
+            {
+                if (dg.Rows.Count > 0)
+                {
+                    DataGridViewRow row = dg.Rows[e.RowIndex];
+                    PendingOrdersDto dat = (PendingOrdersDto)row.DataBoundItem;
+                    if (dat.OrderState == 1 || dat.OrderState == 2)
+                    {
+                        row.DefaultCellStyle.ForeColor = Color.Black;
+                        row.DefaultCellStyle.BackColor = Color.White;
+                        row.ReadOnly = true;
+                    }
+                    else if (dat.OrderState == 2)
+                    {
+                        row.DefaultCellStyle.ForeColor = Color.Gray;
+                        row.DefaultCellStyle.BackColor = Color.LightGoldenrodYellow;
+                        row.ReadOnly = true;
+                    }
+                    else if (dat.OrderState == 3)
+                    {
+                        row.DefaultCellStyle.ForeColor = Color.Yellow;
+                        row.DefaultCellStyle.BackColor = Color.Black;
+                        row.ReadOnly = true;
+                    }
 
-            //    }
-            //}
+                }
+            }
         }
 
 
@@ -115,24 +111,24 @@ namespace Mosiac.UX.UXControls
         //    }
         //}
 
-        //private void DgOrderReceiptItems_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
-        //{
-        //    DataGridView dg = (DataGridView)sender;
-        //    if (dg.DataSource != null)
-        //    {
-        //        if (dg.Rows.Count > 0)
-        //        {
-        //            DataGridViewRow row = dg.Rows[e.RowIndex];
-        //            OrderRecieptLineItemDto dat = (OrderRecieptLineItemDto)row.DataBoundItem;
-        //            if (dat.ItemsRecievedComplete && dat.QntyToInventory > decimal.Zero)
-        //            {
-        //                row.DefaultCellStyle.ForeColor = Color.White;
-        //                row.DefaultCellStyle.BackColor = Color.LightGray;
-        //                //row.ReadOnly = true;
-        //            }
-        //        }
-        //    }
-        //}
+        private void DgOrderReceiptItems_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            DataGridView dg = (DataGridView)sender;
+            if (dg.DataSource != null)
+            {
+                if (dg.Rows.Count > 0)
+                {
+                    DataGridViewRow row = dg.Rows[e.RowIndex];
+                    OrderRecieptLineItemDto dat = (OrderRecieptLineItemDto)row.DataBoundItem;
+                    if (dat.ItemsRecievedComplete && dat.QntyToInventory > decimal.Zero)
+                    {
+                        row.DefaultCellStyle.ForeColor = Color.White;
+                        row.DefaultCellStyle.BackColor = Color.LightGray;
+                        //row.ReadOnly = true;
+                    }
+                }
+            }
+        }
 
         //private void DgOrderReceiptItems_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         //{

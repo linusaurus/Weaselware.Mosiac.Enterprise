@@ -11,24 +11,35 @@ namespace Mosiac.UX.UXControls
 {
     public partial class OrderReciept : UserControl
     {
-        OrderReceiptDto orderDetailDto;
+        
+        BindingSource bsOrderReceipt = new BindingSource();
+        BindingSource bsItems = new BindingSource();
+        internal OrderReceiptDto orderReceipt;
         public OrderReciept(OrderReceiptDto dto)
         {
             InitializeComponent();
-            orderDetailDto = dto;
+            orderReceipt = dto;
+            bsOrderReceipt.DataSource = dto;
             Grids.BuildOrderReceiptItemsGrid(dgReceiptItems);
-            BindOrderReceipt(dto);
+            dgReceiptItems.ReadOnly = true;
+            dgReceiptItems.BackgroundColor = Color.Gray;
+            BindOrderReceipt(bsOrderReceipt);
         }
 
-        private void BindOrderReceipt(OrderReceiptDto dto)
+        private void BindOrderReceipt(BindingSource bs)
         {
-            this.txtOrderRecieptID.Text = dto.OrderReceiptId.ToString();
-            txtReceiptDate.Text = dto.ReceiptDate.ToShortDateString();
-            txtReceivedBy.Text = dto.EmployeeName;
-            txtOrderDate.Text = DateTime.Today.ToShortDateString();
-            txtPurchaseOrderID.Text = dto.PurchaseOrderID.ToString();
+       
 
-            dgReceiptItems.DataSource = dto.OrderReceiptLineItems;
+            txtOrderRecieptID.DataBindings.Add("Text",bs,"OrderReceiptId");
+            txtReceiptDate.DataBindings.Add("Text",bs,"ReceiptDate",true,DataSourceUpdateMode.Never,"","d");
+            txtReceivedBy.DataBindings.Add("Text",bs, "EmployeeName");
+            txtOrderDate.DataBindings.Add("Text",bs,"OrderDate",true,DataSourceUpdateMode.Never,"","d");
+            txtPurchaseOrderID.DataBindings.Add("Text",bs,"PurchaseOrderID");
+
+            
+
+            dgReceiptItems.DataSource = orderReceipt.OrderReceiptLineItems;
+          
         }
     }
 }

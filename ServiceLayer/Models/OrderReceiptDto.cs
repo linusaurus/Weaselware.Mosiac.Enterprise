@@ -17,6 +17,7 @@ namespace ServiceLayer.Models
         public int EmployeeId { get; set; }
         public string EmployeeName { get; set; }
         public int PurchaseOrderID { get; set; }
+        public DateTime OrderDate { get; set; }
         public DateTime ReceiptDate { get; set; }
         public virtual List<OrderRecieptLineItemDto> OrderReceiptLineItems { get; set; } =  new List<OrderRecieptLineItemDto>();
 

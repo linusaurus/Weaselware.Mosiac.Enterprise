@@ -19,12 +19,12 @@ namespace ServiceLayer
 
         public List<Supplier> GetAll()
         {
-            return _context.Suppliers.ToList();
+            return _context.Supplier.ToList();
         }
 
         public List<SuppliersListDto> Search(string term)
         {
-            var result = _context.Suppliers.AsNoTracking().Where(f => f.SupplierName.Contains(term)).Select(d => new SuppliersListDto
+            var result = _context.Supplier.AsNoTracking().Where(f => f.SupplierName.Contains(term)).Select(d => new SuppliersListDto
             {
                SupplierID = d.SupplierID,
                SupplierName = d.SupplierName
@@ -34,24 +34,24 @@ namespace ServiceLayer
 
         public bool Exist(int supplierID) {
                        
-            return _context.Suppliers.Any(c => c.SupplierID == supplierID);          
+            return _context.Supplier.Any(c => c.SupplierID == supplierID);          
         }
 
         public Supplier Find(int supplierID) {
 
-            return _context.Suppliers.Where(c => c.SupplierID == supplierID).FirstOrDefault();
+            return _context.Supplier.Where(c => c.SupplierID == supplierID).FirstOrDefault();
         }
 
         public List<Supplier> Find(string supplierName) {
 
             List<Supplier> result;
-            result = _context.Suppliers.Where(c => c.SupplierName.StartsWith(supplierName)).ToList();        
+            result = _context.Supplier.Where(c => c.SupplierName.StartsWith(supplierName)).ToList();        
             return result;
         }
 
         public List<SupplierOrdersListDto> GetSupplierOrders(int SupplierID)
         {
-            var result = _context.PurchaseOrders.AsNoTracking().Include(j => j.Job).Where(f => f.SupplierID == SupplierID).OrderByDescending(d => d.OrderDate).Select(d => new SupplierOrdersListDto
+            var result = _context.PurchaseOrder.AsNoTracking().Include(j => j.Job).Where(f => f.SupplierID == SupplierID).OrderByDescending(d => d.OrderDate).Select(d => new SupplierOrdersListDto
             {
                 OrderNumber = d.PurchaseOrderID,
                 OrderDate = d.OrderDate.GetValueOrDefault(),
@@ -67,7 +67,7 @@ namespace ServiceLayer
 
         public List<Supplier> SuppliersWithOpenOrders()
         {
-            return _context.Suppliers.FromSqlRaw("select * FROM Supplier WHERE SupplierID IN (SELECT supplierID from PurchaseOrder WHERE OrderState = 1 Or OrderState = 3)").ToList();
+            return _context.Supplier.FromSqlRaw("select * FROM Supplier WHERE SupplierID IN (SELECT supplierID from PurchaseOrder WHERE OrderState = 1 Or OrderState = 3)").ToList();
         }
 
         public void InsertOrUpdate(Supplier supplier) {
@@ -75,11 +75,11 @@ namespace ServiceLayer
             if (supplier.SupplierID == default(int))
             {
                 //_context.Entry(supplier).State = EntityState.Added;
-                _context.Suppliers.Add(supplier);
+                _context.Supplier.Add(supplier);
             }
             else
             {
-                _context.Suppliers.Attach(supplier);
+                _context.Supplier.Attach(supplier);
             }
         }
 

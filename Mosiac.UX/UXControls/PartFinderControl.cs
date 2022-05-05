@@ -384,7 +384,7 @@ namespace Mosiac.UX.UXControls
             {
                 if (int.TryParse(txtPartNumber.Text,out result))
                 {
-                   _selectedPart = _ctx.Parts.AsNoTracking().Where(p => p.PartID == result).FirstOrDefault();
+                   _selectedPart = _ctx.Part.AsNoTracking().Where(p => p.PartID == result).FirstOrDefault();
                     if (OnPartAdded != null)
                     {
                         if (_selectedPart != null)

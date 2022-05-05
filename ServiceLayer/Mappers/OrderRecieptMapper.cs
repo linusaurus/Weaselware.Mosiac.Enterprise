@@ -21,6 +21,7 @@ namespace ServiceLayer.Mappers
             destination.PurchaseOrderID = source.PurchaseOrderID.GetValueOrDefault();
             destination.ReceiptDate = source.ReceiptDate.GetValueOrDefault();
             destination.OrderReceiptId = source.OrderReceiptID;
+            destination.OrderDate = source.PurchaseOrder.OrderDate.GetValueOrDefault();
             destination.OrderReceiptLineItems = OrderReceiptItemMapper.MapList(source.OrderReceiptItems);
         }
 

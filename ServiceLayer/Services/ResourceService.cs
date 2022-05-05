@@ -26,7 +26,7 @@ namespace ServiceLayer
         public List<ResourceDto> GetPartResources(int partID)
         {
            
-            var result = _ctx.Resources.AsNoTracking().Where(p => p.PartID == partID).Select(d => new ResourceDto
+            var result = _ctx.Resource.AsNoTracking().Where(p => p.PartID == partID).Select(d => new ResourceDto
             {
                 ResourceID = d.ResourceID,
                 ResourceDescription = d.ResourceDescription,

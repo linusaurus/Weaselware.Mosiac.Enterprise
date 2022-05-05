@@ -16,7 +16,6 @@ using System.Windows.Forms;
 using Mosiac.UX.UXControls;
 using Mosiac.UX.Properties;
 using System.Reflection;
-using SocketMobile.Capture;
 using ServiceLayer;
 
 namespace Mosiac.UX
@@ -29,7 +28,7 @@ namespace Mosiac.UX
         readonly OrdersService _ordersService;
        
         public TabControl MainTabs { get; set; }
-        CaptureHelper mCapture;
+       
 
         string appId = "windows: Designsynthesis.Mosiac.App";
         string developerId = "2c926d9e-0821-eb11-a813-000d3a33be69";
@@ -46,15 +45,11 @@ namespace Mosiac.UX
         {
             InitializeComponent();
            
-            // 3- instantiate and configure CaptureHelper
-            mCapture = new CaptureHelper { ContextForEvents = WindowsFormsSynchronizationContext.Current };
-            mCapture.DeviceArrival += mCapture_DeviceArrival;
-            mCapture.DeviceRemoval += mCapture_DeviceRemoval;
-            mCapture.DecodedData += mCapture_DecodedData;
+          
 
 
 
-            OpenScanner();
+          
 
            
 
@@ -68,47 +63,7 @@ namespace Mosiac.UX
 
 
         }
-        #region Scanner Code
-        private async void OpenScanner()
-        {
-            long Result = await mCapture.OpenAsync(appId, developerId, appKey);
-            //if (!SktErrors.SKTSUCCESS(Result))
-            //{
-            //    toolStripTextBox1.Text = "Unable to connect to Socket Mobile Companion";
-            //}
-        }
 
-        private void Capture_DecodedData(object sender, CaptureHelper.DecodedDataArgs e)
-        {
-            this.toolStripTextBox1.Text = e.DecodedData.DataToUTF8String; ;
-        }
-   
-
-        private void Terminate(object sender, CaptureHelper.TerminateArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
-   
-
-        private void mCapture_DecodedData(object sender, CaptureHelper.DecodedDataArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
-       
-
-        private void mCapture_DeviceRemoval(object sender, CaptureHelper.DeviceArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
-        private void mCapture_DeviceArrival(object sender, CaptureHelper.DeviceArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
-        #endregion
 
         public TabControl GetTabControl()
         {
@@ -124,7 +79,7 @@ namespace Mosiac.UX
             this.toolStripStatusLabel1.Text = "UserID=" + _loggedOnUserID.ToString();
             //_context = new MosaicContext();
 
-            var emp = _context.Employees.Where(p => p.employeeID == LoggedOnUserID).FirstOrDefault();
+            var emp = _context.Employee.Where(p => p.employeeID == LoggedOnUserID).FirstOrDefault();
             this.toolStripStatusLabel1.Text = "User= " + Globals.CurrentUserName;
             // Globals.CurrentUserName = emp.Firstname + " " + emp.Lastname;
             TabPage myOrdersTab = PageFactory.GetNewTabPage(_context, PageFactory.TabPageType.MyOrdersPage);

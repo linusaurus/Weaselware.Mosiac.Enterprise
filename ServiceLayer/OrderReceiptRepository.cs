@@ -37,13 +37,13 @@ namespace ServiceLayer
         {
             OrderReceiptDto newReciept;
             // Grab to Purchase Order
-            PurchaseOrder po = _ctx.PurchaseOrders.AsNoTracking().Include(p => p.PurchaseLineItems).ThenInclude(u => u.UnitOfMeasure).Include(x => x.OrderReciepts)
+            PurchaseOrder po = _ctx.PurchaseOrder.AsNoTracking().Include(p => p.PurchaseLineItem).ThenInclude(u => u.UnitOfMeasure).Include(x => x.OrderReciept)
                                    .Include(e => e.Supplier).Where(o => o.PurchaseOrderID == purchaserOrderID).FirstOrDefault();
             
             // Test for existing Order Receipt-if true that one exist, retrieve it and copy into new receipt
-            if (po.OrderReciepts.Any())
+            if (po.OrderReciept.Any())
             {
-                newReciept = GetOrderReceipt(po.OrderReciepts.FirstOrDefault().OrderReceiptID);
+                newReciept = GetOrderReceipt(po.OrderReciept.FirstOrDefault().OrderReceiptID);
 
             }
             else
@@ -55,10 +55,11 @@ namespace ServiceLayer
                     ReceiptDate = DateTime.Today,
                     PurchaseOrderID = purchaserOrderID,
                     EmployeeName = _user,         
-                    EmployeeId = _userid
+                    EmployeeId = _userid,
+                    OrderDate = po.OrderDate.GetValueOrDefault()
                 };
             
-                foreach (var lines in po.PurchaseLineItems)
+                foreach (var lines in po.PurchaseLineItem)
                 {
                     
                     OrderRecieptLineItemDto item = new OrderRecieptLineItemDto();
@@ -78,7 +79,7 @@ namespace ServiceLayer
                     ////// -- if the partID is null or 0 assign the unit of measure to Each --///////
                     if (lines.PartID == default || lines.PartID==0) { item.UnitOfMeasureName = "Ea"; }
                     else if (lines.PartID != default)
-                    { item.UnitOfMeasureName = _ctx.Parts.Where(p => p.PartID == lines.PartID).Include(u => u.UnitOfMeasure).Select(s => s.UnitOfMeasure.UnitName).FirstOrDefault(); }
+                    { item.UnitOfMeasureName = _ctx.Part.Where(p => p.PartID == lines.PartID).Include(u => u.UnitOfMeasure).Select(s => s.UnitOfMeasure.UnitName).FirstOrDefault(); }
                    /// ----------------------------- End of Unit of measure assignment --
                     item.UnitToQuantityRatio =  1.00m;
                     item.QntyToInventory = 0.0m;
@@ -96,7 +97,7 @@ namespace ServiceLayer
         public List<PendingOrdersDto> PendingOrders(int orderState)
         {
              
-            var purchaseOrders = _ctx.PurchaseOrders.AsNoTracking().Include(s => s.Supplier).Include(j => j.Job).Include(e => e.Employee)
+            var purchaseOrders = _ctx.PurchaseOrder.AsNoTracking().Include(s => s.Supplier).Include(j => j.Job).Include(e => e.Employee)
                 .Where(p => p.OrderState == orderState).OrderBy(d => d.OrderDate)
                 .Select(dto => new PendingOrdersDto 
                 { 
@@ -121,7 +122,7 @@ namespace ServiceLayer
 
           
              
-                purchaseOrders = _ctx.PurchaseOrders.AsNoTracking().Include(s => s.Supplier)
+                purchaseOrders = _ctx.PurchaseOrder.AsNoTracking().Include(s => s.Supplier)
                    .Where(p => p.OrderState == 1 || p.OrderState == 3).OrderBy(d => d.OrderDate)
                    .Select(dto => new PendingOrdersDto
                    {
@@ -140,7 +141,7 @@ namespace ServiceLayer
 
         public List<OrderReceiptDto> GetAllOrderReceipts()
         {
-            var ors = _ctx.OrderReciepts.Include(e => e.Employee).Take(100).ToList();
+            var ors = _ctx.OrderReciept.Include(e => e.Employee).Take(100).ToList();
             List<OrderReceiptDto> dtos = new List<OrderReceiptDto>();
            
             foreach (var o in ors)
@@ -155,7 +156,7 @@ namespace ServiceLayer
         public OrderReceiptDto GetPurchaseOrderReceipt(int purchaseOrderID)
         {
             OrderReceiptDto dto = new OrderReceiptDto();
-            var or = _ctx.OrderReciepts
+            var or = _ctx.OrderReciept
                 .Include(l => l.OrderReceiptItems).ThenInclude(o => o.UnitOfMeasure)
                 .Include(e => e.Employee).Where(p => p.PurchaseOrderID == purchaseOrderID).First();
 
@@ -169,7 +170,7 @@ namespace ServiceLayer
         public OrderReceiptDto GetOrderReceipt(int orderReceiptID)
         {
             OrderReceiptDto dto = new OrderReceiptDto();
-            var or = _ctx.OrderReciepts
+            var or = _ctx.OrderReciept.Include(x => x.PurchaseOrder)
                 .Include(l => l.OrderReceiptItems).ThenInclude(o => o.UnitOfMeasure)
                 .Include(e => e.Employee).Where(p => p.OrderReceiptID == orderReceiptID).First();
 
@@ -184,7 +185,7 @@ namespace ServiceLayer
         //This should be replaced with a simple select into for a single ordereceipt
         public List<OrderReceiptDto> GetOrderReceipts(int purchaseOrderID)
         {
-            var ors = _ctx.OrderReciepts.Include(e => e.Employee).Where(p => p.PurchaseOrderID == purchaseOrderID).ToList();
+            var ors = _ctx.OrderReciept.Include(e => e.Employee).Where(p => p.PurchaseOrderID == purchaseOrderID).ToList();
             List<OrderReceiptDto> dtos = new List<OrderReceiptDto>();
             //List<OrderReciept> orderReceipts = _ctx.OrderReciepts.Where(o => o.OrderNum == purchaseOrderID).ToList();
             foreach (var o in ors)
@@ -205,13 +206,13 @@ namespace ServiceLayer
         public int  UpdateOrCreate(OrderReceiptDto dto)
         {
             var ctx = _ctx;
-            var orderReciept = ctx.OrderReciepts.Include(p => p.OrderReceiptItems)
+            var orderReciept = ctx.OrderReciept.Include(p => p.OrderReceiptItems)
                                                 .Include(d => d.PurchaseOrder)
                                                 .FirstOrDefault(o => o.PurchaseOrderID == dto.PurchaseOrderID);
             if (orderReciept == null)
             {
                 orderReciept = new OrderReciept();
-                ctx.OrderReciepts.Add(orderReciept);
+                ctx.OrderReciept.Add(orderReciept);
                 ctx.SaveChanges();
             }
 
@@ -262,7 +263,7 @@ namespace ServiceLayer
             // determine if the order is incomplete if any order are incomplete
             bool IsNotComplete = dto.OrderReceiptLineItems.Any(p => p.ItemsRecievedComplete == false);
             orderReciept.IsOrderComplete = !IsNotComplete;
-            PurchaseOrder po = _ctx.PurchaseOrders.Find(orderReciept.PurchaseOrderID);
+            PurchaseOrder po = _ctx.PurchaseOrder.Find(orderReciept.PurchaseOrderID);
 
             po.Recieved = !IsNotComplete;
             po.IsBackOrder = IsNotComplete;
@@ -298,13 +299,13 @@ namespace ServiceLayer
                     inv.TransActionType = 1;
                     inv.InventoryAmount = item.QntyToInventory;
 
-                    _ctx.Inventories.Add(inv);
+                    _ctx.Inventory.Add(inv);
                 }
                 
             }
 
-            int key = _ctx.PurchaseOrders.Find(dto.PurchaseOrderID).EmployeeID.GetValueOrDefault();
-            var emp = _ctx.Employees.Find(key);
+            int key = _ctx.PurchaseOrder.Find(dto.PurchaseOrderID).EmployeeID.GetValueOrDefault();
+            var emp = _ctx.Employee.Find(key);
             NotificationService.SendNotificaion(emp.EmployeeEmail, dto);
             _ctx.SaveChanges();
            

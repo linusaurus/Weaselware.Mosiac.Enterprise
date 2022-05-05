@@ -62,7 +62,7 @@ namespace Mosiac.UX
             {
                 _employeeService = new EmployeeService(_context);
 
-                var user = _context.Employees.Where(c => c.Login == username).FirstOrDefault();
+                var user = _context.Employee.Where(c => c.Login == username).FirstOrDefault();
                 if (user != null)
                 {
                     _userName = username;

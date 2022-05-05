@@ -47,7 +47,7 @@ namespace Mosiac.UX.UXControls
                 if (cbx.Items.Count > 0)
                 {
                     _selectedJob = _jobService.Find((int)cbx.SelectedValue);
-                    dgJobOrders.DataSource = _selectedJob.PurchaseOrders.ToList();
+                    dgJobOrders.DataSource = _selectedJob.PurchaseOrder.ToList();
                 }
             }
         }

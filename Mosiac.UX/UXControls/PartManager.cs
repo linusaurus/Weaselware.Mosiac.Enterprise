@@ -179,7 +179,7 @@ namespace Mosiac.UX.UXControls
                     {
                         int i = (int)dg.CurrentRow.Cells[0].Value;
                         _partBeingEdited = partsService.Find(i);
-                        var resources = _partBeingEdited.Resources.ToList();
+                        var resources = _partBeingEdited.Resource.ToList();
                         var orders = partsService.GetPartOrders(_partBeingEdited.PartID);
                         dgPartOrders.DataSource = orders;
                         dgResources.DataSource = resources;
@@ -240,15 +240,15 @@ namespace Mosiac.UX.UXControls
                 if (_partBeingEdited != null)
                 {
                     bsPart.DataSource = _partBeingEdited;                  
-                    bsResource.DataSource = _partBeingEdited.Resources.ToList();
-                    dgResources.DataSource = _partBeingEdited.Resources.ToList();
+                    bsResource.DataSource = _partBeingEdited.Resource.ToList();
+                    dgResources.DataSource = _partBeingEdited.Resource.ToList();
                 }
             }
         }
 
         private void OpenResource(int resourceID)
         {
-            Resource dto = _ctx.Resources.Find(resourceID);
+            Resource dto = _ctx.Resource.Find(resourceID);
             string path = System.Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             path += @"\ResourceCache\";
             path += dto.filesource;
@@ -311,8 +311,8 @@ namespace Mosiac.UX.UXControls
                     SearchParts(partIDlookUp);
 
                     
-                    bsResource.DataSource = _partBeingEdited.Resources.ToList();
-                    dgResources.DataSource = _partBeingEdited.Resources.ToList();
+                    bsResource.DataSource = _partBeingEdited.Resource.ToList();
+                    dgResources.DataSource = _partBeingEdited.Resource.ToList();
                 }
                 else
                 {
@@ -333,8 +333,8 @@ namespace Mosiac.UX.UXControls
         {
             if (_selectedResource != null)
             {
-                var delResource = _ctx.Resources.Find(_selectedResource.ResourceID);
-                _ctx.Resources.Remove(delResource);
+                var delResource = _ctx.Resource.Find(_selectedResource.ResourceID);
+                _ctx.Resource.Remove(delResource);
                 _ctx.SaveChanges();
 
 
@@ -342,8 +342,8 @@ namespace Mosiac.UX.UXControls
                 if (_partBeingEdited != null)
                 {
                     bsPart.DataSource = _partBeingEdited;                 
-                    bsResource.DataSource = _partBeingEdited.Resources.ToList();
-                    dgResources.DataSource = _partBeingEdited.Resources.ToList();
+                    bsResource.DataSource = _partBeingEdited.Resource.ToList();
+                    dgResources.DataSource = _partBeingEdited.Resource.ToList();
                 }
 
             }
@@ -390,8 +390,8 @@ namespace Mosiac.UX.UXControls
                 Grids.ToogleButtonStyle(false, btnSave);
             }
            
-           bsResource.DataSource = _partBeingEdited.Resources.ToList();
-           dgResources.DataSource = _partBeingEdited.Resources.ToList();
+           bsResource.DataSource = _partBeingEdited.Resource.ToList();
+           dgResources.DataSource = _partBeingEdited.Resource.ToList();
         }
 
         private void lbResults_Click(object sender, EventArgs e)
@@ -448,7 +448,7 @@ namespace Mosiac.UX.UXControls
                             bsPart.CancelEdit();
                             Grids.ToogleButtonStyle(false, btnSave);
                         }
-                        var resources = _partBeingEdited.Resources.ToList();
+                        var resources = _partBeingEdited.Resource.ToList();
                         dgResources.DataSource = resources;
                     }
                 }

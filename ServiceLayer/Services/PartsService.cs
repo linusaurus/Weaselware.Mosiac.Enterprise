@@ -32,7 +32,7 @@ namespace ServiceLayer
 
         public List<UnitOfMeasure> Units()
         {
-           return  _context.UnitOfMeasures.ToList();
+           return  _context.UnitOfMeasure.ToList();
         }
       
 
@@ -40,7 +40,7 @@ namespace ServiceLayer
         {
             bool result = false;
             if (part == null){ return false; }
-            var originalPart = _context.Parts.Find(part.PartID);
+            var originalPart = _context.Part.Find(part.PartID);
             originalPart.SKU = sku;
             try
             {
@@ -57,8 +57,8 @@ namespace ServiceLayer
 
         public void Delete(int partID)
         {
-            var part = _context.Parts.Find(partID);
-            _context.Parts.Remove(part);
+            var part = _context.Part.Find(partID);
+            _context.Part.Remove(part);
             _context.SaveChanges();
         }
 
@@ -81,7 +81,7 @@ namespace ServiceLayer
         public bool Exist(int PartID)
         {
             bool result = false;
-            if (_context.Parts.Any(c => c.PartID == PartID))
+            if (_context.Part.Any(c => c.PartID == PartID))
             {
                 result = true;
             }
@@ -95,7 +95,7 @@ namespace ServiceLayer
         {
             if (option == SearchOptions.Contains)
             {
-                return _context.Parts.AsNoTracking().Where(p => p.ItemDescription.Contains(searchTerm)).Select(d => new PartFastSearchDto
+                return _context.Part.AsNoTracking().Where(p => p.ItemDescription.Contains(searchTerm)).Select(d => new PartFastSearchDto
                 {
                     PartID = d.PartID,
                     Itemdescription = d.ItemDescription,
@@ -106,7 +106,7 @@ namespace ServiceLayer
             }
             else if (option == SearchOptions.StartsWith)
             {
-                return _context.Parts.AsNoTracking().Where(p => p.ItemDescription.StartsWith(searchTerm)).Select(d => new PartFastSearchDto
+                return _context.Part.AsNoTracking().Where(p => p.ItemDescription.StartsWith(searchTerm)).Select(d => new PartFastSearchDto
                 {
                     PartID = d.PartID,
                     Itemdescription = d.ItemDescription,
@@ -127,22 +127,22 @@ namespace ServiceLayer
             {
                 return null;
             }
-            return _context.Parts.Include(r => r.Resources).Where(p => p.PartID == PartID).FirstOrDefault();
+            return _context.Part.Include(r => r.Resource).Where(p => p.PartID == PartID).FirstOrDefault();
         }
 
         public Part FindBySKU(string sku)
         {
-            return _context.Parts.Where(p => p.SKU == sku).FirstOrDefault();
+            return _context.Part.Where(p => p.SKU == sku).FirstOrDefault();
         }
 
         public List<Part> GetAllParts()
         {
-            return _context.Parts.ToList();
+            return _context.Part.ToList();
         }
 
         public List<PartFastSearchDto> GetManufacturerParts(int ManuID)
         {
-            var result = _context.Parts.AsNoTracking().Where(p => p.ManuID == ManuID).Select(d => new PartFastSearchDto
+            var result = _context.Part.AsNoTracking().Where(p => p.ManuID == ManuID).Select(d => new PartFastSearchDto
             {
                 Itemdescription = d.ItemDescription,
                 PartID = d.PartID,
@@ -159,13 +159,13 @@ namespace ServiceLayer
         {
           
                 
-            var part = _context.Parts.Include(r => r.Resources).FirstOrDefault(o => o.PartID == partDTO.PartID);
+            var part = _context.Part.Include(r => r.Resource).FirstOrDefault(o => o.PartID == partDTO.PartID);
             if (part == null)
             {
                 part = new Part();
                 part.DateAdded = DateTime.Today;
                 part.AddedBy = user;
-                _context.Parts.Add(part);
+                _context.Part.Add(part);
             }
 
             //Map properties
@@ -186,20 +186,20 @@ namespace ServiceLayer
             part.Weight = partDTO.Weight;
 
             //remove deleted resource -
-            part.Resources
+            part.Resource
             .Where(d => !partDTO.Resources.Any(ResourceDto => ResourceDto.ResourceID == d.ResourceID)).ToList()
-            .ForEach(deleted => _context.Resources.Remove(deleted));
+            .ForEach(deleted => _context.Resource.Remove(deleted));
 
             //update or add resource
             partDTO.Resources.ToList().ForEach(detailDTO =>
             {
-                var detail = part.Resources.FirstOrDefault(d => d.ResourceID == detailDTO.ResourceID);
+                var detail = part.Resource.FirstOrDefault(d => d.ResourceID == detailDTO.ResourceID);
                 if (detail == null)
                 {
                     detail = new Resource();
                     detail.CreationDate = DateTime.Today;
                     detail.Createdby = user;                  
-                    part.Resources.Add(detail);
+                    part.Resource.Add(detail);
                 }
                
                 detail.ResourceDescription = detailDTO.ResourceDescription;
@@ -250,7 +250,7 @@ namespace ServiceLayer
         /// <returns></returns>
         public List<Manu> Manufacturers()
         {
-            return _context.Manus.ToList();
+            return _context.Manu.ToList();
         }
         /// <summary>
         /// TODO this shuld be moved tomore general list data source
@@ -278,7 +278,7 @@ namespace ServiceLayer
         {
             if (part.PartID != 0)
             {
-                _context.Parts.Add(part);
+                _context.Part.Add(part);
                 _context.SaveChanges();
                 
             }
@@ -287,7 +287,7 @@ namespace ServiceLayer
 
         public List<PartCategory> GetPartCategories()
         {
-            var result = _context.PartCategories.AsNoTracking().Include(p => p.PartTypes).ToList();
+            var result = _context.PartCategory.AsNoTracking().Include(p => p.PartTypes).ToList();
             return result;
         }
 
@@ -316,15 +316,15 @@ namespace ServiceLayer
 
         public string PartTypeName(int typeID)
         {
-            PartType pt = _context.PartTypes.Where(r => r.PartTypeID == typeID).FirstOrDefault();
-            PartCategory ct = _context.PartCategories.Where(c => c.PartCategoryID == pt.PartCategoryID).FirstOrDefault();
+            PartTypes pt = _context.PartTypes.Where(r => r.PartTypeID == typeID).FirstOrDefault();
+            PartCategory ct = _context.PartCategory.Where(c => c.PartCategoryID == pt.PartCategoryID).FirstOrDefault();
 
             return $"{ct.PartCategoryName.Trim()} - {pt.PartTypeName.Trim()}";
         }
 
         public List<ManuListDTO> GetManus()
         {
-            var m = _context.Manus.AsNoTracking().OrderBy(s => s.Manufacturer).Select(d => new ManuListDTO
+            var m = _context.Manu.AsNoTracking().OrderBy(s => s.Manufacturer).Select(d => new ManuListDTO
             {
                 ManufacturerName = d.Manufacturer,
                 ManuID = d.ManuID
@@ -334,7 +334,7 @@ namespace ServiceLayer
 
         public List<PartFastSearchDto> ReturnAllParts()
         {
-              var result = _context.Parts.AsNoTracking()
+              var result = _context.Part.AsNoTracking()
                      .Select(d => new PartFastSearchDto
                      {
                          Itemdescription= d.ItemDescription,
@@ -352,7 +352,7 @@ namespace ServiceLayer
 
         public List<PartSearchDto> SearchPart(string search)
         {
-            var result = _context.Parts.AsNoTracking().Where(p => p.ItemDescription.Contains(search)).Select(d => new PartSearchDto
+            var result = _context.Part.AsNoTracking().Where(p => p.ItemDescription.Contains(search)).Select(d => new PartSearchDto
             {
                 Description = d.ItemDescription,
                 PartID = d.PartID
@@ -365,7 +365,7 @@ namespace ServiceLayer
         {
 
 
-            var result = _context.Parts.AsNoTracking().Where(p => p.PartID.Equals(partID)).Select(d => new PartFastSearchDto
+            var result = _context.Part.AsNoTracking().Where(p => p.PartID.Equals(partID)).Select(d => new PartFastSearchDto
                  {
                      Itemdescription = d.ItemDescription,
                      PartID = d.PartID,
@@ -393,7 +393,7 @@ namespace ServiceLayer
             // if (manufactererID != 0 || manufactererID == 1)
             if (manuFilter)
             {
-                 var result = _context.Parts.AsNoTracking().Where(p => p.ItemDescription.Contains(search))
+                 var result = _context.Part.AsNoTracking().Where(p => p.ItemDescription.Contains(search))
                      .Where(m => m.ManuID == manufactererID).Select(d => new PartFastSearchDto
                      {
                          Itemdescription = d.ItemDescription,
@@ -409,7 +409,7 @@ namespace ServiceLayer
             else
             {
                 
-                    var  result = _context.Parts.AsNoTracking().Where(p => p.ItemDescription.Contains(search)).Select(d => new PartFastSearchDto
+                    var  result = _context.Part.AsNoTracking().Where(p => p.ItemDescription.Contains(search)).Select(d => new PartFastSearchDto
                     {
                         Itemdescription = d.ItemDescription,
                         PartID = d.PartID,
@@ -438,7 +438,7 @@ namespace ServiceLayer
         public async Task<List<PartFastSearchDto>> SearchPartQueryAsync(string search, int manufactererID, bool manuFilter, string[] parms)
         {
             
-            var query =   _context.Parts.Include(m => m.Manu).Select(f => f);
+            var query =   _context.Part.Include(m => m.Manu).Select(f => f);
 
             query = query.AsNoTracking().Where(p => p.ItemDescription.Contains(search));
 
@@ -523,13 +523,13 @@ namespace ServiceLayer
       
         public void CreateOrUpdatePart(PartDetailDTO partdto, string user)
         {
-            var part = _context.Parts.Include(r => r.Resources).FirstOrDefault(p => p.PartID == partdto.PartID);
+            var part = _context.Part.Include(r => r.Resource).FirstOrDefault(p => p.PartID == partdto.PartID);
             if (part == null)
             {
                 part = new Part();
                 part.AddedBy = user;
                 part.DateAdded = DateTime.Today;
-                _context.Parts.Add(part);
+                _context.Part.Add(part);
 
             }
             // Map Properties --
@@ -551,19 +551,19 @@ namespace ServiceLayer
             part.Location = partdto.Location;
 
             // Remove deleted resources ------------------------
-            part.Resources
+            part.Resource
                 .Where(d => !partdto.Resources.Any(DTO => DTO.ResourceID == d.ResourceID)).ToList()
-                   .ForEach(deleted => _context.Resources.Remove(deleted));
+                   .ForEach(deleted => _context.Resource.Remove(deleted));
 
             partdto.Resources.ToList().ForEach(pr =>
             {
-                var resource = part.Resources.FirstOrDefault(r => r.ResourceID == pr.ResourceID);
+                var resource = part.Resource.FirstOrDefault(r => r.ResourceID == pr.ResourceID);
                 if (resource == null)
                 {
                     resource = new Resource();
                     resource.Createdby = user;
                     resource.CreationDate = DateTime.Today;
-                    part.Resources.Add(resource);
+                    part.Resource.Add(resource);
                 }
                 resource.FileSize = pr.Filesize;
                 resource.filesource = pr.Filesource;

@@ -23,7 +23,7 @@ namespace ServiceLayer.Mappers
             destination.EmployeeId = source.EmployeeID.GetValueOrDefault();
             destination.PurchaseOrderID = source.PurchaseOrderID;
             destination.ReceiptDate = DateTime.Today;
-            destination.OrderReceiptLineItems = resourceMapper.MapList(source.PurchaseLineItems);
+            destination.OrderReceiptLineItems = resourceMapper.MapList(source.PurchaseLineItem);
         }
 
         public class OrderReceiptLineMapper : IMapper<PurchaseLineItem, OrderRecieptLineItemDto>

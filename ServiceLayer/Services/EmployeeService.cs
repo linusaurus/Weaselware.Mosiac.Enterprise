@@ -21,7 +21,7 @@ namespace ServiceLayer {
 
         public List<EmployeeListDto> All()
         {
-            var _emps = context.Employees.AsNoTracking().OrderBy(p => p.lastname).Select(d => new EmployeeListDto
+            var _emps = context.Employee.AsNoTracking().OrderBy(p => p.lastname).Select(d => new EmployeeListDto
             {
                 EmployeeID = d.employeeID,
                 FullName = String.Format("{0} {1}",d.firstname, d.lastname)
@@ -32,7 +32,7 @@ namespace ServiceLayer {
 
         public List<EmployeeListDto> Active()
         {
-            var _emps = context.Employees.AsNoTracking().OrderBy(p => p.lastname).Where(a => a.Show==true).Select(d => new EmployeeListDto
+            var _emps = context.Employee.AsNoTracking().OrderBy(p => p.lastname).Where(a => a.Show==true).Select(d => new EmployeeListDto
             {
                 EmployeeID = d.employeeID,
                 FullName = String.Format("{0} {1}", d.firstname, d.lastname)
@@ -46,22 +46,22 @@ namespace ServiceLayer {
         }
 
         public Employee Find(int id) {
-            return context.Employees.Find(id);
+            return context.Employee.Find(id);
         }
 
         public List<PurchaseOrder> EmployeeOrders(int employeeID) {
 
-            return context.PurchaseOrders.Where(e => e.EmployeeID == employeeID).ToList();
+            return context.PurchaseOrder.Where(e => e.EmployeeID == employeeID).ToList();
         }
 
         public List<OrderReciept> EmployeeReciepts(int employeeID) {
 
-            return context.OrderReciepts.Where(e => e.EmployeeID == employeeID).ToList();
+            return context.OrderReciept.Where(e => e.EmployeeID == employeeID).ToList();
         }
 
         public Employee Find(string firstName) {
 
-            return context.Employees.Where(e => e.firstname.Contains(firstName)).FirstOrDefault();
+            return context.Employee.Where(e => e.firstname.Contains(firstName)).FirstOrDefault();
         }
 
         public void InsertOrUpdate(Employee employee) {
@@ -74,8 +74,8 @@ namespace ServiceLayer {
         }
 
         public void Delete(int id) {
-            var employee = context.Employees.Find(id);
-            context.Employees.Remove(employee);
+            var employee = context.Employee.Find(id);
+            context.Employee.Remove(employee);
         }
 
         public void Save() {
@@ -90,7 +90,7 @@ namespace ServiceLayer {
 
         public string FullName(int EmpID)
         {
-           var emp =  context.Employees.Find(EmpID);
+           var emp =  context.Employee.Find(EmpID);
             return emp.firstname + " " + emp.lastname;
             
         }

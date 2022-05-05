@@ -27,7 +27,7 @@ namespace ServiceLayer {
 
         public OrderDetailDto GetOrderDTO(int orderID)
         {
-            var _order = context.PurchaseOrders.Include(r => r.PurchaseLineItems).Include(s => s.Supplier).Where(p => p.PurchaseOrderID == orderID).Select(d => new OrderDetailDto
+            var _order = context.PurchaseOrder.Include(r => r.PurchaseLineItem).Include(s => s.Supplier).Where(p => p.PurchaseOrderID == orderID).Select(d => new OrderDetailDto
             {
                 PurchaseOrderID = d.PurchaseOrderID,
                 OrderDate = d.OrderDate.Value.ToShortDateString(),
@@ -60,7 +60,7 @@ namespace ServiceLayer {
 
         public List<LineItemDto> GetLineItems(int orderID)
         {
-            var _lineItems = context.PurchaseLineItems.Where(f => f.PurchaseOrderID == orderID).Select(d => new LineItemDto
+            var _lineItems = context.PurchaseLineItem.Where(f => f.PurchaseOrderID == orderID).Select(d => new LineItemDto
             {
                 Description = d.Description,
                 LineID = d.LineID,
@@ -76,7 +76,7 @@ namespace ServiceLayer {
 
         public void CancelOrder(int id)
         {
-           PurchaseOrder po = context.PurchaseOrders.Find(id);
+           PurchaseOrder po = context.PurchaseOrder.Find(id);
             po.OrderState = 4;
             context.SaveChanges();
         }
@@ -89,7 +89,7 @@ namespace ServiceLayer {
         public bool Exist(int orderID) {
 
             bool result = false;
-            if (context.PurchaseOrders.Any(c=> c.PurchaseOrderID == orderID))
+            if (context.PurchaseOrder.Any(c=> c.PurchaseOrderID == orderID))
             {result = true; }
    
             return result;
@@ -98,13 +98,13 @@ namespace ServiceLayer {
         public BindingList<PurchaseLineItem> OrderLineItems(int purchaseOrderID)
         {
             BindingList<PurchaseLineItem> result =
-                    new BindingList<PurchaseLineItem>(context.PurchaseLineItems.Where(w => w.PurchaseOrderID == purchaseOrderID).ToList());
+                    new BindingList<PurchaseLineItem>(context.PurchaseLineItem.Where(w => w.PurchaseOrderID == purchaseOrderID).ToList());
             return  result;           
         }
 
         public List<AttachmentDto> GetAttachmentDtos(int purchaseOrderID)
         {
-            var result = context.Attachments.AsNoTracking().Where(o => o.PurchaseOrderID == purchaseOrderID).Select( dto => new AttachmentDto
+            var result = context.Attachment.AsNoTracking().Where(o => o.PurchaseOrderID == purchaseOrderID).Select( dto => new AttachmentDto
             {
                 Src = dto.src,
                 AttachmentDescription = dto.AttachmentDescription,
@@ -131,12 +131,12 @@ namespace ServiceLayer {
 
             try
             {
-                var order = context.PurchaseOrders.AsNoTracking()
-                .Include(p => p.PurchaseLineItems)
+                var order = context.PurchaseOrder.AsNoTracking()
+                .Include(p => p.PurchaseLineItem)
                 .Include(j => j.Job)
                 .Include(s => s.Supplier)
-                .Include(t => t.Attachments)
-                .Include(p => p.OrderFees)
+                .Include(t => t.Attachment)
+                .Include(p => p.OrderFee)
                 .Include(e => e.Employee).Where(c => c.PurchaseOrderID == orderNum).FirstOrDefault();
 
                 return order;
@@ -154,19 +154,19 @@ namespace ServiceLayer {
 
         public List<PurchaseOrder> GetAllOrders() {
 
-            return context.PurchaseOrders.ToList();
+            return context.PurchaseOrder.ToList();
         }
 
         public List<PurchaseOrder> GetSupplierOrders(int supplierID)
         {
 
-            return context.PurchaseOrders.Where(c => c.SupplierID == supplierID).OrderByDescending(d => d.OrderDate).ToList();
+            return context.PurchaseOrder.Where(c => c.SupplierID == supplierID).OrderByDescending(d => d.OrderDate).ToList();
         }
 
         public List<SupplierOrdersListDto> GetSupplierOrdersList(int supplierID)
         {
             
-            var result = context.PurchaseOrders.Where(s => s.SupplierID == supplierID).Select(d => new SupplierOrdersListDto
+            var result = context.PurchaseOrder.Where(s => s.SupplierID == supplierID).Select(d => new SupplierOrdersListDto
             {
                 OrderDate = d.OrderDate.GetValueOrDefault(),
                 OrderNumber = d.PurchaseOrderID,
@@ -180,7 +180,7 @@ namespace ServiceLayer {
         public List<PurchaseOrder> GetJobOrders(int jobID)
         {
 
-            return context.PurchaseOrders.Where(c => c.JobID == jobID).ToList();
+            return context.PurchaseOrder.Where(c => c.JobID == jobID).ToList();
         }
 
         public void InsertOrUpdate(PurchaseOrder order) {
@@ -188,11 +188,11 @@ namespace ServiceLayer {
             if (order.PurchaseOrderID == default(int))
             {
                 context.Entry(order).State = EntityState.Added ;
-                context.PurchaseOrders.Add(order);
+                context.PurchaseOrder.Add(order);
             }
             else
             {
-                context.PurchaseOrders.Attach(order);
+                context.PurchaseOrder.Attach(order);
             }
         }
 
@@ -217,16 +217,16 @@ namespace ServiceLayer {
             po.Recieved = false;
             po.Tax = 0.00m;
             po.OrderFormat = "Standard";
-            po.AddedBy = context.Employees.Find(employee).firstname + " " + context.Employees.Find(employee).lastname;
+            po.AddedBy = context.Employee.Find(employee).firstname + " " + context.Employee.Find(employee).lastname;
             po.OrderState = 1;
             return po;
         }
 
         public void Delete(int orderID) {
 
-            PurchaseOrder po = context.PurchaseOrders.Where(c => c.PurchaseOrderID == orderID).FirstOrDefault();
+            PurchaseOrder po = context.PurchaseOrder.Where(c => c.PurchaseOrderID == orderID).FirstOrDefault();
             context.Entry(po).State = EntityState.Deleted;
-            context.PurchaseOrders.Remove(po);
+            context.PurchaseOrder.Remove(po);
 
         }
 
@@ -251,11 +251,11 @@ namespace ServiceLayer {
             oreciept.PurchaseOrderID = order.PurchaseOrderID;
             oreciept.EmployeeID = employeeID;
             oreciept.ReceiptDate = DateTime.Now;
-            context.OrderReciepts.Add(oreciept);
+            context.OrderReciept.Add(oreciept);
             context.SaveChanges();
             List<ClaimItem> claimItems = new List<ClaimItem>();
 
-            foreach (PurchaseLineItem item in order.PurchaseLineItems)
+            foreach (PurchaseLineItem item in order.PurchaseLineItem)
             {
 
                 Inventory inv = new Inventory();
@@ -273,7 +273,7 @@ namespace ServiceLayer {
                 if (!(item.Description.Length == 0) && !(item.Qnty == default(decimal)) )
                 {
                     context.Entry(inv).State = EntityState.Added;
-                    context.Inventories.Add(inv);
+                    context.Inventory.Add(inv);
                     context.Entry(item).State = EntityState.Modified;
     
                 }
@@ -315,7 +315,7 @@ namespace ServiceLayer {
 
           
             // Get all the Suppliers Orders --
-            var pOrders = context.PurchaseOrders.Where(p => p.SupplierID == SupplierID).ToList();
+            var pOrders = context.PurchaseOrder.Where(p => p.SupplierID == SupplierID).ToList();
 
                 foreach (var P in pOrders)
                 {
@@ -346,7 +346,7 @@ namespace ServiceLayer {
                           "(SELECT PurchaseOrderID FROM PurchaseOrder WHERE SupplierID = {0})";
 
             ///TODO pass a parameter to the sql
-            var result = context.PurchaseLineItems.FromSqlRaw(sql, id).Select(d => new SupplierLineItemDto
+            var result = context.PurchaseLineItem.FromSqlRaw(sql, id).Select(d => new SupplierLineItemDto
             {
                 Description = d.Description,
                 LineID = d.LineID,
@@ -360,7 +360,7 @@ namespace ServiceLayer {
 
         public List<UnitOfMeasure> GetUnits()
         {
-          return context.UnitOfMeasures.AsNoTracking().ToList() ;
+          return context.UnitOfMeasure.AsNoTracking().ToList() ;
         }
         /// <summary>
         /// TODO this need to be much more expanded and use a composite Order DTO
@@ -369,7 +369,7 @@ namespace ServiceLayer {
         /// <returns></returns>
         public PurchaseOrder Add(PurchaseOrder order)
         {
-            context.PurchaseOrders.Add(order);
+            context.PurchaseOrder.Add(order);
             context.SaveChanges();
             return order;
         }
@@ -377,11 +377,11 @@ namespace ServiceLayer {
         public void CreateOrUpdateOrder(OrderDetailDto orderDTO)
         {
            var ctx = context;
-           var order = ctx.PurchaseOrders.Include(p => p.PurchaseLineItems).Include(a => a.Attachments).Include(f => f.OrderFees).FirstOrDefault(o => o.PurchaseOrderID == orderDTO.PurchaseOrderID);
+           var order = ctx.PurchaseOrder.Include(p => p.PurchaseLineItem).Include(a => a.Attachment).Include(f => f.OrderFee).FirstOrDefault(o => o.PurchaseOrderID == orderDTO.PurchaseOrderID);
             if (order == null)
             {
                 order = new PurchaseOrder();
-                ctx.PurchaseOrders.Add(order);
+                ctx.PurchaseOrder.Add(order);
             }
 
             //Map properties
@@ -404,18 +404,18 @@ namespace ServiceLayer {
             order.TaxRate = orderDTO.TaxRate;
 
             //remove deleted details -
-            order.PurchaseLineItems
+            order.PurchaseLineItem
             .Where(d => !orderDTO.LineItems.Any(LineItemDto => LineItemDto.LineID == d.LineID)).ToList()
-            .ForEach(deleted => ctx.PurchaseLineItems.Remove(deleted));
+            .ForEach(deleted => ctx.PurchaseLineItem.Remove(deleted));
 
             //update or add details
             orderDTO.LineItems.ToList().ForEach(detailDTO =>
             {
-                var detail = order.PurchaseLineItems.FirstOrDefault(d => d.LineID == detailDTO.LineID);
+                var detail = order.PurchaseLineItem.FirstOrDefault(d => d.LineID == detailDTO.LineID);
                 if (detail == null || detail.LineID == 0)
                 {
                     detail = new PurchaseLineItem();
-                    order.PurchaseLineItems.Add(detail);
+                    order.PurchaseLineItem.Add(detail);
                 }
                 detail.JobID = detailDTO.JobID;
                 detail.Qnty = detailDTO.Quantity;
@@ -429,18 +429,18 @@ namespace ServiceLayer {
             });
 
             //remove deleted orderfees -
-            order.OrderFees
+            order.OrderFee
                 .Where(d => !orderDTO.OrderFees.Any(OrderFeeDto => OrderFeeDto.OrderFeeID == d.OrderfeeID)).ToList()
-                .ForEach(deleted => ctx.OrderFees.Remove(deleted));
+                .ForEach(deleted => ctx.OrderFee.Remove(deleted));
 
             //update or add OrderFees
             orderDTO.OrderFees.ToList().ForEach(od =>
             {
-                var orderfee = order.OrderFees.FirstOrDefault(r => r.OrderfeeID == od.OrderFeeID);
+                var orderfee = order.OrderFee.FirstOrDefault(r => r.OrderfeeID == od.OrderFeeID);
                 if (orderfee == null || orderfee.OrderfeeID == 0)
                 {
                     orderfee = new OrderFee();
-                    order.OrderFees.Add(orderfee);
+                    order.OrderFee.Add(orderfee);
                 }
                 orderfee.PurchaseOrderID = order.PurchaseOrderID;
                 orderfee.FeeName = od.FeeName;
@@ -451,18 +451,18 @@ namespace ServiceLayer {
 
             //remove deleted attachments -
             ///TODO  attachment loading is slow and delete only duplicates
-            order.Attachments
+            order.Attachment
                 .Where(a => !orderDTO.Attachments.Any(attachDTO => attachDTO.AttachmentID == a.AttachmentID)).ToList()
-                .ForEach(deleted => ctx.Attachments.Remove(deleted));
+                .ForEach(deleted => ctx.Attachment.Remove(deleted));
 
             //update or add Attachments
             orderDTO.Attachments.ToList().ForEach(ad =>
             {
-                var attachmnt = order.Attachments.FirstOrDefault(r => r.AttachmentID == ad.AttachmentID);
+                var attachmnt = order.Attachment.FirstOrDefault(r => r.AttachmentID == ad.AttachmentID);
                 if (attachmnt ==null || attachmnt.AttachmentID == 0)
                 {
                     attachmnt = new Attachment();
-                    order.Attachments.Add(attachmnt);
+                    order.Attachment.Add(attachmnt);
                 }
 
                 attachmnt.PurchaseOrderID = ad.PurchaseOrderID;
@@ -484,7 +484,7 @@ namespace ServiceLayer {
 
         public List<OrderListDto> FindSupplierOrders(int supplierID)
         {
-            return context.PurchaseOrders
+            return context.PurchaseOrder
                 .Include(j => j.Job)
                 .Include(e => e.Employee)
                 .Include(s => s.Supplier).OrderByDescending(r => r.OrderDate)
@@ -514,7 +514,7 @@ namespace ServiceLayer {
             {
 
 
-                return context.PurchaseOrders
+                return context.PurchaseOrder
                    .Include(j => j.Job)
                    .Include(e => e.Employee)
                    .Include(s => s.Supplier).Where(c => c.EmployeeID == employeeID).Where(r => r.Recieved == true).Where(o =>  o.OrderState != 4).OrderByDescending(r => r.OrderDate)
@@ -533,7 +533,7 @@ namespace ServiceLayer {
             }
             else
             {
-                return context.PurchaseOrders
+                return context.PurchaseOrder
                    .Include(j => j.Job)
                    .Include(e => e.Employee)
                    .Include(s => s.Supplier).Where(c => c.EmployeeID == employeeID).Where(r => r.Recieved == false).Where(o => o.OrderState != 4).OrderByDescending(r => r.OrderDate)

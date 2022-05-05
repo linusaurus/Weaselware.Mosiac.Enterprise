@@ -149,7 +149,7 @@ namespace Mosiac.UX.UXControls
                 if (frm.ShowDialog() == DialogResult.OK)
                 {
                    var result = frm.NewAttachment;
-                   var att = _ctx.Attachments.Find(result.AttachmentID);
+                   var att = _ctx.Attachment.Find(result.AttachmentID);
                     AttachmentMapper mapper = new ServiceLayer.Mappers.AttachmentMapper();
                     mapper.Map(att, result);
                
@@ -180,7 +180,7 @@ namespace Mosiac.UX.UXControls
                     selectedAttachment = (AttachmentDto)bm.Current;
                     if (selectedAttachment != null)
                     {
-                        var deletableAttachment = _ctx.Attachments.Find(selectedAttachment.AttachmentID);
+                        var deletableAttachment = _ctx.Attachment.Find(selectedAttachment.AttachmentID);
                         if (deletableAttachment != null)
                         {
                             if (MessageBox.Show("The attachment will be permantly deleted, you good?", "Delete Attachment",MessageBoxButtons.YesNo) == DialogResult.Yes)

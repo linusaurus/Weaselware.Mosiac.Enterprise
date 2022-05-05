@@ -104,7 +104,7 @@ namespace Mosiac.UX.Forms
             {
                 if (((Part)bs.Current).PartID != 0)
                 {
-                    _stockLevel = _ctx.Inventories.Where(c => c.PartID == ((Part)bsPart.DataSource).PartID).Sum(i => i.InventoryAmount).GetValueOrDefault();
+                    _stockLevel = _ctx.Inventory.Where(c => c.PartID == ((Part)bsPart.DataSource).PartID).Sum(i => i.InventoryAmount).GetValueOrDefault();
                 }
                
                 txtPartID.DataBindings.Clear();

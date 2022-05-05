@@ -80,7 +80,7 @@ namespace Mosiac.UX.UXControls {
         private void OrderHeaderVerticalControl1_OnChangeSupplierHandler(object sender, OrderHeaderVerticalControl.SupplierChangeArgs args)
         {
             int id = args.SupplierID;
-            Supplier supplier = ctx.Suppliers.Find(id);
+            Supplier supplier = ctx.Supplier.Find(id);
             if (supplier != null)
             {
                 orderDTO.SupplierID = supplier.SupplierID;
@@ -292,7 +292,7 @@ namespace Mosiac.UX.UXControls {
             {
                 LockOrderUX();
             }
-            if (_purchaseOrder.Attachments.Count > 0)
+            if (_purchaseOrder.Attachment.Count > 0)
             {
                 tsbLoadPartFinder.BackColor = Color.DarkTurquoise;
                 LoadAttachmentControls();

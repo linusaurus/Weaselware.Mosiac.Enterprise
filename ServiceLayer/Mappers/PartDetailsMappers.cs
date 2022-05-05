@@ -38,7 +38,7 @@ namespace ServiceLayer.Mappers
             destination.Waste = source.Waste.GetValueOrDefault();
             destination.Obsolete = source.ObsoluteFlag.GetValueOrDefault();
 
-           destination.Resources = resourceMapper.MapList(source.Resources);
+           destination.Resources = resourceMapper.MapList(source.Resource);
            
         }
     }
