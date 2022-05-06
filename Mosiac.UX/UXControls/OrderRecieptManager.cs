@@ -73,29 +73,33 @@ namespace Mosiac.UX.UXControls
         private void DgPendingOrders_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             DataGridView dg = (DataGridView)sender;
+            DataRowView drv = (DataRowView) dg.Rows[e.RowIndex].DataBoundItem;
+
             if (dg.DataSource != null)
             {
                 if (dg.Rows.Count > 0)
                 {
-                    DataGridViewRow row = dg.Rows[e.RowIndex];
-                    PendingOrdersDto dat = (PendingOrdersDto)row.DataBoundItem;
-                    if (dat.OrderState == 1 || dat.OrderState == 2)
+                    //DataGridViewRow row = dg.Rows[e.RowIndex];
+                    DataRow row = drv.Row;
+                    DataGridViewRow r = dg.Rows[e.RowIndex];
+                    int dat =(int) row["OrderState"];
+                    if (dat == 1 || dat == 2)
                     {
-                        row.DefaultCellStyle.ForeColor = Color.Black;
-                        row.DefaultCellStyle.BackColor = Color.White;
-                        row.ReadOnly = true;
+                        r.DefaultCellStyle.ForeColor = Color.Black;
+                        r.DefaultCellStyle.BackColor = Color.White;
+                        r.ReadOnly = true;
                     }
-                    else if (dat.OrderState == 2)
+                    else if (dat == 2)
                     {
-                        row.DefaultCellStyle.ForeColor = Color.Gray;
-                        row.DefaultCellStyle.BackColor = Color.LightGoldenrodYellow;
-                        row.ReadOnly = true;
+                        r.DefaultCellStyle.ForeColor = Color.Gray;
+                        r.DefaultCellStyle.BackColor = Color.LightGoldenrodYellow;
+                        r.ReadOnly = true;
                     }
-                    else if (dat.OrderState == 3)
+                    else if (dat == 3)
                     {
-                        row.DefaultCellStyle.ForeColor = Color.Yellow;
-                        row.DefaultCellStyle.BackColor = Color.Black;
-                        row.ReadOnly = true;
+                        r.DefaultCellStyle.ForeColor = Color.Yellow;
+                        r.DefaultCellStyle.BackColor = Color.Black;
+                        r.ReadOnly = true;
                     }
 
                 }

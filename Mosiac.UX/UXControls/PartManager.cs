@@ -190,7 +190,9 @@ namespace Mosiac.UX.UXControls
 
         private void cboManu_SelectedIndexChanged(object sender, System.EventArgs e)
         {
-            manuID = (int)cboManu.SelectedValue;
+           ComboBox cb = (ComboBox)sender;
+            
+            manuID =((ManuListDTO)cb?.SelectedItem).ManuID;
             partsList = partsService.GetManufacturerParts(manuID);
             ListAsDataTable = Grids.BuildDataTable<PartFastSearchDto>(partsList);
             dv = ListAsDataTable.DefaultView;
