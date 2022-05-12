@@ -21,6 +21,7 @@ namespace MosaicTextProject
             pick.ItemCount = 3;
             pick.JobID = 1304;
             pick.PickListID = 13345;
+            
             Assert.IsTrue(pick.Complete == true);
             
         }

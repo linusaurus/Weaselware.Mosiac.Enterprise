@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using System;
 using System.Windows.Forms;
 
@@ -21,17 +24,27 @@ namespace Mosiac.UX
             Application.SetCompatibleTextRenderingDefault(false);
 
 
-        #if (DEBUG)
+#if (DEBUG)
+
+            //var services = new ServiceCollection();
+            //ConfigureServices(services);
+           // var builder = new HostBuilder()
+           //     .ConfigureServices((hostContext, services) =>
+           //     {
+           //         services.AddDbContext<DataLayer.Data.MosaicContext>(ServiceLifetime.Singleton);
+           //     });
+
+           //builder.Build();
 
             Main mainForm = new Main();
-
+          
             mainForm.LoggedOnUserID = 8;
             Globals.CurrentLoggedUserID = 8;
             Globals.CurrentUserName = "Richard";
-
+            
             Application.Run(new Main());
 
-        #else
+#else
 
             DialogResult dr = new DialogResult();
             LoginForm loginForm = new LoginForm();
@@ -39,6 +52,7 @@ namespace Mosiac.UX
             dr = loginForm.ShowDialog();
             if (dr == DialogResult.OK)
             {
+
                 Main mainForm = new Main();
 
                 mainForm.LoggedOnUserID = loginForm.EmployeeID;
@@ -48,14 +62,14 @@ namespace Mosiac.UX
                 Application.Run(new Main());
             }
 
-        #endif
+#endif
 
-       
+
 
         }
 
 
-    
+
 
         private static void CurrentDomainOnUnhadledException(object sender, UnhandledExceptionEventArgs e)
         {
@@ -81,6 +95,14 @@ namespace Mosiac.UX
                 DateTimeOffset.Now, e.Exception);
 
             MessageBox.Show(message, "Unexpected Error");
+        }
+
+        public static void ConfigureServices(IServiceCollection services)
+        {
+           
+
+            services.AddDbContext<DataLayer.Data.MosaicContext>(
+                options => options.UseSqlServer("name=ConnectionStrings:DefaultConnection"));
         }
 
     }

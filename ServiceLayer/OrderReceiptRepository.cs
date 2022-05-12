@@ -10,6 +10,7 @@ using ServiceLayer.Models;
 using ServiceLayer.Mappers;
 using Microsoft.Data.SqlClient;
 
+
 namespace ServiceLayer
 {
     public class OrderReceiptRepository 
@@ -61,7 +62,7 @@ namespace ServiceLayer
             
                 foreach (var lines in po.PurchaseLineItem)
                 {
-                    
+   
                     OrderRecieptLineItemDto item = new OrderRecieptLineItemDto();
                     item.Description = lines.Description;
                     item.PurchaseOrderID = lines.PurchaseOrderID.GetValueOrDefault();
@@ -96,7 +97,8 @@ namespace ServiceLayer
 
         public List<PendingOrdersDto> PendingOrders(int orderState)
         {
-             
+            
+            
             var purchaseOrders = _ctx.PurchaseOrder.AsNoTracking().Include(s => s.Supplier).Include(j => j.Job).Include(e => e.Employee)
                 .Where(p => p.OrderState == orderState).OrderBy(d => d.OrderDate)
                 .Select(dto => new PendingOrdersDto 
@@ -113,17 +115,57 @@ namespace ServiceLayer
             return purchaseOrders;
             
         }
+
+        public List<PendingOrdersDto> FilterOrders(int purchaseOrderID)
+        {
+            List<PendingOrdersDto> purchaseOrders = new List<PendingOrdersDto>();
+            string term = purchaseOrderID.ToString();
+
+                purchaseOrders = _ctx.PurchaseOrder.AsNoTracking().Include(s => s.Supplier).Where(d => d.OrderState == 1 || d.OrderState==3)
+               .Where(p => p.PurchaseOrderID.ToString().StartsWith(term))
+               .Select(dto => new PendingOrdersDto
+               {
+                   PurchaseOrderID = dto.PurchaseOrderID,
+                   OrderDate = dto.OrderDate.GetValueOrDefault(),
+                   Supplier = dto.Supplier.SupplierName,
+                   OrderState = dto.OrderState.GetValueOrDefault(),
+                   JobName = dto.Job.jobname,
+                   EmployeeName = dto.Employee.firstname
+
+               }).ToList();
+
+            return purchaseOrders;
+        }
         // ----------------------------------------------------------------------------++
         // Return Order that are either UnRecieved or Incomplete ----------------------++
+        // Add filter choices of Unrecieved, Partially Completed,Canceled 
         // ----------------------------------------------------------------------------++
-        public List<PendingOrdersDto> UnRecievedOrders()
+        public List<PendingOrdersDto> UnRecievedOrders(Enums.OrderReceiptStates state)
         {
             List<PendingOrdersDto> purchaseOrders = new List<PendingOrdersDto>();
 
-          
-             
-                purchaseOrders = _ctx.PurchaseOrder.AsNoTracking().Include(s => s.Supplier)
-                   .Where(p => p.OrderState == 1 || p.OrderState == 3).OrderBy(d => d.OrderDate)
+            switch (state)
+            {
+               
+                case Enums.OrderReceiptStates.Unreceived:
+
+                    purchaseOrders = _ctx.PurchaseOrder.AsNoTracking().Include(s => s.Supplier)
+                  .Where(p => p.OrderState == 1 ).OrderBy(d => d.OrderDate)
+                  .Select(dto => new PendingOrdersDto
+                  {
+                      PurchaseOrderID = dto.PurchaseOrderID,
+                      OrderDate = dto.OrderDate.GetValueOrDefault(),
+                      Supplier = dto.Supplier.SupplierName,
+                      OrderState = dto.OrderState.GetValueOrDefault(),
+                      JobName = dto.Job.jobname,
+                      EmployeeName = dto.Employee.firstname
+
+                  }).ToList();
+                    break;
+                case Enums.OrderReceiptStates.Partial:
+
+                    purchaseOrders = _ctx.PurchaseOrder.AsNoTracking().Include(s => s.Supplier)
+                   .Where(p =>  p.OrderState == 3).OrderBy(d => d.OrderDate)
                    .Select(dto => new PendingOrdersDto
                    {
                        PurchaseOrderID = dto.PurchaseOrderID,
@@ -134,6 +176,32 @@ namespace ServiceLayer
                        EmployeeName = dto.Employee.firstname
 
                    }).ToList();
+                    break;
+             
+                case Enums.OrderReceiptStates.Month:
+
+                    var oneWeekAgo = (DateTime.Now - TimeSpan.FromDays(30)).Date;
+
+                    purchaseOrders = _ctx.PurchaseOrder.AsNoTracking().Include(s => s.Supplier).Where(p => p.OrderState == 1 || p.OrderState == 3)
+                   .Where(d => d.OrderDate < oneWeekAgo ).OrderBy(d => d.OrderDate)
+                   .Select(dto => new PendingOrdersDto
+                   {
+                       PurchaseOrderID = dto.PurchaseOrderID,
+                       OrderDate = dto.OrderDate.GetValueOrDefault(),
+                       Supplier = dto.Supplier.SupplierName,
+                       OrderState = dto.OrderState.GetValueOrDefault(),
+                       JobName = dto.Job.jobname,
+                       EmployeeName = dto.Employee.firstname
+
+                   }).ToList();
+
+                    break;
+                default:
+                    break;
+
+            }
+
+            
           
 
             return purchaseOrders;
@@ -171,7 +239,7 @@ namespace ServiceLayer
         {
             OrderReceiptDto dto = new OrderReceiptDto();
             var or = _ctx.OrderReciept.Include(x => x.PurchaseOrder)
-                .Include(l => l.OrderReceiptItems).ThenInclude(o => o.UnitOfMeasure)
+                .Include(l => l.OrderReceiptItems.Where(l => l.IsComplete.Value == false)).ThenInclude(o => o.UnitOfMeasure)
                 .Include(e => e.Employee).Where(p => p.OrderReceiptID == orderReceiptID).First();
 
             OrderReceiptMapper mapper = new OrderReceiptMapper();

@@ -119,42 +119,5 @@ namespace Mosiac.UX
 
         }
 
-
-        //private void DgOrderReceiptItems_CellValueChanged(object sender, DataGridViewCellEventArgs e)
-        //{
-        //    DataGridView dg = (DataGridView)sender;
-        //    if (dg.DataSource != null)
-        //    {
-        //        if (dg.Rows.Count > 0)
-        //        {
-        //            if (e.ColumnIndex == 4)
-        //            {
-        //                DataGridViewRow row = dg.CurrentRow;
-        //                OrderRecieptLineItemDto dat = (OrderRecieptLineItemDto)row.DataBoundItem;
-
-        //                dgOrderReceiptItems.CommitEdit(DataGridViewDataErrorContexts.Commit);
-        //                dg.InvalidateRow(dg.CurrentRow.Index);
-        //            }
-        //        }
-        //    }
-        //}
-
-        //private void DgOrderReceiptItems_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        //{
-        //    DataGridView dg = (DataGridView)sender;
-        //    if (dg.DataSource != null)
-        //    {        
-        //        if (dg.Rows.Count > 0)
-        //        {
-        //            if (e.ColumnIndex == 4)
-        //            {                        
-        //                DataGridViewRow row = dg.CurrentRow;
-        //                BindingContext[dg.DataSource].EndCurrentEdit();                     
-        //                bsOrderReceiptItems.ResetBindings(true);
-        //                dg.InvalidateRow(e.RowIndex);
-        //            }              
-        //        }
-        //    }
-        //}
     }
 }

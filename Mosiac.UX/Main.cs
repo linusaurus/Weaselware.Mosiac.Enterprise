@@ -16,7 +16,7 @@ using System.Windows.Forms;
 using Mosiac.UX.UXControls;
 using Mosiac.UX.Properties;
 using System.Reflection;
-using ServiceLayer;
+
 
 namespace Mosiac.UX
 {
@@ -30,11 +30,6 @@ namespace Mosiac.UX
         public TabControl MainTabs { get; set; }
        
 
-        string appId = "windows: Designsynthesis.Mosiac.App";
-        string developerId = "2c926d9e-0821-eb11-a813-000d3a33be69";
-        string appKey = "MCwCFEJpEn5SjoP8LoeeCC0WNS9tCVOsAhRiU8TQRxWmP48X3MBdGH9Rbe2+Eg==";
-
-
         public int LoggedOnUserID
         {
             get { return _loggedOnUserID; }
@@ -43,16 +38,7 @@ namespace Mosiac.UX
 
         public Main()
         {
-            InitializeComponent();
-           
-          
-
-
-
-          
-
-           
-
+            InitializeComponent();    
             // This should be the main contect wireup for everything else
             _context = new MosaicContext(Mosiac.UX.Properties.Settings.Default.MosiacConnection);
             _ordersService = new OrdersService(_context);

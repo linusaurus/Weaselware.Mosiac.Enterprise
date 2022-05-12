@@ -35,11 +35,16 @@ namespace Mosiac.UX.UXControls
             this.orToolStrip = new System.Windows.Forms.ToolStrip();
             this.tsbOrderReciept = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsOpenOrder = new System.Windows.Forms.ToolStripButton();
             this.tsbPrintReceipt = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsbFilterCombo = new System.Windows.Forms.ToolStripComboBox();
+            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
+            this.tsSearchEntry = new System.Windows.Forms.ToolStripTextBox();
+            this.tscboEmployees = new System.Windows.Forms.ToolStripComboBox();
             this.dgPendingOrders = new System.Windows.Forms.DataGridView();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.dgOrderLineItems = new System.Windows.Forms.DataGridView();
-            this.tsOpenOrder = new System.Windows.Forms.ToolStripButton();
             this.orToolStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgPendingOrders)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -71,7 +76,12 @@ namespace Mosiac.UX.UXControls
             this.tsbOrderReciept,
             this.toolStripSeparator1,
             this.tsOpenOrder,
-            this.tsbPrintReceipt});
+            this.tsbPrintReceipt,
+            this.toolStripSeparator2,
+            this.tsbFilterCombo,
+            this.toolStripLabel1,
+            this.tsSearchEntry,
+            this.tscboEmployees});
             this.orToolStrip.Location = new System.Drawing.Point(6, 6);
             this.orToolStrip.Name = "orToolStrip";
             this.orToolStrip.Size = new System.Drawing.Size(1160, 31);
@@ -92,6 +102,14 @@ namespace Mosiac.UX.UXControls
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 31);
             // 
+            // tsOpenOrder
+            // 
+            this.tsOpenOrder.Image = global::Mosiac.UX.Properties.Resources.baseline_launch_black_24dp;
+            this.tsOpenOrder.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsOpenOrder.Name = "tsOpenOrder";
+            this.tsOpenOrder.Size = new System.Drawing.Size(144, 28);
+            this.tsOpenOrder.Text = "Open Selected Order";
+            // 
             // tsbPrintReceipt
             // 
             this.tsbPrintReceipt.Image = ((System.Drawing.Image)(resources.GetObject("tsbPrintReceipt.Image")));
@@ -99,6 +117,44 @@ namespace Mosiac.UX.UXControls
             this.tsbPrintReceipt.Name = "tsbPrintReceipt";
             this.tsbPrintReceipt.Size = new System.Drawing.Size(102, 28);
             this.tsbPrintReceipt.Text = "Print Receipt";
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 31);
+            // 
+            // tsbFilterCombo
+            // 
+            this.tsbFilterCombo.Items.AddRange(new object[] {
+            "Pending",
+            "InComplete",
+            "30 day",
+            "60 day"});
+            this.tsbFilterCombo.Name = "tsbFilterCombo";
+            this.tsbFilterCombo.Size = new System.Drawing.Size(121, 31);
+            this.tsbFilterCombo.SelectedIndexChanged += new System.EventHandler(this.tsbFilterCombo_SelectedIndexChanged);
+            this.tsbFilterCombo.Click += new System.EventHandler(this.tsbFilterCombo_Click);
+            // 
+            // toolStripLabel1
+            // 
+            this.toolStripLabel1.Name = "toolStripLabel1";
+            this.toolStripLabel1.Size = new System.Drawing.Size(98, 28);
+            this.toolStripLabel1.Text = "Search by Order#";
+            // 
+            // tsSearchEntry
+            // 
+            this.tsSearchEntry.Margin = new System.Windows.Forms.Padding(12, 2, 1, 2);
+            this.tsSearchEntry.Name = "tsSearchEntry";
+            this.tsSearchEntry.Size = new System.Drawing.Size(100, 27);
+            // 
+            // tscboEmployees
+            // 
+            this.tscboEmployees.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.tscboEmployees.Margin = new System.Windows.Forms.Padding(20, 0, 1, 0);
+            this.tscboEmployees.Name = "tscboEmployees";
+            this.tscboEmployees.Size = new System.Drawing.Size(121, 31);
+            this.tscboEmployees.Visible = false;
+            this.tscboEmployees.SelectedIndexChanged += new System.EventHandler(this.tscboEmployees_SelectedIndexChanged);
             // 
             // dgPendingOrders
             // 
@@ -139,14 +195,6 @@ namespace Mosiac.UX.UXControls
             this.dgOrderLineItems.Size = new System.Drawing.Size(1160, 243);
             this.dgOrderLineItems.TabIndex = 0;
             // 
-            // tsOpenOrder
-            // 
-            this.tsOpenOrder.Image = global::Mosiac.UX.Properties.Resources.baseline_launch_black_24dp;
-            this.tsOpenOrder.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsOpenOrder.Name = "tsOpenOrder";
-            this.tsOpenOrder.Size = new System.Drawing.Size(144, 28);
-            this.tsOpenOrder.Text = "Open Selected Order";
-            // 
             // OrderRecieptManager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -181,5 +229,10 @@ namespace Mosiac.UX.UXControls
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.DataGridView dgOrderLineItems;
         private System.Windows.Forms.ToolStripButton tsOpenOrder;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripComboBox tsbFilterCombo;
+        private System.Windows.Forms.ToolStripTextBox tsSearchEntry;
+        private System.Windows.Forms.ToolStripLabel toolStripLabel1;
+        private System.Windows.Forms.ToolStripComboBox tscboEmployees;
     }
 }

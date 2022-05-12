@@ -9,6 +9,7 @@ using DataLayer.Data;
 using System.Linq;
 using DataLayer.Entity;
 using ServiceLayer;
+using ServiceLayer.Enums;
 using ServiceLayer.Models;
 using ServiceLayer.Mappers;
 
@@ -26,7 +27,9 @@ namespace Mosiac.UX.UXControls
         private int _selectedOrderID;
         private BindingSource bsOrderReceiptItems = new BindingSource();
         private OrderRecieptLineItemDto _selectedOrderRecieptLineItemDto;
-     
+        private OrderReceiptStates currentFilter = OrderReceiptStates.Unreceived;
+
+        
 
         public OrderRecieptManager(MosaicContext context)
         {
@@ -36,12 +39,20 @@ namespace Mosiac.UX.UXControls
             Grids.BuildOrderLineItemsGrid(dgOrderLineItems);
             _orderReceiptRepository = new OrderReceiptRepository(_context, Globals.CurrentUserName, Globals.CurrentLoggedUserID);
             ordersService = new OrdersService(_context);
-            _suppliersService = new SuppliersService(_context);
+            //EmployeeService employeeService = new EmployeeService(_context);
 
+            _suppliersService = new SuppliersService(_context);
+            //var emp = employeeService.Active();
+            //foreach (var item in emp)
+            //{
+            //    tscboEmployees.Items.Add(item.FullName);
+            //}
+           
+            
 
             //----------------------------- Pending Grid ------------------------------------
 
-            LoadOrders();
+            LoadOrders(OrderReceiptStates.Unreceived);
 
             #region Events
 
@@ -51,16 +62,15 @@ namespace Mosiac.UX.UXControls
             dgPendingOrders.CellFormatting += DgPendingOrders_CellFormatting;
             orToolStrip.ItemClicked += orToolStrip_ItemClicked;
 
-            
-
             #endregion
 
+            tsbFilterCombo.SelectedIndex = 0;
         }
 
-        private void LoadOrders()
+        private void LoadOrders(OrderReceiptStates state)
         {
             DataTable dt = new DataTable();
-            dt = ServiceLayer.DataBuilders.BuildDataTable(_orderReceiptRepository.UnRecievedOrders());
+            dt = ServiceLayer.DataBuilders.BuildDataTable(_orderReceiptRepository.UnRecievedOrders(state));
             dgPendingOrders.DataSource = dt.DefaultView;
         }
 
@@ -82,6 +92,10 @@ namespace Mosiac.UX.UXControls
                     //DataGridViewRow row = dg.Rows[e.RowIndex];
                     DataRow row = drv.Row;
                     DataGridViewRow r = dg.Rows[e.RowIndex];
+                    //DateTime age = (DateTime)row["OrderDate"];
+                    //System.TimeSpan diff = DateTime.Today.Subtract(age);
+
+
                     int dat =(int) row["OrderState"];
                     if (dat == 1 || dat == 2)
                     {
@@ -101,19 +115,12 @@ namespace Mosiac.UX.UXControls
                         r.DefaultCellStyle.BackColor = Color.Black;
                         r.ReadOnly = true;
                     }
+                   
 
                 }
             }
         }
 
-
-        //private void DgOrderReceiptItems_CellMouseUp(object sender, DataGridViewCellMouseEventArgs e)
-        //{
-        //    if (e.ColumnIndex == 8 && e.RowIndex != -1)
-        //    { dgOrderReceiptItems.EndEdit();
-        //        dgOrderReceiptItems.InvalidateRow(e.RowIndex);
-        //    }
-        //}
 
         private void DgOrderReceiptItems_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
@@ -134,149 +141,41 @@ namespace Mosiac.UX.UXControls
             }
         }
 
-        //private void DgOrderReceiptItems_CellValueChanged(object sender, DataGridViewCellEventArgs e)
-        //{
-        //    DataGridView dg = (DataGridView)sender;
-        //    if (dg.DataSource != null)
-        //    {
-        //        if (dg.Rows.Count > 0)
-        //        {
-        //            if (e.ColumnIndex == 4)
-        //            {
-        //                DataGridViewRow row = dg.CurrentRow;
-        //                OrderRecieptLineItemDto dat = (OrderRecieptLineItemDto)row.DataBoundItem;
-
-        //                dgOrderReceiptItems.CommitEdit(DataGridViewDataErrorContexts.Commit);
-        //                dg.InvalidateRow(dg.CurrentRow.Index);
-        //            }
-        //        }
-        //    }
-        //}
-
-        //private void DgOrderReceiptItems_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        //{
-        //    DataGridView dg = (DataGridView)sender;
-        //    if (dg.DataSource != null)
-        //    {        
-        //        if (dg.Rows.Count > 0)
-        //        {
-        //            if (e.ColumnIndex == 4)
-        //            {                        
-        //                DataGridViewRow row = dg.CurrentRow;
-        //                BindingContext[dg.DataSource].EndCurrentEdit();                     
-        //                bsOrderReceiptItems.ResetBindings(true);
-        //                dg.InvalidateRow(e.RowIndex);
-        //            }              
-        //        }
-        //    }
-        //}
-
-        //private void DgOrderReceiptItems_CellClick(object sender, DataGridViewCellEventArgs e)
-        //{
-        //    DataGridView dg = (DataGridView)sender;
-        //    if (dg.DataSource != null)
-        //    {  
-        //        if (dg.Rows.Count > 0)
-        //        {
-        //            if (e.ColumnIndex != 3)
-        //            {
-        //                DataGridViewRow row = dg.CurrentRow;
-        //                BindingContext[dg.DataSource].EndCurrentEdit();
-        //                dg.Refresh();
-        //            }
-
-        //        }
-        //    }
-        //}
-
-        //private void BsOrderReceiptItems_ListChanged(object sender, ListChangedEventArgs e)
-        //{
-        //    if (e.ListChangedType == ListChangedType.ItemChanged)
-        //    {
-        //        orToolStrip.Items[3].BackColor = Color.Cornsilk;           
-        //    }
-        //    // Grids.CheckForDirtyState(e,this.btnSave);
-        //    _orderState = _orderRecieptDto.OrderState;
-        //    lborderstatus.Text = $"Order-Status = {UpdateReceiptStatus(_orderState)}";
-        //}
-
-        //private string UpdateReceiptStatus(int orderStatus)
-        //{
-        //    string result = string.Empty;
-        //    switch (orderStatus)
-        //    {
-        //        case 1:
-        //            result = "Pending";
-        //            break;
-        //        case 2:
-        //            result = "Order Complete";
-        //            break;
-        //        case 3:
-        //            result = "Incomplete";
-        //            break;
-        //        default:
-        //            break;
-        //    }
-
-        //    return result;
-
-        //}
-
-        //private void ButtonSwitcher(int btnState)
-        //{
-        //    for (int i = 0; i < 6; i++)
-        //    { 
-        //        orToolStrip.Items[i].BackColor = DefaultBackColor;
-
-        //    }
-        //    //-------------------------------------------------------++
-        //    switch (btnState)
-        //    {
-        //        case  0: // Ready for Recieving
-        //            orToolStrip.Items[0].BackColor = Color.Cornsilk; // Open receipt button only
-        //            orToolStrip.Items[1].Visible = false;
-        //            orToolStrip.Items[2].Visible = false;
-        //            orToolStrip.Items[3].Visible = false;
-        //            orToolStrip.Items[4].Visible = false;
-        //            orToolStrip.Items[5].Visible = false;
-        //            break;
-        //        case 1: // In Receiving Mode
-        //            orToolStrip.Items[0].Visible = false;
-        //            orToolStrip.Items[1].BackColor = Color.Cornsilk;
-        //            orToolStrip.Items[1].Visible = true;
-        //            orToolStrip.Items[2].Visible = true;
-        //            orToolStrip.Items[3].Visible = true;
-        //            orToolStrip.Items[4].Visible = false;
-        //            orToolStrip.Items[5].Visible = false;
-        //            break;
-        //        case 2:
-        //            break;
-        //        case 3:
-        //            break;
-        //        default:
-        //            break;
-        //    }
-
-        //}
-
-        //private int GetOrderState(OrderReceiptDto orderReceiptDto)
-        //{
-        //    //int resultState = 0;
-
-        //    //bool linesIncomplete =  orderReceiptDto.OrderReceiptLineItems.Any(r => r.ItemsRecievedComplete == false);
-        //    //// If any lineitems are not completet the make state as ReceivedIncomplete --
-
-        //    //if (linesIncomplete)
-        //    //{ resultState = 3;}
-        //    //// the lines are all recieved so mark state as ReceivedComplete
-
-        //    //else if(!linesIncomplete)
-        //    //{resultState = 2;}
-
-        //    //return resultState;
-        //}
-
         #endregion
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if ((keyData == Keys.Enter) || (keyData == Keys.Return))
+
+            {
+                // Find the Order to receive based on po entered
+                if (tsSearchEntry.Text.Length > 0)
+                {
+                    int k = int.Parse(tsSearchEntry.Text);
+                    
+                    DataTable dt = new DataTable();
+                    dt = ServiceLayer.DataBuilders.BuildDataTable(_orderReceiptRepository.FilterOrders(k));
+                    dgPendingOrders.DataSource = dt.DefaultView;
+                }
+
+                return true;
+            }
+            if (keyData == Keys.Escape )
+
+            {
+                // Clear textbox and restore list
+                tsSearchEntry.Clear();
+                LoadOrders(currentFilter);
+               
+
+                return true;
+            }
+            else
+            {
+         
+                return base.ProcessCmdKey(ref msg, keyData);
+            }
+        }
 
         private void DgPendingOrders_SelectionChanged(object sender, EventArgs e)
         {
@@ -314,7 +213,6 @@ namespace Mosiac.UX.UXControls
 
                     _orderRecieptDto = _orderReceiptRepository.LoadOrderReciept(_selectedOrderID);
 
-
                     OrderRecieptForm frm = new OrderRecieptForm(_selectedOrderID, _context);
                     frm.Width = 1200;
                     frm.Height = 600;
@@ -323,7 +221,7 @@ namespace Mosiac.UX.UXControls
                    
                     frm.ShowDialog();
                     //Reload changed Orders list --
-                    LoadOrders();
+                    LoadOrders(currentFilter);
                     break;
   
                 case "tsOpenOrder":
@@ -331,6 +229,10 @@ namespace Mosiac.UX.UXControls
                     
                     Main main = (Main)Application.OpenForms["Main"];
                     main.OpenAnOrder(_selectedOrderID);
+                    break;
+
+                case "tsbShowLates":
+
                     break;
 
                 case "tsbPrintReceipt":
@@ -354,7 +256,7 @@ namespace Mosiac.UX.UXControls
             {
                 int supplierid = ((Supplier)lb.SelectedItem).SupplierID;
                 // Filter the list of unReceived Items -->
-                dgPendingOrders.DataSource = _orderReceiptRepository.UnRecievedOrders();
+                dgPendingOrders.DataSource = _orderReceiptRepository.UnRecievedOrders(currentFilter);
             }
 
         }
@@ -383,6 +285,46 @@ namespace Mosiac.UX.UXControls
 
         }
 
-       
+        private void tsbFilterCombo_Click(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void tsbFilterCombo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+           ToolStripComboBox tsbFilterCombo = (ToolStripComboBox)sender;
+           var selection = tsbFilterCombo.SelectedItem as string;
+           if (selection != null)
+            {
+                switch (selection)
+                {
+                    case "Pending":
+                        currentFilter = OrderReceiptStates.Unreceived;
+                        LoadOrders(currentFilter);
+
+                        break;
+                    case "InComplete":
+                        currentFilter = OrderReceiptStates.Partial;
+                        LoadOrders(currentFilter);
+                        break;
+
+                    case "30 day":
+                        currentFilter = OrderReceiptStates.Month;
+                        LoadOrders(currentFilter);
+                        break;
+
+                    default:
+                        break;
+                }
+            }
+        
+        }
+
+        private void tscboEmployees_SelectedIndexChanged(object sender, EventArgs e)
+        {
+           ToolStripComboBox cbo =  (ToolStripComboBox)sender;  
+            string pick = cbo.SelectedItem.ToString();
+
+        }
     }
 }

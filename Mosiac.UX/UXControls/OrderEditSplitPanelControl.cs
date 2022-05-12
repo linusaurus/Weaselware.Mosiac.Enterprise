@@ -254,7 +254,7 @@ namespace Mosiac.UX.UXControls {
             _partsService = new PartsService(ctx);
             // Retrieve to PurchaseOrder Entity
             _purchaseOrder = _orderService.GetOrderByID(orderID);
-            _purchaseOrder.TaxRate = _purchaseOrder.Supplier.TaxRate.GetValueOrDefault();
+            _purchaseOrder.TaxRate = _purchaseOrder.Supplier?.TaxRate.GetValueOrDefault();
             if (_purchaseOrder != null)
             {
                 // Map to the DTO detached data transfer object
