@@ -122,7 +122,7 @@ namespace Mosiac.UX.UXControls
                     if (recieved)
                     {
                         var recpt = _orderReceiptService.LoadOrderReciept(po);
-                        OrderReciept orderReciept = new OrderReciept(recpt);
+                        OrderReciept orderReciept = new OrderReciept(recpt, _ctx);
                         TabPage receiptTab = new TabPage(String.Format("Order Receipt - {0}", recpt.OrderReceiptId.ToString()));
                         receiptTab.Controls.Add(orderReciept);
                         orderReciept.Dock = DockStyle.Fill;

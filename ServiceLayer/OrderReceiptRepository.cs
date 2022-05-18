@@ -9,7 +9,7 @@ using System.Linq;
 using ServiceLayer.Models;
 using ServiceLayer.Mappers;
 using Microsoft.Data.SqlClient;
-
+using Dapper;
 
 namespace ServiceLayer
 {
@@ -44,7 +44,7 @@ namespace ServiceLayer
             // Test for existing Order Receipt-if true that one exist, retrieve it and copy into new receipt
             if (po.OrderReciept.Any())
             {
-                newReciept = GetOrderReceipt(po.OrderReciept.FirstOrDefault().OrderReceiptID);
+                newReciept = GetOrderReceipt(po.OrderReciept.FirstOrDefault().OrderReceiptID, true);
 
             }
             else
@@ -234,17 +234,27 @@ namespace ServiceLayer
             return dto;
         }
 
-
-        public OrderReceiptDto GetOrderReceipt(int orderReceiptID)
+        // Return data fro printing a complete stock tag
+        public OrderReceiptDto GetOrderReceipt(int orderReceiptID, bool IncludeCompleted)
         {
             OrderReceiptDto dto = new OrderReceiptDto();
-            var or = _ctx.OrderReciept.Include(x => x.PurchaseOrder)
+            OrderReceiptMapper mapper = new OrderReceiptMapper();
+
+            if (IncludeCompleted)
+            {
+               var or = _ctx.OrderReciept.Include(x => x.PurchaseOrder)
+                .Include(l => l.OrderReceiptItems).ThenInclude(o => o.UnitOfMeasure)
+                .Include(e => e.Employee).Where(p => p.OrderReceiptID == orderReceiptID).First();
+                mapper.Map(or, dto);
+            }
+            else
+            {
+                var or = _ctx.OrderReciept.Include(x => x.PurchaseOrder)
                 .Include(l => l.OrderReceiptItems.Where(l => l.IsComplete.Value == false)).ThenInclude(o => o.UnitOfMeasure)
                 .Include(e => e.Employee).Where(p => p.OrderReceiptID == orderReceiptID).First();
-
-            OrderReceiptMapper mapper = new OrderReceiptMapper();
-            mapper.Map(or, dto);
-                
+                mapper.Map(or, dto);
+            }
+   
             return dto;
         }
 
@@ -380,7 +390,22 @@ namespace ServiceLayer
             return orderReciept.OrderReceiptID;            
         }
 
+        public StockTagDto GetStockTag(int orderReceiptLineID)
+        {
+            int lineid = orderReceiptLineID;
 
+            StockTagDto dto = new StockTagDto();
+            using (var con = _ctx.Database.GetDbConnection())
+            {
+                dto = con.QueryFirst<StockTagDto>("select ol.PurchaseOrderID,ol.OrderReceiptLineID,ol.LineID,i.StockTransactionID," +
+                    "ol.InventoryAmount,rc.ReceiptDate, ol.Description, j.jobname, po.JobID,ol.QuantityReceived,e.firstname " +
+                    "FROM OrderReceiptItems ol JOIN OrderReciept rc ON ol.OrderReceiptID = rc.OrderReceiptID " +
+                    "JOIN PurchaseOrder po ON ol.PurchaseOrderID = po.PurchaseOrderID JOIN Job j ON ol.JobID = j.jobID "+
+                    "JOIN Employee e ON rc.EmployeeID = e.employeeID JOIN Inventory i ON ol.LineID = i.LineID where ol.OrderReceiptLineID = @id", new {id = lineid});
+            }
+  
+            return dto;
+        }
         public List<OrderReceiptHistoryDto> ReceiptHistory(int orderState)
         {
             String sql = String.Empty;

@@ -130,7 +130,7 @@ namespace Mosiac.UX.UXControls
             OrderReceiptViewerForm viewerForm = new OrderReceiptViewerForm();
             
             viewerForm.Text = $"Order Receipt - PO # {dto.PurchaseOrderID.ToString()}";
-            OrderReciept orderReciept = new OrderReciept(dto);
+            OrderReciept orderReciept = new OrderReciept(dto,_ctx);
             viewerForm.Controls.Add(orderReciept);
             orderReciept.Dock = DockStyle.Fill;
             viewerForm.ShowDialog();

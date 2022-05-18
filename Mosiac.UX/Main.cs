@@ -16,7 +16,7 @@ using System.Windows.Forms;
 using Mosiac.UX.UXControls;
 using Mosiac.UX.Properties;
 using System.Reflection;
-
+using Neodynamic.SDK.Printing;
 
 namespace Mosiac.UX
 {
@@ -46,7 +46,8 @@ namespace Mosiac.UX
             Mediator.GetInstance().OrderOpen += Main_OrderOpen;
             string version = Assembly.GetExecutingAssembly().GetName().Version.ToString();
             this.Text = "Mosaic - [Production] " + version;
-
+            ThermalLabel.LicenseOwner = "Richard Young";
+            ThermalLabel.LicenseKey = "MC4J7E7UM8BDLXA72PEWSJ84NR5FXRVBKPANLSYTCCGKKNMW9N6A";
 
         }
 
@@ -185,8 +186,8 @@ namespace Mosiac.UX
             r = this.MainTabs.GetTabRect(e.Index);
 
             r.Offset(2, 2);
-            Brush TitleBrush = new SolidBrush(Color.Black);
-            Font f = this.Font;
+            Brush TitleBrush = new SolidBrush(System.Drawing.Color.Black);
+            System.Drawing.Font f = this.Font;
             string title = this.MainTabs.TabPages[e.Index].Text;
             //e.Graphics.FillRectangle(new SolidBrush(Color.LightBlue), e.Bounds);
             e.Graphics.DrawString(title, f, TitleBrush, new PointF(r.X, r.Y));

@@ -64,6 +64,7 @@ namespace ServiceLayer {
             {
                 Description = d.Description,
                 LineID = d.LineID,
+                JobID = d.JobID.GetValueOrDefault(),
                 Quantity = d.Qnty.Value,
                 Price = d.UnitCost.Value,
                 Extended = d.Extended.Value,
@@ -212,13 +213,14 @@ namespace ServiceLayer {
             po.SalesRep = "";
             po.ShipID = 1;
             po.ShippingCost = 0.00m;
-            po.SuppressTax = false;
+            po.SuppressTax = true;
             po.SubTotal = 0.00m;
             po.Recieved = false;
             po.Tax = 0.00m;
             po.OrderFormat = "Standard";
             po.AddedBy = context.Employee.Find(employee).firstname + " " + context.Employee.Find(employee).lastname;
             po.OrderState = 1;
+           
             return po;
         }
 
@@ -417,7 +419,8 @@ namespace ServiceLayer {
                     detail = new PurchaseLineItem();
                     order.PurchaseLineItem.Add(detail);
                 }
-                detail.JobID = detailDTO.JobID;
+                detail.JobID = orderDTO.JobID;
+                detail.SupplierID = orderDTO.SupplierID;
                 detail.Qnty = detailDTO.Quantity;
                 detail.Description = detailDTO.Description;
                 detail.PurchaseOrderID = detailDTO.PurchaseOrderID;

@@ -43,10 +43,37 @@ namespace Mosiac.UX
             bsItems.DataSource = bsOrderReceipt;
             bsItems.DataMember = "OrderReceiptLineItems";
             dgOrderReceiptItemGrid.DataSource = bsItems;
+            dgOrderReceiptItemGrid.CellFormatting += DgOrderReceiptItemGrid_CellFormatting;
             bsOrderReceipt.ListChanged += BsOrderReceipt_ListChanged;
             bsItems.ListChanged += BsItems_ListChanged;
            
 
+        }
+
+        private void DgOrderReceiptItemGrid_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            DataGridView dg = (DataGridView)sender;
+            OrderRecieptLineItemDto or = (OrderRecieptLineItemDto)dg.Rows[e.RowIndex].DataBoundItem;
+
+            if (dg.DataSource != null)
+            {
+                if (dg.Rows.Count > 0)
+                {
+ 
+                    DataGridViewRow r = dg.Rows[e.RowIndex];
+    
+                    if (or.ItemsRecievedComplete == true)
+                    {
+                        r.DefaultCellStyle.ForeColor = Color.Black;
+                        r.DefaultCellStyle.BackColor = Color.LightGray;
+                        r.DefaultCellStyle.Font = new Font(dg.Font,FontStyle.Strikeout);
+                        r.ReadOnly = true;
+                    }
+                   
+
+
+                }
+            }
         }
 
         private void BsItems_ListChanged(object sender, ListChangedEventArgs e)

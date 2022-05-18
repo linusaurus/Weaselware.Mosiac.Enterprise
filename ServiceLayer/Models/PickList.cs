@@ -10,7 +10,7 @@ using Microsoft.Toolkit.Mvvm.ComponentModel;
 namespace ServiceLayer.Models
 {
    
-    public  partial class PickList : ObservableObject
+    public  partial class PickListDto : ObservableObject
     {
         [ObservableProperty]
         int pickListID;

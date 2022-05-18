@@ -5,7 +5,6 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
-
 using Neodynamic.SDK.Printing;
 
 namespace Mosiac.UX
@@ -16,7 +15,7 @@ namespace Mosiac.UX
         PrinterSettings _printerSettings = new PrinterSettings();
         int _copies = 1;
         PrintOrientation _printOrientation = PrintOrientation.Portrait;
-
+        
         
         
         public PrintJobDialog()
@@ -146,7 +145,7 @@ namespace Mosiac.UX
 
                 _copies = (int)this.nudCopies.Value;
                 _printOrientation = (PrintOrientation)Enum.Parse(typeof(PrintOrientation), this.cboPrintOrientation.SelectedItem.ToString());
-
+               
 
             }
             catch (Exception ex)

@@ -663,7 +663,7 @@ namespace Mosiac.UX.UXControls {
         {
             OrderReceiptViewerForm form = new OrderReceiptViewerForm();
             var receipt = _receiptRepository.LoadOrderReciept(orderDTO.PurchaseOrderID);
-            OrderReciept veiwer = new OrderReciept(receipt);
+            OrderReciept veiwer = new OrderReciept(receipt,ctx);
             veiwer.Dock = DockStyle.Fill;
             form.Controls.Add(veiwer);
             form.Text = $"Order Reciept {receipt.OrderReceiptId.ToString()}";

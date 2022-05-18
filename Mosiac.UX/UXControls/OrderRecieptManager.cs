@@ -42,13 +42,8 @@ namespace Mosiac.UX.UXControls
             //EmployeeService employeeService = new EmployeeService(_context);
 
             _suppliersService = new SuppliersService(_context);
-            //var emp = employeeService.Active();
-            //foreach (var item in emp)
-            //{
-            //    tscboEmployees.Items.Add(item.FullName);
-            //}
-           
             
+  
 
             //----------------------------- Pending Grid ------------------------------------
 
