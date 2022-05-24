@@ -70,21 +70,21 @@ namespace Mosiac.UX
             // Jobname --
             string txt2 = $"Job : {dto.jobname}";
             TextItem txtJobInfo = new TextItem(0.1, 0.24, 1.75, 0.30, txt2);
-            txtJobInfo.Sizing = TextSizing.ParagraphScaling;
-            txtJobInfo.Sizing = TextSizing.FontSizeScaling;
+            //txtJobInfo.Sizing = TextSizing.ParagraphScaling;
+            //txtJobInfo.Sizing = TextSizing.FontSizeScaling;
             txtItem.Font.Name = "ZPL Font 0";
             txtItem.Font.Size = 6;
 
             // Qnty Recieved --
             string txt3 = $"Qnty : {dto.QuantityReceived} - {dto.ReceiptDate.ToShortDateString()}";
-            TextItem txtDate = new TextItem(0.1, 0.4, 1.75, 0.22, txt3);
+            TextItem txtDate = new TextItem(0.1, 0.48, 1.75, 0.22, txt3);
             //txtDate.Sizing = TextSizing.ParagraphScaling;
             txtDate.Font.Name = "ZPL Font 0";
             txtDate.Font.Size = 7;
 
             //Recieved By
             string txt4 = $"Recieved by : {dto.firstname}";
-            TextItem txtReceiver = new TextItem(0.1, 0.5, 1.75, 0.24, txt4);         
+            TextItem txtReceiver = new TextItem(0.1, 0.6, 1.75, 0.24, txt4);         
             txtReceiver.Font.Name = "ZPL Font 0";
             txtReceiver.Font.Size = 7;
 
@@ -105,7 +105,7 @@ namespace Mosiac.UX
             tLabel.Items.Add(txtDate);
             tLabel.Items.Add(txtReceiver);
             tLabel.Items.Add(bc1);
-            //tLabel.Items.Add(bcItem2D);
+           
 
             return tLabel;
 

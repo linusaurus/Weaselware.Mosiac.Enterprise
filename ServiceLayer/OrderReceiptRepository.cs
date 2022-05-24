@@ -20,13 +20,17 @@ namespace ServiceLayer
         private readonly OrderReceiptMapper _mapper = new OrderReceiptMapper();
         private string _user;
         private int _userid;
-     
-    
+        private System.Data.Common.DbConnection con;
+ 
+
+
+
         public OrderReceiptRepository(MosaicContext context, string user,int id)
         { 
             _ctx = context;
             _user = user;
             _userid = id;
+            con = _ctx.Database.GetDbConnection();
         }
 
         /// <summary>
@@ -395,14 +399,13 @@ namespace ServiceLayer
             int lineid = orderReceiptLineID;
 
             StockTagDto dto = new StockTagDto();
-            using (var con = _ctx.Database.GetDbConnection())
-            {
+   
                 dto = con.QueryFirst<StockTagDto>("select ol.PurchaseOrderID,ol.OrderReceiptLineID,ol.LineID,i.StockTransactionID," +
                     "ol.InventoryAmount,rc.ReceiptDate, ol.Description, j.jobname, po.JobID,ol.QuantityReceived,e.firstname " +
                     "FROM OrderReceiptItems ol JOIN OrderReciept rc ON ol.OrderReceiptID = rc.OrderReceiptID " +
                     "JOIN PurchaseOrder po ON ol.PurchaseOrderID = po.PurchaseOrderID JOIN Job j ON ol.JobID = j.jobID "+
                     "JOIN Employee e ON rc.EmployeeID = e.employeeID JOIN Inventory i ON ol.LineID = i.LineID where ol.OrderReceiptLineID = @id", new {id = lineid});
-            }
+            
   
             return dto;
         }

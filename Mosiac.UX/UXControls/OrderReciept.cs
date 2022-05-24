@@ -5,6 +5,7 @@ using System.Linq;
 using System.Data;
 using System.Drawing;
 using System.Text;
+using System.Xml.Serialization;
 using ServiceLayer.Models;
 using ServiceLayer;
 using ServiceLayer.Services;
@@ -13,6 +14,7 @@ using Mosiac.UX;
 using System.Windows.Forms;
 using SkiaSharp;
 using Neodynamic.SDK.Printing;
+using System.IO;
 
 namespace Mosiac.UX.UXControls
 {
@@ -94,40 +96,53 @@ namespace Mosiac.UX.UXControls
 
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
+            PrinterSettings XmlData;
 
-            int k  = currentReceiptItem.LineID;
-            
-            if (currentReceiptItem != null)
+            // if the settings file doesn't exist-re-create them
+            if (!File.Exists(@"C:\Wml.xml"))
             {
-                StockTagDto dto = orderReceiptRepository.GetStockTag(currentReceiptItem.OrderReceiptLineID);
-                ThermalLabel tLabel = LabelEngine.GenerateStockTag(dto);
-
-                
                 //Display Print Job dialog...           
                 PrintJobDialog frmPrintJob = new PrintJobDialog();
-
-                
                 if (frmPrintJob.ShowDialog() == DialogResult.OK)
                 {
-                    //create a PrintJob object
-                    using (WindowsPrintJob pj = new WindowsPrintJob(frmPrintJob.PrinterSettings))
+                    XmlSerializer serializer = new XmlSerializer(typeof(PrinterSettings));
+                    using (TextWriter writer = new StreamWriter(@"C:\Wml.xml"))
                     {
-                       
-                        
-
-                        pj.Copies = frmPrintJob.Copies; // set copies
-                        pj.PrintOrientation = frmPrintJob.PrintOrientation; //set orientation
-                        pj.ThermalLabel = tLabel;
-
-                        //pj.CommandsOptimizationEnabled = false;
-                        pj.PrintAsGraphic(tLabel);
-                        //if (frmPrintJob.PrintAsGraphic)
-                        // pj.PrintAsGraphic(); //print to any printer using Windows driver
-                        //else
-                        //    pj.Print(); //print to thermal printer      
+                        serializer.Serialize(writer, frmPrintJob.PrinterSettings);
                     }
                 }
             }
+      
+            //Pull the settings from XML file --
+            XmlSerializer deserializer = new XmlSerializer(typeof(PrinterSettings));
+            TextReader reader = new StreamReader(@"C:\Wml.xml");
+            object obj = deserializer.Deserialize(reader);
+            XmlData = (PrinterSettings)obj;
+            reader.Close();
+            
+
+            List<OrderRecieptLineItemDto> labelItems = new List<OrderRecieptLineItemDto>();
+
+            using (WindowsPrintJob pj = new WindowsPrintJob(XmlData))
+            {
+
+                foreach (DataGridViewRow row in dgReceiptItems.SelectedRows)
+                {
+                    OrderRecieptLineItemDto rowItem = (OrderRecieptLineItemDto)row.DataBoundItem;
+                    if (rowItem != null)
+                    {
+                        StockTagDto ts = orderReceiptRepository.GetStockTag(rowItem.OrderReceiptLineID);
+                        ThermalLabel tLabel = LabelEngine.GenerateStockTag(ts);
+                        pj.Copies = 1; // set copies
+                        pj.PrintOrientation = PrintOrientation.Portrait; //set orientation
+                        pj.ThermalLabel = tLabel;
+                        pj.PrintAsGraphic(tLabel);
+                    }
+
+                }
+
+            }
+
         }
     }
 
