@@ -72,12 +72,12 @@ namespace Mosiac.UX.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string Setting {
+        public string PrintSettings {
             get {
-                return ((string)(this["Setting"]));
+                return ((string)(this["PrintSettings"]));
             }
             set {
-                this["Setting"] = value;
+                this["PrintSettings"] = value;
             }
         }
     }

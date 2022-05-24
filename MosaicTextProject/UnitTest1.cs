@@ -17,6 +17,7 @@ namespace MosaicTextProject
         {
             ctx = new MosaicContext("Data Source=dbserver;Initial Catalog=Mosaic;Integrated Security=True");
             service = new OrderReceiptRepository(ctx, "Richard", 8);
+            
         }
 
         [TearDown]
@@ -33,6 +34,18 @@ namespace MosaicTextProject
             Assert.IsNotNull(result);
             Assert.IsTrue(result.OrderReceiptLineID == 1178);
 
+        }
+
+        [Test]
+        public void Make_XML_Output()
+        {
+            
+            System.Xml.Serialization.XmlSerializer writer = new System.Xml.Serialization.XmlSerializer(currentReceiptItem.GetType());
+
+  
+            var path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "//SerializationOverview.xml";
+            System.IO.FileStream file = System.IO.File.Create(path);
+            writer.Serialize(file, currentReceiptItem);
         }
        
     }

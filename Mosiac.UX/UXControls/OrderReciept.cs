@@ -99,28 +99,32 @@ namespace Mosiac.UX.UXControls
             
             if (currentReceiptItem != null)
             {
-                //Print the StockTag looking up the inventory transaction
-                ThermalLabel tLabel = LabelEngine.GenerateStockTag(currentReceiptItem.LineID);
+                StockTagDto dto = orderReceiptRepository.GetStockTag(currentReceiptItem.OrderReceiptLineID);
+                ThermalLabel tLabel = LabelEngine.GenerateStockTag(dto);
 
+                
                 //Display Print Job dialog...           
                 PrintJobDialog frmPrintJob = new PrintJobDialog();
-                //frmPrintJob.Owner = this;
+
+                
                 if (frmPrintJob.ShowDialog() == DialogResult.OK)
                 {
                     //create a PrintJob object
-
                     using (WindowsPrintJob pj = new WindowsPrintJob(frmPrintJob.PrinterSettings))
                     {
+                       
+                        
+
                         pj.Copies = frmPrintJob.Copies; // set copies
                         pj.PrintOrientation = frmPrintJob.PrintOrientation; //set orientation
-                        pj.ThermalLabel = tLabel; // set the ThermalLabel object
-                        
-                        //pj.CommandsOptimizationEnabled = false;
+                        pj.ThermalLabel = tLabel;
 
-                        if (frmPrintJob.PrintAsGraphic)
-                            pj.PrintAsGraphic(); //print to any printer using Windows driver
-                        else
-                            pj.Print(); //print to thermal printer      
+                        //pj.CommandsOptimizationEnabled = false;
+                        pj.PrintAsGraphic(tLabel);
+                        //if (frmPrintJob.PrintAsGraphic)
+                        // pj.PrintAsGraphic(); //print to any printer using Windows driver
+                        //else
+                        //    pj.Print(); //print to thermal printer      
                     }
                 }
             }
