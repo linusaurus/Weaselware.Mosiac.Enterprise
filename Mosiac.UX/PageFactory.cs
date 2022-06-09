@@ -85,13 +85,6 @@ namespace Mosiac.UX
                     return jobTab;
                     break;
 
-                case TabPageType.RecieptManagerPage:
-                    //tab.Text = "Order Reciepts";
-                    //OrderReceiptsControl recieptsManagerControl = new OrderReceiptsControl(ctx);
-                    //recieptsManagerControl.Dock = DockStyle.Fill;
-                    //tab.Controls.Add(recieptsManagerControl);
-                    break;
-
                 case TabPageType.OrderReceiptHistoryPage:
                     tab.Text = "Order Reciepts";
                     OrderReceiptHistoryPage orderHistoryControl = new OrderReceiptHistoryPage(ctx);
@@ -116,25 +109,17 @@ namespace Mosiac.UX
                     PartManager partEditorControl = new PartManager(ctx);
                     partEditorControl.Dock = DockStyle.Fill;
                     tab.Controls.Add(partEditorControl);
-                    break;
-                case TabPageType.RecieveOrderControl:
-                    {
-                        //tab.Text = "Recieve Orders";
-                        //tab.Name = "RecieveOrder";
-                        //RecieveOrderControl ctr = new RecieveOrderControl(ctx);
-                        //ctr.Dock = DockStyle.Fill;
-                        //tab.Controls.Add(ctr);
-                    }
-                    break;
+                    break;     
 
                 // Open Part for Detailed Editing w/ resource --
                 case TabPageType.ManufacturersPage:
-                    {
+                    
                         tab.Text = "Manufacturers";
                         tab.Name = "Manufacturers";
-
-
-                    }
+                        ManufacturerControl manufacturerControl = new ManufacturerControl(ctx);
+                        manufacturerControl.Dock = DockStyle.Fill;
+                        tab.Controls.Add(manufacturerControl);
+                    
                     break;
                 case TabPageType.PurchaseOrderPage:
                     {                        

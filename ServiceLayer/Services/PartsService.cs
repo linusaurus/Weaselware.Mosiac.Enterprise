@@ -348,6 +348,35 @@ namespace ServiceLayer
             return m;
         }
 
+        public List<ManuListDTO> FindManufacturer(string searchTerm)
+        {
+            var m =  _context.Manu.AsNoTracking().Where(l => l.Manufacturer.Contains(searchTerm)).OrderBy(s => s.Manufacturer).Select(d => new ManuListDTO
+            {
+                ManufacturerName = d.Manufacturer,
+                ManuID = d.ManuID
+            }).ToList();
+            return m;
+        }
+
+        public async Task<List<PartFastSearchDto>> ReturnAllPartsAsync()
+        {
+            var result = await _context.Part.AsNoTracking()
+                   .Select(d => new PartFastSearchDto
+                   {
+                       Itemdescription = d.ItemDescription,
+                       PartID = d.PartID,
+                       PartNumber = d.PartNum,
+                       AddedBy = d.AddedBy,
+                       DateAdded = d.DateAdded.GetValueOrDefault().ToShortDateString()
+
+
+                   }).OrderByDescending(p => p.PartID).ToListAsync();
+
+            return result;
+
+        }
+
+
         public List<PartFastSearchDto> ReturnAllParts()
         {
               var result = _context.Part.AsNoTracking()

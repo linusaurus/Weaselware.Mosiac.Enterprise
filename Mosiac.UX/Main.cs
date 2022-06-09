@@ -112,10 +112,7 @@ namespace Mosiac.UX
         private void tsScanBarCode_Click(object sender, EventArgs e)
         {
 
-            TabPage searchPage = PageFactory.GetNewTabPage(_context, PageFactory.TabPageType.ItemSearchPage);
-
-            MainTabControl.TabPages.Add(searchPage);
-            MainTabControl.SelectedTab = searchPage;
+          
         }
 
         #endregion
@@ -363,21 +360,18 @@ namespace Mosiac.UX
                 case "tsManufacturer":
 
                     TabPage manufacturersPage = PageFactory.GetNewTabPage(_context, PageFactory.TabPageType.ManufacturersPage);
-                    manufacturersPage.Name = "ManufacturesPage";
+                    manufacturersPage.Name = "ManufacturerPage";
 
-                    if (!MainTabControl.TabPages.ContainsKey("ManufacturesPage"))
+                    if (!MainTabControl.TabPages.ContainsKey("ManufacturerPage"))
                     {
                         MainTabControl.TabPages.Add(manufacturersPage);
                         MainTabControl.SelectedTab = manufacturersPage;
                     }
                     else
                     {
-                        if (MainTabControl.TabPages.ContainsKey("ManufacturersPage"))
-                        { MainTabControl.SelectTab("ManufacturesPage"); }
-
+                        if (MainTabControl.TabPages.ContainsKey("ManufacturerPage"))
+                        { MainTabControl.SelectTab("ManufacturerPage"); }
                     }
-
-
 
                     break;
                 default:
