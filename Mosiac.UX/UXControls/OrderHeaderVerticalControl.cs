@@ -26,7 +26,7 @@ namespace Mosiac.UX.UXControls
       
 
         //-----------------------------------------------------
-        public event EventHandler  OnSaveHandler;
+        public event EventHandler OnSaveHandler;
         public event EventHandler OnPrintHandler;
         public event EventHandler OnOrderCanceledHandler;
         //-----------------------------------------------------
@@ -34,7 +34,7 @@ namespace Mosiac.UX.UXControls
         public event SupplierChangedEventHandler OnChangeSupplierHandler;
 
         public delegate void   OnJobChangedEventHandlerHandler(object sender, JobChangedArgs args);
-        public event OnJobChangedEventHandlerHandler OnJobChangedHandler;
+        public event OnJobChangedEventHandlerHandler OnJobChanged;
 
         public class SupplierChangeArgs : EventArgs
         {
@@ -105,6 +105,7 @@ namespace Mosiac.UX.UXControls
             }
         }
 
+        
 
         public OrderHeaderVerticalControl()
         {
@@ -258,7 +259,9 @@ namespace Mosiac.UX.UXControls
                 SelectJobForm frm = new SelectJobForm(ctx);
                 if (frm.ShowDialog() == DialogResult.OK)
                 {
-
+                    JobChangedArgs arg = new JobChangedArgs(frm.SelectedJob.jobID);
+                    this.txtJobName.Text = frm.SelectedJob.jobname;
+                    OnJobChanged(this,arg);
                 }
             }
 

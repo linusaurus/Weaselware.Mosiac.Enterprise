@@ -32,7 +32,7 @@ namespace DataLayer.Data
         public virtual DbSet<Document> Document { get; set; }
         public virtual DbSet<DocumentParts> DocumentParts { get; set; }
         public virtual DbSet<Employee> Employee { get; set; }
-        public virtual DbSet<Globals> Globals { get; set; }
+       // public virtual DbSet<Globals> Globals { get; set; }
         public virtual DbSet<Inventory> Inventory { get; set; }
         public virtual DbSet<Job> Job { get; set; }
         public virtual DbSet<JobSite> JobSite { get; set; }
@@ -373,18 +373,7 @@ namespace DataLayer.Data
                     .HasDefaultValueSql("('')");
             });
 
-            modelBuilder.Entity<Globals>(entity =>
-            {
-                entity.HasKey(e => e.GiD);
-
-                entity.Property(e => e.Data)
-                    .HasMaxLength(70)
-                    .IsFixedLength(true);
-
-                entity.Property(e => e.ElementName)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-            });
+           
 
             modelBuilder.Entity<Inventory>(entity =>
             {

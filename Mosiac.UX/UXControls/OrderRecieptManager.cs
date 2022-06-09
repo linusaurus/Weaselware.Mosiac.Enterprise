@@ -12,7 +12,7 @@ using ServiceLayer;
 using ServiceLayer.Enums;
 using ServiceLayer.Models;
 using ServiceLayer.Mappers;
-
+using Mosiac.UX.Services;
 
 namespace Mosiac.UX.UXControls
 {
@@ -37,7 +37,7 @@ namespace Mosiac.UX.UXControls
             _context = context;
             Grids.BuildPendingOrdersGrid(dgPendingOrders);
             Grids.BuildOrderLineItemsGrid(dgOrderLineItems);
-            _orderReceiptRepository = new OrderReceiptRepository(_context, Globals.CurrentUserName, Globals.CurrentLoggedUserID);
+            _orderReceiptRepository = new OrderReceiptRepository(_context, Mosiac.UX.Services.Globals.CurrentUserName, Mosiac.UX.Services.Globals.CurrentLoggedUserID);
             ordersService = new OrdersService(_context);
             //EmployeeService employeeService = new EmployeeService(_context);
 

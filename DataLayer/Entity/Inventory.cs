@@ -3,6 +3,7 @@
 using System;
 using System.Collections.Generic;
 
+
 namespace DataLayer.Entity
 {
     public partial class Inventory

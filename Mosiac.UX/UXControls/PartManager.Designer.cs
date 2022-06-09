@@ -59,6 +59,7 @@ namespace Mosiac.UX.UXControls
             this.btnShowAll = new System.Windows.Forms.Button();
             this.tsResources = new System.Windows.Forms.ToolStrip();
             this.tsbCollapsePanel = new System.Windows.Forms.ToolStripButton();
+            this.btnPrintLabel = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgPartsSearch)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgResources)).BeginInit();
@@ -432,11 +433,26 @@ namespace Mosiac.UX.UXControls
             this.tsbCollapsePanel.Size = new System.Drawing.Size(23, 22);
             this.tsbCollapsePanel.Text = "toolStripButton3";
             // 
+            // btnPrintLabel
+            // 
+            this.btnPrintLabel.AutoSize = true;
+            this.btnPrintLabel.FlatAppearance.BorderColor = System.Drawing.Color.Sienna;
+            this.btnPrintLabel.FlatAppearance.BorderSize = 2;
+            this.btnPrintLabel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPrintLabel.Location = new System.Drawing.Point(1001, 62);
+            this.btnPrintLabel.Name = "btnPrintLabel";
+            this.btnPrintLabel.Size = new System.Drawing.Size(139, 29);
+            this.btnPrintLabel.TabIndex = 17;
+            this.btnPrintLabel.Text = "Print Label";
+            this.btnPrintLabel.UseVisualStyleBackColor = true;
+            this.btnPrintLabel.Click += new System.EventHandler(this.btnPrintLabel_Click);
+            // 
             // PartManager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.tsResources);
+            this.Controls.Add(this.btnPrintLabel);
             this.Controls.Add(this.btnShowAll);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.btnSave);
@@ -512,5 +528,6 @@ namespace Mosiac.UX.UXControls
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.ToolStrip tsResources;
         private System.Windows.Forms.ToolStripButton tsbCollapsePanel;
+        private System.Windows.Forms.Button btnPrintLabel;
     }
 }

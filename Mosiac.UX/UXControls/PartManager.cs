@@ -13,9 +13,11 @@ using ServiceLayer.Mappers;
 using System;
 using System.Diagnostics;
 using System.Drawing;
-using Mosiac.UX;
 using Mosiac.UX.Forms;
 using System.ComponentModel;
+using Neodynamic.SDK.Printing;
+using System.Xml.Serialization;
+using Mosiac.UX.Services;
 
 namespace Mosiac.UX.UXControls
 {
@@ -67,6 +69,7 @@ namespace Mosiac.UX.UXControls
             cboManu.DataSource = manus;
             cboManu.DisplayMember = "ManufacturerName";
             cboManu.ValueMember = "ManuID";
+            cboManu.SelectedIndex = 1;
             
             bsPart.ListChanged += BsPart_ListChanged;
             bsResource.ListChanged += BsResource_ListChanged;
@@ -379,7 +382,7 @@ namespace Mosiac.UX.UXControls
             {
                 _partBeingEdited = (Part)frm.bsPart.DataSource;
                 partMapper.Map(_partBeingEdited, _selectedPart);
-                int id = partsService.InsertOrUpdate(_selectedPart,Globals.CurrentUserName);
+                int id = partsService.InsertOrUpdate(_selectedPart, Mosiac.UX.Services.Globals.CurrentUserName);
                 //int id = partsService.Find(_selectedPart.PartID).PartID;
                // _ctx.Entry(_partBeingEdited).State = EntityState.Added;
                // _ctx.SaveChanges();
@@ -568,5 +571,61 @@ namespace Mosiac.UX.UXControls
                     break;
             }
         }
+
+        #region Label Printing
+        // Print a part label to 2.25 x 1 .25 label Zebra 2824
+        private void btnPrintLabel_Click(object sender, EventArgs e)
+        {
+            ThermalLabel tlabel;
+
+            if (_partBeingEdited != null)
+            {
+
+                PartListDto partListDto = partsService.GetPartLabel(_partBeingEdited.PartID);
+              
+                tlabel = LabelEngine.GeneratePartLabel(partListDto);
+
+                PrinterSettings XmlData;
+
+                // if the settings file doesn't exist-re-create them
+                if (!File.Exists(@"C:\Wml.xml"))
+                {
+                    //Display Print Job dialog...           
+                    PrintJobDialog frmPrintJob = new PrintJobDialog();
+                    if (frmPrintJob.ShowDialog() == DialogResult.OK)
+                    {
+                        XmlSerializer serializer = new XmlSerializer(typeof(PrinterSettings));
+                        using (TextWriter writer = new StreamWriter(@"C:\Wml.xml"))
+                        {
+                            serializer.Serialize(writer, frmPrintJob.PrinterSettings);
+                        }
+                    }
+                }
+
+                //Pull the settings from XML file --
+                XmlSerializer deserializer = new XmlSerializer(typeof(PrinterSettings));
+                TextReader reader = new StreamReader(@"C:\Wml.xml");
+                object obj = deserializer.Deserialize(reader);
+                XmlData = (PrinterSettings)obj;
+                reader.Close();
+
+
+               
+
+                using (WindowsPrintJob pj = new WindowsPrintJob(XmlData))
+                {
+
+
+                            pj.Copies = 1; // set copies
+                            pj.PrintOrientation = PrintOrientation.Portrait; //set orientation
+                            pj.ThermalLabel = tlabel;
+                            pj.PrintAsGraphic(tlabel);
+
+                }
+            }
+            
+        }
+
+        #endregion
     }
 }

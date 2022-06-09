@@ -7,12 +7,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Mosiac.UX.UXControls
+namespace Mosiac.UX.Helpers
 {
     public static class FileDialogHelpers
     {
 
-      
+
 
         public static FileInfo GetFile()
         {

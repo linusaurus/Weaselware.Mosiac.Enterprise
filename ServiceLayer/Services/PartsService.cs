@@ -120,6 +120,22 @@ namespace ServiceLayer
 
 
         }
+
+        public PartListDto GetPartLabel(int partID)
+        {
+            var result = _context.Part.AsNoTracking().Include(m => m.Manu).Where(p => p.PartID == partID).Select(d => new PartListDto
+            {
+                Itemdescription = d.ItemDescription,
+                PartID = d.PartID,
+                Manufacturer = d.Manu.Manufacturer,
+                Location = d.Location
+
+
+            }).FirstOrDefault();
+
+            return result;
+        }
+
         // Return Part of null if not found
         public Part Find(int PartID)
         {

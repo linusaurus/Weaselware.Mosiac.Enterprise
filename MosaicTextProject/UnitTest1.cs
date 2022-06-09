@@ -40,12 +40,12 @@ namespace MosaicTextProject
         public void Make_XML_Output()
         {
             
-            System.Xml.Serialization.XmlSerializer writer = new System.Xml.Serialization.XmlSerializer(currentReceiptItem.GetType());
+            //System.Xml.Serialization.XmlSerializer writer = new System.Xml.Serialization.XmlSerializer(currentReceiptItem.GetType());
 
   
-            var path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "//SerializationOverview.xml";
-            System.IO.FileStream file = System.IO.File.Create(path);
-            writer.Serialize(file, currentReceiptItem);
+            //var path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "//SerializationOverview.xml";
+            //System.IO.FileStream file = System.IO.File.Create(path);
+            //writer.Serialize(file, currentReceiptItem);
         }
        
     }

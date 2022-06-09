@@ -44,12 +44,13 @@ namespace Mosiac.UX
             this.tsbJobItems = new System.Windows.Forms.ToolStripButton();
             this.tsbJobOrders = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.tsScanBarCode = new System.Windows.Forms.ToolStripLabel();
+            this.tsManufacturer = new System.Windows.Forms.ToolStripLabel();
             this.tsSettingsButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripTextBox1 = new System.Windows.Forms.ToolStripTextBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.MainTabControl = new System.Windows.Forms.TabControl();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.mainToolStrip.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -65,14 +66,15 @@ namespace Mosiac.UX
             this.tsSupplerOrders,
             this.tsbReceiveOrder,
             this.tsbReceipts,
+            this.toolStripSeparator4,
             this.tsPartEditor,
+            this.tsSettingsButton,
+            this.tsManufacturer,
             this.toolStripSeparator2,
             this.tsJobsManager,
             this.tsbJobItems,
             this.tsbJobOrders,
             this.toolStripSeparator3,
-            this.tsScanBarCode,
-            this.tsSettingsButton,
             this.toolStripTextBox1});
             this.mainToolStrip.Location = new System.Drawing.Point(0, 0);
             this.mainToolStrip.Name = "mainToolStrip";
@@ -184,27 +186,27 @@ namespace Mosiac.UX
             this.toolStripSeparator3.Name = "toolStripSeparator3";
             this.toolStripSeparator3.Size = new System.Drawing.Size(6, 55);
             // 
-            // tsScanBarCode
+            // tsManufacturer
             // 
-            this.tsScanBarCode.Image = global::Mosiac.UX.Properties.Resources.twotone_equalizer_black_24dp;
-            this.tsScanBarCode.Margin = new System.Windows.Forms.Padding(15, 1, 15, 2);
-            this.tsScanBarCode.Name = "tsScanBarCode";
-            this.tsScanBarCode.Size = new System.Drawing.Size(79, 52);
-            this.tsScanBarCode.Text = "Stock Actions";
-            this.tsScanBarCode.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.tsScanBarCode.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.tsScanBarCode.ToolTipText = "Lookup Stock Tag";
-            this.tsScanBarCode.Click += new System.EventHandler(this.tsScanBarCode_Click);
+            this.tsManufacturer.Image = ((System.Drawing.Image)(resources.GetObject("tsManufacturer.Image")));
+            this.tsManufacturer.Margin = new System.Windows.Forms.Padding(15, 1, 15, 2);
+            this.tsManufacturer.Name = "tsManufacturer";
+            this.tsManufacturer.Size = new System.Drawing.Size(84, 52);
+            this.tsManufacturer.Text = "Manufacturers";
+            this.tsManufacturer.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.tsManufacturer.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.tsManufacturer.ToolTipText = "Manufacturer Manager";
+            this.tsManufacturer.Click += new System.EventHandler(this.tsScanBarCode_Click);
             // 
             // tsSettingsButton
             // 
             this.tsSettingsButton.CheckOnClick = true;
-            this.tsSettingsButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsSettingsButton.Image = global::Mosiac.UX.Properties.Resources.printer;
+            this.tsSettingsButton.Image = ((System.Drawing.Image)(resources.GetObject("tsSettingsButton.Image")));
             this.tsSettingsButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsSettingsButton.Name = "tsSettingsButton";
             this.tsSettingsButton.Size = new System.Drawing.Size(36, 52);
-            this.tsSettingsButton.Text = "search";
+            this.tsSettingsButton.Text = "Scan";
+            this.tsSettingsButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.tsSettingsButton.Click += new System.EventHandler(this.tsSettingsButton_Click);
             // 
             // toolStripTextBox1
@@ -245,6 +247,11 @@ namespace Mosiac.UX
             this.MainTabControl.SelectedIndexChanged += new System.EventHandler(this.MaintabControl_SelectedIndexChanged);
             this.MainTabControl.MouseClick += new System.Windows.Forms.MouseEventHandler(this.MainTabControl_MouseClick);
             // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 55);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -278,7 +285,7 @@ namespace Mosiac.UX
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         public System.Windows.Forms.TabControl MainTabControl;
         private System.Windows.Forms.ToolStripButton tsSettingsButton;
-        private System.Windows.Forms.ToolStripLabel tsScanBarCode;
+        private System.Windows.Forms.ToolStripLabel tsManufacturer;
         private System.Windows.Forms.ToolStripButton tsbJobItems;
         private System.Windows.Forms.ToolStripButton tsPartEditor;
         private System.Windows.Forms.ToolStripButton tsOrderButton;
@@ -295,6 +302,7 @@ namespace Mosiac.UX
 
         private System.Windows.Forms.ToolStripTextBox toolStripTextBox1;
         private System.Windows.Forms.ToolStripButton tsbReceipts;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
     }
 }
 

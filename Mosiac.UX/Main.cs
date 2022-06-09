@@ -17,6 +17,7 @@ using Mosiac.UX.UXControls;
 using Mosiac.UX.Properties;
 using System.Reflection;
 using Neodynamic.SDK.Printing;
+using Mosiac.UX.Services;
 
 namespace Mosiac.UX
 {
@@ -67,7 +68,7 @@ namespace Mosiac.UX
             //_context = new MosaicContext();
 
             var emp = _context.Employee.Where(p => p.employeeID == LoggedOnUserID).FirstOrDefault();
-            this.toolStripStatusLabel1.Text = "User= " + Globals.CurrentUserName;
+            this.toolStripStatusLabel1.Text = "User= " + Mosiac.UX.Services.Globals.CurrentUserName;
             // Globals.CurrentUserName = emp.Firstname + " " + emp.Lastname;
             TabPage myOrdersTab = PageFactory.GetNewTabPage(_context, PageFactory.TabPageType.MyOrdersPage);
             myOrdersTab.Name = "myOrdersTab";
@@ -357,6 +358,25 @@ namespace Mosiac.UX
                         { MainTabControl.SelectTab("JobOrderPage"); }
 
                     }
+                    break;
+
+                case "tsManufacturer":
+
+                    TabPage manufacturersPage = PageFactory.GetNewTabPage(_context, PageFactory.TabPageType.ManufacturersPage);
+                    manufacturersPage.Name = "ManufacturesPage";
+
+                    if (!MainTabControl.TabPages.ContainsKey("ManufacturesPage"))
+                    {
+                        MainTabControl.TabPages.Add(manufacturersPage);
+                        MainTabControl.SelectedTab = manufacturersPage;
+                    }
+                    else
+                    {
+                        if (MainTabControl.TabPages.ContainsKey("ManufacturersPage"))
+                        { MainTabControl.SelectTab("ManufacturesPage"); }
+
+                    }
+
 
 
                     break;

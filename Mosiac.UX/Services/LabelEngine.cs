@@ -8,46 +8,64 @@ using ServiceLayer.Services;
 using ServiceLayer.Models;
 
 
-namespace Mosiac.UX
+namespace Mosiac.UX.Services
 {
     public class LabelEngine
     {
 
         public LabelEngine()
         {
-            
+
         }
 
-       
 
-        public static ThermalLabel GeneratePartLabel(int PartID)
+        // Creates a Part Label 2.25 x 1.25
+        public static ThermalLabel GeneratePartLabel(PartListDto dto)
         {
 
-            
-            //Define a ThermalLabel object and set unit to inch and label size
-            ThermalLabel tLabel = new ThermalLabel(UnitType.Inch, 2, 1);
-            tLabel.GapLength = 0.2;
 
-            TextItem txtItem = new TextItem(0.2, 0.2, 2.5, 0.5, "Thermal Label Test");
+            //Define a ThermalLabel object and set unit to inch and label size
+            ThermalLabel tLabel = new ThermalLabel(UnitType.Inch, 2.25, 1.25);
+            tLabel.GapLength = 0.12;
+            // Label Header --
+            string txt1 = $"PART  # {dto.PartID.ToString()}";
+            TextItem txtItem = new TextItem(0.1, 0.1, 1.75, 0.25, txt1);
             txtItem.Font.Name = "ZPL Font 0";
             txtItem.Font.Size = 12;
+            txtItem.Font.Bold = true;
 
-            //Define a BarcodeItem object (Linear 1D)
-            BarcodeItem bcItem = new BarcodeItem(0.2, 1, 2, 2, BarcodeSymbology.Code128, "ABC123");
-            //Set bars height to .75inch
-            bcItem.BarHeight = 0.75;
-            //Set bars width to 0.0104inch
-            bcItem.BarWidth = 0.0104;
+            // Jobname --
+            string txt2 = dto.Itemdescription;
+            TextItem txtJobInfo = new TextItem(0.1, 0.26, 1.85, 0.30, txt2);
+            txtJobInfo.Sizing = TextSizing.ParagraphScaling;
+            //txtJobInfo.Sizing = TextSizing.FontSizeScaling;
+            txtItem.Font.Name = "ZPL Font 0";
+            txtItem.Font.Size = 6;
 
-            //Define a BarcodeItem object (2D)
-            BarcodeItem bcItem2D = new BarcodeItem(2.5, 1, 1, 1, BarcodeSymbology.QRCode, "Encoding Current Date: " + DateTime.Now.ToShortDateString());
-            //Set symbol sizing
-            bcItem2D.Sizing = BarcodeSizing.FitProportional;
+            // Qnty Recieved --
+            string txt3 = $"SOURCE : {dto.Manufacturer}";
+            TextItem txtDate = new TextItem(0.1, 0.62, 1.85, 0.22, txt3);
+            //txtDate.Sizing = TextSizing.ParagraphScaling;
+            txtDate.Font.Name = "ZPL Font 0";
+            txtDate.Font.Size = 6;
+
+
+            //Define a **BarcodeItem** object for encoding Code 39 symbology
+            BarcodeItem bc1 = new BarcodeItem(0.25, 0.85, 1.5, .375, BarcodeSymbology.Code39, dto.PartID.ToString());
+            bc1.AddChecksum = false;
+            bc1.CodeAlignment = BarcodeTextAlignment.BelowCenter;
+            bc1.BarWidth = 0.01;
+            bc1.BarHeight = 0.5;
+            bc1.QuietZone = new FrameThickness(0);
+            bc1.BarcodeAlignment = BarcodeAlignment.MiddleCenter;
+            bc1.Sizing = BarcodeSizing.FitProportional;
+            bc1.Font.Size = 6;
 
             //Add items to ThermalLabel object...
             tLabel.Items.Add(txtItem);
-            tLabel.Items.Add(bcItem);
-            tLabel.Items.Add(bcItem2D);
+            tLabel.Items.Add(txtJobInfo);
+            tLabel.Items.Add(txtDate);
+            tLabel.Items.Add(bc1);
 
             return tLabel;
 
@@ -84,7 +102,7 @@ namespace Mosiac.UX
 
             //Recieved By
             string txt4 = $"Recieved by : {dto.firstname}";
-            TextItem txtReceiver = new TextItem(0.1, 0.6, 1.75, 0.24, txt4);         
+            TextItem txtReceiver = new TextItem(0.1, 0.6, 1.75, 0.24, txt4);
             txtReceiver.Font.Name = "ZPL Font 0";
             txtReceiver.Font.Size = 7;
 
@@ -98,14 +116,14 @@ namespace Mosiac.UX
             bc1.BarcodeAlignment = BarcodeAlignment.MiddleCenter;
             bc1.Sizing = BarcodeSizing.FitProportional;
             bc1.Font.Size = 5;
-    
+
             //Add items to ThermalLabel object...
             tLabel.Items.Add(txtItem);
             tLabel.Items.Add(txtJobInfo);
             tLabel.Items.Add(txtDate);
             tLabel.Items.Add(txtReceiver);
             tLabel.Items.Add(bc1);
-           
+
 
             return tLabel;
 

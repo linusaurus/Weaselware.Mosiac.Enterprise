@@ -10,6 +10,7 @@ using ServiceLayer.Mappers;
 using ServiceLayer.Models;
 using DataLayer.Data;
 using DataLayer.Entity;
+using Mosiac.UX.Services;
 
 namespace Mosiac.UX
 {
@@ -36,7 +37,7 @@ namespace Mosiac.UX
             receiptDto = new OrderReceiptDto();
 
             ordersService = new OrdersService(_ctx);
-            orderReceiptRepository = new OrderReceiptRepository(_ctx, Globals.CurrentUserName, Globals.CurrentLoggedUserID);
+            orderReceiptRepository = new OrderReceiptRepository(_ctx, Mosiac.UX.Services.Globals.CurrentUserName, Globals.CurrentLoggedUserID);
             receiptDto = orderReceiptRepository.LoadOrderReciept(purchaseOrderID);
             bsOrderReceipt.DataSource = receiptDto;
             //dgOrderReceiptItemGrid.DataSource = receiptDto.OrderReceiptLineItems;
@@ -62,13 +63,13 @@ namespace Mosiac.UX
  
                     DataGridViewRow r = dg.Rows[e.RowIndex];
     
-                    if (or.ItemsRecievedComplete == true)
-                    {
-                        r.DefaultCellStyle.ForeColor = Color.Black;
-                        r.DefaultCellStyle.BackColor = Color.LightGray;
-                        r.DefaultCellStyle.Font = new Font(dg.Font,FontStyle.Strikeout);
-                        r.ReadOnly = true;
-                    }
+                    //if (or.ItemsRecievedComplete == true)
+                    //{
+                    //    r.DefaultCellStyle.ForeColor = Color.Black;
+                    //    r.DefaultCellStyle.BackColor = Color.LightGray;
+                    //    r.DefaultCellStyle.Font = new Font(dg.Font,FontStyle.Strikeout);
+                    //    r.ReadOnly = true;
+                    //}
                    
 
 

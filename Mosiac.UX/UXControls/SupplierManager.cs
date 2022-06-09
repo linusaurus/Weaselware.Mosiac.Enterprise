@@ -11,6 +11,7 @@ using DataLayer.Entity;
 using System.Windows.Forms;
 using Microsoft.EntityFrameworkCore;
 using ServiceLayer.Models;
+using Mosiac.UX.Services;
 
 namespace Mosiac.UX.UXControls
 {
@@ -31,7 +32,7 @@ namespace Mosiac.UX.UXControls
             tbcOrderReciepts.Padding = new System.Drawing.Point(26, 4);
             _ctx = context;
             _suppliersService = new SuppliersService(_ctx);
-            _orderReceiptService = new OrderReceiptRepository(_ctx, Globals.CurrentUserName, Globals.CurrentLoggedUserID);
+            _orderReceiptService = new OrderReceiptRepository(_ctx, Mosiac.UX.Services.Globals.CurrentUserName, Mosiac.UX.Services.Globals.CurrentLoggedUserID);
             SupplierSelector selector = new SupplierSelector(_suppliersService);
             selector.Dock = DockStyle.Fill;
             MainSplitContainer.Panel1.Controls.Add(selector);

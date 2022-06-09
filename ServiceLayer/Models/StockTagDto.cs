@@ -18,7 +18,6 @@ namespace ServiceLayer.Models
         public string jobname { get; set; }
         public int JobID { get; set; }
         public decimal QuantityReceived { get; set; }
-
         public string firstname { get; set; }
     }
 }

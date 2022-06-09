@@ -10,11 +10,11 @@ using ServiceLayer.Models;
 using ServiceLayer;
 using ServiceLayer.Services;
 using DataLayer.Data;
-using Mosiac.UX;
 using System.Windows.Forms;
 using SkiaSharp;
 using Neodynamic.SDK.Printing;
 using System.IO;
+using Mosiac.UX.Services;
 
 namespace Mosiac.UX.UXControls
 {
@@ -27,7 +27,7 @@ namespace Mosiac.UX.UXControls
         OrderReceiptRepository orderReceiptRepository;
         internal OrderRecieptLineItemDto currentReceiptItem;
         readonly MosaicContext mosaicContext;
-        
+        BindingSource bsInventory = new BindingSource();
 
         public OrderReciept(OrderReceiptDto dto, MosaicContext context)
         {
@@ -46,6 +46,13 @@ namespace Mosiac.UX.UXControls
             dgReceiptItems.ReadOnly = true;
             dgReceiptItems.BackgroundColor = System.Drawing.Color.Gray;
             BindOrderReceipt(bsOrderReceipt);
+            bsInventory.CurrentItemChanged += BsInventory_CurrentItemChanged;
+        }
+
+        private void BsInventory_CurrentItemChanged(object sender, EventArgs e)
+        {
+            var c = e;
+            btnOK.BackColor = System.Drawing.Color.Bisque;
         }
 
         private void DgReceiptItems_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
@@ -75,9 +82,20 @@ namespace Mosiac.UX.UXControls
           
         }
 
-        private void BindInventory()
+        private void BindInventory(BindingSource bs)
         {
-
+            // Clear the binding and data
+            txtTransactionID.DataBindings.Clear();
+            txtDescription.DataBindings.Clear();
+            txtDateStamp.DataBindings.Clear();
+            txtQntyRecieved.DataBindings.Clear();
+            txtInventoryAmount.DataBindings.Clear();
+            // Bind the datasource
+            txtTransactionID.DataBindings.Add("Text",bs,"StockTransactionID");
+            txtDescription.DataBindings.Add("Text",bs,"Description");
+            txtDateStamp.DataBindings.Add("Text", bs, "DateStamp",true,DataSourceUpdateMode.OnPropertyChanged,"","d");
+            txtQntyRecieved.DataBindings.Add("Text", bs, "QntyReceived");
+            txtInventoryAmount.DataBindings.Add("Text", bs, "InventoryAmount",true,DataSourceUpdateMode.OnPropertyChanged);
         }
 
         private void dgReceiptItems_SelectionChanged(object sender, EventArgs e)
@@ -87,9 +105,12 @@ namespace Mosiac.UX.UXControls
             {
                 if (dvg.Rows.Count > 0)
                 {
-                    BindingManagerBase bm = dvg.BindingContext[orderReceipt, "OrderReceiptLineItems"];
-                    currentReceiptItem = (OrderRecieptLineItemDto)bm.Current;
-                    
+                    currentReceiptItem = (OrderRecieptLineItemDto)dvg.CurrentRow.DataBoundItem;
+                    // Return the inventory transaction for the Reciept item --
+                    var inventory = mosaicContext.Inventory.Where(k => k.LineID == currentReceiptItem.LineID).FirstOrDefault();
+                    //InventoryDto inventoryDto = orderReceiptRepository.GetInventoryItem(lineID);
+                    bsInventory.DataSource = inventory;
+                    BindInventory(bsInventory);    
                 }
             }
         }

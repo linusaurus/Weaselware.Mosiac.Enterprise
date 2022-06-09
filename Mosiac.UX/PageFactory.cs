@@ -9,9 +9,10 @@ using DataLayer.Data;
 using DataLayer.Entity;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Mosiac.UX.UXControls;
+using Mosiac.UX.Services;
 
-namespace Mosiac.UX 
-{ 
+namespace Mosiac.UX
+{
     public class PageFactory
     {
         public enum TabPageType
@@ -25,6 +26,7 @@ namespace Mosiac.UX
             RecieptManagerPage,
             LabelEditorPage,
             JobManagerPage,
+            ManufacturersPage,
             StockBill,
             PartEditorPage,
             PartDetailEdit,
@@ -58,7 +60,7 @@ namespace Mosiac.UX
                 case TabPageType.MyOrdersPage:
                     tab.Text = "Order";
                     tab.Name = "myOrdersPage";
-                    MyOrdersControl myOrdersPage = new MyOrdersControl(ctx,Globals.CurrentLoggedUserID);
+                    MyOrdersControl myOrdersPage = new MyOrdersControl(ctx, Mosiac.UX.Services.Globals.CurrentLoggedUserID);
                     myOrdersPage.Dock = DockStyle.Fill;
                     tab.Controls.Add(myOrdersPage);
                     break;
@@ -126,35 +128,12 @@ namespace Mosiac.UX
                     break;
 
                 // Open Part for Detailed Editing w/ resource --
-                case TabPageType.PartDetailEdit:
+                case TabPageType.ManufacturersPage:
                     {
+                        tab.Text = "Manufacturers";
+                        tab.Name = "Manufacturers";
 
-                        //if (key != 0)
-                        //{
-                        //    Part p = ctx.Part.Find(key);
-                        //    if (p != null)
-                        //    {
-                        //        tab.Text = $"Part Edit : {p.PartID.ToString()}";
-                        //        PartView ctr = new PartView(p, ctx);
-                        //        ctr.Dock = DockStyle.Fill;
-                        //        tab.Controls.Add(ctr);
 
-                        //    }
-                        //}
-                        //// This is a new Part
-                        //else
-                        //{
-                        //    tab.Text = $"Part Edit : {"New*"}";
-                        //    Part newPart;
-                        //    using ( var partService = new Weaselware.Mosiac.DataAccess.Services.PartsService(ctx))
-                        //    {
-                        //       newPart = partService.New();
-                        //    }
-                        //    PartView ctr = new PartView(newPart, ctx);
-                        //    ctr.Dock = DockStyle.Fill;
-                        //    tab.Controls.Add(ctr);
-                        //}
-                        
                     }
                     break;
                 case TabPageType.PurchaseOrderPage:

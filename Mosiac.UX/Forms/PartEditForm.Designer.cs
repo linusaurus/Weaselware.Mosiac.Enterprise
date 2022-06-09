@@ -30,10 +30,12 @@ namespace Mosiac.UX.Forms
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnLinkToUPC = new System.Windows.Forms.Button();
+            this.txtSKU = new System.Windows.Forms.TextBox();
             this.txtPartNum = new System.Windows.Forms.TextBox();
             this.btnAddManu = new System.Windows.Forms.Button();
             this.cboPartManu = new System.Windows.Forms.ComboBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.bntCancel = new System.Windows.Forms.Button();
             this.btnApply = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.cbxObsolete = new System.Windows.Forms.CheckBox();
@@ -48,6 +50,8 @@ namespace Mosiac.UX.Forms
             this.txtUnitPrice = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -57,17 +61,17 @@ namespace Mosiac.UX.Forms
             this.label8 = new System.Windows.Forms.Label();
             this.txtPartID = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnLinkToUPC);
+            this.groupBox1.Controls.Add(this.txtSKU);
             this.groupBox1.Controls.Add(this.txtPartNum);
             this.groupBox1.Controls.Add(this.btnAddManu);
             this.groupBox1.Controls.Add(this.cboPartManu);
-            this.groupBox1.Controls.Add(this.button1);
+            this.groupBox1.Controls.Add(this.bntCancel);
             this.groupBox1.Controls.Add(this.btnApply);
             this.groupBox1.Controls.Add(this.btnSave);
             this.groupBox1.Controls.Add(this.cbxObsolete);
@@ -95,25 +99,44 @@ namespace Mosiac.UX.Forms
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(576, 270);
+            this.groupBox1.Size = new System.Drawing.Size(560, 281);
             this.groupBox1.TabIndex = 9;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Part Details";
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
+            // btnLinkToUPC
+            // 
+            this.btnLinkToUPC.Location = new System.Drawing.Point(271, 201);
+            this.btnLinkToUPC.Name = "btnLinkToUPC";
+            this.btnLinkToUPC.Size = new System.Drawing.Size(90, 23);
+            this.btnLinkToUPC.TabIndex = 14;
+            this.btnLinkToUPC.Text = "Link UPC";
+            this.btnLinkToUPC.UseVisualStyleBackColor = true;
+            this.btnLinkToUPC.Click += new System.EventHandler(this.btnLinkToUPC_Click);
+            // 
+            // txtSKU
+            // 
+            this.txtSKU.Location = new System.Drawing.Point(367, 200);
+            this.txtSKU.Name = "txtSKU";
+            this.txtSKU.Size = new System.Drawing.Size(169, 23);
+            this.txtSKU.TabIndex = 13;
+            this.txtSKU.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // txtPartNum
             // 
-            this.txtPartNum.Location = new System.Drawing.Point(319, 174);
+            this.txtPartNum.Location = new System.Drawing.Point(367, 174);
             this.txtPartNum.Name = "txtPartNum";
-            this.txtPartNum.Size = new System.Drawing.Size(217, 23);
+            this.txtPartNum.Size = new System.Drawing.Size(169, 23);
             this.txtPartNum.TabIndex = 13;
+            this.txtPartNum.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // btnAddManu
             // 
             this.btnAddManu.FlatAppearance.BorderSize = 0;
             this.btnAddManu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddManu.Image = global::Mosiac.UX.Properties.Resources.round_add_circle_outline_black_24dp1;
-            this.btnAddManu.Location = new System.Drawing.Point(195, 231);
+            this.btnAddManu.Location = new System.Drawing.Point(195, 239);
             this.btnAddManu.Name = "btnAddManu";
             this.btnAddManu.Size = new System.Drawing.Size(25, 23);
             this.btnAddManu.TabIndex = 12;
@@ -123,27 +146,27 @@ namespace Mosiac.UX.Forms
             // cboPartManu
             // 
             this.cboPartManu.FormattingEnabled = true;
-            this.cboPartManu.Location = new System.Drawing.Point(23, 231);
+            this.cboPartManu.Location = new System.Drawing.Point(23, 239);
             this.cboPartManu.Name = "cboPartManu";
             this.cboPartManu.Size = new System.Drawing.Size(168, 23);
             this.cboPartManu.TabIndex = 11;
             // 
-            // button1
+            // bntCancel
             // 
-            this.button1.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Location = new System.Drawing.Point(319, 212);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(68, 28);
-            this.button1.TabIndex = 10;
-            this.button1.Text = "Cancel";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.bntCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.bntCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bntCancel.Location = new System.Drawing.Point(319, 238);
+            this.bntCancel.Name = "bntCancel";
+            this.bntCancel.Size = new System.Drawing.Size(68, 28);
+            this.bntCancel.TabIndex = 10;
+            this.bntCancel.Text = "Cancel";
+            this.bntCancel.UseVisualStyleBackColor = true;
+            this.bntCancel.Click += new System.EventHandler(this.button1_Click);
             // 
             // btnApply
             // 
             this.btnApply.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnApply.Location = new System.Drawing.Point(393, 212);
+            this.btnApply.Location = new System.Drawing.Point(393, 238);
             this.btnApply.Name = "btnApply";
             this.btnApply.Size = new System.Drawing.Size(68, 28);
             this.btnApply.TabIndex = 10;
@@ -154,7 +177,7 @@ namespace Mosiac.UX.Forms
             // 
             this.btnSave.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSave.Location = new System.Drawing.Point(467, 212);
+            this.btnSave.Location = new System.Drawing.Point(467, 238);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(69, 28);
             this.btnSave.TabIndex = 10;
@@ -273,11 +296,33 @@ namespace Mosiac.UX.Forms
             this.label7.Text = "Weight";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // label2
+            // 
+            this.label2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.label2.Location = new System.Drawing.Point(271, 175);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(91, 23);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "Manu-Part#";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label1
+            // 
+            this.label1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.label1.Location = new System.Drawing.Point(23, 174);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(81, 23);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "Stock Level";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // label13
             // 
             this.label13.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label13.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label13.Location = new System.Drawing.Point(23, 205);
+            this.label13.Location = new System.Drawing.Point(23, 213);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(167, 23);
             this.label13.TabIndex = 6;
@@ -362,35 +407,13 @@ namespace Mosiac.UX.Forms
             this.label4.Text = "PartID";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label1
-            // 
-            this.label1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label1.Location = new System.Drawing.Point(23, 174);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(81, 23);
-            this.label1.TabIndex = 6;
-            this.label1.Text = "Stock Level";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label2
-            // 
-            this.label2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label2.Location = new System.Drawing.Point(232, 174);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(81, 23);
-            this.label2.TabIndex = 6;
-            this.label2.Text = "Manu-Part#";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // PartEditForm
             // 
             this.AcceptButton = this.btnSave;
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.CancelButton = this.button1;
-            this.ClientSize = new System.Drawing.Size(615, 302);
+            this.CancelButton = this.bntCancel;
+            this.ClientSize = new System.Drawing.Size(585, 308);
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "PartEditForm";
@@ -430,9 +453,11 @@ namespace Mosiac.UX.Forms
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox txtPartID;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button bntCancel;
         private System.Windows.Forms.TextBox txtPartNum;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox txtSKU;
+        private System.Windows.Forms.Button btnLinkToUPC;
     }
 }

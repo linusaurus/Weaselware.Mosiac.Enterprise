@@ -4,10 +4,16 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Text;
+using System.Threading;
 using System.Linq;
 using DataLayer.Data;
 using DataLayer.Entity;
 using Microsoft.EntityFrameworkCore;
+//-----------------------------------
+using Motorola.Snapi;
+using Motorola.Snapi.Constants.Enums;
+using Motorola.Snapi.EventArguments;
+//-----------------------------------
 using ServiceLayer.Models;
 using System.Windows.Forms;
 using Mosiac.UX.UXControls;
@@ -25,6 +31,7 @@ namespace Mosiac.UX.Forms
         private List<UnitOfMeasure> units;
         private readonly MosaicContext _ctx;
         private decimal _stockLevel;
+        private string _lastScanned;
 
         public PartEditForm(BindingSource source,MosaicContext context)
         {
@@ -43,7 +50,7 @@ namespace Mosiac.UX.Forms
             cbxUnit.DataSource = units;
             cbxUnit.ResetText();
             cbxUnit.SelectedIndex = -1;
-
+           
             LoadManus();
             bsPart.ListChanged += BsPart_ListChanged;
         }
@@ -119,6 +126,7 @@ namespace Mosiac.UX.Forms
                 txtPartDescription.DataBindings.Clear();
                 txtPartName.DataBindings.Clear();
                 cboPartManu.DataBindings.Clear();
+                txtSKU.DataBindings.Clear();
 
 
                 txtPartID.DataBindings.Add("Text", bsPart, "PartID", true, DataSourceUpdateMode.OnPropertyChanged);
@@ -133,6 +141,7 @@ namespace Mosiac.UX.Forms
                 txtUnitPrice.DataBindings.Add("Text", bsPart, "Cost", true, DataSourceUpdateMode.OnPropertyChanged);
                 txtPartDescription.DataBindings.Add("Text", bsPart, "ItemDescription", true, DataSourceUpdateMode.OnPropertyChanged);
                 txtPartName.DataBindings.Add("Text", bsPart, "ItemName", true, DataSourceUpdateMode.OnPropertyChanged);
+                txtSKU.DataBindings.Add("Text", bsPart, "SKU", true, DataSourceUpdateMode.OnPropertyChanged);
                 cboPartManu.DataBindings.Add("SelectedValue", bsPart, "ManuID", true, DataSourceUpdateMode.OnPropertyChanged);
             }
         }
@@ -140,6 +149,7 @@ namespace Mosiac.UX.Forms
         private void btnSave_Click(object sender, EventArgs e)
         {
             Close();
+            Dispose(Disposing);
         }
 
         private void btnAddManu_Click(object sender, EventArgs e)
@@ -171,6 +181,49 @@ namespace Mosiac.UX.Forms
         private void groupBox1_Enter(object sender, EventArgs e)
         {
 
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnLinkToUPC_Click(object sender, EventArgs e)
+        {
+            BarcodeScannerManager.Instance.Open();
+
+            BarcodeScannerManager.Instance.RegisterForEvents(
+               EventType.Barcode,
+               EventType.Pnp,
+               EventType.Image,
+               EventType.Other,
+               EventType.Rmd
+               );
+
+            //The events you are currently registered to will be listed in RegisteredEvents.
+            if (BarcodeScannerManager.Instance.RegisteredEvents.Contains(EventType.Image))
+            { };
+
+            BarcodeScannerManager.Instance.DataReceived += Instance_DataReceived;
+
+            txtSKU.BackColor = Color.Cornsilk;          
+        }
+
+        private void Instance_DataReceived(object sender, BarcodeScanEventArgs e)
+        {
+            _lastScanned = e.Data;
+            //Invoke(new Action(() => ((Part)bsPart.DataSource).SKU = _lastScanned));
+            //Invoke(new Action(() => txtSKU.Text = _lastScanned));
+            if (IsHandleCreated)
+            {
+                BeginInvoke(new Action(() => txtSKU.Text = _lastScanned));
+                return;
+            }
+            else
+            {
+
+            }
+            
         }
     }
 }

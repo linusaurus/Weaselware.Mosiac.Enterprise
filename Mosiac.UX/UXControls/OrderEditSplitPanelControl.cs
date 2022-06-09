@@ -10,11 +10,12 @@ using ServiceLayer.Mappers;
 using ServiceLayer;
 using ServiceLayer.Overloads;
 using Microsoft.Data.SqlClient;
-using Mosiac.UX;
 using System.IO;
 using Mosiac.UX.Forms;
+using Mosiac.UX.Services;
 
-namespace Mosiac.UX.UXControls { 
+namespace Mosiac.UX.UXControls
+{
     public partial class OrderEditSplitPanelControl : UserControl
     {
 
@@ -55,11 +56,19 @@ namespace Mosiac.UX.UXControls {
             this.orderHeaderVerticalControl1.OnSaveHandler += OrderHeaderVerticalControl1_OnSaveHandler;
             this.orderHeaderVerticalControl1.OnPrintHandler += OrderHeaderVerticalControl1_OnPrintHandler;
             this.orderHeaderVerticalControl1.OnChangeSupplierHandler += OrderHeaderVerticalControl1_OnChangeSupplierHandler;
-            this.orderHeaderVerticalControl1.OnJobChangedHandler += OrderHeaderVerticalControl1_OnJobChangedHandler;
+            this.orderHeaderVerticalControl1.OnJobChanged += OrderHeaderVerticalControl1_OnJobChanged;
             this.orderHeaderVerticalControl1.OnOrderCanceledHandler += OrderHeaderVerticalControl1_OnOrderCanceledHandler;
             mapper = new PurchaseOrderMapper();
 
            
+        }
+
+        private void OrderHeaderVerticalControl1_OnJobChanged(object sender, OrderHeaderVerticalControl.JobChangedArgs args)
+        {
+           
+            // Re-Assign the Purchase Order to selecte job
+            orderDTO.JobID = args.JobID;
+
         }
 
         private void OrderHeaderVerticalControl1_OnOrderCanceledHandler(object sender, EventArgs e)
@@ -163,7 +172,7 @@ namespace Mosiac.UX.UXControls {
         {
             // DisableControls(this);
             orderHeaderVerticalControl1.Lock();
-            _receiptRepository = new OrderReceiptRepository(ctx, Globals.CurrentUserName,Globals.CurrentLoggedUserID);
+            _receiptRepository = new OrderReceiptRepository(ctx, Mosiac.UX.Services.Globals.CurrentUserName, Mosiac.UX.Services.Globals.CurrentLoggedUserID);
             var receipt = _receiptRepository.LoadOrderReciept(orderDTO.PurchaseOrderID);
             string message = $" Order Received on {receipt.ReceiptDate.ToShortDateString()} ";
             this.orderHeaderVerticalControl1.btnSave.Enabled = false;

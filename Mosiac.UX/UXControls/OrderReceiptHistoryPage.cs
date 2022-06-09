@@ -10,6 +10,7 @@ using ServiceLayer;
 using ServiceLayer.Services;
 using ServiceLayer.Models;
 using Mosiac.UX.Forms;
+using Mosiac.UX.Services;
 
 namespace Mosiac.UX.UXControls
 {

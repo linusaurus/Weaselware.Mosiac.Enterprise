@@ -7,6 +7,7 @@ using ServiceLayer;
 using System.Diagnostics;
 using System.Windows.Forms;
 using System.Drawing;
+using Mosiac.UX.Services;
 
 namespace Mosiac.UX
 {
@@ -73,8 +74,8 @@ namespace Mosiac.UX
                     this.DialogResult = System.Windows.Forms.DialogResult.OK;
                     isValidated = true;
                     this._employeeID = user.employeeID;
-                    Globals.CurrentLoggedUserID = user.employeeID;
-                    Globals.CurrentUserName = _employeeService.FullName(user.employeeID);
+                    Mosiac.UX.Services.Globals.CurrentLoggedUserID = user.employeeID;
+                    Mosiac.UX.Services.Globals.CurrentUserName = _employeeService.FullName(user.employeeID);
                     Mosiac.UX.Properties.Settings.Default.UserName = _userName;
                     Mosiac.UX.Properties.Settings.Default.Save();
 
