@@ -55,6 +55,7 @@ namespace Mosiac.UX.UXControls
             this.tabPartDetail = new System.Windows.Forms.TabControl();
             this.tabResourceManager = new System.Windows.Forms.TabPage();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
             this.tabOrderHistory = new System.Windows.Forms.TabPage();
             this.btnShowAll = new System.Windows.Forms.Button();
             this.tsResources = new System.Windows.Forms.ToolStrip();
@@ -230,7 +231,7 @@ namespace Mosiac.UX.UXControls
             this.btnDeleteResource.FlatAppearance.BorderSize = 0;
             this.btnDeleteResource.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDeleteResource.Image = global::Mosiac.UX.Properties.Resources.outline_delete_black_24dp4;
-            this.btnDeleteResource.Location = new System.Drawing.Point(85, 11);
+            this.btnDeleteResource.Location = new System.Drawing.Point(148, 8);
             this.btnDeleteResource.Name = "btnDeleteResource";
             this.btnDeleteResource.Size = new System.Drawing.Size(25, 23);
             this.btnDeleteResource.TabIndex = 12;
@@ -243,7 +244,7 @@ namespace Mosiac.UX.UXControls
             this.btnOpenResource.FlatAppearance.BorderSize = 0;
             this.btnOpenResource.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnOpenResource.Image = global::Mosiac.UX.Properties.Resources.baseline_launch_black_24dp2;
-            this.btnOpenResource.Location = new System.Drawing.Point(44, 11);
+            this.btnOpenResource.Location = new System.Drawing.Point(53, 8);
             this.btnOpenResource.Name = "btnOpenResource";
             this.btnOpenResource.Size = new System.Drawing.Size(25, 23);
             this.btnOpenResource.TabIndex = 12;
@@ -363,8 +364,6 @@ namespace Mosiac.UX.UXControls
             this.tabResourceManager.Controls.Add(this.txtSourceFile);
             this.tabResourceManager.Controls.Add(this.label2);
             this.tabResourceManager.Controls.Add(this.dgResources);
-            this.tabResourceManager.Controls.Add(this.btnDeleteResource);
-            this.tabResourceManager.Controls.Add(this.btnOpenResource);
             this.tabResourceManager.Controls.Add(this.panel2);
             this.tabResourceManager.Location = new System.Drawing.Point(4, 24);
             this.tabResourceManager.Name = "tabResourceManager";
@@ -377,14 +376,27 @@ namespace Mosiac.UX.UXControls
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.PowderBlue;
+            this.panel2.Controls.Add(this.button1);
             this.panel2.Controls.Add(this.btnOpenCache);
             this.panel2.Controls.Add(this.btnClearCache);
+            this.panel2.Controls.Add(this.btnOpenResource);
+            this.panel2.Controls.Add(this.btnDeleteResource);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(3, 3);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1108, 285);
             this.panel2.TabIndex = 14;
             this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(500, 8);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(186, 23);
+            this.button1.TabIndex = 13;
+            this.button1.Text = "Update Selected Resource";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // tabOrderHistory
             // 
@@ -529,5 +541,6 @@ namespace Mosiac.UX.UXControls
         private System.Windows.Forms.ToolStrip tsResources;
         private System.Windows.Forms.ToolStripButton tsbCollapsePanel;
         private System.Windows.Forms.Button btnPrintLabel;
+        private System.Windows.Forms.Button button1;
     }
 }

@@ -333,9 +333,7 @@ namespace Mosiac.UX.UXControls
                         LineItemDto lineitem = (LineItemDto)bsLineitems.Current;
                         // change the lineitem text
                         lineitem.Description = _partBeingEdited.ItemDescription;
-                        lineitem.Price = _partBeingEdited.Cost.GetValueOrDefault();
-                  
-
+                        lineitem.Price = _partBeingEdited.Cost.GetValueOrDefault();                  
                     }
                     else if (result == DialogResult.Cancel)
                     {

@@ -72,6 +72,7 @@ namespace Mosiac.UX.UXControls
             txtOrderNumber.Enabled = false;
             txtPurchaser.Enabled = false;
             btnPrint.Enabled = true;
+            dateTimePicker1.Enabled = false;
         }
       
 
@@ -153,6 +154,9 @@ namespace Mosiac.UX.UXControls
             // Order Date -------------------------------------------------------
             txtOrderDate.DataBindings.Clear();
             txtOrderDate.DataBindings.Add("Text", bsorder, "OrderDate", true, DataSourceUpdateMode.OnPropertyChanged);
+            // Expected Date -----------------------------------------------------
+            dateTimePicker1.DataBindings.Clear();
+            dateTimePicker1.DataBindings.Add("Text",bsorder,"ExpectedDate",true, DataSourceUpdateMode.OnPropertyChanged);
             // Order Total -------------------------------------------------------
             txtOrderTotal.DataBindings.Clear();
             txtOrderTotal.DataBindings.Add("Text", bsorder, "OrderTotal", true, DataSourceUpdateMode.OnPropertyChanged, 0.0, "C");

@@ -91,11 +91,15 @@ namespace Mosiac.UX.UXControls
             txtQntyRecieved.DataBindings.Clear();
             txtInventoryAmount.DataBindings.Clear();
             // Bind the datasource
-            txtTransactionID.DataBindings.Add("Text",bs,"StockTransactionID");
-            txtDescription.DataBindings.Add("Text",bs,"Description");
-            txtDateStamp.DataBindings.Add("Text", bs, "DateStamp",true,DataSourceUpdateMode.OnPropertyChanged,"","d");
-            txtQntyRecieved.DataBindings.Add("Text", bs, "QntyReceived");
-            txtInventoryAmount.DataBindings.Add("Text", bs, "InventoryAmount",true,DataSourceUpdateMode.OnPropertyChanged);
+            if (bs.Current != null)
+            {
+                txtTransactionID.DataBindings.Add("Text", bs, "StockTransactionID");
+                txtDescription.DataBindings.Add("Text", bs, "Description");
+                txtDateStamp.DataBindings.Add("Text", bs, "DateStamp", true, DataSourceUpdateMode.OnPropertyChanged, "", "d");
+                txtQntyRecieved.DataBindings.Add("Text", bs, "QntyReceived");
+                txtInventoryAmount.DataBindings.Add("Text", bs, "InventoryAmount", true, DataSourceUpdateMode.OnPropertyChanged);
+            }
+
         }
 
         private void dgReceiptItems_SelectionChanged(object sender, EventArgs e)
@@ -118,16 +122,17 @@ namespace Mosiac.UX.UXControls
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
             PrinterSettings XmlData;
-
+            var fileName = Path.Combine(Environment.GetFolderPath(
+                            Environment.SpecialFolder.ApplicationData), "Wml.xml");
             // if the settings file doesn't exist-re-create them
-            if (!File.Exists(@"C:\Wml.xml"))
+            if (!File.Exists(fileName))
             {
                 //Display Print Job dialog...           
                 PrintJobDialog frmPrintJob = new PrintJobDialog();
                 if (frmPrintJob.ShowDialog() == DialogResult.OK)
                 {
                     XmlSerializer serializer = new XmlSerializer(typeof(PrinterSettings));
-                    using (TextWriter writer = new StreamWriter(@"C:\Wml.xml"))
+                    using (TextWriter writer = new StreamWriter(fileName))
                     {
                         serializer.Serialize(writer, frmPrintJob.PrinterSettings);
                     }
@@ -136,7 +141,7 @@ namespace Mosiac.UX.UXControls
       
             //Pull the settings from XML file --
             XmlSerializer deserializer = new XmlSerializer(typeof(PrinterSettings));
-            TextReader reader = new StreamReader(@"C:\Wml.xml");
+            TextReader reader = new StreamReader(fileName);
             object obj = deserializer.Deserialize(reader);
             XmlData = (PrinterSettings)obj;
             reader.Close();
@@ -146,7 +151,7 @@ namespace Mosiac.UX.UXControls
 
             using (WindowsPrintJob pj = new WindowsPrintJob(XmlData))
             {
-
+                
                 foreach (DataGridViewRow row in dgReceiptItems.SelectedRows)
                 {
                     OrderRecieptLineItemDto rowItem = (OrderRecieptLineItemDto)row.DataBoundItem;

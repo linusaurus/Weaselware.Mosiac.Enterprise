@@ -42,6 +42,10 @@
          "ObjectType": 0
       },
       {
+         "Name": "[dbo].[Delivery]",
+         "ObjectType": 0
+      },
+      {
          "Name": "[dbo].[Document]",
          "ObjectType": 0
       },
@@ -178,7 +182,7 @@
          "ObjectType": 0
       }
    ],
-   "UiHint": "DBSERVER.",
+   "UiHint": "DBSERVER.Mosaic",
    "UseBoolPropertiesWithoutDefaultSql": false,
    "UseDatabaseNames": true,
    "UseDbContextSplitting": false,

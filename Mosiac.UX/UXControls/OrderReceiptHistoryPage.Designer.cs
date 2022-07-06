@@ -37,6 +37,9 @@ namespace Mosiac.UX.UXControls
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tscboFilter = new System.Windows.Forms.ToolStripComboBox();
             this.tsRecordsReturned = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripSplitButton1 = new System.Windows.Forms.ToolStripSplitButton();
+            this.tsSortByPurchaseOrderID = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsSortByOrderDate = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -58,7 +61,8 @@ namespace Mosiac.UX.UXControls
             this.tsbOpenOrder,
             this.toolStripSeparator1,
             this.tscboFilter,
-            this.tsRecordsReturned});
+            this.tsRecordsReturned,
+            this.toolStripSplitButton1});
             this.toolStrip1.Location = new System.Drawing.Point(10, 10);
             this.toolStrip1.Margin = new System.Windows.Forms.Padding(0, 0, 0, 16);
             this.toolStrip1.Name = "toolStrip1";
@@ -106,6 +110,32 @@ namespace Mosiac.UX.UXControls
             this.tsRecordsReturned.Size = new System.Drawing.Size(22, 22);
             this.tsRecordsReturned.Text = ".....";
             // 
+            // toolStripSplitButton1
+            // 
+            this.toolStripSplitButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripSplitButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsSortByPurchaseOrderID,
+            this.tsSortByOrderDate});
+            this.toolStripSplitButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripSplitButton1.Image")));
+            this.toolStripSplitButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripSplitButton1.Name = "toolStripSplitButton1";
+            this.toolStripSplitButton1.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.toolStripSplitButton1.Size = new System.Drawing.Size(119, 22);
+            this.toolStripSplitButton1.Text = "Sort Records";
+            this.toolStripSplitButton1.DropDownItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.toolStripSplitButton1_DropDownItemClicked);
+            // 
+            // tsSortByPurchaseOrderID
+            // 
+            this.tsSortByPurchaseOrderID.Name = "tsSortByPurchaseOrderID";
+            this.tsSortByPurchaseOrderID.Size = new System.Drawing.Size(195, 22);
+            this.tsSortByPurchaseOrderID.Text = "Sort by Purchase Order";
+            // 
+            // tsSortByOrderDate
+            // 
+            this.tsSortByOrderDate.Name = "tsSortByOrderDate";
+            this.tsSortByOrderDate.Size = new System.Drawing.Size(195, 22);
+            this.tsSortByOrderDate.Text = "Sort by Order Date";
+            // 
             // OrderReceiptHistoryPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -132,5 +162,8 @@ namespace Mosiac.UX.UXControls
         private System.Windows.Forms.ToolStripComboBox tscboFilter;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripLabel tsRecordsReturned;
+        private System.Windows.Forms.ToolStripSplitButton toolStripSplitButton1;
+        private System.Windows.Forms.ToolStripMenuItem tsSortByPurchaseOrderID;
+        private System.Windows.Forms.ToolStripMenuItem tsSortByOrderDate;
     }
 }

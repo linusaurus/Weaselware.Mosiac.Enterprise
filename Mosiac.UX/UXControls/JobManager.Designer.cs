@@ -155,7 +155,7 @@ namespace Mosiac.UX.UXControls
             this.tbProductDocuments.Location = new System.Drawing.Point(4, 24);
             this.tbProductDocuments.Name = "tbProductDocuments";
             this.tbProductDocuments.Padding = new System.Windows.Forms.Padding(3);
-            this.tbProductDocuments.Size = new System.Drawing.Size(688, 312);
+            this.tbProductDocuments.Size = new System.Drawing.Size(693, 304);
             this.tbProductDocuments.TabIndex = 1;
             this.tbProductDocuments.Text = "Documents";
             this.tbProductDocuments.UseVisualStyleBackColor = true;
@@ -167,7 +167,7 @@ namespace Mosiac.UX.UXControls
             this.dgProductDocuments.Location = new System.Drawing.Point(3, 3);
             this.dgProductDocuments.Name = "dgProductDocuments";
             this.dgProductDocuments.RowTemplate.Height = 25;
-            this.dgProductDocuments.Size = new System.Drawing.Size(682, 306);
+            this.dgProductDocuments.Size = new System.Drawing.Size(687, 298);
             this.dgProductDocuments.TabIndex = 0;
             // 
             // groupBox1
@@ -186,7 +186,7 @@ namespace Mosiac.UX.UXControls
             this.cboJobs.FormattingEnabled = true;
             this.cboJobs.Location = new System.Drawing.Point(6, 22);
             this.cboJobs.Name = "cboJobs";
-            this.cboJobs.Size = new System.Drawing.Size(269, 23);
+            this.cboJobs.Size = new System.Drawing.Size(320, 23);
             this.cboJobs.TabIndex = 0;
             this.cboJobs.SelectedIndexChanged += new System.EventHandler(this.cboJobs_SelectedIndexChanged);
             // 

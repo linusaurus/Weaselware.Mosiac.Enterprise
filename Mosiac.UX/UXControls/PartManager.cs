@@ -276,6 +276,34 @@ namespace Mosiac.UX.UXControls
             }
         }
 
+        private void UpdateResourceFile(Resource resource)
+        {
+            if (_selectedResource != null )
+            {
+                string path = System.Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+                path += @"\ResourceCache\";
+                path += resource.filesource;
+
+                Resource getResource = _ctx.Resource.Where(r => r.ResourceID == resource.ResourceID).FirstOrDefault();
+
+                // Check that the local file exist ---;
+                if(File.Exists(path))
+                {
+                    getResource.ResourceFile = File.ReadAllBytes(path);
+                    getResource.Lastmod = DateTime.Now;
+                    
+                    _ctx.SaveChanges();
+                }
+                else
+                {
+                    MessageBox.Show("File must exist in local cache before updating");
+                }
+               
+         
+            }
+        }
+        
+
         private void dgResources_SelectionChanged(object sender, EventArgs e)
         {
             DataGridView dg = (DataGridView)sender;
@@ -586,16 +614,17 @@ namespace Mosiac.UX.UXControls
                 tlabel = LabelEngine.GeneratePartLabel(partListDto);
 
                 PrinterSettings XmlData;
-
+                var fileName = Path.Combine(Environment.GetFolderPath(
+                                Environment.SpecialFolder.ApplicationData), "Wml.xml");
                 // if the settings file doesn't exist-re-create them
-                if (!File.Exists(@"C:\Wml.xml"))
+                if (!File.Exists(fileName))
                 {
                     //Display Print Job dialog...           
                     PrintJobDialog frmPrintJob = new PrintJobDialog();
                     if (frmPrintJob.ShowDialog() == DialogResult.OK)
                     {
                         XmlSerializer serializer = new XmlSerializer(typeof(PrinterSettings));
-                        using (TextWriter writer = new StreamWriter(@"C:\Wml.xml"))
+                        using (TextWriter writer = new StreamWriter(fileName))
                         {
                             serializer.Serialize(writer, frmPrintJob.PrinterSettings);
                         }
@@ -604,7 +633,7 @@ namespace Mosiac.UX.UXControls
 
                 //Pull the settings from XML file --
                 XmlSerializer deserializer = new XmlSerializer(typeof(PrinterSettings));
-                TextReader reader = new StreamReader(@"C:\Wml.xml");
+                TextReader reader = new StreamReader(fileName);
                 object obj = deserializer.Deserialize(reader);
                 XmlData = (PrinterSettings)obj;
                 reader.Close();
@@ -627,5 +656,10 @@ namespace Mosiac.UX.UXControls
         }
 
         #endregion
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            UpdateResourceFile(_selectedResource);
+        }
     }
 }

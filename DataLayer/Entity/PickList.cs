@@ -7,11 +7,26 @@ namespace DataLayer.Entity
 {
     public partial class PickList
     {
+        public PickList()
+        {
+            pickListItems = new List<PickListItem>();
+        }
         public int PickListID { get; set; }
         public DateTime? DateStamp { get; set; }
         public int? JobID { get; set; }
         public int? EmployeeID { get; set; }
         public int? ItemCount { get; set; }
         public int? JobSiteID { get; set; }
+
+        public DateTime? DeliveryDate { get; set; }
+
+        public bool? Delivered { get; set; }
+
+        public bool? Submitted { get; set; }
+
+        public ICollection<PickListItem> pickListItems { get; set; }
+        public Job Job { get; set; }
+
+        public Employee Employee { get; set; }
     }
 }

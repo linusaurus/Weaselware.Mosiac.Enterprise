@@ -341,7 +341,7 @@ namespace Mosiac.UX
 
                 case "tsbJobOrders":
 
-                    TabPage jobOrdersPage = PageFactory.GetNewTabPage(_context, PageFactory.TabPageType.JobManagerPage);
+                    TabPage jobOrdersPage = PageFactory.GetNewTabPage(_context, PageFactory.TabPageType.JobItemsPage);
 
                     jobOrdersPage.Name = "JobOrderPage";
                     if (!MainTabControl.TabPages.ContainsKey("JobOrderPage"))
@@ -355,6 +355,23 @@ namespace Mosiac.UX
                         { MainTabControl.SelectTab("JobOrderPage"); }
 
                     }
+                    break;
+
+                case "tsJobsManager":
+                    TabPage jobsManagerPage = PageFactory.GetNewTabPage(_context, PageFactory.TabPageType.JobsManagerPage);
+                    jobsManagerPage.Name = "JobsManagerPage";
+                    if (!MainTabControl.TabPages.ContainsKey("JobsManagerPage"))
+                    {
+                        MainTabControl.TabPages.Add(jobsManagerPage);
+                        MainTabControl.SelectedTab = jobsManagerPage;
+                    }
+                    else
+                    {
+                        if (MainTabControl.TabPages.ContainsKey("JobsManagerPage"))
+                        { MainTabControl.SelectTab("JobsManagerPage"); }
+
+                    }
+
                     break;
 
                 case "tsManufacturer":

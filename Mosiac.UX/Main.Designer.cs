@@ -45,11 +45,11 @@ namespace Mosiac.UX
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.tsJobsManager = new System.Windows.Forms.ToolStripButton();
             this.tsbJobItems = new System.Windows.Forms.ToolStripButton();
-            this.tsbJobOrders = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.MainTabControl = new System.Windows.Forms.TabControl();
+            this.tsDeliveries = new System.Windows.Forms.ToolStripButton();
             this.mainToolStrip.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -72,7 +72,7 @@ namespace Mosiac.UX
             this.toolStripSeparator2,
             this.tsJobsManager,
             this.tsbJobItems,
-            this.tsbJobOrders,
+            this.tsDeliveries,
             this.toolStripSeparator3});
             this.mainToolStrip.Location = new System.Drawing.Point(0, 0);
             this.mainToolStrip.Name = "mainToolStrip";
@@ -199,14 +199,6 @@ namespace Mosiac.UX
             this.tsbJobItems.ToolTipText = "Pull Stock";
             this.tsbJobItems.Click += new System.EventHandler(this.tsbJobItems_OnClick);
             // 
-            // tsbJobOrders
-            // 
-            this.tsbJobOrders.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbJobOrders.Name = "tsbJobOrders";
-            this.tsbJobOrders.Size = new System.Drawing.Size(67, 52);
-            this.tsbJobOrders.Text = "Job Orders";
-            this.tsbJobOrders.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
@@ -244,6 +236,15 @@ namespace Mosiac.UX
             this.MainTabControl.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.MainTabControl_DrawItem);
             this.MainTabControl.SelectedIndexChanged += new System.EventHandler(this.MaintabControl_SelectedIndexChanged);
             this.MainTabControl.MouseClick += new System.Windows.Forms.MouseEventHandler(this.MainTabControl_MouseClick);
+            // 
+            // tsDeliveries
+            // 
+            this.tsDeliveries.Image = ((System.Drawing.Image)(resources.GetObject("tsDeliveries.Image")));
+            this.tsDeliveries.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsDeliveries.Name = "tsDeliveries";
+            this.tsDeliveries.Size = new System.Drawing.Size(61, 52);
+            this.tsDeliveries.Text = "Deliveries";
+            this.tsDeliveries.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
             // Main
             // 
@@ -283,7 +284,6 @@ namespace Mosiac.UX
         private System.Windows.Forms.ToolStripButton tsPartEditor;
         private System.Windows.Forms.ToolStripButton tsOrderButton;
         private System.Windows.Forms.ToolStripButton tsbReceiveOrder;
-        private System.Windows.Forms.ToolStripButton tsbJobOrders;
         private System.Windows.Forms.ToolStripButton tsSupplerOrders;
         private System.Windows.Forms.ToolStripButton tsMyOrders;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
@@ -294,6 +294,7 @@ namespace Mosiac.UX
         #endregion
         private System.Windows.Forms.ToolStripButton tsbReceipts;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
+        private System.Windows.Forms.ToolStripButton tsDeliveries;
     }
 }
 

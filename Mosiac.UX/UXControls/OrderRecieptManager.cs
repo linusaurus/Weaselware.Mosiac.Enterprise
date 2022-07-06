@@ -40,10 +40,7 @@ namespace Mosiac.UX.UXControls
             _orderReceiptRepository = new OrderReceiptRepository(_context, Mosiac.UX.Services.Globals.CurrentUserName, Mosiac.UX.Services.Globals.CurrentLoggedUserID);
             ordersService = new OrdersService(_context);
             //EmployeeService employeeService = new EmployeeService(_context);
-
-            _suppliersService = new SuppliersService(_context);
-            
-  
+            _suppliersService = new SuppliersService(_context);            
 
             //----------------------------- Pending Grid ------------------------------------
 
@@ -226,13 +223,32 @@ namespace Mosiac.UX.UXControls
                     main.OpenAnOrder(_selectedOrderID);
                     break;
 
+                case "tsPrintSettings":
+                    PrintJobDialog diaglog = new PrintJobDialog();
+                    diaglog.ShowDialog();
+
+                    break;
+
                 case "tsbShowLates":
 
                     break;
 
                 case "tsbPrintReceipt":
                     break;
+                case "tsRequestStatus":
+                    if(_selectedOrderID != default )
+                    {
+                        PurchaseOrder po = ordersService.GetOrderByID(_selectedOrderID);
+                        OrderDetailDto dto = new OrderDetailDto();
+                        PurchaseOrderMapper mapper = new PurchaseOrderMapper();
+                        mapper.Map(po, dto);
+                        Employee emp = _context.Employee.Find(dto.EmployeeID);
+                        string emailAdress = emp.EmployeeEmail.ToString();
+                        NotificationService.SendUpdateRequest(emailAdress, dto);
+                    }
 
+
+                    break;
                 default:
                     break;
             }

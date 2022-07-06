@@ -320,7 +320,7 @@ namespace ServiceLayer
                 var detail = orderReciept.OrderReceiptItems.FirstOrDefault(d => d.OrderReceiptLineID == detailDTO.OrderReceiptLineID);
                 if (detail == null || detail.LineID == default )
                 {
-                    detail = new OrderReceiptItem();
+                    detail = new OrderReceiptItems();
                     ctx.OrderReceiptItems.Add(detail);
                 }
 

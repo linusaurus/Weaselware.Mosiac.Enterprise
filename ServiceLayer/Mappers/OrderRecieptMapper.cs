@@ -9,7 +9,7 @@ namespace ServiceLayer.Mappers
 {
     public class OrderReceiptMapper : IMapper<OrderReciept, OrderReceiptDto>
     {
-        private readonly IMapper<OrderReceiptItem, OrderRecieptLineItemDto> OrderReceiptItemMapper = new OrderReceiptLineMapper();
+        private readonly IMapper<OrderReceiptItems, OrderRecieptLineItemDto> OrderReceiptItemMapper = new OrderReceiptLineMapper();
 
         public void Map(OrderReciept source, OrderReceiptDto destination)
         {
@@ -25,10 +25,10 @@ namespace ServiceLayer.Mappers
             destination.OrderReceiptLineItems = OrderReceiptItemMapper.MapList(source.OrderReceiptItems);
         }
 
-        private class OrderReceiptLineMapper : IMapper<OrderReceiptItem, OrderRecieptLineItemDto>
+        private class OrderReceiptLineMapper : IMapper<OrderReceiptItems, OrderRecieptLineItemDto>
         {
 
-            public void Map(OrderReceiptItem source, OrderRecieptLineItemDto destination)
+            public void Map(OrderReceiptItems source, OrderRecieptLineItemDto destination)
             {
                 destination.OrderReceiptID = source.OrderReceiptID.GetValueOrDefault();
                 destination.OrderReceiptLineID = source.OrderReceiptLineID;
@@ -38,7 +38,7 @@ namespace ServiceLayer.Mappers
                 destination.UnitPrice = source.Price.GetValueOrDefault();
                 destination.PurchaseOrderID = source.PurchaseOrderID.GetValueOrDefault();
                 destination.Description = source.Description;
-                destination.UnitOfMeasureName = source.UnitOfMeasure!.UnitName;
+                if (source.UnitOfMeasure != null) { destination.UnitOfMeasureName = source.UnitOfMeasure!.UnitName; }
                 destination.UiD = source.UnitOfMeasureID.GetValueOrDefault();
                 destination.QntyOrdered = source.QuantityOrdered.GetValueOrDefault();
                 destination.QntyReceived = source.QuantityReceived.GetValueOrDefault();

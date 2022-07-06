@@ -25,7 +25,8 @@ namespace Mosiac.UX
             ItemSearchPage,
             RecieptManagerPage,
             LabelEditorPage,
-            JobManagerPage,
+            JobsManagerPage,
+            JobItemsPage,
             ManufacturersPage,
             StockBill,
             PartEditorPage,
@@ -76,13 +77,13 @@ namespace Mosiac.UX
                     //searchctr.Dock = DockStyle.Fill;
                     //tab.Controls.Add(searchctr);
                     break;
-                case TabPageType.JobManagerPage:
+                case TabPageType.JobsManagerPage:
                      
-                    TabPage jobTab = new TabPage("Job Manager");
-                    JobManager jobControl = new JobManager(ctx);
-                    jobControl.Dock = DockStyle.Fill;
-                    jobTab.Controls.Add(jobControl);
-                    return jobTab;
+                    TabPage jobsTab = new TabPage("Job Manager");
+                    JobsControl jobsControl = new JobsControl(ctx);
+                    jobsControl.Dock = DockStyle.Fill;
+                    jobsTab.Controls.Add(jobsControl);
+                    return jobsTab;
                     break;
 
                 case TabPageType.OrderReceiptHistoryPage:

@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Text;
+using System.Linq;
 using System.Windows.Forms;
 using DataLayer.Data;
 using ServiceLayer;
@@ -87,7 +88,7 @@ namespace Mosiac.UX.UXControls
 
                    ordersHistory = _service.ReceiptHistory(2);
                    
-                    this.dataGridView1.DataSource = ordersHistory;
+                    this.dataGridView1.DataSource = ordersHistory.OrderByDescending(e => e.PurchaseOrderID).ToList();
                     tsRecordsReturned.Text = $" Records Returned {ordersHistory.Count.ToString()}";
                     break;
                 case "Not Complete":
@@ -110,7 +111,6 @@ namespace Mosiac.UX.UXControls
             switch (e.ClickedItem.Name)
             {
                 case "tsbViewReceipt":
-
                     OpenReceipt();
                     break;
                 case "tsbOpenOrder":
@@ -135,6 +135,29 @@ namespace Mosiac.UX.UXControls
             viewerForm.Controls.Add(orderReciept);
             orderReciept.Dock = DockStyle.Fill;
             viewerForm.ShowDialog();
+        }
+
+        private void toolStripSplitButton1_DropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            List<OrderReceiptHistoryDto> ordersHistory = new List<OrderReceiptHistoryDto>();
+            switch (e.ClickedItem.Name)
+            {
+                case "tsSortByOrderDate":
+
+                    ordersHistory = _service.ReceiptHistory(2);
+                    this.dataGridView1.DataSource = ordersHistory.OrderByDescending(e => e.ReceivedOn).ToList();
+                    tsRecordsReturned.Text = $" Records Returned {ordersHistory.Count.ToString()}";
+                    break;
+                case "tsSortByPurchaseOrderID":
+
+                    ordersHistory = _service.ReceiptHistory(2);
+                    this.dataGridView1.DataSource = ordersHistory.OrderByDescending(e => e.PurchaseOrderID).ToList();
+                    tsRecordsReturned.Text = $" Records Returned {ordersHistory.Count.ToString()}";
+                    break;
+
+                default:
+                    break;
+            }
         }
     }
 }

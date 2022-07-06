@@ -29,10 +29,11 @@ namespace DataLayer.Data
         public virtual DbSet<Claim> Claim { get; set; }
         public virtual DbSet<ClaimDocument> ClaimDocument { get; set; }
         public virtual DbSet<ClaimItem> ClaimItem { get; set; }
+        public virtual DbSet<Delivery> Delivery { get; set; }
         public virtual DbSet<Document> Document { get; set; }
         public virtual DbSet<DocumentParts> DocumentParts { get; set; }
         public virtual DbSet<Employee> Employee { get; set; }
-       // public virtual DbSet<Globals> Globals { get; set; }
+        //public virtual DbSet<Globals> Globals { get; set; }
         public virtual DbSet<Inventory> Inventory { get; set; }
         public virtual DbSet<Job> Job { get; set; }
         public virtual DbSet<JobSite> JobSite { get; set; }
@@ -40,7 +41,7 @@ namespace DataLayer.Data
         public virtual DbSet<NFRC> NFRC { get; set; }
         public virtual DbSet<OpCode> OpCode { get; set; }
         public virtual DbSet<OrderFee> OrderFee { get; set; }
-        public virtual DbSet<OrderReceiptItem> OrderReceiptItems { get; set; }
+        public virtual DbSet<OrderReceiptItems> OrderReceiptItems { get; set; }
         public virtual DbSet<OrderReciept> OrderReciept { get; set; }
         public virtual DbSet<OrderState> OrderState { get; set; }
         public virtual DbSet<Part> Part { get; set; }
@@ -299,6 +300,11 @@ namespace DataLayer.Data
                     .IsUnicode(false);
             });
 
+            modelBuilder.Entity<Delivery>(entity =>
+            {
+                entity.Property(e => e.TimeStamp).HasColumnType("datetime");
+            });
+
             modelBuilder.Entity<Document>(entity =>
             {
                 entity.HasKey(e => e.DocID)
@@ -523,7 +529,7 @@ namespace DataLayer.Data
                     .HasConstraintName("FK_OrderFee_PurchaseOrder");
             });
 
-            modelBuilder.Entity<OrderReceiptItem>(entity =>
+            modelBuilder.Entity<OrderReceiptItems>(entity =>
             {
                 entity.HasKey(e => e.OrderReceiptLineID);
 
@@ -673,7 +679,7 @@ namespace DataLayer.Data
 
             modelBuilder.Entity<PickListItem>(entity =>
             {
-                entity.Property(e => e.Description).HasMaxLength(50);
+                entity.Property(e => e.Description).HasMaxLength(1220);
 
                 entity.Property(e => e.Qnty).HasColumnType("decimal(18, 2)");
             });

@@ -9,7 +9,7 @@ namespace DataLayer.Entity
     {
         public OrderReciept()
         {
-            OrderReceiptItems = new HashSet<OrderReceiptItem>();
+            OrderReceiptItems = new HashSet<OrderReceiptItems>();
         }
 
         public int OrderReceiptID { get; set; }
@@ -20,6 +20,6 @@ namespace DataLayer.Entity
 
         public virtual Employee Employee { get; set; }
         public virtual PurchaseOrder PurchaseOrder { get; set; }
-        public virtual ICollection<OrderReceiptItem> OrderReceiptItems { get; set; }
+        public virtual ICollection<OrderReceiptItems> OrderReceiptItems { get; set; }
     }
 }

@@ -67,6 +67,7 @@ namespace Mosiac.UX.UXControls
             // MainSplitContainer.Panel2
             // 
             this.MainSplitContainer.Panel2.Controls.Add(this.tbcOrderReciepts);
+            this.MainSplitContainer.Panel2.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.MainSplitContainer.Panel2.Padding = new System.Windows.Forms.Padding(10, 15, 10, 10);
             this.MainSplitContainer.Size = new System.Drawing.Size(1138, 690);
             this.MainSplitContainer.SplitterDistance = 285;
@@ -75,6 +76,7 @@ namespace Mosiac.UX.UXControls
             // tbcOrderReciepts
             // 
             this.tbcOrderReciepts.Controls.Add(this.OrdersPage);
+            this.tbcOrderReciepts.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.tbcOrderReciepts.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tbcOrderReciepts.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
             this.tbcOrderReciepts.Location = new System.Drawing.Point(10, 15);

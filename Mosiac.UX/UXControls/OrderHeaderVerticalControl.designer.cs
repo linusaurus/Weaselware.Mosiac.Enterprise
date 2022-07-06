@@ -68,6 +68,8 @@
             this.mtxtFax = new System.Windows.Forms.MaskedTextBox();
             this.btnChangeSupplier = new System.Windows.Forms.Button();
             this.btnCancelOrder = new System.Windows.Forms.Button();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.label7 = new System.Windows.Forms.Label();
             this.gbCOst.SuspendLayout();
             this.gbSpecialnstruction.SuspendLayout();
             this.gbDetails.SuspendLayout();
@@ -377,7 +379,7 @@
             this.gbCOst.Controls.Add(this.cbTaxable);
             this.gbCOst.Controls.Add(this.txtOrderTotal);
             this.gbCOst.Controls.Add(this.label8);
-            this.gbCOst.Location = new System.Drawing.Point(21, 421);
+            this.gbCOst.Location = new System.Drawing.Point(21, 452);
             this.gbCOst.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.gbCOst.Name = "gbCOst";
             this.gbCOst.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -390,7 +392,7 @@
             // gbSpecialnstruction
             // 
             this.gbSpecialnstruction.Controls.Add(this.txtMemo);
-            this.gbSpecialnstruction.Location = new System.Drawing.Point(22, 331);
+            this.gbSpecialnstruction.Location = new System.Drawing.Point(22, 362);
             this.gbSpecialnstruction.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.gbSpecialnstruction.Name = "gbSpecialnstruction";
             this.gbSpecialnstruction.Padding = new System.Windows.Forms.Padding(7);
@@ -401,9 +403,11 @@
             // 
             // gbDetails
             // 
+            this.gbDetails.Controls.Add(this.dateTimePicker1);
             this.gbDetails.Controls.Add(this.btnJobChange);
             this.gbDetails.Controls.Add(this.txtOrderDate);
             this.gbDetails.Controls.Add(this.txtPurchaser);
+            this.gbDetails.Controls.Add(this.label7);
             this.gbDetails.Controls.Add(this.label5);
             this.gbDetails.Controls.Add(this.label4);
             this.gbDetails.Controls.Add(this.txtAttention);
@@ -415,7 +419,7 @@
             this.gbDetails.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.gbDetails.Name = "gbDetails";
             this.gbDetails.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.gbDetails.Size = new System.Drawing.Size(354, 117);
+            this.gbDetails.Size = new System.Drawing.Size(354, 146);
             this.gbDetails.TabIndex = 42;
             this.gbDetails.TabStop = false;
             this.gbDetails.Text = "Order Details";
@@ -455,7 +459,7 @@
             // 
             this.button1.Enabled = false;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Location = new System.Drawing.Point(23, 556);
+            this.button1.Location = new System.Drawing.Point(23, 587);
             this.button1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(90, 33);
@@ -488,7 +492,7 @@
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.Image = global::Mosiac.UX.Properties.Resources.baseline_save_black_24dp1;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(212, 556);
+            this.btnSave.Location = new System.Drawing.Point(212, 587);
             this.btnSave.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(149, 33);
@@ -505,7 +509,7 @@
             this.btnPrint.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPrint.Image = global::Mosiac.UX.Properties.Resources.round_print_black_24dp;
             this.btnPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnPrint.Location = new System.Drawing.Point(121, 556);
+            this.btnPrint.Location = new System.Drawing.Point(121, 587);
             this.btnPrint.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnPrint.Name = "btnPrint";
             this.btnPrint.Size = new System.Drawing.Size(83, 33);
@@ -564,6 +568,24 @@
             this.btnCancelOrder.Text = "Cancel Order";
             this.btnCancelOrder.UseVisualStyleBackColor = true;
             this.btnCancelOrder.Click += new System.EventHandler(this.btnCancelOrder_Click);
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePicker1.Location = new System.Drawing.Point(207, 107);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(135, 23);
+            this.dateTimePicker1.TabIndex = 37;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(75, 113);
+            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(82, 15);
+            this.label7.TabIndex = 21;
+            this.label7.Text = "Expected Date";
             // 
             // OrderHeaderVerticalControl
             // 
@@ -651,5 +673,7 @@
         private System.Windows.Forms.Button btnCancelOrder;
         private System.Windows.Forms.Button btnJobChange;
         public System.Windows.Forms.Button btnPrint;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.Label label7;
     }
 }

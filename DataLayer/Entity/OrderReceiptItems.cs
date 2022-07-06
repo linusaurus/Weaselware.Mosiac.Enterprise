@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace DataLayer.Entity
 {
-    public partial class OrderReceiptItem
+    public partial class OrderReceiptItems
     {
         public int OrderReceiptLineID { get; set; }
         public int? LineID { get; set; }
@@ -25,7 +25,7 @@ namespace DataLayer.Entity
         public decimal? InventoryAmount { get; set; }
         public bool? Pushed { get; set; }
 
-        public UnitOfMeasure UnitOfMeasure { get; set; }
+        public virtual UnitOfMeasure UnitOfMeasure { get; set; }
 
         public virtual OrderReciept OrderReceipt { get; set; }
     }

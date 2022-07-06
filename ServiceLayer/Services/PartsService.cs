@@ -88,8 +88,17 @@ namespace ServiceLayer
 
             return result;
         }
-      
-       
+
+        public Part FindbyID(string partid)
+        {
+            Part result = null;
+            int id;
+            if (int.TryParse(partid,out id))
+            {
+                result = _context.Part.AsNoTracking().Where(p => p.PartID == id).FirstOrDefault();
+            }
+            return result;
+        }
 
         public List<PartFastSearchDto> SearchParts(string searchTerm, SearchOptions option)
         {
@@ -134,6 +143,7 @@ namespace ServiceLayer
             }).FirstOrDefault();
 
             return result;
+
         }
 
         // Return Part of null if not found
