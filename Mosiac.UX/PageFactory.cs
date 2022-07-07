@@ -27,6 +27,7 @@ namespace Mosiac.UX
             LabelEditorPage,
             JobsManagerPage,
             JobItemsPage,
+            DeliveryPage,
             ManufacturersPage,
             StockBill,
             PartEditorPage,
@@ -51,13 +52,7 @@ namespace Mosiac.UX
                         ctr.Dock = DockStyle.Fill;
                     }
                     break;
-                // Order Seach/Display Page
-                case TabPageType.PurchaseOrdersPage:
-                    //tab.Text = "Orders Manager";
-                    //OrderManager po = new OrderManager(ctx);
-                    //po.Dock = DockStyle.Fill;
-                    //tab.Controls.Add(po);
-                    break;
+               
                 case TabPageType.MyOrdersPage:
                     tab.Text = "Order";
                     tab.Name = "myOrdersPage";
@@ -71,12 +66,7 @@ namespace Mosiac.UX
                     orderctr.Dock = DockStyle.Fill;
                     tab.Controls.Add(orderctr);
                     break;
-                case TabPageType.ItemSearchPage:
-                    //tab.Text = "Item Search";
-                    //ItemSearchControl searchctr = new ItemSearchControl(ctx);
-                    //searchctr.Dock = DockStyle.Fill;
-                    //tab.Controls.Add(searchctr);
-                    break;
+               
                 case TabPageType.JobsManagerPage:
                      
                     TabPage jobsTab = new TabPage("Job Manager");
@@ -92,18 +82,7 @@ namespace Mosiac.UX
                     orderHistoryControl.Dock = DockStyle.Fill;
                     tab.Controls.Add(orderHistoryControl);
                     break;
-                case TabPageType.StockBill:
-                    //tab.Text = "Stock Bill";
-                    //StockBillControl stockBillControl = new StockBillControl(ctx);
-                    //stockBillControl.Dock = DockStyle.Fill;
-                    //tab.Controls.Add(stockBillControl);
-                    break;
-                case TabPageType.AssemblyManagerControl:
-                    //tab.Text = "Products";
-                    //AssemblyManagerControl assemblyManagerControl = new AssemblyManagerControl(ctx);
-                    //assemblyManagerControl.Dock = DockStyle.Fill;
-                    //tab.Controls.Add(assemblyManagerControl);
-                    break;
+               
                 case TabPageType.PartEditorPage:
                     tab.Text = "Part Editor";
                     //PartEditor partEditorControl = new PartEditor(ctx);
@@ -121,6 +100,17 @@ namespace Mosiac.UX
                         manufacturerControl.Dock = DockStyle.Fill;
                         tab.Controls.Add(manufacturerControl);
                     
+                    break;
+                // Delivery List Page -------------------------
+                case TabPageType.DeliveryPage:
+
+                    tab.Text = "Deliveries";
+                    tab.Name = "Deliveries";
+                    DeliveryControl delivery = new DeliveryControl(ctx);
+                    delivery.Dock = DockStyle.Fill;
+                    tab.Controls.Add(delivery);
+                    return tab;
+
                     break;
                 case TabPageType.PurchaseOrderPage:
                     {                        

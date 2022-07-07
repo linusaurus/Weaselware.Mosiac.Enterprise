@@ -42,10 +42,10 @@ namespace Mosiac.UX.UXControls
             this.tsbFilterCombo = new System.Windows.Forms.ToolStripComboBox();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.tsSearchEntry = new System.Windows.Forms.ToolStripTextBox();
+            this.tsRequestStatus = new System.Windows.Forms.ToolStripButton();
             this.dgPendingOrders = new System.Windows.Forms.DataGridView();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.dgOrderLineItems = new System.Windows.Forms.DataGridView();
-            this.tsRequestStatus = new System.Windows.Forms.ToolStripButton();
             this.orToolStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgPendingOrders)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -86,7 +86,7 @@ namespace Mosiac.UX.UXControls
             this.tsRequestStatus});
             this.orToolStrip.Location = new System.Drawing.Point(6, 6);
             this.orToolStrip.Name = "orToolStrip";
-            this.orToolStrip.Size = new System.Drawing.Size(1160, 31);
+            this.orToolStrip.Size = new System.Drawing.Size(1160, 33);
             this.orToolStrip.TabIndex = 2;
             this.orToolStrip.Text = "toolStrip1";
             this.orToolStrip.Click += new System.EventHandler(this.orToolStrip_Click);
@@ -96,20 +96,20 @@ namespace Mosiac.UX.UXControls
             this.tsbOrderReciept.Image = ((System.Drawing.Image)(resources.GetObject("tsbOrderReciept.Image")));
             this.tsbOrderReciept.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbOrderReciept.Name = "tsbOrderReciept";
-            this.tsbOrderReciept.Size = new System.Drawing.Size(155, 28);
+            this.tsbOrderReciept.Size = new System.Drawing.Size(155, 30);
             this.tsbOrderReciept.Text = "Receive Selected Order";
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 31);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 33);
             // 
             // tsOpenOrder
             // 
             this.tsOpenOrder.Image = global::Mosiac.UX.Properties.Resources.baseline_launch_black_24dp;
             this.tsOpenOrder.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsOpenOrder.Name = "tsOpenOrder";
-            this.tsOpenOrder.Size = new System.Drawing.Size(144, 28);
+            this.tsOpenOrder.Size = new System.Drawing.Size(144, 30);
             this.tsOpenOrder.Text = "Open Selected Order";
             // 
             // tsbPrintReceipt
@@ -117,7 +117,7 @@ namespace Mosiac.UX.UXControls
             this.tsbPrintReceipt.Image = ((System.Drawing.Image)(resources.GetObject("tsbPrintReceipt.Image")));
             this.tsbPrintReceipt.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbPrintReceipt.Name = "tsbPrintReceipt";
-            this.tsbPrintReceipt.Size = new System.Drawing.Size(102, 28);
+            this.tsbPrintReceipt.Size = new System.Drawing.Size(102, 30);
             this.tsbPrintReceipt.Text = "Print Receipt";
             // 
             // tsPrintSettings
@@ -125,13 +125,13 @@ namespace Mosiac.UX.UXControls
             this.tsPrintSettings.Image = global::Mosiac.UX.Properties.Resources.Settings_Settings_11;
             this.tsPrintSettings.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsPrintSettings.Name = "tsPrintSettings";
-            this.tsPrintSettings.Size = new System.Drawing.Size(105, 28);
+            this.tsPrintSettings.Size = new System.Drawing.Size(105, 30);
             this.tsPrintSettings.Text = "Print Settings";
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 31);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 33);
             // 
             // tsbFilterCombo
             // 
@@ -141,21 +141,33 @@ namespace Mosiac.UX.UXControls
             "30 day",
             "60 day"});
             this.tsbFilterCombo.Name = "tsbFilterCombo";
-            this.tsbFilterCombo.Size = new System.Drawing.Size(121, 31);
+            this.tsbFilterCombo.Size = new System.Drawing.Size(121, 33);
             this.tsbFilterCombo.SelectedIndexChanged += new System.EventHandler(this.tsbFilterCombo_SelectedIndexChanged);
             this.tsbFilterCombo.Click += new System.EventHandler(this.tsbFilterCombo_Click);
             // 
             // toolStripLabel1
             // 
             this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(98, 28);
+            this.toolStripLabel1.Size = new System.Drawing.Size(98, 30);
             this.toolStripLabel1.Text = "Search by Order#";
             // 
             // tsSearchEntry
             // 
             this.tsSearchEntry.Margin = new System.Windows.Forms.Padding(12, 2, 1, 2);
             this.tsSearchEntry.Name = "tsSearchEntry";
-            this.tsSearchEntry.Size = new System.Drawing.Size(100, 27);
+            this.tsSearchEntry.Size = new System.Drawing.Size(100, 29);
+            // 
+            // tsRequestStatus
+            // 
+            this.tsRequestStatus.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tsRequestStatus.BackColor = System.Drawing.SystemColors.Highlight;
+            this.tsRequestStatus.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.tsRequestStatus.Image = ((System.Drawing.Image)(resources.GetObject("tsRequestStatus.Image")));
+            this.tsRequestStatus.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsRequestStatus.Margin = new System.Windows.Forms.Padding(0, 1, 0, 4);
+            this.tsRequestStatus.Name = "tsRequestStatus";
+            this.tsRequestStatus.Size = new System.Drawing.Size(145, 28);
+            this.tsRequestStatus.Text = "Request Order Status";
             // 
             // dgPendingOrders
             // 
@@ -164,14 +176,14 @@ namespace Mosiac.UX.UXControls
             this.dgPendingOrders.Location = new System.Drawing.Point(0, 0);
             this.dgPendingOrders.Name = "dgPendingOrders";
             this.dgPendingOrders.RowTemplate.Height = 25;
-            this.dgPendingOrders.Size = new System.Drawing.Size(1160, 463);
+            this.dgPendingOrders.Size = new System.Drawing.Size(1160, 461);
             this.dgPendingOrders.TabIndex = 3;
             // 
             // splitContainer1
             // 
             this.splitContainer1.Cursor = System.Windows.Forms.Cursors.HSplit;
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(6, 37);
+            this.splitContainer1.Location = new System.Drawing.Point(6, 39);
             this.splitContainer1.Name = "splitContainer1";
             this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -182,8 +194,8 @@ namespace Mosiac.UX.UXControls
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.dgOrderLineItems);
-            this.splitContainer1.Size = new System.Drawing.Size(1160, 722);
-            this.splitContainer1.SplitterDistance = 463;
+            this.splitContainer1.Size = new System.Drawing.Size(1160, 720);
+            this.splitContainer1.SplitterDistance = 461;
             this.splitContainer1.SplitterWidth = 16;
             this.splitContainer1.TabIndex = 4;
             // 
@@ -195,16 +207,6 @@ namespace Mosiac.UX.UXControls
             this.dgOrderLineItems.Name = "dgOrderLineItems";
             this.dgOrderLineItems.Size = new System.Drawing.Size(1160, 243);
             this.dgOrderLineItems.TabIndex = 0;
-            // 
-            // tsRequestStatus
-            // 
-            this.tsRequestStatus.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.tsRequestStatus.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.tsRequestStatus.Image = ((System.Drawing.Image)(resources.GetObject("tsRequestStatus.Image")));
-            this.tsRequestStatus.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsRequestStatus.Name = "tsRequestStatus";
-            this.tsRequestStatus.Size = new System.Drawing.Size(145, 28);
-            this.tsRequestStatus.Text = "Request Order Status";
             // 
             // OrderRecieptManager
             // 

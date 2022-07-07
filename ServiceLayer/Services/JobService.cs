@@ -30,6 +30,18 @@ namespace ServiceLayer {
             return result;
         }
 
+        public async Task<List<JobListDto>> Search(string term)
+        {
+            var jobs = await context.Job.AsNoTracking().Where(p => p.jobname.Contains(term))
+                                    .Select(j => new JobListDto()
+                                    {
+                                        JobID = j.jobID,
+                                        JobName = j.jobname
+                                    }).ToListAsync();
+
+            return jobs;
+        }
+
 
         public PurchaseOrder GetJob(int jobNumber) {
 
@@ -69,6 +81,11 @@ namespace ServiceLayer {
         {
 
             return context.Job.Include(p => p.PurchaseOrder).Where(c => c.jobID == jobNumber).FirstOrDefault();
+        }
+        public async Task<Job> FindAsync(int jobNumber)
+        {
+
+            return  await context.Job.Include(p => p.PurchaseOrder).Where(c => c.jobID == jobNumber).FirstOrDefaultAsync();
         }
 
         public List<JobListDto> Recent()

@@ -723,7 +723,68 @@ namespace Mosiac.UX.UXControls
             }
         }
 
-       
+        public static void BuildPlistGrid(DataGridView dg)
+        {
+            dg.AutoGenerateColumns = false;
+
+            dg.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            dg.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+            dg.AllowUserToAddRows = false;
+            dg.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+
+            // Currency Decimal Style
+            DataGridViewCellStyle dstyleCurrency = new DataGridViewCellStyle();
+            dstyleCurrency.Format = "C";
+            dstyleCurrency.NullValue = "";
+            dstyleCurrency.Alignment = DataGridViewContentAlignment.MiddleRight;
+            // Date Style
+            DataGridViewCellStyle dstyleDate = new DataGridViewCellStyle();
+            dstyleCurrency.Format = "d";
+            dstyleCurrency.NullValue = "";
+            dstyleCurrency.Alignment = DataGridViewContentAlignment.MiddleRight;
+
+            // Currency Decimal Style
+            DataGridViewCellStyle dstyleDecimal = new DataGridViewCellStyle();
+            dstyleDecimal.Format = "N2";
+            dstyleDecimal.NullValue = "0.00";
+            dstyleDecimal.Alignment = DataGridViewContentAlignment.MiddleRight;
+            // Wrapping Text Style
+            DataGridViewCellStyle dstyleWrapText = new DataGridViewCellStyle();
+            dstyleWrapText.NullValue = "";
+            dstyleWrapText.Alignment = DataGridViewContentAlignment.TopLeft;
+            dstyleWrapText.WrapMode = DataGridViewTriState.True;
+
+            // PickListID Column --
+            DataGridViewTextBoxColumn col_PickListID = new DataGridViewTextBoxColumn();
+            col_PickListID.Name = "DogShit";
+            col_PickListID.HeaderText = "PID";
+            col_PickListID.DataPropertyName = "PickListID";
+            col_PickListID.Width = 40;
+
+            // Employee Column --
+            DataGridViewTextBoxColumn col_Employee = new DataGridViewTextBoxColumn();
+            col_Employee.HeaderText = "Creator";
+            col_Employee.DataPropertyName = "Preparer";
+            col_Employee.Width = 120;
+            col_Employee.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+
+
+            // ManufacturerPartNumber Column --
+            DataGridViewTextBoxColumn col_Date = new DataGridViewTextBoxColumn();
+            col_Date.DefaultCellStyle = dstyleDate;
+            col_Date.HeaderText = "Date";
+            col_Date.DataPropertyName = "DateStamp";
+            col_Date.Width = 65;
+
+            // Processed Column --
+            DataGridViewCheckBoxColumn col_Processed = new DataGridViewCheckBoxColumn();
+            col_Processed.HeaderText = "Processed";
+            col_Processed.DataPropertyName = "Submitted";
+            col_Processed.Width = 65;
+
+            dg.Columns.AddRange(col_PickListID, col_Employee, col_Date, col_Processed);
+
+        }
 
         public static void ToogleButtonStyle(bool dirtyState, Button btn)
         {

@@ -185,9 +185,10 @@ namespace Mosiac.UX
 
             r.Offset(2, 2);
             Brush TitleBrush = new SolidBrush(System.Drawing.Color.Black);
+            
             System.Drawing.Font f = this.Font;
             string title = this.MainTabs.TabPages[e.Index].Text;
-            //e.Graphics.FillRectangle(new SolidBrush(Color.LightBlue), e.Bounds);
+            //e.Graphics.FillRectangle(new SolidBrush(System.Drawing.Color.LightCoral), e.Bounds);
             e.Graphics.DrawString(title, f, TitleBrush, new PointF(r.X, r.Y));
             e.Graphics.DrawImage(img, new Point(r.X + (this.MainTabs.GetTabRect(e.Index).Width - _imageLocation.X), _imageLocation.Y));
             
@@ -391,6 +392,28 @@ namespace Mosiac.UX
                     }
 
                     break;
+                // ----------------------------------------------------------------------
+                // Deliveries Page Generation
+                // ----------------------------------------------------------------------
+                case "tsDeliveries":
+
+                    TabPage deliveriesPage = PageFactory.GetNewTabPage(_context, PageFactory.TabPageType.DeliveryPage);
+                    deliveriesPage.Name = "DeliveriesPage";
+                    deliveriesPage.Dock = DockStyle.Fill;
+
+                    if (!MainTabControl.TabPages.ContainsKey("DeliveriesPage"))
+                    {
+                        MainTabControl.TabPages.Add(deliveriesPage);
+                        MainTabControl.SelectedTab = deliveriesPage;
+                    }
+                    else
+                    {
+                        if (MainTabControl.TabPages.ContainsKey("DeliveriesPage"))
+                        { MainTabControl.SelectTab("DeliveriesPage"); }
+                    }
+
+                    break;
+
                 default:
                     break;
 
