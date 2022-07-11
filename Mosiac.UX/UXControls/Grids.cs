@@ -786,6 +786,78 @@ namespace Mosiac.UX.UXControls
 
         }
 
+        public static void BuildScannedPartGrid(DataGridView dg)
+        {
+            dg.AutoGenerateColumns = false;
+
+            dg.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            dg.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+
+            // Currency Decimal Style
+            DataGridViewCellStyle dstyleCurrency = new DataGridViewCellStyle();
+            dstyleCurrency.Format = "C";
+            dstyleCurrency.NullValue = "";
+            dstyleCurrency.Alignment = DataGridViewContentAlignment.MiddleRight;
+            // Date Style
+            DataGridViewCellStyle dstyleDate = new DataGridViewCellStyle();
+            dstyleCurrency.Format = "d";
+            dstyleCurrency.NullValue = "";
+            dstyleCurrency.Alignment = DataGridViewContentAlignment.MiddleRight;
+
+            // Currency Decimal Style
+            DataGridViewCellStyle dstyleDecimal = new DataGridViewCellStyle();
+            dstyleDecimal.Format = "N2";
+            dstyleDecimal.NullValue = "0.00";
+            dstyleDecimal.Alignment = DataGridViewContentAlignment.MiddleRight;
+            // Wrapping Text Style
+            DataGridViewCellStyle dstyleWrapText = new DataGridViewCellStyle();
+            dstyleWrapText.NullValue = "";
+            dstyleWrapText.Alignment = DataGridViewContentAlignment.TopLeft;
+            dstyleWrapText.WrapMode = DataGridViewTriState.True;
+
+            // PickListID Column --
+            DataGridViewTextBoxColumn col_PickListItemID = new DataGridViewTextBoxColumn();
+            col_PickListItemID.HeaderText = "ID";
+            col_PickListItemID.DataPropertyName = "PickListItemID";
+            col_PickListItemID.Width = 60;
+
+            // PartID Column --
+            DataGridViewTextBoxColumn col_PartID = new DataGridViewTextBoxColumn();
+            col_PartID.HeaderText = "PartID";
+            col_PartID.DataPropertyName = "PartID";
+            col_PartID.Width = 55;
+
+            // Qnty Column --
+            DataGridViewTextBoxColumn col_Qnty = new DataGridViewTextBoxColumn();
+            col_Qnty.HeaderText = "Qnty";
+            col_Qnty.DataPropertyName = "Qnty";
+            col_Qnty.Width = 55;
+
+            // Receipt Description Column --
+            DataGridViewTextBoxColumn col_Description = new DataGridViewTextBoxColumn();
+            col_Description.HeaderText = "Description";
+            col_Description.DataPropertyName = "Description";
+            col_Description.Width = 120;
+            col_Description.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+
+            // ManufacturerPartNumber Column --
+            DataGridViewCheckBoxColumn col_OnBoard = new DataGridViewCheckBoxColumn();
+            col_OnBoard.HeaderText = "Included";
+            col_OnBoard.DataPropertyName = "Onboard";
+            col_OnBoard.Width = 60;
+
+            // StockTransAction Column --
+            DataGridViewTextBoxColumn col_StockTransActionID = new DataGridViewTextBoxColumn();
+            col_StockTransActionID.HeaderText = "Stock#";
+            col_StockTransActionID.DataPropertyName = "StockTransActionID";
+            col_StockTransActionID.Width = 60;
+
+
+
+            dg.Columns.AddRange(col_PickListItemID, col_PartID, col_Qnty, col_Description, col_OnBoard, col_StockTransActionID);
+
+        }
+
         public static void ToogleButtonStyle(bool dirtyState, Button btn)
         {
             
@@ -803,6 +875,23 @@ namespace Mosiac.UX.UXControls
                 btn.BackColor = Color.Gainsboro;
                 btn.FlatAppearance.BorderColor = Color.AliceBlue;
                 btn.FlatAppearance.BorderColor = Color.Cornsilk;
+            }
+        }
+
+        public static void ToogleToolStripButtonStyle(bool dirtyState, ToolStripButton btn)
+        {
+
+
+            if (dirtyState == true)
+            {
+                btn.BackColor = System.Drawing.Color.Cornsilk;
+
+            }
+
+            else if (dirtyState == false)
+            {
+                btn.BackColor = Color.Gainsboro;
+
             }
         }
 

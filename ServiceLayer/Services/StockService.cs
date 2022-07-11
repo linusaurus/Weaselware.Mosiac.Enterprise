@@ -48,11 +48,30 @@ namespace ServiceLayer
                 ItemCount = p.ItemCount.GetValueOrDefault(),
                 JobName = p.Job.jobname,
                 Submitted = p.Submitted.GetValueOrDefault()
+                
 
             }).ToList();
 
             return result;
         }
+        // Return a complete but untracked list of Entity objects
+        public List<PickListDto> GetJobPicks(int jobID)
+        {
+            var result = _ctx.PickList.AsNoTracking().Include(i => i.pickListItems).Include(j => j.Job)
+                .Include(e => e.Employee).Where(f => f.JobID == jobID).ToList();
+
+            List<PickListDto> resultList = new List<PickListDto>();
+
+            foreach (var pick in result)
+            {
+                PickListDto dto = new PickListDto();
+                pickListMapper.Map(pick,dto);
+                resultList.Add(dto);
+            }
+ 
+            return resultList;
+        }
+
         // PointOfUse inventory reduction using partnumber or StockTag
         public async void PullPart(string partid, decimal qnty, int jobid)
         {

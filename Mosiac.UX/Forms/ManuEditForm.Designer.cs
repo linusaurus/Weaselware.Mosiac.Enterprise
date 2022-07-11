@@ -42,7 +42,7 @@ namespace Mosiac.UX
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(299, 124);
+            this.btnCancel.Location = new System.Drawing.Point(225, 86);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(88, 27);
@@ -55,7 +55,7 @@ namespace Mosiac.UX
             // 
             this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnOK.Location = new System.Drawing.Point(393, 124);
+            this.btnOK.Location = new System.Drawing.Point(321, 86);
             this.btnOK.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(88, 27);
@@ -69,12 +69,13 @@ namespace Mosiac.UX
             this.txtName.Location = new System.Drawing.Point(66, 17);
             this.txtName.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(345, 23);
+            this.txtName.Size = new System.Drawing.Size(272, 23);
             this.txtName.TabIndex = 2;
+            this.txtName.TextChanged += new System.EventHandler(this.txtName_TextChanged);
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(419, 17);
+            this.textBox2.Location = new System.Drawing.Point(346, 17);
             this.textBox2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(63, 23);
@@ -92,10 +93,10 @@ namespace Mosiac.UX
             // 
             // txtULR
             // 
-            this.txtULR.Location = new System.Drawing.Point(66, 47);
+            this.txtULR.Location = new System.Drawing.Point(66, 43);
             this.txtULR.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtULR.Name = "txtULR";
-            this.txtULR.Size = new System.Drawing.Size(416, 23);
+            this.txtULR.Size = new System.Drawing.Size(343, 23);
             this.txtULR.TabIndex = 2;
             // 
             // label2
@@ -114,7 +115,7 @@ namespace Mosiac.UX
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(495, 165);
+            this.ClientSize = new System.Drawing.Size(424, 125);
             this.ControlBox = false;
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);

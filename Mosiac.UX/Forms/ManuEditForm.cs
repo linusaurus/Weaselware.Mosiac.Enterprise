@@ -36,6 +36,13 @@ namespace Mosiac.UX
             BindManu();
             _ctx = ctx;
         }
+        public ManuEditForm(MosaicContext ctx, Manu manuToEdit)
+        {
+            InitializeComponent();
+            _manu = manuToEdit;
+            BindManu();
+            _ctx = ctx;
+        }
 
         private void BindManu()
         {
@@ -55,6 +62,11 @@ namespace Mosiac.UX
         private void btnCancel_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void txtName_TextChanged(object sender, EventArgs e)
+        {
+            this.Text = txtName.Text;
         }
     }
 }

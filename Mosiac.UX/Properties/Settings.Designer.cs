@@ -80,5 +80,17 @@ namespace Mosiac.UX.Properties {
                 this["PrintSettings"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string LastJobSearched {
+            get {
+                return ((string)(this["LastJobSearched"]));
+            }
+            set {
+                this["LastJobSearched"] = value;
+            }
+        }
     }
 }

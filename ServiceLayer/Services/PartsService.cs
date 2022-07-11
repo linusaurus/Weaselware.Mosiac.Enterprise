@@ -172,8 +172,10 @@ namespace ServiceLayer
             {
                 Itemdescription = d.ItemDescription,
                 PartID = d.PartID,
-                PartNumber = d.PartNum
-                //Orders = _context.PurchaseLineItems.AsNoTracking().Where(o => o.PartID == d.PartID).Count()
+                PartNumber = d.PartNum,
+                ManuName = d.Manu.Manufacturer,
+                DateAdded = d.DateAdded.ToString(),
+                AddedBy = d.AddedBy
 
             }).ToList();
 
@@ -425,8 +427,9 @@ namespace ServiceLayer
                      Itemdescription = d.ItemDescription,
                      PartID = d.PartID,
                      PartNumber = d.PartNum,
+                     ManuName = d.Manu.Manufacturer,
                      AddedBy = d.AddedBy,
-                        DateAdded = d.DateAdded.GetValueOrDefault().ToShortDateString()
+                     DateAdded = d.DateAdded.GetValueOrDefault().ToShortDateString()
 
             }).OrderByDescending(p => p.PartID).ToList();
 
@@ -455,6 +458,7 @@ namespace ServiceLayer
                          PartID = d.PartID,
                          PartNumber = d.PartNum,
                          AddedBy = d.AddedBy,
+                         ManuName = d.Manu.Manufacturer,
                          DateAdded = d.DateAdded.GetValueOrDefault().ToShortDateString()
 
                      }).OrderByDescending(p => p.PartID).ToListAsync();
@@ -470,6 +474,7 @@ namespace ServiceLayer
                         PartID = d.PartID,
                         PartNumber = d.PartNum,
                         AddedBy = d.AddedBy,
+                        ManuName = d.Manu.Manufacturer,
                         DateAdded = d.DateAdded.GetValueOrDefault().ToShortDateString()
 
                     }).ToListAsync();

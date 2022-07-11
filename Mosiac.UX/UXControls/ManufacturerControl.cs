@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataLayer.Data;
+using DataLayer.Entity;
 using ServiceLayer;
 using ServiceLayer.Models;
 using ServiceLayer.Services;
@@ -140,6 +141,17 @@ namespace Mosiac.UX.UXControls
                 }
             }
            
+        }
+
+        private void btnNew_Click(object sender, EventArgs e)
+        {
+            ManuEditForm frm = new ManuEditForm(_ctx);
+            if (frm.ShowDialog() == DialogResult.OK)
+            {
+                Manu manu = frm.Manu;
+                txtSearchManu.Text = manu.Manufacturer.ToString();
+                SearchManus();
+            }
         }
     }
 }

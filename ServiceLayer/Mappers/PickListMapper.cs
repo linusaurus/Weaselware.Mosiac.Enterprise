@@ -20,7 +20,7 @@ namespace ServiceLayer.Mappers
             destination.PickListID = source.PickListID;
             destination.EmployeeID = source.EmployeeID.GetValueOrDefault();
             destination.JobID = source.JobID.GetValueOrDefault();
-            destination.JobName = source.Job.jobname;
+           if (source.Job != null) { destination.JobName = source.Job.jobname; }
             if (source.Employee != null) { destination.Preparer = source.Employee.firstname; }
 
             destination.ItemCount = source.pickListItems.Count;

@@ -69,7 +69,7 @@ namespace Mosiac.UX.UXControls
             cboManu.DataSource = manus;
             cboManu.DisplayMember = "ManufacturerName";
             cboManu.ValueMember = "ManuID";
-            cboManu.SelectedIndex = 1;
+            cboManu.SelectedIndex = -1;
             
             bsPart.ListChanged += BsPart_ListChanged;
             bsResource.ListChanged += BsResource_ListChanged;
@@ -194,12 +194,15 @@ namespace Mosiac.UX.UXControls
         private void cboManu_SelectedIndexChanged(object sender, System.EventArgs e)
         {
            ComboBox cb = (ComboBox)sender;
-            
-            manuID =((ManuListDTO)cb?.SelectedItem).ManuID;
-            partsList = partsService.GetManufacturerParts(manuID);
-            ListAsDataTable = Grids.BuildDataTable<PartFastSearchDto>(partsList);
-            dv = ListAsDataTable.DefaultView;
-            dgPartsSearch.DataSource = dv;
+            if (cb.SelectedIndex != -1)
+            {
+                manuID = ((ManuListDTO)cb?.SelectedItem).ManuID;
+                partsList = partsService.GetManufacturerParts(manuID);
+                ListAsDataTable = Grids.BuildDataTable<PartFastSearchDto>(partsList);
+                dv = ListAsDataTable.DefaultView;
+                dgPartsSearch.DataSource = dv;
+            }
+           
         }
 
         /// <summary>

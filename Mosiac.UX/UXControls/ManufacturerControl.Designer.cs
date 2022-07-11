@@ -133,6 +133,7 @@
             this.btnNew.TabIndex = 0;
             this.btnNew.Text = "New Manufacturer";
             this.btnNew.UseVisualStyleBackColor = true;
+            this.btnNew.Click += new System.EventHandler(this.btnNew_Click);
             // 
             // pnlSearchBackground
             // 
