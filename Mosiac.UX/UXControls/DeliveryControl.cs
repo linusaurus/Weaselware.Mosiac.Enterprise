@@ -18,7 +18,8 @@ namespace Mosiac.UX.UXControls
     public partial class DeliveryControl : UserControl
     {
         private int pickID;
-        private PickListDto activePickList = new PickListDto();
+        private PickListDto activePickList; //= new PickListDto();
+        private PickListDto selectedPickList;
         JobListDto _selectedJobDto;
         private readonly MosaicContext _ctx;
         private StockService _stockService;
@@ -36,46 +37,75 @@ namespace Mosiac.UX.UXControls
         {
             InitializeComponent();
             _ctx = ctx;
-
+            // Init the two servicess
             _stockService = new StockService(_ctx);
             _jobService = new JobsService(_ctx);
+
+            // Constuct the two grids
             Grids.BuildPlistGrid(dgvDeliveries);
             Grids.BuildScannedPartGrid(dgvPickListItems);
      
             lbJobList.SelectedIndexChanged += LbJobList_SelectedIndexChanged;
             bsPickItems.ListChanged += BsPickItems_ListChanged;
+            bsPicks.ListChanged += BsPicks_ListChanged;
             bsPickItems.AddingNew += BsPickItems_AddingNew;
+
+            // Reload last job selected --
             if (Mosiac.UX.Properties.Settings.Default.LastJobSearched.Length > 0)
             {
                 string lastJobSearch = Mosiac.UX.Properties.Settings.Default.LastJobSearched;
                 txtJobSearch.Text = lastJobSearch;
                 LoadJobsList();
             }
-            
+  
         }
 
-        private void BsPickItems_AddingNew(object sender, AddingNewEventArgs e)
+       
+        private void BsPicks_ListChanged(object sender, ListChangedEventArgs e)
         {
-          PickListItemDto newItem = new PickListItemDto { Qnty = 1.0m}  ;
-            e.NewObject = newItem;
-        }
-
-        private void BsPickItems_ListChanged(object sender, ListChangedEventArgs e)
-        {
-            if (e.ListChangedType == ListChangedType.ItemChanged)
+            if (e.ListChangedType == ListChangedType.ItemChanged |
+                e.ListChangedType == ListChangedType.ItemDeleted |
+                e.ListChangedType == ListChangedType.ItemAdded)
             {
                 tsSave.BackColor = Color.Cornsilk;
             }
         }
 
-        private void BindListHeader(PickListDto selectedList)
+        private void BsPickItems_AddingNew(object sender, AddingNewEventArgs e)
         {
-            
-            lbPickID.Text = $"List # {selectedList.PickListID.ToString()}";
-            lbJobname.Text = $"Job : {selectedList.JobName}";
-            lbDateStamp.Text = $"Date : {selectedList.DateStamp.ToLongDateString()}";
-            lbPreparedBy.Text = $"Prepared By : {selectedList.Preparer}";
-            lbItemCount.Text = $"Items : {selectedList.ItemCount.ToString()}";
+          PickListItemDto newItem = new PickListItemDto 
+          {
+              Qnty = 1.0m,
+              PartID = 0,
+          } ;
+
+          e.NewObject = newItem;
+        }
+
+        private void BsPickItems_ListChanged(object sender, ListChangedEventArgs e)
+        {
+            if (e.ListChangedType == ListChangedType.ItemChanged |
+                e.ListChangedType == ListChangedType.ItemDeleted | 
+                e.ListChangedType== ListChangedType.ItemAdded)
+            {
+                tsSave.BackColor = Color.Cornsilk;
+            }
+        }
+
+        private void BindListHeader(PickListDto selected)
+        {
+
+            ckbDelivered.DataBindings.Clear();
+            cbkProcessed.DataBindings.Clear();
+            //-----------------------------------
+            lbPickID.Text = $"List # {selected.PickListID.ToString()}";
+            lbJobname.Text = $"Job : {selected.JobName}";
+            lbDateStamp.Text = $"Date : {selected.DateStamp.ToLongDateString()}";
+            lbPreparedBy.Text = $"Prepared By : {selected.Preparer}";
+            lbItemCount.Text = $"Items : {selected.ItemCount.ToString()}";
+            //---------------------------------------
+            ckbDelivered.DataBindings.Add("Checked",selected,"Delivered",true,DataSourceUpdateMode.OnPropertyChanged);
+            cbkProcessed.DataBindings.Add("Checked",selected,"Submitted",true,DataSourceUpdateMode.OnPropertyChanged);         
         }
 
        
@@ -87,12 +117,8 @@ namespace Mosiac.UX.UXControls
                 if (lbJobList.Items.Count > 0)
                 {
                     _selectedJobDto = (JobListDto)lbJobList.SelectedItem;
-                    var picks = _stockService.GetJobPicks(_selectedJobDto.JobID);
-                    bsPicks.DataSource = picks;
-                    //bsPickItems.DataSource = picks;
-                    //bsPickItems.DataMember = "PickListItems";
-                    dgvDeliveries.DataSource = bsPicks;
-                    
+                    var picks = _stockService.GetJobPicks(_selectedJobDto.JobID);                 
+                    dgvDeliveries.DataSource = picks;                
                 }
                 else
                 {
@@ -101,8 +127,31 @@ namespace Mosiac.UX.UXControls
                 }
             }
         }
+        /// <summary>
+        /// Here where the money is ------
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void dgvDeliveries_SelectionChanged(object sender, EventArgs e)
+        {
+            DataGridView dg = (DataGridView)sender;
+            if (dg.DataSource != null)
+            {
+                if (dg.SelectedRows.Count > 0)
+                {
+                    selectedPickList = ((PickListDto)dg.CurrentRow.DataBoundItem);
+                    activePickList = _stockService.GetPicklist(selectedPickList.PickListID);
+                    BindListHeader(activePickList);
+                    bsPicks.DataSource = activePickList;
+                    bsPickItems.DataSource = activePickList;
+                    bsPickItems.DataMember = "PickListItems";
+                    
+                    dgvPickListItems.DataSource = bsPickItems;
+                }
+            }
+        }
 
-        
+
 
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
@@ -145,17 +194,25 @@ namespace Mosiac.UX.UXControls
             switch (e.ClickedItem.Name)
             {
                 case "tsSave":
-
-                    activePickList =  await  _stockService.CreateOrUpdate(activePickList);
-                    bsPickItems.DataSource = activePickList.PickListItems;
+                    
+                    // this is updating the stale Picklist object
+                    bsPicks.EndEdit();
+                    bsPickItems.EndEdit();
+                    var result = await  _stockService.CreateOrUpdate(activePickList);
+                    activePickList = result;
+                    bsPicks.DataSource = activePickList;
+                    bsPickItems.DataSource = bsPicks;
+                    bsPickItems.DataMember = "PickListItems";
+                  
                     Grids.ToogleToolStripButtonStyle(false, tsSave);
+
                     break;
                 case "tsPrint":
 
                     FastReport.Report report = new FastReport.Report();
                     report.Load($"{Application.StartupPath}PLIST.frx");
                     // Setting the parameter is not taking --
-                    report.SetParameterValue("ID", activePickList.PickListID);
+                    report.SetParameterValue("ID", selectedPickList.PickListID);
                     report.Show();
                     break;
 
@@ -199,20 +256,31 @@ namespace Mosiac.UX.UXControls
             }
         }
 
-        private void dgvDeliveries_SelectionChanged(object sender, EventArgs e)
+        private void cbkProcessed_CheckedChanged(object sender, EventArgs e)
         {
-            DataGridView dg = (DataGridView)sender;
-            if (dg.DataSource != null)
+            CheckBox cb = (CheckBox)sender;
+            if (cb.Checked)
             {
-                if (dg.SelectedRows.Count > 0)
-                {
-                   activePickList = (PickListDto)dg.CurrentRow.DataBoundItem;
-                   BindListHeader(activePickList);
-                   bsPickItems.DataSource = activePickList.PickListItems;
-                   dgvPickListItems.DataSource = bsPickItems;
-                    bsPickItems.AddNew();
-                  
-                }  
+                selectedPickList.Submitted = true;
+
+            }
+            else
+            {
+                selectedPickList.Submitted = false;
+            }
+        }
+
+        private void ckbDelivered_CheckedChanged(object sender, EventArgs e)
+        {
+            CheckBox cb = (CheckBox)sender;
+            if (cb.Checked)
+            {
+                selectedPickList.Delivered = true;
+
+            }
+            else
+            {
+                selectedPickList.Delivered = false;
             }
         }
     }

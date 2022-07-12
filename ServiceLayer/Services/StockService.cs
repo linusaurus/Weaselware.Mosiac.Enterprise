@@ -173,9 +173,9 @@ namespace ServiceLayer
                  await _ctx.SaveChangesAsync();
                  //----------------------------------------**
                  PickListDto newDto = new PickListDto();
-                 pickListMapper.Map(pickList, dto);
+                 pickListMapper.Map(pickList, newDto);
                  //----------------------------------------**
-                 return dto;
+                 return newDto;
 
             }
 

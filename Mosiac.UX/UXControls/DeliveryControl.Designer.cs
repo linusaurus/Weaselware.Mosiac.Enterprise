@@ -37,6 +37,8 @@
             this.txtJobSearch = new System.Windows.Forms.TextBox();
             this.dgvPickListItems = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.ckbDelivered = new System.Windows.Forms.CheckBox();
+            this.cbkProcessed = new System.Windows.Forms.CheckBox();
             this.lbItemCount = new System.Windows.Forms.Label();
             this.lbPreparedBy = new System.Windows.Forms.Label();
             this.lbDateStamp = new System.Windows.Forms.Label();
@@ -154,6 +156,8 @@
             // 
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.Controls.Add(this.ckbDelivered);
+            this.panel1.Controls.Add(this.cbkProcessed);
             this.panel1.Controls.Add(this.lbItemCount);
             this.panel1.Controls.Add(this.lbPreparedBy);
             this.panel1.Controls.Add(this.lbDateStamp);
@@ -164,63 +168,93 @@
             this.panel1.Size = new System.Drawing.Size(831, 117);
             this.panel1.TabIndex = 0;
             // 
+            // ckbDelivered
+            // 
+            this.ckbDelivered.BackColor = System.Drawing.SystemColors.Highlight;
+            this.ckbDelivered.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.ckbDelivered.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ckbDelivered.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.ckbDelivered.Location = new System.Drawing.Point(636, 10);
+            this.ckbDelivered.Name = "ckbDelivered";
+            this.ckbDelivered.Padding = new System.Windows.Forms.Padding(4, 4, 10, 4);
+            this.ckbDelivered.Size = new System.Drawing.Size(174, 27);
+            this.ckbDelivered.TabIndex = 2;
+            this.ckbDelivered.Text = "Delivery Complete";
+            this.ckbDelivered.UseVisualStyleBackColor = false;
+            this.ckbDelivered.CheckedChanged += new System.EventHandler(this.ckbDelivered_CheckedChanged);
+            // 
+            // cbkProcessed
+            // 
+            this.cbkProcessed.BackColor = System.Drawing.SystemColors.Highlight;
+            this.cbkProcessed.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.cbkProcessed.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cbkProcessed.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.cbkProcessed.Location = new System.Drawing.Point(636, 41);
+            this.cbkProcessed.Name = "cbkProcessed";
+            this.cbkProcessed.Padding = new System.Windows.Forms.Padding(4, 4, 10, 4);
+            this.cbkProcessed.Size = new System.Drawing.Size(174, 27);
+            this.cbkProcessed.TabIndex = 2;
+            this.cbkProcessed.Text = "Processed to Inventory";
+            this.cbkProcessed.UseVisualStyleBackColor = false;
+            this.cbkProcessed.CheckedChanged += new System.EventHandler(this.cbkProcessed_CheckedChanged);
+            // 
             // lbItemCount
             // 
             this.lbItemCount.BackColor = System.Drawing.SystemColors.Highlight;
             this.lbItemCount.ForeColor = System.Drawing.Color.White;
-            this.lbItemCount.Location = new System.Drawing.Point(17, 41);
+            this.lbItemCount.Location = new System.Drawing.Point(420, 41);
             this.lbItemCount.Margin = new System.Windows.Forms.Padding(2);
             this.lbItemCount.Name = "lbItemCount";
-            this.lbItemCount.Size = new System.Drawing.Size(144, 27);
+            this.lbItemCount.Size = new System.Drawing.Size(211, 27);
             this.lbItemCount.TabIndex = 1;
-            this.lbItemCount.Text = "label1";
+            this.lbItemCount.Text = "Item-Count";
             this.lbItemCount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lbPreparedBy
             // 
             this.lbPreparedBy.BackColor = System.Drawing.SystemColors.Highlight;
             this.lbPreparedBy.ForeColor = System.Drawing.Color.White;
-            this.lbPreparedBy.Location = new System.Drawing.Point(602, 41);
+            this.lbPreparedBy.Location = new System.Drawing.Point(205, 10);
             this.lbPreparedBy.Margin = new System.Windows.Forms.Padding(2);
             this.lbPreparedBy.Name = "lbPreparedBy";
             this.lbPreparedBy.Size = new System.Drawing.Size(211, 27);
             this.lbPreparedBy.TabIndex = 1;
-            this.lbPreparedBy.Text = "label1";
+            this.lbPreparedBy.Text = "Prepared by";
             this.lbPreparedBy.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lbDateStamp
             // 
             this.lbDateStamp.BackColor = System.Drawing.SystemColors.Highlight;
             this.lbDateStamp.ForeColor = System.Drawing.Color.White;
-            this.lbDateStamp.Location = new System.Drawing.Point(602, 10);
+            this.lbDateStamp.Location = new System.Drawing.Point(420, 10);
             this.lbDateStamp.Margin = new System.Windows.Forms.Padding(2);
             this.lbDateStamp.Name = "lbDateStamp";
             this.lbDateStamp.Size = new System.Drawing.Size(211, 27);
             this.lbDateStamp.TabIndex = 1;
-            this.lbDateStamp.Text = "label1";
+            this.lbDateStamp.Text = "Date-Stamp";
             this.lbDateStamp.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lbJobname
             // 
             this.lbJobname.BackColor = System.Drawing.SystemColors.Highlight;
             this.lbJobname.ForeColor = System.Drawing.Color.White;
-            this.lbJobname.Location = new System.Drawing.Point(165, 10);
+            this.lbJobname.Location = new System.Drawing.Point(17, 41);
             this.lbJobname.Margin = new System.Windows.Forms.Padding(2);
             this.lbJobname.Name = "lbJobname";
-            this.lbJobname.Size = new System.Drawing.Size(433, 27);
+            this.lbJobname.Size = new System.Drawing.Size(399, 27);
             this.lbJobname.TabIndex = 1;
-            this.lbJobname.Text = "List ID";
+            this.lbJobname.Text = "Jobname";
             this.lbJobname.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lbPickID
             // 
             this.lbPickID.BackColor = System.Drawing.SystemColors.Highlight;
-            this.lbPickID.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lbPickID.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lbPickID.ForeColor = System.Drawing.Color.White;
             this.lbPickID.Location = new System.Drawing.Point(17, 10);
             this.lbPickID.Margin = new System.Windows.Forms.Padding(2);
             this.lbPickID.Name = "lbPickID";
-            this.lbPickID.Size = new System.Drawing.Size(144, 27);
+            this.lbPickID.Size = new System.Drawing.Size(184, 27);
             this.lbPickID.TabIndex = 1;
             this.lbPickID.Text = "List ID";
             this.lbPickID.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -309,5 +343,7 @@
         private System.Windows.Forms.Label lbDateStamp;
         private System.Windows.Forms.Label lbJobname;
         private System.Windows.Forms.Label lbItemCount;
+        private System.Windows.Forms.CheckBox cbkProcessed;
+        private System.Windows.Forms.CheckBox ckbDelivered;
     }
 }
