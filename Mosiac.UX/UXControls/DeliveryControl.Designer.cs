@@ -37,6 +37,15 @@
             this.txtJobSearch = new System.Windows.Forms.TextBox();
             this.dgvPickListItems = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lbZip = new System.Windows.Forms.Label();
+            this.lbState = new System.Windows.Forms.Label();
+            this.lbCity = new System.Windows.Forms.Label();
+            this.lbAddress = new System.Windows.Forms.Label();
+            this.lbAttention = new System.Windows.Forms.Label();
+            this.lbDestinationName = new System.Windows.Forms.Label();
+            this.btnSetDestination = new System.Windows.Forms.Button();
+            this.btnViewReceipt = new System.Windows.Forms.Button();
+            this.btnAttach = new System.Windows.Forms.Button();
             this.ckbDelivered = new System.Windows.Forms.CheckBox();
             this.cbkProcessed = new System.Windows.Forms.CheckBox();
             this.lbItemCount = new System.Windows.Forms.Label();
@@ -81,7 +90,7 @@
             this.splitContainer1.Panel2.Controls.Add(this.panel1);
             this.splitContainer1.Panel2.Controls.Add(this.tsMain);
             this.splitContainer1.Panel2.Padding = new System.Windows.Forms.Padding(10);
-            this.splitContainer1.Size = new System.Drawing.Size(1186, 726);
+            this.splitContainer1.Size = new System.Drawing.Size(1208, 719);
             this.splitContainer1.SplitterDistance = 325;
             this.splitContainer1.TabIndex = 0;
             // 
@@ -109,7 +118,7 @@
             this.dgvDeliveries.Location = new System.Drawing.Point(9, 252);
             this.dgvDeliveries.Name = "dgvDeliveries";
             this.dgvDeliveries.RowTemplate.Height = 25;
-            this.dgvDeliveries.Size = new System.Drawing.Size(307, 462);
+            this.dgvDeliveries.Size = new System.Drawing.Size(307, 455);
             this.dgvDeliveries.TabIndex = 4;
             this.dgvDeliveries.SelectionChanged += new System.EventHandler(this.dgvDeliveries_SelectionChanged);
             // 
@@ -146,16 +155,25 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvPickListItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvPickListItems.Location = new System.Drawing.Point(13, 161);
+            this.dgvPickListItems.Location = new System.Drawing.Point(13, 213);
             this.dgvPickListItems.Name = "dgvPickListItems";
             this.dgvPickListItems.RowTemplate.Height = 25;
-            this.dgvPickListItems.Size = new System.Drawing.Size(831, 553);
+            this.dgvPickListItems.Size = new System.Drawing.Size(853, 494);
             this.dgvPickListItems.TabIndex = 2;
             // 
             // panel1
             // 
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.Controls.Add(this.lbZip);
+            this.panel1.Controls.Add(this.lbState);
+            this.panel1.Controls.Add(this.lbCity);
+            this.panel1.Controls.Add(this.lbAddress);
+            this.panel1.Controls.Add(this.lbAttention);
+            this.panel1.Controls.Add(this.lbDestinationName);
+            this.panel1.Controls.Add(this.btnSetDestination);
+            this.panel1.Controls.Add(this.btnViewReceipt);
+            this.panel1.Controls.Add(this.btnAttach);
             this.panel1.Controls.Add(this.ckbDelivered);
             this.panel1.Controls.Add(this.cbkProcessed);
             this.panel1.Controls.Add(this.lbItemCount);
@@ -165,8 +183,114 @@
             this.panel1.Controls.Add(this.lbPickID);
             this.panel1.Location = new System.Drawing.Point(13, 38);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(831, 117);
+            this.panel1.Size = new System.Drawing.Size(853, 169);
             this.panel1.TabIndex = 0;
+            // 
+            // lbZip
+            // 
+            this.lbZip.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.lbZip.Location = new System.Drawing.Point(334, 134);
+            this.lbZip.Margin = new System.Windows.Forms.Padding(2);
+            this.lbZip.Name = "lbZip";
+            this.lbZip.Padding = new System.Windows.Forms.Padding(1);
+            this.lbZip.Size = new System.Drawing.Size(79, 22);
+            this.lbZip.TabIndex = 4;
+            this.lbZip.Text = "Zip";
+            this.lbZip.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lbState
+            // 
+            this.lbState.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.lbState.Location = new System.Drawing.Point(304, 134);
+            this.lbState.Margin = new System.Windows.Forms.Padding(2);
+            this.lbState.Name = "lbState";
+            this.lbState.Padding = new System.Windows.Forms.Padding(1);
+            this.lbState.Size = new System.Drawing.Size(26, 22);
+            this.lbState.TabIndex = 4;
+            this.lbState.Text = "ST";
+            this.lbState.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lbCity
+            // 
+            this.lbCity.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.lbCity.Location = new System.Drawing.Point(146, 134);
+            this.lbCity.Margin = new System.Windows.Forms.Padding(2);
+            this.lbCity.Name = "lbCity";
+            this.lbCity.Padding = new System.Windows.Forms.Padding(1);
+            this.lbCity.Size = new System.Drawing.Size(153, 22);
+            this.lbCity.TabIndex = 4;
+            this.lbCity.Text = "City";
+            this.lbCity.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lbAddress
+            // 
+            this.lbAddress.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.lbAddress.Location = new System.Drawing.Point(146, 108);
+            this.lbAddress.Margin = new System.Windows.Forms.Padding(2);
+            this.lbAddress.Name = "lbAddress";
+            this.lbAddress.Padding = new System.Windows.Forms.Padding(1);
+            this.lbAddress.Size = new System.Drawing.Size(267, 22);
+            this.lbAddress.TabIndex = 4;
+            this.lbAddress.Text = "Address";
+            this.lbAddress.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lbAttention
+            // 
+            this.lbAttention.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.lbAttention.Location = new System.Drawing.Point(417, 78);
+            this.lbAttention.Margin = new System.Windows.Forms.Padding(2);
+            this.lbAttention.Name = "lbAttention";
+            this.lbAttention.Padding = new System.Windows.Forms.Padding(1);
+            this.lbAttention.Size = new System.Drawing.Size(214, 26);
+            this.lbAttention.TabIndex = 4;
+            this.lbAttention.Text = "Attention";
+            this.lbAttention.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lbDestinationName
+            // 
+            this.lbDestinationName.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.lbDestinationName.Location = new System.Drawing.Point(146, 78);
+            this.lbDestinationName.Margin = new System.Windows.Forms.Padding(2);
+            this.lbDestinationName.Name = "lbDestinationName";
+            this.lbDestinationName.Padding = new System.Windows.Forms.Padding(1);
+            this.lbDestinationName.Size = new System.Drawing.Size(267, 26);
+            this.lbDestinationName.TabIndex = 4;
+            this.lbDestinationName.Text = "Destination Name";
+            this.lbDestinationName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // btnSetDestination
+            // 
+            this.btnSetDestination.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.btnSetDestination.FlatAppearance.BorderColor = System.Drawing.Color.Blue;
+            this.btnSetDestination.FlatAppearance.BorderSize = 2;
+            this.btnSetDestination.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSetDestination.Location = new System.Drawing.Point(17, 79);
+            this.btnSetDestination.Name = "btnSetDestination";
+            this.btnSetDestination.Size = new System.Drawing.Size(111, 37);
+            this.btnSetDestination.TabIndex = 3;
+            this.btnSetDestination.Text = "Set Destination";
+            this.btnSetDestination.UseVisualStyleBackColor = false;
+            this.btnSetDestination.Click += new System.EventHandler(this.btnSetDestination_Click);
+            // 
+            // btnViewReceipt
+            // 
+            this.btnViewReceipt.Location = new System.Drawing.Point(700, 108);
+            this.btnViewReceipt.Name = "btnViewReceipt";
+            this.btnViewReceipt.Size = new System.Drawing.Size(110, 24);
+            this.btnViewReceipt.TabIndex = 3;
+            this.btnViewReceipt.Text = "View Receipt";
+            this.btnViewReceipt.UseVisualStyleBackColor = true;
+            // 
+            // btnAttach
+            // 
+            this.btnAttach.Enabled = false;
+            this.btnAttach.Location = new System.Drawing.Point(700, 78);
+            this.btnAttach.Name = "btnAttach";
+            this.btnAttach.Size = new System.Drawing.Size(110, 24);
+            this.btnAttach.TabIndex = 3;
+            this.btnAttach.Text = "Attach Receipt";
+            this.btnAttach.UseVisualStyleBackColor = true;
+            this.btnAttach.Click += new System.EventHandler(this.btnAttach_Click);
             // 
             // ckbDelivered
             // 
@@ -267,7 +391,7 @@
             this.tsPrint});
             this.tsMain.Location = new System.Drawing.Point(10, 10);
             this.tsMain.Name = "tsMain";
-            this.tsMain.Size = new System.Drawing.Size(837, 25);
+            this.tsMain.Size = new System.Drawing.Size(859, 25);
             this.tsMain.TabIndex = 1;
             this.tsMain.Text = "toolStrip1";
             this.tsMain.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.tsMain_ItemClicked);
@@ -308,7 +432,7 @@
             this.Controls.Add(this.splitContainer1);
             this.Name = "DeliveryControl";
             this.Padding = new System.Windows.Forms.Padding(10);
-            this.Size = new System.Drawing.Size(1206, 746);
+            this.Size = new System.Drawing.Size(1228, 739);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
@@ -345,5 +469,14 @@
         private System.Windows.Forms.Label lbItemCount;
         private System.Windows.Forms.CheckBox cbkProcessed;
         private System.Windows.Forms.CheckBox ckbDelivered;
+        private System.Windows.Forms.Button btnAttach;
+        private System.Windows.Forms.Button btnViewReceipt;
+        private System.Windows.Forms.Label lbZip;
+        private System.Windows.Forms.Label lbState;
+        private System.Windows.Forms.Label lbCity;
+        private System.Windows.Forms.Label lbAddress;
+        private System.Windows.Forms.Label lbDestinationName;
+        private System.Windows.Forms.Button btnSetDestination;
+        private System.Windows.Forms.Label lbAttention;
     }
 }

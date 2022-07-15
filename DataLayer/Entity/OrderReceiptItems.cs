@@ -24,9 +24,7 @@ namespace DataLayer.Entity
         public string Note { get; set; }
         public decimal? InventoryAmount { get; set; }
         public bool? Pushed { get; set; }
-
         public virtual UnitOfMeasure UnitOfMeasure { get; set; }
-
         public virtual OrderReciept OrderReceipt { get; set; }
     }
 }

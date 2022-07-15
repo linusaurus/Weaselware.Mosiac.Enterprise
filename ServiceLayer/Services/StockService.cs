@@ -34,6 +34,12 @@ namespace ServiceLayer
            
         }
 
+        public async Task<List<Destination>> GetDestinationsAsync(string term)
+        {
+            var result = await _ctx.Destination.AsNoTracking().Where(d => d.DestinationName.Contains(term)).ToListAsync();
+            return result;
+        }
+
         public List<PickListDto> JobPicks(int jobID)
         {
             var result = _ctx.PickList.AsNoTracking().Include(j => j.Job).Where(f => f.JobID == jobID).Select(p => new PickListDto()

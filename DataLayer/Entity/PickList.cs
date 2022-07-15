@@ -9,24 +9,23 @@ namespace DataLayer.Entity
     {
         public PickList()
         {
+            Delivery = new HashSet<Delivery>();
             pickListItems = new List<PickListItem>();
         }
+
         public int PickListID { get; set; }
         public DateTime? DateStamp { get; set; }
         public int? JobID { get; set; }
         public int? EmployeeID { get; set; }
         public int? ItemCount { get; set; }
-        public int? JobSiteID { get; set; }
-
         public DateTime? DeliveryDate { get; set; }
-
         public bool? Delivered { get; set; }
-
         public bool? Submitted { get; set; }
-
-        public ICollection<PickListItem> pickListItems { get; set; }
-        public Job Job { get; set; }
-
+        public int? DestinationID { get; set; }
+        public virtual Job Job { get; set; }
         public Employee Employee { get; set; }
+        public virtual Destination Destination { get; set; }
+        public virtual ICollection<Delivery> Delivery { get; set; }
+        public ICollection<PickListItem> pickListItems { get; set; }
     }
 }

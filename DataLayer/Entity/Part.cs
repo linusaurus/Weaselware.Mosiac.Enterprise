@@ -37,8 +37,7 @@ namespace DataLayer.Entity
         public int? ParentID { get; set; }
         public decimal? Amount_Required { get; set; }
 
-        public Manu Manu { get; set; }
-
+        public virtual Manu Manu { get; set; }
         public virtual UnitOfMeasure UnitOfMeasure { get; set; }
         public virtual ICollection<DocumentParts> DocumentParts { get; set; }
         public virtual ICollection<Resource> Resource { get; set; }

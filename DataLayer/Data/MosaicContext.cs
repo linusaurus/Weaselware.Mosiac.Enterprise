@@ -30,6 +30,8 @@ namespace DataLayer.Data
         public virtual DbSet<ClaimDocument> ClaimDocument { get; set; }
         public virtual DbSet<ClaimItem> ClaimItem { get; set; }
         public virtual DbSet<Delivery> Delivery { get; set; }
+        public virtual DbSet<DeliveryReceipt> DeliveryReceipt { get; set; }
+        public virtual DbSet<Destination> Destination { get; set; }
         public virtual DbSet<Document> Document { get; set; }
         public virtual DbSet<DocumentParts> DocumentParts { get; set; }
         public virtual DbSet<Employee> Employee { get; set; }
@@ -303,6 +305,48 @@ namespace DataLayer.Data
             modelBuilder.Entity<Delivery>(entity =>
             {
                 entity.Property(e => e.TimeStamp).HasColumnType("datetime");
+
+                entity.HasOne(d => d.PickList)
+                    .WithMany(p => p.Delivery)
+                    .HasForeignKey(d => d.PickListID)
+                    .HasConstraintName("FK_Delivery_PickList");
+            });
+
+            modelBuilder.Entity<DeliveryReceipt>(entity =>
+            {
+                entity.HasIndex(e => e.FileGuid, "UQ__Delivery__6DB18C95A99DD0DD")
+                    .IsUnique();
+
+                entity.Property(e => e.ReferenceName)
+                    .HasMaxLength(60)
+                    .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<Destination>(entity =>
+            {
+                entity.Property(e => e.Address)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Attn)
+                    .HasMaxLength(80)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.City)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.DestinationName)
+                    .HasMaxLength(80)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.State)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Zip)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
             });
 
             modelBuilder.Entity<Document>(entity =>
@@ -675,6 +719,11 @@ namespace DataLayer.Data
             modelBuilder.Entity<PickList>(entity =>
             {
                 entity.Property(e => e.DateStamp).HasColumnType("datetime");
+
+                entity.HasOne(d => d.Destination)
+                    .WithMany(p => p.PickList)
+                    .HasForeignKey(d => d.DestinationID)
+                    .HasConstraintName("FK_PickList_Destination");
             });
 
             modelBuilder.Entity<PickListItem>(entity =>

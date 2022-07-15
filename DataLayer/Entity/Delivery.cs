@@ -13,5 +13,7 @@ namespace DataLayer.Entity
         public int? EmployeeID { get; set; }
         public int? PickListID { get; set; }
         public DateTime? TimeStamp { get; set; }
+
+        public virtual PickList PickList { get; set; }
     }
 }

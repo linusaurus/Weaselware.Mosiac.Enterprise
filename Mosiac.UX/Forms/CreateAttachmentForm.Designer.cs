@@ -39,8 +39,8 @@ namespace Mosiac.UX.Forms
             this.btnBrowse = new System.Windows.Forms.Button();
             this.txtFileSize = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -50,9 +50,9 @@ namespace Mosiac.UX.Forms
             this.btnSave.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnSave.Enabled = false;
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSave.Location = new System.Drawing.Point(300, 154);
+            this.btnSave.Location = new System.Drawing.Point(300, 130);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(79, 34);
+            this.btnSave.Size = new System.Drawing.Size(79, 32);
             this.btnSave.TabIndex = 0;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
@@ -62,9 +62,9 @@ namespace Mosiac.UX.Forms
             // 
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCancel.Location = new System.Drawing.Point(219, 154);
+            this.btnCancel.Location = new System.Drawing.Point(219, 130);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(75, 34);
+            this.btnCancel.Size = new System.Drawing.Size(75, 32);
             this.btnCancel.TabIndex = 0;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
@@ -80,7 +80,7 @@ namespace Mosiac.UX.Forms
             // 
             // txtSourceFile
             // 
-            this.txtSourceFile.Location = new System.Drawing.Point(87, 108);
+            this.txtSourceFile.Location = new System.Drawing.Point(87, 98);
             this.txtSourceFile.Name = "txtSourceFile";
             this.txtSourceFile.ReadOnly = true;
             this.txtSourceFile.Size = new System.Drawing.Size(216, 23);
@@ -89,7 +89,7 @@ namespace Mosiac.UX.Forms
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(8, 140);
+            this.label3.Location = new System.Drawing.Point(12, 130);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(73, 15);
             this.label3.TabIndex = 4;
@@ -98,7 +98,7 @@ namespace Mosiac.UX.Forms
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(17, 111);
+            this.label1.Location = new System.Drawing.Point(17, 102);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(64, 15);
             this.label1.TabIndex = 5;
@@ -106,7 +106,7 @@ namespace Mosiac.UX.Forms
             // 
             // btnBrowse
             // 
-            this.btnBrowse.Location = new System.Drawing.Point(309, 108);
+            this.btnBrowse.Location = new System.Drawing.Point(309, 98);
             this.btnBrowse.Name = "btnBrowse";
             this.btnBrowse.Size = new System.Drawing.Size(70, 23);
             this.btnBrowse.TabIndex = 6;
@@ -116,7 +116,7 @@ namespace Mosiac.UX.Forms
             // 
             // txtFileSize
             // 
-            this.txtFileSize.Location = new System.Drawing.Point(87, 137);
+            this.txtFileSize.Location = new System.Drawing.Point(87, 127);
             this.txtFileSize.Name = "txtFileSize";
             this.txtFileSize.ReadOnly = true;
             this.txtFileSize.Size = new System.Drawing.Size(108, 23);
@@ -129,17 +129,8 @@ namespace Mosiac.UX.Forms
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(397, 54);
+            this.panel1.Size = new System.Drawing.Size(391, 54);
             this.panel1.TabIndex = 8;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(12, 3);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(50, 48);
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
             // 
             // label2
             // 
@@ -152,12 +143,21 @@ namespace Mosiac.UX.Forms
             this.label2.TabIndex = 1;
             this.label2.Text = "Attach a File";
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(12, 3);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(50, 48);
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            // 
             // CreateAttachmentForm
             // 
             this.AcceptButton = this.btnSave;
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(397, 200);
+            this.ClientSize = new System.Drawing.Size(391, 175);
             this.ControlBox = false;
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.txtFileSize);

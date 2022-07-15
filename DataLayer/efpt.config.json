@@ -46,6 +46,14 @@
          "ObjectType": 0
       },
       {
+         "Name": "[dbo].[DeliveryReceipt]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Destination]",
+         "ObjectType": 0
+      },
+      {
          "Name": "[dbo].[Document]",
          "ObjectType": 0
       },

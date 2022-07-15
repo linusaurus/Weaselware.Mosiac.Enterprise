@@ -12,6 +12,7 @@ using ServiceLayer;
 using ServiceLayer.Models;
 using ServiceLayer.Mappers;
 using System.Windows.Forms;
+using Mosiac.UX.Forms;
 
 namespace Mosiac.UX.UXControls
 {
@@ -116,6 +117,7 @@ namespace Mosiac.UX.UXControls
             {
                 if (lbJobList.Items.Count > 0)
                 {
+                    dgvPickListItems.DataSource = null;
                     _selectedJobDto = (JobListDto)lbJobList.SelectedItem;
                     var picks = _stockService.GetJobPicks(_selectedJobDto.JobID);                 
                     dgvDeliveries.DataSource = picks;                
@@ -281,6 +283,40 @@ namespace Mosiac.UX.UXControls
             else
             {
                 selectedPickList.Delivered = false;
+            }
+        }
+        /// <summary>
+        /// Attach a file to the Plist --
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnAttach_Click(object sender, EventArgs e)
+        {
+            //if (activePickList != null)
+            //{
+            //    CreateAttachmentForm frm = new CreateAttachmentForm(orderDTO.PurchaseOrderID);
+            //    if (frm.ShowDialog() == DialogResult.OK)
+            //    {
+            //        var result = frm.NewAttachment;
+            //        var att = _ctx.Attachment.Find(result.AttachmentID);
+            //        AttachmentMapper mapper = new ServiceLayer.Mappers.AttachmentMapper();
+            //        mapper.Map(att, result);
+
+            //       // bsAttachements.Add(result);
+            //    }
+
+
+
+            //}
+        }
+        // Open the Destination Finder/Editor and return destination
+        private void btnSetDestination_Click(object sender, EventArgs e)
+        {
+            AddDestinationForm frm = new AddDestinationForm(_ctx);
+            frm.StartPosition = FormStartPosition.CenterParent;
+            if (frm.ShowDialog() == DialogResult.OK)
+            {
+
             }
         }
     }
