@@ -28,7 +28,7 @@ namespace ServiceLayer
         public PickListDto GetPicklist(int pid)
         {
             PickListDto dto = new PickListDto();
-            var source = _ctx.PickList.AsNoTracking().Include(l => l.pickListItems).Include(j => j.Job).Include(e => e.Employee).Where(p => p.PickListID == pid).FirstOrDefault();
+            var source = _ctx.PickList.AsNoTracking().Include(l => l.pickListItems).Include(d => d.Destination).Include(j => j.Job).Include(e => e.Employee).Where(p => p.PickListID == pid).FirstOrDefault();
             pickListMapper.Map(source, dto);
             return dto;
            
@@ -145,6 +145,8 @@ namespace ServiceLayer
                 pickList.Delivered = dto.Delivered;
                 pickList.DeliveryDate = dto.DeliveryDate;
                 pickList.Submitted = dto.Submitted;
+                //pickList.DestinationID = dto.DestinationID;
+                pickList.Destination = _ctx.Destination.Find(dto.DestinationID);
                
        
             //remove deleted details -

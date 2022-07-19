@@ -20,6 +20,7 @@ namespace ServiceLayer.Models
         private int itemCount;
         private bool submitted;
         private bool delivered;
+        private int destinationID;
         private DateTime deliveryDate;
 
         public PickListDto()
@@ -80,7 +81,20 @@ namespace ServiceLayer.Models
             set { deliveryDate = value; OnPropertyChange(); }
         }
 
+        public int DestinationID
+        {
+            get { return destinationID; }
+            set { destinationID = value; OnPropertyChange(); }
+        }
+
         public List<PickListItemDto> PickListItems { get; set; }
+
+        public string DestinationName { get; set; }
+        public string Attn { get; set; }
+        public string Address { get; set; }
+        public string City { get; set; }
+        public string State { get; set; }
+        public string Zip { get; set; }
 
 
 

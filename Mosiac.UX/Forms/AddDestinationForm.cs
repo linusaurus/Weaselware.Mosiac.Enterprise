@@ -65,9 +65,17 @@ namespace Mosiac.UX.Forms
             if (editForm.ShowDialog()== DialogResult.OK)
             {
                 txtSearch.Text = editForm.Destination.DestinationName.ToString();
-               SearchDestinations();
+                SearchDestinations();
             }
 
+        }
+
+        private void btnOK_Click(object sender, EventArgs e)
+        {
+            if (_selectedDestination != null)
+            {
+                Close();
+            }
         }
     }
 }

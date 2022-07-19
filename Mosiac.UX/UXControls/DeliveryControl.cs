@@ -104,7 +104,13 @@ namespace Mosiac.UX.UXControls
             lbDateStamp.Text = $"Date : {selected.DateStamp.ToLongDateString()}";
             lbPreparedBy.Text = $"Prepared By : {selected.Preparer}";
             lbItemCount.Text = $"Items : {selected.ItemCount.ToString()}";
-            //---------------------------------------
+            //-----------------------------------------------------------
+            lbDestinationName.Text = selected.DestinationName;
+            lbAddress.Text = selected.Address;
+            lbCity.Text = selected.City;
+            lbState.Text = selected.State;
+            lbZip.Text = selected.Zip;
+            //-----------------------------------------------------------
             ckbDelivered.DataBindings.Add("Checked",selected,"Delivered",true,DataSourceUpdateMode.OnPropertyChanged);
             cbkProcessed.DataBindings.Add("Checked",selected,"Submitted",true,DataSourceUpdateMode.OnPropertyChanged);         
         }
@@ -247,12 +253,13 @@ namespace Mosiac.UX.UXControls
                     _ctx.PickList.Add(newPickList);
                     await _ctx.SaveChangesAsync();
                     mapper.Map(newPickList, activePickList);
-
                     bsPicks.Add(activePickList);
-                    int nRowIndex = dgvDeliveries.Rows.Count - 1;
 
-                    dgvDeliveries.ClearSelection();
-                    dgvDeliveries.Rows[nRowIndex].Selected = true;
+                    var picks = _stockService.GetJobPicks(_selectedJobDto.JobID);
+                    dgvDeliveries.DataSource = picks;
+
+                    lbJobList.SelectedIndex = lbJobList.FindString(_selectedJobDto.JobName.ToString());
+                   
                     dgvPickListItems.DataSource = activePickList.PickListItems;
                 }
             }
@@ -262,10 +269,7 @@ namespace Mosiac.UX.UXControls
         {
             CheckBox cb = (CheckBox)sender;
             if (cb.Checked)
-            {
-                selectedPickList.Submitted = true;
-
-            }
+            { selectedPickList.Submitted = true;}
             else
             {
                 selectedPickList.Submitted = false;
@@ -276,14 +280,10 @@ namespace Mosiac.UX.UXControls
         {
             CheckBox cb = (CheckBox)sender;
             if (cb.Checked)
-            {
-                selectedPickList.Delivered = true;
-
-            }
+            {selectedPickList.Delivered = true; }
             else
-            {
-                selectedPickList.Delivered = false;
-            }
+            {selectedPickList.Delivered = false; }
+
         }
         /// <summary>
         /// Attach a file to the Plist --
@@ -304,18 +304,23 @@ namespace Mosiac.UX.UXControls
 
             //       // bsAttachements.Add(result);
             //    }
-
-
-
             //}
         }
         // Open the Destination Finder/Editor and return destination
-        private void btnSetDestination_Click(object sender, EventArgs e)
+        private async void btnSetDestination_Click(object sender, EventArgs e)
         {
             AddDestinationForm frm = new AddDestinationForm(_ctx);
             frm.StartPosition = FormStartPosition.CenterParent;
             if (frm.ShowDialog() == DialogResult.OK)
             {
+                if (frm.SelectedDestination != null)
+                {
+                    var destination = frm.SelectedDestination;
+                    activePickList.DestinationID = destination.DestinationID;
+                    // This needs testing to see if the original object is updated --
+                    BindListHeader(await _stockService.CreateOrUpdate(activePickList));
+                }
+
 
             }
         }

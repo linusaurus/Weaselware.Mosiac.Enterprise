@@ -27,7 +27,20 @@ namespace ServiceLayer.Mappers
             destination.Delivered = source.Delivered.GetValueOrDefault();
             destination.DeliveryDate = source.DeliveryDate.GetValueOrDefault();
             destination.Submitted = source.Submitted.GetValueOrDefault();
+            if (source.Destination != null)
+            {
+                destination.DestinationName = source.Destination.DestinationName;
+                destination.Address = source.Destination.Address;
+                destination.Attn = source.Destination.Attn;
+                destination.City = source.Destination.City;
+                destination.State = source.Destination.State;
+                destination.Zip = source.Destination.Zip;
+            }
+
+
             destination.PickListItems = lineMapper.MapList(source.pickListItems);
+            
+           
         }
 
         public class PickListItemMapper : IMapper<PickListItem , PickListItemDto>
