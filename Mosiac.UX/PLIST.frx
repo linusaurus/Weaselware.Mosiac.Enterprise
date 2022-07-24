@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Report ScriptLanguage="CSharp" ReportInfo.Created="06/15/2022 14:54:27" ReportInfo.Modified="07/18/2022 14:46:59" ReportInfo.CreatorVersion="2021.2.8.0">
+<Report ScriptLanguage="CSharp" ReportInfo.Created="06/15/2022 14:54:27" ReportInfo.Modified="07/19/2022 16:46:29" ReportInfo.CreatorVersion="2021.2.8.0">
   <Dictionary>
-    <MsSqlDataConnection Name="Connection1" ConnectionString="rijcmlqawaLeIiT/AzZ3f/LYzpStQbcx9rG31aCBdviXOjDPRrTY/kiIPKjmQ4KbFv4qW7UuYTUIAjtBOmzAADWks+Iv92iVUeFZvk47M2wtlsj6RZz+QtY+WsA++aeTHBNdAxCozwMovShiPaynFjueGo5Mu/9KOOU/+GV42NF71Bv0mECHNzv+w3aq/g890s5hY7t">
-      <TableDataSource Name="View_11" DataType="System.Int32" Enabled="true" TableName="View_1">
+    <MsSqlDataConnection Name="Connection1" ConnectionString="rijcmlqawaLeIiT/AzZ3f/LYzpStQbcx9rG31aCBdviXOjDPRrTY/kiIPKjmQ4KbFv4qW7UuYTUIAjtBOmzAADWks+Iv92iVUeFZvk47M2wtlsj6RZz+QtY+WsA++aeTHBNdAxCozwMovShiPaynFjueGo5Mu/9KOOU/+GV42NF71Bv0mHEE1E1TcFs3v8ek1ncQcNe">
+      <TableDataSource Name="View_11" DataType="System.Int32" Enabled="true" TableName="View_1" SelectCommand="use [Mosaic]&#13;&#10;&#13;&#10;SELECT        dbo.PickList.PickListID, dbo.PickList.DateStamp, dbo.PickList.JobID, dbo.PickList.EmployeeID, dbo.PickList.ItemCount, dbo.PickList.DeliveryDate AS JobSiteID, dbo.PickList.Delivered AS DeliveryDate, &#13;&#10;                         dbo.PickList.Submitted AS Delivered, dbo.PickList.DestinationID AS Submitted, dbo.Job.jobname, dbo.Job.jobdesc, dbo.Employee.firstname, dbo.Employee.lastname, dbo.PickListItem.PickListItemID, &#13;&#10;                         dbo.PickListItem.Description, dbo.PickListItem.ProductID, dbo.PickListItem.SubAssemblyID, dbo.PickListItem.Onboard, dbo.PickListItem.PartID, dbo.PickListItem.Qnty, dbo.PickListItem.Delivered AS Expr1, &#13;&#10;                         dbo.PickListItem.StockTransActionID, dbo.Destination.DestinationName, dbo.Destination.Attn, dbo.Destination.Address, dbo.Destination.City, dbo.Destination.State, dbo.Destination.Zip&#13;&#10;FROM            dbo.PickList JOIN&#13;&#10;                         dbo.PickListItem ON dbo.PickList.PickListID = dbo.PickListItem.PickListID INNER JOIN&#13;&#10;                         dbo.Job ON dbo.PickList.JobID = dbo.Job.jobID INNER JOIN&#13;&#10;                         dbo.Employee ON dbo.PickList.EmployeeID = dbo.Employee.employeeID INNER JOIN&#13;&#10;                         dbo.Destination ON dbo.PickList.DestinationID = dbo.Destination.DestinationID&#13;&#10;						 where PickList.PickListID = @ID">
         <Column Name="PickListID" DataType="System.Int32"/>
         <Column Name="DateStamp" DataType="System.DateTime"/>
         <Column Name="JobID" DataType="System.Int32"/>
@@ -31,6 +31,7 @@
         <Column Name="City" DataType="System.String"/>
         <Column Name="State" DataType="System.String"/>
         <Column Name="Zip" DataType="System.String"/>
+        <CommandParameter Name="ID" DataType="8" Expression="[ID]" DefaultValue="593"/>
       </TableDataSource>
     </MsSqlDataConnection>
     <Parameter Name="ID" DataType="System.String"/>
@@ -71,7 +72,7 @@
       <TextObject Name="Text25" Left="14.4" Top="62.4" Width="292.8" Height="19.2" Text="Prepared by : [View_11.firstname] [View_11.lastname]" Font="Arial, 10pt"/>
       <LineObject Name="Line6" Left="4.8" Top="38.4" Height="67.2"/>
     </PageHeaderBand>
-    <DataBand Name="Data1" Top="342.13" Width="740.43" Height="19.2" CanGrow="true">
+    <DataBand Name="Data1" Top="342.13" Width="740.43" Height="19.2" CanGrow="true" DataSource="View_11">
       <TextObject Name="Text10" Left="4.8" Width="76.8" Height="19.2" Text="[View_11.PickListID]-[View_11.PickListItemID]" Font="Arial, 9pt"/>
       <TextObject Name="Text11" Left="81.6" Width="67.2" Height="19.2" Text="[View_11.PartID]" HorzAlign="Center" Font="Arial, 9pt"/>
       <TextObject Name="Text12" Left="158.4" Width="48" Height="19.2" Text="[View_11.Qnty]" Format="Number" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" WordWrap="false" Font="Arial, 9pt" Trimming="EllipsisCharacter"/>

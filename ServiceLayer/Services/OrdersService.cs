@@ -184,6 +184,22 @@ namespace ServiceLayer {
             return context.PurchaseOrder.Where(c => c.JobID == jobID).ToList();
         }
 
+        public List<JobOrdersDto> JobOrders(int jobID)
+        {
+            var result = context.PurchaseOrder.Include(e => e.Employee).Include(s => s.Supplier).Where(s => s.JobID == jobID).Select(d => new JobOrdersDto
+            {
+                OrderDate = d.OrderDate.GetValueOrDefault(),
+                PurchaseOrderID = d.PurchaseOrderID,
+                Purchaser = d.Employee.firstname,
+                SupplierName = d.Supplier.SupplierName,
+                OrderTotal = d.OrderTotal.GetValueOrDefault(),
+               
+
+            }).ToList();
+            return result;
+
+        }
+
         public void InsertOrUpdate(PurchaseOrder order) {
 
             if (order.PurchaseOrderID == default(int))

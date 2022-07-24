@@ -135,11 +135,7 @@ namespace Mosiac.UX.UXControls
                 }
             }
         }
-        /// <summary>
-        /// Here where the money is ------
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        // Here the pain spot. Confusing selection object --
         private void dgvDeliveries_SelectionChanged(object sender, EventArgs e)
         {
             DataGridView dg = (DataGridView)sender;
@@ -149,6 +145,7 @@ namespace Mosiac.UX.UXControls
                 {
                     selectedPickList = ((PickListDto)dg.CurrentRow.DataBoundItem);
                     activePickList = _stockService.GetPicklist(selectedPickList.PickListID);
+                    selectedPickList = activePickList;
                     BindListHeader(activePickList);
                     bsPicks.DataSource = activePickList;
                     bsPickItems.DataSource = activePickList;
@@ -220,8 +217,12 @@ namespace Mosiac.UX.UXControls
                     FastReport.Report report = new FastReport.Report();
                     report.Load($"{Application.StartupPath}PLIST.frx");
                     // Setting the parameter is not taking --
-                    report.SetParameterValue("ID", selectedPickList.PickListID);
-                    report.Show();
+                    if (activePickList != null)
+                    {
+                        report.SetParameterValue("ID", activePickList.PickListID);
+                        report.Show();
+                    }
+
                     break;
 
                 default:
@@ -259,7 +260,8 @@ namespace Mosiac.UX.UXControls
                     dgvDeliveries.DataSource = picks;
 
                     lbJobList.SelectedIndex = lbJobList.FindString(_selectedJobDto.JobName.ToString());
-                   
+                    dgvDeliveries.ClearSelection();
+                    dgvDeliveries.Rows[dgvDeliveries.Rows.Count - 1].Selected = true;
                     dgvPickListItems.DataSource = activePickList.PickListItems;
                 }
             }

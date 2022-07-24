@@ -212,6 +212,68 @@ namespace Mosiac.UX.UXControls
             dg.Columns.AddRange(col_ID, col_Description, col_Manufacturer);
 
         }
+        // Display listing of Job Order with Purchaser, Supplier, Date --------
+        public static void BuildJobOrderDetailGrid(DataGridView dg)
+        {
+            dg.AutoGenerateColumns = false;
+
+            dg.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            dg.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+
+            // Currency Decimal Style
+            DataGridViewCellStyle dstyleCurrency = new DataGridViewCellStyle();
+            dstyleCurrency.Format = "C";
+            dstyleCurrency.NullValue = "";
+            dstyleCurrency.Alignment = DataGridViewContentAlignment.MiddleRight;
+            // Currency Decimal Style
+            DataGridViewCellStyle dstyleDecimal = new DataGridViewCellStyle();
+            dstyleDecimal.Format = "N2";
+            dstyleDecimal.NullValue = "0.00";
+            dstyleDecimal.Alignment = DataGridViewContentAlignment.MiddleRight;
+            // Wrapping Text Style
+            DataGridViewCellStyle dstyleWrapText = new DataGridViewCellStyle();
+            dstyleWrapText.NullValue = "";
+            dstyleWrapText.Alignment = DataGridViewContentAlignment.TopLeft;
+            dstyleWrapText.WrapMode = DataGridViewTriState.True;
+
+            // PartID Column --
+            DataGridViewTextBoxColumn col_ID = new DataGridViewTextBoxColumn();
+            col_ID.HeaderText = "ID";
+            col_ID.Name = "ID";
+            col_ID.DataPropertyName = "PurchaseOrderID";
+            col_ID.Width = 55;
+
+            // Order Date Description Column --
+            DataGridViewTextBoxColumn col_OrderDate = new DataGridViewTextBoxColumn();
+            col_OrderDate.HeaderText = "OrderDate";
+            col_OrderDate.DataPropertyName = "OrderDate";
+            col_OrderDate.Width = 90;
+            col_OrderDate.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+
+            // Purchuser Column --
+            DataGridViewTextBoxColumn col_Purchaser = new DataGridViewTextBoxColumn();
+            col_Purchaser.HeaderText = "Purchaser";
+            col_Purchaser.DataPropertyName = "Purchaser";
+            col_Purchaser.Width = 100;
+            
+            // Supplier Column --
+            DataGridViewTextBoxColumn col_Supplier = new DataGridViewTextBoxColumn();
+            col_Supplier.HeaderText = "Supplier";
+            col_Supplier.DataPropertyName = "SupplierName";
+            col_Supplier.Width = 160;
+            col_Supplier.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+
+            // Supplier Column --
+            DataGridViewTextBoxColumn col_OrderTotal = new DataGridViewTextBoxColumn();
+            col_OrderTotal.HeaderText = "OrderTotal";
+            col_OrderTotal.DataPropertyName = "OrderTotal";
+            col_OrderTotal.DefaultCellStyle = dstyleCurrency;
+            col_OrderTotal.Width = 160;
+
+
+            dg.Columns.AddRange(col_ID, col_Purchaser, col_OrderDate, col_Supplier, col_OrderTotal);
+
+        }
 
         public static void BuildSupplierOrdersGrid(DataGridView dg)
         {
