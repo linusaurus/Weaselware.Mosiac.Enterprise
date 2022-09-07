@@ -21,21 +21,128 @@ namespace Mosiac.UX.UXControls
         //-----------------------------------
         private JobsService _jobService;
         private OrdersService _ordersService;
+        private StockService _stockService;
         //-----------------------------------
         private Job _selectedJob;
         private int _selectedPurchaseOrderID;
+        private int _selectedPickList;
+        private string _lastJobSelected;
+
+        private DateTimePicker dtp { get; set; }
         public JobsControl(MosaicContext ctx)
         {
             InitializeComponent();
             _ctx = ctx;
             _jobService = new JobsService(_ctx);
             _ordersService = new OrdersService(_ctx);
+            _stockService = new StockService(_ctx);
+
+            if (Mosiac.UX.Properties.Settings.Default.LastJobSearched.Length > 0)
+            {
+
+            }
+
             Grids.BuildJobOrderDetailGrid(dgvJobOrders);
+            Grids.BuildJobDeliveriesGrid(dgvJobDeliveries);
 
             lbJobsList.SelectedIndexChanged += LbJobsList_SelectedIndexChanged;
             dgvJobOrders.SelectionChanged += DgvJobOrders_SelectionChanged;
             dgvJobOrders.MouseDoubleClick += DgvJobOrders_MouseDoubleClick;
+            // ------------------------------------------------------
+           
+            dgvJobDeliveries.CellValueChanged += DgvJobDeliveries_CellValueChanged;
+            dgvJobDeliveries.CurrentCellDirtyStateChanged += DgvJobDeliveries_CurrentCellDirtyStateChanged;
+            dgvJobDeliveries.CellClick += DgvJobDeliveries_CellClick;
+            dgvJobDeliveries.SelectionChanged += DgvJobDeliveries_SelectionChanged;
         }
+
+        private void DgvJobDeliveries_SelectionChanged(object sender, EventArgs e)
+        {
+            DataGridView dgv = (DataGridView)sender;
+            if (dgv.DataSource != null)
+            {
+                if (dgv.SelectedRows.Count > 0)
+                {
+                    _selectedPickList = ((PickListDto)dgv.CurrentRow.DataBoundItem).PickListID;
+                }
+            }
+        }
+
+        private void DgvJobDeliveries_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            DataGridView dgv = (DataGridView)sender;
+            // determine if click was on our date column
+            if (e.ColumnIndex == 5)
+            {
+                // initialize DateTimePicker
+                DateTime val;
+                dtp = new DateTimePicker();
+                dtp.Format = DateTimePickerFormat.Short;
+                dtp.Visible = true;
+                if (dgv.CurrentCell.ColumnIndex== 5)
+                {
+                    if (DateTime.TryParse(dgv.CurrentCell.Value.ToString(),out val))
+                    {
+                        if (val != DateTime.MinValue)
+                        {
+                            dtp.Value = DateTime.Parse(dgv.CurrentCell.Value.ToString());
+                        }
+                    }                  
+                }
+             
+
+                // set size and location
+                var rect = dgv.GetCellDisplayRectangle(e.ColumnIndex, e.RowIndex, true);
+                dtp.Size = new Size(rect.Width, rect.Height);
+                dtp.Location = new Point(rect.X, rect.Y);
+
+                // attach events
+                dtp.CloseUp += new EventHandler(dtp_CloseUp);
+                dtp.TextChanged += new EventHandler(dtp_OnTextChange);
+
+                dgv.Controls.Add(dtp);
+            }
+        }
+
+        // on text change of dtp, assign back to cell
+        private void dtp_OnTextChange(object sender, EventArgs e)
+        {
+            dgvJobDeliveries.CurrentCell.Value = dtp.Text.ToString();
+            if (_selectedPickList != default )
+            {
+                var found = _ctx.PickList.Find(_selectedPickList);
+                found.DeliveryDate = (DateTime)dgvJobDeliveries.CurrentCell.Value;
+                _ctx.SaveChanges();
+
+            }
+
+        }
+
+        // on close of cell, hide dtp
+        void dtp_CloseUp(object sender, EventArgs e)
+        {
+            dtp.Visible = false;
+        }
+
+        private void DgvJobDeliveries_CurrentCellDirtyStateChanged(object sender, EventArgs e)
+        {
+
+            if (dgvJobDeliveries.IsCurrentCellDirty)
+            {
+                dgvJobDeliveries.CommitEdit(DataGridViewDataErrorContexts.Commit);
+            }
+        }
+
+        private void DgvJobDeliveries_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == 4)
+            {
+               
+              
+            }
+        }
+
+       
 
         private void DgvJobOrders_SelectionChanged(object sender, EventArgs e)
         {
@@ -77,6 +184,8 @@ namespace Mosiac.UX.UXControls
                     var total = _ctx.PurchaseOrder.Where(i => i.JobID == _selectedJob.jobID).Sum(r => r.OrderTotal).GetValueOrDefault();
                     txtJobOrderTotals.Text = total.ToString("C");
                     // -------------------------------------------
+                    var deliveries = _stockService.GetJobPicks(_selectedJob.jobID);
+                    dgvJobDeliveries.DataSource = _stockService.GetJobPicks(_selectedJob.jobID);
                 }
             }
            

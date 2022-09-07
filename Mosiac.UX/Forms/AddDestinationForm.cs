@@ -29,10 +29,18 @@ namespace Mosiac.UX.Forms
             lbDestinations.DisplayMember = "DestinationName";
             lbDestinations.ValueMember = "DestinationID";
             lbDestinations.SelectedValueChanged += LbDestinations_SelectedValueChanged;
+            LoadDestinations();
 
         }
 
         public Destination SelectedDestination { get { return _selectedDestination; } set { _selectedDestination = value; } }
+
+        private async void LoadDestinations()
+        {
+            lbDestinations.Items.Clear();
+            var result = await _stockService.GetAllDestinationsAsync();
+            lbDestinations.DataSource = result;
+        }
 
         private void LbDestinations_SelectedValueChanged(object sender, EventArgs e)
         {

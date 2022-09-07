@@ -237,7 +237,7 @@ namespace ServiceLayer.Models
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-      
+        
 
         protected void OnPropertyChange([CallerMemberName] string name = null)
         {

@@ -30,7 +30,7 @@ namespace Mosiac.UX.UXControls
 
         public void Lock()
         {
-            btnAddResource.Enabled = false;
+            btnAddResource.Enabled = true;
             btnDeleteResource.Enabled = false;
         }
 

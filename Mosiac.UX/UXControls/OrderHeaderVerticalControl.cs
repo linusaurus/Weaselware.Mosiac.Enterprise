@@ -60,7 +60,7 @@ namespace Mosiac.UX.UXControls
         public void Lock()
         {
             btnCancelOrder.Enabled = false;
-            btnSave.Enabled = false;
+            btnSave.Enabled = true;
             txtAccountNumber.Enabled = false;
             txtMemo.Enabled = false;
             btnJobChange.Enabled = false;

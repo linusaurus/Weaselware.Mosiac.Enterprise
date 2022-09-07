@@ -40,6 +40,12 @@ namespace ServiceLayer
             return result;
         }
 
+        public async Task<List<Destination>> GetAllDestinationsAsync()
+        {
+            var result = await _ctx.Destination.AsNoTracking().OrderBy(d => d.DestinationName).ToListAsync();
+            return result;
+        }
+
         public List<PickListDto> JobPicks(int jobID)
         {
             var result = _ctx.PickList.AsNoTracking().Include(j => j.Job).Where(f => f.JobID == jobID).Select(p => new PickListDto()
@@ -63,7 +69,7 @@ namespace ServiceLayer
         // Return a complete but untracked list of Entity objects
         public List<PickListDto> GetJobPicks(int jobID)
         {
-            var result = _ctx.PickList.AsNoTracking().Include(i => i.pickListItems).Include(j => j.Job)
+            var result = _ctx.PickList.AsNoTracking().Include(i => i.pickListItems).Include(d => d.Destination).Include(j => j.Job)
                 .Include(e => e.Employee).Where(f => f.JobID == jobID).ToList();
 
             List<PickListDto> resultList = new List<PickListDto>();

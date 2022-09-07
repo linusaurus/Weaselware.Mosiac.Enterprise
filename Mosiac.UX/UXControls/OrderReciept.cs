@@ -121,9 +121,9 @@ namespace Mosiac.UX.UXControls
 
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
-            PrinterSettings XmlData;
+            PrinterSettings PrinterXmlData;
             var fileName = Path.Combine(Environment.GetFolderPath(
-                            Environment.SpecialFolder.ApplicationData), "Wml.xml");
+                            Environment.SpecialFolder.ApplicationData), "GK420t.xml");
             // if the settings file doesn't exist-re-create them
             if (!File.Exists(fileName))
             {
@@ -143,13 +143,10 @@ namespace Mosiac.UX.UXControls
             XmlSerializer deserializer = new XmlSerializer(typeof(PrinterSettings));
             TextReader reader = new StreamReader(fileName);
             object obj = deserializer.Deserialize(reader);
-            XmlData = (PrinterSettings)obj;
+            PrinterXmlData = (PrinterSettings)obj;
             reader.Close();
-            
 
-            List<OrderRecieptLineItemDto> labelItems = new List<OrderRecieptLineItemDto>();
-
-            using (WindowsPrintJob pj = new WindowsPrintJob(XmlData))
+            using (WindowsPrintJob pj = new WindowsPrintJob(PrinterXmlData))
             {
                 
                 foreach (DataGridViewRow row in dgReceiptItems.SelectedRows)
@@ -158,11 +155,13 @@ namespace Mosiac.UX.UXControls
                     if (rowItem != null)
                     {
                         StockTagDto ts = orderReceiptRepository.GetStockTag(rowItem.OrderReceiptLineID);
-                        ThermalLabel tLabel = LabelEngine.GenerateStockTag(ts);
+                        ThermalLabel tLabel = LabelEngine.GenerateLargeStockTag(ts);
+
                         pj.Copies = 1; // set copies
                         pj.PrintOrientation = PrintOrientation.Portrait; //set orientation
                         pj.ThermalLabel = tLabel;
                         pj.PrintAsGraphic(tLabel);
+                        
                     }
 
                 }

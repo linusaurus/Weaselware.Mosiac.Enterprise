@@ -35,18 +35,22 @@
             this.txtSearchJobs = new System.Windows.Forms.TextBox();
             this.txtJobOrderTotals = new System.Windows.Forms.TextBox();
             this.btnNewOrder = new System.Windows.Forms.Button();
-            this.tabJobItems = new System.Windows.Forms.TabControl();
+            this.tabJobDelivery = new System.Windows.Forms.TabControl();
             this.tabJobOrders = new System.Windows.Forms.TabPage();
             this.dgvJobOrders = new System.Windows.Forms.DataGridView();
             this.tabJobOrderItems = new System.Windows.Forms.TabPage();
+            this.dgvJobDeliveries = new System.Windows.Forms.DataGridView();
+            this.tabJobItems = new System.Windows.Forms.TabPage();
             ((System.ComponentModel.ISupportInitialize)(this.spctnJobsManager)).BeginInit();
             this.spctnJobsManager.Panel1.SuspendLayout();
             this.spctnJobsManager.Panel2.SuspendLayout();
             this.spctnJobsManager.SuspendLayout();
             this.panel1.SuspendLayout();
-            this.tabJobItems.SuspendLayout();
+            this.tabJobDelivery.SuspendLayout();
             this.tabJobOrders.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvJobOrders)).BeginInit();
+            this.tabJobOrderItems.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvJobDeliveries)).BeginInit();
             this.SuspendLayout();
             // 
             // spctnJobsManager
@@ -65,10 +69,10 @@
             // 
             this.spctnJobsManager.Panel2.Controls.Add(this.txtJobOrderTotals);
             this.spctnJobsManager.Panel2.Controls.Add(this.btnNewOrder);
-            this.spctnJobsManager.Panel2.Controls.Add(this.tabJobItems);
+            this.spctnJobsManager.Panel2.Controls.Add(this.tabJobDelivery);
             this.spctnJobsManager.Panel2.Padding = new System.Windows.Forms.Padding(12, 60, 12, 9);
-            this.spctnJobsManager.Size = new System.Drawing.Size(1097, 746);
-            this.spctnJobsManager.SplitterDistance = 365;
+            this.spctnJobsManager.Size = new System.Drawing.Size(1185, 615);
+            this.spctnJobsManager.SplitterDistance = 394;
             this.spctnJobsManager.TabIndex = 1;
             // 
             // lbJobsList
@@ -79,7 +83,7 @@
             this.lbJobsList.Location = new System.Drawing.Point(12, 87);
             this.lbJobsList.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
             this.lbJobsList.Name = "lbJobsList";
-            this.lbJobsList.Size = new System.Drawing.Size(341, 647);
+            this.lbJobsList.Size = new System.Drawing.Size(370, 516);
             this.lbJobsList.TabIndex = 1;
             // 
             // panel1
@@ -90,12 +94,12 @@
             this.panel1.Location = new System.Drawing.Point(12, 12);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 3, 3, 20);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(341, 75);
+            this.panel1.Size = new System.Drawing.Size(370, 75);
             this.panel1.TabIndex = 0;
             // 
             // btnShowAll
             // 
-            this.btnShowAll.Location = new System.Drawing.Point(251, 12);
+            this.btnShowAll.Location = new System.Drawing.Point(264, 12);
             this.btnShowAll.Name = "btnShowAll";
             this.btnShowAll.Size = new System.Drawing.Size(87, 24);
             this.btnShowAll.TabIndex = 1;
@@ -105,7 +109,7 @@
             // 
             // txtSearchJobs
             // 
-            this.txtSearchJobs.Location = new System.Drawing.Point(0, 13);
+            this.txtSearchJobs.Location = new System.Drawing.Point(11, 13);
             this.txtSearchJobs.Name = "txtSearchJobs";
             this.txtSearchJobs.Size = new System.Drawing.Size(245, 23);
             this.txtSearchJobs.TabIndex = 0;
@@ -113,7 +117,7 @@
             // txtJobOrderTotals
             // 
             this.txtJobOrderTotals.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtJobOrderTotals.Location = new System.Drawing.Point(598, 26);
+            this.txtJobOrderTotals.Location = new System.Drawing.Point(657, 26);
             this.txtJobOrderTotals.Name = "txtJobOrderTotals";
             this.txtJobOrderTotals.Size = new System.Drawing.Size(111, 23);
             this.txtJobOrderTotals.TabIndex = 2;
@@ -128,16 +132,17 @@
             this.btnNewOrder.Text = "New Job Order";
             this.btnNewOrder.UseVisualStyleBackColor = true;
             // 
-            // tabJobItems
+            // tabJobDelivery
             // 
-            this.tabJobItems.Controls.Add(this.tabJobOrders);
-            this.tabJobItems.Controls.Add(this.tabJobOrderItems);
-            this.tabJobItems.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabJobItems.Location = new System.Drawing.Point(12, 60);
-            this.tabJobItems.Name = "tabJobItems";
-            this.tabJobItems.SelectedIndex = 0;
-            this.tabJobItems.Size = new System.Drawing.Size(704, 677);
-            this.tabJobItems.TabIndex = 0;
+            this.tabJobDelivery.Controls.Add(this.tabJobOrders);
+            this.tabJobDelivery.Controls.Add(this.tabJobOrderItems);
+            this.tabJobDelivery.Controls.Add(this.tabJobItems);
+            this.tabJobDelivery.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabJobDelivery.Location = new System.Drawing.Point(12, 60);
+            this.tabJobDelivery.Name = "tabJobDelivery";
+            this.tabJobDelivery.SelectedIndex = 0;
+            this.tabJobDelivery.Size = new System.Drawing.Size(763, 546);
+            this.tabJobDelivery.TabIndex = 0;
             // 
             // tabJobOrders
             // 
@@ -146,7 +151,7 @@
             this.tabJobOrders.Location = new System.Drawing.Point(4, 24);
             this.tabJobOrders.Name = "tabJobOrders";
             this.tabJobOrders.Padding = new System.Windows.Forms.Padding(3);
-            this.tabJobOrders.Size = new System.Drawing.Size(696, 649);
+            this.tabJobOrders.Size = new System.Drawing.Size(755, 518);
             this.tabJobOrders.TabIndex = 0;
             this.tabJobOrders.Text = "Job Orders";
             // 
@@ -160,18 +165,39 @@
             this.dgvJobOrders.Name = "dgvJobOrders";
             this.dgvJobOrders.ReadOnly = true;
             this.dgvJobOrders.RowTemplate.Height = 25;
-            this.dgvJobOrders.Size = new System.Drawing.Size(690, 643);
+            this.dgvJobOrders.Size = new System.Drawing.Size(749, 512);
             this.dgvJobOrders.TabIndex = 0;
             // 
             // tabJobOrderItems
             // 
+            this.tabJobOrderItems.Controls.Add(this.dgvJobDeliveries);
             this.tabJobOrderItems.Location = new System.Drawing.Point(4, 24);
             this.tabJobOrderItems.Name = "tabJobOrderItems";
             this.tabJobOrderItems.Padding = new System.Windows.Forms.Padding(3);
-            this.tabJobOrderItems.Size = new System.Drawing.Size(696, 649);
+            this.tabJobOrderItems.Size = new System.Drawing.Size(755, 518);
             this.tabJobOrderItems.TabIndex = 1;
-            this.tabJobOrderItems.Text = "tabPage2";
+            this.tabJobOrderItems.Text = "Job Deliveries";
             this.tabJobOrderItems.UseVisualStyleBackColor = true;
+            // 
+            // dgvJobDeliveries
+            // 
+            this.dgvJobDeliveries.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvJobDeliveries.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvJobDeliveries.Location = new System.Drawing.Point(3, 3);
+            this.dgvJobDeliveries.Name = "dgvJobDeliveries";
+            this.dgvJobDeliveries.RowTemplate.Height = 25;
+            this.dgvJobDeliveries.Size = new System.Drawing.Size(749, 512);
+            this.dgvJobDeliveries.TabIndex = 0;
+            // 
+            // tabJobItems
+            // 
+            this.tabJobItems.Location = new System.Drawing.Point(4, 24);
+            this.tabJobItems.Name = "tabJobItems";
+            this.tabJobItems.Padding = new System.Windows.Forms.Padding(3);
+            this.tabJobItems.Size = new System.Drawing.Size(755, 518);
+            this.tabJobItems.TabIndex = 2;
+            this.tabJobItems.Text = "Job Items";
+            this.tabJobItems.UseVisualStyleBackColor = true;
             // 
             // JobsControl
             // 
@@ -180,7 +206,7 @@
             this.Controls.Add(this.spctnJobsManager);
             this.Name = "JobsControl";
             this.Padding = new System.Windows.Forms.Padding(6);
-            this.Size = new System.Drawing.Size(1109, 758);
+            this.Size = new System.Drawing.Size(1197, 627);
             this.spctnJobsManager.Panel1.ResumeLayout(false);
             this.spctnJobsManager.Panel2.ResumeLayout(false);
             this.spctnJobsManager.Panel2.PerformLayout();
@@ -188,9 +214,11 @@
             this.spctnJobsManager.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.tabJobItems.ResumeLayout(false);
+            this.tabJobDelivery.ResumeLayout(false);
             this.tabJobOrders.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvJobOrders)).EndInit();
+            this.tabJobOrderItems.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvJobDeliveries)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -198,7 +226,7 @@
         #endregion
 
         private System.Windows.Forms.SplitContainer spctnJobsManager;
-        private System.Windows.Forms.TabControl tabJobItems;
+        private System.Windows.Forms.TabControl tabJobDelivery;
         private System.Windows.Forms.TabPage tabJobOrders;
         private System.Windows.Forms.TabPage tabJobOrderItems;
         private System.Windows.Forms.Panel panel1;
@@ -208,5 +236,7 @@
         private System.Windows.Forms.Button btnNewOrder;
         private System.Windows.Forms.DataGridView dgvJobOrders;
         private System.Windows.Forms.TextBox txtJobOrderTotals;
+        private System.Windows.Forms.DataGridView dgvJobDeliveries;
+        private System.Windows.Forms.TabPage tabJobItems;
     }
 }

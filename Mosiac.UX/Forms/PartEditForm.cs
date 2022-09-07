@@ -94,6 +94,7 @@ namespace Mosiac.UX.Forms
                 txtPartDescription.DataBindings.Clear();
                 txtPartName.DataBindings.Clear();
                 txtPartNum.DataBindings.Clear();
+               
 
                 txtPartID.DataBindings.Add("Text", bsPart, "PartID", true, DataSourceUpdateMode.OnPropertyChanged);
                 cbxObsolete.DataBindings.Add("Checked", bsPart, "Obsolete", true, DataSourceUpdateMode.OnPropertyChanged);
@@ -127,7 +128,7 @@ namespace Mosiac.UX.Forms
                 txtPartName.DataBindings.Clear();
                 cboPartManu.DataBindings.Clear();
                 txtSKU.DataBindings.Clear();
-
+                txtNotes.DataBindings.Clear();
 
                 txtPartID.DataBindings.Add("Text", bsPart, "PartID", true, DataSourceUpdateMode.OnPropertyChanged);
                 cbxObsolete.DataBindings.Add("Checked", bsPart, "ObsoluteFlag", true, DataSourceUpdateMode.OnPropertyChanged);
@@ -143,6 +144,7 @@ namespace Mosiac.UX.Forms
                 txtPartName.DataBindings.Add("Text", bsPart, "ItemName", true, DataSourceUpdateMode.OnPropertyChanged);
                 txtSKU.DataBindings.Add("Text", bsPart, "SKU", true, DataSourceUpdateMode.OnPropertyChanged);
                 cboPartManu.DataBindings.Add("SelectedValue", bsPart, "ManuID", true, DataSourceUpdateMode.OnPropertyChanged);
+                txtNotes.DataBindings.Add("Text", bsPart,"Notes",true, DataSourceUpdateMode.OnPropertyChanged);
             }
         }
 

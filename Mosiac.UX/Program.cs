@@ -27,8 +27,8 @@ namespace Mosiac.UX
 
 #if (DEBUG)
 
-            //var services = new ServiceCollection();
-            //ConfigureServices(services);
+           //var services = new ServiceCollection();
+           //ConfigureServices(services);
            // var builder = new HostBuilder()
            //     .ConfigureServices((hostContext, services) =>
            //     {

@@ -4,9 +4,9 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>net5.0-windows10.0.22000.0</TargetFramework>
     <UseWindowsForms>true</UseWindowsForms>
-    <AssemblyVersion>1.5.8.9</AssemblyVersion>
+    <AssemblyVersion>1.5.9.1</AssemblyVersion>
     <ApplicationIcon>mosaic-_1_.ico</ApplicationIcon>
-    <FileVersion>1.5.8.9</FileVersion>
+    <FileVersion>1.5.9.1</FileVersion>
     <Authors>Dick Danger</Authors>
     <Company>Weaselware</Company>
     <Product>Mosiac Enterprise</Product>
@@ -17,9 +17,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Mosiac.UX_1_TemporaryKey.pfx" />
     <None Remove="Mosiac.UX_TemporaryKey.pfx" />
     <None Remove="PLIST.frx" />
     <None Remove="Properties\Settings.settings" />
+    <None Remove="StockLabel.tl" />
     <None Remove="testreport.frx" />
   </ItemGroup>
 
@@ -66,6 +68,9 @@
     <Content Include="bin\publish\testreport.frx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Mosiac.UX_1_TemporaryKey.pfx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Mosiac.UX_TemporaryKey.pfx" />
     <Content Include="PLIST.frx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -73,6 +78,9 @@
     <Content Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="StockLabel.tl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="testreport.frx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -97,9 +105,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="StockLabel.tl">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Update="StockTag.tl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

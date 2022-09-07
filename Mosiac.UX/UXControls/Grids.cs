@@ -212,6 +212,73 @@ namespace Mosiac.UX.UXControls
             dg.Columns.AddRange(col_ID, col_Description, col_Manufacturer);
 
         }
+
+        public static void BuildJobDeliveriesGrid(DataGridView dg)
+        {
+            dg.AutoGenerateColumns = false;
+
+            dg.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            dg.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+
+            // Currency Decimal Style
+            DataGridViewCellStyle dstyleCurrency = new DataGridViewCellStyle();
+            dstyleCurrency.Format = "C";
+            dstyleCurrency.NullValue = "";
+            dstyleCurrency.Alignment = DataGridViewContentAlignment.MiddleRight;
+            // Currency Decimal Style
+            DataGridViewCellStyle dstyleDecimal = new DataGridViewCellStyle();
+            dstyleDecimal.Format = "N2";
+            dstyleDecimal.NullValue = "0.00";
+            dstyleDecimal.Alignment = DataGridViewContentAlignment.MiddleRight;
+            // Wrapping Text Style
+            DataGridViewCellStyle dstyleWrapText = new DataGridViewCellStyle();
+            dstyleWrapText.NullValue = "";
+            dstyleWrapText.Alignment = DataGridViewContentAlignment.TopLeft;
+            dstyleWrapText.WrapMode = DataGridViewTriState.True;
+
+            // PID Column --
+            DataGridViewTextBoxColumn col_ID = new DataGridViewTextBoxColumn();
+            col_ID.HeaderText = "PID";
+            col_ID.DataPropertyName = "PickListID";
+            col_ID.Width = 55;
+
+            //Preparer Column --
+            DataGridViewTextBoxColumn col_Preparer = new DataGridViewTextBoxColumn();
+            col_Preparer.HeaderText = "Preparer";
+            col_Preparer.DataPropertyName = "Preparer";
+            col_Preparer.Width = 120;
+            
+            // DateStamp Column --
+            DataGridViewTextBoxColumn col_DateStamp = new DataGridViewTextBoxColumn();
+            col_DateStamp.HeaderText = "Date Created";
+            col_DateStamp.DataPropertyName = "DateStamp";
+            col_DateStamp.Width = 160;
+
+            // Destination Name Column --
+            DataGridViewTextBoxColumn col_Destination = new DataGridViewTextBoxColumn();
+            col_Destination.HeaderText = "Destination";
+            col_Destination.DataPropertyName = "DestinationName";
+            col_Destination.Width = 160;
+            col_Destination.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+
+            // Delivered Column --
+            DataGridViewCheckBoxColumn col_Delivered = new DataGridViewCheckBoxColumn();
+            col_Delivered.HeaderText = "Delivered";
+            col_Delivered.DataPropertyName = "Delivered";
+            col_Delivered.Width = 90;
+
+            // Delivered Date Column --
+            DataGridViewTextBoxColumn col_DeliveryDate = new DataGridViewTextBoxColumn();
+            col_DeliveryDate.HeaderText = "Delivery Date";
+            col_DeliveryDate.DataPropertyName = "DeliveryDate";
+           
+            col_DeliveryDate.Width = 110;
+
+
+
+            dg.Columns.AddRange(col_ID, col_Preparer, col_DateStamp, col_Destination, col_Delivered, col_DeliveryDate);
+
+        }
         // Display listing of Job Order with Purchaser, Supplier, Date --------
         public static void BuildJobOrderDetailGrid(DataGridView dg)
         {

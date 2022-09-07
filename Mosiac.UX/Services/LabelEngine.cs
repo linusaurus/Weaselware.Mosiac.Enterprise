@@ -6,7 +6,10 @@ using System.Text;
 using System.Drawing;
 using ServiceLayer.Services;
 using ServiceLayer.Models;
-
+using System.Xml.Serialization;
+using System.IO;
+using System.Xml;
+using System.Data;
 
 namespace Mosiac.UX.Services
 {
@@ -23,7 +26,7 @@ namespace Mosiac.UX.Services
         public static ThermalLabel GeneratePartLabel(PartListDto dto)
         {
 
-
+            
             //Define a ThermalLabel object and set unit to inch and label size
             ThermalLabel tLabel = new ThermalLabel(UnitType.Inch, 2.25, 1.25);
             tLabel.GapLength = 0.12;
@@ -74,6 +77,9 @@ namespace Mosiac.UX.Services
 
         public static ThermalLabel GenerateStockTag(StockTagDto dto)
         {
+
+
+           
 
             //Define a ThermalLabel object and set unit to inch and label size
             ThermalLabel tLabel = new ThermalLabel(UnitType.Inch, 2.25, 1.25);
@@ -135,10 +141,62 @@ namespace Mosiac.UX.Services
             tLabel.Items.Add(txtReceiver);
             tLabel.Items.Add(bc1);
 
-
             return tLabel;
 
-
         }
+
+        public class Utf8StringWriter : StringWriter
+        {
+            public override Encoding Encoding => Encoding.UTF8;
+        }
+
+        public static ThermalLabel GenerateLargeStockTag(StockTagDto dto)
+        {
+       
+            string xmlData = "";
+
+            XmlSerializer serializer = new XmlSerializer(typeof(StockTagDto));
+            
+            ThermalLabel tLabel = new ThermalLabel();
+            tLabel.LoadXmlTemplate(System.IO.File.ReadAllText("StockLabel.tl"));
+
+            using (var sw = new Utf8StringWriter())
+            {
+                using (XmlWriter writer = XmlWriter.Create(sw))
+                {
+                    serializer.Serialize(writer, dto);
+                    xmlData = sw.ToString();
+                }
+            }
+            StringReader xmlSR = new StringReader(xmlData);
+            var ds = new DataSet();
+            ds.ReadXml(xmlSR);
+            tLabel.DataSource = ds;
+
+            return tLabel;
+        }
+
+        public  string ToXML()
+        {
+            using (var stringwriter = new System.IO.StringWriter())
+            {
+                var serializer = new XmlSerializer(this.GetType());
+                serializer.Serialize(stringwriter, this);
+                return stringwriter.ToString();
+            }
+        }
+
+        public static StockTagDto LoadFromXMLString(string xmlText)
+        {
+            using (var stringReader = new System.IO.StringReader(xmlText))
+            {
+                var serializer = new XmlSerializer(typeof(StockTagDto));
+                return serializer.Deserialize(stringReader) as StockTagDto;
+            }
+        }
+
+
+
+
     }
 }

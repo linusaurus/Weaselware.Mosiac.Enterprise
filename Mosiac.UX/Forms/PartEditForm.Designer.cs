@@ -61,6 +61,7 @@ namespace Mosiac.UX.Forms
             this.label8 = new System.Windows.Forms.Label();
             this.txtPartID = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.txtNotes = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -407,13 +408,22 @@ namespace Mosiac.UX.Forms
             this.label4.Text = "PartID";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // txtNotes
+            // 
+            this.txtNotes.Location = new System.Drawing.Point(12, 310);
+            this.txtNotes.Multiline = true;
+            this.txtNotes.Name = "txtNotes";
+            this.txtNotes.Size = new System.Drawing.Size(560, 96);
+            this.txtNotes.TabIndex = 10;
+            // 
             // PartEditForm
             // 
             this.AcceptButton = this.btnSave;
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.bntCancel;
-            this.ClientSize = new System.Drawing.Size(585, 308);
+            this.ClientSize = new System.Drawing.Size(585, 431);
+            this.Controls.Add(this.txtNotes);
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "PartEditForm";
@@ -422,6 +432,7 @@ namespace Mosiac.UX.Forms
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -459,5 +470,6 @@ namespace Mosiac.UX.Forms
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtSKU;
         private System.Windows.Forms.Button btnLinkToUPC;
+        private System.Windows.Forms.TextBox txtNotes;
     }
 }
