@@ -78,9 +78,6 @@ namespace Mosiac.UX.Services
         public static ThermalLabel GenerateStockTag(StockTagDto dto)
         {
 
-
-           
-
             //Define a ThermalLabel object and set unit to inch and label size
             ThermalLabel tLabel = new ThermalLabel(UnitType.Inch, 2.25, 1.25);
             tLabel.GapLength = 0.12;
@@ -194,8 +191,6 @@ namespace Mosiac.UX.Services
                 return serializer.Deserialize(stringReader) as StockTagDto;
             }
         }
-
-
 
 
     }

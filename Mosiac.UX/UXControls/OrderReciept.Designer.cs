@@ -42,25 +42,29 @@ namespace Mosiac.UX.UXControls
             this.txtOrderDate = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lbPO = new System.Windows.Forms.Label();
             this.dgReceiptItems = new System.Windows.Forms.DataGridView();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.txtInventoryAmount = new System.Windows.Forms.TextBox();
-            this.txtDateStamp = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.txtMultiplier = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.btnCancel = new System.Windows.Forms.Button();
+            this.btnOK = new System.Windows.Forms.Button();
             this.txtQntyRecieved = new System.Windows.Forms.TextBox();
             this.txtDescription = new System.Windows.Forms.TextBox();
             this.txtTransactionID = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.btnOK = new System.Windows.Forms.Button();
-            this.btnCancel = new System.Windows.Forms.Button();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
+            this.txtDateStamp = new System.Windows.Forms.TextBox();
+            this.txtInventoryAmount = new System.Windows.Forms.TextBox();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.tsClearPrinterSettings = new System.Windows.Forms.ToolStripButton();
+            this.tsPrinterChoice = new System.Windows.Forms.ToolStripComboBox();
             this.groupBox2.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgReceiptItems)).BeginInit();
@@ -68,8 +72,8 @@ namespace Mosiac.UX.UXControls
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            this.toolStrip1.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtOrderRecieptID
@@ -193,6 +197,7 @@ namespace Mosiac.UX.UXControls
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.panel1.Controls.Add(this.lbPO);
             this.panel1.Controls.Add(this.txtOrderDate);
             this.panel1.Controls.Add(this.txtPurchaseOrderID);
             this.panel1.Controls.Add(this.label1);
@@ -209,6 +214,16 @@ namespace Mosiac.UX.UXControls
             this.panel1.Size = new System.Drawing.Size(987, 82);
             this.panel1.TabIndex = 0;
             // 
+            // lbPO
+            // 
+            this.lbPO.AutoSize = true;
+            this.lbPO.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lbPO.Location = new System.Drawing.Point(432, 26);
+            this.lbPO.Name = "lbPO";
+            this.lbPO.Size = new System.Drawing.Size(69, 30);
+            this.lbPO.TabIndex = 2;
+            this.lbPO.Text = "----po";
+            // 
             // dgReceiptItems
             // 
             this.dgReceiptItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -216,6 +231,7 @@ namespace Mosiac.UX.UXControls
             this.dgReceiptItems.Location = new System.Drawing.Point(0, 0);
             this.dgReceiptItems.Name = "dgReceiptItems";
             this.dgReceiptItems.RowTemplate.Height = 25;
+            this.dgReceiptItems.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgReceiptItems.Size = new System.Drawing.Size(1008, 296);
             this.dgReceiptItems.TabIndex = 4;
             this.dgReceiptItems.SelectionChanged += new System.EventHandler(this.dgReceiptItems_SelectionChanged);
@@ -239,10 +255,171 @@ namespace Mosiac.UX.UXControls
             this.splitContainer1.SplitterDistance = 296;
             this.splitContainer1.TabIndex = 5;
             // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.label12);
+            this.panel2.Controls.Add(this.txtMultiplier);
+            this.panel2.Controls.Add(this.label10);
+            this.panel2.Controls.Add(this.label11);
+            this.panel2.Controls.Add(this.label9);
+            this.panel2.Controls.Add(this.label8);
+            this.panel2.Controls.Add(this.label7);
+            this.panel2.Controls.Add(this.label6);
+            this.panel2.Controls.Add(this.btnCancel);
+            this.panel2.Controls.Add(this.btnOK);
+            this.panel2.Controls.Add(this.txtQntyRecieved);
+            this.panel2.Controls.Add(this.txtDescription);
+            this.panel2.Controls.Add(this.txtTransactionID);
+            this.panel2.Controls.Add(this.txtDateStamp);
+            this.panel2.Controls.Add(this.txtInventoryAmount);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(6, 31);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(996, 197);
+            this.panel2.TabIndex = 1;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label12.Location = new System.Drawing.Point(21, 71);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(214, 30);
+            this.label12.TabIndex = 4;
+            this.label12.Text = "Stock Transaction Edit";
+            // 
+            // txtMultiplier
+            // 
+            this.txtMultiplier.Location = new System.Drawing.Point(834, 30);
+            this.txtMultiplier.Name = "txtMultiplier";
+            this.txtMultiplier.Size = new System.Drawing.Size(49, 23);
+            this.txtMultiplier.TabIndex = 3;
+            this.txtMultiplier.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtMultiplier.Validated += new System.EventHandler(this.txtMultiplier_Validated);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(889, 11);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(95, 15);
+            this.label10.TabIndex = 2;
+            this.label10.Text = "Inventory Added";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(852, 12);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(14, 15);
+            this.label11.TabIndex = 2;
+            this.label11.Text = "X";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(745, 11);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(83, 15);
+            this.label9.TabIndex = 2;
+            this.label9.Text = "Qnty Received";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(634, 11);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(68, 15);
+            this.label8.TabIndex = 2;
+            this.label8.Text = "Date Stamp";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(126, 12);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(67, 15);
+            this.label7.TabIndex = 2;
+            this.label7.Text = "Description";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(24, 12);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(78, 15);
+            this.label6.TabIndex = 2;
+            this.label6.Text = "TransactionID";
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.Location = new System.Drawing.Point(768, 77);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(105, 27);
+            this.btnCancel.TabIndex = 1;
+            this.btnCancel.Text = "Cancel";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            // 
+            // btnOK
+            // 
+            this.btnOK.Location = new System.Drawing.Point(879, 77);
+            this.btnOK.Name = "btnOK";
+            this.btnOK.Size = new System.Drawing.Size(105, 27);
+            this.btnOK.TabIndex = 1;
+            this.btnOK.Text = "Save";
+            this.btnOK.UseVisualStyleBackColor = true;
+            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
+            // 
+            // txtQntyRecieved
+            // 
+            this.txtQntyRecieved.Location = new System.Drawing.Point(735, 30);
+            this.txtQntyRecieved.Name = "txtQntyRecieved";
+            this.txtQntyRecieved.PlaceholderText = "Qnty Recvd";
+            this.txtQntyRecieved.Size = new System.Drawing.Size(93, 23);
+            this.txtQntyRecieved.TabIndex = 0;
+            this.txtQntyRecieved.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // txtDescription
+            // 
+            this.txtDescription.Location = new System.Drawing.Point(126, 30);
+            this.txtDescription.Name = "txtDescription";
+            this.txtDescription.PlaceholderText = "Description";
+            this.txtDescription.Size = new System.Drawing.Size(478, 23);
+            this.txtDescription.TabIndex = 0;
+            // 
+            // txtTransactionID
+            // 
+            this.txtTransactionID.Location = new System.Drawing.Point(21, 30);
+            this.txtTransactionID.Name = "txtTransactionID";
+            this.txtTransactionID.PlaceholderText = "TransactionID";
+            this.txtTransactionID.Size = new System.Drawing.Size(99, 23);
+            this.txtTransactionID.TabIndex = 0;
+            this.txtTransactionID.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // txtDateStamp
+            // 
+            this.txtDateStamp.Location = new System.Drawing.Point(610, 30);
+            this.txtDateStamp.Name = "txtDateStamp";
+            this.txtDateStamp.PlaceholderText = "Date Stamp";
+            this.txtDateStamp.Size = new System.Drawing.Size(119, 23);
+            this.txtDateStamp.TabIndex = 0;
+            this.txtDateStamp.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // txtInventoryAmount
+            // 
+            this.txtInventoryAmount.Location = new System.Drawing.Point(889, 30);
+            this.txtInventoryAmount.Name = "txtInventoryAmount";
+            this.txtInventoryAmount.PlaceholderText = "Inventory ";
+            this.txtInventoryAmount.Size = new System.Drawing.Size(95, 23);
+            this.txtInventoryAmount.TabIndex = 0;
+            this.txtInventoryAmount.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // toolStrip1
             // 
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripButton1});
+            this.toolStripButton1,
+            this.tsClearPrinterSettings,
+            this.tsPrinterChoice});
             this.toolStrip1.Location = new System.Drawing.Point(6, 6);
             this.toolStrip1.Margin = new System.Windows.Forms.Padding(6, 2, 2, 6);
             this.toolStrip1.Name = "toolStrip1";
@@ -260,150 +437,20 @@ namespace Mosiac.UX.UXControls
             this.toolStripButton1.Text = "Print Stock Label(s)";
             this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
-            // panel2
+            // tsClearPrinterSettings
             // 
-            this.panel2.Controls.Add(this.label10);
-            this.panel2.Controls.Add(this.label9);
-            this.panel2.Controls.Add(this.label8);
-            this.panel2.Controls.Add(this.label7);
-            this.panel2.Controls.Add(this.label6);
-            this.panel2.Controls.Add(this.btnCancel);
-            this.panel2.Controls.Add(this.btnOK);
-            this.panel2.Controls.Add(this.textBox4);
-            this.panel2.Controls.Add(this.txtQntyRecieved);
-            this.panel2.Controls.Add(this.txtDescription);
-            this.panel2.Controls.Add(this.txtTransactionID);
-            this.panel2.Controls.Add(this.textBox2);
-            this.panel2.Controls.Add(this.txtDateStamp);
-            this.panel2.Controls.Add(this.txtInventoryAmount);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(6, 31);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(996, 197);
-            this.panel2.TabIndex = 1;
+            this.tsClearPrinterSettings.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.tsClearPrinterSettings.Image = ((System.Drawing.Image)(resources.GetObject("tsClearPrinterSettings.Image")));
+            this.tsClearPrinterSettings.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsClearPrinterSettings.Name = "tsClearPrinterSettings";
+            this.tsClearPrinterSettings.Size = new System.Drawing.Size(116, 22);
+            this.tsClearPrinterSettings.Text = "Clear Printer Setting";
+            this.tsClearPrinterSettings.Click += new System.EventHandler(this.tsClearPrinterSettings_Click);
             // 
-            // txtInventoryAmount
+            // tsPrinterChoice
             // 
-            this.txtInventoryAmount.Location = new System.Drawing.Point(889, 30);
-            this.txtInventoryAmount.Name = "txtInventoryAmount";
-            this.txtInventoryAmount.PlaceholderText = "Inventory ";
-            this.txtInventoryAmount.Size = new System.Drawing.Size(95, 23);
-            this.txtInventoryAmount.TabIndex = 0;
-            this.txtInventoryAmount.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // txtDateStamp
-            // 
-            this.txtDateStamp.Location = new System.Drawing.Point(648, 30);
-            this.txtDateStamp.Name = "txtDateStamp";
-            this.txtDateStamp.PlaceholderText = "Date Stamp";
-            this.txtDateStamp.Size = new System.Drawing.Size(119, 23);
-            this.txtDateStamp.TabIndex = 0;
-            this.txtDateStamp.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // txtQntyRecieved
-            // 
-            this.txtQntyRecieved.Location = new System.Drawing.Point(790, 30);
-            this.txtQntyRecieved.Name = "txtQntyRecieved";
-            this.txtQntyRecieved.PlaceholderText = "Qnty Recvd";
-            this.txtQntyRecieved.Size = new System.Drawing.Size(93, 23);
-            this.txtQntyRecieved.TabIndex = 0;
-            this.txtQntyRecieved.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // txtDescription
-            // 
-            this.txtDescription.Location = new System.Drawing.Point(126, 30);
-            this.txtDescription.Name = "txtDescription";
-            this.txtDescription.PlaceholderText = "Description";
-            this.txtDescription.Size = new System.Drawing.Size(516, 23);
-            this.txtDescription.TabIndex = 0;
-            // 
-            // txtTransactionID
-            // 
-            this.txtTransactionID.Location = new System.Drawing.Point(21, 30);
-            this.txtTransactionID.Name = "txtTransactionID";
-            this.txtTransactionID.PlaceholderText = "TransactionID";
-            this.txtTransactionID.Size = new System.Drawing.Size(99, 23);
-            this.txtTransactionID.TabIndex = 0;
-            this.txtTransactionID.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(21, 59);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.PlaceholderText = "Date Stamp";
-            this.textBox2.Size = new System.Drawing.Size(99, 23);
-            this.textBox2.TabIndex = 0;
-            this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox4
-            // 
-            this.textBox4.Location = new System.Drawing.Point(648, 59);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(119, 23);
-            this.textBox4.TabIndex = 0;
-            // 
-            // btnOK
-            // 
-            this.btnOK.Location = new System.Drawing.Point(879, 147);
-            this.btnOK.Name = "btnOK";
-            this.btnOK.Size = new System.Drawing.Size(105, 27);
-            this.btnOK.TabIndex = 1;
-            this.btnOK.Text = "Save";
-            this.btnOK.UseVisualStyleBackColor = true;
-            // 
-            // btnCancel
-            // 
-            this.btnCancel.Location = new System.Drawing.Point(768, 147);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(105, 27);
-            this.btnCancel.TabIndex = 1;
-            this.btnCancel.Text = "Cancel";
-            this.btnCancel.UseVisualStyleBackColor = true;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(24, 12);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(78, 15);
-            this.label6.TabIndex = 2;
-            this.label6.Text = "TransactionID";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(126, 12);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(67, 15);
-            this.label7.TabIndex = 2;
-            this.label7.Text = "Description";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(668, 11);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(68, 15);
-            this.label8.TabIndex = 2;
-            this.label8.Text = "Date Stamp";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(790, 11);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(83, 15);
-            this.label9.TabIndex = 2;
-            this.label9.Text = "Qnty Received";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(889, 11);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(95, 15);
-            this.label10.TabIndex = 2;
-            this.label10.Text = "Inventory Added";
+            this.tsPrinterChoice.Name = "tsPrinterChoice";
+            this.tsPrinterChoice.Size = new System.Drawing.Size(121, 25);
             // 
             // OrderReciept
             // 
@@ -413,7 +460,7 @@ namespace Mosiac.UX.UXControls
             this.Controls.Add(this.groupBox2);
             this.Name = "OrderReciept";
             this.Padding = new System.Windows.Forms.Padding(12);
-            this.Size = new System.Drawing.Size(1035, 698);
+            this.Size = new System.Drawing.Size(1035, 703);
             this.groupBox2.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -423,10 +470,10 @@ namespace Mosiac.UX.UXControls
             this.splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
-            this.toolStrip1.ResumeLayout(false);
-            this.toolStrip1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -458,12 +505,16 @@ namespace Mosiac.UX.UXControls
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnOK;
-        private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.TextBox txtQntyRecieved;
         private System.Windows.Forms.TextBox txtDescription;
         private System.Windows.Forms.TextBox txtTransactionID;
-        private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TextBox txtDateStamp;
         private System.Windows.Forms.TextBox txtInventoryAmount;
+        private System.Windows.Forms.TextBox txtMultiplier;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label lbPO;
+        private System.Windows.Forms.ToolStripButton tsClearPrinterSettings;
+        private System.Windows.Forms.ToolStripComboBox tsPrinterChoice;
     }
 }

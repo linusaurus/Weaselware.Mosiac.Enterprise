@@ -587,7 +587,7 @@ namespace Mosiac.UX.UXControls
             col_QntyOrdered.HeaderText = "Qty-Ordered";
             col_QntyOrdered.DataPropertyName = "QntyOrdered";
             col_QntyOrdered.DefaultCellStyle = dstyleDecimal;
-            col_QntyOrdered.ReadOnly = true;
+            //col_QntyOrdered.ReadOnly = true;
             col_QntyOrdered.Width = 80;
 
             // OrderComplete Column -- 4

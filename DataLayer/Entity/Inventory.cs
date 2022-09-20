@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace DataLayer.Entity
 {
-    public partial class Inventory
+    public partial class Inventory 
     {
         public int StockTransactionID { get; set; }
         public int? OrderReceiptID { get; set; }

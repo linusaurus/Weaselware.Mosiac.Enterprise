@@ -4,7 +4,7 @@
     <RectangleShapeItem X="0.0521" Y="0.0426" Width="3.8864" Height="1.9156" StrokeThickness="0.03" />
     <TextItem Name="GTIN" X="1.7983" Y="1.6616" Expression="_x0022_Received_x0020_By_x0020__x0020__x0022__x0020__x002B__x0020__x005B_DataFields_x0021_firstname_x005D_" Width="1.9982" Height="0.2396" Font="ZPL Font 0,12,Point,,,False,90,,CP850" TextAlignment="Center" />
     <TextItem X="0.144" Y="0.1552" DataField="jobname" Width="1.8012" Height="0.7103" Font="ZPL Font 0,16,Point,,,False,90,,CP850" TextAlignment="Center" />
-    <BarcodeItem X="2.1061" Y="0.1496" DataField="StockTransactionID" Width="1.6752" Height="0.7025" Symbology="GS1128" Code="" AddChecksum="False" BarcodeAlignment="MiddleCenter" DisplayCode="False" Font="NativePrinterFontA,5,Point,,,False,90,,CP850" QuietZone="0" TextFont="NativePrinterFontA,10,Point,,,False,90,,CP850" MaxiCodeDrawPixelBasedSymbol="True" DotCodeAspectRatio="" />
+    <BarcodeItem X="2.1061" Y="0.1496" DataField="StockTransactionID" Width="1.6752" Height="0.7025" Symbology="GS1128" Code="" AddChecksum="False" BarcodeAlignment="MiddleCenter" Font="NativePrinterFontA,5,Point,,,False,90,,CP850" QuietZone="0" TextFont="NativePrinterFontA,10,Point,,,False,90,,CP850" MaxiCodeDrawPixelBasedSymbol="True" DotCodeAspectRatio="" />
     <LineShapeItem X="2.0162" Y="0.0634" Width="0.0047" Height="0.8798" StrokeThickness="0.05" Orientation="DiagonalDown" />
     <TextItem X="0.1393" Y="0.9973" DataField="Description" Width="3.662" Height="0.4824" Font="ZPL Font 0,12,Point,,,False,90,,CP850" TextAlignment="Center" />
     <LineShapeItem X="0.0685" Y="0.9457" Width="3.8552" Height="0.0047" StrokeThickness="0.05" Orientation="DiagonalUp" />
