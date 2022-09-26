@@ -72,7 +72,6 @@ namespace Mosiac.UX.Services
 
             return tLabel;
 
-
         }
 
         public static ThermalLabel GenerateStockTag(StockTagDto dto)
@@ -155,7 +154,7 @@ namespace Mosiac.UX.Services
             XmlSerializer serializer = new XmlSerializer(typeof(StockTagDto));
             
             ThermalLabel tLabel = new ThermalLabel();
-            tLabel.LoadXmlTemplate(System.IO.File.ReadAllText("StockLabel.tl"));
+            tLabel.LoadXmlTemplate(System.IO.File.ReadAllText("24StockLabel.tl"));
 
             using (var sw = new Utf8StringWriter())
             {

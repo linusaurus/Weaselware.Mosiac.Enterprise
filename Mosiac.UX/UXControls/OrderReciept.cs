@@ -233,11 +233,9 @@ namespace Mosiac.UX.UXControls
             {
                 string name = Path.GetFileNameWithoutExtension(file);
                 trimmed.Add(name);
-
             }
 
             tsPrinterChoice.Items.AddRange(trimmed.ToArray());
-
         }
         private void tsClearPrinterSettings_Click(object sender, EventArgs e)
         {

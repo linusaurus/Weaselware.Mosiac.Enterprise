@@ -4,19 +4,20 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>net5.0-windows10.0.22000.0</TargetFramework>
     <UseWindowsForms>true</UseWindowsForms>
-    <AssemblyVersion>1.6.0.1</AssemblyVersion>
+    <AssemblyVersion>1.6.0.2</AssemblyVersion>
     <ApplicationIcon>mosaic-_1_.ico</ApplicationIcon>
-    <FileVersion>1.6.0.1</FileVersion>
+    <FileVersion>1.6.0.2</FileVersion>
     <Authors>Dick Danger</Authors>
     <Company>Weaselware</Company>
     <Product>Mosiac Enterprise</Product>
-    <Version>1.6.1</Version>
+    <Version>1.6.2</Version>
     <Copyright>Weaselware 2022</Copyright>
     <StartupObject>Mosiac.UX.Program</StartupObject>
     <PackageIcon>mosaic (1).png</PackageIcon>
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="24StockLabel.tl" />
     <None Remove="Mosiac.UX_1_TemporaryKey.pfx" />
     <None Remove="Mosiac.UX_TemporaryKey.pfx" />
     <None Remove="PLIST.frx" />
@@ -63,6 +64,9 @@
 
   <ItemGroup>
     <Content Include="bin\debug\netcoreapp3.1\*.frx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="24StockLabel.tl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="bin\publish\testreport.frx">
