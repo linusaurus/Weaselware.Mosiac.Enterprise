@@ -146,6 +146,32 @@ namespace Mosiac.UX.Services
             public override Encoding Encoding => Encoding.UTF8;
         }
 
+        public static ThermalLabel GeneratePackingListLabel(PackingListItemDto dto)
+        {
+
+            string xmlData = "";
+
+            XmlSerializer serializer = new XmlSerializer(typeof(PackingListItemDto));
+
+            ThermalLabel tLabel = new ThermalLabel();
+            tLabel.LoadXmlTemplate(System.IO.File.ReadAllText("24StockLabel.tl"));
+
+            using (var sw = new Utf8StringWriter())
+            {
+                using (XmlWriter writer = XmlWriter.Create(sw))
+                {
+                    serializer.Serialize(writer, dto);
+                    xmlData = sw.ToString();
+                }
+            }
+            StringReader xmlSR = new StringReader(xmlData);
+            var ds = new DataSet();
+            ds.ReadXml(xmlSR);
+            tLabel.DataSource = ds;
+
+            return tLabel;
+        }
+
         public static ThermalLabel GenerateLargeStockTag(StockTagDto dto)
         {
        
@@ -190,6 +216,15 @@ namespace Mosiac.UX.Services
                 return serializer.Deserialize(stringReader) as StockTagDto;
             }
         }
+
+        //public static PackingListItemDto LoadPacklistItemXMLString(string xmlText)
+        //{
+        //    using (var stringReader = new System.IO.StringReader(xmlText))
+        //    {
+        //        var serializer = new XmlSerializer(typeof(StockTagDto));
+        //        return serializer.Deserialize(stringReader) as StockTagDto;
+        //    }
+        //}
 
 
     }

@@ -86,9 +86,9 @@
     <Content Include="StockLabel.tl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="testreport.frx">
+    <EmbeddedResource Include="testreport.frx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>
