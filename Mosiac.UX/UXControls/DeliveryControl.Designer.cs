@@ -57,6 +57,8 @@
             this.tsSave = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsPrint = new System.Windows.Forms.ToolStripButton();
+            this.tsPrintLabels = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -388,7 +390,9 @@
             this.tsMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsSave,
             this.toolStripSeparator1,
-            this.tsPrint});
+            this.tsPrint,
+            this.toolStripSeparator2,
+            this.tsPrintLabels});
             this.tsMain.Location = new System.Drawing.Point(10, 10);
             this.tsMain.Name = "tsMain";
             this.tsMain.Size = new System.Drawing.Size(859, 25);
@@ -421,8 +425,24 @@
             this.tsPrint.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsPrint.Margin = new System.Windows.Forms.Padding(10, 1, 0, 2);
             this.tsPrint.Name = "tsPrint";
-            this.tsPrint.Size = new System.Drawing.Size(54, 22);
-            this.tsPrint.Text = "Print      ";
+            this.tsPrint.Size = new System.Drawing.Size(51, 22);
+            this.tsPrint.Text = "Print     ";
+            // 
+            // tsPrintLabels
+            // 
+            this.tsPrintLabels.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.tsPrintLabels.Image = ((System.Drawing.Image)(resources.GetObject("tsPrintLabels.Image")));
+            this.tsPrintLabels.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsPrintLabels.Name = "tsPrintLabels";
+            this.tsPrintLabels.Size = new System.Drawing.Size(67, 22);
+            this.tsPrintLabels.Text = "Print Label";
+            this.tsPrintLabels.ToolTipText = "Print Labels";
+            this.tsPrintLabels.Click += new System.EventHandler(this.tsPrintLabels_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
             // 
             // DeliveryControl
             // 
@@ -478,5 +498,7 @@
         private System.Windows.Forms.Label lbDestinationName;
         private System.Windows.Forms.Button btnSetDestination;
         private System.Windows.Forms.Label lbAttention;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripButton tsPrintLabels;
     }
 }

@@ -145,7 +145,11 @@ namespace Mosiac.UX.Services
         {
             public override Encoding Encoding => Encoding.UTF8;
         }
-
+        /// <summary>
+        /// Packing List Label
+        /// </summary>
+        /// <param name="dto"></param>
+        /// <returns></returns>
         public static ThermalLabel GeneratePackingListLabel(PackingListItemDto dto)
         {
 
@@ -154,7 +158,7 @@ namespace Mosiac.UX.Services
             XmlSerializer serializer = new XmlSerializer(typeof(PackingListItemDto));
 
             ThermalLabel tLabel = new ThermalLabel();
-            tLabel.LoadXmlTemplate(System.IO.File.ReadAllText("24StockLabel.tl"));
+            tLabel.LoadXmlTemplate(System.IO.File.ReadAllText("PackListLB.tl"));
 
             using (var sw = new Utf8StringWriter())
             {

@@ -4,13 +4,13 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>net5.0-windows10.0.22000.0</TargetFramework>
     <UseWindowsForms>true</UseWindowsForms>
-    <AssemblyVersion>1.6.0.2</AssemblyVersion>
+    <AssemblyVersion>1.6.0.3</AssemblyVersion>
     <ApplicationIcon>mosaic-_1_.ico</ApplicationIcon>
-    <FileVersion>1.6.0.2</FileVersion>
+    <FileVersion>1.6.0.3</FileVersion>
     <Authors>Dick Danger</Authors>
     <Company>Weaselware</Company>
     <Product>Mosiac Enterprise</Product>
-    <Version>1.6.2</Version>
+    <Version>1.6.3</Version>
     <Copyright>Weaselware 2022</Copyright>
     <StartupObject>Mosiac.UX.Program</StartupObject>
     <PackageIcon>mosaic (1).png</PackageIcon>
@@ -20,6 +20,7 @@
     <None Remove="24StockLabel.tl" />
     <None Remove="Mosiac.UX_1_TemporaryKey.pfx" />
     <None Remove="Mosiac.UX_TemporaryKey.pfx" />
+    <None Remove="PackListLB.tl" />
     <None Remove="PLIST.frx" />
     <None Remove="Properties\Settings.settings" />
     <None Remove="StockLabel.tl" />
@@ -76,6 +77,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Mosiac.UX_TemporaryKey.pfx" />
+    <Content Include="PackListLB.tl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="PLIST.frx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -86,9 +90,9 @@
     <Content Include="StockLabel.tl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <EmbeddedResource Include="testreport.frx">
+    <Content Include="testreport.frx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>

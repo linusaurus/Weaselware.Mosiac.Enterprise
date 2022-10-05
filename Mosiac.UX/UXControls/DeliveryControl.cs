@@ -13,6 +13,10 @@ using ServiceLayer.Models;
 using ServiceLayer.Mappers;
 using System.Windows.Forms;
 using Mosiac.UX.Forms;
+using Mosiac.UX.Services;
+using Neodynamic.SDK.Printing;
+using System.IO;
+using System.Xml.Serialization;
 
 namespace Mosiac.UX.UXControls
 {
@@ -68,7 +72,7 @@ namespace Mosiac.UX.UXControls
                 e.ListChangedType == ListChangedType.ItemDeleted |
                 e.ListChangedType == ListChangedType.ItemAdded)
             {
-                tsSave.BackColor = Color.Cornsilk;
+                tsSave.BackColor = System.Drawing.Color.Cornsilk;
             }
         }
 
@@ -89,7 +93,7 @@ namespace Mosiac.UX.UXControls
                 e.ListChangedType == ListChangedType.ItemDeleted | 
                 e.ListChangedType== ListChangedType.ItemAdded)
             {
-                tsSave.BackColor = Color.Cornsilk;
+                tsSave.BackColor = System.Drawing.Color.Cornsilk;
             }
         }
 
@@ -326,5 +330,65 @@ namespace Mosiac.UX.UXControls
 
             }
         }
+        // Print a series of labels for the Packing List
+        private void tsPrintLabels_Click(object sender, EventArgs e)
+        {
+            PrinterSettings PrinterXmlData;
+            var fileName = Path.Combine(Environment.GetFolderPath(
+                            Environment.SpecialFolder.ApplicationData), "TLP2824.xml");
+            // if the settings file doesn't exist-re-create them
+            if (!File.Exists(fileName))
+            {
+                //Display Print Job dialog...           
+                PrintJobDialog frmPrintJob = new PrintJobDialog();
+                if (frmPrintJob.ShowDialog() == DialogResult.OK)
+                {
+                    XmlSerializer serializer = new XmlSerializer(typeof(PrinterSettings));
+                    using (TextWriter writer = new StreamWriter(fileName))
+                    {
+                        serializer.Serialize(writer, frmPrintJob.PrinterSettings);
+                    }
+                }
+            }
+
+            //Pull the settings from XML file --
+            XmlSerializer deserializer = new XmlSerializer(typeof(PrinterSettings));
+            TextReader reader = new StreamReader(fileName);
+            object obj = deserializer.Deserialize(reader);
+            PrinterXmlData = (PrinterSettings)obj;
+            reader.Close();
+
+            using (WindowsPrintJob pj = new WindowsPrintJob(PrinterXmlData))
+            {
+                if (selectedPickList.PickListItems.Count > 0)
+                {
+
+                    for (int i = 0; i < selectedPickList.PickListItems.Count; i++)
+                    {
+                        var item = selectedPickList.PickListItems[i];
+
+                        PackingListItemDto dto = new PackingListItemDto
+                        {
+                            PackingListID = item.PickListID.ToString(),
+                            PackingListItemID = item.PickListItemID.ToString(),
+                            ItemCount = selectedPickList.ItemCount,
+                            ItemQnty = i+1,
+
+                        };
+
+                        ThermalLabel lb = LabelEngine.GeneratePackingListLabel(dto);
+                        pj.Copies = 1; // set copies
+                        pj.PrintOrientation = PrintOrientation.Portrait; //set orientation
+                        pj.ThermalLabel = lb;
+                        pj.PrintAsGraphic(lb);
+
+                    }
+                   
+                }
+            }
+      
+        }
+
+
     }
 }
