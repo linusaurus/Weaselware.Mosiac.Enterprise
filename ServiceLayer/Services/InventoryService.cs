@@ -7,6 +7,7 @@ using ServiceLayer.Models;
 using DataLayer.Data;
 using DataLayer.Entity;
 using Microsoft.EntityFrameworkCore;
+using System.ComponentModel;
 
 namespace ServiceLayer
 {
@@ -34,6 +35,13 @@ namespace ServiceLayer
             return result;
         }
 
+        public async  Task<List<Inventory>>  GetPartTransactions(int partID)
+        {
+
+
+            var result = await _ctx.Inventory.AsNoTracking().Where(p => p.PartID == partID).ToListAsync();
+            return result;
+        }
        
 
         public void Dispose()

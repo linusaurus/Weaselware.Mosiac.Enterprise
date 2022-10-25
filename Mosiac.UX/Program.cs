@@ -37,13 +37,13 @@ namespace Mosiac.UX
 
            //builder.Build();
 
-            Main mainForm = new Main();
-          
+           Main mainForm = new Main();
+            //TestForm mainForm = new TestForm();
             mainForm.LoggedOnUserID = 8;
             Globals.CurrentLoggedUserID = 8;
             Globals.CurrentUserName = "Richard";
             
-            Application.Run(new Main());
+            Application.Run(new TestForm());
 
 #else
 

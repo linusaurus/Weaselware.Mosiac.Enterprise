@@ -7,6 +7,10 @@ namespace DataLayer.Entity
 {
     public partial class Product
     {
+        public Product()
+        {
+            SubAssemblies = new HashSet<SubAssembly>();
+        }
         public int ProductID { get; set; }
         public int? JobID { get; set; }
         public int? UnitID { get; set; }
@@ -22,6 +26,7 @@ namespace DataLayer.Entity
         public DateTime? ProductionDate { get; set; }
         public bool? NIC { get; set; }
 
+        public ICollection<SubAssembly> SubAssemblies { get; set; }
         public virtual Job Job { get; set; }
     }
 }

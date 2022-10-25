@@ -414,6 +414,27 @@ namespace Mosiac.UX
 
                     break;
 
+                // --------------------------------------------------------------------
+                // Stock Page Generation
+                // --------------------------------------------------------------------
+                case "tsStockPage":
+
+                    TabPage dstockPage = PageFactory.GetNewTabPage(_context, PageFactory.TabPageType.StockManagerPage);
+                    dstockPage.Name = "DeliveriesPage";
+                    dstockPage.Dock = DockStyle.Fill;
+
+                    if (!MainTabControl.TabPages.ContainsKey("DeliveriesPage"))
+                    {
+                        MainTabControl.TabPages.Add(dstockPage);
+                        MainTabControl.SelectedTab = dstockPage;
+                    }
+                    else
+                    {
+                        if (MainTabControl.TabPages.ContainsKey("DeliveriesPage"))
+                        { MainTabControl.SelectTab("DeliveriesPage"); }
+                    }
+
+                    break;
                 default:
                     break;
 

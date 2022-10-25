@@ -34,8 +34,8 @@ namespace Mosiac.UX
             PartDetailEdit,
             PurchaseOrderPage,
             AssemblyManagerControl,
-            RecieveOrderControl
-
+            RecieveOrderControl,
+            StockManagerPage
         }
         
         public static TabPage GetNewTabPage(MosaicContext ctx,TabPageType pageType,int key = 0)
@@ -124,7 +124,18 @@ namespace Mosiac.UX
                         tab.Controls.Add(ctr);                
                     }
                     break;
-
+                //-----------------------------------------------------------------------+
+                // Stock Managers Page --------------------------------------------------+
+                //-----------------------------------------------------------------------+
+                case TabPageType.StockManagerPage:
+                    {
+                        tab.Text = $"Stock Manager";
+                        tab.Name = "StockManager";
+                        StockManagerControl ctr = new StockManagerControl(ctx);                        
+                        ctr.Dock = DockStyle.Fill;
+                        tab.Controls.Add(ctr);
+                    }
+                    break;
                 default:
                     break;
             }

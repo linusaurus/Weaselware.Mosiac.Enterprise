@@ -342,6 +342,91 @@ namespace Mosiac.UX.UXControls
 
         }
 
+        public static void BuildLineItemSearchGrid(DataGridView dg)
+        {
+            dg.AutoGenerateColumns = false;
+
+            dg.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            dg.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+
+            // Currency Decimal Style
+            DataGridViewCellStyle dstyleCurrency = new DataGridViewCellStyle();
+            dstyleCurrency.Format = "C";
+            dstyleCurrency.NullValue = "";
+            dstyleCurrency.Alignment = DataGridViewContentAlignment.MiddleRight;
+            // Date Style
+            DataGridViewCellStyle dstyleDate = new DataGridViewCellStyle();
+            dstyleCurrency.Format = "d";
+            dstyleCurrency.NullValue = "";
+            dstyleCurrency.Alignment = DataGridViewContentAlignment.MiddleRight;
+
+            // Currency Decimal Style
+            DataGridViewCellStyle dstyleDecimal = new DataGridViewCellStyle();
+            dstyleDecimal.Format = "N2";
+            dstyleDecimal.NullValue = "0.00";
+            dstyleDecimal.Alignment = DataGridViewContentAlignment.MiddleRight;
+            // Wrapping Text Style
+            DataGridViewCellStyle dstyleWrapText = new DataGridViewCellStyle();
+            dstyleWrapText.NullValue = "";
+            dstyleWrapText.Alignment = DataGridViewContentAlignment.TopLeft;
+            dstyleWrapText.WrapMode = DataGridViewTriState.True;
+
+            // LineID Column --
+            DataGridViewTextBoxColumn col_ID = new DataGridViewTextBoxColumn();
+            col_ID.HeaderText = "ID";
+            col_ID.DataPropertyName = "LineID";
+            col_ID.Width = 55;
+
+            // PurchaseOrderID Column --
+           // DataGridViewTextBoxColumn col_PurchaseOrderID = new DataGridViewTextBoxColumn();
+           // col_PurchaseOrderID.HeaderText = "PO";
+           // col_PurchaseOrderID.DataPropertyName = "PurchaseOrderID";
+           // col_PurchaseOrderID.Width = 55;
+
+            // PurchaseOrderID Column --
+            DataGridViewLinkColumn col_PurchaseOrderID = new DataGridViewLinkColumn();
+            col_PurchaseOrderID.HeaderText = "PO";
+            col_PurchaseOrderID.DataPropertyName = "PurchaseOrderID";
+            col_PurchaseOrderID.Width = 55;
+
+            // Receipt Description Column --
+            DataGridViewTextBoxColumn col_Description = new DataGridViewTextBoxColumn();
+            col_Description.HeaderText = "Description";
+            col_Description.DataPropertyName = "Description";
+            col_Description.Width = 120;
+            col_Description.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+
+            // Quantity Column --
+            DataGridViewTextBoxColumn col_Qnty = new DataGridViewTextBoxColumn();
+            col_Qnty.DefaultCellStyle = dstyleDecimal;
+            col_Qnty.HeaderText = "Quanity";
+            col_Qnty.DataPropertyName = "Quantity";
+            col_Qnty.Width = 65;
+
+            // ManufacturerPartNumber Column --
+            DataGridViewTextBoxColumn col_JobName = new DataGridViewTextBoxColumn();
+            col_JobName.HeaderText = "JobName";
+            col_JobName.DataPropertyName = "JobName";
+            col_JobName.Width = 180;
+
+            // ManufacturerPartNumber Column --
+            DataGridViewTextBoxColumn col_Supplier = new DataGridViewTextBoxColumn();
+            col_Supplier.HeaderText = "Supplier";
+            col_Supplier.DataPropertyName = "SupplierName";
+            col_Supplier.Width = 180;
+            // DateAdded Column --
+            DataGridViewTextBoxColumn col_OrderDate = new DataGridViewTextBoxColumn();
+            col_OrderDate.DefaultCellStyle = dstyleDate;
+            col_OrderDate.HeaderText = "Order Date";
+            col_OrderDate.DataPropertyName = "OrderDate";
+            col_OrderDate.Width = 85;
+
+            
+
+            dg.Columns.AddRange(col_ID, col_PurchaseOrderID, col_OrderDate, col_Description, col_Qnty, col_JobName, col_Supplier);
+
+        }
+
         public static void BuildSupplierOrdersGrid(DataGridView dg)
         {
             dg.AutoGenerateColumns = false;

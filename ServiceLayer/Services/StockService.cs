@@ -9,6 +9,7 @@ using DataLayer.Data;
 using DataLayer.Entity;
 using ServiceLayer.Models;
 using ServiceLayer.Mappers;
+using SkiaSharp;
 
 
 namespace ServiceLayer
@@ -30,8 +31,7 @@ namespace ServiceLayer
             PickListDto dto = new PickListDto();
             var source = _ctx.PickList.AsNoTracking().Include(l => l.pickListItems).Include(d => d.Destination).Include(j => j.Job).Include(e => e.Employee).Where(p => p.PickListID == pid).FirstOrDefault();
             pickListMapper.Map(source, dto);
-            return dto;
-           
+            return dto;         
         }
 
         public async Task<List<Destination>> GetDestinationsAsync(string term)
@@ -193,8 +193,40 @@ namespace ServiceLayer
 
             }
 
-        
 
+        public async Task<List<LineItemSearchDto>> SearchLineItemAsync(string search,  string[] parms)
+        {
+
+            var query = _ctx.PurchaseLineItem.Include(m => m.PurchaseOrder).ThenInclude(s => s.Supplier).Select(f => f);
+
+            query = query.AsNoTracking().Where(p => p.Description.Contains(search));
+
+ 
+            if (parms[0].ToString() != "")
+            {
+                query = query.Where(f => f.Description.Contains(parms[0].ToString()));
+            }
+            if (parms[1].ToString() != "")
+            {
+                query = query.Where(f => f.Description.Contains(parms[1].ToString()));
+            }
+
+            var result = query.Select(d => new LineItemSearchDto
+            {
+                Description = d.Description,
+                PartID = d.PartID.GetValueOrDefault(),
+                SupplierName = d.PurchaseOrder.Supplier.SupplierName,
+                JobName = d.PurchaseOrder.Job.jobname,
+                LineID= d.LineID,
+                Quantity = d.Qnty.GetValueOrDefault(),
+                PurchaseOrderID = d.PurchaseOrderID.GetValueOrDefault(),
+                OrderDate = d.PurchaseOrder.OrderDate.GetValueOrDefault()
+
+            });
+
+            return await result.ToListAsync();
+
+        }
 
     }
 }

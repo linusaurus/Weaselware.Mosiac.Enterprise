@@ -445,9 +445,6 @@ namespace ServiceLayer
         /// <returns></returns>
             public async Task<List<PartFastSearchDto>> SearchPartAsync(string search, int manufactererID, bool manuFilter, string term2="")
             {
-
-            
-           
             // if (manufactererID != 0 || manufactererID == 1)
             if (manuFilter)
             {
@@ -478,9 +475,7 @@ namespace ServiceLayer
                         DateAdded = d.DateAdded.GetValueOrDefault().ToShortDateString()
 
                     }).ToListAsync();
-                    
-                
-               
+                     
             return await result;
             }
 

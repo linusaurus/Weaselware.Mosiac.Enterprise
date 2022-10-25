@@ -101,7 +101,6 @@ namespace Mosiac.UX.UXControls
                 orderDTO.AccountNumber = supplier.AccountNumber;
                 orderDTO.SupplierPhone = supplier.Phone;
             }
-
         }
 
         public OrderEditSplitPanelControl(MosaicContext context, BindingSource BSorder)
