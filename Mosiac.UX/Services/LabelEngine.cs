@@ -21,8 +21,9 @@ namespace Mosiac.UX.Services
 
         }
 
-
+        // -----------------------------------------
         // Creates a Part Label 2.25 x 1.25
+        // -----------------------------------------
         public static ThermalLabel GeneratePartLabel(PartListDto dto)
         {
 

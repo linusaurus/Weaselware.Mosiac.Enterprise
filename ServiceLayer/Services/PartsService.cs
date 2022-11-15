@@ -13,6 +13,7 @@ using ServiceLayer.Mappers;
 using ServiceLayer.Overloads;
 using System.ComponentModel;
 using Dapper;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace ServiceLayer
 {
@@ -634,6 +635,23 @@ namespace ServiceLayer
 
         }
 
-      
+        public async Task<List<PartFastSearchDto>> SearchManuPartQueryAsync(string term)
+        {
+            var query = _context.Part.Include(m => m.Manu).Select(f => f);
+            query = query.AsNoTracking().Where(p => p.ManuPartNum.Contains(term));
+
+            var result = query.Select(d => new PartFastSearchDto
+            {
+                Itemdescription = d.ItemDescription,
+                PartID = d.PartID,
+                ManuName = d.Manu.Manufacturer,
+                PartNumber = d.PartNum,
+                AddedBy = d.AddedBy,
+                DateAdded = d.DateAdded.GetValueOrDefault().ToShortDateString()
+
+            });
+
+            return await result.ToListAsync();
+        }
     }
 }

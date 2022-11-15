@@ -43,7 +43,7 @@ namespace Mosiac.UX
             Globals.CurrentLoggedUserID = 8;
             Globals.CurrentUserName = "Richard";
             
-            Application.Run(new TestForm());
+            Application.Run(new Main());
 
 #else
 

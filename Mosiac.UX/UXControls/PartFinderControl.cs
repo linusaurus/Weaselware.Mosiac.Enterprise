@@ -9,6 +9,7 @@ using ServiceLayer.Models;
 using ServiceLayer;
 using System.Data;
 using Mosiac.UX.Forms;
+using FastReport.DevComponents.DotNetBar;
 
 namespace Mosiac.UX.UXControls
 {
@@ -117,6 +118,24 @@ namespace Mosiac.UX.UXControls
 
         }
 
+        private async void ManuPartSearch()
+        {
+            string term = txtMaunPart.Text;
+            if (txtMaunPart.Text.Length > 0)
+            {
+                var partsList = await partsService.SearchManuPartQueryAsync(term);
+
+                ListAsDataTable = Grids.BuildDataTable<PartFastSearchDto>(partsList);
+                dv = ListAsDataTable.DefaultView;
+                dgvPartsSearchResults.DataSource = dv;
+            }
+            else
+            {
+
+            }
+
+        }
+
         private async void PartSearch()
         {
             string searchMain = tbSearchParts.Text;
@@ -152,8 +171,13 @@ namespace Mosiac.UX.UXControls
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
             if ((keyData == Keys.Enter) || (keyData == Keys.Return))
-            {   
-                PartSearch();
+            {
+                if (tbSearchParts.Text.Length > 0)
+                {
+                    PartSearch();
+                }
+               
+                
                 return true;
             }
             else if (keyData == Keys.Escape) //clear the textboxes, null the dg source
@@ -401,6 +425,11 @@ namespace Mosiac.UX.UXControls
         private void btnSearch_Click(object sender, EventArgs e)
         {
             PartSearch();
+        }
+
+        private void btnMaunPart_Click(object sender, EventArgs e)
+        {
+            ManuPartSearch();
         }
     }
 }
