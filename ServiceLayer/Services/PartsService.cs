@@ -35,6 +35,8 @@ namespace ServiceLayer
         {
            return  _context.UnitOfMeasure.ToList();
         }
+
+        
       
 
         public bool AssociateSKU(Part part, string sku)
@@ -560,7 +562,7 @@ namespace ServiceLayer
             List<PartOrdersDto> result;
             var dynamicParameters = new DynamicParameters();
             dynamicParameters.Add("PartID", partID);
-            string con = "Data Source=Dbserver;Initial Catalog=Mosaic;Integrated Security=True";
+            string con = "Data Source=Dbserver;Initial Catalog=Mosaic;Integrated Security=True;Trust Server Certificate=true";
             string sql = "select p.PurchaseOrderID, s.SupplierName,j.jobname,p.OrderDate FROM PurchaseOrder AS p " +
                             "INNER JOIN Supplier s ON p.SupplierID = p.SupplierID " +
                             "INNER JOIN Job j ON p.JobID = j.jobID " +

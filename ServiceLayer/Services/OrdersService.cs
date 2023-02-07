@@ -569,5 +569,25 @@ namespace ServiceLayer {
                    }).ToList();
             }
         }
+        public List<OrderListDto> GetAllMyOrdersList(int employeeID)
+        {
+            return context.PurchaseOrder
+                   .Include(j => j.Job)
+                   .Include(e => e.Employee)
+                   .Include(s => s.Supplier).Where(c => c.EmployeeID == employeeID).OrderByDescending(r => r.OrderDate)
+                   .AsNoTracking().Select(d => new OrderListDto
+                   {
+                       PurchaseOrderID = d.PurchaseOrderID,
+                       JobName = d.Job.jobname,
+                       Purchaser = d.Employee.firstname,
+                       OrderDate = d.OrderDate.GetValueOrDefault(),
+                       OrderTotal = d.OrderTotal.GetValueOrDefault(),
+                       Recieved = d.Recieved.GetValueOrDefault(),
+                       Supplier = d.Supplier.SupplierName
+
+                    }).ToList();
+
+         }
+        
     }
 }

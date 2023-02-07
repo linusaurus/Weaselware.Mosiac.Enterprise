@@ -66,6 +66,7 @@ namespace DataLayer.Data
         public virtual DbSet<WorkCenter> WorkCenter { get; set; }
         public virtual DbSet<WorkOrder> WorkOrder { get; set; }
         public virtual DbSet<WorkOrderRouting> WorkOrderRouting { get; set; }
+        public virtual DbSet<Location> Location { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -133,6 +134,19 @@ namespace DataLayer.Data
                     .WithMany(p => p.Attachment)
                     .HasForeignKey(d => d.PurchaseOrderID)
                     .HasConstraintName("FK_Attachment_PurchaseOrder");
+            });
+
+            modelBuilder.Entity<Location>(entity =>
+            {
+                entity.HasKey(e => e.LocationID);
+                
+                entity.Property(e => e.Area)
+                    .HasMaxLength(10)
+                    .IsFixedLength();
+
+                entity.Property(e => e.LocationName)
+                    .HasMaxLength(10)
+                    .IsFixedLength();
             });
 
             modelBuilder.Entity<BOM>(entity =>
@@ -442,9 +456,21 @@ namespace DataLayer.Data
 
                 entity.Property(e => e.Note).HasMaxLength(240);
 
+
                 entity.Property(e => e.QntyOrdered)
                     .HasColumnType("decimal(18, 4)")
                     .HasDefaultValueSql("((0.0))");
+
+                entity.HasOne(d => d.Employee)
+                   .WithMany(p => p.Inventories)
+                   .HasForeignKey(d => d.EmpID)
+                   .HasConstraintName("FK_Inventory_Employee");
+
+
+                entity.HasOne(d => d.TransActionTypeNavigation)
+                    .WithMany(p => p.Inventory)
+                    .HasForeignKey(d => d.TransActionType)
+                    .HasConstraintName("FK_Inventory_TransActionType");
 
                 entity.Property(e => e.QntyReceived).HasColumnType("decimal(18, 4)");
             });

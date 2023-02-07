@@ -200,7 +200,7 @@ namespace Mosiac.UX.UXControls
         {
             switch (e.ClickedItem.Name)
             {
-
+                // Receive the Order- retrieve Order ReceiptDTO
                 case "tsbOrderReciept":
 
                     _orderRecieptDto = _orderReceiptRepository.LoadOrderReciept(_selectedOrderID);

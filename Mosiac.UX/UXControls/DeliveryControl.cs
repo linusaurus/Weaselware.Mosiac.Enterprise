@@ -17,6 +17,7 @@ using Mosiac.UX.Services;
 using Neodynamic.SDK.Printing;
 using System.IO;
 using System.Xml.Serialization;
+using ServiceLayer.Services;
 
 namespace Mosiac.UX.UXControls
 {
@@ -29,13 +30,14 @@ namespace Mosiac.UX.UXControls
         private readonly MosaicContext _ctx;
         private StockService _stockService;
         private JobsService _jobService;
+        private DeliveryService _deliveryService;
         string lastJobSearch = string.Empty;
 
         // BindingSource ------
 
         BindingSource bsPicks = new BindingSource();
         BindingSource bsPickItems = new BindingSource();
-
+        BindingSource bsMyDeliveries = new BindingSource();
         PickListMapper mapper = new PickListMapper();
 
         public DeliveryControl(MosaicContext ctx)
@@ -45,6 +47,7 @@ namespace Mosiac.UX.UXControls
             // Init the two servicess
             _stockService = new StockService(_ctx);
             _jobService = new JobsService(_ctx);
+            _deliveryService = new DeliveryService(_ctx);
 
             // Constuct the two grids
             Grids.BuildPlistGrid(dgvDeliveries);
@@ -61,10 +64,16 @@ namespace Mosiac.UX.UXControls
                 string lastJobSearch = Mosiac.UX.Properties.Settings.Default.LastJobSearched;
                 txtJobSearch.Text = lastJobSearch;
                 LoadJobsList();
+               
             }
-  
+            
         }
 
+        private  void LoadMyDeliveries()
+        {
+            bsMyDeliveries.DataSource =  _deliveryService.GetMyDeliveries(Globals.CurrentLoggedUserID);
+            dgvDeliveries.DataSource = bsMyDeliveries;
+        }
        
         private void BsPicks_ListChanged(object sender, ListChangedEventArgs e)
         {
@@ -183,6 +192,8 @@ namespace Mosiac.UX.UXControls
             }
         }
 
+        
+
         private async void LoadJobsList()
         {
             if (txtJobSearch.Text.Length > 0)
@@ -193,6 +204,8 @@ namespace Mosiac.UX.UXControls
                 lbJobList.DataSource = listJobs;
             }
         }
+
+       
         /// <summary>
         /// Main toolbar
         /// </summary>

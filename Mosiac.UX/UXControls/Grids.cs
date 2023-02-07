@@ -553,6 +553,7 @@ namespace Mosiac.UX.UXControls
         {
             // Grid Width 430 --
 
+
             dg.AutoGenerateColumns = false;
 
             dg.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
@@ -611,7 +612,7 @@ namespace Mosiac.UX.UXControls
             col_LastMod.Width = 90;
 
 
-            dg.Columns.AddRange(col_ID, col_Description, col_filesize, col_Created,col_Createdby, col_LastMod);
+            dg.Columns.AddRange(col_ID, col_Description);
         }
         public static void BuildOrderReceiptItemsGrid(DataGridView dg)
         {
@@ -1146,6 +1147,232 @@ namespace Mosiac.UX.UXControls
                 tbl.Columns.Add(prop.Name, prop.PropertyType);
             }
             return tbl;
+        }
+
+        internal static void BuildStockPartsGrid(DataGridView dg)
+        {
+            dg.AutoGenerateColumns = false;
+
+            dg.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            dg.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+
+            // Currency Decimal Style
+            DataGridViewCellStyle dstyleCurrency = new DataGridViewCellStyle();
+            dstyleCurrency.Format = "C";
+            dstyleCurrency.NullValue = "";
+            dstyleCurrency.Alignment = DataGridViewContentAlignment.MiddleRight;
+            // Date Style
+            DataGridViewCellStyle dstyleDate = new DataGridViewCellStyle();
+            dstyleCurrency.Format = "d";
+            dstyleCurrency.NullValue = "";
+            dstyleCurrency.Alignment = DataGridViewContentAlignment.MiddleRight;
+
+            // Currency Decimal Style
+            DataGridViewCellStyle dstyleDecimal = new DataGridViewCellStyle();
+            dstyleDecimal.Format = "N2";
+            dstyleDecimal.NullValue = "0.00";
+            dstyleDecimal.Alignment = DataGridViewContentAlignment.MiddleRight;
+            // Wrapping Text Style
+            DataGridViewCellStyle dstyleWrapText = new DataGridViewCellStyle();
+            dstyleWrapText.NullValue = "";
+            dstyleWrapText.Alignment = DataGridViewContentAlignment.TopLeft;
+            dstyleWrapText.WrapMode = DataGridViewTriState.True;
+
+            
+
+            // PartID Column --
+            DataGridViewTextBoxColumn col_PartID = new DataGridViewTextBoxColumn();
+            col_PartID.HeaderText = "ID";
+            col_PartID.DataPropertyName = "PartID";
+            col_PartID.Width = 55;
+
+          
+            // Receipt Description Column --
+            DataGridViewTextBoxColumn col_Description = new DataGridViewTextBoxColumn();
+            col_Description.HeaderText = "Description";
+            col_Description.DataPropertyName = "ItemDescription";
+            col_Description.Width = 120;
+            col_Description.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+
+            dg.Columns.AddRange(col_PartID, col_Description);
+        }
+
+        internal static void BuildPartsTransActionsGrid(DataGridView dg)
+        {
+            dg.AutoGenerateColumns = false;
+
+            dg.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            dg.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+            dg.AlternatingRowsDefaultCellStyle.BackColor = Color.DarkGray;
+
+            // Currency Decimal Style
+            DataGridViewCellStyle dstyleCurrency = new DataGridViewCellStyle();
+            dstyleCurrency.Format = "C";
+            dstyleCurrency.NullValue = "";
+            dstyleCurrency.Alignment = DataGridViewContentAlignment.MiddleRight;
+            // Date Style
+            DataGridViewCellStyle dstyleDate = new DataGridViewCellStyle();
+            dstyleCurrency.Format = "d";
+            dstyleCurrency.NullValue = "";
+            dstyleCurrency.Alignment = DataGridViewContentAlignment.MiddleRight;
+
+            // Currency Decimal Style
+            DataGridViewCellStyle dstyleDecimal = new DataGridViewCellStyle();
+            dstyleDecimal.Format = "N2";
+            dstyleDecimal.NullValue = "0.00";
+            dstyleDecimal.Alignment = DataGridViewContentAlignment.MiddleRight;
+            // Wrapping Text Style
+            DataGridViewCellStyle dstyleWrapText = new DataGridViewCellStyle();
+            dstyleWrapText.NullValue = "";
+            dstyleWrapText.Alignment = DataGridViewContentAlignment.TopLeft;
+            dstyleWrapText.WrapMode = DataGridViewTriState.True;
+
+
+            // PartID Column --
+            DataGridViewTextBoxColumn col_StartTransActionID = new DataGridViewTextBoxColumn();
+            col_StartTransActionID.HeaderText = "ID";
+            col_StartTransActionID.DataPropertyName = "StockTransactionID";
+            col_StartTransActionID.Width = 60;
+
+            // Location Column --
+            DataGridViewTextBoxColumn col_Location = new DataGridViewTextBoxColumn();
+            col_Location.HeaderText = "Location";
+            col_Location.DataPropertyName = "Location";
+            col_Location.Width = 75;
+
+            // DateStamp Column --
+            DataGridViewTextBoxColumn col_DateStamp = new DataGridViewTextBoxColumn();
+            col_DateStamp.HeaderText = "Date";
+            col_DateStamp.DataPropertyName = "DateStamp";
+            col_DateStamp.Width = 80;
+
+            // Inventory Amount Column --
+            DataGridViewTextBoxColumn col_InventoryAmount = new DataGridViewTextBoxColumn();
+            col_InventoryAmount.HeaderText = "Amount";
+            col_InventoryAmount.DataPropertyName = "Amount";
+            col_InventoryAmount.DefaultCellStyle = dstyleDecimal;
+            col_InventoryAmount.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            col_InventoryAmount.DefaultCellStyle.BackColor = Color.Cornsilk;
+            col_InventoryAmount.Width = 90;
+
+            // Unit of Measure Column --
+            DataGridViewTextBoxColumn col_UnitOfMeasure = new DataGridViewTextBoxColumn();
+            col_UnitOfMeasure.HeaderText = "Unit";
+            col_UnitOfMeasure.DataPropertyName = "Unit";
+            col_UnitOfMeasure.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            col_UnitOfMeasure.Width = 70;
+
+
+            // TransActionType Column --
+            DataGridViewTextBoxColumn col_TransActionTypeName = new DataGridViewTextBoxColumn();
+            col_TransActionTypeName.HeaderText = "Transaction";
+            col_TransActionTypeName.DataPropertyName = "TransActionName";
+            col_TransActionTypeName.Width = 90;
+
+            // EmployeeName Column --
+            DataGridViewTextBoxColumn col_EmployeeName = new DataGridViewTextBoxColumn();
+            col_EmployeeName.HeaderText = "Employee";
+            col_EmployeeName.DataPropertyName = "EmployeeName";
+            col_EmployeeName.Width = 90;
+            col_EmployeeName.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+
+
+            dg.Columns.AddRange(col_StartTransActionID, col_Location, col_DateStamp, col_InventoryAmount, col_UnitOfMeasure, col_EmployeeName, col_TransActionTypeName);
+        }
+
+        public static void BuildLocationsGrid(DataGridView dg)
+        {
+            dg.AutoGenerateColumns = false;
+
+            dg.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            dg.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+            dg.AlternatingRowsDefaultCellStyle.BackColor = Color.LightGray;
+
+  
+
+            // Location Column --
+            DataGridViewTextBoxColumn col_Location = new DataGridViewTextBoxColumn();
+            col_Location.HeaderText = "Location";
+            col_Location.DataPropertyName = "LocationName";
+            col_Location.Width = 75;
+
+  
+            // Area Column --
+            DataGridViewTextBoxColumn col_Area = new DataGridViewTextBoxColumn();
+            col_Area.HeaderText = "Area";
+            col_Area.DataPropertyName = "Area";
+            col_Area.Width = 75;
+            col_Area.AutoSizeMode= DataGridViewAutoSizeColumnMode.Fill;
+
+           
+            dg.Columns.AddRange(col_Location, col_Area);
+        }
+
+        public  static void BuildLocationPartsGrid(DataGridView dg)
+        {
+            dg.AutoGenerateColumns = false;
+
+            dg.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            dg.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+            dg.AlternatingRowsDefaultCellStyle.BackColor = Color.LightGray;
+
+            // Currency Decimal Style ---------------------------------------
+            DataGridViewCellStyle dstyleDecimal = new DataGridViewCellStyle();
+            dstyleDecimal.Format = "N2";
+            dstyleDecimal.NullValue = "0.00";
+            dstyleDecimal.Alignment = DataGridViewContentAlignment.MiddleRight;
+            //----------------------------------------------------------------
+
+            // PartID Column --
+            DataGridViewTextBoxColumn col_PartID = new DataGridViewTextBoxColumn();
+            col_PartID.HeaderText = "PartID";
+            col_PartID.DataPropertyName = "PartID";
+            col_PartID.Width = 55;
+            
+            //ItemDescription Column
+            DataGridViewTextBoxColumn col_ItemDescription = new DataGridViewTextBoxColumn();
+            col_ItemDescription.HeaderText = "Description";
+            col_ItemDescription.DataPropertyName = "ItemDescription";
+            col_ItemDescription.Width = 65;
+            col_ItemDescription.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+
+            //Location Column
+            DataGridViewTextBoxColumn col_Location = new DataGridViewTextBoxColumn();
+            col_Location.HeaderText = "Location";
+            col_Location.DataPropertyName = "Location";
+            col_Location.Width = 60;
+           
+
+            //Manufacturer Column
+            DataGridViewTextBoxColumn col_Manufactuer = new DataGridViewTextBoxColumn();
+            col_Manufactuer.ReadOnly = true;
+            col_Manufactuer.HeaderText = "Source";
+            col_Manufactuer.DataPropertyName = "Manufacturer";
+            col_Manufactuer.Width = 85;
+
+            //ManuPart Column
+            DataGridViewTextBoxColumn col_ManuPart = new DataGridViewTextBoxColumn();
+            col_ManuPart.HeaderText = "Manu-Part";
+            col_ManuPart.DataPropertyName = "Manupart";
+            col_ManuPart.DefaultCellStyle.BackColor = System.Drawing.Color.Cornsilk;
+            col_ManuPart.Width = 95;
+
+            //UnitOfMeasure Column
+            DataGridViewTextBoxColumn col_UnitofMeasure = new DataGridViewTextBoxColumn();
+            col_UnitofMeasure.HeaderText = "Unit";
+            col_UnitofMeasure.DataPropertyName = "UnitOfMeasure";
+            col_UnitofMeasure.Width = 50;
+
+            //Stock on Hand Column
+            DataGridViewTextBoxColumn col_StockLevel = new DataGridViewTextBoxColumn();
+            col_StockLevel.HeaderText = "Stock";
+            col_StockLevel.DataPropertyName = "StockOnHand";
+            col_StockLevel.DefaultCellStyle.BackColor = System.Drawing.Color.Cornsilk;
+            col_StockLevel.DefaultCellStyle.DataSourceNullValue = 0.00;
+            col_StockLevel.Width = 60;
+
+            dg.Columns.AddRange(col_PartID, col_ItemDescription,col_Location ,col_Manufactuer, col_ManuPart, col_UnitofMeasure, col_StockLevel);
+
         }
     }
 }

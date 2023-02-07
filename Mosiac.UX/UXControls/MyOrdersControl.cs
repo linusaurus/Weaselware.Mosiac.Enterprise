@@ -199,18 +199,38 @@ namespace Mosiac.UX.UXControls
             
 
         }
-
+        // Show all Employee even prior employees
         private void ckbShowAll_CheckedChanged(object sender, EventArgs e)
         {
             CheckBox cb = (CheckBox)sender;
             if (cb.Checked)
             {
                 cbJobName.DataSource = _employeeService.All();
+                ckbShowAll.Checked = false;
             }
             else if (!cb.Checked)
             {
                 cbJobName.DataSource = _employeeService.Active();
             }
+        }
+        // Show order both recieved and pending for Active Users
+        private void cbxShowAll_CheckedChanged(object sender, EventArgs e)
+        {
+            CheckBox cb = (CheckBox)sender;
+
+            if (cb.Checked)
+            { 
+             _showRecieved = false;
+             this.ckbShowRecieved.Checked = false;
+             this.dgMyOrdersGrid.DataSource = _ordersService.GetAllMyOrdersList(_employeeID);
+            }
+            else if (!cb.Checked)
+            {
+                this.dgMyOrdersGrid.DataSource = _ordersService.GetMyOrders(_employeeID, false);
+
+            }
+
+
         }
     }
 }

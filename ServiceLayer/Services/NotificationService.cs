@@ -23,6 +23,7 @@ namespace ServiceLayer {
 
             String userName = "designsynthesis.notifications@gmail.com";
             String password = "adnskqtevqvwaohs";
+           
 
             var smtp = new SmtpClient
             {
@@ -41,8 +42,10 @@ namespace ServiceLayer {
                 msg.From = new MailAddress("alerts@designsynthesis.net", "Mosiac-Receiving");
                 msg.Subject = string.Format("Order Number : {0} ", order.PurchaseOrderID.ToString());
 
-                sb.AppendLine($"Recieved by {order.EmployeeName.ToString()} at {DateTime.Now.DayOfWeek}, {DateTime.Today.ToShortDateString()}, {DateTime.Now.ToShortTimeString()}");
+                sb.AppendLine($"Recieved by {order.EmployeeName.ToString()} at {DateTime.Now.DayOfWeek} | {DateTime.Today.ToShortDateString()} | {DateTime.Now.ToShortTimeString()}  |  ");
                 sb.AppendLine();
+                //  add the Jobname here ---->
+                sb.AppendLine($"Job : {order.JobName}");
                 msg.Body = sb.ToString();
 
                 msg.Body += "<table width='100%' style='background-color: #EDE8E3'>";

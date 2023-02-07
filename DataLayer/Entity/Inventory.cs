@@ -22,6 +22,10 @@ namespace DataLayer.Entity
         public int? TransActionType { get; set; }
         public int? EmpID { get; set; }
         public decimal? QntyReceived { get; set; }
+        public virtual TransActionType TransActionTypeNavigation { get; set; }
+
+        public virtual UnitOfMeasure UnitOfMeasure { get; set; }
+        public virtual Employee Employee { get; set; } 
         public decimal? InventoryAmount { get; set; }
     }
        

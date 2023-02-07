@@ -25,12 +25,12 @@ namespace Mosiac.UX.UXControls
             _inventoryService = new InventoryService(_ctx);
         }
 
-        private async void button1_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
             if (txtPartNo.Text.Length > 0)
             {
                 int pid = int.Parse( txtPartNo.Text);
-                var trans = await _inventoryService.GetPartTransactions(pid);
+                var trans =  _inventoryService.GetPartTransactions(pid);
                 this.dataGridView1.DataSource = trans;
             }
         }

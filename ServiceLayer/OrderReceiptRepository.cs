@@ -42,7 +42,7 @@ namespace ServiceLayer
         {
             OrderReceiptDto newReciept;
             // Grab to Purchase Order
-            PurchaseOrder po = _ctx.PurchaseOrder.AsNoTracking().Include(p => p.PurchaseLineItem).ThenInclude(u => u.UnitOfMeasure).Include(x => x.OrderReciept)
+            PurchaseOrder po = _ctx.PurchaseOrder.AsNoTracking().Include(j => j.Job).Include(p => p.PurchaseLineItem).ThenInclude(u => u.UnitOfMeasure).Include(x => x.OrderReciept)
                                    .Include(e => e.Supplier).Where(o => o.PurchaseOrderID == purchaserOrderID).FirstOrDefault();
             
             // Test for existing Order Receipt-if true that one exist, retrieve it and copy into new receipt
@@ -59,9 +59,11 @@ namespace ServiceLayer
                     IsOrderComplete = false,
                     ReceiptDate = DateTime.Today,
                     PurchaseOrderID = purchaserOrderID,
-                    EmployeeName = _user,         
+                    EmployeeName = _user,
                     EmployeeId = _userid,
-                    OrderDate = po.OrderDate.GetValueOrDefault()
+                    OrderDate = po.OrderDate.GetValueOrDefault(),
+                    JobName = po.Job.jobname
+                 
                 };
             
                 foreach (var lines in po.PurchaseLineItem)
@@ -308,6 +310,7 @@ namespace ServiceLayer
             orderReciept.PurchaseOrderID = dto.PurchaseOrderID;
             orderReciept.IsOrderComplete = dto.IsOrderComplete;
             orderReciept.EmployeeID = dto.EmployeeId;
+            
 
             //remove deleted details -
             orderReciept.OrderReceiptItems

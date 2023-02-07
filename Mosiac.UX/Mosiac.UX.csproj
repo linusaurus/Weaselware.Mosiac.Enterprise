@@ -2,24 +2,22 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net5.0-windows10.0.22000.0</TargetFramework>
+    <TargetFramework>net6.0-windows</TargetFramework>
     <UseWindowsForms>true</UseWindowsForms>
-    <AssemblyVersion>1.6.0.5</AssemblyVersion>
+    <AssemblyVersion>1.6.1.5</AssemblyVersion>
     <ApplicationIcon>mosaic-_1_.ico</ApplicationIcon>
-    <FileVersion>1.6.0.5</FileVersion>
+    <FileVersion>1.6.1.5</FileVersion>
     <Authors>Dick Danger</Authors>
     <Company>Weaselware</Company>
     <Product>Mosiac Enterprise</Product>
-    <Version>1.6.0</Version>
-    <Copyright>Weaselware 2022</Copyright>
+    <Version>1.6.8</Version>
+    <Copyright>Weaselware 2023</Copyright>
     <StartupObject>Mosiac.UX.Program</StartupObject>
     <PackageIcon>mosaic (1).png</PackageIcon>
   </PropertyGroup>
 
   <ItemGroup>
     <None Remove="24StockLabel.tl" />
-    <None Remove="Mosiac.UX_1_TemporaryKey.pfx" />
-    <None Remove="Mosiac.UX_TemporaryKey.pfx" />
     <None Remove="PackListLB.tl" />
     <None Remove="PLIST.frx" />
     <None Remove="Properties\Settings.settings" />
@@ -33,14 +31,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="FastReport.Net.Demo" Version="2021.3.6" />
-    <PackageReference Include="FluentEmail.Smtp" Version="3.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.1" />
-    <PackageReference Include="Microsoft.Toolkit.Mvvm" Version="7.1.2" />
+    <PackageReference Include="FastReport.Net.Demo" Version="2023.1.8" />
+    <PackageReference Include="FluentEmail.Smtp" Version="3.0.2" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="7.0.0" />
     <PackageReference Include="MotorolaCoreScannerNetStandard" Version="1.1.5" />
-    <PackageReference Include="Neodynamic.SDK.ThermalLabel.WindowsPrinting.NetCore" Version="11.0.0" />
-    <PackageReference Include="SkiaSharp" Version="2.80.3" />
-    <PackageReference Include="System.Composition.AttributedModel" Version="6.0.0-preview.5.21301.5" />
+    <PackageReference Include="Neodynamic.SDK.ThermalLabel.WindowsPrinting.NetCore" Version="12.0.0" />
+    <PackageReference Include="SkiaSharp" Version="2.88.3" />
+    <PackageReference Include="System.Composition.AttributedModel" Version="7.0.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -64,19 +61,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="bin\debug\netcoreapp3.1\*.frx">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="24StockLabel.tl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="bin\publish\testreport.frx">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Mosiac.UX_1_TemporaryKey.pfx">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Mosiac.UX_TemporaryKey.pfx" />
     <Content Include="PackListLB.tl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -104,12 +91,6 @@
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Update="bin\debug\netcoreapp3.1\testreport.frx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
 
   <ItemGroup>

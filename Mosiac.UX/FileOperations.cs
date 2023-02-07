@@ -9,6 +9,8 @@ using Microsoft.Win32.SafeHandles;
 using Boxed.Mapping;
 using ServiceLayer.Mappers;
 using ServiceLayer.Models;
+using DataLayer.Entity;
+using System.Windows.Markup;
 
 
 namespace Mosiac.UX
@@ -17,6 +19,8 @@ namespace Mosiac.UX
     {
         //private static string ConnStr = @"Server = 192.168.10.51; database = Mosaic; Integrated Security = SSPI";
         private static string ConnStr = Mosiac.UX.Properties.Settings.Default.MosiacConnection;
+        
+        private static string cn = ConnStr.Substring(0, 68);
         private static void OpenResource(string path)
         {
             ProcessStartInfo psi = new ProcessStartInfo
@@ -84,10 +88,10 @@ namespace Mosiac.UX
             byte[] serverTxn;
             // set the location for the file to be loaded to local cache
             string Localpath = System.Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-
+            
             using (TransactionScope ts = new TransactionScope())
             {
-                using (SqlConnection conn = new SqlConnection(conString))
+                using (SqlConnection conn = new SqlConnection(cn))
                 {
                     conn.Open();
                     using (SqlCommand cmd = new SqlCommand(SelectTSql, conn))
@@ -149,7 +153,7 @@ namespace Mosiac.UX
              //"INSERT INTO Resource(PartID, ResourceDescription,filesource)" +
              //" VALUES(@PartID, @Description, @filesource)";
 
-            using (SqlConnection conn = new SqlConnection(ConnStr))
+            using (SqlConnection conn = new SqlConnection(cn))
             {
                 conn.Open();
 
@@ -246,7 +250,7 @@ namespace Mosiac.UX
 
             using (TransactionScope ts = new TransactionScope())
             {
-                using (SqlConnection conn = new SqlConnection(conString))
+                using (SqlConnection conn = new SqlConnection(cn))
                 {
                     conn.Open();
                     using (SqlCommand cmd = new SqlCommand(SelectTSql, conn))
@@ -317,26 +321,7 @@ namespace Mosiac.UX
             source.Close();
         }
 
-        //public static async Task SaveAttachmentFileAsync(int attachmentId, string filename, SqlTransaction txn)
-        //{
-        //    const int BlockSize = 1024 * 512;
-
-        //    FileStream source = new FileStream(filename, FileMode.Open, FileAccess.Read);
-        //    SafeFileHandle handle = GetAttachmentFileHandle(attachmentId, txn);
-        //    using (FileStream dest = new FileStream(handle, FileAccess.Write))
-        //    {
-        //        byte[] buffer = new byte[BlockSize];
-        //        int bytesRead;
-        //        while ((bytesRead = source.Read(buffer, 0, buffer.Length)) > 0)
-        //        {
-        //            dest.Write(buffer, 0, bytesRead);
-        //        }
-        //        dest.Close();
-        //    }
-        //    source.Close();
-
-        //}
-
+    
 
         public static int InsertOrderAttachment(int purchaseOrderID, string attachmentDescription, string filesize, FileInfo filename)
         {
@@ -345,7 +330,7 @@ namespace Mosiac.UX
 
            
 
-            using (SqlConnection conn = new SqlConnection(ConnStr))
+            using (SqlConnection conn = new SqlConnection(cn))
             {
                 conn.Open();
 

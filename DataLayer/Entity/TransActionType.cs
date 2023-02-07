@@ -7,7 +7,13 @@ namespace DataLayer.Entity
 {
     public partial class TransActionType
     {
+        public TransActionType()
+        {
+            Inventory = new HashSet<Inventory>();
+        }
         public int TransactionsTypeID { get; set; }
         public string TransactionTypeName { get; set; }
+
+        public virtual ICollection<Inventory> Inventory { get; set; }
     }
 }

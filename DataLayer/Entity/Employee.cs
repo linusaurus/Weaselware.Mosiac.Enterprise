@@ -11,6 +11,7 @@ namespace DataLayer.Entity
         {
             OrderReciept = new HashSet<OrderReciept>();
             PurchaseOrder = new HashSet<PurchaseOrder>();
+            Inventories = new HashSet<Inventory>();
         }
 
         public int employeeID { get; set; }
@@ -23,6 +24,8 @@ namespace DataLayer.Entity
         public string Login { get; set; }
         public string Password { get; set; }
         public int? Role { get; set; }
+
+        public virtual ICollection<Inventory> Inventories { get; set; }
 
         public virtual ICollection<OrderReciept> OrderReciept { get; set; }
         public virtual ICollection<PurchaseOrder> PurchaseOrder { get; set; }

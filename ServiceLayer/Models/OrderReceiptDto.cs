@@ -40,6 +40,8 @@ namespace ServiceLayer.Models
             }
         }
 
+        public string JobName { get; set; }
+
         protected void OnPropertyChange([CallerMemberName] string name = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));

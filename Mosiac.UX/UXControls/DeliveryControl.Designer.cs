@@ -28,10 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.TabControl tbDeliversControl;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DeliveryControl));
+            this.tbJobPicks = new System.Windows.Forms.TabPage();
+            this.dgvDeliveries = new System.Windows.Forms.DataGridView();
+            this.tbMyDeliveries = new System.Windows.Forms.TabPage();
+            this.dgvMyDelieveries = new System.Windows.Forms.DataGridView();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.btnNewDellivery = new System.Windows.Forms.Button();
-            this.dgvDeliveries = new System.Windows.Forms.DataGridView();
             this.lbJobList = new System.Windows.Forms.ListBox();
             this.btnSearch = new System.Windows.Forms.Button();
             this.txtJobSearch = new System.Windows.Forms.TextBox();
@@ -57,17 +61,78 @@
             this.tsSave = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsPrint = new System.Windows.Forms.ToolStripButton();
-            this.tsPrintLabels = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsPrintLabels = new System.Windows.Forms.ToolStripButton();
+            tbDeliversControl = new System.Windows.Forms.TabControl();
+            tbDeliversControl.SuspendLayout();
+            this.tbJobPicks.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDeliveries)).BeginInit();
+            this.tbMyDeliveries.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvMyDelieveries)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvDeliveries)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPickListItems)).BeginInit();
             this.panel1.SuspendLayout();
             this.tsMain.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // tbDeliversControl
+            // 
+            tbDeliversControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            tbDeliversControl.Controls.Add(this.tbJobPicks);
+            tbDeliversControl.Controls.Add(this.tbMyDeliveries);
+            tbDeliversControl.Location = new System.Drawing.Point(6, 255);
+            tbDeliversControl.Name = "tbDeliversControl";
+            tbDeliversControl.SelectedIndex = 0;
+            tbDeliversControl.Size = new System.Drawing.Size(313, 468);
+            tbDeliversControl.TabIndex = 5;
+            // 
+            // tbJobPicks
+            // 
+            this.tbJobPicks.Controls.Add(this.dgvDeliveries);
+            this.tbJobPicks.Location = new System.Drawing.Point(4, 24);
+            this.tbJobPicks.Name = "tbJobPicks";
+            this.tbJobPicks.Padding = new System.Windows.Forms.Padding(3);
+            this.tbJobPicks.Size = new System.Drawing.Size(305, 440);
+            this.tbJobPicks.TabIndex = 0;
+            this.tbJobPicks.Text = "Job Deliveries";
+            this.tbJobPicks.UseVisualStyleBackColor = true;
+            // 
+            // dgvDeliveries
+            // 
+            this.dgvDeliveries.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvDeliveries.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvDeliveries.Location = new System.Drawing.Point(3, 3);
+            this.dgvDeliveries.Name = "dgvDeliveries";
+            this.dgvDeliveries.RowTemplate.Height = 25;
+            this.dgvDeliveries.Size = new System.Drawing.Size(299, 434);
+            this.dgvDeliveries.TabIndex = 4;
+            this.dgvDeliveries.SelectionChanged += new System.EventHandler(this.dgvDeliveries_SelectionChanged);
+            // 
+            // tbMyDeliveries
+            // 
+            this.tbMyDeliveries.Controls.Add(this.dgvMyDelieveries);
+            this.tbMyDeliveries.Location = new System.Drawing.Point(4, 24);
+            this.tbMyDeliveries.Name = "tbMyDeliveries";
+            this.tbMyDeliveries.Padding = new System.Windows.Forms.Padding(3);
+            this.tbMyDeliveries.Size = new System.Drawing.Size(305, 442);
+            this.tbMyDeliveries.TabIndex = 1;
+            this.tbMyDeliveries.Text = "My Deliveries";
+            this.tbMyDeliveries.UseVisualStyleBackColor = true;
+            // 
+            // dgvMyDelieveries
+            // 
+            this.dgvMyDelieveries.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvMyDelieveries.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvMyDelieveries.Location = new System.Drawing.Point(3, 3);
+            this.dgvMyDelieveries.Name = "dgvMyDelieveries";
+            this.dgvMyDelieveries.RowTemplate.Height = 25;
+            this.dgvMyDelieveries.Size = new System.Drawing.Size(299, 436);
+            this.dgvMyDelieveries.TabIndex = 0;
             // 
             // splitContainer1
             // 
@@ -79,8 +144,8 @@
             // splitContainer1.Panel1
             // 
             this.splitContainer1.Panel1.BackColor = System.Drawing.SystemColors.Control;
+            this.splitContainer1.Panel1.Controls.Add(tbDeliversControl);
             this.splitContainer1.Panel1.Controls.Add(this.btnNewDellivery);
-            this.splitContainer1.Panel1.Controls.Add(this.dgvDeliveries);
             this.splitContainer1.Panel1.Controls.Add(this.lbJobList);
             this.splitContainer1.Panel1.Controls.Add(this.btnSearch);
             this.splitContainer1.Panel1.Controls.Add(this.txtJobSearch);
@@ -92,7 +157,7 @@
             this.splitContainer1.Panel2.Controls.Add(this.panel1);
             this.splitContainer1.Panel2.Controls.Add(this.tsMain);
             this.splitContainer1.Panel2.Padding = new System.Windows.Forms.Padding(10);
-            this.splitContainer1.Size = new System.Drawing.Size(1208, 719);
+            this.splitContainer1.Size = new System.Drawing.Size(1178, 729);
             this.splitContainer1.SplitterDistance = 325;
             this.splitContainer1.TabIndex = 0;
             // 
@@ -110,19 +175,6 @@
             this.btnNewDellivery.Text = "New Delivery Packing List";
             this.btnNewDellivery.UseVisualStyleBackColor = false;
             this.btnNewDellivery.Click += new System.EventHandler(this.btnNewDellivery_Click);
-            // 
-            // dgvDeliveries
-            // 
-            this.dgvDeliveries.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgvDeliveries.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvDeliveries.Location = new System.Drawing.Point(9, 252);
-            this.dgvDeliveries.Name = "dgvDeliveries";
-            this.dgvDeliveries.RowTemplate.Height = 25;
-            this.dgvDeliveries.Size = new System.Drawing.Size(307, 455);
-            this.dgvDeliveries.TabIndex = 4;
-            this.dgvDeliveries.SelectionChanged += new System.EventHandler(this.dgvDeliveries_SelectionChanged);
             // 
             // lbJobList
             // 
@@ -160,7 +212,7 @@
             this.dgvPickListItems.Location = new System.Drawing.Point(13, 213);
             this.dgvPickListItems.Name = "dgvPickListItems";
             this.dgvPickListItems.RowTemplate.Height = 25;
-            this.dgvPickListItems.Size = new System.Drawing.Size(853, 494);
+            this.dgvPickListItems.Size = new System.Drawing.Size(823, 504);
             this.dgvPickListItems.TabIndex = 2;
             // 
             // panel1
@@ -185,7 +237,7 @@
             this.panel1.Controls.Add(this.lbPickID);
             this.panel1.Location = new System.Drawing.Point(13, 38);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(853, 169);
+            this.panel1.Size = new System.Drawing.Size(823, 169);
             this.panel1.TabIndex = 0;
             // 
             // lbZip
@@ -395,7 +447,7 @@
             this.tsPrintLabels});
             this.tsMain.Location = new System.Drawing.Point(10, 10);
             this.tsMain.Name = "tsMain";
-            this.tsMain.Size = new System.Drawing.Size(859, 25);
+            this.tsMain.Size = new System.Drawing.Size(829, 25);
             this.tsMain.TabIndex = 1;
             this.tsMain.Text = "toolStrip1";
             this.tsMain.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.tsMain_ItemClicked);
@@ -428,6 +480,11 @@
             this.tsPrint.Size = new System.Drawing.Size(51, 22);
             this.tsPrint.Text = "Print     ";
             // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+            // 
             // tsPrintLabels
             // 
             this.tsPrintLabels.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
@@ -439,11 +496,6 @@
             this.tsPrintLabels.ToolTipText = "Print Labels";
             this.tsPrintLabels.Click += new System.EventHandler(this.tsPrintLabels_Click);
             // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
-            // 
             // DeliveryControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -452,14 +504,18 @@
             this.Controls.Add(this.splitContainer1);
             this.Name = "DeliveryControl";
             this.Padding = new System.Windows.Forms.Padding(10);
-            this.Size = new System.Drawing.Size(1228, 739);
+            this.Size = new System.Drawing.Size(1198, 749);
+            tbDeliversControl.ResumeLayout(false);
+            this.tbJobPicks.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDeliveries)).EndInit();
+            this.tbMyDeliveries.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvMyDelieveries)).EndInit();
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
             this.splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvDeliveries)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPickListItems)).EndInit();
             this.panel1.ResumeLayout(false);
             this.tsMain.ResumeLayout(false);
@@ -500,5 +556,8 @@
         private System.Windows.Forms.Label lbAttention;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripButton tsPrintLabels;
+        private System.Windows.Forms.TabPage tbJobPicks;
+        private System.Windows.Forms.TabPage tbMyDeliveries;
+        private System.Windows.Forms.DataGridView dgvMyDelieveries;
     }
 }

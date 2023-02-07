@@ -67,7 +67,7 @@
             this.tbSupplier.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.tbSupplier.Name = "tbSupplier";
             this.tbSupplier.SelectedIndex = 0;
-            this.tbSupplier.Size = new System.Drawing.Size(874, 221);
+            this.tbSupplier.Size = new System.Drawing.Size(845, 221);
             this.tbSupplier.TabIndex = 3;
             // 
             // tabPage1
@@ -85,15 +85,14 @@
             this.tabPage1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.tabPage1.Size = new System.Drawing.Size(866, 193);
+            this.tabPage1.Size = new System.Drawing.Size(837, 193);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Parts Finder";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // btnMaunPart
             // 
-            this.btnMaunPart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnMaunPart.Location = new System.Drawing.Point(489, 10);
+            this.btnMaunPart.Location = new System.Drawing.Point(437, 9);
             this.btnMaunPart.Name = "btnMaunPart";
             this.btnMaunPart.Size = new System.Drawing.Size(73, 23);
             this.btnMaunPart.TabIndex = 11;
@@ -103,11 +102,10 @@
             // 
             // txtMaunPart
             // 
-            this.txtMaunPart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtMaunPart.Location = new System.Drawing.Point(568, 10);
+            this.txtMaunPart.Location = new System.Drawing.Point(516, 9);
             this.txtMaunPart.Name = "txtMaunPart";
             this.txtMaunPart.PlaceholderText = "Manu Part#";
-            this.txtMaunPart.Size = new System.Drawing.Size(86, 23);
+            this.txtMaunPart.Size = new System.Drawing.Size(77, 23);
             this.txtMaunPart.TabIndex = 10;
             this.txtMaunPart.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -143,7 +141,7 @@
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.button1.Image = global::Mosiac.UX.Properties.Resources.twotone_add_box_black_24dp2;
             this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(757, 7);
+            this.button1.Location = new System.Drawing.Point(728, 7);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(100, 27);
             this.button1.TabIndex = 5;
@@ -155,7 +153,7 @@
             // txtPartNumber
             // 
             this.txtPartNumber.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtPartNumber.Location = new System.Drawing.Point(670, 10);
+            this.txtPartNumber.Location = new System.Drawing.Point(641, 10);
             this.txtPartNumber.Name = "txtPartNumber";
             this.txtPartNumber.Size = new System.Drawing.Size(81, 23);
             this.txtPartNumber.TabIndex = 4;
@@ -178,7 +176,7 @@
             this.dgvPartsSearchResults.Name = "dgvPartsSearchResults";
             this.dgvPartsSearchResults.ReadOnly = true;
             this.dgvPartsSearchResults.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvPartsSearchResults.Size = new System.Drawing.Size(850, 147);
+            this.dgvPartsSearchResults.Size = new System.Drawing.Size(821, 147);
             this.dgvPartsSearchResults.TabIndex = 9;
             this.dgvPartsSearchResults.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPartsSearchResults_CellContentDoubleClick);
             this.dgvPartsSearchResults.RowHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvPartsSearchResults_RowHeaderMouseDoubleClick);
@@ -232,7 +230,7 @@
             this.tabPage2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.tabPage2.Size = new System.Drawing.Size(857, 193);
+            this.tabPage2.Size = new System.Drawing.Size(866, 193);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Supplier Purchases";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -244,7 +242,7 @@
             this.dgSupplierParts.Location = new System.Drawing.Point(4, 3);
             this.dgSupplierParts.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.dgSupplierParts.Name = "dgSupplierParts";
-            this.dgSupplierParts.Size = new System.Drawing.Size(849, 187);
+            this.dgSupplierParts.Size = new System.Drawing.Size(858, 187);
             this.dgSupplierParts.TabIndex = 0;
             // 
             // btnAddToOrder
@@ -252,7 +250,7 @@
             this.btnAddToOrder.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAddToOrder.Image = ((System.Drawing.Image)(resources.GetObject("btnAddToOrder.Image")));
             this.btnAddToOrder.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAddToOrder.Location = new System.Drawing.Point(425, 10);
+            this.btnAddToOrder.Location = new System.Drawing.Point(396, 10);
             this.btnAddToOrder.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnAddToOrder.Name = "btnAddToOrder";
             this.btnAddToOrder.Size = new System.Drawing.Size(144, 30);
@@ -265,7 +263,7 @@
             // 
             this.btnNewPart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnNewPart.Enabled = false;
-            this.btnNewPart.Location = new System.Drawing.Point(576, 10);
+            this.btnNewPart.Location = new System.Drawing.Point(547, 10);
             this.btnNewPart.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnNewPart.Name = "btnNewPart";
             this.btnNewPart.Size = new System.Drawing.Size(144, 30);
@@ -277,7 +275,7 @@
             // btnAddJobPart
             // 
             this.btnAddJobPart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAddJobPart.Location = new System.Drawing.Point(726, 10);
+            this.btnAddJobPart.Location = new System.Drawing.Point(697, 10);
             this.btnAddJobPart.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnAddJobPart.Name = "btnAddJobPart";
             this.btnAddJobPart.Size = new System.Drawing.Size(144, 30);
@@ -296,7 +294,7 @@
             this.Controls.Add(this.tbSupplier);
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "PartFinderControl";
-            this.Size = new System.Drawing.Size(881, 251);
+            this.Size = new System.Drawing.Size(852, 251);
             this.Load += new System.EventHandler(this.PartFinderControl_Load);
             this.tbSupplier.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);

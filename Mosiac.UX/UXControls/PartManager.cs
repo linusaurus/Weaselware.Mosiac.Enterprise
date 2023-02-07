@@ -18,13 +18,14 @@ using System.ComponentModel;
 using Neodynamic.SDK.Printing;
 using System.Xml.Serialization;
 using Mosiac.UX.Services;
+using System.Threading.Tasks;
 
 namespace Mosiac.UX.UXControls
 {
     public partial class PartManager : UserControl
     {
-        private int partID;
-        private FileInfo fl;
+        //private int partID;
+        //private FileInfo fl;
         private string size = string.Empty;
         private readonly MosaicContext _ctx;
         private PartDetailDTO _selectedPart = new PartDetailDTO();
@@ -32,18 +33,25 @@ namespace Mosiac.UX.UXControls
         private Part _partBeingEdited;
         private int _selectedResourceID;
         private Resource _selectedResource;
-
-        //IEnumerable<PartSearchDto> parts;
+        //private int _currentTransactionsFilter = 1;
+        private int _selectedPartID;
+        private Location _selectedLocation;
+        
+        IEnumerable<PartTransactionListDto> _SelectedtransActions;
         PartMapper partMapper = new PartMapper();
 
         private bool ManuFilter = false;
      
         private BindingSource bsPart = new BindingSource();
         private BindingSource bsResource = new BindingSource();
+        private BindingSource bsLocationParts= new BindingSource();
        
         private IEnumerable<ManuListDTO> manus;
         private PartsService partsService;
         private ResourceService resourceService;
+        private InventoryService InventoryService;
+
+        private string activeTab = "tabPartsManager";
 
         List<PartFastSearchDto> partsList = new List<PartFastSearchDto>();
       
@@ -59,10 +67,16 @@ namespace Mosiac.UX.UXControls
             _ctx = ctx;
             partsService = new PartsService(ctx);
             resourceService = new ResourceService(ctx);
+            InventoryService = new InventoryService(new MosaicContext(Mosiac.UX.Properties.Settings.Default.MosiacConnection));
+            
             //-------------Build the Grids ---------------
             Grids.BuildPartSearchGrid(dgPartsSearch);
             Grids.BuildPartResourcesGrid(dgResources);
             Grids.BuildPartOrdersGrid(dgPartOrders);
+            Grids.BuildStockPartsGrid(dgvStockParts);
+            Grids.BuildPartsTransActionsGrid(dgTransactionsGrid);
+            Grids.BuildLocationsGrid(dgLocations);
+            Grids.BuildLocationPartsGrid(dgLocationParts);
             // -------------------------------------------
             manus = partsService.GetManus();
 
@@ -70,13 +84,19 @@ namespace Mosiac.UX.UXControls
             cboManu.DisplayMember = "ManufacturerName";
             cboManu.ValueMember = "ManuID";
             cboManu.SelectedIndex = -1;
-            
+            // Event Wiring ===========================================================================
             bsPart.ListChanged += BsPart_ListChanged;
             bsResource.ListChanged += BsResource_ListChanged;
+            dgTransactionsGrid.CellContentDoubleClick += DgTransactionsGrid_CellContentDoubleClick;
+            bsLocationParts.CurrentItemChanged += BsLocationParts_CurrentItemChanged;
+            bsLocationParts.ListChanged += BsLocationParts_ListChanged;
+           
+            // ========================================================================================
 
         }
 
-     
+      
+
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
             if ((keyData == Keys.Enter) || (keyData == Keys.Return))             
@@ -134,18 +154,43 @@ namespace Mosiac.UX.UXControls
 
             string[] parms = { term, term2 };
 
-            if (txtSearch.Text.Length > 1)
+            switch (activeTab)
             {
-                partsList = await partsService.SearchPartQueryAsync(searchMain, manuID, ManuFilter, parms);
+                case "tabStockTransactions":
+                    if (txtSearch.Text.Length > 1)
+                    {
+                        partsList = await partsService.SearchPartQueryAsync(searchMain, manuID, ManuFilter, parms);
 
-                ListAsDataTable = Grids.BuildDataTable<PartFastSearchDto>(partsList);
-                dv = ListAsDataTable.DefaultView;
-                dgPartsSearch.DataSource = dv;
-            }
-            else
-            {
+                        ListAsDataTable = Grids.BuildDataTable<PartFastSearchDto>(partsList);
+                        dv = ListAsDataTable.DefaultView;
+                        dgvStockParts.DataSource = dv;
+                    }
+                    else{}
+       
+                    break;
+
+                case "tabPartsManager":
+                    if (txtSearch.Text.Length > 1)
+                    {
+                        partsList = await partsService.SearchPartQueryAsync(searchMain, manuID, ManuFilter, parms);
+
+                        ListAsDataTable = Grids.BuildDataTable<PartFastSearchDto>(partsList);
+                        dv = ListAsDataTable.DefaultView;
+                        dgPartsSearch.DataSource = dv;
+                    }
+                    else{}
+       
+                    break;
+                case "tabLocations":
+                    dgLocations.DataSource = InventoryService.GetLocations();
+                    break;
+
+                default:
+                    break;
 
             }
+
+
         }
 
         private void SearchParts(int partID)
@@ -156,21 +201,16 @@ namespace Mosiac.UX.UXControls
                 ListAsDataTable = Grids.BuildDataTable<PartFastSearchDto>(partsList);
                 dv = ListAsDataTable.DefaultView;
                 dgPartsSearch.DataSource = dv;
+                dgvStockParts.DataSource = dv;
             }
      
         }
-
+        //TODO  bind details
         private void BindResource(BindingSource bs)
         {
-           
-            txtSourceFile.DataBindings.Clear();
-            txtSourceFile.DataBindings.Add("Text", bs, "filesource", true, DataSourceUpdateMode.OnPropertyChanged);
+            this.propertyGrid1.SelectedObject = bs.DataSource;
         }
-        /// <summary>
-        /// this changes the selected part bindings
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+
         private void dgAttachments_SelectionChanged(object sender, System.EventArgs e)
         {
             DataGridView dg = (DataGridView)sender;
@@ -345,8 +385,7 @@ namespace Mosiac.UX.UXControls
                 {
 
                     SearchParts(partIDlookUp);
-
-                    
+                  
                     bsResource.DataSource = _partBeingEdited.Resource.ToList();
                     dgResources.DataSource = _partBeingEdited.Resource.ToList();
                 }
@@ -360,11 +399,7 @@ namespace Mosiac.UX.UXControls
             }
         }
 
-        /// <summary>
-        /// Delete a Resource
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+
         private void btnDeleteResource_Click(object sender, EventArgs e)
         {
             if (_selectedResource != null)
@@ -394,11 +429,7 @@ namespace Mosiac.UX.UXControls
         {
             FileOperations.ClearCacheFolder();
         }
-        /// <summary>
-        /// New Part
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+  
         private void newPart()
         {
 
@@ -414,9 +445,7 @@ namespace Mosiac.UX.UXControls
                 _partBeingEdited = (Part)frm.bsPart.DataSource;
                 partMapper.Map(_partBeingEdited, _selectedPart);
                 int id = partsService.InsertOrUpdate(_selectedPart, Mosiac.UX.Services.Globals.CurrentUserName);
-                //int id = partsService.Find(_selectedPart.PartID).PartID;
-               // _ctx.Entry(_partBeingEdited).State = EntityState.Added;
-               // _ctx.SaveChanges();
+               
                 Grids.ToogleButtonStyle(false, btnSave);
 
                 OpenPartbyNumber(id);
@@ -448,11 +477,6 @@ namespace Mosiac.UX.UXControls
             dgPartsSearch.DataSource = dv;
         }
 
-        /// <summary>
-        /// open the selected part in list --
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void dgPartsSearch_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
 
@@ -520,11 +544,7 @@ namespace Mosiac.UX.UXControls
                 }
             }
         }
-        /// <summary>
-        /// create a new part
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+
         private void btnNewPart_Click(object sender, EventArgs e)
         {
             newPart();
@@ -572,7 +592,7 @@ namespace Mosiac.UX.UXControls
             switch (e.ClickedItem.Name)
             {
                 case "tsbCollapsePanel":
-                    splitContainer1.Panel2Collapsed = true;
+                    spcPartsManager.Panel2Collapsed = true;
                     break;
                 
                 default:
@@ -585,14 +605,14 @@ namespace Mosiac.UX.UXControls
             switch (e.ClickedItem.Name)
             {
                 case "tsbCollapsePanel":
-                    if (splitContainer1.Panel2Collapsed == false)
+                    if (spcPartsManager.Panel2Collapsed == false)
                     {
-                        splitContainer1.Panel2Collapsed = true;
+                        spcPartsManager.Panel2Collapsed = true;
                         e.ClickedItem.Image = Mosiac.UX.Properties.Resources.round_keyboard_arrow_up_black_24dp;
                     }
-                    else if (splitContainer1.Panel2Collapsed==true)
+                    else if (spcPartsManager.Panel2Collapsed==true)
                     {
-                        splitContainer1.Panel2Collapsed = false;
+                        spcPartsManager.Panel2Collapsed = false;
                         e.ClickedItem.Image = Mosiac.UX.Properties.Resources.round_keyboard_arrow_down_black_24dp;
                     }
                     
@@ -664,5 +684,262 @@ namespace Mosiac.UX.UXControls
         {
             UpdateResourceFile(_selectedResource);
         }
+
+        //----------------------------------Transactions Area---------------------------------------------
+        #region Transactions Logic
+
+
+        private void tabPartManager_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+            TabControl tb = (TabControl)sender;
+            activeTab = tb.SelectedTab.Name;
+
+            switch (tb.SelectedTab.Name)
+            {
+                case "tabStockTransactions":
+                    
+                    SearchParts();
+                    break;
+
+                case "tabPartsManager":
+                    SearchParts();
+                    break;
+                case "tabLocations":
+                    dgLocations.DataSource = InventoryService.GetLocations();
+                    break; 
+                default:
+                    break;
+            }
+            
+        }
+
+
+        #endregion
+
+       
+
+        private void dgvStockParts_SelectionChanged(object sender, EventArgs e)
+        {
+            DataGridView dg = (DataGridView)sender;
+            if (dg.DataSource != null)
+            {
+                if (dg.Rows.Count > 0)
+                {
+                    if (dg.CurrentRow != null)
+                    {
+                        _selectedPartID = (int)dg.CurrentRow.Cells[0].Value;
+                        dgTransactionsGrid.DataSource = InventoryService.GetPartTransactions(_selectedPartID);
+                        decimal stockLevel = InventoryService.GetStockLevel(_selectedPartID);
+                        txtStockLevel.Text = String.Format("{0:.##}",stockLevel);
+                    }
+                }
+            }
+        }
+
+        private void tsTransactions_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            switch (e.ClickedItem.Name)
+            {
+                case "tsbReceipts":
+                    dgTransactionsGrid.DataSource = InventoryService.GetPartTransactions(_selectedPartID,1);
+                    break;
+                case "tsbAudits":
+                    dgTransactionsGrid.DataSource = InventoryService.GetPartTransactions(_selectedPartID,4);
+                    break;
+                case "tsbPulls":
+                    dgTransactionsGrid.DataSource = InventoryService.GetPartTransactions(_selectedPartID, 3);
+                    break;
+                case "tsbAll":
+                    dgTransactionsGrid.DataSource = InventoryService.GetPartTransactions(_selectedPartID);
+                    break;
+                case "tsbRemoveSelected":
+                    dgTransactionsGrid.DataSource = InventoryService.GetPartTransactions(_selectedPartID);
+                    break;
+                default:
+                    break;
+            }
+        }
+        // Set Stock Level
+        private void button1_Click_2(object sender, EventArgs e)
+        {
+            // Set the Stock Level  ----
+            StockLevelAdjustmentForm frm = new StockLevelAdjustmentForm();
+            frm.Text = String.Format("Set Stock Level # {0}", _selectedPartID.ToString());
+            if (frm.ShowDialog() == DialogResult.OK) 
+            {
+                    InventoryService.SetStockLevel(_selectedPartID, frm.Adjustment);
+                    dgTransactionsGrid.DataSource = InventoryService.GetPartTransactions(_selectedPartID);
+                 
+            }
+            
+          
+            txtStockLevel.Text =  String.Format("{0:.##}", InventoryService.GetStockLevel(_selectedPartID));
+        }
+
+        private void dgTransactionsGrid_SelectionChanged(object sender, EventArgs e)
+        {
+            DataGridView dg = (DataGridView)sender;
+            DataGridViewRow row; ;
+            if (dg.DataSource != null)
+            {
+                if (dg.Rows.Count > 0)
+                {
+                    if (dg.SelectedRows.Count> 0)
+                    {
+                        row = dg.SelectedRows[0];
+                        _selectedPartID = (int)row.Cells[0].Value;
+                    }
+
+                }
+            }
+        }
+
+        private void dgTransactionsGrid_RowStateChanged(object sender, DataGridViewRowStateChangedEventArgs e)
+        {
+            //DataGridView dg = (DataGridView)sender;
+            //// For any other operation except, StateChanged, do nothing
+            //if (e.StateChanged != DataGridViewElementStates.Selected) return;
+
+            
+        }
+
+        private void tsbRemoveSelected_Click(object sender, EventArgs e)
+        {
+            DataGridView dg = dgTransactionsGrid;
+            List<Inventory> removeList = new List<Inventory>();
+
+            if (dg.DataSource != null)
+            {
+                if (dg.Rows.Count > 0)
+                {
+                    foreach (DataGridViewRow row in dg.SelectedRows)
+                    {
+                       removeList.Add(new Inventory(){ StockTransactionID = (int)row.Cells[0].Value });
+                    }
+                }
+            }
+            _ctx.Inventory.RemoveRange(removeList);
+            _ctx.SaveChanges();
+            dgTransactionsGrid.DataSource = InventoryService.GetPartTransactions(_selectedPartID);
+        }
+
+        private void DgTransactionsGrid_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (_selectedPartID > 0)
+            {
+                // open transaction for editing
+            }
+        }
+        #region Locations Surface
+        private void dgLocations_SelectionChanged(object sender, EventArgs e)
+        {
+            DataGridView dg = dgLocations;
+           
+            if (dg.DataSource != null)
+            {
+                if (dg.Rows.Count > 0)
+                {
+                    BindingManagerBase bm = dg.BindingContext[dg.DataSource,dg.DataMember];
+                    _selectedLocation = (Location)bm.Current;
+                    bsLocationParts.DataSource = InventoryService.GetLocationParts(_selectedLocation.LocationName);
+                    dgLocationParts.DataSource = bsLocationParts;
+                }
+            }
+        }
+
+
+        private void tsLocationPartsToolBar_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            ToolStrip ts = (ToolStrip)sender;
+            switch (e.ClickedItem.Name)
+            {
+                case "tsbSaveLocationParts":
+
+                    tsbSaveLocationParts.BackColor = System.Drawing.Color.LightGray;
+                    tsbSaveLocationParts.ForeColor = System.Drawing.Color.Black;
+                    SaveChangesToLocationParts(bsLocationParts);
+
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void BsLocationParts_CurrentItemChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void BsLocationParts_ListChanged(object sender, ListChangedEventArgs e)
+        {
+            if (e.ListChangedType == ListChangedType.ItemChanged)
+            {
+                tsbSaveLocationParts.BackColor = System.Drawing.Color.Bisque;
+                tsbSaveLocationParts.ForeColor= System.Drawing.Color.DarkRed;
+              
+            }
+            
+        }
+
+        private void SaveChangesToLocationParts(BindingSource bs) 
+        {
+            List<Inventory> insertList = new List<Inventory>();           
+            if (bs.DataSource != null)
+            {
+                foreach (PartsLocationDto e in bs.List)
+                {
+                    Inventory n = new Inventory()
+                    {                      
+                        DateStamp = DateTime.Now,
+                        PartID = e.PartID,
+                        JobID = 1,
+                        QntyOrdered = 0.0m,
+                        QntyReceived = 0.0m,
+                        Description = e.ItemDescription,
+                        Location = e.Location,
+                        EmpID = Globals.CurrentLoggedUserID,
+                        InventoryAmount = e.StockOnHand,
+                        TransActionType = 4
+                           
+                     };
+                    // add the new inventory item to the exportable list-->
+                    insertList.Add(n);                  
+                }
+                //-->>
+                InventoryService.UpdateLocationParts(insertList.ToList(), Globals.CurrentLoggedUserID);
+            }
+        }
+
+        
+
+
+        private void tsLocationMenu_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            ToolStrip ts = (ToolStrip)sender;
+            switch (e.ClickedItem.Name)
+            {
+                case "tsbNew":
+                    break;
+                case "tsbEdit":
+                    if (_selectedLocation != null)
+                    {
+                        LocationEditForm frm = new LocationEditForm(_selectedLocation);
+                        if (frm.ShowDialog() == DialogResult.OK)
+                        {
+
+                        }
+                    }
+                    break;
+                case "tsbDeleteLocation":
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        #endregion
+
+
     }
 }
