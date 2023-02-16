@@ -129,7 +129,7 @@ namespace Mosiac.UX
                 //-----------------------------------------------------------------------+
                 case TabPageType.StockManagerPage:
                     {
-                        tab.Text = $"Stock Manager";
+                        tab.Text = $"Line Item Search";
                         tab.Name = "StockManager";
                         StockManagerControl ctr = new StockManagerControl(ctx);                        
                         ctr.Dock = DockStyle.Fill;

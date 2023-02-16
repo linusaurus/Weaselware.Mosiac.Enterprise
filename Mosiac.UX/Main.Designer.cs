@@ -154,11 +154,11 @@ namespace Mosiac.UX
             // tsStockPage
             // 
             this.tsStockPage.CheckOnClick = true;
-            this.tsStockPage.Image = ((System.Drawing.Image)(resources.GetObject("tsStockPage.Image")));
+            this.tsStockPage.Image = global::Mosiac.UX.Properties.Resources.outline_message_black_24dp1;
             this.tsStockPage.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsStockPage.Name = "tsStockPage";
-            this.tsStockPage.Size = new System.Drawing.Size(40, 52);
-            this.tsStockPage.Text = "Stock";
+            this.tsStockPage.Size = new System.Drawing.Size(98, 52);
+            this.tsStockPage.Text = "Line Item Search";
             this.tsStockPage.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.tsStockPage.Click += new System.EventHandler(this.tsSettingsButton_Click);
             // 

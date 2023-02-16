@@ -91,7 +91,9 @@ namespace Mosiac.UX.UXControls
             this.tsLocationMenu = new System.Windows.Forms.ToolStrip();
             this.tsbNew = new System.Windows.Forms.ToolStripButton();
             this.tsbEdit = new System.Windows.Forms.ToolStripButton();
-            this.tsbDeleteLocation = new System.Windows.Forms.ToolStripButton();
+            this.tsbFilter = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.txtAreaFilter = new System.Windows.Forms.ToolStripTextBox();
             this.tsLocationPartsToolBar = new System.Windows.Forms.ToolStrip();
             this.tsbSaveLocationParts = new System.Windows.Forms.ToolStripButton();
             this.dgLocationParts = new System.Windows.Forms.DataGridView();
@@ -847,7 +849,7 @@ namespace Mosiac.UX.UXControls
             this.spcLocations.Panel2.Margin = new System.Windows.Forms.Padding(0, 0, 0, 12);
             this.spcLocations.Panel2.Padding = new System.Windows.Forms.Padding(12);
             this.spcLocations.Size = new System.Drawing.Size(1266, 531);
-            this.spcLocations.SplitterDistance = 260;
+            this.spcLocations.SplitterDistance = 280;
             this.spcLocations.TabIndex = 0;
             // 
             // dgLocations
@@ -860,7 +862,7 @@ namespace Mosiac.UX.UXControls
             this.dgLocations.Margin = new System.Windows.Forms.Padding(3, 12, 3, 3);
             this.dgLocations.Name = "dgLocations";
             this.dgLocations.RowTemplate.Height = 25;
-            this.dgLocations.Size = new System.Drawing.Size(236, 475);
+            this.dgLocations.Size = new System.Drawing.Size(256, 475);
             this.dgLocations.TabIndex = 1;
             this.dgLocations.SelectionChanged += new System.EventHandler(this.dgLocations_SelectionChanged);
             // 
@@ -869,12 +871,14 @@ namespace Mosiac.UX.UXControls
             this.tsLocationMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsbNew,
             this.tsbEdit,
-            this.tsbDeleteLocation});
+            this.tsbFilter,
+            this.toolStripSeparator2,
+            this.txtAreaFilter});
             this.tsLocationMenu.Location = new System.Drawing.Point(12, 12);
             this.tsLocationMenu.Margin = new System.Windows.Forms.Padding(0, 0, 0, 12);
             this.tsLocationMenu.Name = "tsLocationMenu";
             this.tsLocationMenu.Padding = new System.Windows.Forms.Padding(2);
-            this.tsLocationMenu.Size = new System.Drawing.Size(236, 32);
+            this.tsLocationMenu.Size = new System.Drawing.Size(256, 32);
             this.tsLocationMenu.TabIndex = 0;
             this.tsLocationMenu.Text = "toolStrip3";
             this.tsLocationMenu.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.tsLocationMenu_ItemClicked);
@@ -890,27 +894,45 @@ namespace Mosiac.UX.UXControls
             this.tsbNew.Name = "tsbNew";
             this.tsbNew.Padding = new System.Windows.Forms.Padding(3);
             this.tsbNew.Size = new System.Drawing.Size(41, 25);
-            this.tsbNew.Text = "New";
+            this.tsbNew.Text = "All";
             // 
             // tsbEdit
             // 
             this.tsbEdit.AutoSize = false;
+            this.tsbEdit.BackColor = System.Drawing.Color.Wheat;
             this.tsbEdit.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.tsbEdit.Image = ((System.Drawing.Image)(resources.GetObject("tsbEdit.Image")));
             this.tsbEdit.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbEdit.Margin = new System.Windows.Forms.Padding(0, 1, 4, 2);
             this.tsbEdit.Name = "tsbEdit";
+            this.tsbEdit.Padding = new System.Windows.Forms.Padding(0, 0, 4, 0);
             this.tsbEdit.Size = new System.Drawing.Size(31, 25);
             this.tsbEdit.Text = "Edit";
             // 
-            // tsbDeleteLocation
+            // tsbFilter
             // 
-            this.tsbDeleteLocation.AutoSize = false;
-            this.tsbDeleteLocation.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.tsbDeleteLocation.Image = ((System.Drawing.Image)(resources.GetObject("tsbDeleteLocation.Image")));
-            this.tsbDeleteLocation.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbDeleteLocation.Name = "tsbDeleteLocation";
-            this.tsbDeleteLocation.Size = new System.Drawing.Size(44, 25);
-            this.tsbDeleteLocation.Text = "Delete";
+            this.tsbFilter.AutoSize = false;
+            this.tsbFilter.BackColor = System.Drawing.Color.Black;
+            this.tsbFilter.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.tsbFilter.ForeColor = System.Drawing.SystemColors.Control;
+            this.tsbFilter.Image = ((System.Drawing.Image)(resources.GetObject("tsbFilter.Image")));
+            this.tsbFilter.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbFilter.Name = "tsbFilter";
+            this.tsbFilter.Size = new System.Drawing.Size(44, 25);
+            this.tsbFilter.Text = "Filter";
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 28);
+            // 
+            // txtAreaFilter
+            // 
+            this.txtAreaFilter.AutoSize = false;
+            this.txtAreaFilter.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.txtAreaFilter.Name = "txtAreaFilter";
+            this.txtAreaFilter.Size = new System.Drawing.Size(50, 23);
+            this.txtAreaFilter.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // tsLocationPartsToolBar
             // 
@@ -918,7 +940,7 @@ namespace Mosiac.UX.UXControls
             this.tsbSaveLocationParts});
             this.tsLocationPartsToolBar.Location = new System.Drawing.Point(12, 12);
             this.tsLocationPartsToolBar.Name = "tsLocationPartsToolBar";
-            this.tsLocationPartsToolBar.Size = new System.Drawing.Size(978, 25);
+            this.tsLocationPartsToolBar.Size = new System.Drawing.Size(958, 25);
             this.tsLocationPartsToolBar.TabIndex = 1;
             this.tsLocationPartsToolBar.Text = "toolStrip4";
             this.tsLocationPartsToolBar.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.tsLocationPartsToolBar_ItemClicked);
@@ -945,7 +967,7 @@ namespace Mosiac.UX.UXControls
             this.dgLocationParts.Name = "dgLocationParts";
             this.dgLocationParts.RowTemplate.Height = 25;
             this.dgLocationParts.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgLocationParts.Size = new System.Drawing.Size(972, 475);
+            this.dgLocationParts.Size = new System.Drawing.Size(952, 475);
             this.dgLocationParts.TabIndex = 0;
             // 
             // PartManager
@@ -1101,9 +1123,11 @@ namespace Mosiac.UX.UXControls
         private System.Windows.Forms.ToolStrip tsLocationMenu;
         private System.Windows.Forms.ToolStripButton tsbNew;
         private System.Windows.Forms.ToolStripButton tsbEdit;
-        private System.Windows.Forms.ToolStripButton tsbDeleteLocation;
+        private System.Windows.Forms.ToolStripButton tsbFilter;
         private System.Windows.Forms.DataGridView dgLocationParts;
         private System.Windows.Forms.ToolStrip tsLocationPartsToolBar;
         private System.Windows.Forms.ToolStripButton tsbSaveLocationParts;
+        private System.Windows.Forms.ToolStripTextBox txtAreaFilter;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
     }
 }

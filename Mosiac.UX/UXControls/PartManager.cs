@@ -45,6 +45,7 @@ namespace Mosiac.UX.UXControls
         private BindingSource bsPart = new BindingSource();
         private BindingSource bsResource = new BindingSource();
         private BindingSource bsLocationParts= new BindingSource();
+        private BindingSource bsLocation = new BindingSource();
        
         private IEnumerable<ManuListDTO> manus;
         private PartsService partsService;
@@ -706,7 +707,11 @@ namespace Mosiac.UX.UXControls
                     SearchParts();
                     break;
                 case "tabLocations":
-                    dgLocations.DataSource = InventoryService.GetLocations();
+
+                    tsbSaveLocationParts.BackColor= SystemColors.Window;
+                    bsLocation.DataSource = InventoryService.GetLocations();
+                    dgLocations.DataSource = bsLocation;
+
                     break; 
                 default:
                     break;
@@ -920,6 +925,8 @@ namespace Mosiac.UX.UXControls
             switch (e.ClickedItem.Name)
             {
                 case "tsbNew":
+                    bsLocation.DataSource = InventoryService.GetLocations();
+                    txtAreaFilter.Text = "";
                     break;
                 case "tsbEdit":
                     if (_selectedLocation != null)
@@ -927,11 +934,21 @@ namespace Mosiac.UX.UXControls
                         LocationEditForm frm = new LocationEditForm(_selectedLocation);
                         if (frm.ShowDialog() == DialogResult.OK)
                         {
-
+                            _ctx.Location.Update(frm.locationEdited);
+                            _ctx.SaveChanges();
+                            _selectedLocation = _ctx.Location.Find(_selectedLocation.LocationID);
                         }
                     }
                     break;
-                case "tsbDeleteLocation":
+                case "tsbFilter":
+
+                    if (txtAreaFilter.Text.Length > 0)
+                    {
+                        bsLocation.DataSource = InventoryService.GetAreaLocations(txtAreaFilter.Text);
+                    }
+                   
+                    
+                    
                     break;
                 default:
                     break;

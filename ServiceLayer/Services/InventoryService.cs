@@ -8,6 +8,7 @@ using DataLayer.Data;
 using DataLayer.Entity;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel;
+using System.Runtime.InteropServices;
 
 namespace ServiceLayer
 {
@@ -124,22 +125,39 @@ namespace ServiceLayer
         {
             return _ctx.Location.AsNoTracking().ToList();
         }
+
+        public IEnumerable<Location> GetAreaLocations(string area)
+        {
+            if (area!= string.Empty)
+            {
+                return _ctx.Location.AsNoTracking().Where(a => a.Area.Contains(area)).ToList();
+            }
+            else
+            return Enumerable.Empty<Location>();
+            
+        }
+
+
         //Get Part in relation to the stock location
         public IEnumerable<PartsLocationDto> GetLocationParts(string locationName)
         {
-            return _ctx.Part.AsNoTracking().Include(m => m.Manu).Include(u => u.UnitOfMeasure).Where(p => p.Location.StartsWith(locationName)).Select(dto => new PartsLocationDto
-            {
-                Location = dto.Location,
-                ItemDescription = dto.ItemDescription,
-                PartID = dto.PartID,
-                Manufacturer = dto.Manu.Manufacturer,
-                Manupart = dto.PartNum,
-                UnitOfMeasure = dto.UnitOfMeasure.UnitName,
-                StockOnHand = _ctx.Inventory.AsNoTracking().Where(p => p.PartID==dto.PartID).Select(i => i.InventoryAmount).Sum().GetValueOrDefault()
+           
+                return  _ctx.Part.AsNoTracking().Include(m => m.Manu).Include(u => u.UnitOfMeasure).Where(p => p.Location.StartsWith(locationName)).Select(dto => new PartsLocationDto
+                {
+                    Location = dto.Location,
+                    ItemDescription = dto.ItemDescription,
+                    PartID = dto.PartID,
+                    Manufacturer = dto.Manu.Manufacturer,
+                    Manupart = dto.PartNum,
+                    UnitOfMeasure = dto.UnitOfMeasure.UnitName,
+                    StockOnHand = _ctx.Inventory.AsNoTracking().Where(p => p.PartID == dto.PartID).Select(i => i.InventoryAmount).Sum().GetValueOrDefault()
 
-            }).ToList();
+                }).ToList();                   
+          
         }
-        
+
+      
+
         public void UpdateLocationParts(IEnumerable<Inventory> locationParts, int user)
         {
            

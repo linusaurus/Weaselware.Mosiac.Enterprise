@@ -36,6 +36,7 @@ namespace Mosiac.UX.Forms
         private void LocationEditForm_Load(object sender, EventArgs e)
         {
             txtLocation.DataBindings.Add("Text", bs, "LocationName", true, DataSourceUpdateMode.OnPropertyChanged);
+            txtArea.DataBindings.Add("Text", bs,"Area",true, DataSourceUpdateMode.OnPropertyChanged);
         }
     }
 }

@@ -12,6 +12,7 @@ namespace DataLayer.Entity
             public int LocationID { get; set; }
             public string LocationName { get; set; }
             public string Area { get; set; }
+            public byte[] Photo { get; set; }
        
     }
 }

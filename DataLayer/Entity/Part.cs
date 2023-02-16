@@ -37,6 +37,8 @@ namespace DataLayer.Entity
         public int? ParentID { get; set; }
         public decimal? Amount_Required { get; set; }
 
+        public int? LocationID { get; set; }
+
         public string Notes { get; set; }
 
         public virtual Manu Manu { get; set; }

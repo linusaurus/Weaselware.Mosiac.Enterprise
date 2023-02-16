@@ -88,30 +88,6 @@ namespace Mosiac.UX.UXControls
             this.dataGridView1.DataSource = null;
         }
 
-        private void toolStrip_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-            switch (e.ClickedItem.Name)
-            {
-                case "tsSearchLineItems":
-                    tsSearchLineItems.BackColor = Color.Bisque;
-                    tsTransactions.BackColor = Color.Gainsboro;
-                    //-- set the control surface --
-                    break;
-
-                case "tsTransactions":
-
-                    tsTransactions.BackColor = Color.Bisque;
-                    tsSearchLineItems.BackColor = Color.Gainsboro;
-
-                    splitContainer1.Panel2.Controls.Clear();
-                    InventoryTransactionsControl control = new InventoryTransactionsControl(_ctx);
-                    control.Dock = DockStyle.Fill;
-                    splitContainer1.Panel2.Controls.Add(control);
-                    break;
-
-                default:
-                    break;
-            }
-        }
+        
     }
 }

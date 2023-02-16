@@ -62,11 +62,13 @@ namespace Mosiac.UX.Forms
             this.txtPartID = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.txtNotes = new System.Windows.Forms.TextBox();
+            this.cboLocations = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.cboLocations);
             this.groupBox1.Controls.Add(this.btnLinkToUPC);
             this.groupBox1.Controls.Add(this.txtSKU);
             this.groupBox1.Controls.Add(this.txtPartNum);
@@ -206,7 +208,7 @@ namespace Mosiac.UX.Forms
             // 
             // txtLocation
             // 
-            this.txtLocation.Location = new System.Drawing.Point(455, 141);
+            this.txtLocation.Location = new System.Drawing.Point(231, 243);
             this.txtLocation.Name = "txtLocation";
             this.txtLocation.Size = new System.Drawing.Size(82, 23);
             this.txtLocation.TabIndex = 5;
@@ -416,6 +418,14 @@ namespace Mosiac.UX.Forms
             this.txtNotes.Size = new System.Drawing.Size(560, 96);
             this.txtNotes.TabIndex = 10;
             // 
+            // cboLocations
+            // 
+            this.cboLocations.FormattingEnabled = true;
+            this.cboLocations.Location = new System.Drawing.Point(455, 141);
+            this.cboLocations.Name = "cboLocations";
+            this.cboLocations.Size = new System.Drawing.Size(82, 23);
+            this.cboLocations.TabIndex = 15;
+            // 
             // PartEditForm
             // 
             this.AcceptButton = this.btnSave;
@@ -471,5 +481,6 @@ namespace Mosiac.UX.Forms
         private System.Windows.Forms.TextBox txtSKU;
         private System.Windows.Forms.Button btnLinkToUPC;
         private System.Windows.Forms.TextBox txtNotes;
+        private System.Windows.Forms.ComboBox cboLocations;
     }
 }

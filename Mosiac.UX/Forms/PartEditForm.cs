@@ -28,6 +28,7 @@ namespace Mosiac.UX.Forms
         private IEnumerable<ManuListDTO> manus;
         private IEnumerable<ManuListDTO> partManus;
         private PartsService partsService;
+        private InventoryService _inventoryService;
         private List<UnitOfMeasure> units;
         private readonly MosaicContext _ctx;
         private decimal _stockLevel;
@@ -38,6 +39,7 @@ namespace Mosiac.UX.Forms
             InitializeComponent();
             _ctx = context;
             partsService = new PartsService(_ctx);
+            _inventoryService= new InventoryService(_ctx);
             bsPart = source;
             BindPart(bsPart);
 
@@ -52,6 +54,7 @@ namespace Mosiac.UX.Forms
             cbxUnit.SelectedIndex = -1;
            
             LoadManus();
+            LoadLocations();
             bsPart.ListChanged += BsPart_ListChanged;
         }
 
@@ -63,6 +66,15 @@ namespace Mosiac.UX.Forms
             cboPartManu.ResetText();
             cboPartManu.SelectedIndex = -1;
             cboPartManu.Text = "Manufacturer";
+        }
+
+        private void LoadLocations()
+        {
+            cboLocations.DataSource = _inventoryService.GetLocations();
+            cboLocations.DisplayMember = "LocationName";
+            cboLocations.ValueMember = "LocationID";
+            
+
         }
 
         private void BsPart_ListChanged(object sender, ListChangedEventArgs e)
