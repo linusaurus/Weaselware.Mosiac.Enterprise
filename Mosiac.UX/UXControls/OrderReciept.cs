@@ -15,13 +15,14 @@ using SkiaSharp;
 using Neodynamic.SDK.Printing;
 using System.IO;
 using Mosiac.UX.Services;
+using Microsoft.EntityFrameworkCore;
 using DataLayer.Entity;
 
 namespace Mosiac.UX.UXControls
 {
     public partial class OrderReciept : UserControl
     {
-        
+
         BindingSource bsOrderReceipt = new BindingSource();
         BindingSource bsItems = new BindingSource();
         BindingSource bsInventory = new BindingSource();
@@ -33,8 +34,8 @@ namespace Mosiac.UX.UXControls
         //--selectedInvneotryItem ----
         Inventory _currentInventory;
         InventoryWrapper inventoryWrapper;
-       
-        
+
+
 
         public OrderReciept(OrderReceiptDto dto, MosaicContext context)
         {
@@ -44,7 +45,7 @@ namespace Mosiac.UX.UXControls
             ThermalLabel.LicenseKey = "RALJ9V89HNTFJMHZWRMH6MFP82AXAXDTX3ZXUESKXRFLXAZ346GQ";
 
             mosaicContext = context;
-            orderReceiptRepository = new OrderReceiptRepository(context, Globals.CurrentUserName,Globals.CurrentLoggedUserID );
+            orderReceiptRepository = new OrderReceiptRepository(context, Globals.CurrentUserName, Globals.CurrentLoggedUserID);
             dgReceiptItems.CellFormatting += DgReceiptItems_CellFormatting;
 
             orderReceipt = dto;
@@ -64,7 +65,7 @@ namespace Mosiac.UX.UXControls
             if (e.ListChangedType == ListChangedType.ItemChanged)
             {
                 btnOK.BackColor = System.Drawing.Color.Bisque;
-            }          
+            }
         }
 
 
@@ -74,21 +75,21 @@ namespace Mosiac.UX.UXControls
             if (dgv.Columns[e.ColumnIndex].Name == "IsOrderComplete")
             {
                 dgv.Rows[e.RowIndex].DefaultCellStyle.BackColor = System.Drawing.Color.DarkGray;
-                dgv.Rows[e.RowIndex].ReadOnly = true;               
+                dgv.Rows[e.RowIndex].ReadOnly = true;
             }
         }
 
         private void BindOrderReceipt(BindingSource bs)
-        {       
-            txtOrderRecieptID.DataBindings.Add("Text",bs,"OrderReceiptId");
-            txtReceiptDate.DataBindings.Add("Text",bs,"ReceiptDate",true,DataSourceUpdateMode.Never,"","d");
-            txtReceivedBy.DataBindings.Add("Text",bs, "EmployeeName");
-            txtOrderDate.DataBindings.Add("Text",bs,"OrderDate",true,DataSourceUpdateMode.Never,"","d");
-            txtPurchaseOrderID.DataBindings.Add("Text",bs,"PurchaseOrderID");
+        {
+            txtOrderRecieptID.DataBindings.Add("Text", bs, "OrderReceiptId");
+            txtReceiptDate.DataBindings.Add("Text", bs, "ReceiptDate", true, DataSourceUpdateMode.Never, "", "d");
+            txtReceivedBy.DataBindings.Add("Text", bs, "EmployeeName");
+            txtOrderDate.DataBindings.Add("Text", bs, "OrderDate", true, DataSourceUpdateMode.Never, "", "d");
+            txtPurchaseOrderID.DataBindings.Add("Text", bs, "PurchaseOrderID");
             lbPO.Text = $" PO : {((OrderReceiptDto)bsOrderReceipt.DataSource).PurchaseOrderID.ToString()} ";
 
             bsItems.DataSource = orderReceipt.OrderReceiptLineItems;
-            dgReceiptItems.DataSource = bsItems;          
+            dgReceiptItems.DataSource = bsItems;
         }
 
         private void BindInventory(BindingSource bs)
@@ -120,12 +121,12 @@ namespace Mosiac.UX.UXControls
                 {
                     currentReceiptItem = (OrderRecieptLineItemDto)dvg.CurrentRow.DataBoundItem;
                     // Return the inventory transaction for the Reciept item --
-                   _currentInventory = mosaicContext.Inventory.Where(k => k.LineID == currentReceiptItem.LineID).FirstOrDefault();
+                    _currentInventory = mosaicContext.Inventory.Where(k => k.LineID == currentReceiptItem.LineID).FirstOrDefault();
                     inventoryWrapper = new InventoryWrapper(_currentInventory);
-                   // InventoryDto inventoryDto = orderReceiptRepository.GetInventoryItem(lineID);
-                   //StockTagDto dto = StockService
+                    // InventoryDto inventoryDto = orderReceiptRepository.GetInventoryItem(lineID);
+                    //StockTagDto dto = StockService
                     bsInventory.DataSource = inventoryWrapper;
-                    BindInventory(bsInventory);    
+                    BindInventory(bsInventory);
                 }
             }
         }
@@ -149,7 +150,7 @@ namespace Mosiac.UX.UXControls
                     }
                 }
             }
-      
+
             //Pull the settings from XML file --
             XmlSerializer deserializer = new XmlSerializer(typeof(PrinterSettings));
             TextReader reader = new StreamReader(fileName);
@@ -159,7 +160,7 @@ namespace Mosiac.UX.UXControls
 
             using (WindowsPrintJob pj = new WindowsPrintJob(PrinterXmlData))
             {
-                
+
                 foreach (DataGridViewRow row in dgReceiptItems.SelectedRows)
                 {
                     OrderRecieptLineItemDto rowItem = (OrderRecieptLineItemDto)row.DataBoundItem;
@@ -173,7 +174,7 @@ namespace Mosiac.UX.UXControls
                         pj.PrintOrientation = PrintOrientation.Portrait; //set orientation
                         pj.ThermalLabel = tLabel;
                         pj.PrintAsGraphic(tLabel);
-                        
+
                     }
 
                 }
@@ -182,7 +183,7 @@ namespace Mosiac.UX.UXControls
 
         }
 
-      
+
 
         private void txtMultiplier_Validated(object sender, EventArgs e)
         {
@@ -196,15 +197,15 @@ namespace Mosiac.UX.UXControls
                     bsInventory.ResetBindings(true);
                     //BindInventory(bsInventory);
                 }
-  
+
             }
         }
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-           mosaicContext.Inventory.Update(_currentInventory);
-           
-           btnOK.BackColor = System.Drawing.Color.WhiteSmoke;
+            mosaicContext.Inventory.Update(_currentInventory);
+
+            btnOK.BackColor = System.Drawing.Color.WhiteSmoke;
 
             var lineItems = bsItems.List;
             foreach (OrderRecieptLineItemDto item in lineItems)
@@ -229,7 +230,7 @@ namespace Mosiac.UX.UXControls
             string folderpath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
             string[] fileNames = Directory.GetFiles(folderpath);
             List<String> trimmed = new List<string>();
-            foreach(string file in fileNames)
+            foreach (string file in fileNames)
             {
                 string name = Path.GetFileNameWithoutExtension(file);
                 trimmed.Add(name);
@@ -245,6 +246,34 @@ namespace Mosiac.UX.UXControls
             {
                 File.Delete(path);
             }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            var inv = _currentInventory;
+            int receiptID = _currentInventory.OrderReceiptID.GetValueOrDefault();
+            int poID = mosaicContext.OrderReciept.Find(receiptID).PurchaseOrderID.GetValueOrDefault();
+            DataLayer.Entity.OrderReciept recp = mosaicContext.OrderReciept.Find(receiptID);
+            if (recp != null)
+            {
+
+                mosaicContext.Remove(recp);
+                mosaicContext.RemoveRange(recp.OrderReceiptItems);
+                PurchaseOrder po = mosaicContext.PurchaseOrder.Find(poID);
+                po.OrderReciept = null;
+                po.RecievedDate = null;
+                po.OrderState = 1;
+                po.Recieved = false;
+                List<Inventory> inventroy = mosaicContext.Inventory.Where(m => m.OrderReceiptID == receiptID).ToList();
+                if (inventroy != null)
+                {
+                    mosaicContext.RemoveRange(inventroy);
+                }
+
+            }
+
+            mosaicContext.SaveChanges();
+
         }
     }
 
