@@ -30,61 +30,59 @@
         {
             System.Windows.Forms.TabControl tbDeliversControl;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DeliveryControl));
-            this.tbJobPicks = new System.Windows.Forms.TabPage();
-            this.dgvDeliveries = new System.Windows.Forms.DataGridView();
-            this.tbMyDeliveries = new System.Windows.Forms.TabPage();
-            this.dgvMyDelieveries = new System.Windows.Forms.DataGridView();
-            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.btnNewDellivery = new System.Windows.Forms.Button();
-            this.lbJobList = new System.Windows.Forms.ListBox();
-            this.btnSearch = new System.Windows.Forms.Button();
-            this.txtJobSearch = new System.Windows.Forms.TextBox();
-            this.dgvPickListItems = new System.Windows.Forms.DataGridView();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.lbZip = new System.Windows.Forms.Label();
-            this.lbState = new System.Windows.Forms.Label();
-            this.lbCity = new System.Windows.Forms.Label();
-            this.lbAddress = new System.Windows.Forms.Label();
-            this.lbAttention = new System.Windows.Forms.Label();
-            this.lbDestinationName = new System.Windows.Forms.Label();
-            this.btnSetDestination = new System.Windows.Forms.Button();
-            this.btnViewReceipt = new System.Windows.Forms.Button();
-            this.btnAttach = new System.Windows.Forms.Button();
-            this.ckbDelivered = new System.Windows.Forms.CheckBox();
-            this.cbkProcessed = new System.Windows.Forms.CheckBox();
-            this.lbItemCount = new System.Windows.Forms.Label();
-            this.lbPreparedBy = new System.Windows.Forms.Label();
-            this.lbDateStamp = new System.Windows.Forms.Label();
-            this.lbJobname = new System.Windows.Forms.Label();
-            this.lbPickID = new System.Windows.Forms.Label();
-            this.tsMain = new System.Windows.Forms.ToolStrip();
-            this.tsSave = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.tsPrint = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.tsPrintLabels = new System.Windows.Forms.ToolStripButton();
+            tbJobPicks = new System.Windows.Forms.TabPage();
+            dgvDeliveries = new System.Windows.Forms.DataGridView();
+            tbMyDeliveries = new System.Windows.Forms.TabPage();
+            dgvMyDelieveries = new System.Windows.Forms.DataGridView();
+            splitContainer1 = new System.Windows.Forms.SplitContainer();
+            btnNewDellivery = new System.Windows.Forms.Button();
+            lbJobList = new System.Windows.Forms.ListBox();
+            btnSearch = new System.Windows.Forms.Button();
+            txtJobSearch = new System.Windows.Forms.TextBox();
+            dgvPickListItems = new System.Windows.Forms.DataGridView();
+            panel1 = new System.Windows.Forms.Panel();
+            lbZip = new System.Windows.Forms.Label();
+            lbState = new System.Windows.Forms.Label();
+            lbCity = new System.Windows.Forms.Label();
+            lbAddress = new System.Windows.Forms.Label();
+            lbAttention = new System.Windows.Forms.Label();
+            lbDestinationName = new System.Windows.Forms.Label();
+            btnSetDestination = new System.Windows.Forms.Button();
+            btnViewReceipt = new System.Windows.Forms.Button();
+            btnAttach = new System.Windows.Forms.Button();
+            ckbDelivered = new System.Windows.Forms.CheckBox();
+            cbkProcessed = new System.Windows.Forms.CheckBox();
+            lbItemCount = new System.Windows.Forms.Label();
+            lbPreparedBy = new System.Windows.Forms.Label();
+            lbDateStamp = new System.Windows.Forms.Label();
+            lbJobname = new System.Windows.Forms.Label();
+            lbPickID = new System.Windows.Forms.Label();
+            tsMain = new System.Windows.Forms.ToolStrip();
+            tsSave = new System.Windows.Forms.ToolStripButton();
+            toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            tsPrint = new System.Windows.Forms.ToolStripButton();
+            toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            tsPrintLabels = new System.Windows.Forms.ToolStripButton();
             tbDeliversControl = new System.Windows.Forms.TabControl();
             tbDeliversControl.SuspendLayout();
-            this.tbJobPicks.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvDeliveries)).BeginInit();
-            this.tbMyDeliveries.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvMyDelieveries)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
-            this.splitContainer1.Panel1.SuspendLayout();
-            this.splitContainer1.Panel2.SuspendLayout();
-            this.splitContainer1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvPickListItems)).BeginInit();
-            this.panel1.SuspendLayout();
-            this.tsMain.SuspendLayout();
-            this.SuspendLayout();
+            tbJobPicks.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvDeliveries).BeginInit();
+            tbMyDeliveries.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvMyDelieveries).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
+            splitContainer1.Panel1.SuspendLayout();
+            splitContainer1.Panel2.SuspendLayout();
+            splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvPickListItems).BeginInit();
+            panel1.SuspendLayout();
+            tsMain.SuspendLayout();
+            SuspendLayout();
             // 
             // tbDeliversControl
             // 
-            tbDeliversControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            tbDeliversControl.Controls.Add(this.tbJobPicks);
-            tbDeliversControl.Controls.Add(this.tbMyDeliveries);
+            tbDeliversControl.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            tbDeliversControl.Controls.Add(tbJobPicks);
+            tbDeliversControl.Controls.Add(tbMyDeliveries);
             tbDeliversControl.Location = new System.Drawing.Point(6, 255);
             tbDeliversControl.Name = "tbDeliversControl";
             tbDeliversControl.SelectedIndex = 0;
@@ -93,435 +91,427 @@
             // 
             // tbJobPicks
             // 
-            this.tbJobPicks.Controls.Add(this.dgvDeliveries);
-            this.tbJobPicks.Location = new System.Drawing.Point(4, 24);
-            this.tbJobPicks.Name = "tbJobPicks";
-            this.tbJobPicks.Padding = new System.Windows.Forms.Padding(3);
-            this.tbJobPicks.Size = new System.Drawing.Size(305, 440);
-            this.tbJobPicks.TabIndex = 0;
-            this.tbJobPicks.Text = "Job Deliveries";
-            this.tbJobPicks.UseVisualStyleBackColor = true;
+            tbJobPicks.Controls.Add(dgvDeliveries);
+            tbJobPicks.Location = new System.Drawing.Point(4, 24);
+            tbJobPicks.Name = "tbJobPicks";
+            tbJobPicks.Padding = new System.Windows.Forms.Padding(3);
+            tbJobPicks.Size = new System.Drawing.Size(305, 440);
+            tbJobPicks.TabIndex = 0;
+            tbJobPicks.Text = "Job Deliveries";
+            tbJobPicks.UseVisualStyleBackColor = true;
             // 
             // dgvDeliveries
             // 
-            this.dgvDeliveries.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvDeliveries.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvDeliveries.Location = new System.Drawing.Point(3, 3);
-            this.dgvDeliveries.Name = "dgvDeliveries";
-            this.dgvDeliveries.RowTemplate.Height = 25;
-            this.dgvDeliveries.Size = new System.Drawing.Size(299, 434);
-            this.dgvDeliveries.TabIndex = 4;
-            this.dgvDeliveries.SelectionChanged += new System.EventHandler(this.dgvDeliveries_SelectionChanged);
+            dgvDeliveries.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvDeliveries.Dock = System.Windows.Forms.DockStyle.Fill;
+            dgvDeliveries.Location = new System.Drawing.Point(3, 3);
+            dgvDeliveries.Name = "dgvDeliveries";
+            dgvDeliveries.RowTemplate.Height = 25;
+            dgvDeliveries.Size = new System.Drawing.Size(299, 434);
+            dgvDeliveries.TabIndex = 4;
+            dgvDeliveries.SelectionChanged += dgvDeliveries_SelectionChanged;
             // 
             // tbMyDeliveries
             // 
-            this.tbMyDeliveries.Controls.Add(this.dgvMyDelieveries);
-            this.tbMyDeliveries.Location = new System.Drawing.Point(4, 24);
-            this.tbMyDeliveries.Name = "tbMyDeliveries";
-            this.tbMyDeliveries.Padding = new System.Windows.Forms.Padding(3);
-            this.tbMyDeliveries.Size = new System.Drawing.Size(305, 442);
-            this.tbMyDeliveries.TabIndex = 1;
-            this.tbMyDeliveries.Text = "My Deliveries";
-            this.tbMyDeliveries.UseVisualStyleBackColor = true;
+            tbMyDeliveries.Controls.Add(dgvMyDelieveries);
+            tbMyDeliveries.Location = new System.Drawing.Point(4, 24);
+            tbMyDeliveries.Name = "tbMyDeliveries";
+            tbMyDeliveries.Padding = new System.Windows.Forms.Padding(3);
+            tbMyDeliveries.Size = new System.Drawing.Size(305, 440);
+            tbMyDeliveries.TabIndex = 1;
+            tbMyDeliveries.Text = "My Deliveries";
+            tbMyDeliveries.UseVisualStyleBackColor = true;
             // 
             // dgvMyDelieveries
             // 
-            this.dgvMyDelieveries.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvMyDelieveries.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvMyDelieveries.Location = new System.Drawing.Point(3, 3);
-            this.dgvMyDelieveries.Name = "dgvMyDelieveries";
-            this.dgvMyDelieveries.RowTemplate.Height = 25;
-            this.dgvMyDelieveries.Size = new System.Drawing.Size(299, 436);
-            this.dgvMyDelieveries.TabIndex = 0;
+            dgvMyDelieveries.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvMyDelieveries.Dock = System.Windows.Forms.DockStyle.Fill;
+            dgvMyDelieveries.Location = new System.Drawing.Point(3, 3);
+            dgvMyDelieveries.Name = "dgvMyDelieveries";
+            dgvMyDelieveries.RowTemplate.Height = 25;
+            dgvMyDelieveries.Size = new System.Drawing.Size(299, 434);
+            dgvMyDelieveries.TabIndex = 0;
             // 
             // splitContainer1
             // 
-            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
-            this.splitContainer1.Location = new System.Drawing.Point(10, 10);
-            this.splitContainer1.Name = "splitContainer1";
+            splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
+            splitContainer1.Location = new System.Drawing.Point(10, 10);
+            splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.BackColor = System.Drawing.SystemColors.Control;
-            this.splitContainer1.Panel1.Controls.Add(tbDeliversControl);
-            this.splitContainer1.Panel1.Controls.Add(this.btnNewDellivery);
-            this.splitContainer1.Panel1.Controls.Add(this.lbJobList);
-            this.splitContainer1.Panel1.Controls.Add(this.btnSearch);
-            this.splitContainer1.Panel1.Controls.Add(this.txtJobSearch);
-            this.splitContainer1.Panel1.Padding = new System.Windows.Forms.Padding(6);
+            splitContainer1.Panel1.BackColor = System.Drawing.SystemColors.Control;
+            splitContainer1.Panel1.Controls.Add(tbDeliversControl);
+            splitContainer1.Panel1.Controls.Add(btnNewDellivery);
+            splitContainer1.Panel1.Controls.Add(lbJobList);
+            splitContainer1.Panel1.Controls.Add(btnSearch);
+            splitContainer1.Panel1.Controls.Add(txtJobSearch);
+            splitContainer1.Panel1.Padding = new System.Windows.Forms.Padding(6);
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.dgvPickListItems);
-            this.splitContainer1.Panel2.Controls.Add(this.panel1);
-            this.splitContainer1.Panel2.Controls.Add(this.tsMain);
-            this.splitContainer1.Panel2.Padding = new System.Windows.Forms.Padding(10);
-            this.splitContainer1.Size = new System.Drawing.Size(1178, 729);
-            this.splitContainer1.SplitterDistance = 325;
-            this.splitContainer1.TabIndex = 0;
+            splitContainer1.Panel2.Controls.Add(dgvPickListItems);
+            splitContainer1.Panel2.Controls.Add(panel1);
+            splitContainer1.Panel2.Controls.Add(tsMain);
+            splitContainer1.Panel2.Padding = new System.Windows.Forms.Padding(10);
+            splitContainer1.Size = new System.Drawing.Size(1178, 729);
+            splitContainer1.SplitterDistance = 325;
+            splitContainer1.TabIndex = 0;
             // 
             // btnNewDellivery
             // 
-            this.btnNewDellivery.BackColor = System.Drawing.SystemColors.Highlight;
-            this.btnNewDellivery.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnNewDellivery.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnNewDellivery.Image = global::Mosiac.UX.Properties.Resources.baseline_get_app_black_24dp;
-            this.btnNewDellivery.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnNewDellivery.Location = new System.Drawing.Point(3, 213);
-            this.btnNewDellivery.Name = "btnNewDellivery";
-            this.btnNewDellivery.Size = new System.Drawing.Size(313, 30);
-            this.btnNewDellivery.TabIndex = 0;
-            this.btnNewDellivery.Text = "New Delivery Packing List";
-            this.btnNewDellivery.UseVisualStyleBackColor = false;
-            this.btnNewDellivery.Click += new System.EventHandler(this.btnNewDellivery_Click);
+            btnNewDellivery.BackColor = System.Drawing.SystemColors.Highlight;
+            btnNewDellivery.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            btnNewDellivery.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            btnNewDellivery.Image = Properties.Resources.baseline_get_app_black_24dp;
+            btnNewDellivery.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            btnNewDellivery.Location = new System.Drawing.Point(3, 213);
+            btnNewDellivery.Name = "btnNewDellivery";
+            btnNewDellivery.Size = new System.Drawing.Size(313, 30);
+            btnNewDellivery.TabIndex = 0;
+            btnNewDellivery.TabStop = false;
+            btnNewDellivery.Text = "New Delivery Packing List";
+            btnNewDellivery.UseVisualStyleBackColor = false;
+            btnNewDellivery.Click += btnNewDellivery_Click;
             // 
             // lbJobList
             // 
-            this.lbJobList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lbJobList.FormattingEnabled = true;
-            this.lbJobList.ItemHeight = 15;
-            this.lbJobList.Location = new System.Drawing.Point(9, 38);
-            this.lbJobList.Name = "lbJobList";
-            this.lbJobList.Size = new System.Drawing.Size(307, 169);
-            this.lbJobList.TabIndex = 2;
+            lbJobList.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            lbJobList.FormattingEnabled = true;
+            lbJobList.ItemHeight = 15;
+            lbJobList.Location = new System.Drawing.Point(9, 38);
+            lbJobList.Name = "lbJobList";
+            lbJobList.Size = new System.Drawing.Size(307, 169);
+            lbJobList.TabIndex = 2;
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(199, 9);
-            this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(55, 23);
-            this.btnSearch.TabIndex = 1;
-            this.btnSearch.Text = "Search";
-            this.btnSearch.UseVisualStyleBackColor = true;
+            btnSearch.Location = new System.Drawing.Point(199, 9);
+            btnSearch.Name = "btnSearch";
+            btnSearch.Size = new System.Drawing.Size(113, 23);
+            btnSearch.TabIndex = 1;
+            btnSearch.Text = "Search";
+            btnSearch.UseVisualStyleBackColor = true;
+            btnSearch.Click += btnSearch_Click;
             // 
             // txtJobSearch
             // 
-            this.txtJobSearch.Location = new System.Drawing.Point(9, 9);
-            this.txtJobSearch.Name = "txtJobSearch";
-            this.txtJobSearch.Size = new System.Drawing.Size(184, 23);
-            this.txtJobSearch.TabIndex = 0;
+            txtJobSearch.Location = new System.Drawing.Point(9, 9);
+            txtJobSearch.Name = "txtJobSearch";
+            txtJobSearch.Size = new System.Drawing.Size(184, 23);
+            txtJobSearch.TabIndex = 0;
             // 
             // dgvPickListItems
             // 
-            this.dgvPickListItems.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgvPickListItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvPickListItems.Location = new System.Drawing.Point(13, 213);
-            this.dgvPickListItems.Name = "dgvPickListItems";
-            this.dgvPickListItems.RowTemplate.Height = 25;
-            this.dgvPickListItems.Size = new System.Drawing.Size(823, 504);
-            this.dgvPickListItems.TabIndex = 2;
+            dgvPickListItems.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            dgvPickListItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvPickListItems.Location = new System.Drawing.Point(13, 213);
+            dgvPickListItems.Name = "dgvPickListItems";
+            dgvPickListItems.RowTemplate.Height = 25;
+            dgvPickListItems.Size = new System.Drawing.Size(823, 504);
+            dgvPickListItems.TabIndex = 2;
             // 
             // panel1
             // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel1.Controls.Add(this.lbZip);
-            this.panel1.Controls.Add(this.lbState);
-            this.panel1.Controls.Add(this.lbCity);
-            this.panel1.Controls.Add(this.lbAddress);
-            this.panel1.Controls.Add(this.lbAttention);
-            this.panel1.Controls.Add(this.lbDestinationName);
-            this.panel1.Controls.Add(this.btnSetDestination);
-            this.panel1.Controls.Add(this.btnViewReceipt);
-            this.panel1.Controls.Add(this.btnAttach);
-            this.panel1.Controls.Add(this.ckbDelivered);
-            this.panel1.Controls.Add(this.cbkProcessed);
-            this.panel1.Controls.Add(this.lbItemCount);
-            this.panel1.Controls.Add(this.lbPreparedBy);
-            this.panel1.Controls.Add(this.lbDateStamp);
-            this.panel1.Controls.Add(this.lbJobname);
-            this.panel1.Controls.Add(this.lbPickID);
-            this.panel1.Location = new System.Drawing.Point(13, 38);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(823, 169);
-            this.panel1.TabIndex = 0;
+            panel1.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            panel1.Controls.Add(lbZip);
+            panel1.Controls.Add(lbState);
+            panel1.Controls.Add(lbCity);
+            panel1.Controls.Add(lbAddress);
+            panel1.Controls.Add(lbAttention);
+            panel1.Controls.Add(lbDestinationName);
+            panel1.Controls.Add(btnSetDestination);
+            panel1.Controls.Add(btnViewReceipt);
+            panel1.Controls.Add(btnAttach);
+            panel1.Controls.Add(ckbDelivered);
+            panel1.Controls.Add(cbkProcessed);
+            panel1.Controls.Add(lbItemCount);
+            panel1.Controls.Add(lbPreparedBy);
+            panel1.Controls.Add(lbDateStamp);
+            panel1.Controls.Add(lbJobname);
+            panel1.Controls.Add(lbPickID);
+            panel1.Location = new System.Drawing.Point(13, 38);
+            panel1.Name = "panel1";
+            panel1.Size = new System.Drawing.Size(823, 169);
+            panel1.TabIndex = 0;
             // 
             // lbZip
             // 
-            this.lbZip.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.lbZip.Location = new System.Drawing.Point(334, 134);
-            this.lbZip.Margin = new System.Windows.Forms.Padding(2);
-            this.lbZip.Name = "lbZip";
-            this.lbZip.Padding = new System.Windows.Forms.Padding(1);
-            this.lbZip.Size = new System.Drawing.Size(79, 22);
-            this.lbZip.TabIndex = 4;
-            this.lbZip.Text = "Zip";
-            this.lbZip.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            lbZip.BackColor = System.Drawing.SystemColors.ControlLight;
+            lbZip.Location = new System.Drawing.Point(334, 134);
+            lbZip.Margin = new System.Windows.Forms.Padding(2);
+            lbZip.Name = "lbZip";
+            lbZip.Padding = new System.Windows.Forms.Padding(1);
+            lbZip.Size = new System.Drawing.Size(79, 22);
+            lbZip.TabIndex = 4;
+            lbZip.Text = "Zip";
+            lbZip.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lbState
             // 
-            this.lbState.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.lbState.Location = new System.Drawing.Point(304, 134);
-            this.lbState.Margin = new System.Windows.Forms.Padding(2);
-            this.lbState.Name = "lbState";
-            this.lbState.Padding = new System.Windows.Forms.Padding(1);
-            this.lbState.Size = new System.Drawing.Size(26, 22);
-            this.lbState.TabIndex = 4;
-            this.lbState.Text = "ST";
-            this.lbState.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            lbState.BackColor = System.Drawing.SystemColors.ControlLight;
+            lbState.Location = new System.Drawing.Point(304, 134);
+            lbState.Margin = new System.Windows.Forms.Padding(2);
+            lbState.Name = "lbState";
+            lbState.Padding = new System.Windows.Forms.Padding(1);
+            lbState.Size = new System.Drawing.Size(26, 22);
+            lbState.TabIndex = 4;
+            lbState.Text = "ST";
+            lbState.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lbCity
             // 
-            this.lbCity.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.lbCity.Location = new System.Drawing.Point(146, 134);
-            this.lbCity.Margin = new System.Windows.Forms.Padding(2);
-            this.lbCity.Name = "lbCity";
-            this.lbCity.Padding = new System.Windows.Forms.Padding(1);
-            this.lbCity.Size = new System.Drawing.Size(153, 22);
-            this.lbCity.TabIndex = 4;
-            this.lbCity.Text = "City";
-            this.lbCity.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            lbCity.BackColor = System.Drawing.SystemColors.ControlLight;
+            lbCity.Location = new System.Drawing.Point(146, 134);
+            lbCity.Margin = new System.Windows.Forms.Padding(2);
+            lbCity.Name = "lbCity";
+            lbCity.Padding = new System.Windows.Forms.Padding(1);
+            lbCity.Size = new System.Drawing.Size(153, 22);
+            lbCity.TabIndex = 4;
+            lbCity.Text = "City";
+            lbCity.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lbAddress
             // 
-            this.lbAddress.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.lbAddress.Location = new System.Drawing.Point(146, 108);
-            this.lbAddress.Margin = new System.Windows.Forms.Padding(2);
-            this.lbAddress.Name = "lbAddress";
-            this.lbAddress.Padding = new System.Windows.Forms.Padding(1);
-            this.lbAddress.Size = new System.Drawing.Size(267, 22);
-            this.lbAddress.TabIndex = 4;
-            this.lbAddress.Text = "Address";
-            this.lbAddress.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            lbAddress.BackColor = System.Drawing.SystemColors.ControlLight;
+            lbAddress.Location = new System.Drawing.Point(146, 108);
+            lbAddress.Margin = new System.Windows.Forms.Padding(2);
+            lbAddress.Name = "lbAddress";
+            lbAddress.Padding = new System.Windows.Forms.Padding(1);
+            lbAddress.Size = new System.Drawing.Size(267, 22);
+            lbAddress.TabIndex = 4;
+            lbAddress.Text = "Address";
+            lbAddress.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lbAttention
             // 
-            this.lbAttention.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.lbAttention.Location = new System.Drawing.Point(417, 78);
-            this.lbAttention.Margin = new System.Windows.Forms.Padding(2);
-            this.lbAttention.Name = "lbAttention";
-            this.lbAttention.Padding = new System.Windows.Forms.Padding(1);
-            this.lbAttention.Size = new System.Drawing.Size(214, 26);
-            this.lbAttention.TabIndex = 4;
-            this.lbAttention.Text = "Attention";
-            this.lbAttention.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            lbAttention.BackColor = System.Drawing.SystemColors.ControlLight;
+            lbAttention.Location = new System.Drawing.Point(417, 78);
+            lbAttention.Margin = new System.Windows.Forms.Padding(2);
+            lbAttention.Name = "lbAttention";
+            lbAttention.Padding = new System.Windows.Forms.Padding(1);
+            lbAttention.Size = new System.Drawing.Size(214, 26);
+            lbAttention.TabIndex = 4;
+            lbAttention.Text = "Attention";
+            lbAttention.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lbDestinationName
             // 
-            this.lbDestinationName.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.lbDestinationName.Location = new System.Drawing.Point(146, 78);
-            this.lbDestinationName.Margin = new System.Windows.Forms.Padding(2);
-            this.lbDestinationName.Name = "lbDestinationName";
-            this.lbDestinationName.Padding = new System.Windows.Forms.Padding(1);
-            this.lbDestinationName.Size = new System.Drawing.Size(267, 26);
-            this.lbDestinationName.TabIndex = 4;
-            this.lbDestinationName.Text = "Destination Name";
-            this.lbDestinationName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            lbDestinationName.BackColor = System.Drawing.SystemColors.ControlLight;
+            lbDestinationName.Location = new System.Drawing.Point(146, 78);
+            lbDestinationName.Margin = new System.Windows.Forms.Padding(2);
+            lbDestinationName.Name = "lbDestinationName";
+            lbDestinationName.Padding = new System.Windows.Forms.Padding(1);
+            lbDestinationName.Size = new System.Drawing.Size(267, 26);
+            lbDestinationName.TabIndex = 4;
+            lbDestinationName.Text = "Destination Name";
+            lbDestinationName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // btnSetDestination
             // 
-            this.btnSetDestination.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.btnSetDestination.FlatAppearance.BorderColor = System.Drawing.Color.Blue;
-            this.btnSetDestination.FlatAppearance.BorderSize = 2;
-            this.btnSetDestination.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSetDestination.Location = new System.Drawing.Point(17, 79);
-            this.btnSetDestination.Name = "btnSetDestination";
-            this.btnSetDestination.Size = new System.Drawing.Size(111, 37);
-            this.btnSetDestination.TabIndex = 3;
-            this.btnSetDestination.Text = "Set Destination";
-            this.btnSetDestination.UseVisualStyleBackColor = false;
-            this.btnSetDestination.Click += new System.EventHandler(this.btnSetDestination_Click);
+            btnSetDestination.BackColor = System.Drawing.SystemColors.ControlLight;
+            btnSetDestination.FlatAppearance.BorderColor = System.Drawing.Color.Blue;
+            btnSetDestination.FlatAppearance.BorderSize = 2;
+            btnSetDestination.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            btnSetDestination.Location = new System.Drawing.Point(17, 79);
+            btnSetDestination.Name = "btnSetDestination";
+            btnSetDestination.Size = new System.Drawing.Size(111, 37);
+            btnSetDestination.TabIndex = 3;
+            btnSetDestination.Text = "Set Destination";
+            btnSetDestination.UseVisualStyleBackColor = false;
+            btnSetDestination.Click += btnSetDestination_Click;
             // 
             // btnViewReceipt
             // 
-            this.btnViewReceipt.Location = new System.Drawing.Point(700, 108);
-            this.btnViewReceipt.Name = "btnViewReceipt";
-            this.btnViewReceipt.Size = new System.Drawing.Size(110, 24);
-            this.btnViewReceipt.TabIndex = 3;
-            this.btnViewReceipt.Text = "View Receipt";
-            this.btnViewReceipt.UseVisualStyleBackColor = true;
+            btnViewReceipt.Location = new System.Drawing.Point(700, 108);
+            btnViewReceipt.Name = "btnViewReceipt";
+            btnViewReceipt.Size = new System.Drawing.Size(110, 24);
+            btnViewReceipt.TabIndex = 3;
+            btnViewReceipt.Text = "View Receipt";
+            btnViewReceipt.UseVisualStyleBackColor = true;
             // 
             // btnAttach
             // 
-            this.btnAttach.Enabled = false;
-            this.btnAttach.Location = new System.Drawing.Point(700, 78);
-            this.btnAttach.Name = "btnAttach";
-            this.btnAttach.Size = new System.Drawing.Size(110, 24);
-            this.btnAttach.TabIndex = 3;
-            this.btnAttach.Text = "Attach Receipt";
-            this.btnAttach.UseVisualStyleBackColor = true;
-            this.btnAttach.Click += new System.EventHandler(this.btnAttach_Click);
+            btnAttach.Enabled = false;
+            btnAttach.Location = new System.Drawing.Point(700, 78);
+            btnAttach.Name = "btnAttach";
+            btnAttach.Size = new System.Drawing.Size(110, 24);
+            btnAttach.TabIndex = 3;
+            btnAttach.Text = "Attach Receipt";
+            btnAttach.UseVisualStyleBackColor = true;
+            btnAttach.Click += btnAttach_Click;
             // 
             // ckbDelivered
             // 
-            this.ckbDelivered.BackColor = System.Drawing.SystemColors.Highlight;
-            this.ckbDelivered.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.ckbDelivered.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ckbDelivered.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ckbDelivered.Location = new System.Drawing.Point(636, 10);
-            this.ckbDelivered.Name = "ckbDelivered";
-            this.ckbDelivered.Padding = new System.Windows.Forms.Padding(4, 4, 10, 4);
-            this.ckbDelivered.Size = new System.Drawing.Size(174, 27);
-            this.ckbDelivered.TabIndex = 2;
-            this.ckbDelivered.Text = "Delivery Complete";
-            this.ckbDelivered.UseVisualStyleBackColor = false;
-            this.ckbDelivered.CheckedChanged += new System.EventHandler(this.ckbDelivered_CheckedChanged);
+            ckbDelivered.BackColor = System.Drawing.SystemColors.Highlight;
+            ckbDelivered.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            ckbDelivered.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            ckbDelivered.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            ckbDelivered.Location = new System.Drawing.Point(636, 10);
+            ckbDelivered.Name = "ckbDelivered";
+            ckbDelivered.Padding = new System.Windows.Forms.Padding(4, 4, 10, 4);
+            ckbDelivered.Size = new System.Drawing.Size(174, 27);
+            ckbDelivered.TabIndex = 2;
+            ckbDelivered.Text = "Delivery Complete";
+            ckbDelivered.UseVisualStyleBackColor = false;
+            ckbDelivered.CheckedChanged += ckbDelivered_CheckedChanged;
             // 
             // cbkProcessed
             // 
-            this.cbkProcessed.BackColor = System.Drawing.SystemColors.Highlight;
-            this.cbkProcessed.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.cbkProcessed.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cbkProcessed.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.cbkProcessed.Location = new System.Drawing.Point(636, 41);
-            this.cbkProcessed.Name = "cbkProcessed";
-            this.cbkProcessed.Padding = new System.Windows.Forms.Padding(4, 4, 10, 4);
-            this.cbkProcessed.Size = new System.Drawing.Size(174, 27);
-            this.cbkProcessed.TabIndex = 2;
-            this.cbkProcessed.Text = "Processed to Inventory";
-            this.cbkProcessed.UseVisualStyleBackColor = false;
-            this.cbkProcessed.CheckedChanged += new System.EventHandler(this.cbkProcessed_CheckedChanged);
+            cbkProcessed.BackColor = System.Drawing.SystemColors.Highlight;
+            cbkProcessed.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            cbkProcessed.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            cbkProcessed.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            cbkProcessed.Location = new System.Drawing.Point(636, 41);
+            cbkProcessed.Name = "cbkProcessed";
+            cbkProcessed.Padding = new System.Windows.Forms.Padding(4, 4, 10, 4);
+            cbkProcessed.Size = new System.Drawing.Size(174, 27);
+            cbkProcessed.TabIndex = 2;
+            cbkProcessed.Text = "Processed to Inventory";
+            cbkProcessed.UseVisualStyleBackColor = false;
+            cbkProcessed.CheckedChanged += cbkProcessed_CheckedChanged;
             // 
             // lbItemCount
             // 
-            this.lbItemCount.BackColor = System.Drawing.SystemColors.Highlight;
-            this.lbItemCount.ForeColor = System.Drawing.Color.White;
-            this.lbItemCount.Location = new System.Drawing.Point(420, 41);
-            this.lbItemCount.Margin = new System.Windows.Forms.Padding(2);
-            this.lbItemCount.Name = "lbItemCount";
-            this.lbItemCount.Size = new System.Drawing.Size(211, 27);
-            this.lbItemCount.TabIndex = 1;
-            this.lbItemCount.Text = "Item-Count";
-            this.lbItemCount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            lbItemCount.BackColor = System.Drawing.SystemColors.Highlight;
+            lbItemCount.ForeColor = System.Drawing.Color.White;
+            lbItemCount.Location = new System.Drawing.Point(420, 41);
+            lbItemCount.Margin = new System.Windows.Forms.Padding(2);
+            lbItemCount.Name = "lbItemCount";
+            lbItemCount.Size = new System.Drawing.Size(211, 27);
+            lbItemCount.TabIndex = 1;
+            lbItemCount.Text = "Item-Count";
+            lbItemCount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lbPreparedBy
             // 
-            this.lbPreparedBy.BackColor = System.Drawing.SystemColors.Highlight;
-            this.lbPreparedBy.ForeColor = System.Drawing.Color.White;
-            this.lbPreparedBy.Location = new System.Drawing.Point(205, 10);
-            this.lbPreparedBy.Margin = new System.Windows.Forms.Padding(2);
-            this.lbPreparedBy.Name = "lbPreparedBy";
-            this.lbPreparedBy.Size = new System.Drawing.Size(211, 27);
-            this.lbPreparedBy.TabIndex = 1;
-            this.lbPreparedBy.Text = "Prepared by";
-            this.lbPreparedBy.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            lbPreparedBy.BackColor = System.Drawing.SystemColors.Highlight;
+            lbPreparedBy.ForeColor = System.Drawing.Color.White;
+            lbPreparedBy.Location = new System.Drawing.Point(205, 10);
+            lbPreparedBy.Margin = new System.Windows.Forms.Padding(2);
+            lbPreparedBy.Name = "lbPreparedBy";
+            lbPreparedBy.Size = new System.Drawing.Size(211, 27);
+            lbPreparedBy.TabIndex = 1;
+            lbPreparedBy.Text = "Prepared by";
+            lbPreparedBy.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lbDateStamp
             // 
-            this.lbDateStamp.BackColor = System.Drawing.SystemColors.Highlight;
-            this.lbDateStamp.ForeColor = System.Drawing.Color.White;
-            this.lbDateStamp.Location = new System.Drawing.Point(420, 10);
-            this.lbDateStamp.Margin = new System.Windows.Forms.Padding(2);
-            this.lbDateStamp.Name = "lbDateStamp";
-            this.lbDateStamp.Size = new System.Drawing.Size(211, 27);
-            this.lbDateStamp.TabIndex = 1;
-            this.lbDateStamp.Text = "Date-Stamp";
-            this.lbDateStamp.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            lbDateStamp.BackColor = System.Drawing.SystemColors.Highlight;
+            lbDateStamp.ForeColor = System.Drawing.Color.White;
+            lbDateStamp.Location = new System.Drawing.Point(420, 10);
+            lbDateStamp.Margin = new System.Windows.Forms.Padding(2);
+            lbDateStamp.Name = "lbDateStamp";
+            lbDateStamp.Size = new System.Drawing.Size(211, 27);
+            lbDateStamp.TabIndex = 1;
+            lbDateStamp.Text = "Date-Stamp";
+            lbDateStamp.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lbJobname
             // 
-            this.lbJobname.BackColor = System.Drawing.SystemColors.Highlight;
-            this.lbJobname.ForeColor = System.Drawing.Color.White;
-            this.lbJobname.Location = new System.Drawing.Point(17, 41);
-            this.lbJobname.Margin = new System.Windows.Forms.Padding(2);
-            this.lbJobname.Name = "lbJobname";
-            this.lbJobname.Size = new System.Drawing.Size(399, 27);
-            this.lbJobname.TabIndex = 1;
-            this.lbJobname.Text = "Jobname";
-            this.lbJobname.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            lbJobname.BackColor = System.Drawing.SystemColors.Highlight;
+            lbJobname.ForeColor = System.Drawing.Color.White;
+            lbJobname.Location = new System.Drawing.Point(17, 41);
+            lbJobname.Margin = new System.Windows.Forms.Padding(2);
+            lbJobname.Name = "lbJobname";
+            lbJobname.Size = new System.Drawing.Size(399, 27);
+            lbJobname.TabIndex = 1;
+            lbJobname.Text = "Jobname";
+            lbJobname.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lbPickID
             // 
-            this.lbPickID.BackColor = System.Drawing.SystemColors.Highlight;
-            this.lbPickID.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lbPickID.ForeColor = System.Drawing.Color.White;
-            this.lbPickID.Location = new System.Drawing.Point(17, 10);
-            this.lbPickID.Margin = new System.Windows.Forms.Padding(2);
-            this.lbPickID.Name = "lbPickID";
-            this.lbPickID.Size = new System.Drawing.Size(184, 27);
-            this.lbPickID.TabIndex = 1;
-            this.lbPickID.Text = "List ID";
-            this.lbPickID.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            lbPickID.BackColor = System.Drawing.SystemColors.Highlight;
+            lbPickID.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            lbPickID.ForeColor = System.Drawing.Color.White;
+            lbPickID.Location = new System.Drawing.Point(17, 10);
+            lbPickID.Margin = new System.Windows.Forms.Padding(2);
+            lbPickID.Name = "lbPickID";
+            lbPickID.Size = new System.Drawing.Size(184, 27);
+            lbPickID.TabIndex = 1;
+            lbPickID.Text = "List ID";
+            lbPickID.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tsMain
             // 
-            this.tsMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsSave,
-            this.toolStripSeparator1,
-            this.tsPrint,
-            this.toolStripSeparator2,
-            this.tsPrintLabels});
-            this.tsMain.Location = new System.Drawing.Point(10, 10);
-            this.tsMain.Name = "tsMain";
-            this.tsMain.Size = new System.Drawing.Size(829, 25);
-            this.tsMain.TabIndex = 1;
-            this.tsMain.Text = "toolStrip1";
-            this.tsMain.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.tsMain_ItemClicked);
+            tsMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { tsSave, toolStripSeparator1, tsPrint, toolStripSeparator2, tsPrintLabels });
+            tsMain.Location = new System.Drawing.Point(10, 10);
+            tsMain.Name = "tsMain";
+            tsMain.Size = new System.Drawing.Size(829, 25);
+            tsMain.TabIndex = 1;
+            tsMain.Text = "toolStrip1";
+            tsMain.ItemClicked += tsMain_ItemClicked;
             // 
             // tsSave
             // 
-            this.tsSave.BackColor = System.Drawing.SystemColors.Control;
-            this.tsSave.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.tsSave.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.tsSave.Image = ((System.Drawing.Image)(resources.GetObject("tsSave.Image")));
-            this.tsSave.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsSave.Name = "tsSave";
-            this.tsSave.Size = new System.Drawing.Size(84, 22);
-            this.tsSave.Text = "Save Changes";
+            tsSave.BackColor = System.Drawing.SystemColors.Control;
+            tsSave.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            tsSave.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            tsSave.Image = (System.Drawing.Image)resources.GetObject("tsSave.Image");
+            tsSave.ImageTransparentColor = System.Drawing.Color.Magenta;
+            tsSave.Name = "tsSave";
+            tsSave.Size = new System.Drawing.Size(84, 22);
+            tsSave.Text = "Save Changes";
             // 
             // toolStripSeparator1
             // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            toolStripSeparator1.Name = "toolStripSeparator1";
+            toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
             // 
             // tsPrint
             // 
-            this.tsPrint.BackColor = System.Drawing.SystemColors.Control;
-            this.tsPrint.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.tsPrint.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.tsPrint.Image = ((System.Drawing.Image)(resources.GetObject("tsPrint.Image")));
-            this.tsPrint.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsPrint.Margin = new System.Windows.Forms.Padding(10, 1, 0, 2);
-            this.tsPrint.Name = "tsPrint";
-            this.tsPrint.Size = new System.Drawing.Size(51, 22);
-            this.tsPrint.Text = "Print     ";
+            tsPrint.BackColor = System.Drawing.SystemColors.Control;
+            tsPrint.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            tsPrint.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            tsPrint.Image = (System.Drawing.Image)resources.GetObject("tsPrint.Image");
+            tsPrint.ImageTransparentColor = System.Drawing.Color.Magenta;
+            tsPrint.Margin = new System.Windows.Forms.Padding(10, 1, 0, 2);
+            tsPrint.Name = "tsPrint";
+            tsPrint.Size = new System.Drawing.Size(51, 22);
+            tsPrint.Text = "Print     ";
             // 
             // toolStripSeparator2
             // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+            toolStripSeparator2.Name = "toolStripSeparator2";
+            toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
             // 
             // tsPrintLabels
             // 
-            this.tsPrintLabels.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.tsPrintLabels.Image = ((System.Drawing.Image)(resources.GetObject("tsPrintLabels.Image")));
-            this.tsPrintLabels.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsPrintLabels.Name = "tsPrintLabels";
-            this.tsPrintLabels.Size = new System.Drawing.Size(67, 22);
-            this.tsPrintLabels.Text = "Print Label";
-            this.tsPrintLabels.ToolTipText = "Print Labels";
-            this.tsPrintLabels.Click += new System.EventHandler(this.tsPrintLabels_Click);
+            tsPrintLabels.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            tsPrintLabels.Image = (System.Drawing.Image)resources.GetObject("tsPrintLabels.Image");
+            tsPrintLabels.ImageTransparentColor = System.Drawing.Color.Magenta;
+            tsPrintLabels.Name = "tsPrintLabels";
+            tsPrintLabels.Size = new System.Drawing.Size(67, 22);
+            tsPrintLabels.Text = "Print Label";
+            tsPrintLabels.ToolTipText = "Print Labels";
+            tsPrintLabels.Click += tsPrintLabels_Click;
             // 
             // DeliveryControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.Control;
-            this.Controls.Add(this.splitContainer1);
-            this.Name = "DeliveryControl";
-            this.Padding = new System.Windows.Forms.Padding(10);
-            this.Size = new System.Drawing.Size(1198, 749);
+            AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            BackColor = System.Drawing.SystemColors.Control;
+            Controls.Add(splitContainer1);
+            Name = "DeliveryControl";
+            Padding = new System.Windows.Forms.Padding(10);
+            Size = new System.Drawing.Size(1198, 749);
             tbDeliversControl.ResumeLayout(false);
-            this.tbJobPicks.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvDeliveries)).EndInit();
-            this.tbMyDeliveries.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvMyDelieveries)).EndInit();
-            this.splitContainer1.Panel1.ResumeLayout(false);
-            this.splitContainer1.Panel1.PerformLayout();
-            this.splitContainer1.Panel2.ResumeLayout(false);
-            this.splitContainer1.Panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
-            this.splitContainer1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvPickListItems)).EndInit();
-            this.panel1.ResumeLayout(false);
-            this.tsMain.ResumeLayout(false);
-            this.tsMain.PerformLayout();
-            this.ResumeLayout(false);
-
+            tbJobPicks.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dgvDeliveries).EndInit();
+            tbMyDeliveries.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dgvMyDelieveries).EndInit();
+            splitContainer1.Panel1.ResumeLayout(false);
+            splitContainer1.Panel1.PerformLayout();
+            splitContainer1.Panel2.ResumeLayout(false);
+            splitContainer1.Panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)splitContainer1).EndInit();
+            splitContainer1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dgvPickListItems).EndInit();
+            panel1.ResumeLayout(false);
+            tsMain.ResumeLayout(false);
+            tsMain.PerformLayout();
+            ResumeLayout(false);
         }
 
         #endregion

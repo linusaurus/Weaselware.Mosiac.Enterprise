@@ -39,6 +39,7 @@ namespace Mosiac.UX.UXControls
         BindingSource bsPickItems = new BindingSource();
         BindingSource bsMyDeliveries = new BindingSource();
         PickListMapper mapper = new PickListMapper();
+        bool IsItemDirty = false;
 
         public DeliveryControl(MosaicContext ctx)
         {
@@ -52,7 +53,7 @@ namespace Mosiac.UX.UXControls
             // Constuct the two grids
             Grids.BuildPlistGrid(dgvDeliveries);
             Grids.BuildScannedPartGrid(dgvPickListItems);
-     
+
             lbJobList.SelectedIndexChanged += LbJobList_SelectedIndexChanged;
             bsPickItems.ListChanged += BsPickItems_ListChanged;
             bsPicks.ListChanged += BsPicks_ListChanged;
@@ -64,17 +65,17 @@ namespace Mosiac.UX.UXControls
                 string lastJobSearch = Mosiac.UX.Properties.Settings.Default.LastJobSearched;
                 txtJobSearch.Text = lastJobSearch;
                 LoadJobsList();
-               
+
             }
-            
+
         }
 
-        private  void LoadMyDeliveries()
+        private void LoadMyDeliveries()
         {
-            bsMyDeliveries.DataSource =  _deliveryService.GetMyDeliveries(Globals.CurrentLoggedUserID);
+            bsMyDeliveries.DataSource = _deliveryService.GetMyDeliveries(Globals.CurrentLoggedUserID);
             dgvDeliveries.DataSource = bsMyDeliveries;
         }
-       
+
         private void BsPicks_ListChanged(object sender, ListChangedEventArgs e)
         {
             if (e.ListChangedType == ListChangedType.ItemChanged |
@@ -87,22 +88,23 @@ namespace Mosiac.UX.UXControls
 
         private void BsPickItems_AddingNew(object sender, AddingNewEventArgs e)
         {
-          PickListItemDto newItem = new PickListItemDto 
-          {
-              Qnty = 1.0m,
-              PartID = 0,
-          } ;
+            PickListItemDto newItem = new PickListItemDto
+            {
+                Qnty = 1.0m,
+                PartID = 0,
+            };
 
-          e.NewObject = newItem;
+            e.NewObject = newItem;
         }
 
         private void BsPickItems_ListChanged(object sender, ListChangedEventArgs e)
         {
             if (e.ListChangedType == ListChangedType.ItemChanged |
-                e.ListChangedType == ListChangedType.ItemDeleted | 
-                e.ListChangedType== ListChangedType.ItemAdded)
+                e.ListChangedType == ListChangedType.ItemDeleted |
+                e.ListChangedType == ListChangedType.ItemAdded)
             {
                 tsSave.BackColor = System.Drawing.Color.Cornsilk;
+                IsItemDirty = true;
             }
         }
 
@@ -124,11 +126,11 @@ namespace Mosiac.UX.UXControls
             lbState.Text = selected.State;
             lbZip.Text = selected.Zip;
             //-----------------------------------------------------------
-            ckbDelivered.DataBindings.Add("Checked",selected,"Delivered",true,DataSourceUpdateMode.OnPropertyChanged);
-            cbkProcessed.DataBindings.Add("Checked",selected,"Submitted",true,DataSourceUpdateMode.OnPropertyChanged);         
+            ckbDelivered.DataBindings.Add("Checked", selected, "Delivered", true, DataSourceUpdateMode.OnPropertyChanged);
+            cbkProcessed.DataBindings.Add("Checked", selected, "Submitted", true, DataSourceUpdateMode.OnPropertyChanged);
         }
 
-       
+
 
         private void LbJobList_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -138,8 +140,8 @@ namespace Mosiac.UX.UXControls
                 {
                     dgvPickListItems.DataSource = null;
                     _selectedJobDto = (JobListDto)lbJobList.SelectedItem;
-                    var picks = _stockService.GetJobPicks(_selectedJobDto.JobID);                 
-                    dgvDeliveries.DataSource = picks;                
+                    var picks = _stockService.GetJobPicks(_selectedJobDto.JobID);
+                    dgvDeliveries.DataSource = picks;
                 }
                 else
                 {
@@ -163,7 +165,7 @@ namespace Mosiac.UX.UXControls
                     bsPicks.DataSource = activePickList;
                     bsPickItems.DataSource = activePickList;
                     bsPickItems.DataMember = "PickListItems";
-                    
+
                     dgvPickListItems.DataSource = bsPickItems;
                 }
             }
@@ -173,26 +175,10 @@ namespace Mosiac.UX.UXControls
 
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
-            if ((keyData == Keys.Enter) || (keyData == Keys.Return))
-            {
-                LoadJobsList();
-                Mosiac.UX.Properties.Settings.Default.LastJobSearched = txtJobSearch.Text;
-                Mosiac.UX.Properties.Settings.Default.Save();
-                return true;
-            }
-            else if (keyData == Keys.Escape) //clear the textboxes, null the dg source
-            {
-                txtJobSearch.Text = string.Empty;
-                txtJobSearch.Focus();
-                return true;
-            }
-            else
-            {
-                return base.ProcessCmdKey(ref msg, keyData);
-            }
+            return base.ProcessCmdKey(ref msg, keyData);
         }
 
-        
+
 
         private async void LoadJobsList()
         {
@@ -205,7 +191,7 @@ namespace Mosiac.UX.UXControls
             }
         }
 
-       
+
         /// <summary>
         /// Main toolbar
         /// </summary>
@@ -216,16 +202,16 @@ namespace Mosiac.UX.UXControls
             switch (e.ClickedItem.Name)
             {
                 case "tsSave":
-                    
+
                     // this is updating the stale Picklist object
                     bsPicks.EndEdit();
                     bsPickItems.EndEdit();
-                    var result = await  _stockService.CreateOrUpdate(activePickList);
+                    var result = await _stockService.CreateOrUpdate(activePickList);
                     activePickList = result;
                     bsPicks.DataSource = activePickList;
                     bsPickItems.DataSource = bsPicks;
                     bsPickItems.DataMember = "PickListItems";
-                  
+
                     Grids.ToogleToolStripButtonStyle(false, tsSave);
 
                     break;
@@ -288,7 +274,7 @@ namespace Mosiac.UX.UXControls
         {
             CheckBox cb = (CheckBox)sender;
             if (cb.Checked)
-            { selectedPickList.Submitted = true;}
+            { selectedPickList.Submitted = true; }
             else
             {
                 selectedPickList.Submitted = false;
@@ -299,9 +285,9 @@ namespace Mosiac.UX.UXControls
         {
             CheckBox cb = (CheckBox)sender;
             if (cb.Checked)
-            {selectedPickList.Delivered = true; }
+            { selectedPickList.Delivered = true; }
             else
-            {selectedPickList.Delivered = false; }
+            { selectedPickList.Delivered = false; }
 
         }
         /// <summary>
@@ -385,7 +371,7 @@ namespace Mosiac.UX.UXControls
                             PackingListID = item.PickListID.ToString(),
                             PackingListItemID = item.PickListItemID.ToString(),
                             ItemCount = selectedPickList.ItemCount,
-                            ItemQnty = i+1,
+                            ItemQnty = i + 1,
 
                         };
 
@@ -396,12 +382,19 @@ namespace Mosiac.UX.UXControls
                         pj.PrintAsGraphic(lb);
 
                     }
-                   
+
                 }
             }
-      
+
         }
 
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            LoadJobsList();
+            Mosiac.UX.Properties.Settings.Default.LastJobSearched = txtJobSearch.Text;
+            Mosiac.UX.Properties.Settings.Default.Save();
 
+
+        }
     }
 }
