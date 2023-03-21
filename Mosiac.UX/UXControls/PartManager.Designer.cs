@@ -30,1025 +30,999 @@ namespace Mosiac.UX.UXControls
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PartManager));
-            this.txtSearch = new System.Windows.Forms.TextBox();
-            this.dgPartsSearch = new System.Windows.Forms.DataGridView();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.btnSearch = new System.Windows.Forms.Button();
-            this.txtSecondTerm = new System.Windows.Forms.TextBox();
-            this.txtThirdTerm = new System.Windows.Forms.TextBox();
-            this.btnOpenPart = new System.Windows.Forms.Button();
-            this.txtPartIDLookup = new System.Windows.Forms.TextBox();
-            this.ckbUseManufacturer = new System.Windows.Forms.CheckBox();
-            this.cboManu = new System.Windows.Forms.ComboBox();
-            this.dgResources = new System.Windows.Forms.DataGridView();
-            this.dgPartOrders = new System.Windows.Forms.DataGridView();
-            this.btnNewPart = new System.Windows.Forms.Button();
-            this.btnSave = new System.Windows.Forms.Button();
-            this.tabPartDetail = new System.Windows.Forms.TabControl();
-            this.tabResourceManager = new System.Windows.Forms.TabPage();
-            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.propertyGrid1 = new System.Windows.Forms.PropertyGrid();
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton5 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton6 = new System.Windows.Forms.ToolStripButton();
-            this.tabOrderHistory = new System.Windows.Forms.TabPage();
-            this.btnShowAll = new System.Windows.Forms.Button();
-            this.tsResources = new System.Windows.Forms.ToolStrip();
-            this.tsbCollapsePanel = new System.Windows.Forms.ToolStripButton();
-            this.btnPrintLabel = new System.Windows.Forms.Button();
-            this.spcPartsManager = new System.Windows.Forms.SplitContainer();
-            this.tabPartManager = new System.Windows.Forms.TabControl();
-            this.tabPartsManager = new System.Windows.Forms.TabPage();
-            this.tabStockTransactions = new System.Windows.Forms.TabPage();
-            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
-            this.dgvStockParts = new System.Windows.Forms.DataGridView();
-            this.toolStrip2 = new System.Windows.Forms.ToolStrip();
-            this.toolStripComboBox1 = new System.Windows.Forms.ToolStripComboBox();
-            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
-            this.spcTransactionDetails = new System.Windows.Forms.SplitContainer();
-            this.dgTransactionsGrid = new System.Windows.Forms.DataGridView();
-            this.tsTransactions = new System.Windows.Forms.ToolStrip();
-            this.tsbReceipts = new System.Windows.Forms.ToolStripButton();
-            this.tsbAudits = new System.Windows.Forms.ToolStripButton();
-            this.tsbPulls = new System.Windows.Forms.ToolStripButton();
-            this.tsbAll = new System.Windows.Forms.ToolStripButton();
-            this.tsbRemoveSelected = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.tsbEditSelected = new System.Windows.Forms.ToolStripButton();
-            this.btnPullStock = new System.Windows.Forms.Button();
-            this.btnRollup = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.txtStockLevel = new System.Windows.Forms.TextBox();
-            this.tabLocations = new System.Windows.Forms.TabPage();
-            this.spcLocations = new System.Windows.Forms.SplitContainer();
-            this.dgLocations = new System.Windows.Forms.DataGridView();
-            this.tsLocationMenu = new System.Windows.Forms.ToolStrip();
-            this.tsbNew = new System.Windows.Forms.ToolStripButton();
-            this.tsbEdit = new System.Windows.Forms.ToolStripButton();
-            this.tsbFilter = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.txtAreaFilter = new System.Windows.Forms.ToolStripTextBox();
-            this.tsLocationPartsToolBar = new System.Windows.Forms.ToolStrip();
-            this.tsbSaveLocationParts = new System.Windows.Forms.ToolStripButton();
-            this.dgLocationParts = new System.Windows.Forms.DataGridView();
-            ((System.ComponentModel.ISupportInitialize)(this.dgPartsSearch)).BeginInit();
-            this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgResources)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgPartOrders)).BeginInit();
-            this.tabPartDetail.SuspendLayout();
-            this.tabResourceManager.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
-            this.splitContainer1.Panel1.SuspendLayout();
-            this.splitContainer1.Panel2.SuspendLayout();
-            this.splitContainer1.SuspendLayout();
-            this.panel2.SuspendLayout();
-            this.toolStrip1.SuspendLayout();
-            this.tabOrderHistory.SuspendLayout();
-            this.tsResources.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.spcPartsManager)).BeginInit();
-            this.spcPartsManager.Panel1.SuspendLayout();
-            this.spcPartsManager.Panel2.SuspendLayout();
-            this.spcPartsManager.SuspendLayout();
-            this.tabPartManager.SuspendLayout();
-            this.tabPartsManager.SuspendLayout();
-            this.tabStockTransactions.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
-            this.splitContainer2.Panel1.SuspendLayout();
-            this.splitContainer2.Panel2.SuspendLayout();
-            this.splitContainer2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvStockParts)).BeginInit();
-            this.toolStrip2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.spcTransactionDetails)).BeginInit();
-            this.spcTransactionDetails.Panel1.SuspendLayout();
-            this.spcTransactionDetails.Panel2.SuspendLayout();
-            this.spcTransactionDetails.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgTransactionsGrid)).BeginInit();
-            this.tsTransactions.SuspendLayout();
-            this.tabLocations.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.spcLocations)).BeginInit();
-            this.spcLocations.Panel1.SuspendLayout();
-            this.spcLocations.Panel2.SuspendLayout();
-            this.spcLocations.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgLocations)).BeginInit();
-            this.tsLocationMenu.SuspendLayout();
-            this.tsLocationPartsToolBar.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgLocationParts)).BeginInit();
-            this.SuspendLayout();
+            txtSearch = new System.Windows.Forms.TextBox();
+            dgPartsSearch = new System.Windows.Forms.DataGridView();
+            panel1 = new System.Windows.Forms.Panel();
+            btnSearch = new System.Windows.Forms.Button();
+            txtSecondTerm = new System.Windows.Forms.TextBox();
+            txtThirdTerm = new System.Windows.Forms.TextBox();
+            btnOpenPart = new System.Windows.Forms.Button();
+            txtPartIDLookup = new System.Windows.Forms.TextBox();
+            ckbUseManufacturer = new System.Windows.Forms.CheckBox();
+            cboManu = new System.Windows.Forms.ComboBox();
+            dgResources = new System.Windows.Forms.DataGridView();
+            dgPartOrders = new System.Windows.Forms.DataGridView();
+            btnNewPart = new System.Windows.Forms.Button();
+            btnSave = new System.Windows.Forms.Button();
+            tabPartDetail = new System.Windows.Forms.TabControl();
+            tabResourceManager = new System.Windows.Forms.TabPage();
+            splitContainer1 = new System.Windows.Forms.SplitContainer();
+            panel2 = new System.Windows.Forms.Panel();
+            propertyGrid1 = new System.Windows.Forms.PropertyGrid();
+            toolStrip1 = new System.Windows.Forms.ToolStrip();
+            toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            toolStripButton2 = new System.Windows.Forms.ToolStripButton();
+            toolStripButton3 = new System.Windows.Forms.ToolStripButton();
+            toolStripButton4 = new System.Windows.Forms.ToolStripButton();
+            toolStripButton5 = new System.Windows.Forms.ToolStripButton();
+            toolStripButton6 = new System.Windows.Forms.ToolStripButton();
+            tabOrderHistory = new System.Windows.Forms.TabPage();
+            btnShowAll = new System.Windows.Forms.Button();
+            tsResources = new System.Windows.Forms.ToolStrip();
+            tsbCollapsePanel = new System.Windows.Forms.ToolStripButton();
+            btnPrintLabel = new System.Windows.Forms.Button();
+            spcPartsManager = new System.Windows.Forms.SplitContainer();
+            tabPartManager = new System.Windows.Forms.TabControl();
+            tabPartsManager = new System.Windows.Forms.TabPage();
+            tabStockTransactions = new System.Windows.Forms.TabPage();
+            splitContainer2 = new System.Windows.Forms.SplitContainer();
+            dgvStockParts = new System.Windows.Forms.DataGridView();
+            toolStrip2 = new System.Windows.Forms.ToolStrip();
+            toolStripComboBox1 = new System.Windows.Forms.ToolStripComboBox();
+            toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
+            spcTransactionDetails = new System.Windows.Forms.SplitContainer();
+            dgTransactionsGrid = new System.Windows.Forms.DataGridView();
+            tsTransactions = new System.Windows.Forms.ToolStrip();
+            tsbReceipts = new System.Windows.Forms.ToolStripButton();
+            tsbAudits = new System.Windows.Forms.ToolStripButton();
+            tsbPulls = new System.Windows.Forms.ToolStripButton();
+            tsbAll = new System.Windows.Forms.ToolStripButton();
+            tsbRemoveSelected = new System.Windows.Forms.ToolStripButton();
+            toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            tsbEditSelected = new System.Windows.Forms.ToolStripButton();
+            btnPullStock = new System.Windows.Forms.Button();
+            btnRollup = new System.Windows.Forms.Button();
+            button1 = new System.Windows.Forms.Button();
+            label1 = new System.Windows.Forms.Label();
+            txtStockLevel = new System.Windows.Forms.TextBox();
+            tabLocations = new System.Windows.Forms.TabPage();
+            spcLocations = new System.Windows.Forms.SplitContainer();
+            dgLocations = new System.Windows.Forms.DataGridView();
+            tsLocationMenu = new System.Windows.Forms.ToolStrip();
+            tsbNew = new System.Windows.Forms.ToolStripButton();
+            tsbEdit = new System.Windows.Forms.ToolStripButton();
+            tsbFilter = new System.Windows.Forms.ToolStripButton();
+            toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            txtAreaFilter = new System.Windows.Forms.ToolStripTextBox();
+            tsLocationPartsToolBar = new System.Windows.Forms.ToolStrip();
+            tsbSaveLocationParts = new System.Windows.Forms.ToolStripButton();
+            dgLocationParts = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)dgPartsSearch).BeginInit();
+            panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgResources).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgPartOrders).BeginInit();
+            tabPartDetail.SuspendLayout();
+            tabResourceManager.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
+            splitContainer1.Panel1.SuspendLayout();
+            splitContainer1.Panel2.SuspendLayout();
+            splitContainer1.SuspendLayout();
+            panel2.SuspendLayout();
+            toolStrip1.SuspendLayout();
+            tabOrderHistory.SuspendLayout();
+            tsResources.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)spcPartsManager).BeginInit();
+            spcPartsManager.Panel1.SuspendLayout();
+            spcPartsManager.Panel2.SuspendLayout();
+            spcPartsManager.SuspendLayout();
+            tabPartManager.SuspendLayout();
+            tabPartsManager.SuspendLayout();
+            tabStockTransactions.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)splitContainer2).BeginInit();
+            splitContainer2.Panel1.SuspendLayout();
+            splitContainer2.Panel2.SuspendLayout();
+            splitContainer2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvStockParts).BeginInit();
+            toolStrip2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)spcTransactionDetails).BeginInit();
+            spcTransactionDetails.Panel1.SuspendLayout();
+            spcTransactionDetails.Panel2.SuspendLayout();
+            spcTransactionDetails.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgTransactionsGrid).BeginInit();
+            tsTransactions.SuspendLayout();
+            tabLocations.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)spcLocations).BeginInit();
+            spcLocations.Panel1.SuspendLayout();
+            spcLocations.Panel2.SuspendLayout();
+            spcLocations.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgLocations).BeginInit();
+            tsLocationMenu.SuspendLayout();
+            tsLocationPartsToolBar.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgLocationParts).BeginInit();
+            SuspendLayout();
             // 
             // txtSearch
             // 
-            this.txtSearch.Location = new System.Drawing.Point(6, 6);
-            this.txtSearch.Name = "txtSearch";
-            this.txtSearch.PlaceholderText = "Enter Search ....";
-            this.txtSearch.Size = new System.Drawing.Size(173, 23);
-            this.txtSearch.TabIndex = 1;
-            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
-            this.txtSearch.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.txtSearch_MouseDoubleClick);
+            txtSearch.Location = new System.Drawing.Point(6, 6);
+            txtSearch.Name = "txtSearch";
+            txtSearch.PlaceholderText = "Enter Search ....";
+            txtSearch.Size = new System.Drawing.Size(173, 23);
+            txtSearch.TabIndex = 1;
+            txtSearch.TextChanged += txtSearch_TextChanged;
+            txtSearch.MouseDoubleClick += txtSearch_MouseDoubleClick;
             // 
             // dgPartsSearch
             // 
-            this.dgPartsSearch.AllowUserToAddRows = false;
-            this.dgPartsSearch.AllowUserToDeleteRows = false;
-            this.dgPartsSearch.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgPartsSearch.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgPartsSearch.Location = new System.Drawing.Point(6, 6);
-            this.dgPartsSearch.Name = "dgPartsSearch";
-            this.dgPartsSearch.ReadOnly = true;
-            this.dgPartsSearch.RowTemplate.Height = 25;
-            this.dgPartsSearch.Size = new System.Drawing.Size(833, 531);
-            this.dgPartsSearch.TabIndex = 9;
-            this.dgPartsSearch.VirtualMode = true;
-            this.dgPartsSearch.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgPartsSearch_CellMouseDoubleClick);
-            this.dgPartsSearch.SelectionChanged += new System.EventHandler(this.dgAttachments_SelectionChanged);
+            dgPartsSearch.AllowUserToAddRows = false;
+            dgPartsSearch.AllowUserToDeleteRows = false;
+            dgPartsSearch.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgPartsSearch.Dock = System.Windows.Forms.DockStyle.Fill;
+            dgPartsSearch.Location = new System.Drawing.Point(6, 6);
+            dgPartsSearch.Name = "dgPartsSearch";
+            dgPartsSearch.ReadOnly = true;
+            dgPartsSearch.RowTemplate.Height = 25;
+            dgPartsSearch.Size = new System.Drawing.Size(833, 531);
+            dgPartsSearch.TabIndex = 9;
+            dgPartsSearch.VirtualMode = true;
+            dgPartsSearch.CellMouseDoubleClick += dgPartsSearch_CellMouseDoubleClick;
+            dgPartsSearch.SelectionChanged += dgAttachments_SelectionChanged;
             // 
             // panel1
             // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.btnSearch);
-            this.panel1.Controls.Add(this.txtSecondTerm);
-            this.panel1.Controls.Add(this.txtThirdTerm);
-            this.panel1.Controls.Add(this.btnOpenPart);
-            this.panel1.Controls.Add(this.txtPartIDLookup);
-            this.panel1.Controls.Add(this.ckbUseManufacturer);
-            this.panel1.Controls.Add(this.cboManu);
-            this.panel1.Controls.Add(this.txtSearch);
-            this.panel1.Location = new System.Drawing.Point(10, 18);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1298, 45);
-            this.panel1.TabIndex = 11;
+            panel1.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            panel1.Controls.Add(btnSearch);
+            panel1.Controls.Add(txtSecondTerm);
+            panel1.Controls.Add(txtThirdTerm);
+            panel1.Controls.Add(btnOpenPart);
+            panel1.Controls.Add(txtPartIDLookup);
+            panel1.Controls.Add(ckbUseManufacturer);
+            panel1.Controls.Add(cboManu);
+            panel1.Controls.Add(txtSearch);
+            panel1.Location = new System.Drawing.Point(10, 18);
+            panel1.Name = "panel1";
+            panel1.Size = new System.Drawing.Size(1298, 45);
+            panel1.TabIndex = 11;
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(417, 6);
-            this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(91, 23);
-            this.btnSearch.TabIndex = 19;
-            this.btnSearch.Text = "Search";
-            this.btnSearch.UseVisualStyleBackColor = true;
-            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            btnSearch.Location = new System.Drawing.Point(417, 6);
+            btnSearch.Name = "btnSearch";
+            btnSearch.Size = new System.Drawing.Size(91, 23);
+            btnSearch.TabIndex = 19;
+            btnSearch.Text = "Search";
+            btnSearch.UseVisualStyleBackColor = true;
+            btnSearch.Click += btnSearch_Click;
             // 
             // txtSecondTerm
             // 
-            this.txtSecondTerm.Location = new System.Drawing.Point(199, 6);
-            this.txtSecondTerm.Name = "txtSecondTerm";
-            this.txtSecondTerm.Size = new System.Drawing.Size(100, 23);
-            this.txtSecondTerm.TabIndex = 2;
+            txtSecondTerm.Location = new System.Drawing.Point(199, 6);
+            txtSecondTerm.Name = "txtSecondTerm";
+            txtSecondTerm.Size = new System.Drawing.Size(100, 23);
+            txtSecondTerm.TabIndex = 2;
             // 
             // txtThirdTerm
             // 
-            this.txtThirdTerm.Location = new System.Drawing.Point(306, 6);
-            this.txtThirdTerm.Name = "txtThirdTerm";
-            this.txtThirdTerm.Size = new System.Drawing.Size(100, 23);
-            this.txtThirdTerm.TabIndex = 3;
+            txtThirdTerm.Location = new System.Drawing.Point(306, 6);
+            txtThirdTerm.Name = "txtThirdTerm";
+            txtThirdTerm.Size = new System.Drawing.Size(100, 23);
+            txtThirdTerm.TabIndex = 3;
             // 
             // btnOpenPart
             // 
-            this.btnOpenPart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnOpenPart.FlatAppearance.BorderColor = System.Drawing.Color.Red;
-            this.btnOpenPart.FlatAppearance.BorderSize = 2;
-            this.btnOpenPart.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnOpenPart.Location = new System.Drawing.Point(1117, 5);
-            this.btnOpenPart.Name = "btnOpenPart";
-            this.btnOpenPart.Size = new System.Drawing.Size(65, 25);
-            this.btnOpenPart.TabIndex = 17;
-            this.btnOpenPart.Text = "PartID";
-            this.btnOpenPart.UseVisualStyleBackColor = true;
-            this.btnOpenPart.Click += new System.EventHandler(this.button1_Click);
-            this.btnOpenPart.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.btnOpenPart_KeyPress);
+            btnOpenPart.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
+            btnOpenPart.FlatAppearance.BorderColor = System.Drawing.Color.Red;
+            btnOpenPart.FlatAppearance.BorderSize = 2;
+            btnOpenPart.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            btnOpenPart.Location = new System.Drawing.Point(1117, 5);
+            btnOpenPart.Name = "btnOpenPart";
+            btnOpenPart.Size = new System.Drawing.Size(65, 25);
+            btnOpenPart.TabIndex = 17;
+            btnOpenPart.Text = "PartID";
+            btnOpenPart.UseVisualStyleBackColor = true;
+            btnOpenPart.Click += button1_Click;
+            btnOpenPart.KeyPress += btnOpenPart_KeyPress;
             // 
             // txtPartIDLookup
             // 
-            this.txtPartIDLookup.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtPartIDLookup.Location = new System.Drawing.Point(1205, 6);
-            this.txtPartIDLookup.Name = "txtPartIDLookup";
-            this.txtPartIDLookup.Size = new System.Drawing.Size(75, 23);
-            this.txtPartIDLookup.TabIndex = 16;
-            this.txtPartIDLookup.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            txtPartIDLookup.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
+            txtPartIDLookup.Location = new System.Drawing.Point(1205, 6);
+            txtPartIDLookup.Name = "txtPartIDLookup";
+            txtPartIDLookup.Size = new System.Drawing.Size(75, 23);
+            txtPartIDLookup.TabIndex = 16;
+            txtPartIDLookup.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // ckbUseManufacturer
             // 
-            this.ckbUseManufacturer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.ckbUseManufacturer.AutoSize = true;
-            this.ckbUseManufacturer.Location = new System.Drawing.Point(998, 8);
-            this.ckbUseManufacturer.Name = "ckbUseManufacturer";
-            this.ckbUseManufacturer.Size = new System.Drawing.Size(98, 19);
-            this.ckbUseManufacturer.TabIndex = 14;
-            this.ckbUseManufacturer.Text = "Manufacturer";
-            this.ckbUseManufacturer.UseVisualStyleBackColor = true;
-            this.ckbUseManufacturer.CheckedChanged += new System.EventHandler(this.ckbUseManufacturer_CheckedChanged);
+            ckbUseManufacturer.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
+            ckbUseManufacturer.AutoSize = true;
+            ckbUseManufacturer.Location = new System.Drawing.Point(998, 8);
+            ckbUseManufacturer.Name = "ckbUseManufacturer";
+            ckbUseManufacturer.Size = new System.Drawing.Size(98, 19);
+            ckbUseManufacturer.TabIndex = 14;
+            ckbUseManufacturer.Text = "Manufacturer";
+            ckbUseManufacturer.UseVisualStyleBackColor = true;
+            ckbUseManufacturer.CheckedChanged += ckbUseManufacturer_CheckedChanged;
             // 
             // cboManu
             // 
-            this.cboManu.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.cboManu.Enabled = false;
-            this.cboManu.FormattingEnabled = true;
-            this.cboManu.Location = new System.Drawing.Point(833, 5);
-            this.cboManu.Name = "cboManu";
-            this.cboManu.Size = new System.Drawing.Size(159, 23);
-            this.cboManu.TabIndex = 13;
-            this.cboManu.SelectedIndexChanged += new System.EventHandler(this.cboManu_SelectedIndexChanged);
+            cboManu.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
+            cboManu.Enabled = false;
+            cboManu.FormattingEnabled = true;
+            cboManu.Location = new System.Drawing.Point(833, 5);
+            cboManu.Name = "cboManu";
+            cboManu.Size = new System.Drawing.Size(159, 23);
+            cboManu.TabIndex = 13;
+            cboManu.SelectedIndexChanged += cboManu_SelectedIndexChanged;
             // 
             // dgResources
             // 
-            this.dgResources.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgResources.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgResources.Location = new System.Drawing.Point(6, 6);
-            this.dgResources.Name = "dgResources";
-            this.dgResources.RowTemplate.Height = 25;
-            this.dgResources.Size = new System.Drawing.Size(391, 255);
-            this.dgResources.TabIndex = 8;
-            this.dgResources.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgResources_CellMouseDoubleClick);
-            this.dgResources.SelectionChanged += new System.EventHandler(this.dgResources_SelectionChanged);
+            dgResources.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgResources.Dock = System.Windows.Forms.DockStyle.Fill;
+            dgResources.Location = new System.Drawing.Point(6, 6);
+            dgResources.Name = "dgResources";
+            dgResources.RowTemplate.Height = 25;
+            dgResources.Size = new System.Drawing.Size(391, 255);
+            dgResources.TabIndex = 8;
+            dgResources.CellMouseDoubleClick += dgResources_CellMouseDoubleClick;
+            dgResources.SelectionChanged += dgResources_SelectionChanged;
             // 
             // dgPartOrders
             // 
-            this.dgPartOrders.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgPartOrders.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgPartOrders.Location = new System.Drawing.Point(6, 6);
-            this.dgPartOrders.Name = "dgPartOrders";
-            this.dgPartOrders.RowTemplate.Height = 25;
-            this.dgPartOrders.Size = new System.Drawing.Size(397, 491);
-            this.dgPartOrders.TabIndex = 13;
-            this.dgPartOrders.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgPartOrders_CellMouseDoubleClick);
+            dgPartOrders.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgPartOrders.Dock = System.Windows.Forms.DockStyle.Fill;
+            dgPartOrders.Location = new System.Drawing.Point(6, 6);
+            dgPartOrders.Name = "dgPartOrders";
+            dgPartOrders.RowTemplate.Height = 25;
+            dgPartOrders.Size = new System.Drawing.Size(397, 491);
+            dgPartOrders.TabIndex = 13;
+            dgPartOrders.CellMouseDoubleClick += dgPartOrders_CellMouseDoubleClick;
             // 
             // btnNewPart
             // 
-            this.btnNewPart.AutoSize = true;
-            this.btnNewPart.FlatAppearance.BorderColor = System.Drawing.Color.Sienna;
-            this.btnNewPart.FlatAppearance.BorderSize = 2;
-            this.btnNewPart.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnNewPart.Location = new System.Drawing.Point(176, 70);
-            this.btnNewPart.Name = "btnNewPart";
-            this.btnNewPart.Size = new System.Drawing.Size(122, 29);
-            this.btnNewPart.TabIndex = 15;
-            this.btnNewPart.Text = "New Part";
-            this.btnNewPart.UseVisualStyleBackColor = true;
-            this.btnNewPart.Click += new System.EventHandler(this.btnNewPart_Click);
+            btnNewPart.AutoSize = true;
+            btnNewPart.FlatAppearance.BorderColor = System.Drawing.Color.Sienna;
+            btnNewPart.FlatAppearance.BorderSize = 2;
+            btnNewPart.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            btnNewPart.Location = new System.Drawing.Point(176, 70);
+            btnNewPart.Name = "btnNewPart";
+            btnNewPart.Size = new System.Drawing.Size(122, 29);
+            btnNewPart.TabIndex = 15;
+            btnNewPart.Text = "New Part";
+            btnNewPart.UseVisualStyleBackColor = true;
+            btnNewPart.Click += btnNewPart_Click;
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(10, 69);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(122, 32);
-            this.btnSave.TabIndex = 15;
-            this.btnSave.Text = "Save Changes";
-            this.btnSave.UseVisualStyleBackColor = true;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            btnSave.Location = new System.Drawing.Point(10, 69);
+            btnSave.Name = "btnSave";
+            btnSave.Size = new System.Drawing.Size(122, 32);
+            btnSave.TabIndex = 15;
+            btnSave.Text = "Save Changes";
+            btnSave.UseVisualStyleBackColor = true;
+            btnSave.Click += btnSave_Click;
             // 
             // tabPartDetail
             // 
-            this.tabPartDetail.Controls.Add(this.tabResourceManager);
-            this.tabPartDetail.Controls.Add(this.tabOrderHistory);
-            this.tabPartDetail.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabPartDetail.Location = new System.Drawing.Point(6, 6);
-            this.tabPartDetail.Name = "tabPartDetail";
-            this.tabPartDetail.SelectedIndex = 0;
-            this.tabPartDetail.Size = new System.Drawing.Size(417, 531);
-            this.tabPartDetail.TabIndex = 1;
+            tabPartDetail.Controls.Add(tabResourceManager);
+            tabPartDetail.Controls.Add(tabOrderHistory);
+            tabPartDetail.Dock = System.Windows.Forms.DockStyle.Fill;
+            tabPartDetail.Location = new System.Drawing.Point(6, 6);
+            tabPartDetail.Name = "tabPartDetail";
+            tabPartDetail.SelectedIndex = 0;
+            tabPartDetail.Size = new System.Drawing.Size(417, 531);
+            tabPartDetail.TabIndex = 1;
             // 
             // tabResourceManager
             // 
-            this.tabResourceManager.Controls.Add(this.splitContainer1);
-            this.tabResourceManager.Controls.Add(this.toolStrip1);
-            this.tabResourceManager.Location = new System.Drawing.Point(4, 24);
-            this.tabResourceManager.Name = "tabResourceManager";
-            this.tabResourceManager.Padding = new System.Windows.Forms.Padding(3);
-            this.tabResourceManager.Size = new System.Drawing.Size(409, 503);
-            this.tabResourceManager.TabIndex = 0;
-            this.tabResourceManager.Text = "Resource Manager";
-            this.tabResourceManager.UseVisualStyleBackColor = true;
+            tabResourceManager.Controls.Add(splitContainer1);
+            tabResourceManager.Controls.Add(toolStrip1);
+            tabResourceManager.Location = new System.Drawing.Point(4, 24);
+            tabResourceManager.Name = "tabResourceManager";
+            tabResourceManager.Padding = new System.Windows.Forms.Padding(3);
+            tabResourceManager.Size = new System.Drawing.Size(409, 503);
+            tabResourceManager.TabIndex = 0;
+            tabResourceManager.Text = "Resource Manager";
+            tabResourceManager.UseVisualStyleBackColor = true;
             // 
             // splitContainer1
             // 
-            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(3, 34);
-            this.splitContainer1.Name = "splitContainer1";
-            this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            splitContainer1.Location = new System.Drawing.Point(3, 34);
+            splitContainer1.Name = "splitContainer1";
+            splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.dgResources);
-            this.splitContainer1.Panel1.Padding = new System.Windows.Forms.Padding(6);
+            splitContainer1.Panel1.Controls.Add(dgResources);
+            splitContainer1.Panel1.Padding = new System.Windows.Forms.Padding(6);
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.panel2);
-            this.splitContainer1.Panel2.Padding = new System.Windows.Forms.Padding(6);
-            this.splitContainer1.Size = new System.Drawing.Size(403, 466);
-            this.splitContainer1.SplitterDistance = 267;
-            this.splitContainer1.TabIndex = 16;
+            splitContainer1.Panel2.Controls.Add(panel2);
+            splitContainer1.Panel2.Padding = new System.Windows.Forms.Padding(6);
+            splitContainer1.Size = new System.Drawing.Size(403, 466);
+            splitContainer1.SplitterDistance = 267;
+            splitContainer1.TabIndex = 16;
             // 
             // panel2
             // 
-            this.panel2.BackColor = System.Drawing.Color.Gainsboro;
-            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel2.Controls.Add(this.propertyGrid1);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(6, 6);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(391, 183);
-            this.panel2.TabIndex = 0;
+            panel2.BackColor = System.Drawing.Color.Gainsboro;
+            panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            panel2.Controls.Add(propertyGrid1);
+            panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            panel2.Location = new System.Drawing.Point(6, 6);
+            panel2.Name = "panel2";
+            panel2.Size = new System.Drawing.Size(391, 183);
+            panel2.TabIndex = 0;
             // 
             // propertyGrid1
             // 
-            this.propertyGrid1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.propertyGrid1.Location = new System.Drawing.Point(0, 0);
-            this.propertyGrid1.Name = "propertyGrid1";
-            this.propertyGrid1.Size = new System.Drawing.Size(389, 181);
-            this.propertyGrid1.TabIndex = 0;
+            propertyGrid1.Dock = System.Windows.Forms.DockStyle.Fill;
+            propertyGrid1.Location = new System.Drawing.Point(0, 0);
+            propertyGrid1.Name = "propertyGrid1";
+            propertyGrid1.Size = new System.Drawing.Size(389, 181);
+            propertyGrid1.TabIndex = 0;
             // 
             // toolStrip1
             // 
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripButton1,
-            this.toolStripButton2,
-            this.toolStripButton3,
-            this.toolStripButton4,
-            this.toolStripButton5,
-            this.toolStripButton6});
-            this.toolStrip1.Location = new System.Drawing.Point(3, 3);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(403, 31);
-            this.toolStrip1.TabIndex = 15;
-            this.toolStrip1.Text = "toolStrip1";
+            toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { toolStripButton1, toolStripButton2, toolStripButton3, toolStripButton4, toolStripButton5, toolStripButton6 });
+            toolStrip1.Location = new System.Drawing.Point(3, 3);
+            toolStrip1.Name = "toolStrip1";
+            toolStrip1.Size = new System.Drawing.Size(403, 31);
+            toolStrip1.TabIndex = 15;
+            toolStrip1.Text = "toolStrip1";
             // 
             // toolStripButton1
             // 
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton1.Image = global::Mosiac.UX.Properties.Resources.round_add_circle_outline_black_24dp1;
-            this.toolStripButton1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Padding = new System.Windows.Forms.Padding(0, 0, 4, 0);
-            this.toolStripButton1.Size = new System.Drawing.Size(32, 28);
-            this.toolStripButton1.Text = "tsbOpenResource";
-            this.toolStripButton1.Click += new System.EventHandler(this.btnNewResource_Click);
+            toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            toolStripButton1.Image = Properties.Resources.round_add_circle_outline_black_24dp1;
+            toolStripButton1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            toolStripButton1.Name = "toolStripButton1";
+            toolStripButton1.Padding = new System.Windows.Forms.Padding(0, 0, 4, 0);
+            toolStripButton1.Size = new System.Drawing.Size(32, 28);
+            toolStripButton1.Text = "tsbOpenResource";
+            toolStripButton1.Click += btnNewResource_Click;
             // 
             // toolStripButton2
             // 
-            this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton2.Image = global::Mosiac.UX.Properties.Resources.baseline_launch_black_24dp;
-            this.toolStripButton2.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Padding = new System.Windows.Forms.Padding(0, 0, 4, 0);
-            this.toolStripButton2.Size = new System.Drawing.Size(32, 28);
-            this.toolStripButton2.Text = "toolStripButton2";
-            this.toolStripButton2.Click += new System.EventHandler(this.btnOpenResource_Click);
+            toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            toolStripButton2.Image = Properties.Resources.baseline_launch_black_24dp;
+            toolStripButton2.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            toolStripButton2.Name = "toolStripButton2";
+            toolStripButton2.Padding = new System.Windows.Forms.Padding(0, 0, 4, 0);
+            toolStripButton2.Size = new System.Drawing.Size(32, 28);
+            toolStripButton2.Text = "toolStripButton2";
+            toolStripButton2.Click += btnOpenResource_Click;
             // 
             // toolStripButton3
             // 
-            this.toolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton3.Image = global::Mosiac.UX.Properties.Resources.baseline_get_app_black_24dp;
-            this.toolStripButton3.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton3.Name = "toolStripButton3";
-            this.toolStripButton3.Padding = new System.Windows.Forms.Padding(0, 0, 6, 0);
-            this.toolStripButton3.Size = new System.Drawing.Size(34, 28);
-            this.toolStripButton3.Text = "toolStripButton3";
-            this.toolStripButton3.Click += new System.EventHandler(this.btnOpenCache_Click);
+            toolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            toolStripButton3.Image = Properties.Resources.baseline_get_app_black_24dp;
+            toolStripButton3.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
+            toolStripButton3.Name = "toolStripButton3";
+            toolStripButton3.Padding = new System.Windows.Forms.Padding(0, 0, 6, 0);
+            toolStripButton3.Size = new System.Drawing.Size(34, 28);
+            toolStripButton3.Text = "toolStripButton3";
+            toolStripButton3.Click += btnOpenCache_Click;
             // 
             // toolStripButton4
             // 
-            this.toolStripButton4.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.toolStripButton4.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton4.Image = global::Mosiac.UX.Properties.Resources.baseline_clear_black_24dp;
-            this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton4.Name = "toolStripButton4";
-            this.toolStripButton4.Size = new System.Drawing.Size(23, 28);
-            this.toolStripButton4.Text = "toolStripButton4";
-            this.toolStripButton4.Click += new System.EventHandler(this.btnClearCache_Click);
+            toolStripButton4.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            toolStripButton4.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            toolStripButton4.Image = Properties.Resources.baseline_clear_black_24dp;
+            toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
+            toolStripButton4.Name = "toolStripButton4";
+            toolStripButton4.Size = new System.Drawing.Size(23, 28);
+            toolStripButton4.Text = "toolStripButton4";
+            toolStripButton4.Click += btnClearCache_Click;
             // 
             // toolStripButton5
             // 
-            this.toolStripButton5.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton5.Image = global::Mosiac.UX.Properties.Resources.outline_delete_black_24dp2;
-            this.toolStripButton5.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolStripButton5.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton5.Name = "toolStripButton5";
-            this.toolStripButton5.Size = new System.Drawing.Size(28, 28);
-            this.toolStripButton5.Text = "toolStripButton5";
-            this.toolStripButton5.Click += new System.EventHandler(this.btnDeleteResource_Click);
+            toolStripButton5.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            toolStripButton5.Image = Properties.Resources.outline_delete_black_24dp2;
+            toolStripButton5.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            toolStripButton5.ImageTransparentColor = System.Drawing.Color.Magenta;
+            toolStripButton5.Name = "toolStripButton5";
+            toolStripButton5.Size = new System.Drawing.Size(28, 28);
+            toolStripButton5.Text = "toolStripButton5";
+            toolStripButton5.Click += btnDeleteResource_Click;
             // 
             // toolStripButton6
             // 
-            this.toolStripButton6.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.toolStripButton6.BackColor = System.Drawing.Color.PapayaWhip;
-            this.toolStripButton6.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButton6.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton6.Image")));
-            this.toolStripButton6.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton6.Name = "toolStripButton6";
-            this.toolStripButton6.Size = new System.Drawing.Size(100, 28);
-            this.toolStripButton6.Text = "Update Resource";
-            this.toolStripButton6.Click += new System.EventHandler(this.button1_Click_1);
+            toolStripButton6.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            toolStripButton6.BackColor = System.Drawing.Color.PapayaWhip;
+            toolStripButton6.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            toolStripButton6.Image = (System.Drawing.Image)resources.GetObject("toolStripButton6.Image");
+            toolStripButton6.ImageTransparentColor = System.Drawing.Color.Magenta;
+            toolStripButton6.Name = "toolStripButton6";
+            toolStripButton6.Size = new System.Drawing.Size(100, 28);
+            toolStripButton6.Text = "Update Resource";
+            toolStripButton6.Click += button1_Click_1;
             // 
             // tabOrderHistory
             // 
-            this.tabOrderHistory.Controls.Add(this.dgPartOrders);
-            this.tabOrderHistory.Location = new System.Drawing.Point(4, 24);
-            this.tabOrderHistory.Name = "tabOrderHistory";
-            this.tabOrderHistory.Padding = new System.Windows.Forms.Padding(6);
-            this.tabOrderHistory.Size = new System.Drawing.Size(409, 503);
-            this.tabOrderHistory.TabIndex = 1;
-            this.tabOrderHistory.Text = "Part Order History";
-            this.tabOrderHistory.UseVisualStyleBackColor = true;
+            tabOrderHistory.Controls.Add(dgPartOrders);
+            tabOrderHistory.Location = new System.Drawing.Point(4, 24);
+            tabOrderHistory.Name = "tabOrderHistory";
+            tabOrderHistory.Padding = new System.Windows.Forms.Padding(6);
+            tabOrderHistory.Size = new System.Drawing.Size(409, 503);
+            tabOrderHistory.TabIndex = 1;
+            tabOrderHistory.Text = "Part Order History";
+            tabOrderHistory.UseVisualStyleBackColor = true;
             // 
             // btnShowAll
             // 
-            this.btnShowAll.AutoSize = true;
-            this.btnShowAll.FlatAppearance.BorderColor = System.Drawing.Color.Sienna;
-            this.btnShowAll.FlatAppearance.BorderSize = 2;
-            this.btnShowAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnShowAll.Location = new System.Drawing.Point(304, 70);
-            this.btnShowAll.Name = "btnShowAll";
-            this.btnShowAll.Size = new System.Drawing.Size(110, 29);
-            this.btnShowAll.TabIndex = 17;
-            this.btnShowAll.Text = "Show All";
-            this.btnShowAll.UseVisualStyleBackColor = true;
-            this.btnShowAll.Click += new System.EventHandler(this.btnShowAll_Click);
+            btnShowAll.AutoSize = true;
+            btnShowAll.FlatAppearance.BorderColor = System.Drawing.Color.Sienna;
+            btnShowAll.FlatAppearance.BorderSize = 2;
+            btnShowAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            btnShowAll.Location = new System.Drawing.Point(304, 70);
+            btnShowAll.Name = "btnShowAll";
+            btnShowAll.Size = new System.Drawing.Size(110, 29);
+            btnShowAll.TabIndex = 17;
+            btnShowAll.Text = "Show All";
+            btnShowAll.UseVisualStyleBackColor = true;
+            btnShowAll.Click += btnShowAll_Click;
             // 
             // tsResources
             // 
-            this.tsResources.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.tsResources.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsbCollapsePanel});
-            this.tsResources.Location = new System.Drawing.Point(10, 697);
-            this.tsResources.Margin = new System.Windows.Forms.Padding(3);
-            this.tsResources.Name = "tsResources";
-            this.tsResources.Size = new System.Drawing.Size(1301, 25);
-            this.tsResources.TabIndex = 18;
-            this.tsResources.Text = "toolStrip1";
-            this.tsResources.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.tsResources_ItemClicked_1);
+            tsResources.Dock = System.Windows.Forms.DockStyle.Bottom;
+            tsResources.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { tsbCollapsePanel });
+            tsResources.Location = new System.Drawing.Point(10, 697);
+            tsResources.Margin = new System.Windows.Forms.Padding(3);
+            tsResources.Name = "tsResources";
+            tsResources.Size = new System.Drawing.Size(1301, 25);
+            tsResources.TabIndex = 18;
+            tsResources.Text = "toolStrip1";
+            tsResources.ItemClicked += tsResources_ItemClicked_1;
             // 
             // tsbCollapsePanel
             // 
-            this.tsbCollapsePanel.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.tsbCollapsePanel.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbCollapsePanel.Image = global::Mosiac.UX.Properties.Resources.round_keyboard_arrow_down_black_24dp;
-            this.tsbCollapsePanel.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbCollapsePanel.Name = "tsbCollapsePanel";
-            this.tsbCollapsePanel.Size = new System.Drawing.Size(23, 22);
-            this.tsbCollapsePanel.Text = "toolStripButton3";
+            tsbCollapsePanel.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            tsbCollapsePanel.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            tsbCollapsePanel.Image = Properties.Resources.round_keyboard_arrow_down_black_24dp;
+            tsbCollapsePanel.ImageTransparentColor = System.Drawing.Color.Magenta;
+            tsbCollapsePanel.Name = "tsbCollapsePanel";
+            tsbCollapsePanel.Size = new System.Drawing.Size(23, 22);
+            tsbCollapsePanel.Text = "toolStripButton3";
             // 
             // btnPrintLabel
             // 
-            this.btnPrintLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnPrintLabel.AutoSize = true;
-            this.btnPrintLabel.FlatAppearance.BorderColor = System.Drawing.Color.Sienna;
-            this.btnPrintLabel.FlatAppearance.BorderSize = 2;
-            this.btnPrintLabel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPrintLabel.Location = new System.Drawing.Point(1169, 68);
-            this.btnPrintLabel.Name = "btnPrintLabel";
-            this.btnPrintLabel.Size = new System.Drawing.Size(139, 29);
-            this.btnPrintLabel.TabIndex = 17;
-            this.btnPrintLabel.Text = "Print Label";
-            this.btnPrintLabel.UseVisualStyleBackColor = true;
-            this.btnPrintLabel.Click += new System.EventHandler(this.btnPrintLabel_Click);
+            btnPrintLabel.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
+            btnPrintLabel.AutoSize = true;
+            btnPrintLabel.FlatAppearance.BorderColor = System.Drawing.Color.Sienna;
+            btnPrintLabel.FlatAppearance.BorderSize = 2;
+            btnPrintLabel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            btnPrintLabel.Location = new System.Drawing.Point(1169, 68);
+            btnPrintLabel.Name = "btnPrintLabel";
+            btnPrintLabel.Size = new System.Drawing.Size(139, 29);
+            btnPrintLabel.TabIndex = 17;
+            btnPrintLabel.Text = "Print Label";
+            btnPrintLabel.UseVisualStyleBackColor = true;
+            btnPrintLabel.Click += btnPrintLabel_Click;
             // 
             // spcPartsManager
             // 
-            this.spcPartsManager.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.spcPartsManager.Location = new System.Drawing.Point(6, 6);
-            this.spcPartsManager.Name = "spcPartsManager";
+            spcPartsManager.Dock = System.Windows.Forms.DockStyle.Fill;
+            spcPartsManager.Location = new System.Drawing.Point(6, 6);
+            spcPartsManager.Name = "spcPartsManager";
             // 
             // spcPartsManager.Panel1
             // 
-            this.spcPartsManager.Panel1.Controls.Add(this.dgPartsSearch);
-            this.spcPartsManager.Panel1.Padding = new System.Windows.Forms.Padding(6);
-            this.spcPartsManager.Panel1MinSize = 300;
+            spcPartsManager.Panel1.Controls.Add(dgPartsSearch);
+            spcPartsManager.Panel1.Padding = new System.Windows.Forms.Padding(6);
+            spcPartsManager.Panel1MinSize = 300;
             // 
             // spcPartsManager.Panel2
             // 
-            this.spcPartsManager.Panel2.Controls.Add(this.tabPartDetail);
-            this.spcPartsManager.Panel2.Padding = new System.Windows.Forms.Padding(6);
-            this.spcPartsManager.Size = new System.Drawing.Size(1278, 543);
-            this.spcPartsManager.SplitterDistance = 845;
-            this.spcPartsManager.TabIndex = 19;
+            spcPartsManager.Panel2.Controls.Add(tabPartDetail);
+            spcPartsManager.Panel2.Padding = new System.Windows.Forms.Padding(6);
+            spcPartsManager.Size = new System.Drawing.Size(1278, 543);
+            spcPartsManager.SplitterDistance = 845;
+            spcPartsManager.TabIndex = 19;
             // 
             // tabPartManager
             // 
-            this.tabPartManager.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tabPartManager.Controls.Add(this.tabPartsManager);
-            this.tabPartManager.Controls.Add(this.tabStockTransactions);
-            this.tabPartManager.Controls.Add(this.tabLocations);
-            this.tabPartManager.Location = new System.Drawing.Point(10, 107);
-            this.tabPartManager.Name = "tabPartManager";
-            this.tabPartManager.SelectedIndex = 0;
-            this.tabPartManager.Size = new System.Drawing.Size(1298, 583);
-            this.tabPartManager.TabIndex = 20;
-            this.tabPartManager.SelectedIndexChanged += new System.EventHandler(this.tabPartManager_SelectedIndexChanged);
+            tabPartManager.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            tabPartManager.Controls.Add(tabPartsManager);
+            tabPartManager.Controls.Add(tabStockTransactions);
+            tabPartManager.Controls.Add(tabLocations);
+            tabPartManager.Location = new System.Drawing.Point(10, 107);
+            tabPartManager.Name = "tabPartManager";
+            tabPartManager.SelectedIndex = 0;
+            tabPartManager.Size = new System.Drawing.Size(1298, 583);
+            tabPartManager.TabIndex = 20;
+            tabPartManager.SelectedIndexChanged += tabPartManager_SelectedIndexChanged;
             // 
             // tabPartsManager
             // 
-            this.tabPartsManager.Controls.Add(this.spcPartsManager);
-            this.tabPartsManager.Location = new System.Drawing.Point(4, 24);
-            this.tabPartsManager.Name = "tabPartsManager";
-            this.tabPartsManager.Padding = new System.Windows.Forms.Padding(6);
-            this.tabPartsManager.Size = new System.Drawing.Size(1290, 555);
-            this.tabPartsManager.TabIndex = 0;
-            this.tabPartsManager.Text = "Part Manager";
-            this.tabPartsManager.UseVisualStyleBackColor = true;
+            tabPartsManager.Controls.Add(spcPartsManager);
+            tabPartsManager.Location = new System.Drawing.Point(4, 24);
+            tabPartsManager.Name = "tabPartsManager";
+            tabPartsManager.Padding = new System.Windows.Forms.Padding(6);
+            tabPartsManager.Size = new System.Drawing.Size(1290, 555);
+            tabPartsManager.TabIndex = 0;
+            tabPartsManager.Text = "Part Manager";
+            tabPartsManager.UseVisualStyleBackColor = true;
             // 
             // tabStockTransactions
             // 
-            this.tabStockTransactions.Controls.Add(this.splitContainer2);
-            this.tabStockTransactions.Location = new System.Drawing.Point(4, 24);
-            this.tabStockTransactions.Name = "tabStockTransactions";
-            this.tabStockTransactions.Padding = new System.Windows.Forms.Padding(6);
-            this.tabStockTransactions.Size = new System.Drawing.Size(1290, 555);
-            this.tabStockTransactions.TabIndex = 1;
-            this.tabStockTransactions.Text = "Stock Transactions";
-            this.tabStockTransactions.UseVisualStyleBackColor = true;
+            tabStockTransactions.Controls.Add(splitContainer2);
+            tabStockTransactions.Location = new System.Drawing.Point(4, 24);
+            tabStockTransactions.Name = "tabStockTransactions";
+            tabStockTransactions.Padding = new System.Windows.Forms.Padding(6);
+            tabStockTransactions.Size = new System.Drawing.Size(1290, 555);
+            tabStockTransactions.TabIndex = 1;
+            tabStockTransactions.Text = "Stock Transactions";
+            tabStockTransactions.UseVisualStyleBackColor = true;
             // 
             // splitContainer2
             // 
-            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer2.Location = new System.Drawing.Point(6, 6);
-            this.splitContainer2.Name = "splitContainer2";
+            splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
+            splitContainer2.Location = new System.Drawing.Point(6, 6);
+            splitContainer2.Name = "splitContainer2";
             // 
             // splitContainer2.Panel1
             // 
-            this.splitContainer2.Panel1.Controls.Add(this.dgvStockParts);
-            this.splitContainer2.Panel1.Controls.Add(this.toolStrip2);
-            this.splitContainer2.Panel1.Padding = new System.Windows.Forms.Padding(6);
+            splitContainer2.Panel1.Controls.Add(dgvStockParts);
+            splitContainer2.Panel1.Controls.Add(toolStrip2);
+            splitContainer2.Panel1.Padding = new System.Windows.Forms.Padding(6);
             // 
             // splitContainer2.Panel2
             // 
-            this.splitContainer2.Panel2.Controls.Add(this.spcTransactionDetails);
-            this.splitContainer2.Panel2.Padding = new System.Windows.Forms.Padding(6);
-            this.splitContainer2.Size = new System.Drawing.Size(1278, 543);
-            this.splitContainer2.SplitterDistance = 437;
-            this.splitContainer2.TabIndex = 0;
+            splitContainer2.Panel2.Controls.Add(spcTransactionDetails);
+            splitContainer2.Panel2.Padding = new System.Windows.Forms.Padding(6);
+            splitContainer2.Size = new System.Drawing.Size(1278, 543);
+            splitContainer2.SplitterDistance = 437;
+            splitContainer2.TabIndex = 0;
             // 
             // dgvStockParts
             // 
-            this.dgvStockParts.AllowUserToAddRows = false;
-            this.dgvStockParts.AllowUserToDeleteRows = false;
-            this.dgvStockParts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvStockParts.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvStockParts.Location = new System.Drawing.Point(6, 31);
-            this.dgvStockParts.Margin = new System.Windows.Forms.Padding(3, 12, 3, 3);
-            this.dgvStockParts.Name = "dgvStockParts";
-            this.dgvStockParts.ReadOnly = true;
-            this.dgvStockParts.RowTemplate.Height = 25;
-            this.dgvStockParts.Size = new System.Drawing.Size(425, 506);
-            this.dgvStockParts.TabIndex = 0;
-            this.dgvStockParts.SelectionChanged += new System.EventHandler(this.dgvStockParts_SelectionChanged);
+            dgvStockParts.AllowUserToAddRows = false;
+            dgvStockParts.AllowUserToDeleteRows = false;
+            dgvStockParts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvStockParts.Dock = System.Windows.Forms.DockStyle.Fill;
+            dgvStockParts.Location = new System.Drawing.Point(6, 31);
+            dgvStockParts.Margin = new System.Windows.Forms.Padding(3, 12, 3, 3);
+            dgvStockParts.Name = "dgvStockParts";
+            dgvStockParts.ReadOnly = true;
+            dgvStockParts.RowTemplate.Height = 25;
+            dgvStockParts.Size = new System.Drawing.Size(425, 506);
+            dgvStockParts.TabIndex = 0;
+            dgvStockParts.SelectionChanged += dgvStockParts_SelectionChanged;
             // 
             // toolStrip2
             // 
-            this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripComboBox1,
-            this.toolStripLabel1});
-            this.toolStrip2.Location = new System.Drawing.Point(6, 6);
-            this.toolStrip2.Margin = new System.Windows.Forms.Padding(0, 0, 0, 12);
-            this.toolStrip2.Name = "toolStrip2";
-            this.toolStrip2.Size = new System.Drawing.Size(425, 25);
-            this.toolStrip2.TabIndex = 1;
-            this.toolStrip2.Text = "toolStrip2";
+            toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { toolStripComboBox1, toolStripLabel1 });
+            toolStrip2.Location = new System.Drawing.Point(6, 6);
+            toolStrip2.Margin = new System.Windows.Forms.Padding(0, 0, 0, 12);
+            toolStrip2.Name = "toolStrip2";
+            toolStrip2.Size = new System.Drawing.Size(425, 25);
+            toolStrip2.TabIndex = 1;
+            toolStrip2.Text = "toolStrip2";
             // 
             // toolStripComboBox1
             // 
-            this.toolStripComboBox1.Name = "toolStripComboBox1";
-            this.toolStripComboBox1.Size = new System.Drawing.Size(121, 25);
+            toolStripComboBox1.Name = "toolStripComboBox1";
+            toolStripComboBox1.Size = new System.Drawing.Size(121, 25);
             // 
             // toolStripLabel1
             // 
-            this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(58, 22);
-            this.toolStripLabel1.Text = "Locations";
+            toolStripLabel1.Name = "toolStripLabel1";
+            toolStripLabel1.Size = new System.Drawing.Size(58, 22);
+            toolStripLabel1.Text = "Locations";
             // 
             // spcTransactionDetails
             // 
-            this.spcTransactionDetails.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.spcTransactionDetails.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
-            this.spcTransactionDetails.Location = new System.Drawing.Point(6, 6);
-            this.spcTransactionDetails.Name = "spcTransactionDetails";
-            this.spcTransactionDetails.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            spcTransactionDetails.Dock = System.Windows.Forms.DockStyle.Fill;
+            spcTransactionDetails.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
+            spcTransactionDetails.Location = new System.Drawing.Point(6, 6);
+            spcTransactionDetails.Name = "spcTransactionDetails";
+            spcTransactionDetails.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
             // spcTransactionDetails.Panel1
             // 
-            this.spcTransactionDetails.Panel1.Controls.Add(this.dgTransactionsGrid);
-            this.spcTransactionDetails.Panel1.Controls.Add(this.tsTransactions);
-            this.spcTransactionDetails.Panel1.Padding = new System.Windows.Forms.Padding(6);
+            spcTransactionDetails.Panel1.Controls.Add(dgTransactionsGrid);
+            spcTransactionDetails.Panel1.Controls.Add(tsTransactions);
+            spcTransactionDetails.Panel1.Padding = new System.Windows.Forms.Padding(6);
             // 
             // spcTransactionDetails.Panel2
             // 
-            this.spcTransactionDetails.Panel2.Controls.Add(this.btnPullStock);
-            this.spcTransactionDetails.Panel2.Controls.Add(this.btnRollup);
-            this.spcTransactionDetails.Panel2.Controls.Add(this.button1);
-            this.spcTransactionDetails.Panel2.Controls.Add(this.label1);
-            this.spcTransactionDetails.Panel2.Controls.Add(this.txtStockLevel);
-            this.spcTransactionDetails.Size = new System.Drawing.Size(825, 531);
-            this.spcTransactionDetails.SplitterDistance = 437;
-            this.spcTransactionDetails.TabIndex = 0;
+            spcTransactionDetails.Panel2.Controls.Add(btnPullStock);
+            spcTransactionDetails.Panel2.Controls.Add(btnRollup);
+            spcTransactionDetails.Panel2.Controls.Add(button1);
+            spcTransactionDetails.Panel2.Controls.Add(label1);
+            spcTransactionDetails.Panel2.Controls.Add(txtStockLevel);
+            spcTransactionDetails.Size = new System.Drawing.Size(825, 531);
+            spcTransactionDetails.SplitterDistance = 437;
+            spcTransactionDetails.TabIndex = 0;
             // 
             // dgTransactionsGrid
             // 
-            this.dgTransactionsGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgTransactionsGrid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgTransactionsGrid.Location = new System.Drawing.Point(6, 37);
-            this.dgTransactionsGrid.Margin = new System.Windows.Forms.Padding(3, 6, 3, 3);
-            this.dgTransactionsGrid.Name = "dgTransactionsGrid";
-            this.dgTransactionsGrid.RowTemplate.Height = 25;
-            this.dgTransactionsGrid.Size = new System.Drawing.Size(813, 394);
-            this.dgTransactionsGrid.TabIndex = 1;
-            this.dgTransactionsGrid.RowStateChanged += new System.Windows.Forms.DataGridViewRowStateChangedEventHandler(this.dgTransactionsGrid_RowStateChanged);
-            this.dgTransactionsGrid.SelectionChanged += new System.EventHandler(this.dgTransactionsGrid_SelectionChanged);
+            dgTransactionsGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgTransactionsGrid.Dock = System.Windows.Forms.DockStyle.Fill;
+            dgTransactionsGrid.Location = new System.Drawing.Point(6, 37);
+            dgTransactionsGrid.Margin = new System.Windows.Forms.Padding(3, 6, 3, 3);
+            dgTransactionsGrid.Name = "dgTransactionsGrid";
+            dgTransactionsGrid.RowTemplate.Height = 25;
+            dgTransactionsGrid.Size = new System.Drawing.Size(813, 394);
+            dgTransactionsGrid.TabIndex = 1;
+            dgTransactionsGrid.RowStateChanged += dgTransactionsGrid_RowStateChanged;
+            dgTransactionsGrid.SelectionChanged += dgTransactionsGrid_SelectionChanged;
             // 
             // tsTransactions
             // 
-            this.tsTransactions.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsbReceipts,
-            this.tsbAudits,
-            this.tsbPulls,
-            this.tsbAll,
-            this.tsbRemoveSelected,
-            this.toolStripSeparator1,
-            this.tsbEditSelected});
-            this.tsTransactions.Location = new System.Drawing.Point(6, 6);
-            this.tsTransactions.Margin = new System.Windows.Forms.Padding(0, 0, 0, 6);
-            this.tsTransactions.Name = "tsTransactions";
-            this.tsTransactions.Padding = new System.Windows.Forms.Padding(0, 0, 1, 8);
-            this.tsTransactions.Size = new System.Drawing.Size(813, 31);
-            this.tsTransactions.TabIndex = 0;
-            this.tsTransactions.Text = "toolStrip2";
-            this.tsTransactions.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.tsTransactions_ItemClicked);
+            tsTransactions.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { tsbReceipts, tsbAudits, tsbPulls, tsbAll, tsbRemoveSelected, toolStripSeparator1, tsbEditSelected });
+            tsTransactions.Location = new System.Drawing.Point(6, 6);
+            tsTransactions.Margin = new System.Windows.Forms.Padding(0, 0, 0, 6);
+            tsTransactions.Name = "tsTransactions";
+            tsTransactions.Padding = new System.Windows.Forms.Padding(0, 0, 1, 8);
+            tsTransactions.Size = new System.Drawing.Size(813, 31);
+            tsTransactions.TabIndex = 0;
+            tsTransactions.Text = "toolStrip2";
+            tsTransactions.ItemClicked += tsTransactions_ItemClicked;
             // 
             // tsbReceipts
             // 
-            this.tsbReceipts.AutoSize = false;
-            this.tsbReceipts.BackColor = System.Drawing.Color.Gainsboro;
-            this.tsbReceipts.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.tsbReceipts.Image = ((System.Drawing.Image)(resources.GetObject("tsbReceipts.Image")));
-            this.tsbReceipts.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbReceipts.Margin = new System.Windows.Forms.Padding(4, 1, 4, 2);
-            this.tsbReceipts.Name = "tsbReceipts";
-            this.tsbReceipts.Padding = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            this.tsbReceipts.Size = new System.Drawing.Size(67, 19);
-            this.tsbReceipts.Text = "Receipts";
+            tsbReceipts.AutoSize = false;
+            tsbReceipts.BackColor = System.Drawing.Color.Gainsboro;
+            tsbReceipts.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            tsbReceipts.Image = (System.Drawing.Image)resources.GetObject("tsbReceipts.Image");
+            tsbReceipts.ImageTransparentColor = System.Drawing.Color.Magenta;
+            tsbReceipts.Margin = new System.Windows.Forms.Padding(4, 1, 4, 2);
+            tsbReceipts.Name = "tsbReceipts";
+            tsbReceipts.Padding = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            tsbReceipts.Size = new System.Drawing.Size(67, 19);
+            tsbReceipts.Text = "Receipts";
             // 
             // tsbAudits
             // 
-            this.tsbAudits.AutoSize = false;
-            this.tsbAudits.BackColor = System.Drawing.Color.Gainsboro;
-            this.tsbAudits.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.tsbAudits.Image = ((System.Drawing.Image)(resources.GetObject("tsbAudits.Image")));
-            this.tsbAudits.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbAudits.Margin = new System.Windows.Forms.Padding(0, 1, 4, 2);
-            this.tsbAudits.Name = "tsbAudits";
-            this.tsbAudits.Padding = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            this.tsbAudits.Size = new System.Drawing.Size(90, 19);
-            this.tsbAudits.Text = "Adjustments";
+            tsbAudits.AutoSize = false;
+            tsbAudits.BackColor = System.Drawing.Color.Gainsboro;
+            tsbAudits.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            tsbAudits.Image = (System.Drawing.Image)resources.GetObject("tsbAudits.Image");
+            tsbAudits.ImageTransparentColor = System.Drawing.Color.Magenta;
+            tsbAudits.Margin = new System.Windows.Forms.Padding(0, 1, 4, 2);
+            tsbAudits.Name = "tsbAudits";
+            tsbAudits.Padding = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            tsbAudits.Size = new System.Drawing.Size(90, 19);
+            tsbAudits.Text = "Adjustments";
             // 
             // tsbPulls
             // 
-            this.tsbPulls.AutoSize = false;
-            this.tsbPulls.BackColor = System.Drawing.Color.Gainsboro;
-            this.tsbPulls.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.tsbPulls.Image = ((System.Drawing.Image)(resources.GetObject("tsbPulls.Image")));
-            this.tsbPulls.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbPulls.Margin = new System.Windows.Forms.Padding(0, 1, 4, 2);
-            this.tsbPulls.Name = "tsbPulls";
-            this.tsbPulls.Padding = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            this.tsbPulls.Size = new System.Drawing.Size(90, 19);
-            this.tsbPulls.Text = "Pull Stock";
+            tsbPulls.AutoSize = false;
+            tsbPulls.BackColor = System.Drawing.Color.Gainsboro;
+            tsbPulls.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            tsbPulls.Image = (System.Drawing.Image)resources.GetObject("tsbPulls.Image");
+            tsbPulls.ImageTransparentColor = System.Drawing.Color.Magenta;
+            tsbPulls.Margin = new System.Windows.Forms.Padding(0, 1, 4, 2);
+            tsbPulls.Name = "tsbPulls";
+            tsbPulls.Padding = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            tsbPulls.Size = new System.Drawing.Size(90, 19);
+            tsbPulls.Text = "Pull Stock";
             // 
             // tsbAll
             // 
-            this.tsbAll.AutoSize = false;
-            this.tsbAll.BackColor = System.Drawing.Color.Moccasin;
-            this.tsbAll.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.tsbAll.Image = ((System.Drawing.Image)(resources.GetObject("tsbAll.Image")));
-            this.tsbAll.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbAll.Name = "tsbAll";
-            this.tsbAll.Padding = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            this.tsbAll.Size = new System.Drawing.Size(60, 19);
-            this.tsbAll.Text = "All";
+            tsbAll.AutoSize = false;
+            tsbAll.BackColor = System.Drawing.Color.Moccasin;
+            tsbAll.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            tsbAll.Image = (System.Drawing.Image)resources.GetObject("tsbAll.Image");
+            tsbAll.ImageTransparentColor = System.Drawing.Color.Magenta;
+            tsbAll.Name = "tsbAll";
+            tsbAll.Padding = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            tsbAll.Size = new System.Drawing.Size(60, 19);
+            tsbAll.Text = "All";
             // 
             // tsbRemoveSelected
             // 
-            this.tsbRemoveSelected.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.tsbRemoveSelected.AutoSize = false;
-            this.tsbRemoveSelected.BackColor = System.Drawing.Color.LightBlue;
-            this.tsbRemoveSelected.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.tsbRemoveSelected.Image = ((System.Drawing.Image)(resources.GetObject("tsbRemoveSelected.Image")));
-            this.tsbRemoveSelected.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbRemoveSelected.Name = "tsbRemoveSelected";
-            this.tsbRemoveSelected.Padding = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            this.tsbRemoveSelected.Size = new System.Drawing.Size(113, 19);
-            this.tsbRemoveSelected.Text = "Remove Selected";
-            this.tsbRemoveSelected.Click += new System.EventHandler(this.tsbRemoveSelected_Click);
+            tsbRemoveSelected.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            tsbRemoveSelected.AutoSize = false;
+            tsbRemoveSelected.BackColor = System.Drawing.Color.LightBlue;
+            tsbRemoveSelected.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            tsbRemoveSelected.Image = (System.Drawing.Image)resources.GetObject("tsbRemoveSelected.Image");
+            tsbRemoveSelected.ImageTransparentColor = System.Drawing.Color.Magenta;
+            tsbRemoveSelected.Name = "tsbRemoveSelected";
+            tsbRemoveSelected.Padding = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            tsbRemoveSelected.Size = new System.Drawing.Size(113, 19);
+            tsbRemoveSelected.Text = "Remove Selected";
+            tsbRemoveSelected.Click += tsbRemoveSelected_Click;
             // 
             // toolStripSeparator1
             // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 23);
+            toolStripSeparator1.Name = "toolStripSeparator1";
+            toolStripSeparator1.Size = new System.Drawing.Size(6, 23);
             // 
             // tsbEditSelected
             // 
-            this.tsbEditSelected.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.tsbEditSelected.BackColor = System.Drawing.Color.Black;
-            this.tsbEditSelected.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.tsbEditSelected.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.tsbEditSelected.Image = ((System.Drawing.Image)(resources.GetObject("tsbEditSelected.Image")));
-            this.tsbEditSelected.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbEditSelected.Margin = new System.Windows.Forms.Padding(2, 1, 2, 2);
-            this.tsbEditSelected.Name = "tsbEditSelected";
-            this.tsbEditSelected.Padding = new System.Windows.Forms.Padding(12, 0, 6, 0);
-            this.tsbEditSelected.Size = new System.Drawing.Size(96, 20);
-            this.tsbEditSelected.Text = "Edit Selected";
+            tsbEditSelected.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            tsbEditSelected.BackColor = System.Drawing.Color.Black;
+            tsbEditSelected.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            tsbEditSelected.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            tsbEditSelected.Image = (System.Drawing.Image)resources.GetObject("tsbEditSelected.Image");
+            tsbEditSelected.ImageTransparentColor = System.Drawing.Color.Magenta;
+            tsbEditSelected.Margin = new System.Windows.Forms.Padding(2, 1, 2, 2);
+            tsbEditSelected.Name = "tsbEditSelected";
+            tsbEditSelected.Padding = new System.Windows.Forms.Padding(12, 0, 6, 0);
+            tsbEditSelected.Size = new System.Drawing.Size(96, 20);
+            tsbEditSelected.Text = "Edit Selected";
             // 
             // btnPullStock
             // 
-            this.btnPullStock.Location = new System.Drawing.Point(317, 8);
-            this.btnPullStock.Name = "btnPullStock";
-            this.btnPullStock.Size = new System.Drawing.Size(119, 23);
-            this.btnPullStock.TabIndex = 2;
-            this.btnPullStock.Text = "Pull Stock";
-            this.btnPullStock.UseVisualStyleBackColor = true;
+            btnPullStock.Location = new System.Drawing.Point(317, 8);
+            btnPullStock.Name = "btnPullStock";
+            btnPullStock.Size = new System.Drawing.Size(119, 23);
+            btnPullStock.TabIndex = 2;
+            btnPullStock.Text = "Pull Stock";
+            btnPullStock.UseVisualStyleBackColor = true;
+            btnPullStock.Click += btnPullStock_Click;
             // 
             // btnRollup
             // 
-            this.btnRollup.BackColor = System.Drawing.Color.Black;
-            this.btnRollup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRollup.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnRollup.Location = new System.Drawing.Point(509, 8);
-            this.btnRollup.Name = "btnRollup";
-            this.btnRollup.Size = new System.Drawing.Size(119, 25);
-            this.btnRollup.TabIndex = 2;
-            this.btnRollup.Text = "Roll Up";
-            this.btnRollup.UseVisualStyleBackColor = false;
+            btnRollup.BackColor = System.Drawing.Color.Black;
+            btnRollup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            btnRollup.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            btnRollup.Location = new System.Drawing.Point(509, 8);
+            btnRollup.Name = "btnRollup";
+            btnRollup.Size = new System.Drawing.Size(119, 25);
+            btnRollup.TabIndex = 2;
+            btnRollup.Text = "Roll Up";
+            btnRollup.UseVisualStyleBackColor = false;
+            btnRollup.Click += btnRollup_Click;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(192, 8);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(119, 23);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Set Level";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click_2);
+            button1.Location = new System.Drawing.Point(192, 8);
+            button1.Name = "button1";
+            button1.Size = new System.Drawing.Size(119, 23);
+            button1.TabIndex = 2;
+            button1.Text = "Set Level";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click_2;
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(14, 12);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(66, 15);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Stock Level";
+            label1.AutoSize = true;
+            label1.Location = new System.Drawing.Point(14, 12);
+            label1.Name = "label1";
+            label1.Size = new System.Drawing.Size(66, 15);
+            label1.TabIndex = 1;
+            label1.Text = "Stock Level";
             // 
             // txtStockLevel
             // 
-            this.txtStockLevel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtStockLevel.Location = new System.Drawing.Point(86, 8);
-            this.txtStockLevel.Name = "txtStockLevel";
-            this.txtStockLevel.Size = new System.Drawing.Size(100, 23);
-            this.txtStockLevel.TabIndex = 0;
-            this.txtStockLevel.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            txtStockLevel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            txtStockLevel.Location = new System.Drawing.Point(86, 8);
+            txtStockLevel.Name = "txtStockLevel";
+            txtStockLevel.Size = new System.Drawing.Size(100, 23);
+            txtStockLevel.TabIndex = 0;
+            txtStockLevel.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // tabLocations
             // 
-            this.tabLocations.Controls.Add(this.spcLocations);
-            this.tabLocations.Location = new System.Drawing.Point(4, 24);
-            this.tabLocations.Name = "tabLocations";
-            this.tabLocations.Padding = new System.Windows.Forms.Padding(12);
-            this.tabLocations.Size = new System.Drawing.Size(1290, 555);
-            this.tabLocations.TabIndex = 2;
-            this.tabLocations.Text = "Stock Locations";
-            this.tabLocations.UseVisualStyleBackColor = true;
+            tabLocations.Controls.Add(spcLocations);
+            tabLocations.Location = new System.Drawing.Point(4, 24);
+            tabLocations.Name = "tabLocations";
+            tabLocations.Padding = new System.Windows.Forms.Padding(12);
+            tabLocations.Size = new System.Drawing.Size(1290, 555);
+            tabLocations.TabIndex = 2;
+            tabLocations.Text = "Stock Locations";
+            tabLocations.UseVisualStyleBackColor = true;
             // 
             // spcLocations
             // 
-            this.spcLocations.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.spcLocations.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
-            this.spcLocations.Location = new System.Drawing.Point(12, 12);
-            this.spcLocations.Name = "spcLocations";
+            spcLocations.Dock = System.Windows.Forms.DockStyle.Fill;
+            spcLocations.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
+            spcLocations.Location = new System.Drawing.Point(12, 12);
+            spcLocations.Name = "spcLocations";
             // 
             // spcLocations.Panel1
             // 
-            this.spcLocations.Panel1.Controls.Add(this.dgLocations);
-            this.spcLocations.Panel1.Controls.Add(this.tsLocationMenu);
-            this.spcLocations.Panel1.Padding = new System.Windows.Forms.Padding(12);
+            spcLocations.Panel1.Controls.Add(dgLocations);
+            spcLocations.Panel1.Controls.Add(tsLocationMenu);
+            spcLocations.Panel1.Padding = new System.Windows.Forms.Padding(12);
             // 
             // spcLocations.Panel2
             // 
-            this.spcLocations.Panel2.Controls.Add(this.tsLocationPartsToolBar);
-            this.spcLocations.Panel2.Controls.Add(this.dgLocationParts);
-            this.spcLocations.Panel2.Margin = new System.Windows.Forms.Padding(0, 0, 0, 12);
-            this.spcLocations.Panel2.Padding = new System.Windows.Forms.Padding(12);
-            this.spcLocations.Size = new System.Drawing.Size(1266, 531);
-            this.spcLocations.SplitterDistance = 280;
-            this.spcLocations.TabIndex = 0;
+            spcLocations.Panel2.Controls.Add(tsLocationPartsToolBar);
+            spcLocations.Panel2.Controls.Add(dgLocationParts);
+            spcLocations.Panel2.Margin = new System.Windows.Forms.Padding(0, 0, 0, 12);
+            spcLocations.Panel2.Padding = new System.Windows.Forms.Padding(12);
+            spcLocations.Size = new System.Drawing.Size(1266, 531);
+            spcLocations.SplitterDistance = 280;
+            spcLocations.TabIndex = 0;
             // 
             // dgLocations
             // 
-            this.dgLocations.AllowUserToAddRows = false;
-            this.dgLocations.AllowUserToDeleteRows = false;
-            this.dgLocations.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgLocations.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgLocations.Location = new System.Drawing.Point(12, 44);
-            this.dgLocations.Margin = new System.Windows.Forms.Padding(3, 12, 3, 3);
-            this.dgLocations.Name = "dgLocations";
-            this.dgLocations.RowTemplate.Height = 25;
-            this.dgLocations.Size = new System.Drawing.Size(256, 475);
-            this.dgLocations.TabIndex = 1;
-            this.dgLocations.SelectionChanged += new System.EventHandler(this.dgLocations_SelectionChanged);
+            dgLocations.AllowUserToAddRows = false;
+            dgLocations.AllowUserToDeleteRows = false;
+            dgLocations.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgLocations.Dock = System.Windows.Forms.DockStyle.Fill;
+            dgLocations.Location = new System.Drawing.Point(12, 44);
+            dgLocations.Margin = new System.Windows.Forms.Padding(3, 12, 3, 3);
+            dgLocations.Name = "dgLocations";
+            dgLocations.RowTemplate.Height = 25;
+            dgLocations.Size = new System.Drawing.Size(256, 475);
+            dgLocations.TabIndex = 1;
+            dgLocations.SelectionChanged += dgLocations_SelectionChanged;
             // 
             // tsLocationMenu
             // 
-            this.tsLocationMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsbNew,
-            this.tsbEdit,
-            this.tsbFilter,
-            this.toolStripSeparator2,
-            this.txtAreaFilter});
-            this.tsLocationMenu.Location = new System.Drawing.Point(12, 12);
-            this.tsLocationMenu.Margin = new System.Windows.Forms.Padding(0, 0, 0, 12);
-            this.tsLocationMenu.Name = "tsLocationMenu";
-            this.tsLocationMenu.Padding = new System.Windows.Forms.Padding(2);
-            this.tsLocationMenu.Size = new System.Drawing.Size(256, 32);
-            this.tsLocationMenu.TabIndex = 0;
-            this.tsLocationMenu.Text = "toolStrip3";
-            this.tsLocationMenu.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.tsLocationMenu_ItemClicked);
+            tsLocationMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { tsbNew, tsbEdit, tsbFilter, toolStripSeparator2, txtAreaFilter });
+            tsLocationMenu.Location = new System.Drawing.Point(12, 12);
+            tsLocationMenu.Margin = new System.Windows.Forms.Padding(0, 0, 0, 12);
+            tsLocationMenu.Name = "tsLocationMenu";
+            tsLocationMenu.Padding = new System.Windows.Forms.Padding(2);
+            tsLocationMenu.Size = new System.Drawing.Size(256, 32);
+            tsLocationMenu.TabIndex = 0;
+            tsLocationMenu.Text = "toolStrip3";
+            tsLocationMenu.ItemClicked += tsLocationMenu_ItemClicked;
             // 
             // tsbNew
             // 
-            this.tsbNew.AutoSize = false;
-            this.tsbNew.BackColor = System.Drawing.Color.PowderBlue;
-            this.tsbNew.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.tsbNew.Image = ((System.Drawing.Image)(resources.GetObject("tsbNew.Image")));
-            this.tsbNew.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbNew.Margin = new System.Windows.Forms.Padding(4, 1, 4, 2);
-            this.tsbNew.Name = "tsbNew";
-            this.tsbNew.Padding = new System.Windows.Forms.Padding(3);
-            this.tsbNew.Size = new System.Drawing.Size(41, 25);
-            this.tsbNew.Text = "All";
+            tsbNew.AutoSize = false;
+            tsbNew.BackColor = System.Drawing.Color.PowderBlue;
+            tsbNew.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            tsbNew.Image = (System.Drawing.Image)resources.GetObject("tsbNew.Image");
+            tsbNew.ImageTransparentColor = System.Drawing.Color.Magenta;
+            tsbNew.Margin = new System.Windows.Forms.Padding(4, 1, 4, 2);
+            tsbNew.Name = "tsbNew";
+            tsbNew.Padding = new System.Windows.Forms.Padding(3);
+            tsbNew.Size = new System.Drawing.Size(41, 25);
+            tsbNew.Text = "All";
             // 
             // tsbEdit
             // 
-            this.tsbEdit.AutoSize = false;
-            this.tsbEdit.BackColor = System.Drawing.Color.Wheat;
-            this.tsbEdit.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.tsbEdit.Image = ((System.Drawing.Image)(resources.GetObject("tsbEdit.Image")));
-            this.tsbEdit.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbEdit.Margin = new System.Windows.Forms.Padding(0, 1, 4, 2);
-            this.tsbEdit.Name = "tsbEdit";
-            this.tsbEdit.Padding = new System.Windows.Forms.Padding(0, 0, 4, 0);
-            this.tsbEdit.Size = new System.Drawing.Size(31, 25);
-            this.tsbEdit.Text = "Edit";
+            tsbEdit.AutoSize = false;
+            tsbEdit.BackColor = System.Drawing.Color.Wheat;
+            tsbEdit.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            tsbEdit.Image = (System.Drawing.Image)resources.GetObject("tsbEdit.Image");
+            tsbEdit.ImageTransparentColor = System.Drawing.Color.Magenta;
+            tsbEdit.Margin = new System.Windows.Forms.Padding(0, 1, 4, 2);
+            tsbEdit.Name = "tsbEdit";
+            tsbEdit.Padding = new System.Windows.Forms.Padding(0, 0, 4, 0);
+            tsbEdit.Size = new System.Drawing.Size(31, 25);
+            tsbEdit.Text = "Edit";
             // 
             // tsbFilter
             // 
-            this.tsbFilter.AutoSize = false;
-            this.tsbFilter.BackColor = System.Drawing.Color.Black;
-            this.tsbFilter.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.tsbFilter.ForeColor = System.Drawing.SystemColors.Control;
-            this.tsbFilter.Image = ((System.Drawing.Image)(resources.GetObject("tsbFilter.Image")));
-            this.tsbFilter.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbFilter.Name = "tsbFilter";
-            this.tsbFilter.Size = new System.Drawing.Size(44, 25);
-            this.tsbFilter.Text = "Filter";
+            tsbFilter.AutoSize = false;
+            tsbFilter.BackColor = System.Drawing.Color.Black;
+            tsbFilter.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            tsbFilter.ForeColor = System.Drawing.SystemColors.Control;
+            tsbFilter.Image = (System.Drawing.Image)resources.GetObject("tsbFilter.Image");
+            tsbFilter.ImageTransparentColor = System.Drawing.Color.Magenta;
+            tsbFilter.Name = "tsbFilter";
+            tsbFilter.Size = new System.Drawing.Size(44, 25);
+            tsbFilter.Text = "Filter";
             // 
             // toolStripSeparator2
             // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 28);
+            toolStripSeparator2.Name = "toolStripSeparator2";
+            toolStripSeparator2.Size = new System.Drawing.Size(6, 28);
             // 
             // txtAreaFilter
             // 
-            this.txtAreaFilter.AutoSize = false;
-            this.txtAreaFilter.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.txtAreaFilter.Name = "txtAreaFilter";
-            this.txtAreaFilter.Size = new System.Drawing.Size(50, 23);
-            this.txtAreaFilter.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            txtAreaFilter.AutoSize = false;
+            txtAreaFilter.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            txtAreaFilter.Name = "txtAreaFilter";
+            txtAreaFilter.Size = new System.Drawing.Size(50, 23);
+            txtAreaFilter.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // tsLocationPartsToolBar
             // 
-            this.tsLocationPartsToolBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsbSaveLocationParts});
-            this.tsLocationPartsToolBar.Location = new System.Drawing.Point(12, 12);
-            this.tsLocationPartsToolBar.Name = "tsLocationPartsToolBar";
-            this.tsLocationPartsToolBar.Size = new System.Drawing.Size(958, 25);
-            this.tsLocationPartsToolBar.TabIndex = 1;
-            this.tsLocationPartsToolBar.Text = "toolStrip4";
-            this.tsLocationPartsToolBar.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.tsLocationPartsToolBar_ItemClicked);
+            tsLocationPartsToolBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { tsbSaveLocationParts });
+            tsLocationPartsToolBar.Location = new System.Drawing.Point(12, 12);
+            tsLocationPartsToolBar.Name = "tsLocationPartsToolBar";
+            tsLocationPartsToolBar.Size = new System.Drawing.Size(958, 25);
+            tsLocationPartsToolBar.TabIndex = 1;
+            tsLocationPartsToolBar.Text = "toolStrip4";
+            tsLocationPartsToolBar.ItemClicked += tsLocationPartsToolBar_ItemClicked;
             // 
             // tsbSaveLocationParts
             // 
-            this.tsbSaveLocationParts.BackColor = System.Drawing.Color.Gainsboro;
-            this.tsbSaveLocationParts.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.tsbSaveLocationParts.Image = ((System.Drawing.Image)(resources.GetObject("tsbSaveLocationParts.Image")));
-            this.tsbSaveLocationParts.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbSaveLocationParts.Name = "tsbSaveLocationParts";
-            this.tsbSaveLocationParts.Size = new System.Drawing.Size(84, 22);
-            this.tsbSaveLocationParts.Text = "Save Changes";
+            tsbSaveLocationParts.BackColor = System.Drawing.Color.Gainsboro;
+            tsbSaveLocationParts.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            tsbSaveLocationParts.Image = (System.Drawing.Image)resources.GetObject("tsbSaveLocationParts.Image");
+            tsbSaveLocationParts.ImageTransparentColor = System.Drawing.Color.Magenta;
+            tsbSaveLocationParts.Name = "tsbSaveLocationParts";
+            tsbSaveLocationParts.Size = new System.Drawing.Size(84, 22);
+            tsbSaveLocationParts.Text = "Save Changes";
             // 
             // dgLocationParts
             // 
-            this.dgLocationParts.AllowUserToAddRows = false;
-            this.dgLocationParts.AllowUserToDeleteRows = false;
-            this.dgLocationParts.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgLocationParts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgLocationParts.Location = new System.Drawing.Point(15, 44);
-            this.dgLocationParts.Name = "dgLocationParts";
-            this.dgLocationParts.RowTemplate.Height = 25;
-            this.dgLocationParts.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgLocationParts.Size = new System.Drawing.Size(952, 475);
-            this.dgLocationParts.TabIndex = 0;
+            dgLocationParts.AllowUserToAddRows = false;
+            dgLocationParts.AllowUserToDeleteRows = false;
+            dgLocationParts.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            dgLocationParts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgLocationParts.Location = new System.Drawing.Point(15, 44);
+            dgLocationParts.Name = "dgLocationParts";
+            dgLocationParts.RowTemplate.Height = 25;
+            dgLocationParts.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            dgLocationParts.Size = new System.Drawing.Size(952, 475);
+            dgLocationParts.TabIndex = 0;
             // 
             // PartManager
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.tabPartManager);
-            this.Controls.Add(this.tsResources);
-            this.Controls.Add(this.btnPrintLabel);
-            this.Controls.Add(this.btnShowAll);
-            this.Controls.Add(this.btnSave);
-            this.Controls.Add(this.btnNewPart);
-            this.Controls.Add(this.panel1);
-            this.MinimumSize = new System.Drawing.Size(1095, 650);
-            this.Name = "PartManager";
-            this.Padding = new System.Windows.Forms.Padding(10);
-            this.Size = new System.Drawing.Size(1321, 732);
-            ((System.ComponentModel.ISupportInitialize)(this.dgPartsSearch)).EndInit();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgResources)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgPartOrders)).EndInit();
-            this.tabPartDetail.ResumeLayout(false);
-            this.tabResourceManager.ResumeLayout(false);
-            this.tabResourceManager.PerformLayout();
-            this.splitContainer1.Panel1.ResumeLayout(false);
-            this.splitContainer1.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
-            this.splitContainer1.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
-            this.toolStrip1.ResumeLayout(false);
-            this.toolStrip1.PerformLayout();
-            this.tabOrderHistory.ResumeLayout(false);
-            this.tsResources.ResumeLayout(false);
-            this.tsResources.PerformLayout();
-            this.spcPartsManager.Panel1.ResumeLayout(false);
-            this.spcPartsManager.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.spcPartsManager)).EndInit();
-            this.spcPartsManager.ResumeLayout(false);
-            this.tabPartManager.ResumeLayout(false);
-            this.tabPartsManager.ResumeLayout(false);
-            this.tabStockTransactions.ResumeLayout(false);
-            this.splitContainer2.Panel1.ResumeLayout(false);
-            this.splitContainer2.Panel1.PerformLayout();
-            this.splitContainer2.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
-            this.splitContainer2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvStockParts)).EndInit();
-            this.toolStrip2.ResumeLayout(false);
-            this.toolStrip2.PerformLayout();
-            this.spcTransactionDetails.Panel1.ResumeLayout(false);
-            this.spcTransactionDetails.Panel1.PerformLayout();
-            this.spcTransactionDetails.Panel2.ResumeLayout(false);
-            this.spcTransactionDetails.Panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.spcTransactionDetails)).EndInit();
-            this.spcTransactionDetails.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgTransactionsGrid)).EndInit();
-            this.tsTransactions.ResumeLayout(false);
-            this.tsTransactions.PerformLayout();
-            this.tabLocations.ResumeLayout(false);
-            this.spcLocations.Panel1.ResumeLayout(false);
-            this.spcLocations.Panel1.PerformLayout();
-            this.spcLocations.Panel2.ResumeLayout(false);
-            this.spcLocations.Panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.spcLocations)).EndInit();
-            this.spcLocations.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgLocations)).EndInit();
-            this.tsLocationMenu.ResumeLayout(false);
-            this.tsLocationMenu.PerformLayout();
-            this.tsLocationPartsToolBar.ResumeLayout(false);
-            this.tsLocationPartsToolBar.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgLocationParts)).EndInit();
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            Controls.Add(tabPartManager);
+            Controls.Add(tsResources);
+            Controls.Add(btnPrintLabel);
+            Controls.Add(btnShowAll);
+            Controls.Add(btnSave);
+            Controls.Add(btnNewPart);
+            Controls.Add(panel1);
+            MinimumSize = new System.Drawing.Size(1095, 650);
+            Name = "PartManager";
+            Padding = new System.Windows.Forms.Padding(10);
+            Size = new System.Drawing.Size(1321, 732);
+            ((System.ComponentModel.ISupportInitialize)dgPartsSearch).EndInit();
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dgResources).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgPartOrders).EndInit();
+            tabPartDetail.ResumeLayout(false);
+            tabResourceManager.ResumeLayout(false);
+            tabResourceManager.PerformLayout();
+            splitContainer1.Panel1.ResumeLayout(false);
+            splitContainer1.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)splitContainer1).EndInit();
+            splitContainer1.ResumeLayout(false);
+            panel2.ResumeLayout(false);
+            toolStrip1.ResumeLayout(false);
+            toolStrip1.PerformLayout();
+            tabOrderHistory.ResumeLayout(false);
+            tsResources.ResumeLayout(false);
+            tsResources.PerformLayout();
+            spcPartsManager.Panel1.ResumeLayout(false);
+            spcPartsManager.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)spcPartsManager).EndInit();
+            spcPartsManager.ResumeLayout(false);
+            tabPartManager.ResumeLayout(false);
+            tabPartsManager.ResumeLayout(false);
+            tabStockTransactions.ResumeLayout(false);
+            splitContainer2.Panel1.ResumeLayout(false);
+            splitContainer2.Panel1.PerformLayout();
+            splitContainer2.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)splitContainer2).EndInit();
+            splitContainer2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dgvStockParts).EndInit();
+            toolStrip2.ResumeLayout(false);
+            toolStrip2.PerformLayout();
+            spcTransactionDetails.Panel1.ResumeLayout(false);
+            spcTransactionDetails.Panel1.PerformLayout();
+            spcTransactionDetails.Panel2.ResumeLayout(false);
+            spcTransactionDetails.Panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)spcTransactionDetails).EndInit();
+            spcTransactionDetails.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dgTransactionsGrid).EndInit();
+            tsTransactions.ResumeLayout(false);
+            tsTransactions.PerformLayout();
+            tabLocations.ResumeLayout(false);
+            spcLocations.Panel1.ResumeLayout(false);
+            spcLocations.Panel1.PerformLayout();
+            spcLocations.Panel2.ResumeLayout(false);
+            spcLocations.Panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)spcLocations).EndInit();
+            spcLocations.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dgLocations).EndInit();
+            tsLocationMenu.ResumeLayout(false);
+            tsLocationMenu.PerformLayout();
+            tsLocationPartsToolBar.ResumeLayout(false);
+            tsLocationPartsToolBar.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dgLocationParts).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button btnNew;   
+        private System.Windows.Forms.Button btnNew;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label13;

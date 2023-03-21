@@ -85,9 +85,10 @@ namespace ServiceLayer
         }
 
         // PointOfUse inventory reduction using partnumber or StockTag
-        public async void PullPart(string partid, decimal qnty, int jobid)
+        public async void PullPart(string partid, decimal qnty,int empID,int jobid)
         {
             Part part = partService.FindbyID(partid);
+
 
             if (part != null)
             {
@@ -97,7 +98,9 @@ namespace ServiceLayer
                 inventory.Description = part.ItemDescription;
                 inventory.InventoryAmount = qnty * -1.0m;
                 inventory.JobID = jobid;
+                inventory.EmpID = empID;
                 inventory.Location = part.Location;
+                inventory.TransActionType = 3;
                 _ctx.Inventory.Add(inventory);
                 await _ctx.SaveChangesAsync();
             }
@@ -125,6 +128,32 @@ namespace ServiceLayer
                 _ctx.Inventory.Add(inventory);
                 await _ctx.SaveChangesAsync();
             }
+        }
+
+        public async void PartRollup(int partid, int UserID) 
+        {
+            Part part = partService.FindbyID(partid.ToString());
+            if (part == null) { return; }
+            var stockTransactions = _ctx.Inventory.Where(c => c.PartID == partid);
+            if (stockTransactions.Any()) 
+            {
+                _ctx.RemoveRange(stockTransactions);
+                
+            }
+
+            Inventory inventory = new Inventory();
+            inventory.PartID = part.PartID;
+            inventory.UnitOfMeasureID = part.UnitOfMeasureID.GetValueOrDefault();
+            inventory.Description = part.ItemDescription;
+            inventory.InventoryAmount = 0.0m;
+            inventory.TransActionType = 4;
+            inventory.Location = part.Location;
+            inventory.EmpID = UserID;
+            inventory.Note = "Rolled-Up";
+            _ctx.Inventory.Add(inventory);
+
+            await _ctx.SaveChangesAsync();
+        
         }
 
 
