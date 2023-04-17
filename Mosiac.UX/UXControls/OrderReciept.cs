@@ -130,7 +130,11 @@ namespace Mosiac.UX.UXControls
                 }
             }
         }
-
+        /// <summary>
+        /// Print 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
             PrinterSettings PrinterXmlData;

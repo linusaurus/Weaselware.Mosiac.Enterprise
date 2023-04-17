@@ -974,11 +974,11 @@ namespace Mosiac.UX.UXControls
             // Set the Stock Level  ----
             StockLevelAdjustmentForm frm = new StockLevelAdjustmentForm();
             frm.Text = String.Format("Pull Stock # {0}", _selectedPartID.ToString());
-            
-           
+
+
             if (frm.ShowDialog() == DialogResult.OK)
             {
-                _stockService.PullPart(_selectedPartID.ToString(),frm.Adjustment,Globals.CurrentLoggedUserID,1);
+                _stockService.PullPart(_selectedPartID.ToString(), frm.Adjustment, Globals.CurrentLoggedUserID, 1);
                 dgTransactionsGrid.DataSource = InventoryService.GetPartTransactions(_selectedPartID);
 
             }

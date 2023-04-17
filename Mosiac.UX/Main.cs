@@ -47,8 +47,7 @@ namespace Mosiac.UX
             Mediator.GetInstance().OrderOpen += Main_OrderOpen;
             string version = Assembly.GetExecutingAssembly().GetName().Version.ToString();
             this.Text = "Mosaic - [Production] " + version;
-            ThermalLabel.LicenseOwner = "Richard Young";
-            ThermalLabel.LicenseKey = "MC4J7E7UM8BDLXA72PEWSJ84NR5FXRVBKPANLSYTCCGKKNMW9N6A";
+  
 
         }
 
@@ -60,6 +59,9 @@ namespace Mosiac.UX
 
         private void Main_Load(object sender, EventArgs e)
         {
+            ThermalLabel.LicenseOwner = "Richard Young";
+            ThermalLabel.LicenseKey = "RALJ9V89HNTFJMHZWRMH6MFP82AXAXDTX3ZXUESKXRFLXAZ346GQ";
+
 
             closeImage = Properties.Resources._8kuxe;
             MainTabs.Padding = new System.Drawing.Point(26, 4);

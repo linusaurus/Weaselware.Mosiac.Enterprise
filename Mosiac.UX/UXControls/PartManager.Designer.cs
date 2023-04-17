@@ -68,8 +68,6 @@ namespace Mosiac.UX.UXControls
             splitContainer2 = new System.Windows.Forms.SplitContainer();
             dgvStockParts = new System.Windows.Forms.DataGridView();
             toolStrip2 = new System.Windows.Forms.ToolStrip();
-            toolStripComboBox1 = new System.Windows.Forms.ToolStripComboBox();
-            toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             spcTransactionDetails = new System.Windows.Forms.SplitContainer();
             dgTransactionsGrid = new System.Windows.Forms.DataGridView();
             tsTransactions = new System.Windows.Forms.ToolStrip();
@@ -80,11 +78,12 @@ namespace Mosiac.UX.UXControls
             tsbRemoveSelected = new System.Windows.Forms.ToolStripButton();
             toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             tsbEditSelected = new System.Windows.Forms.ToolStripButton();
+            panel3 = new System.Windows.Forms.Panel();
             btnPullStock = new System.Windows.Forms.Button();
-            btnRollup = new System.Windows.Forms.Button();
-            button1 = new System.Windows.Forms.Button();
-            label1 = new System.Windows.Forms.Label();
             txtStockLevel = new System.Windows.Forms.TextBox();
+            btnRollup = new System.Windows.Forms.Button();
+            label1 = new System.Windows.Forms.Label();
+            button1 = new System.Windows.Forms.Button();
             tabLocations = new System.Windows.Forms.TabPage();
             spcLocations = new System.Windows.Forms.SplitContainer();
             dgLocations = new System.Windows.Forms.DataGridView();
@@ -123,13 +122,13 @@ namespace Mosiac.UX.UXControls
             splitContainer2.Panel2.SuspendLayout();
             splitContainer2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvStockParts).BeginInit();
-            toolStrip2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)spcTransactionDetails).BeginInit();
             spcTransactionDetails.Panel1.SuspendLayout();
             spcTransactionDetails.Panel2.SuspendLayout();
             spcTransactionDetails.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgTransactionsGrid).BeginInit();
             tsTransactions.SuspendLayout();
+            panel3.SuspendLayout();
             tabLocations.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)spcLocations).BeginInit();
             spcLocations.Panel1.SuspendLayout();
@@ -597,24 +596,12 @@ namespace Mosiac.UX.UXControls
             // 
             // toolStrip2
             // 
-            toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { toolStripComboBox1, toolStripLabel1 });
             toolStrip2.Location = new System.Drawing.Point(6, 6);
             toolStrip2.Margin = new System.Windows.Forms.Padding(0, 0, 0, 12);
             toolStrip2.Name = "toolStrip2";
             toolStrip2.Size = new System.Drawing.Size(425, 25);
             toolStrip2.TabIndex = 1;
             toolStrip2.Text = "toolStrip2";
-            // 
-            // toolStripComboBox1
-            // 
-            toolStripComboBox1.Name = "toolStripComboBox1";
-            toolStripComboBox1.Size = new System.Drawing.Size(121, 25);
-            // 
-            // toolStripLabel1
-            // 
-            toolStripLabel1.Name = "toolStripLabel1";
-            toolStripLabel1.Size = new System.Drawing.Size(58, 22);
-            toolStripLabel1.Text = "Locations";
             // 
             // spcTransactionDetails
             // 
@@ -632,13 +619,9 @@ namespace Mosiac.UX.UXControls
             // 
             // spcTransactionDetails.Panel2
             // 
-            spcTransactionDetails.Panel2.Controls.Add(btnPullStock);
-            spcTransactionDetails.Panel2.Controls.Add(btnRollup);
-            spcTransactionDetails.Panel2.Controls.Add(button1);
-            spcTransactionDetails.Panel2.Controls.Add(label1);
-            spcTransactionDetails.Panel2.Controls.Add(txtStockLevel);
+            spcTransactionDetails.Panel2.Controls.Add(panel3);
             spcTransactionDetails.Size = new System.Drawing.Size(825, 531);
-            spcTransactionDetails.SplitterDistance = 437;
+            spcTransactionDetails.SplitterDistance = 462;
             spcTransactionDetails.TabIndex = 0;
             // 
             // dgTransactionsGrid
@@ -649,7 +632,7 @@ namespace Mosiac.UX.UXControls
             dgTransactionsGrid.Margin = new System.Windows.Forms.Padding(3, 6, 3, 3);
             dgTransactionsGrid.Name = "dgTransactionsGrid";
             dgTransactionsGrid.RowTemplate.Height = 25;
-            dgTransactionsGrid.Size = new System.Drawing.Size(813, 394);
+            dgTransactionsGrid.Size = new System.Drawing.Size(813, 419);
             dgTransactionsGrid.TabIndex = 1;
             dgTransactionsGrid.RowStateChanged += dgTransactionsGrid_RowStateChanged;
             dgTransactionsGrid.SelectionChanged += dgTransactionsGrid_SelectionChanged;
@@ -750,22 +733,46 @@ namespace Mosiac.UX.UXControls
             tsbEditSelected.Size = new System.Drawing.Size(96, 20);
             tsbEditSelected.Text = "Edit Selected";
             // 
+            // panel3
+            // 
+            panel3.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            panel3.Controls.Add(btnPullStock);
+            panel3.Controls.Add(txtStockLevel);
+            panel3.Controls.Add(btnRollup);
+            panel3.Controls.Add(label1);
+            panel3.Controls.Add(button1);
+            panel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            panel3.Location = new System.Drawing.Point(0, 0);
+            panel3.Name = "panel3";
+            panel3.Size = new System.Drawing.Size(825, 65);
+            panel3.TabIndex = 3;
+            // 
             // btnPullStock
             // 
-            btnPullStock.Location = new System.Drawing.Point(317, 8);
+            btnPullStock.Location = new System.Drawing.Point(143, 22);
             btnPullStock.Name = "btnPullStock";
-            btnPullStock.Size = new System.Drawing.Size(119, 23);
+            btnPullStock.Size = new System.Drawing.Size(119, 25);
             btnPullStock.TabIndex = 2;
             btnPullStock.Text = "Pull Stock";
             btnPullStock.UseVisualStyleBackColor = true;
             btnPullStock.Click += btnPullStock_Click;
+            // 
+            // txtStockLevel
+            // 
+            txtStockLevel.Location = new System.Drawing.Point(287, 24);
+            txtStockLevel.Name = "txtStockLevel";
+            txtStockLevel.ReadOnly = true;
+            txtStockLevel.Size = new System.Drawing.Size(113, 23);
+            txtStockLevel.TabIndex = 0;
+            txtStockLevel.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // btnRollup
             // 
             btnRollup.BackColor = System.Drawing.Color.Black;
             btnRollup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             btnRollup.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            btnRollup.Location = new System.Drawing.Point(509, 8);
+            btnRollup.Location = new System.Drawing.Point(433, 22);
             btnRollup.Name = "btnRollup";
             btnRollup.Size = new System.Drawing.Size(119, 25);
             btnRollup.TabIndex = 2;
@@ -773,33 +780,24 @@ namespace Mosiac.UX.UXControls
             btnRollup.UseVisualStyleBackColor = false;
             btnRollup.Click += btnRollup_Click;
             // 
-            // button1
-            // 
-            button1.Location = new System.Drawing.Point(192, 8);
-            button1.Name = "button1";
-            button1.Size = new System.Drawing.Size(119, 23);
-            button1.TabIndex = 2;
-            button1.Text = "Set Level";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click_2;
-            // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new System.Drawing.Point(14, 12);
+            label1.Location = new System.Drawing.Point(316, 12);
             label1.Name = "label1";
             label1.Size = new System.Drawing.Size(66, 15);
             label1.TabIndex = 1;
             label1.Text = "Stock Level";
             // 
-            // txtStockLevel
+            // button1
             // 
-            txtStockLevel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            txtStockLevel.Location = new System.Drawing.Point(86, 8);
-            txtStockLevel.Name = "txtStockLevel";
-            txtStockLevel.Size = new System.Drawing.Size(100, 23);
-            txtStockLevel.TabIndex = 0;
-            txtStockLevel.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            button1.Location = new System.Drawing.Point(18, 22);
+            button1.Name = "button1";
+            button1.Size = new System.Drawing.Size(119, 25);
+            button1.TabIndex = 2;
+            button1.Text = "Set Level";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click_2;
             // 
             // tabLocations
             // 
@@ -991,17 +989,16 @@ namespace Mosiac.UX.UXControls
             ((System.ComponentModel.ISupportInitialize)splitContainer2).EndInit();
             splitContainer2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgvStockParts).EndInit();
-            toolStrip2.ResumeLayout(false);
-            toolStrip2.PerformLayout();
             spcTransactionDetails.Panel1.ResumeLayout(false);
             spcTransactionDetails.Panel1.PerformLayout();
             spcTransactionDetails.Panel2.ResumeLayout(false);
-            spcTransactionDetails.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)spcTransactionDetails).EndInit();
             spcTransactionDetails.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgTransactionsGrid).EndInit();
             tsTransactions.ResumeLayout(false);
             tsTransactions.PerformLayout();
+            panel3.ResumeLayout(false);
+            panel3.PerformLayout();
             tabLocations.ResumeLayout(false);
             spcLocations.Panel1.ResumeLayout(false);
             spcLocations.Panel1.PerformLayout();
@@ -1087,8 +1084,6 @@ namespace Mosiac.UX.UXControls
         private System.Windows.Forms.Button btnRollup;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ToolStrip toolStrip2;
-        private System.Windows.Forms.ToolStripComboBox toolStripComboBox1;
-        private System.Windows.Forms.ToolStripLabel toolStripLabel1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripButton tsbEditSelected;
         private System.Windows.Forms.TabPage tabLocations;
@@ -1103,5 +1098,6 @@ namespace Mosiac.UX.UXControls
         private System.Windows.Forms.ToolStripButton tsbSaveLocationParts;
         private System.Windows.Forms.ToolStripTextBox txtAreaFilter;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.Panel panel3;
     }
 }
