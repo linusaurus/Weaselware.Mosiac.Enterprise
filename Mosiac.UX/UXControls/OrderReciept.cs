@@ -41,8 +41,6 @@ namespace Mosiac.UX.UXControls
         {
             InitializeComponent();
 
-            ThermalLabel.LicenseOwner = "Richard Young-Ultimate Edition-Developer License";
-            ThermalLabel.LicenseKey = "RALJ9V89HNTFJMHZWRMH6MFP82AXAXDTX3ZXUESKXRFLXAZ346GQ";
 
             mosaicContext = context;
             orderReceiptRepository = new OrderReceiptRepository(context, Globals.CurrentUserName, Globals.CurrentLoggedUserID);

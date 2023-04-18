@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Report ScriptLanguage="CSharp" ReportInfo.Created="04/20/2021 16:22:02" ReportInfo.Modified="11/14/2022 16:19:12" ReportInfo.CreatorVersion="2020.4.0.0">
+<Report ScriptLanguage="CSharp" ReportInfo.Created="04/20/2021 16:22:02" ReportInfo.Modified="04/18/2023 07:35:14" ReportInfo.CreatorVersion="2023.2.0.0">
   <Styles>
     <Style Name="Basic Font" Border.Lines="Right, Top, Bottom" Border.TopLine.Width="0.25" Border.RightLine.Width="0.25" Border.BottomLine.Width="0.25" Font="Arial, 10pt"/>
     <Style Name="Header" Border.Lines="Left, Top, Bottom" Border.LeftLine.Width="0.25" Border.TopLine.Width="0.25" Border.BottomLine.Width="0.25" Fill.Color="LightGray" Font="Arial, 10pt"/>
   </Styles>
   <Dictionary>
-    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlqawaLeIiT/AzZ3f/LYzpStQbcx9rG31aCBdviXOjDPRrTY/kiIPKjmQ4KbFv4qW7UuYTUIAjtBOmzAADWks+Iv92iVUeFZvk47M2wtlsj6RZz+QtY+WsA++aeTHBNdAxCozwMovShiPaynFjueGo5Mu/9KOOU/+GV42NF71Bv0mE55M0ssSEXv3haGB+4djxl">
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlqawaLeIiT/AzZ3f/LYzpStQbcx9rG31aCBdviXOjDPRrTY/kiIPKjmQ4KbFv4qW7UuYTUIAjtBOmzAADWks+Iv92iVUeFZvk47M2wtlsj6RZz+QtY+WsA++aeTHBNdAxCozwMovShiPaynFjueGo5Mu/9KOOU/+GV42NF71Bv0mGwAVEaQPfVfTfTdYIQBksA">
       <TableDataSource Name="Supplier" DataType="System.Int32" Enabled="true" TableName="Supplier">
         <Column Name="SupplierID" DataType="System.Int32"/>
         <Column Name="SupplierName" DataType="System.String"/>
@@ -29,7 +29,7 @@
         <Column Name="SupplierID" DataType="System.Int32"/>
         <Column Name="PartID" DataType="System.Int32"/>
         <Column Name="UnitCost" DataType="System.Decimal"/>
-        <Column Name="Qnty" DataType="System.Decimal"/>
+        <Column Name="Qnty" DataType="System.Decimal" Format="Number"/>
         <Column Name="Description" DataType="System.String"/>
         <Column Name="Extended" DataType="System.Decimal"/>
         <Column Name="Recieved" DataType="System.Boolean" BindableControl="CheckBox"/>
@@ -120,7 +120,7 @@
     <Relation Name="PurchaseLineItem_PurchaseOrder" ParentDataSource="PurchaseOrder" ChildDataSource="PurchaseLineItem" ParentColumns="PurchaseOrderID" ChildColumns="PurchaseOrderID" Enabled="true"/>
     <Relation Name="OrderFee_PurchaseOrder" ParentDataSource="OrderFee" ChildDataSource="PurchaseOrder" ParentColumns="PurchaseOrderID" ChildColumns="PurchaseOrderID" Enabled="true"/>
     <Relation Name="PurchaseOrder_Employee1" ParentDataSource="PurchaseOrder" ChildDataSource="Employee" ParentColumns="EmployeeID" ChildColumns="employeeID" Enabled="true"/>
-    <Parameter Name="ponumber" DataType="System.Int32" Description="ordernumber for printing"/>
+    <Parameter Name="ponumber" DataType="System.Int32" AsString="" Description="ordernumber for printing"/>
     <Total Name="Total" Expression="[OrderFee.Extension]" Evaluator="Data1" PrintOn="DataFooter1"/>
     <Total Name="Total1" Expression="[OrderFee.Extension]" Evaluator="Data4"/>
   </Dictionary>
@@ -133,7 +133,7 @@
       <TextObject Name="Text76" Left="369.6" Top="14.4" Width="182.4" Height="43.2" Text="Shipping &amp; Recieving Hours&#13;&#10;Monday-Thursday 6:00 to 4:00&#13;&#10;Call Justin @ 858-214-3969" Font="Arial, 9pt"/>
       <LineObject Name="Line2" Left="364.8" Top="14.4" Height="43.2" Border.Width="2"/>
     </ReportTitleBand>
-    <DataBand Name="Data1" Top="103.9" Width="744.13" Height="163.2" CanGrow="true" DataSource="PurchaseOrder">
+    <DataBand Name="Data1" Top="104.13" Width="744.13" Height="163.2" CanGrow="true" DataSource="PurchaseOrder">
       <TextObject Name="Text3" Left="432" Top="134.4" Width="302.4" Height="19.2" Text="[PurchaseOrder.Job.jobname]" HorzAlign="Right" Font="Arial, 10pt"/>
       <TextObject Name="Text17" Left="619.2" Top="14.4" Width="120" Height="19.2" Border.Lines="All" Border.Width="0.25" Text="[PurchaseLineItem.PurchaseOrderID]" HorzAlign="Center" VertAlign="Center" Font="Arial, 9pt"/>
       <TextObject Name="Text19" Left="542.4" Top="14.4" Width="76.8" Height="19.2" Border.Lines="Left, Top, Bottom" Border.LeftLine.Width="0.25" Border.TopLine.Width="0.25" Border.BottomLine.Width="0.25" Fill.Color="LightGray" Text="Order #" VertAlign="Center" Font="Arial, 10pt" Style="Header"/>
@@ -150,14 +150,14 @@
       <TextObject Name="MemoNotes" Left="278.4" Top="33.6" Width="259.2" Height="38.4" Border.Lines="Left, Right, Bottom" Border.LeftLine.Width="0.25" Border.RightLine.Width="0.25" Border.BottomLine.Width="0.25" CanGrow="true" Text="[PurchaseOrder.Memo]" Font="Arial, 9pt"/>
       <TextObject Name="Text74" Left="278.4" Top="14.4" Width="259.2" Height="14.4" Border.Lines="All" Border.Width="0.25" Fill.Color="LightGray" Text="Special Instructions" Font="Arial, 10pt"/>
       <TextObject Name="Text75" Left="278.4" Top="76.8" Width="259.2" Height="19.2" Text="Purchaser : [PurchaseOrder.Employee.firstname]  [PurchaseOrder.Employee.lastname]" Font="Arial, 10pt"/>
-      <DataBand Name="Data2" Top="292.49" Width="744.13" Height="19.2" CanGrow="true" DataSource="PurchaseLineItem">
+      <DataBand Name="Data2" Top="293.2" Width="744.13" Height="19.2" CanGrow="true" DataSource="PurchaseLineItem">
         <TextObject Name="Text6" Left="129.6" Width="384" Height="19.2" Border.Lines="Left, Top, Bottom" Border.LeftLine.Width="0.25" Border.TopLine.Width="0.25" Border.BottomLine.Width="0.25" CanGrow="true" Text="[PurchaseLineItem.Description]" Padding="2, 2, 2, 2" VertAlign="Center" Font="Arial, 9pt"/>
-        <TextObject Name="Text7" Left="513.6" Width="72" Height="19.2" Border.Lines="Left, Top, Bottom" Border.Width="0.25" CanGrow="true" GrowToBottom="true" Text="[PurchaseLineItem.Qnty]" Padding="2, 2, 2, 2" Format="Number" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Center" VertAlign="Center" WordWrap="false" Font="Arial, 9pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text7" Left="513.6" Width="72" Height="19.2" Border.Lines="Left, Top, Bottom" Border.Width="0.25" CanGrow="true" GrowToBottom="true" Text="[PurchaseLineItem.Qnty]" Padding="2, 2, 2, 2" Format="Number" Format.UseLocale="true" Format.DecimalDigits="0" HorzAlign="Center" VertAlign="Center" WordWrap="false" Font="Arial, 9pt, style=Bold" Trimming="EllipsisCharacter"/>
         <TextObject Name="Text9" Left="585.6" Width="72" Height="19.2" Border.Lines="Left, Top, Bottom" Border.Width="0.25" CanGrow="true" GrowToBottom="true" Text="[PurchaseLineItem.UnitCost]" Padding="2, 2, 2, 2" Format="Currency" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" VertAlign="Center" WordWrap="false" Font="Arial, 9pt" Trimming="EllipsisCharacter"/>
         <TextObject Name="Text11" Left="67.2" Width="62.4" Height="19.2" Border.Lines="Left, Top, Bottom" Border.LeftLine.Width="0.25" Border.TopLine.Width="0.25" Border.BottomLine.Width="0.25" CanGrow="true" GrowToBottom="true" Text="[PurchaseLineItem.PartID]" Padding="2, 2, 2, 2" HideZeros="true" HorzAlign="Center" VertAlign="Center" Font="Arial, 9pt"/>
         <TextObject Name="Text12" Width="67.2" Height="19.2" Border.Lines="Left, Top, Bottom" Border.LeftLine.Width="0.25" Border.TopLine.Width="0.25" Border.BottomLine.Width="0.25" CanGrow="true" GrowToBottom="true" Text="[PurchaseLineItem.LineID]" Padding="2, 2, 2, 2" HorzAlign="Center" VertAlign="Center" Font="Arial, 9pt"/>
         <TextObject Name="Text14" Left="657.6" Width="81.6" Height="19.2" Border.Lines="All" Border.Width="0.25" CanGrow="true" GrowToBottom="true" Text="[PurchaseLineItem.Extended]" Padding="2, 2, 2, 2" Format="Currency" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" VertAlign="Center" WordWrap="false" Font="Arial, 9pt" Trimming="EllipsisCharacter"/>
-        <DataHeaderBand Name="DataHeader1" Top="270.2" Width="744.13" Height="19.2">
+        <DataHeaderBand Name="DataHeader1" Top="270.67" Width="744.13" Height="19.2">
           <TextObject Name="Text1" Left="129.6" Width="384" Height="19.2" Border.Lines="Left, Top, Bottom" Border.Width="0.5" Fill.Color="LightGray" Text="Description" VertAlign="Center" Font="Arial, 10pt"/>
           <TextObject Name="Text8" Left="513.6" Width="72" Height="19.2" Border.Lines="Left, Top, Bottom" Border.Width="0.5" Fill.Color="LightGray" Text="Qnty" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt"/>
           <TextObject Name="Text10" Left="585.6" Width="72" Height="19.2" Border.Lines="Left, Top, Bottom" Border.Width="0.5" Fill.Color="LightGray" Text="UnitCost" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt"/>
@@ -165,7 +165,7 @@
           <TextObject Name="Text15" Left="657.6" Width="81.6" Height="19.2" Border.Lines="All" Border.Width="0.5" Fill.Color="LightGray" Text="Total" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt"/>
           <TextObject Name="Text16" Left="67.2" Width="62.4" Height="19.2" Border.Lines="All" Border.Width="0.5" Fill.Color="LightGray" Text="Part#" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt"/>
         </DataHeaderBand>
-        <DataFooterBand Name="DataFooter1" Top="314.79" Width="744.13" Height="96">
+        <DataFooterBand Name="DataFooter1" Top="315.73" Width="744.13" Height="96">
           <TextObject Name="Text31" Left="542.4" Top="33.6" Width="96" Height="19.2" Border.Lines="All" Border.Width="0.25" Fill.Color="LightGray" Text="Tax" VertAlign="Center" Font="Arial, 10pt"/>
           <TextObject Name="Text32" Left="638.4" Top="33.6" Width="100.8" Height="19.2" Border.Lines="Right, Top, Bottom" Border.TopLine.Width="0.25" Border.RightLine.Width="0.25" Border.BottomLine.Width="0.25" Text="[PurchaseOrder.Tax]" Format="Currency" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" VertAlign="Center" WordWrap="false" Font="Arial, 9pt" Trimming="EllipsisCharacter"/>
           <TextObject Name="Text29" Left="542.4" Top="14.4" Width="96" Height="19.2" Border.Lines="All" Border.Width="0.25" Fill.Color="LightGray" Text="Sub Total" VertAlign="Center" Font="Arial, 10pt"/>
@@ -178,7 +178,7 @@
         </DataFooterBand>
       </DataBand>
     </DataBand>
-    <PageFooterBand Name="PageFooter1" Top="413.89" Width="744.13" Height="28.8">
+    <PageFooterBand Name="PageFooter1" Top="415.07" Width="744.13" Height="28.8">
       <TextObject Name="Text71" Left="4.8" Width="201.6" Height="19.2" Text="[Date]" Font="Arial, 10pt"/>
       <TextObject Name="Text72" Left="494.4" Width="244.8" Height="19.2" Text="[PageNofM]" HorzAlign="Right" Font="Arial, 10pt"/>
     </PageFooterBand>

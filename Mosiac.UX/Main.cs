@@ -59,7 +59,7 @@ namespace Mosiac.UX
 
         private void Main_Load(object sender, EventArgs e)
         {
-            ThermalLabel.LicenseOwner = "Richard Young";
+            ThermalLabel.LicenseOwner = "Richard Young-Ultimate Edition-Developer License";
             ThermalLabel.LicenseKey = "RALJ9V89HNTFJMHZWRMH6MFP82AXAXDTX3ZXUESKXRFLXAZ346GQ";
 
 
