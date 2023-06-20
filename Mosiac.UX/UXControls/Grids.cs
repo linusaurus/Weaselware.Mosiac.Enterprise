@@ -207,7 +207,7 @@ namespace Mosiac.UX.UXControls
             col_Manufacturer.DataPropertyName = "PartNumber";
             col_Manufacturer.Width = 160;
 
-
+            
 
             dg.Columns.AddRange(col_ID, col_Description, col_Manufacturer);
 
@@ -337,8 +337,14 @@ namespace Mosiac.UX.UXControls
             col_OrderTotal.DefaultCellStyle = dstyleCurrency;
             col_OrderTotal.Width = 160;
 
+            // Recieved COlumn --
+            DataGridViewCheckBoxColumn col_received = new DataGridViewCheckBoxColumn();
+            col_received.HeaderText = "Revd";
+            col_received.DataPropertyName = "Received";
+            col_received.Width = 75;
 
-            dg.Columns.AddRange(col_ID, col_Purchaser, col_OrderDate, col_Supplier, col_OrderTotal);
+
+            dg.Columns.AddRange(col_ID, col_Purchaser, col_OrderDate, col_Supplier, col_OrderTotal, col_received);
 
         }
 

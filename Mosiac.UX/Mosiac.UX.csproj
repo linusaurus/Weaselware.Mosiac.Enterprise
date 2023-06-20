@@ -4,9 +4,9 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>net6.0-windows</TargetFramework>
     <UseWindowsForms>true</UseWindowsForms>
-    <AssemblyVersion>1.6.1.12</AssemblyVersion>
+    <AssemblyVersion>1.6.1.17</AssemblyVersion>
     <ApplicationIcon>mosaic-_1_.ico</ApplicationIcon>
-    <FileVersion>1.6.1.12</FileVersion>
+    <FileVersion>1.6.1.17</FileVersion>
     <Authors>Dick Danger</Authors>
     <Company>Weaselware</Company>
     <Product>Mosiac Enterprise</Product>

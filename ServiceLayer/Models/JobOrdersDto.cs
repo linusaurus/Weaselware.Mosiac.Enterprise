@@ -18,6 +18,8 @@ namespace ServiceLayer.Models
             public string SupplierName { get; set; }
 
             public decimal OrderTotal { get;set; }
+
+        public bool Received { get; set; }
           
     }
 }

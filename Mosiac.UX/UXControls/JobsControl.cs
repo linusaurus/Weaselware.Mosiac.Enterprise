@@ -44,16 +44,34 @@ namespace Mosiac.UX.UXControls
 
             Grids.BuildJobOrderDetailGrid(dgvJobOrders);
             Grids.BuildJobDeliveriesGrid(dgvJobDeliveries);
+            dgvJobOrders.CellFormatting += DgvJobOrders_CellFormatting;
 
             lbJobsList.SelectedIndexChanged += LbJobsList_SelectedIndexChanged;
             dgvJobOrders.SelectionChanged += DgvJobOrders_SelectionChanged;
             dgvJobOrders.MouseDoubleClick += DgvJobOrders_MouseDoubleClick;
             // ------------------------------------------------------
-           
+
             dgvJobDeliveries.CellValueChanged += DgvJobDeliveries_CellValueChanged;
             dgvJobDeliveries.CurrentCellDirtyStateChanged += DgvJobDeliveries_CurrentCellDirtyStateChanged;
             dgvJobDeliveries.CellClick += DgvJobDeliveries_CellClick;
             dgvJobDeliveries.SelectionChanged += DgvJobDeliveries_SelectionChanged;
+        }
+
+        private void DgvJobOrders_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            // Compare the column to the column you want to format
+            DataGridView dv = (DataGridView)sender;
+
+            if (dv.Columns[e.ColumnIndex].Name == "colRecieved")
+            {
+                //get the IChessitem you are currently binding, using the index of the current row to access the datasource
+                OrderListDto item = (OrderListDto)dv.Rows[e.RowIndex].DataBoundItem;
+                //check the condition
+                if (item.Recieved == true)
+                {
+                    dv.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.Cornsilk;
+                }
+            }
         }
 
         private void DgvJobDeliveries_SelectionChanged(object sender, EventArgs e)
@@ -68,6 +86,7 @@ namespace Mosiac.UX.UXControls
             }
         }
 
+
         private void DgvJobDeliveries_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             DataGridView dgv = (DataGridView)sender;
@@ -79,17 +98,17 @@ namespace Mosiac.UX.UXControls
                 dtp = new DateTimePicker();
                 dtp.Format = DateTimePickerFormat.Short;
                 dtp.Visible = true;
-                if (dgv.CurrentCell.ColumnIndex== 5)
+                if (dgv.CurrentCell.ColumnIndex == 5)
                 {
-                    if (DateTime.TryParse(dgv.CurrentCell.Value.ToString(),out val))
+                    if (DateTime.TryParse(dgv.CurrentCell.Value.ToString(), out val))
                     {
                         if (val != DateTime.MinValue)
                         {
                             dtp.Value = DateTime.Parse(dgv.CurrentCell.Value.ToString());
                         }
-                    }                  
+                    }
                 }
-             
+
 
                 // set size and location
                 var rect = dgv.GetCellDisplayRectangle(e.ColumnIndex, e.RowIndex, true);
@@ -108,7 +127,7 @@ namespace Mosiac.UX.UXControls
         private void dtp_OnTextChange(object sender, EventArgs e)
         {
             dgvJobDeliveries.CurrentCell.Value = dtp.Text.ToString();
-            if (_selectedPickList != default )
+            if (_selectedPickList != default)
             {
                 var found = _ctx.PickList.Find(_selectedPickList);
                 found.DeliveryDate = (DateTime)dgvJobDeliveries.CurrentCell.Value;
@@ -137,12 +156,12 @@ namespace Mosiac.UX.UXControls
         {
             if (e.ColumnIndex == 4)
             {
-               
-              
+
+
             }
         }
 
-       
+
 
         private void DgvJobOrders_SelectionChanged(object sender, EventArgs e)
         {
@@ -188,7 +207,7 @@ namespace Mosiac.UX.UXControls
                     dgvJobDeliveries.DataSource = _stockService.GetJobPicks(_selectedJob.jobID);
                 }
             }
-           
+
         }
 
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
@@ -212,8 +231,8 @@ namespace Mosiac.UX.UXControls
 
         private void btnShowAll_Click(object sender, EventArgs e)
         {
-            lbJobsList.DisplayMember = "Jobname";
-            lbJobsList.DataSource = _jobService.All();
+            lbJobsList.DisplayMember = "JobName";
+            lbJobsList.DataSource = _jobService.GetAllJobs();
         }
 
         private void CreateNewJobOrder()
@@ -221,14 +240,31 @@ namespace Mosiac.UX.UXControls
             //jobID = diag.JobNumber;
             //supplierID = diag.SupplierID;
 
-           // var order = _ordersService.NewDefault(Globals.CurrentLoggedUserID, supplierID, jobID);
-           // _ordersService.Add(order);
+            // var order = _ordersService.NewDefault(Globals.CurrentLoggedUserID, supplierID, jobID);
+            // _ordersService.Add(order);
             // Purchase Order Page
 
             //TabPage orderPage = PageFactory.GetNewTabPage(_ctx, PageFactory.TabPageType.PurchaseOrderPage, order.PurchaseOrderID);
 
             //MainTabControl.TabPages.Add(orderPage);
             //MainTabControl.SelectTab(orderPage);
+        }
+
+        private void tabJobDelivery_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            TabControl tabControl = (TabControl)sender;
+            TabPage page = tabControl.SelectedTab;
+            switch (page.Name)
+            {
+                case "tabDeliveries":
+                  //  Grids.BuildJobDeliveriesGrid(dgvJobDeliveries);
+                    //dgvJobDeliveries.Rows.Clear();
+                   //dgvJobDeliveries.DataSource = null;
+                    break;
+            }
+
+
+
         }
     }
 }

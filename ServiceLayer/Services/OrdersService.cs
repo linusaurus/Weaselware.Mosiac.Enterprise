@@ -193,7 +193,7 @@ namespace ServiceLayer {
                 Purchaser = d.Employee.firstname,
                 SupplierName = d.Supplier.SupplierName,
                 OrderTotal = d.OrderTotal.GetValueOrDefault(),
-               
+               Received = d.Recieved.GetValueOrDefault()
 
             }).ToList();
             return result;
@@ -536,7 +536,7 @@ namespace ServiceLayer {
                 return context.PurchaseOrder
                    .Include(j => j.Job)
                    .Include(e => e.Employee)
-                   .Include(s => s.Supplier).Where(c => c.EmployeeID == employeeID).Where(r => r.Recieved == true).Where(o =>  o.OrderState != 4).OrderByDescending(r => r.OrderDate)
+                   .Include(s => s.Supplier).Where(c => c.EmployeeID == employeeID).Where(r => r.Recieved == true).Where(o =>  o.OrderState != 4 || o.OrderState != 5).OrderByDescending(r => r.OrderDate)
                    .AsNoTracking().Select(d => new OrderListDto
                    {
                        PurchaseOrderID = d.PurchaseOrderID,
@@ -555,7 +555,7 @@ namespace ServiceLayer {
                 return context.PurchaseOrder
                    .Include(j => j.Job)
                    .Include(e => e.Employee)
-                   .Include(s => s.Supplier).Where(c => c.EmployeeID == employeeID).Where(r => r.Recieved == false).Where(o => o.OrderState != 4).OrderByDescending(r => r.OrderDate)
+                   .Include(s => s.Supplier).Where(c => c.EmployeeID == employeeID).Where(r => r.Recieved == false).Where(o => o.OrderState != 4 && o.OrderState != 5).OrderByDescending(r => r.OrderDate)
                    .AsNoTracking().Select(d => new OrderListDto
                    {
                        PurchaseOrderID = d.PurchaseOrderID,
@@ -569,7 +569,32 @@ namespace ServiceLayer {
                    }).ToList();
             }
         }
-        public List<OrderListDto> GetAllMyOrdersList(int employeeID)
+
+
+        public List<OrderListDto> GetReturnedOrders(int employeeID)
+        {
+          
+                return context.PurchaseOrder
+                   .Include(j => j.Job)
+                   .Include(e => e.Employee)
+                   .Include(s => s.Supplier).Where(c => c.EmployeeID == employeeID).Where(o=> o.OrderState == 5).OrderByDescending(r => r.OrderDate)
+                   .AsNoTracking().Select(d => new OrderListDto
+                   {
+                       PurchaseOrderID = d.PurchaseOrderID,
+                       JobName = d.Job.jobname,
+                       Purchaser = d.Employee.firstname,
+                       OrderDate = d.OrderDate.GetValueOrDefault(),
+                       OrderTotal = d.OrderTotal.GetValueOrDefault(),
+                       Recieved = d.Recieved.GetValueOrDefault(),
+                       Supplier = d.Supplier.SupplierName
+
+                   }).ToList();
+
+            
+        }
+
+
+            public List<OrderListDto> GetAllMyOrdersList(int employeeID)
         {
             return context.PurchaseOrder
                    .Include(j => j.Job)

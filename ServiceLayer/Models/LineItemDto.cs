@@ -21,6 +21,7 @@ namespace ServiceLayer.Models
         private string description;
         private decimal price;
         private decimal extended;
+        private string partNum;
 
 
         /// <summary>
@@ -80,6 +81,12 @@ namespace ServiceLayer.Models
                partID = value ;
                OnPropertyChange();
             }
+        }
+
+        public string PartNum
+        {
+            get { return partNum; }
+            set { partNum = value; OnPropertyChange(); }
         }
         /// <summary>
         /// UiD

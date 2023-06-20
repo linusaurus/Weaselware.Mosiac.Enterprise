@@ -30,214 +30,246 @@
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.dgMyOrdersGrid = new System.Windows.Forms.DataGridView();
-            this.colOrderNum = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colOrderDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colSupplier = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colJobName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colOrderTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colRecieved = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.ckbShowAll = new System.Windows.Forms.CheckBox();
-            this.btnOpenOrder = new System.Windows.Forms.Button();
-            this.txtOrderNumber = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.cbJobName = new System.Windows.Forms.ComboBox();
-            this.ckbShowRecieved = new System.Windows.Forms.CheckBox();
-            this.cbxShowAll = new System.Windows.Forms.CheckBox();
-            ((System.ComponentModel.ISupportInitialize)(this.dgMyOrdersGrid)).BeginInit();
-            this.panel1.SuspendLayout();
-            this.SuspendLayout();
+            dgMyOrdersGrid = new System.Windows.Forms.DataGridView();
+            colOrderNum = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            colOrderDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            colSupplier = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            colJobName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            colOrderTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            colRecieved = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            panel1 = new System.Windows.Forms.Panel();
+            rbOutStanding = new System.Windows.Forms.RadioButton();
+            groupBox1 = new System.Windows.Forms.GroupBox();
+            rbShowReturned = new System.Windows.Forms.RadioButton();
+            rbShowAll = new System.Windows.Forms.RadioButton();
+            rbShowReceived = new System.Windows.Forms.RadioButton();
+            ckbShowAll = new System.Windows.Forms.CheckBox();
+            btnOpenOrder = new System.Windows.Forms.Button();
+            txtOrderNumber = new System.Windows.Forms.TextBox();
+            label1 = new System.Windows.Forms.Label();
+            cbJobName = new System.Windows.Forms.ComboBox();
+            ((System.ComponentModel.ISupportInitialize)dgMyOrdersGrid).BeginInit();
+            panel1.SuspendLayout();
+            groupBox1.SuspendLayout();
+            SuspendLayout();
             // 
             // dgMyOrdersGrid
             // 
-            this.dgMyOrdersGrid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgMyOrdersGrid.BackgroundColor = System.Drawing.SystemColors.ActiveBorder;
-            this.dgMyOrdersGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgMyOrdersGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.colOrderNum,
-            this.colOrderDate,
-            this.colSupplier,
-            this.colJobName,
-            this.colOrderTotal,
-            this.colRecieved});
-            this.dgMyOrdersGrid.Location = new System.Drawing.Point(12, 91);
-            this.dgMyOrdersGrid.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.dgMyOrdersGrid.Name = "dgMyOrdersGrid";
-            this.dgMyOrdersGrid.Size = new System.Drawing.Size(1222, 783);
-            this.dgMyOrdersGrid.TabIndex = 0;
-            this.dgMyOrdersGrid.SelectionChanged += new System.EventHandler(this.dgMyOrdersGrid_SelectionChanged);
-            this.dgMyOrdersGrid.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dgMyOrdersGrid_MouseDoubleClick);
+            dgMyOrdersGrid.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            dgMyOrdersGrid.BackgroundColor = System.Drawing.SystemColors.ActiveBorder;
+            dgMyOrdersGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgMyOrdersGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] { colOrderNum, colOrderDate, colSupplier, colJobName, colOrderTotal, colRecieved });
+            dgMyOrdersGrid.Location = new System.Drawing.Point(12, 107);
+            dgMyOrdersGrid.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            dgMyOrdersGrid.Name = "dgMyOrdersGrid";
+            dgMyOrdersGrid.Size = new System.Drawing.Size(1222, 767);
+            dgMyOrdersGrid.TabIndex = 0;
+            dgMyOrdersGrid.SelectionChanged += dgMyOrdersGrid_SelectionChanged;
+            dgMyOrdersGrid.MouseDoubleClick += dgMyOrdersGrid_MouseDoubleClick;
             // 
             // colOrderNum
             // 
-            this.colOrderNum.DataPropertyName = "PurchaseOrderID";
-            this.colOrderNum.HeaderText = "Order#";
-            this.colOrderNum.Name = "colOrderNum";
+            colOrderNum.DataPropertyName = "PurchaseOrderID";
+            colOrderNum.HeaderText = "Order#";
+            colOrderNum.Name = "colOrderNum";
             // 
             // colOrderDate
             // 
-            this.colOrderDate.DataPropertyName = "OrderDate";
+            colOrderDate.DataPropertyName = "OrderDate";
             dataGridViewCellStyle1.Format = "d";
             dataGridViewCellStyle1.NullValue = null;
-            this.colOrderDate.DefaultCellStyle = dataGridViewCellStyle1;
-            this.colOrderDate.HeaderText = "Order Date";
-            this.colOrderDate.Name = "colOrderDate";
+            colOrderDate.DefaultCellStyle = dataGridViewCellStyle1;
+            colOrderDate.HeaderText = "Order Date";
+            colOrderDate.Name = "colOrderDate";
             // 
             // colSupplier
             // 
-            this.colSupplier.DataPropertyName = "Supplier";
-            this.colSupplier.HeaderText = "Supplier";
-            this.colSupplier.Name = "colSupplier";
-            this.colSupplier.Width = 200;
+            colSupplier.DataPropertyName = "Supplier";
+            colSupplier.HeaderText = "Supplier";
+            colSupplier.Name = "colSupplier";
+            colSupplier.Width = 200;
             // 
             // colJobName
             // 
-            this.colJobName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colJobName.DataPropertyName = "JobName";
-            this.colJobName.HeaderText = "Jobname";
-            this.colJobName.Name = "colJobName";
+            colJobName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            colJobName.DataPropertyName = "JobName";
+            colJobName.HeaderText = "Jobname";
+            colJobName.Name = "colJobName";
             // 
             // colOrderTotal
             // 
-            this.colOrderTotal.DataPropertyName = "OrderTotal";
+            colOrderTotal.DataPropertyName = "OrderTotal";
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
             dataGridViewCellStyle2.Format = "C2";
             dataGridViewCellStyle2.NullValue = null;
-            this.colOrderTotal.DefaultCellStyle = dataGridViewCellStyle2;
-            this.colOrderTotal.HeaderText = "Total";
-            this.colOrderTotal.Name = "colOrderTotal";
-            this.colOrderTotal.Width = 125;
+            colOrderTotal.DefaultCellStyle = dataGridViewCellStyle2;
+            colOrderTotal.HeaderText = "Total";
+            colOrderTotal.Name = "colOrderTotal";
+            colOrderTotal.Width = 125;
             // 
             // colRecieved
             // 
-            this.colRecieved.DataPropertyName = "Recieved";
-            this.colRecieved.HeaderText = "Received";
-            this.colRecieved.Name = "colRecieved";
-            this.colRecieved.Width = 75;
+            colRecieved.DataPropertyName = "Recieved";
+            colRecieved.HeaderText = "Received";
+            colRecieved.Name = "colRecieved";
+            colRecieved.Width = 75;
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.ckbShowAll);
-            this.panel1.Controls.Add(this.btnOpenOrder);
-            this.panel1.Controls.Add(this.txtOrderNumber);
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.cbJobName);
-            this.panel1.Controls.Add(this.cbxShowAll);
-            this.panel1.Controls.Add(this.ckbShowRecieved);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(12, 12);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1220, 72);
-            this.panel1.TabIndex = 1;
+            panel1.BackColor = System.Drawing.SystemColors.ControlLight;
+            panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            panel1.Controls.Add(groupBox1);
+            panel1.Controls.Add(ckbShowAll);
+            panel1.Controls.Add(btnOpenOrder);
+            panel1.Controls.Add(txtOrderNumber);
+            panel1.Controls.Add(label1);
+            panel1.Controls.Add(cbJobName);
+            panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            panel1.Location = new System.Drawing.Point(12, 12);
+            panel1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            panel1.Name = "panel1";
+            panel1.Size = new System.Drawing.Size(1220, 89);
+            panel1.TabIndex = 1;
+            // 
+            // rbOutStanding
+            // 
+            rbOutStanding.AutoSize = true;
+            rbOutStanding.Location = new System.Drawing.Point(6, 51);
+            rbOutStanding.Name = "rbOutStanding";
+            rbOutStanding.Size = new System.Drawing.Size(123, 19);
+            rbOutStanding.TabIndex = 5;
+            rbOutStanding.TabStop = true;
+            rbOutStanding.Text = "Show Outstanding";
+            rbOutStanding.UseVisualStyleBackColor = true;
+            rbOutStanding.CheckedChanged += rbOutStanding_CheckedChanged;
+            // 
+            // groupBox1
+            // 
+            groupBox1.Controls.Add(rbOutStanding);
+            groupBox1.Controls.Add(rbShowReturned);
+            groupBox1.Controls.Add(rbShowAll);
+            groupBox1.Controls.Add(rbShowReceived);
+            groupBox1.Location = new System.Drawing.Point(3, 3);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Size = new System.Drawing.Size(489, 81);
+            groupBox1.TabIndex = 7;
+            groupBox1.TabStop = false;
+            groupBox1.Text = "Filters";
+            // 
+            // rbShowReturned
+            // 
+            rbShowReturned.AutoSize = true;
+            rbShowReturned.Location = new System.Drawing.Point(254, 28);
+            rbShowReturned.Name = "rbShowReturned";
+            rbShowReturned.Size = new System.Drawing.Size(105, 19);
+            rbShowReturned.TabIndex = 4;
+            rbShowReturned.TabStop = true;
+            rbShowReturned.Text = "Show Returned";
+            rbShowReturned.UseVisualStyleBackColor = true;
+            rbShowReturned.CheckedChanged += rbShowReturned_CheckedChanged;
+            // 
+            // rbShowAll
+            // 
+            rbShowAll.AutoSize = true;
+            rbShowAll.Location = new System.Drawing.Point(163, 27);
+            rbShowAll.Name = "rbShowAll";
+            rbShowAll.Size = new System.Drawing.Size(71, 19);
+            rbShowAll.TabIndex = 3;
+            rbShowAll.TabStop = true;
+            rbShowAll.Text = "Show All";
+            rbShowAll.UseVisualStyleBackColor = true;
+            rbShowAll.CheckedChanged += rbShowAll_CheckedChanged;
+            // 
+            // rbShowReceived
+            // 
+            rbShowReceived.AutoSize = true;
+            rbShowReceived.Location = new System.Drawing.Point(6, 26);
+            rbShowReceived.Name = "rbShowReceived";
+            rbShowReceived.Size = new System.Drawing.Size(142, 19);
+            rbShowReceived.TabIndex = 2;
+            rbShowReceived.TabStop = true;
+            rbShowReceived.Text = "Show Received Orders";
+            rbShowReceived.UseVisualStyleBackColor = true;
+            rbShowReceived.CheckedChanged += rbShowReceived_CheckedChanged;
             // 
             // ckbShowAll
             // 
-            this.ckbShowAll.AutoSize = true;
-            this.ckbShowAll.Location = new System.Drawing.Point(765, 29);
-            this.ckbShowAll.Name = "ckbShowAll";
-            this.ckbShowAll.Size = new System.Drawing.Size(132, 19);
-            this.ckbShowAll.TabIndex = 6;
-            this.ckbShowAll.Text = "Show All Purchasers";
-            this.ckbShowAll.UseVisualStyleBackColor = true;
-            this.ckbShowAll.CheckedChanged += new System.EventHandler(this.ckbShowAll_CheckedChanged);
+            ckbShowAll.AutoSize = true;
+            ckbShowAll.Location = new System.Drawing.Point(765, 29);
+            ckbShowAll.Name = "ckbShowAll";
+            ckbShowAll.Size = new System.Drawing.Size(132, 19);
+            ckbShowAll.TabIndex = 6;
+            ckbShowAll.Text = "Show All Purchasers";
+            ckbShowAll.UseVisualStyleBackColor = true;
+            ckbShowAll.CheckedChanged += ckbShowAll_CheckedChanged;
             // 
             // btnOpenOrder
             // 
-            this.btnOpenOrder.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.btnOpenOrder.FlatAppearance.BorderSize = 3;
-            this.btnOpenOrder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnOpenOrder.Location = new System.Drawing.Point(1065, 22);
-            this.btnOpenOrder.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.btnOpenOrder.Name = "btnOpenOrder";
-            this.btnOpenOrder.Size = new System.Drawing.Size(106, 31);
-            this.btnOpenOrder.TabIndex = 5;
-            this.btnOpenOrder.Text = "Open Order";
-            this.btnOpenOrder.UseVisualStyleBackColor = true;
-            this.btnOpenOrder.Click += new System.EventHandler(this.btnOpenOrder_Click);
+            btnOpenOrder.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(192, 0, 0);
+            btnOpenOrder.FlatAppearance.BorderSize = 3;
+            btnOpenOrder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            btnOpenOrder.Location = new System.Drawing.Point(1065, 22);
+            btnOpenOrder.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            btnOpenOrder.Name = "btnOpenOrder";
+            btnOpenOrder.Size = new System.Drawing.Size(106, 31);
+            btnOpenOrder.TabIndex = 5;
+            btnOpenOrder.Text = "Open Order";
+            btnOpenOrder.UseVisualStyleBackColor = true;
+            btnOpenOrder.Click += btnOpenOrder_Click;
             // 
             // txtOrderNumber
             // 
-            this.txtOrderNumber.Location = new System.Drawing.Point(941, 27);
-            this.txtOrderNumber.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.txtOrderNumber.Name = "txtOrderNumber";
-            this.txtOrderNumber.Size = new System.Drawing.Size(116, 23);
-            this.txtOrderNumber.TabIndex = 4;
-            this.txtOrderNumber.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            txtOrderNumber.Location = new System.Drawing.Point(941, 27);
+            txtOrderNumber.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            txtOrderNumber.Name = "txtOrderNumber";
+            txtOrderNumber.Size = new System.Drawing.Size(116, 23);
+            txtOrderNumber.TabIndex = 4;
+            txtOrderNumber.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(463, 33);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(59, 15);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Employee";
+            label1.AutoSize = true;
+            label1.Location = new System.Drawing.Point(499, 30);
+            label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            label1.Name = "label1";
+            label1.Size = new System.Drawing.Size(59, 15);
+            label1.TabIndex = 3;
+            label1.Text = "Employee";
             // 
             // cbJobName
             // 
-            this.cbJobName.FormattingEnabled = true;
-            this.cbJobName.Location = new System.Drawing.Point(530, 27);
-            this.cbJobName.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.cbJobName.Name = "cbJobName";
-            this.cbJobName.Size = new System.Drawing.Size(219, 23);
-            this.cbJobName.TabIndex = 2;
-            this.cbJobName.SelectedIndexChanged += new System.EventHandler(this.cbJobName_SelectedIndexChanged);
-            // 
-            // ckbShowRecieved
-            // 
-            this.ckbShowRecieved.AutoSize = true;
-            this.ckbShowRecieved.Location = new System.Drawing.Point(23, 29);
-            this.ckbShowRecieved.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.ckbShowRecieved.Name = "ckbShowRecieved";
-            this.ckbShowRecieved.Size = new System.Drawing.Size(143, 19);
-            this.ckbShowRecieved.TabIndex = 1;
-            this.ckbShowRecieved.Text = "Show Recieved Orders";
-            this.ckbShowRecieved.UseVisualStyleBackColor = true;
-            this.ckbShowRecieved.CheckedChanged += new System.EventHandler(this.ckbShowRecieved_CheckedChanged);
-            // 
-            // cbxShowAll
-            // 
-            this.cbxShowAll.AutoSize = true;
-            this.cbxShowAll.Location = new System.Drawing.Point(194, 29);
-            this.cbxShowAll.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.cbxShowAll.Name = "cbxShowAll";
-            this.cbxShowAll.Size = new System.Drawing.Size(72, 19);
-            this.cbxShowAll.TabIndex = 1;
-            this.cbxShowAll.Text = "Show All";
-            this.cbxShowAll.UseVisualStyleBackColor = true;
-            this.cbxShowAll.CheckedChanged += new System.EventHandler(this.cbxShowAll_CheckedChanged);
+            cbJobName.FormattingEnabled = true;
+            cbJobName.Location = new System.Drawing.Point(576, 27);
+            cbJobName.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            cbJobName.Name = "cbJobName";
+            cbJobName.Size = new System.Drawing.Size(173, 23);
+            cbJobName.TabIndex = 2;
+            cbJobName.SelectedIndexChanged += cbJobName_SelectedIndexChanged;
             // 
             // MyOrdersControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.Controls.Add(this.panel1);
-            this.Controls.Add(this.dgMyOrdersGrid);
-            this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.Name = "MyOrdersControl";
-            this.Padding = new System.Windows.Forms.Padding(12);
-            this.Size = new System.Drawing.Size(1244, 886);
-            this.Load += new System.EventHandler(this.MyOrdersControl_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dgMyOrdersGrid)).EndInit();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            this.ResumeLayout(false);
-
+            AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            BackColor = System.Drawing.SystemColors.ControlLight;
+            Controls.Add(panel1);
+            Controls.Add(dgMyOrdersGrid);
+            Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            Name = "MyOrdersControl";
+            Padding = new System.Windows.Forms.Padding(12);
+            Size = new System.Drawing.Size(1244, 886);
+            Load += MyOrdersControl_Load;
+            ((System.ComponentModel.ISupportInitialize)dgMyOrdersGrid).EndInit();
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
+            groupBox1.ResumeLayout(false);
+            groupBox1.PerformLayout();
+            ResumeLayout(false);
         }
 
         #endregion
 
         private System.Windows.Forms.DataGridView dgMyOrdersGrid;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.CheckBox ckbShowRecieved;
         private System.Windows.Forms.ComboBox cbJobName;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnOpenOrder;
@@ -249,6 +281,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colJobName;
         private System.Windows.Forms.DataGridViewTextBoxColumn colOrderTotal;
         private System.Windows.Forms.DataGridViewCheckBoxColumn colRecieved;
-        private System.Windows.Forms.CheckBox cbxShowAll;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.RadioButton rbShowReturned;
+        private System.Windows.Forms.RadioButton rbShowAll;
+        private System.Windows.Forms.RadioButton rbShowReceived;
+        private System.Windows.Forms.RadioButton rbOutStanding;
     }
 }

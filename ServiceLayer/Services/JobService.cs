@@ -65,7 +65,14 @@ namespace ServiceLayer {
                 .Include(p => p.PurchaseOrder).ThenInclude(p => p.PurchaseLineItem)
                 .Where(c => c.jobname.StartsWith(jobName)).OrderByDescending(t => t.start_ts).Take(25).ToList();
         }
-       
+
+        public List<Job> GetAllJobs()
+        {
+
+            return context.Job.AsNoTracking()
+                .Include(p => p.PurchaseOrder).ThenInclude(p => p.PurchaseLineItem).OrderByDescending(t => t.start_ts).ToList();
+        }
+
 
         public void Save() {
 
@@ -105,15 +112,18 @@ namespace ServiceLayer {
         public List<JobListDto> All()
         {
             var jobs = context.Job.AsNoTracking().OrderByDescending(p => p.jobID)
-                                  
-                                   .Select(j => new JobListDto()
-                                   {
-                                       JobID = j.jobID,
-                                       JobName = j.jobname
-                                   }).ToList();
+
+                                  .Select(j => new JobListDto()
+                                  {
+                                      JobID = j.jobID,
+                                      JobName = j.jobname
+                                  }).ToList();
 
 
             return jobs;
+
+
+
 
         }
     }

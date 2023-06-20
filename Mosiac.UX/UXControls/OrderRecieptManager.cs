@@ -13,6 +13,7 @@ using ServiceLayer.Enums;
 using ServiceLayer.Models;
 using ServiceLayer.Mappers;
 using Mosiac.UX.Services;
+using static System.Windows.Forms.AxHost;
 
 namespace Mosiac.UX.UXControls
 {
@@ -29,7 +30,7 @@ namespace Mosiac.UX.UXControls
         private OrderRecieptLineItemDto _selectedOrderRecieptLineItemDto;
         private OrderReceiptStates currentFilter = OrderReceiptStates.Unreceived;
 
-        
+
 
         public OrderRecieptManager(MosaicContext context)
         {
@@ -40,11 +41,12 @@ namespace Mosiac.UX.UXControls
             _orderReceiptRepository = new OrderReceiptRepository(_context, Mosiac.UX.Services.Globals.CurrentUserName, Mosiac.UX.Services.Globals.CurrentLoggedUserID);
             ordersService = new OrdersService(_context);
             //EmployeeService employeeService = new EmployeeService(_context);
-            _suppliersService = new SuppliersService(_context);            
+            _suppliersService = new SuppliersService(_context);
 
             //----------------------------- Pending Grid ------------------------------------
 
             LoadOrders(OrderReceiptStates.Unreceived);
+            LoadReceiptSuppliers();
 
             #region Events
 
@@ -56,14 +58,19 @@ namespace Mosiac.UX.UXControls
 
             #endregion
 
-            tsbFilterCombo.SelectedIndex = 0;
+            tsbFilter.SelectedIndex = 0;
         }
-
+        /// <summary>
+        /// this Populates the order to recevie list -->>
+        /// </summary>
+        /// <param name="state"></param>
         private void LoadOrders(OrderReceiptStates state)
         {
             DataTable dt = new DataTable();
             dt = ServiceLayer.DataBuilders.BuildDataTable(_orderReceiptRepository.UnRecievedOrders(state));
-            dgPendingOrders.DataSource = dt.DefaultView;
+            // table = dt.AsEnumerable().Where(row => row.Field<String>("Supplier").Contains("Aba")).CopyToDataTable();
+            DataView dv = new DataView(dt);
+            dgPendingOrders.DataSource = dv;
         }
 
         private void RefreshOrders()
@@ -75,20 +82,16 @@ namespace Mosiac.UX.UXControls
         private void DgPendingOrders_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             DataGridView dg = (DataGridView)sender;
-            DataRowView drv = (DataRowView) dg.Rows[e.RowIndex].DataBoundItem;
+            DataRowView drv = (DataRowView)dg.Rows[e.RowIndex].DataBoundItem;
 
             if (dg.DataSource != null)
             {
                 if (dg.Rows.Count > 0)
                 {
-                    //DataGridViewRow row = dg.Rows[e.RowIndex];
                     DataRow row = drv.Row;
                     DataGridViewRow r = dg.Rows[e.RowIndex];
-                    //DateTime age = (DateTime)row["OrderDate"];
-                    //System.TimeSpan diff = DateTime.Today.Subtract(age);
 
-
-                    int dat =(int) row["OrderState"];
+                    int dat = (int)row["OrderState"];
                     if (dat == 1 || dat == 2)
                     {
                         r.DefaultCellStyle.ForeColor = Color.Black;
@@ -107,8 +110,6 @@ namespace Mosiac.UX.UXControls
                         r.DefaultCellStyle.BackColor = Color.Black;
                         r.ReadOnly = true;
                     }
-                   
-
                 }
             }
         }
@@ -127,7 +128,6 @@ namespace Mosiac.UX.UXControls
                     {
                         row.DefaultCellStyle.ForeColor = Color.White;
                         row.DefaultCellStyle.BackColor = Color.LightGray;
-                        //row.ReadOnly = true;
                     }
                 }
             }
@@ -135,39 +135,6 @@ namespace Mosiac.UX.UXControls
 
         #endregion
 
-        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
-        {
-            if ((keyData == Keys.Enter) || (keyData == Keys.Return))
-
-            {
-                // Find the Order to receive based on po entered
-                if (tsSearchEntry.Text.Length > 0)
-                {
-                    int k = int.Parse(tsSearchEntry.Text);
-                    
-                    DataTable dt = new DataTable();
-                    dt = ServiceLayer.DataBuilders.BuildDataTable(_orderReceiptRepository.FilterOrders(k));
-                    dgPendingOrders.DataSource = dt.DefaultView;
-                }
-
-                return true;
-            }
-            if (keyData == Keys.Escape )
-
-            {
-                // Clear textbox and restore list
-                tsSearchEntry.Clear();
-                LoadOrders(currentFilter);
-               
-
-                return true;
-            }
-            else
-            {
-         
-                return base.ProcessCmdKey(ref msg, keyData);
-            }
-        }
 
         private void DgPendingOrders_SelectionChanged(object sender, EventArgs e)
         {
@@ -181,14 +148,24 @@ namespace Mosiac.UX.UXControls
                         _selectedOrderID = (int)dg.CurrentRow.Cells[0].Value;
                         PopulateOrderItems(_selectedOrderID);
                     }
-   
                 }
             }
         }
 
+        private void LoadReceiptSuppliers()
+        {
+            var sups = _suppliersService.SuppliersWithOpenOrders();
+            foreach (var sup in sups)
+            {
+                tsComboSupplier.Items.Add(sup.SupplierName);
+            }
+        }
+
+
+
         private void PopulateOrderItems(int selectedOrderID)
         {
-            var lineItems  = ordersService.GetLineItems(_selectedOrderID);
+            var lineItems = ordersService.GetLineItems(_selectedOrderID);
             dgOrderLineItems.DataSource = lineItems;
         }
 
@@ -208,17 +185,17 @@ namespace Mosiac.UX.UXControls
                     OrderRecieptForm frm = new OrderRecieptForm(_selectedOrderID, _context);
                     frm.Width = 1200;
                     frm.Height = 600;
-                    frm.Text = $"Recieve Order :{ _selectedOrderID.ToString()}";
+                    frm.Text = $"Recieve Order :{_selectedOrderID.ToString()}";
                     frm.StartPosition = FormStartPosition.CenterScreen;
-                   
+
                     frm.ShowDialog();
                     //Reload changed Orders list --
                     LoadOrders(currentFilter);
                     break;
-  
+
                 case "tsOpenOrder":
 
-                    
+
                     Main main = (Main)Application.OpenForms["Main"];
                     main.OpenAnOrder(_selectedOrderID);
                     break;
@@ -236,16 +213,18 @@ namespace Mosiac.UX.UXControls
                 case "tsbPrintReceipt":
                     break;
                 case "tsRequestStatus":
-                    if(_selectedOrderID != default )
-                    {
-                        PurchaseOrder po = ordersService.GetOrderByID(_selectedOrderID);
-                        OrderDetailDto dto = new OrderDetailDto();
-                        PurchaseOrderMapper mapper = new PurchaseOrderMapper();
-                        mapper.Map(po, dto);
-                        Employee emp = _context.Employee.Find(dto.EmployeeID);
-                        string emailAdress = emp.EmployeeEmail.ToString();
-                        NotificationService.SendUpdateRequest(emailAdress, dto);
-                    }
+                    //if (_selectedOrderID != default)
+                    //{
+                    //    PurchaseOrder po = ordersService.GetOrderByID(_selectedOrderID);
+                    //    OrderDetailDto dto = new OrderDetailDto();
+                    //    PurchaseOrderMapper mapper = new PurchaseOrderMapper();
+                    //    mapper.Map(po, dto);
+                    //    Employee emp = _context.Employee.Find(dto.EmployeeID);
+                    //    string emailAdress = emp.EmployeeEmail.ToString();
+                    //    NotificationService.SendUpdateRequest(emailAdress, dto);
+                    //}
+                    break;
+                case "tscboPickSupplier":
 
 
                     break;
@@ -258,7 +237,7 @@ namespace Mosiac.UX.UXControls
         {
 
         }
-        
+
         // Select POs from the selected Suppliers ------------------++
         private void lbSuppliers_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -275,10 +254,10 @@ namespace Mosiac.UX.UXControls
         private void btnRejectLineItem_Click(object sender, EventArgs e)
         {
             _selectedOrderRecieptLineItemDto.QntyReceived = Decimal.Zero;
-            _selectedOrderRecieptLineItemDto.Description =$"{_selectedOrderRecieptLineItemDto.Description}  [REJECTED]";
+            _selectedOrderRecieptLineItemDto.Description = $"{_selectedOrderRecieptLineItemDto.Description}  [REJECTED]";
             _selectedOrderRecieptLineItemDto.ItemsRecievedComplete = false;
             _selectedOrderRecieptLineItemDto.QntyBalance = _selectedOrderRecieptLineItemDto.QntyOrdered;
-        
+
         }
 
         private void tsSaveChanges_Click(object sender, EventArgs e)
@@ -298,14 +277,14 @@ namespace Mosiac.UX.UXControls
 
         private void tsbFilterCombo_Click(object sender, EventArgs e)
         {
-           
+
         }
 
         private void tsbFilterCombo_SelectedIndexChanged(object sender, EventArgs e)
         {
-           ToolStripComboBox tsbFilterCombo = (ToolStripComboBox)sender;
-           var selection = tsbFilterCombo.SelectedItem as string;
-           if (selection != null)
+            ToolStripComboBox tsbFilterCombo = (ToolStripComboBox)sender;
+            var selection = tsbFilterCombo.SelectedItem as string;
+            if (selection != null)
             {
                 switch (selection)
                 {
@@ -328,13 +307,46 @@ namespace Mosiac.UX.UXControls
                         break;
                 }
             }
-        
+
         }
 
         private void tscboEmployees_SelectedIndexChanged(object sender, EventArgs e)
         {
-           ToolStripComboBox cbo =  (ToolStripComboBox)sender;  
+            ToolStripComboBox cbo = (ToolStripComboBox)sender;
             string pick = cbo.SelectedItem.ToString();
+
+        }
+
+
+
+        private void tsComboSupplier_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string result = tsComboSupplier.SelectedItem as string;
+            DataTable dt = new DataTable();
+            DataTable table;
+            dt = ServiceLayer.DataBuilders.BuildDataTable(_orderReceiptRepository.UnRecievedOrders(OrderReceiptStates.Unreceived));
+            try
+            {
+
+                if (dt.AsEnumerable().Where(row => row.Field<String>("Supplier").Contains(result)).Count() > 0)
+                {
+                    table = dt.AsEnumerable().Where(row => row.Field<String>("Supplier").Contains(result)).CopyToDataTable();
+                    DataView dv = new DataView(table);
+                    dgPendingOrders.DataSource = dv;
+                }
+                else
+                {
+                    MessageBox.Show("Supplier has no existing Orders", "Search Result Error");
+                }
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+
 
         }
     }

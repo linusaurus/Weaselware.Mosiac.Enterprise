@@ -22,7 +22,7 @@ namespace Mosiac.UX.UXControls
         private PurchaseOrderToOrderReceiptMapper orderMapper;
         private int _employeeID;
         private int _selectedOrderId;
-        private bool _showRecieved = false;
+        private bool _showRecieved;
 
         public MyOrdersControl(MosaicContext context, int employeeID)
         {
@@ -51,49 +51,49 @@ namespace Mosiac.UX.UXControls
                     {
                         int po = _selectedOrderId;
                         //---- Recieve the order
-                        ctx.Database.ExecuteSqlRaw("dbo.sproc_recieved_order {0}, {1}",po, _employeeID);
-                        this.dgMyOrdersGrid.DataSource = _ordersService.GetMyOrders(_employeeID, _showRecieved);
+                        ctx.Database.ExecuteSqlRaw("dbo.sproc_recieved_order {0}, {1}", po, _employeeID);
+                        this.dgMyOrdersGrid.DataSource = _ordersService.GetMyOrders(_employeeID, false);
                         // Push the lineitem into inventory
                         ctx.Database.ExecuteSqlRaw("dbo.pushlines {0} , {1}", po, _employeeID);
                         var order = _ordersService.GetOrderByID(_selectedOrderId);
                         OrderReceiptDto dto = new OrderReceiptDto();
                         orderMapper.Map(order, dto);
-                       
+
                         var emp = _employeeService.Find(order.EmployeeID.GetValueOrDefault());
                         emp.EmployeeEmail.ToString();
                         NotificationService.SendNotificaion(emp.EmployeeEmail.ToString(), dto);
-                        
+
                     }
 
                 }
             }
-            
+
         }
 
         private void DgMyOrdersGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.ColumnIndex == 5)
             {
-                dgMyOrdersGrid.CommitEdit(DataGridViewDataErrorContexts.Commit );
+                dgMyOrdersGrid.CommitEdit(DataGridViewDataErrorContexts.Commit);
             }
         }
 
- 
+
 
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
-            if ((keyData == Keys.Enter) || (keyData == Keys.Return) )
-               
+            if ((keyData == Keys.Enter) || (keyData == Keys.Return))
+
             {
                 int ordernumber;
                 if (int.TryParse(txtOrderNumber.Text, out ordernumber))
                 {
-                    if (_ordersService.GetOrderByID(ordernumber)!= null)
+                    if (_ordersService.GetOrderByID(ordernumber) != null)
                     {
                         Main main = (Main)Application.OpenForms["Main"];
                         main.OpenAnOrder(ordernumber);
                     }
-                   
+
                 }
                 return true;
             }
@@ -113,14 +113,13 @@ namespace Mosiac.UX.UXControls
                 //check the condition
                 if (item.Recieved == true)
                 {
-                    dgMyOrdersGrid.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.Cornsilk;
+                    dgMyOrdersGrid.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.PeachPuff;
                 }
             }
         }
 
         private void MyOrdersControl_Load(object sender, EventArgs e)
         {
-
             cbJobName.DataSource = _employeeService.Active();
             cbJobName.DisplayMember = "FullName";
             cbJobName.ValueMember = "EmployeeID";
@@ -130,7 +129,7 @@ namespace Mosiac.UX.UXControls
 
         private void dgMyOrdersGrid_SelectionChanged(object sender, EventArgs e)
         {
-            DataGridView dg = (DataGridView) sender;
+            DataGridView dg = (DataGridView)sender;
             if (dg.DataSource != null)
             {
                 if (dg.Rows.Count > 0)
@@ -153,18 +152,7 @@ namespace Mosiac.UX.UXControls
             }
         }
 
-        private void ckbShowRecieved_CheckedChanged(object sender, EventArgs e)
-        {
-           CheckBox cb = (CheckBox)sender;
 
-            if (cb.Checked)
-            { _showRecieved = true; }
-
-            else
-            { _showRecieved = false; }
-
-            this.dgMyOrdersGrid.DataSource = _ordersService.GetMyOrders(_employeeID, _showRecieved);
-        }
 
         private void cbJobName_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -187,16 +175,16 @@ namespace Mosiac.UX.UXControls
 
         private void btnOpenOrder_Click(object sender, EventArgs e)
         {
-           int ordernumber;
-           if (int.TryParse(txtOrderNumber.Text, out ordernumber))
-           {
+            int ordernumber;
+            if (int.TryParse(txtOrderNumber.Text, out ordernumber))
+            {
                 if (_ordersService.GetOrderByID(ordernumber) != null)
                 {
                     Main main = (Main)Application.OpenForms["Main"];
                     main.OpenAnOrder(ordernumber);
                 }
             }
-            
+
 
         }
         // Show all Employee even prior employees
@@ -206,12 +194,19 @@ namespace Mosiac.UX.UXControls
             if (cb.Checked)
             {
                 cbJobName.DataSource = _employeeService.All();
-                ckbShowAll.Checked = false;
+
             }
             else if (!cb.Checked)
             {
                 cbJobName.DataSource = _employeeService.Active();
             }
+        }
+
+        private void ckbShowRecieved_CheckedChanged(object sender, EventArgs e)
+        {
+            CheckBox cb = (CheckBox)sender;
+
+            this.dgMyOrdersGrid.DataSource = _ordersService.GetMyOrders(_employeeID, _showRecieved);
         }
         // Show order both recieved and pending for Active Users
         private void cbxShowAll_CheckedChanged(object sender, EventArgs e)
@@ -219,18 +214,52 @@ namespace Mosiac.UX.UXControls
             CheckBox cb = (CheckBox)sender;
 
             if (cb.Checked)
-            { 
-             _showRecieved = false;
-             this.ckbShowRecieved.Checked = false;
-             this.dgMyOrdersGrid.DataSource = _ordersService.GetAllMyOrdersList(_employeeID);
+            {
+                _showRecieved = false;
+                this.dgMyOrdersGrid.DataSource = _ordersService.GetAllMyOrdersList(_employeeID);
             }
             else if (!cb.Checked)
             {
                 this.dgMyOrdersGrid.DataSource = _ordersService.GetMyOrders(_employeeID, false);
 
             }
+        }
+
+        private void cbxShowReturned_CheckedChanged(object sender, EventArgs e)
+        {
+            CheckBox cb = (CheckBox)sender;
+            if (cb.Checked)
+            {
+                this.dgMyOrdersGrid.DataSource = _ordersService.GetReturnedOrders(_employeeID);
+            }
 
 
         }
+        // View Filters --------------------------------------------------------------------
+        #region View Filters
+        private void rbShowReceived_CheckedChanged(object sender, EventArgs e)
+        {
+            RadioButton rb = (RadioButton)sender;
+            if (rb.Checked) { this.dgMyOrdersGrid.DataSource = _ordersService.GetMyOrders(_employeeID, true); }
+        }
+
+        private void rbShowAll_CheckedChanged(object sender, EventArgs e)
+        {
+            RadioButton rb = (RadioButton)sender;
+            if (rb.Checked) { this.dgMyOrdersGrid.DataSource = _ordersService.GetAllMyOrdersList(_employeeID); }
+        }
+
+        private void rbShowReturned_CheckedChanged(object sender, EventArgs e)
+        {
+            RadioButton rb = (RadioButton)sender;
+            if (rb.Checked) { this.dgMyOrdersGrid.DataSource = _ordersService.GetReturnedOrders(_employeeID); }
+        }
+
+        private void rbOutStanding_CheckedChanged(object sender, EventArgs e)
+        {
+            RadioButton rb = (RadioButton)sender;
+            if (rb.Checked) { this.dgMyOrdersGrid.DataSource = _ordersService.GetMyOrders(_employeeID, false); }
+        }
+        #endregion
     }
 }
