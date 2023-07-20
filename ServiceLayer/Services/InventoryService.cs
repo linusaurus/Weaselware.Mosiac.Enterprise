@@ -123,7 +123,7 @@ namespace ServiceLayer
 
         public IEnumerable<Location> GetLocations() 
         {
-            return _ctx.Location.AsNoTracking().ToList();
+            return _ctx.Location.AsNoTracking().OrderBy(c => c.LocationName).ToList();
         }
 
         public IEnumerable<Location> GetAreaLocations(string area)

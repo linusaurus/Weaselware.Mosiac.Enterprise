@@ -285,7 +285,10 @@ namespace Mosiac.UX.UXControls
         {
             CheckBox cb = (CheckBox)sender;
             if (cb.Checked)
-            { selectedPickList.Delivered = true; }
+            { 
+                selectedPickList.Delivered = true;
+                selectedPickList.DeliveryDate = DateTime.Today;
+            }
             else
             { selectedPickList.Delivered = false; }
 

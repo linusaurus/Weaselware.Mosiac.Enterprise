@@ -91,6 +91,7 @@ namespace Mosiac.UX.UXControls
             tsbOrderReciept.Name = "tsbOrderReciept";
             tsbOrderReciept.Size = new System.Drawing.Size(155, 33);
             tsbOrderReciept.Text = "Receive Selected Order";
+            tsbOrderReciept.Click += tsbOrderReciept_Click;
             // 
             // toolStripSeparator1
             // 
@@ -154,7 +155,7 @@ namespace Mosiac.UX.UXControls
             // 
             tsComboSupplier.Name = "tsComboSupplier";
             tsComboSupplier.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
-            tsComboSupplier.Size = new System.Drawing.Size(275, 40);
+            tsComboSupplier.Size = new System.Drawing.Size(235, 40);
             tsComboSupplier.SelectedIndexChanged += tsComboSupplier_SelectedIndexChanged;
             // 
             // dgPendingOrders

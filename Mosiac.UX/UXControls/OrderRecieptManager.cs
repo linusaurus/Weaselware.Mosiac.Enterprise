@@ -77,6 +77,38 @@ namespace Mosiac.UX.UXControls
         {
 
         }
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if ((keyData == Keys.Enter) || (keyData == Keys.Return))
+
+            {
+                int ordernumber;
+                if (int.TryParse(tsSearchEntry.Text, out ordernumber))
+                {
+                    if ( ordernumber != default)
+                    {
+                        _orderRecieptDto = _orderReceiptRepository.LoadOrderReciept(ordernumber);
+
+                        OrderRecieptForm frm = new OrderRecieptForm(ordernumber, _context);
+                        frm.Width = 1200;
+                        frm.Height = 600;
+                        frm.Text = $"Recieve Order :{ordernumber.ToString()}";
+                        frm.StartPosition = FormStartPosition.CenterScreen;
+
+                        frm.ShowDialog();
+                        //Reload changed Orders list --
+                        LoadOrders(currentFilter);
+                    }
+
+                }
+                return true;
+            }
+            else
+            {
+                return base.ProcessCmdKey(ref msg, keyData);
+            }
+        }
         #region Grid-BindingSource Event Handlers ----------++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
         private void DgPendingOrders_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
@@ -347,6 +379,11 @@ namespace Mosiac.UX.UXControls
             }
 
 
+
+        }
+
+        private void tsbOrderReciept_Click(object sender, EventArgs e)
+        {
 
         }
     }

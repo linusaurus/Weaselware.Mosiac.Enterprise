@@ -9,8 +9,10 @@ using DataLayer.Data;
 using DataLayer.Entity;
 using ServiceLayer.Models;
 using ServiceLayer.Mappers;
+using Dapper;
 using SkiaSharp;
-
+using System.Threading;
+using System.Security.Cryptography;
 
 namespace ServiceLayer
 {
@@ -256,6 +258,39 @@ namespace ServiceLayer
             return await result.ToListAsync();
 
         }
+
+        public List<JobListItem> GetJobParts(int jobID)
+        {
+            var dynamicParameter = new DynamicParameters();
+
+            dynamicParameter.Add("jobID", jobID);
+
+            string sql = @"select pl.LineID, pl.PurchaseOrderID, pl.Qnty, pl.[Description],pl.Extended , s.SupplierName FROM PurchaseLineItem pl " +
+                         "JOIN Supplier s ON pl.SupplierID = s.SupplierID " +
+                         "where PurchaseOrderID IN(Select PurchaseOrderID where JobID = @jobID)";
+
+            var conn = _ctx.Database.GetDbConnection();
+            return conn.Query<JobListItem>(sql,dynamicParameter).ToList();
+        }
+
+        public List<JobListItem> GetJobParts(int jobID, string searchTerm)
+        {
+            var dynamicParameter = new DynamicParameters();
+
+            searchTerm = "%" + searchTerm + "%";
+
+            dynamicParameter.Add("jobID", jobID);
+            dynamicParameter.Add("str", searchTerm);
+
+            string sql = @"select pl.LineID, pl.PurchaseOrderID, pl.Qnty, pl.[Description],pl.Extended , s.SupplierName FROM PurchaseLineItem pl " +
+                         "JOIN Supplier s ON pl.SupplierID = s.SupplierID " +
+                         "where PurchaseOrderID IN(Select PurchaseOrderID where JobID = @jobID) " +
+                         "and pl.Description LIKE @str";
+
+            var conn = _ctx.Database.GetDbConnection();
+            return conn.Query<JobListItem>(sql, dynamicParameter).ToList();
+        }
+
 
     }
 }

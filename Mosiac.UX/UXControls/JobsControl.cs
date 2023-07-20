@@ -12,6 +12,7 @@ using ServiceLayer;
 using ServiceLayer.Models;
 using DataLayer.Entity;
 using System.Windows.Forms;
+using FastReport.DevComponents.DotNetBar.Controls;
 
 namespace Mosiac.UX.UXControls
 {
@@ -44,6 +45,7 @@ namespace Mosiac.UX.UXControls
 
             Grids.BuildJobOrderDetailGrid(dgvJobOrders);
             Grids.BuildJobDeliveriesGrid(dgvJobDeliveries);
+            Grids.BuildJobItemsGrid(dgvJobItems);
             dgvJobOrders.CellFormatting += DgvJobOrders_CellFormatting;
 
             lbJobsList.SelectedIndexChanged += LbJobsList_SelectedIndexChanged;
@@ -90,6 +92,7 @@ namespace Mosiac.UX.UXControls
         private void DgvJobDeliveries_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             DataGridView dgv = (DataGridView)sender;
+          
             // determine if click was on our date column
             if (e.ColumnIndex == 5)
             {
@@ -105,6 +108,7 @@ namespace Mosiac.UX.UXControls
                         if (val != DateTime.MinValue)
                         {
                             dtp.Value = DateTime.Parse(dgv.CurrentCell.Value.ToString());
+
                         }
                     }
                 }
@@ -154,11 +158,21 @@ namespace Mosiac.UX.UXControls
 
         private void DgvJobDeliveries_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == 4)
+            DataGridView dv = (DataGridView)sender;
+            DataGridViewTextBoxCell cb = (DataGridViewTextBoxCell)dv.Rows[e.RowIndex].Cells[5];
+            if (cb.Value != null)
             {
-
-
+                // do stuff
+                int pid = (int)dv.CurrentRow.Cells[0].Value;
+                PickList pick = _ctx.PickList.Where(x => x.PickListID == pid).First();
+                pick.DeliveryDate = (DateTime)cb.Value;
+                pick.Delivered = true;
+                dv.CurrentRow.Cells[4].Value = true;
+                _ctx.PickList.Update(pick);
+                _ctx.SaveChanges();
+                dv.Invalidate();
             }
+       
         }
 
 
@@ -205,6 +219,7 @@ namespace Mosiac.UX.UXControls
                     // -------------------------------------------
                     var deliveries = _stockService.GetJobPicks(_selectedJob.jobID);
                     dgvJobDeliveries.DataSource = _stockService.GetJobPicks(_selectedJob.jobID);
+                    dgvJobItems.DataSource = _stockService.GetJobParts(_selectedJob.jobID);
                 }
             }
 
@@ -257,14 +272,19 @@ namespace Mosiac.UX.UXControls
             switch (page.Name)
             {
                 case "tabDeliveries":
-                  //  Grids.BuildJobDeliveriesGrid(dgvJobDeliveries);
+                    //  Grids.BuildJobDeliveriesGrid(dgvJobDeliveries);
                     //dgvJobDeliveries.Rows.Clear();
-                   //dgvJobDeliveries.DataSource = null;
+                    //dgvJobDeliveries.DataSource = null;
                     break;
             }
 
 
 
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            dgvJobItems.DataSource = _stockService.GetJobParts(_selectedJob.jobID,txtJobItemsSearch.Text).ToList();
         }
     }
 }

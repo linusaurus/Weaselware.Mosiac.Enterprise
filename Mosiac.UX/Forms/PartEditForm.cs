@@ -23,8 +23,8 @@ namespace Mosiac.UX.Forms
 {
     public partial class PartEditForm : Form
     {
-        
-        public  BindingSource bsPart = new BindingSource();
+
+        public BindingSource bsPart = new BindingSource();
         private IEnumerable<ManuListDTO> manus;
         private IEnumerable<ManuListDTO> partManus;
         private PartsService partsService;
@@ -34,12 +34,12 @@ namespace Mosiac.UX.Forms
         private decimal _stockLevel;
         private string _lastScanned;
 
-        public PartEditForm(BindingSource source,MosaicContext context)
+        public PartEditForm(BindingSource source, MosaicContext context)
         {
             InitializeComponent();
             _ctx = context;
             partsService = new PartsService(_ctx);
-            _inventoryService= new InventoryService(_ctx);
+            _inventoryService = new InventoryService(_ctx);
             bsPart = source;
             BindPart(bsPart);
 
@@ -52,7 +52,7 @@ namespace Mosiac.UX.Forms
             cbxUnit.DataSource = units;
             cbxUnit.ResetText();
             cbxUnit.SelectedIndex = -1;
-           
+
             LoadManus();
             LoadLocations();
             bsPart.ListChanged += BsPart_ListChanged;
@@ -73,7 +73,7 @@ namespace Mosiac.UX.Forms
             cboLocations.DataSource = _inventoryService.GetLocations();
             cboLocations.DisplayMember = "LocationName";
             cboLocations.ValueMember = "LocationID";
-            
+
 
         }
 
@@ -85,7 +85,7 @@ namespace Mosiac.UX.Forms
         private void PartEditForm_Load(object sender, EventArgs e)
         {
             // _ctx.Inventories.
-           
+
         }
 
         private void BindPart(BindingSource bs)
@@ -97,7 +97,7 @@ namespace Mosiac.UX.Forms
                 txtPartID.DataBindings.Clear();
                 cbxObsolete.DataBindings.Clear();
                 cbxUnit.DataBindings.Clear();
-                txtLocation.DataBindings.Clear();
+                //txtLocation.DataBindings.Clear();
                 txtWaste.DataBindings.Clear();
                 txtMarkUp.DataBindings.Clear();
                 txtWeight.DataBindings.Clear();
@@ -106,12 +106,14 @@ namespace Mosiac.UX.Forms
                 txtPartDescription.DataBindings.Clear();
                 txtPartName.DataBindings.Clear();
                 txtPartNum.DataBindings.Clear();
-               
+                cboLocations.DataBindings.Clear();
+
 
                 txtPartID.DataBindings.Add("Text", bsPart, "PartID", true, DataSourceUpdateMode.OnPropertyChanged);
                 cbxObsolete.DataBindings.Add("Checked", bsPart, "Obsolete", true, DataSourceUpdateMode.OnPropertyChanged);
                 cbxUnit.DataBindings.Add("SelectedValue", bsPart, "UID", true, DataSourceUpdateMode.OnPropertyChanged);
-                txtLocation.DataBindings.Add("Text", bsPart, "Location", true, DataSourceUpdateMode.OnPropertyChanged);
+                cboLocations.DataBindings.Add("SelectedValue", bsPart, "LocationID", true, DataSourceUpdateMode.OnPropertyChanged);
+                //txtLocation.DataBindings.Add("Text", bsPart, "Location", true, DataSourceUpdateMode.OnPropertyChanged);
                 txtWaste.DataBindings.Add("Text", bsPart, "Waste", true, DataSourceUpdateMode.OnPropertyChanged);
                 txtMarkUp.DataBindings.Add("Text", bsPart, "MarkUp", true, DataSourceUpdateMode.OnPropertyChanged);
                 txtWeight.DataBindings.Add("Text", bsPart, "Weight", true, DataSourceUpdateMode.OnPropertyChanged);
@@ -126,11 +128,12 @@ namespace Mosiac.UX.Forms
                 {
                     _stockLevel = _ctx.Inventory.Where(c => c.PartID == ((Part)bsPart.DataSource).PartID).Sum(i => i.InventoryAmount).GetValueOrDefault();
                 }
-               
+
                 txtPartID.DataBindings.Clear();
                 cbxObsolete.DataBindings.Clear();
                 cbxUnit.DataBindings.Clear();
-                txtLocation.DataBindings.Clear();
+                cboLocations.DataBindings.Clear();
+                //txtLocation.DataBindings.Clear();
                 txtWaste.DataBindings.Clear();
                 txtMarkUp.DataBindings.Clear();
                 txtWeight.DataBindings.Clear();
@@ -145,7 +148,8 @@ namespace Mosiac.UX.Forms
                 txtPartID.DataBindings.Add("Text", bsPart, "PartID", true, DataSourceUpdateMode.OnPropertyChanged);
                 cbxObsolete.DataBindings.Add("Checked", bsPart, "ObsoluteFlag", true, DataSourceUpdateMode.OnPropertyChanged);
                 cbxUnit.DataBindings.Add("SelectedValue", bsPart, "UnitOfMeasureID", true, DataSourceUpdateMode.OnPropertyChanged);
-                txtLocation.DataBindings.Add("Text", bsPart, "Location", true, DataSourceUpdateMode.OnPropertyChanged);
+                cboLocations.DataBindings.Add("SelectedValue", bsPart, "LocationID", true, DataSourceUpdateMode.OnPropertyChanged);
+                //txtLocation.DataBindings.Add("Text", bsPart, "Location", true, DataSourceUpdateMode.OnPropertyChanged);
                 txtWaste.DataBindings.Add("Text", bsPart, "Waste", true, DataSourceUpdateMode.OnPropertyChanged);
                 txtMarkUp.DataBindings.Add("Text", bsPart, "MarkUp", true, DataSourceUpdateMode.OnPropertyChanged);
                 txtWeight.DataBindings.Add("Text", bsPart, "Weight", true, DataSourceUpdateMode.OnPropertyChanged);
@@ -156,7 +160,7 @@ namespace Mosiac.UX.Forms
                 txtPartName.DataBindings.Add("Text", bsPart, "ItemName", true, DataSourceUpdateMode.OnPropertyChanged);
                 txtSKU.DataBindings.Add("Text", bsPart, "SKU", true, DataSourceUpdateMode.OnPropertyChanged);
                 cboPartManu.DataBindings.Add("SelectedValue", bsPart, "ManuID", true, DataSourceUpdateMode.OnPropertyChanged);
-                txtNotes.DataBindings.Add("Text", bsPart,"Notes",true, DataSourceUpdateMode.OnPropertyChanged);
+                txtNotes.DataBindings.Add("Text", bsPart, "Notes", true, DataSourceUpdateMode.OnPropertyChanged);
             }
         }
 
@@ -181,8 +185,8 @@ namespace Mosiac.UX.Forms
                     // Load the Combobox with new list
                     LoadManus();
                     // Set the selected value to the newly created manufacturer
-                    this.cboPartManu.SelectedValue =  frm.Manu.ManuID;
-                    
+                    this.cboPartManu.SelectedValue = frm.Manu.ManuID;
+
                 }
             }
         }
@@ -220,7 +224,7 @@ namespace Mosiac.UX.Forms
 
             BarcodeScannerManager.Instance.DataReceived += Instance_DataReceived;
 
-            txtSKU.BackColor = Color.Cornsilk;          
+            txtSKU.BackColor = Color.Cornsilk;
         }
 
         private void Instance_DataReceived(object sender, BarcodeScanEventArgs e)
@@ -237,7 +241,7 @@ namespace Mosiac.UX.Forms
             {
 
             }
-            
+
         }
     }
 }

@@ -271,10 +271,8 @@ namespace Mosiac.UX.UXControls
             DataGridViewTextBoxColumn col_DeliveryDate = new DataGridViewTextBoxColumn();
             col_DeliveryDate.HeaderText = "Delivery Date";
             col_DeliveryDate.DataPropertyName = "DeliveryDate";
-           
             col_DeliveryDate.Width = 110;
-
-
+  
 
             dg.Columns.AddRange(col_ID, col_Preparer, col_DateStamp, col_Destination, col_Delivered, col_DeliveryDate);
 
@@ -1379,6 +1377,67 @@ namespace Mosiac.UX.UXControls
 
             dg.Columns.AddRange(col_PartID, col_ItemDescription,col_Location ,col_Manufactuer, col_ManuPart, col_UnitofMeasure, col_StockLevel);
 
+        }
+
+        internal static void BuildJobItemsGrid(DataGridView dg)
+        {
+            dg.AutoGenerateColumns = false;
+
+            dg.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            dg.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+            dg.AlternatingRowsDefaultCellStyle.BackColor = Color.LightGray;
+
+            // Currency Decimal Style ---------------------------------------
+            DataGridViewCellStyle dstyleDecimal = new DataGridViewCellStyle();
+            dstyleDecimal.Format = "N2";
+            dstyleDecimal.NullValue = "0.00";
+            dstyleDecimal.Alignment = DataGridViewContentAlignment.MiddleRight;
+            //----------------------------------------------------------------
+
+            // PartID Column --
+            DataGridViewTextBoxColumn col_LineID = new DataGridViewTextBoxColumn();
+            col_LineID.HeaderText = "LineID";
+            col_LineID.DataPropertyName = "LineID";
+            col_LineID.Width = 55;
+
+            //ItemDescription Column
+            DataGridViewTextBoxColumn col_PurchaseOrderID = new DataGridViewTextBoxColumn();
+            col_PurchaseOrderID.HeaderText = "PO#";
+            col_PurchaseOrderID.DataPropertyName = "PurchaseOrderID";
+            col_PurchaseOrderID.Width = 55;
+        
+
+            //Location Column
+            DataGridViewTextBoxColumn col_Qnty = new DataGridViewTextBoxColumn();
+            col_Qnty.HeaderText = "Qnty";
+            col_Qnty.DataPropertyName = "Qnty";
+            col_Qnty.Width = 55;
+
+
+            //Manufacturer Column
+            DataGridViewTextBoxColumn col_Description = new DataGridViewTextBoxColumn();
+            col_Description.ReadOnly = true;
+            col_Description.HeaderText = "Description";
+            col_Description.DataPropertyName = "Description";
+            col_Description.Width = 85;
+            col_Description.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+
+            //ManuPart Column
+            DataGridViewTextBoxColumn col_Extended = new DataGridViewTextBoxColumn();
+            col_Extended.HeaderText = "Cost";
+            col_Extended.DataPropertyName = "Extended";
+            col_Extended.DefaultCellStyle.BackColor = System.Drawing.Color.Cornsilk;
+            col_Extended.Width = 95;
+
+            //UnitOfMeasure Column
+            DataGridViewTextBoxColumn col_SupplierName = new DataGridViewTextBoxColumn();
+            col_SupplierName.HeaderText = "Supplier";
+            col_SupplierName.DataPropertyName = "SupplierName";
+            col_SupplierName.Width = 140;
+
+         
+
+            dg.Columns.AddRange(col_LineID, col_PurchaseOrderID, col_Qnty, col_Description, col_Extended, col_SupplierName);
         }
     }
 }
