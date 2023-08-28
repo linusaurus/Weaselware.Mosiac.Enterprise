@@ -3,11 +3,11 @@
 using System;
 using System.Collections.Generic;
 
-namespace DataLayer.Entity
+namespace DataLayer.Entity;
+
+public partial class ShipBy
 {
-    public partial class ShipBy
-    {
-        public int ShipID { get; set; }
-        public string ShipByName { get; set; }
-    }
+    public int ShipID { get; set; }
+
+    public string ShipByName { get; set; }
 }

@@ -31,7 +31,7 @@ namespace ServiceLayer
         public PickListDto GetPicklist(int pid)
         {
             PickListDto dto = new PickListDto();
-            var source = _ctx.PickList.AsNoTracking().Include(l => l.pickListItems).Include(d => d.Destination).Include(j => j.Job).Include(e => e.Employee).Where(p => p.PickListID == pid).FirstOrDefault();
+            var source = _ctx.PickList.AsNoTracking().Include(l => l.PickListItem).Include(d => d.Destination).Include(j => j.Job).Include(e => e.Employee).Where(p => p.PickListID == pid).FirstOrDefault();
             pickListMapper.Map(source, dto);
             return dto;         
         }
@@ -71,7 +71,7 @@ namespace ServiceLayer
         // Return a complete but untracked list of Entity objects
         public List<PickListDto> GetJobPicks(int jobID)
         {
-            var result = _ctx.PickList.AsNoTracking().Include(i => i.pickListItems).Include(d => d.Destination).Include(j => j.Job)
+            var result = _ctx.PickList.AsNoTracking().Include(i => i.PickListItem).Include(d => d.Destination).Include(j => j.Job)
                 .Include(e => e.Employee).Where(f => f.JobID == jobID).ToList();
 
             List<PickListDto> resultList = new List<PickListDto>();
@@ -101,7 +101,7 @@ namespace ServiceLayer
                 inventory.InventoryAmount = qnty * -1.0m;
                 inventory.JobID = jobid;
                 inventory.EmpID = empID;
-                inventory.Location = part.Location;
+                inventory.LocationID = part.LocationNavigation.LocationID;
                 inventory.TransActionType = 3;
                 _ctx.Inventory.Add(inventory);
                 await _ctx.SaveChangesAsync();
@@ -126,7 +126,7 @@ namespace ServiceLayer
                 inventory.UnitOfMeasureID = part.UnitOfMeasureID.GetValueOrDefault();
                 inventory.Description = part.ItemDescription;
                 inventory.InventoryAmount = desiredStockLevel * -1.0m;
-                inventory.Location = part.Location;
+               // inventory.Location = part.Location;
                 _ctx.Inventory.Add(inventory);
                 await _ctx.SaveChangesAsync();
             }
@@ -149,7 +149,7 @@ namespace ServiceLayer
             inventory.Description = part.ItemDescription;
             inventory.InventoryAmount = 0.0m;
             inventory.TransActionType = 4;
-            inventory.Location = part.Location;
+           // inventory.Location = part.Location;
             inventory.EmpID = UserID;
             inventory.Note = "Rolled-Up";
             _ctx.Inventory.Add(inventory);
@@ -163,7 +163,7 @@ namespace ServiceLayer
         public async Task<PickListDto> CreateOrUpdate(PickListDto dto)
         {
               
-                var pickList = await _ctx.PickList.Include(p => p.pickListItems).Include(e => e.Employee).Where(w => w.PickListID == dto.PickListID).FirstOrDefaultAsync();
+                var pickList = await _ctx.PickList.Include(p => p.PickListItem).Include(e => e.Employee).Where(w => w.PickListID == dto.PickListID).FirstOrDefaultAsync();
                 // var pickList = await _ctx.PickList.Include(p => p.pickListItems).Include(e => e.Employee).FirstOrDefaultAsync(o => o.PickListID == dto.PickListID);
                  if (pickList == null)
                 {
@@ -187,19 +187,19 @@ namespace ServiceLayer
                
        
             //remove deleted details -
-            pickList.pickListItems
+            pickList.PickListItem
                 .Where(d => !dto.PickListItems.Any(dto => dto.PickListItemID == d.PickListItemID)).ToList()
                 .ForEach(deleted => _ctx.PickListItem.Remove(deleted));
 
                 //update or add details
                 dto.PickListItems.ToList().ForEach(ItemDto =>
                 {
-                    var detail = pickList.pickListItems.FirstOrDefault(d => d.PickListItemID == ItemDto.PickListItemID);
+                    var detail = pickList.PickListItem.FirstOrDefault(d => d.PickListItemID == ItemDto.PickListItemID);
                     if (detail == null || detail.PickListItemID == 0)
                     {
                         detail = new PickListItem();
 
-                        pickList.pickListItems.Add(detail);
+                        pickList.PickListItem.Add(detail);
                         _ctx.PickListItem.Add(detail);
                     }
 

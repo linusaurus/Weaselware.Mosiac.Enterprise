@@ -3,14 +3,19 @@
 using System;
 using System.Collections.Generic;
 
-namespace DataLayer.Entity
+namespace DataLayer.Entity;
+
+public partial class Manu
 {
-    public partial class Manu
-    {
-        public int ManuID { get; set; }
-        public string Manufacturer { get; set; }
-        public string Phone { get; set; }
-        public string WebAddress { get; set; }
-        public int? ManuCategoryID { get; set; }
-    }
+    public int ManuID { get; set; }
+
+    public string Manufacturer { get; set; }
+
+    public string Phone { get; set; }
+
+    public string WebAddress { get; set; }
+
+    public int? ManuCategoryID { get; set; }
+
+    public virtual ICollection<Part> Part { get; set; } = new List<Part>();
 }

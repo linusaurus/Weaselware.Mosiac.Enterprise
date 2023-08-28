@@ -3,25 +3,27 @@
 using System;
 using System.Collections.Generic;
 
-namespace DataLayer.Entity
+namespace DataLayer.Entity;
+
+public partial class Document
 {
-    public partial class Document
-    {
-        public Document()
-        {
-            DocumentParts = new HashSet<DocumentParts>();
-        }
+    public int DocID { get; set; }
 
-        public int DocID { get; set; }
-        public string Description { get; set; }
-        public string DocumentPath { get; set; }
-        public string DocumentView { get; set; }
-        public int? PartID { get; set; }
-        public DateTime? DateCreated { get; set; }
-        public string Creator { get; set; }
-        public string Modifier { get; set; }
-        public DateTime? DateModified { get; set; }
+    public string Description { get; set; }
 
-        public virtual ICollection<DocumentParts> DocumentParts { get; set; }
-    }
+    public string DocumentPath { get; set; }
+
+    public string DocumentView { get; set; }
+
+    public int? PartID { get; set; }
+
+    public DateTime? DateCreated { get; set; }
+
+    public string Creator { get; set; }
+
+    public string Modifier { get; set; }
+
+    public DateTime? DateModified { get; set; }
+
+    public virtual ICollection<Part> Part { get; set; } = new List<Part>();
 }

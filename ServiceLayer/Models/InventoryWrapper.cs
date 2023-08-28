@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace ServiceLayer.Models
 {
     public class InventoryWrapper : ObservableObject
@@ -15,8 +16,16 @@ namespace ServiceLayer.Models
         public InventoryWrapper(Inventory inventory) => this.inventory = inventory;
 
         public int StockTransactionID
-        {
-            get => this.inventory.StockTransactionID;
+        {            
+           //get => this.inventory.StockTransactionID ;
+            get 
+            {
+                if (this.inventory != null) { return this.inventory.StockTransactionID; }
+                else
+                {
+                    return 0;
+                }  
+            }
             set => SetProperty(inventory.StockTransactionID, value, inventory, (u, n) => u.StockTransactionID = n);
         }
         public int? OrderReceiptID
@@ -43,11 +52,7 @@ namespace ServiceLayer.Models
             set => SetProperty(inventory.JobID, value, inventory, (u, n) => u.JobID = n);
         }
 
-        public string Location
-        {
-            get => this.inventory.Location;
-            set => SetProperty(inventory.Location, value, inventory, (u, n) => u.Location = n);
-        }
+      
 
         public int? ProductID
         {

@@ -3,11 +3,11 @@
 using System;
 using System.Collections.Generic;
 
-namespace DataLayer.Entity
+namespace DataLayer.Entity;
+
+public partial class OrderState
 {
-    public partial class OrderState
-    {
-        public int OrderStateID { get; set; }
-        public string OrderStateName { get; set; }
-    }
+    public int OrderStateID { get; set; }
+
+    public string OrderStateName { get; set; }
 }

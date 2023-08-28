@@ -24,7 +24,7 @@ namespace ServiceLayer.Mappers
             destination.ItemName = source.ItemName;
             destination.PartNum = source.PartNum;
             destination.PartTypeID = source.PartTypeID.GetValueOrDefault();
-            destination.Location = source.Location;
+            //destination.Location = source.;
             destination.UnitCost = source.Cost.GetValueOrDefault();
             destination.UID = source.UnitOfMeasureID.GetValueOrDefault();
             destination.ManuId = source.ManuID.GetValueOrDefault();

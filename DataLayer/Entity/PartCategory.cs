@@ -3,18 +3,13 @@
 using System;
 using System.Collections.Generic;
 
-namespace DataLayer.Entity
+namespace DataLayer.Entity;
+
+public partial class PartCategory
 {
-    public partial class PartCategory
-    {
-        public PartCategory()
-        {
-            PartTypes = new HashSet<PartTypes>();
-        }
+    public int PartCategoryID { get; set; }
 
-        public int PartCategoryID { get; set; }
-        public string PartCategoryName { get; set; }
+    public string PartCategoryName { get; set; }
 
-        public virtual ICollection<PartTypes> PartTypes { get; set; }
-    }
+    public virtual ICollection<PartTypes> PartTypes { get; set; } = new List<PartTypes>();
 }

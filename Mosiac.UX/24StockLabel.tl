@@ -1,14 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ThermalLabel Version="11.0" Width="4" Height="2" GapLength="0.125" MarkLength="0" OffsetLength="0" UnitType="Inch" LabelsPerRow="1" LabelsHorizontalGapLength="0" IsContinuous="False" PrintSpeed="" PrintMirror="False" CutAfterPrinting="False" BatchCut="1">
+<ThermalLabel Version="11.0" Width="4" Height="1.5" GapLength="0.125" MarkLength="0" OffsetLength="0" UnitType="Inch" LabelsPerRow="1" LabelsHorizontalGapLength="0" IsContinuous="False" PrintSpeed="" PrintMirror="False" CutAfterPrinting="False" BatchCut="1">
   <Items>
-    <RectangleShapeItem X="0.0521" Y="0.0426" Width="3.8864" Height="1.9156" StrokeThickness="0.03" CornerRadius="0.03" />
-    <TextItem Name="GTIN" X="1.7938" Y="1.6216" Expression="_x0022_Received_x0020_By_x0020__x0020__x0022__x0020__x002B__x0020__x005B_DataFields_x0021_firstname_x005D_" Width="1.9982" Height="0.2396" Font="ZPL Font 0,12,Point,,,False,90,,CP850" TextAlignment="Center" />
-    <TextItem X="0.144" Y="0.1552" DataField="jobname" Width="1.8012" Height="0.7103" Font="ZPL Font 0,12,Point,,,False,90,,CP850" TextAlignment="Center" />
-    <BarcodeItem X="2.1061" Y="0.16" DataField="StockTransactionID" Width="1.6752" Height="0.7025" Symbology="Code39" Code="" AddChecksum="False" BarcodeAlignment="MiddleCenter" Font="NativePrinterFontA,5,Point,,,False,90,,CP850" QuietZone="0" TextFont="NativePrinterFontA,10,Point,,,False,90,,CP850" MaxiCodeDrawPixelBasedSymbol="True" DotCodeAspectRatio="" />
-    <LineShapeItem X="2.0162" Y="0.0634" Width="0.0047" Height="0.8798" StrokeThickness="0.03" Orientation="DiagonalDown" />
-    <TextItem X="0.1601" Y="1.0186" DataField="Description" Width="3.662" Height="0.4824" Font="ZPL Font 0,12,Point,,,False,90,,CP850" TextAlignment="Center" />
-    <LineShapeItem X="0.0685" Y="0.9457" Width="3.8552" Height="0.0047" StrokeThickness="0.03" Orientation="DiagonalUp" />
-    <TextItem X="0.1802" Y="1.6141" DataField="ReceiptDate" Expression="FormatDateTime_x0028_CDate_x0028__x005B_DataFields_x0021_ReceiptDate_x005D__x0029__x002C__x0020__x0022_ShortDate_x0022__x0029_" Width="1.5539" Height="0.2471" Font="NativePrinterFontA,10,Point,,,False,90,,CP850" TextAlignment="Center" InputMaskPattern="00/00/0000" />
-    <LineShapeItem X="0.0705" Y="1.5483" Width="3.8466" Height="0.03" StrokeThickness="0.03" />
+    <RectangleShapeItem X="0.0625" Y="0.0426" Locked="True" Width="3.8864" Height="1.3948" StrokeThickness="0.03" CornerRadius="0.03" />
+    <TextItem X="0.1657" Y="0.15" DataField="jobname" Width="2.1033" Height="0.4655" Font="Adobe Gothic Std,10,Point,,,False,90,,CP850" TextAlignment="Center" />
+    <BarcodeItem X="2.3717" Y="0.1027" DataField="StockTransactionID" Width="1.4981" Height="0.3535" Symbology="Code39" Code="" AddChecksum="False" BarcodeAlignment="MiddleCenter" BarHeight="0.25" DisplayChecksum="False" DisplayCode="False" DisplayStartStopChar="False" Font="NativePrinterFontA,5,Point,,,False,90,,CP850" QuietZone="0" TextFont="NativePrinterFontA,10,Point,,,False,90,,CP850" MaxiCodeDrawPixelBasedSymbol="True" DotCodeAspectRatio="" />
+    <LineShapeItem X="2.3366" Y="0.0469" Width="0.02" Height="0.7392" StrokeThickness="0.02" Orientation="Vertical" />
+    <LineShapeItem X="0.0741" Y="0.7809" Width="3.8552" Height="0.0047" StrokeThickness="0.02" Orientation="DiagonalUp" />
+    <TextItem X="0.1615" Y="0.8437" DataField="QuantityReceived" Expression="_x005B_DataFields_x0021_Description_x005D_" Width="2.7102" Height="0.2836" Font="Adobe Gothic Std,10,Point,,,False,90,,CP850" InputMaskPattern="00/00/0000" />
+    <TextItem X="2.4007" Y="0.4586" Expression="_x0022_Recieved_x0020_-_x0020__x0022__x0020__x002B__x0020__x005B_DataFields_x0021_firstname_x005D_" Width="1.46" Height="0.1563" Text="Type_x0020_here" Font="Adobe Gothic Std,7,Point,,,False,90,,CP850" TextAlignment="Center" />
+    <TextItem X="2.9066" Y="0.9216" DataField="LocationName" PrintAsGraphic="True" Width="0.9531" Height="0.4063" Text="Type_x0020_here" Font="Adobe Gothic Std,24,Point,,,False,90,,CP850" TextAlignment="Center" />
+    <TextItem X="2.394" Y="0.6076" Expression="_x0022_Date_x0020_Recieved_x0020_-_x0022__x0020__x002B__x0020__x005B_DataFields_x0021_ReceiptDate_x005D_" Width="1.46" Height="0.1563" Text="Type_x0020_here" Font="Adobe Gothic Std,7,Point,,,False,90,,CP850" TextAlignment="Center" />
+    <TextItem X="0.1645" Y="1.166" Expression="_x0022_PO_x0023__x0022__x0020__x002B__x0020__x005B_DataFields_x0021_PurchaseOrderID_x005D__x002B__x0022__x0020__x0020__x007C__x0020__x0020__x0022__x002B__x0022_Job_x0023__x0020__x0022__x0020__x002B__x005B_DataFields_x0021_JobID_x005D__x002B__x0020__x0022__x0020__x0020__x007C__x0020__x0020__x0022__x0020__x002B__x0022__x0020_QNTY_x0020_:_x0022__x0020__x002B__x0020__x005B_DataFields_x0021_QuantityReceived_x005D_" Width="2.7049" Height="0.1794" Font="Adobe Gothic Std,8,Point,,,False,90,,CP850" InputMaskPattern="00/00/0000" />
   </Items>
 </ThermalLabel>

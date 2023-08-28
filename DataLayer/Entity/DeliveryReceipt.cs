@@ -3,14 +3,17 @@
 using System;
 using System.Collections.Generic;
 
-namespace DataLayer.Entity
+namespace DataLayer.Entity;
+
+public partial class DeliveryReceipt
 {
-    public partial class DeliveryReceipt
-    {
-        public int DeliveryReceiptID { get; set; }
-        public Guid FileGuid { get; set; }
-        public int? PickListID { get; set; }
-        public string ReferenceName { get; set; }
-        public byte[] ReceiptImage { get; set; }
-    }
+    public int DeliveryReceiptID { get; set; }
+
+    public Guid FileGuid { get; set; }
+
+    public int? PickListID { get; set; }
+
+    public string ReferenceName { get; set; }
+
+    public byte[] ReceiptImage { get; set; }
 }

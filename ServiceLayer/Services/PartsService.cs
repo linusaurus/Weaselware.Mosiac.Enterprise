@@ -140,7 +140,7 @@ namespace ServiceLayer
                 Itemdescription = d.ItemDescription,
                 PartID = d.PartID,
                 Manufacturer = d.Manu.Manufacturer,
-                Location = d.Location
+               // Location = d.Location
 
 
             }).FirstOrDefault();
@@ -206,7 +206,7 @@ namespace ServiceLayer
             part.ObsoluteFlag = partDTO.Obsolete;
             part.Cost = partDTO.UnitCost;
             part.UnitOfMeasureID = partDTO.UID;
-            part.Location = partDTO.Location;
+         // part.Location = partDTO.Location;
             part.PartTypeID = partDTO.PartTypeID;
             part.ManuID = partDTO.ManuId;
             part.ItemDescription = partDTO.ItemDescription;
@@ -606,7 +606,7 @@ namespace ServiceLayer
             part.UnitOfMeasureID = partdto.UID;
             part.ManuID = partdto.ManuId;
            
-            part.Location = partdto.Location;
+          // part.Location = partdto.Location;
 
             // Remove deleted resources ------------------------
             part.Resource

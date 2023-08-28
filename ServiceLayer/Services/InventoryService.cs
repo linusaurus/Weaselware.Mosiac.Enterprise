@@ -21,7 +21,7 @@ namespace ServiceLayer
         }
         public  PickListDto? GetPickList(int pickListID)
         {
-            var result = _ctx.PickList.Include(l => l.pickListItems).Include(e => e.Employee).AsNoTracking().Where(p => p.PickListID == pickListID).Select(dto => new PickListDto
+            var result = _ctx.PickList.Include(l => l.PickListItem).Include(e => e.Employee).AsNoTracking().Where(p => p.PickListID == pickListID).Select(dto => new PickListDto
             {
                 PickListID = dto.PickListID,
                 DateStamp = dto.DateStamp.GetValueOrDefault(),
@@ -40,15 +40,15 @@ namespace ServiceLayer
         {
             if (transActionfilterID == 0)
             {
-                var result = _ctx.Inventory.Include(t => t.TransActionTypeNavigation).Include(e => e.Employee).Include(u => u.UnitOfMeasure).AsNoTracking().Where(p => p.PartID == partID).Select(dto => new PartTransactionListDto
+                var result = _ctx.Inventory.Include(t => t.TransActionTypeNavigation).Include(e => e.Emp).Include(u => u.UnitOfMeasure).AsNoTracking().Where(p => p.PartID == partID).Select(dto => new PartTransactionListDto
                 {
                     StockTransactionId = dto.StockTransactionID,
                     PartID = dto.PartID.GetValueOrDefault(),
-                    Location = dto.Location,
+                    Location = dto.LocationNavigation.LocationName,
                     DateStamp = dto.DateStamp.GetValueOrDefault(),
                     Amount = dto.InventoryAmount.GetValueOrDefault(),
                     TransActionName = dto.TransActionTypeNavigation.TransactionTypeName.Trim(),
-                    EmployeeName = dto.Employee.firstname + " " + dto.Employee.lastname,
+                    EmployeeName = dto.Emp.firstname + " " + dto.Emp.lastname,
                     Unit = dto.UnitOfMeasure.UnitName
 
                 }).ToList();
@@ -57,15 +57,15 @@ namespace ServiceLayer
             }
             else
             {
-                var result = _ctx.Inventory.Include(t => t.TransActionTypeNavigation).Include(e => e.Employee).Include(u => u.UnitOfMeasure).AsNoTracking().Where(p => p.PartID == partID).Where(f => f.TransActionType==transActionfilterID).Select(dto => new PartTransactionListDto
+                var result = _ctx.Inventory.Include(t => t.TransActionTypeNavigation).Include(e => e.Emp).Include(u => u.UnitOfMeasure).AsNoTracking().Where(p => p.PartID == partID).Where(f => f.TransActionType==transActionfilterID).Select(dto => new PartTransactionListDto
                 {
                     StockTransactionId = dto.StockTransactionID,
                     PartID = dto.PartID.GetValueOrDefault(),
-                    Location = dto.Location,
+                    Location = dto.LocationNavigation.LocationName,
                     DateStamp = dto.DateStamp.GetValueOrDefault(),
                     Amount = dto.InventoryAmount.GetValueOrDefault(),
                     TransActionName = dto.TransActionTypeNavigation.TransactionTypeName.Trim(),
-                    EmployeeName = String.Format("{0} {1}", dto.Employee.firstname,dto.Employee.lastname),
+                    EmployeeName = String.Format("{0} {1}", dto.Emp.firstname,dto.Emp.lastname),
                     Unit= dto.UnitOfMeasure.UnitName
 
                 }).ToList();
@@ -99,7 +99,7 @@ namespace ServiceLayer
                 adjustment.InventoryAmount = changeValue;
                 adjustment.DateStamp = DateTime.Now;
                 adjustment.Description = thePart.ItemDescription;
-                adjustment.Location = thePart.Location;
+               // adjustment.Location = thePart.Location;
                 adjustment.EmpID = 8;
                 adjustment.JobID= 1;
                 adjustment.TransActionType = 4;
@@ -139,19 +139,19 @@ namespace ServiceLayer
 
 
         //Get Part in relation to the stock location
-        public IEnumerable<PartsLocationDto> GetLocationParts(string locationName)
+        public IEnumerable<PartsLocationDto> GetLocationParts(int locationID)
         {
            
-                return  _ctx.Part.AsNoTracking().Include(m => m.Manu).Include(u => u.UnitOfMeasure).Where(p => p.Location.StartsWith(locationName)).Select(dto => new PartsLocationDto
+                return  _ctx.Part.AsNoTracking().Include(m => m.Manu).Include(u => u.UnitOfMeasure).Where(p => p.LocationID==locationID).Select(dto => new PartsLocationDto
                 {
-                    Location = dto.Location,
+                    Location = dto.LocationNavigation.LocationName,
                     ItemDescription = dto.ItemDescription,
                     PartID = dto.PartID,
                     Manufacturer = dto.Manu.Manufacturer,
                     Manupart = dto.PartNum,
                     UnitOfMeasure = dto.UnitOfMeasure.UnitName,
                     StockOnHand = _ctx.Inventory.AsNoTracking().Where(p => p.PartID == dto.PartID).Select(i => i.InventoryAmount).Sum().GetValueOrDefault()
-
+                
                 }).ToList();                   
           
         }
@@ -174,7 +174,7 @@ namespace ServiceLayer
                     newInventoryItem.PartID = part.PartID;
                     newInventoryItem.InventoryAmount = reviseStockValue;
                     newInventoryItem.Description= item.Description;
-                    newInventoryItem.Location = item.Location;
+                    newInventoryItem.LocationID = item.LocationID;
                     newInventoryItem.UnitOfMeasureID = part.UnitOfMeasureID;
                     newInventoryItem.QntyReceived = item.QntyReceived;
                     newInventoryItem.QntyOrdered = item.QntyOrdered;

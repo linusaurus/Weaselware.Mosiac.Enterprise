@@ -3,31 +3,35 @@
 using System;
 using System.Collections.Generic;
 
-namespace DataLayer.Entity
+namespace DataLayer.Entity;
+
+public partial class Employee
 {
-    public partial class Employee
-    {
-        public Employee()
-        {
-            OrderReciept = new HashSet<OrderReciept>();
-            PurchaseOrder = new HashSet<PurchaseOrder>();
-            Inventories = new HashSet<Inventory>();
-        }
+    public int employeeID { get; set; }
 
-        public int employeeID { get; set; }
-        public string firstname { get; set; }
-        public string lastname { get; set; }
-        public string middlename { get; set; }
-        public bool? IsPurchaser { get; set; }
-        public string EmployeeEmail { get; set; }
-        public bool? Show { get; set; }
-        public string Login { get; set; }
-        public string Password { get; set; }
-        public int? Role { get; set; }
+    public string firstname { get; set; }
 
-        public virtual ICollection<Inventory> Inventories { get; set; }
+    public string lastname { get; set; }
 
-        public virtual ICollection<OrderReciept> OrderReciept { get; set; }
-        public virtual ICollection<PurchaseOrder> PurchaseOrder { get; set; }
-    }
+    public string middlename { get; set; }
+
+    public bool? IsPurchaser { get; set; }
+
+    public string EmployeeEmail { get; set; }
+
+    public bool? Show { get; set; }
+
+    public string Login { get; set; }
+
+    public string Password { get; set; }
+
+    public int? Role { get; set; }
+
+    public virtual ICollection<Inventory> Inventory { get; set; } = new List<Inventory>();
+
+    public virtual ICollection<OrderReciept> OrderReciept { get; set; } = new List<OrderReciept>();
+
+    public virtual ICollection<PickList> PickList { get; set; } = new List<PickList>();
+
+    public virtual ICollection<PurchaseOrder> PurchaseOrder { get; set; } = new List<PurchaseOrder>();
 }

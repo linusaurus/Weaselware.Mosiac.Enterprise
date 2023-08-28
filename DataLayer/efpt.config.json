@@ -1,5 +1,5 @@
 ﻿{
-   "CodeGenerationMode": 0,
+   "CodeGenerationMode": 3,
    "ContextClassName": "MosaicContext",
    "ContextNamespace": null,
    "DefaultDacpacSchema": null,
@@ -8,10 +8,12 @@
    "ModelNamespace": null,
    "OutputContextPath": "Data",
    "OutputPath": "Entity",
+   "PreserveCasingWithRegex": true,
    "ProjectRootNamespace": "DataLayer",
    "Schemas": null,
    "SelectedHandlebarsLanguage": 0,
    "SelectedToBeGenerated": 0,
+   "T4TemplatePath": null,
    "Tables": [
       {
          "Name": "[dbo].[Asset]",
@@ -66,10 +68,6 @@
          "ObjectType": 0
       },
       {
-         "Name": "[dbo].[Globals]",
-         "ObjectType": 0
-      },
-      {
          "Name": "[dbo].[Inventory]",
          "ObjectType": 0
       },
@@ -79,6 +77,10 @@
       },
       {
          "Name": "[dbo].[JobSite]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Location]",
          "ObjectType": 0
       },
       {
@@ -142,10 +144,6 @@
          "ObjectType": 0
       },
       {
-         "Name": "[dbo].[Query]",
-         "ObjectType": 0
-      },
-      {
          "Name": "[dbo].[Resource]",
          "ObjectType": 0
       },
@@ -163,10 +161,6 @@
       },
       {
          "Name": "[dbo].[Supplier]",
-         "ObjectType": 0
-      },
-      {
-         "Name": "[dbo].[Task]",
          "ObjectType": 0
       },
       {
@@ -191,8 +185,10 @@
       }
    ],
    "UiHint": "DBSERVER.Mosaic",
+   "UncountableWords": null,
    "UseBoolPropertiesWithoutDefaultSql": false,
    "UseDatabaseNames": true,
+   "UseDateOnlyTimeOnly": false,
    "UseDbContextSplitting": false,
    "UseFluentApiOnly": true,
    "UseHandleBars": false,
@@ -200,12 +196,12 @@
    "UseInflector": false,
    "UseLegacyPluralizer": false,
    "UseManyToManyEntity": false,
-   "UseNoConstructor": false,
    "UseNoDefaultConstructor": false,
-   "UseNoNavigations": false,
    "UseNoObjectFilter": false,
    "UseNodaTime": false,
    "UseNullableReferences": false,
    "UseSchemaFolders": false,
-   "UseSpatial": false
+   "UseSchemaNamespaces": false,
+   "UseSpatial": false,
+   "UseT4": false
 }

@@ -45,7 +45,7 @@ namespace ServiceLayer.Mappers
             destination.DeliveryDate = source.DeliveredDate.GetValueOrDefault();
             destination.Make = source.Make.GetValueOrDefault();
             destination.NIC = source.NIC.GetValueOrDefault();
-            destination.SubAssemblies = subAssemblyMapper.MapList(source.SubAssemblies);
+            destination.SubAssemblies = subAssemblyMapper.MapList(source.SubAssembly);
         }
     }
 

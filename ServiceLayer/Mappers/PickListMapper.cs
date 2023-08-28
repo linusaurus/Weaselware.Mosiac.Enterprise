@@ -23,7 +23,7 @@ namespace ServiceLayer.Mappers
            if (source.Job != null) { destination.JobName = source.Job.jobname; }
             if (source.Employee != null) { destination.Preparer = source.Employee.firstname; }
 
-            destination.ItemCount = source.pickListItems.Count;
+            destination.ItemCount = source.PickListItem.Count;
             destination.Delivered = source.Delivered.GetValueOrDefault();
             destination.DeliveryDate = source.DeliveryDate.GetValueOrDefault();
             destination.Submitted = source.Submitted.GetValueOrDefault();
@@ -38,7 +38,7 @@ namespace ServiceLayer.Mappers
             }
 
 
-            destination.PickListItems = lineMapper.MapList(source.pickListItems);
+            destination.PickListItems = lineMapper.MapList(source.PickListItem);
             
            
         }

@@ -281,7 +281,7 @@ namespace ServiceLayer {
                 inv.Description = item.Description.ToString().TrimEnd();
                 inv.JobID = order.JobID;
                 inv.LineID = item.LineID;
-                inv.Location = string.Empty;
+                //inv.Location = string.Empty;
                 inv.OrderReceiptID = oreciept.OrderReceiptID;
                 inv.UnitOfMeasureID = item.UnitOfMeasureID ?? 1;
                 inv.QntyOrdered = item.Qnty ?? 0;      

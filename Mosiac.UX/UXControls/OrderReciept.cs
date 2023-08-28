@@ -29,6 +29,8 @@ namespace Mosiac.UX.UXControls
         //-------------------------------------------------
         internal OrderReceiptDto orderReceipt;
         OrderReceiptRepository orderReceiptRepository;
+        InventoryService inventoryService;
+        PartsService partsService;
         internal OrderRecieptLineItemDto currentReceiptItem;
         readonly MosaicContext mosaicContext;
         //--selectedInvneotryItem ----
@@ -44,6 +46,8 @@ namespace Mosiac.UX.UXControls
 
             mosaicContext = context;
             orderReceiptRepository = new OrderReceiptRepository(context, Globals.CurrentUserName, Globals.CurrentLoggedUserID);
+            inventoryService = new InventoryService(mosaicContext);
+            partsService = new PartsService(mosaicContext);
             dgReceiptItems.CellFormatting += DgReceiptItems_CellFormatting;
 
             orderReceipt = dto;
@@ -54,6 +58,10 @@ namespace Mosiac.UX.UXControls
             BindOrderReceipt(bsOrderReceipt);
             // ------------------------------------------------
             bsInventory.ListChanged += BsInventory_ListChanged;
+
+            cbxInventoryLocation.DataSource = inventoryService.GetLocations();
+            cbxInventoryLocation.DisplayMember = "LocationName";
+            cbxInventoryLocation.ValueMember = "LocationName";
 
             LoadPrinterSelections();
         }
@@ -98,6 +106,8 @@ namespace Mosiac.UX.UXControls
             txtDateStamp.DataBindings.Clear();
             txtQntyRecieved.DataBindings.Clear();
             txtInventoryAmount.DataBindings.Clear();
+            txtIventoryNote.DataBindings.Clear();
+
             // Bind the datasource
             if (bs.Current != null)
             {
@@ -106,6 +116,7 @@ namespace Mosiac.UX.UXControls
                 txtDateStamp.DataBindings.Add("Text", bs, "DateStamp", true, DataSourceUpdateMode.OnPropertyChanged, "", "d");
                 txtQntyRecieved.DataBindings.Add("Text", bs, "QntyReceived");
                 txtInventoryAmount.DataBindings.Add("Text", bs, "InventoryAmount", true, DataSourceUpdateMode.OnPropertyChanged);
+                txtIventoryNote.DataBindings.Add("Text", bs, "Note", true, DataSourceUpdateMode.OnPropertyChanged);
             }
 
         }
@@ -121,8 +132,12 @@ namespace Mosiac.UX.UXControls
                     // Return the inventory transaction for the Reciept item --
                     _currentInventory = mosaicContext.Inventory.Where(k => k.LineID == currentReceiptItem.LineID).FirstOrDefault();
                     inventoryWrapper = new InventoryWrapper(_currentInventory);
-                    // InventoryDto inventoryDto = orderReceiptRepository.GetInventoryItem(lineID);
-                    //StockTagDto dto = StockService
+                    if (_currentInventory.LocationID != null)
+                    {
+                        int index = cbxInventoryLocation.FindString(_currentInventory.LocationNavigation.LocationName.ToString());
+                        cbxInventoryLocation.SelectedIndex = index;
+                    }
+                    
                     bsInventory.DataSource = inventoryWrapper;
                     BindInventory(bsInventory);
                 }
@@ -169,14 +184,13 @@ namespace Mosiac.UX.UXControls
                     if (rowItem != null)
                     {
                         StockTagDto ts = orderReceiptRepository.GetStockTag(rowItem.OrderReceiptLineID);
+                
                         ThermalLabel tLabel = LabelEngine.GenerateLargeStockTag(ts);
-                        //ThermalLabel tLabel = LabelEngine.GenerateLargeStockTag(ts);
-
+                       
                         pj.Copies = 1; // set copies
                         pj.PrintOrientation = PrintOrientation.Portrait; //set orientation
                         pj.ThermalLabel = tLabel;
                         pj.PrintAsGraphic(tLabel);
-
                     }
 
                 }
@@ -276,6 +290,13 @@ namespace Mosiac.UX.UXControls
 
             mosaicContext.SaveChanges();
 
+        }
+
+        private void cbxInventoryLocation_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ComboBox cb = (ComboBox)sender;
+            if (_currentInventory != null) { _currentInventory.LocationID = ((Location)cb.SelectedItem).LocationID; }
+            mosaicContext.SaveChanges();
         }
     }
 

@@ -766,7 +766,7 @@ namespace Mosiac.UX.UXControls
                     break;
             }
         }
-        // Set Stock Level
+
         private void button1_Click_2(object sender, EventArgs e)
         {
             // Set the Stock Level  ----
@@ -848,7 +848,7 @@ namespace Mosiac.UX.UXControls
                 {
                     BindingManagerBase bm = dg.BindingContext[dg.DataSource, dg.DataMember];
                     _selectedLocation = (Location)bm.Current;
-                    bsLocationParts.DataSource = InventoryService.GetLocationParts(_selectedLocation.LocationName);
+                    bsLocationParts.DataSource = InventoryService.GetLocationParts(_selectedLocation.LocationID);
                     dgLocationParts.DataSource = bsLocationParts;
                 }
             }
@@ -903,7 +903,7 @@ namespace Mosiac.UX.UXControls
                         QntyOrdered = 0.0m,
                         QntyReceived = 0.0m,
                         Description = e.ItemDescription,
-                        Location = e.Location,
+                      //  LocationID = e.Location,
                         EmpID = Globals.CurrentLoggedUserID,
                         InventoryAmount = e.StockOnHand,
                         TransActionType = 4

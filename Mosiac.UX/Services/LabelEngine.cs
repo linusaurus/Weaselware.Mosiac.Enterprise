@@ -106,7 +106,7 @@ namespace Mosiac.UX.Services
             txtdesc.Font.Size = 6;
 
             // Qnty Recieved --
-            string txt3 = $"Qnty : {dto.QuantityReceived} - {dto.ReceiptDate.ToShortDateString()}";
+            string txt3 = $"Qnty : {dto.QuantityReceived} - {dto.ReceiptDate}";
             TextItem txtDate = new TextItem(0.1, 0.54, 1.95, 0.60, txt3);
             //txtDate.Sizing = TextSizing.ParagraphScaling;
             txtDate.Font.Name = Neodynamic.SDK.Printing.Font.NativePrinterFontB;

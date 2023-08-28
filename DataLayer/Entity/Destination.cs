@@ -3,23 +3,23 @@
 using System;
 using System.Collections.Generic;
 
-namespace DataLayer.Entity
+namespace DataLayer.Entity;
+
+public partial class Destination
 {
-    public partial class Destination
-    {
-        public Destination()
-        {
-            PickList = new HashSet<PickList>();
-        }
+    public int DestinationID { get; set; }
 
-        public int DestinationID { get; set; }
-        public string DestinationName { get; set; }
-        public string Attn { get; set; }
-        public string Address { get; set; }
-        public string City { get; set; }
-        public string State { get; set; }
-        public string Zip { get; set; }
+    public string DestinationName { get; set; }
 
-        public virtual ICollection<PickList> PickList { get; set; }
-    }
+    public string Attn { get; set; }
+
+    public string Address { get; set; }
+
+    public string City { get; set; }
+
+    public string State { get; set; }
+
+    public string Zip { get; set; }
+
+    public virtual ICollection<PickList> PickList { get; set; } = new List<PickList>();
 }

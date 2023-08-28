@@ -3,15 +3,17 @@
 using System;
 using System.Collections.Generic;
 
-namespace DataLayer.Entity
-{
-    public partial class ClaimDocument
-    {
-        public int ClaimDocumentID { get; set; }
-        public string DocumentDesciption { get; set; }
-        public string DocumentExtension { get; set; }
-        public int? ClaimItemID { get; set; }
+namespace DataLayer.Entity;
 
-        public virtual ClaimItem ClaimItem { get; set; }
-    }
+public partial class ClaimDocument
+{
+    public int ClaimDocumentID { get; set; }
+
+    public string DocumentDesciption { get; set; }
+
+    public string DocumentExtension { get; set; }
+
+    public int? ClaimItemID { get; set; }
+
+    public virtual ClaimItem ClaimItem { get; set; }
 }

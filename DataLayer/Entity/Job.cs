@@ -3,32 +3,43 @@
 using System;
 using System.Collections.Generic;
 
-namespace DataLayer.Entity
+namespace DataLayer.Entity;
+
+public partial class Job
 {
-    public partial class Job
-    {
-        public Job()
-        {
-            Product = new HashSet<Product>();
-            PurchaseOrder = new HashSet<PurchaseOrder>();
-        }
+    public int jobID { get; set; }
 
-        public int jobID { get; set; }
-        public int? company_id { get; set; }
-        public int? project_id { get; set; }
-        public int? structurelevel { get; set; }
-        public string jobname { get; set; }
-        public int? jobnumber { get; set; }
-        public string jobdesc { get; set; }
-        public int? leftNode { get; set; }
-        public int? rightnode { get; set; }
-        public int? ParentID { get; set; }
-        public bool? Retired { get; set; }
-        public int? Manager { get; set; }
-        public bool? Visible { get; set; }
-        public DateTime? start_ts { get; set; }
+    public int? company_id { get; set; }
 
-        public virtual ICollection<Product> Product { get; set; }
-        public virtual ICollection<PurchaseOrder> PurchaseOrder { get; set; }
-    }
+    public int? project_id { get; set; }
+
+    public int? structurelevel { get; set; }
+
+    public string jobname { get; set; }
+
+    public int? jobnumber { get; set; }
+
+    public string jobdesc { get; set; }
+
+    public int? leftNode { get; set; }
+
+    public int? rightnode { get; set; }
+
+    public int? ParentID { get; set; }
+
+    public bool? Retired { get; set; }
+
+    public int? Manager { get; set; }
+
+    public bool? Visible { get; set; }
+
+    public DateTime? start_ts { get; set; }
+
+    public virtual ICollection<Delivery> Delivery { get; set; } = new List<Delivery>();
+
+    public virtual ICollection<PickList> PickList { get; set; } = new List<PickList>();
+
+    public virtual ICollection<Product> Product { get; set; } = new List<Product>();
+
+    public virtual ICollection<PurchaseOrder> PurchaseOrder { get; set; } = new List<PurchaseOrder>();
 }

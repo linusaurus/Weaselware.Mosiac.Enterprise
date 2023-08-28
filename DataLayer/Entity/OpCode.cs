@@ -3,11 +3,11 @@
 using System;
 using System.Collections.Generic;
 
-namespace DataLayer.Entity
+namespace DataLayer.Entity;
+
+public partial class OpCode
 {
-    public partial class OpCode
-    {
-        public int OpCodeID { get; set; }
-        public string OperationName { get; set; }
-    }
+    public int OpCodeID { get; set; }
+
+    public string OperationName { get; set; }
 }

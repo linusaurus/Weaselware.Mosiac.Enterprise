@@ -3,19 +3,29 @@
 using System;
 using System.Collections.Generic;
 
-namespace DataLayer.Entity
+namespace DataLayer.Entity;
+
+public partial class PickListItem
 {
-    public partial class PickListItem
-    {
-        public int PickListItemID { get; set; }
-        public int? PickListID { get; set; }
-        public string Description { get; set; }
-        public int? ProductID { get; set; }
-        public int? SubAssemblyID { get; set; }
-        public int? PartID { get; set; }
-        public decimal? Qnty { get; set; }
-        public bool? Onboard { get; set; }
-        public bool? Delivered { get; set; }
-        public int? StockTransActionID { get; set; }
-    }
+    public int PickListItemID { get; set; }
+
+    public int? PickListID { get; set; }
+
+    public string Description { get; set; }
+
+    public int? ProductID { get; set; }
+
+    public int? SubAssemblyID { get; set; }
+
+    public int? PartID { get; set; }
+
+    public decimal? Qnty { get; set; }
+
+    public bool? Onboard { get; set; }
+
+    public bool? Delivered { get; set; }
+
+    public int? StockTransActionID { get; set; }
+
+    public virtual PickList PickList { get; set; }
 }

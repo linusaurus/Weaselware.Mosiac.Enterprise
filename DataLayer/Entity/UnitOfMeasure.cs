@@ -3,20 +3,19 @@
 using System;
 using System.Collections.Generic;
 
-namespace DataLayer.Entity
+namespace DataLayer.Entity;
+
+public partial class UnitOfMeasure
 {
-    public partial class UnitOfMeasure
-    {
-        public UnitOfMeasure()
-        {
-            Part = new HashSet<Part>();
-            PurchaseLineItem = new HashSet<PurchaseLineItem>();
-        }
+    public int UnitOfMeasureID { get; set; }
 
-        public int UnitOfMeasureID { get; set; }
-        public string UnitName { get; set; }
+    public string UnitName { get; set; }
 
-        public virtual ICollection<Part> Part { get; set; }
-        public virtual ICollection<PurchaseLineItem> PurchaseLineItem { get; set; }
-    }
+    public virtual ICollection<Inventory> Inventory { get; set; } = new List<Inventory>();
+
+    public virtual ICollection<OrderReceiptItems> OrderReceiptItems { get; set; } = new List<OrderReceiptItems>();
+
+    public virtual ICollection<Part> Part { get; set; } = new List<Part>();
+
+    public virtual ICollection<PurchaseLineItem> PurchaseLineItem { get; set; } = new List<PurchaseLineItem>();
 }

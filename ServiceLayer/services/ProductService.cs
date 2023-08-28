@@ -21,7 +21,7 @@ namespace ServiceLayer
          
        public List<Product> GetJobUnits(int jobID)
         {
-            return ctx.Product.Include(p => p.SubAssemblies).Where(j => j.JobID == jobID).ToList();
+            return ctx.Product.Include(p => p.SubAssembly).Where(j => j.JobID == jobID).ToList();
         }
 
        public List<JobOrdersList> JobOrders(int jobID)
@@ -38,7 +38,7 @@ namespace ServiceLayer
 
         public List<ProductDto> GetProducts(int jobID)
         {
-            var product = ctx.Product.Include(r => r.SubAssemblies).Where(p => p.JobID == jobID).Select(d => new ProductDto
+            var product = ctx.Product.Include(r => r.SubAssembly).Where(p => p.JobID == jobID).Select(d => new ProductDto
             {
                 ProductID = d.ProductID,
                 ProductionDate = d.ProductionDate.GetValueOrDefault(),
@@ -73,7 +73,7 @@ namespace ServiceLayer
             if (jobListDto != null )
             {
                 
-             var productList = ctx.Product.Include(s => s.SubAssemblies).Where(o => o.JobID == jobListDto.JobID).ToList();
+             var productList = ctx.Product.Include(s => s.SubAssembly).Where(o => o.JobID == jobListDto.JobID).ToList();
 
             //remove deleted products -
             productList
@@ -82,7 +82,7 @@ namespace ServiceLayer
 
             jobListDto.Products.ToList().ForEach(ad =>
             {
-                var product = ctx.Product.Include(s => s.SubAssemblies).FirstOrDefault(r => r.ProductID == ad.ProductID);
+                var product = ctx.Product.Include(s => s.SubAssembly).FirstOrDefault(r => r.ProductID == ad.ProductID);
                 if (product == null || product.ProductID == default)
                 {
                     product = new Product();
@@ -104,7 +104,7 @@ namespace ServiceLayer
                 product.NIC = ad.NIC;
 
                 //remove deleted subassemblies -
-                product.SubAssemblies
+                product.SubAssembly
                     .Where(d => !ad.SubAssemblies.Any(SubAssemblyDTO => SubAssemblyDTO.SubAssemblyID == d.SubAssemblyID)).ToList()
                     .ForEach(deleted => ctx.SubAssembly.Remove(deleted));
 
@@ -113,11 +113,11 @@ namespace ServiceLayer
                     //update or add SubAssembly --
                     ad.SubAssemblies.ToList().ForEach(od =>
                     {
-                        var subassembly = product.SubAssemblies.FirstOrDefault(r => r.SubAssemblyID == od.SubAssemblyID);
+                        var subassembly = product.SubAssembly.FirstOrDefault(r => r.SubAssemblyID == od.SubAssemblyID);
                         if (subassembly == null || subassembly.SubAssemblyID == default)
                         {
                             subassembly = new SubAssembly();
-                            product.SubAssemblies.Add(subassembly);
+                            product.SubAssembly.Add(subassembly);
                         }
                         subassembly.ProductID = od.ProductID;
                         subassembly.SubAssemblyName = od.SubAssemblyName;

@@ -3,17 +3,13 @@
 using System;
 using System.Collections.Generic;
 
-namespace DataLayer.Entity
-{
-    public partial class TransActionType
-    {
-        public TransActionType()
-        {
-            Inventory = new HashSet<Inventory>();
-        }
-        public int TransactionsTypeID { get; set; }
-        public string TransactionTypeName { get; set; }
+namespace DataLayer.Entity;
 
-        public virtual ICollection<Inventory> Inventory { get; set; }
-    }
+public partial class TransActionType
+{
+    public int TransactionsTypeID { get; set; }
+
+    public string TransactionTypeName { get; set; }
+
+    public virtual ICollection<Inventory> Inventory { get; set; } = new List<Inventory>();
 }

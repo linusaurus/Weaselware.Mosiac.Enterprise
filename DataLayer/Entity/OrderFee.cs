@@ -3,17 +3,21 @@
 using System;
 using System.Collections.Generic;
 
-namespace DataLayer.Entity
-{
-    public partial class OrderFee
-    {
-        public int OrderfeeID { get; set; }
-        public string FeeName { get; set; }
-        public decimal? Qnty { get; set; }
-        public decimal? Cost { get; set; }
-        public decimal? Extension { get; set; }
-        public int? PurchaseOrderID { get; set; }
+namespace DataLayer.Entity;
 
-        public virtual PurchaseOrder PurchaseOrder { get; set; }
-    }
+public partial class OrderFee
+{
+    public int OrderfeeID { get; set; }
+
+    public string FeeName { get; set; }
+
+    public decimal? Qnty { get; set; }
+
+    public decimal? Cost { get; set; }
+
+    public decimal? Extension { get; set; }
+
+    public int? PurchaseOrderID { get; set; }
+
+    public virtual PurchaseOrder PurchaseOrder { get; set; }
 }

@@ -46,6 +46,10 @@ namespace Mosiac.UX.UXControls
             dgReceiptItems = new System.Windows.Forms.DataGridView();
             splitContainer1 = new System.Windows.Forms.SplitContainer();
             panel2 = new System.Windows.Forms.Panel();
+            label14 = new System.Windows.Forms.Label();
+            label13 = new System.Windows.Forms.Label();
+            cbxInventoryLocation = new System.Windows.Forms.ComboBox();
+            txtIventoryNote = new System.Windows.Forms.TextBox();
             button2 = new System.Windows.Forms.Button();
             button1 = new System.Windows.Forms.Button();
             label12 = new System.Windows.Forms.Label();
@@ -122,7 +126,7 @@ namespace Mosiac.UX.UXControls
             // txtPurchaseOrderID
             // 
             txtPurchaseOrderID.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
-            txtPurchaseOrderID.Location = new System.Drawing.Point(919, 41);
+            txtPurchaseOrderID.Location = new System.Drawing.Point(856, 41);
             txtPurchaseOrderID.Name = "txtPurchaseOrderID";
             txtPurchaseOrderID.ReadOnly = true;
             txtPurchaseOrderID.Size = new System.Drawing.Size(117, 23);
@@ -133,7 +137,7 @@ namespace Mosiac.UX.UXControls
             // 
             label3.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
             label3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            label3.Location = new System.Drawing.Point(919, 14);
+            label3.Location = new System.Drawing.Point(856, 14);
             label3.Name = "label3";
             label3.Padding = new System.Windows.Forms.Padding(2);
             label3.Size = new System.Drawing.Size(117, 23);
@@ -165,7 +169,7 @@ namespace Mosiac.UX.UXControls
             // 
             label5.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
             label5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            label5.Location = new System.Drawing.Point(796, 14);
+            label5.Location = new System.Drawing.Point(733, 14);
             label5.Name = "label5";
             label5.Padding = new System.Windows.Forms.Padding(2);
             label5.Size = new System.Drawing.Size(117, 23);
@@ -176,7 +180,7 @@ namespace Mosiac.UX.UXControls
             // txtOrderDate
             // 
             txtOrderDate.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
-            txtOrderDate.Location = new System.Drawing.Point(796, 41);
+            txtOrderDate.Location = new System.Drawing.Point(733, 41);
             txtOrderDate.Name = "txtOrderDate";
             txtOrderDate.ReadOnly = true;
             txtOrderDate.Size = new System.Drawing.Size(117, 23);
@@ -191,7 +195,7 @@ namespace Mosiac.UX.UXControls
             groupBox2.Margin = new System.Windows.Forms.Padding(12);
             groupBox2.Name = "groupBox2";
             groupBox2.Padding = new System.Windows.Forms.Padding(12);
-            groupBox2.Size = new System.Drawing.Size(1081, 122);
+            groupBox2.Size = new System.Drawing.Size(1018, 122);
             groupBox2.TabIndex = 3;
             groupBox2.TabStop = false;
             groupBox2.Text = "Receipt Details";
@@ -213,7 +217,7 @@ namespace Mosiac.UX.UXControls
             panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             panel1.Location = new System.Drawing.Point(12, 28);
             panel1.Name = "panel1";
-            panel1.Size = new System.Drawing.Size(1057, 82);
+            panel1.Size = new System.Drawing.Size(994, 82);
             panel1.TabIndex = 0;
             // 
             // lbPO
@@ -228,18 +232,19 @@ namespace Mosiac.UX.UXControls
             // 
             // dgReceiptItems
             // 
+            dgReceiptItems.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right;
             dgReceiptItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgReceiptItems.Dock = System.Windows.Forms.DockStyle.Fill;
-            dgReceiptItems.Location = new System.Drawing.Point(0, 0);
+            dgReceiptItems.Location = new System.Drawing.Point(8, 0);
             dgReceiptItems.Name = "dgReceiptItems";
             dgReceiptItems.RowTemplate.Height = 25;
             dgReceiptItems.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            dgReceiptItems.Size = new System.Drawing.Size(1008, 296);
+            dgReceiptItems.Size = new System.Drawing.Size(1008, 299);
             dgReceiptItems.TabIndex = 4;
             dgReceiptItems.SelectionChanged += dgReceiptItems_SelectionChanged;
             // 
             // splitContainer1
             // 
+            splitContainer1.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
             splitContainer1.Location = new System.Drawing.Point(12, 149);
             splitContainer1.Name = "splitContainer1";
             splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
@@ -253,12 +258,16 @@ namespace Mosiac.UX.UXControls
             splitContainer1.Panel2.Controls.Add(panel2);
             splitContainer1.Panel2.Controls.Add(toolStrip1);
             splitContainer1.Panel2.Padding = new System.Windows.Forms.Padding(6);
-            splitContainer1.Size = new System.Drawing.Size(1008, 534);
-            splitContainer1.SplitterDistance = 296;
+            splitContainer1.Size = new System.Drawing.Size(1016, 540);
+            splitContainer1.SplitterDistance = 299;
             splitContainer1.TabIndex = 5;
             // 
             // panel2
             // 
+            panel2.Controls.Add(label14);
+            panel2.Controls.Add(label13);
+            panel2.Controls.Add(cbxInventoryLocation);
+            panel2.Controls.Add(txtIventoryNote);
             panel2.Controls.Add(button2);
             panel2.Controls.Add(button1);
             panel2.Controls.Add(label12);
@@ -279,14 +288,53 @@ namespace Mosiac.UX.UXControls
             panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             panel2.Location = new System.Drawing.Point(6, 31);
             panel2.Name = "panel2";
-            panel2.Size = new System.Drawing.Size(996, 197);
+            panel2.Size = new System.Drawing.Size(1004, 200);
             panel2.TabIndex = 1;
+            // 
+            // label14
+            // 
+            label14.BackColor = System.Drawing.Color.DodgerBlue;
+            label14.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            label14.Location = new System.Drawing.Point(610, 56);
+            label14.Name = "label14";
+            label14.Padding = new System.Windows.Forms.Padding(2);
+            label14.Size = new System.Drawing.Size(71, 21);
+            label14.TabIndex = 8;
+            label14.Text = "Location";
+            // 
+            // label13
+            // 
+            label13.BackColor = System.Drawing.Color.DodgerBlue;
+            label13.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            label13.Location = new System.Drawing.Point(126, 56);
+            label13.Name = "label13";
+            label13.Padding = new System.Windows.Forms.Padding(2);
+            label13.Size = new System.Drawing.Size(144, 21);
+            label13.TabIndex = 7;
+            label13.Text = "Notes";
+            // 
+            // cbxInventoryLocation
+            // 
+            cbxInventoryLocation.FormattingEnabled = true;
+            cbxInventoryLocation.Location = new System.Drawing.Point(608, 79);
+            cbxInventoryLocation.Name = "cbxInventoryLocation";
+            cbxInventoryLocation.Size = new System.Drawing.Size(73, 23);
+            cbxInventoryLocation.TabIndex = 6;
+            cbxInventoryLocation.SelectedIndexChanged += cbxInventoryLocation_SelectedIndexChanged;
+            // 
+            // txtIventoryNote
+            // 
+            txtIventoryNote.Location = new System.Drawing.Point(126, 79);
+            txtIventoryNote.Multiline = true;
+            txtIventoryNote.Name = "txtIventoryNote";
+            txtIventoryNote.Size = new System.Drawing.Size(478, 53);
+            txtIventoryNote.TabIndex = 5;
             // 
             // button2
             // 
             button2.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             button2.FlatAppearance.BorderSize = 2;
-            button2.Location = new System.Drawing.Point(387, 79);
+            button2.Location = new System.Drawing.Point(362, 151);
             button2.Name = "button2";
             button2.Size = new System.Drawing.Size(145, 25);
             button2.TabIndex = 3;
@@ -299,7 +347,7 @@ namespace Mosiac.UX.UXControls
             button1.Enabled = false;
             button1.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             button1.FlatAppearance.BorderSize = 2;
-            button1.Location = new System.Drawing.Point(538, 79);
+            button1.Location = new System.Drawing.Point(513, 151);
             button1.Name = "button1";
             button1.Size = new System.Drawing.Size(108, 25);
             button1.TabIndex = 3;
@@ -310,7 +358,7 @@ namespace Mosiac.UX.UXControls
             // 
             label12.AutoSize = true;
             label12.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            label12.Location = new System.Drawing.Point(21, 71);
+            label12.Location = new System.Drawing.Point(24, 151);
             label12.Name = "label12";
             label12.Size = new System.Drawing.Size(214, 30);
             label12.TabIndex = 4;
@@ -327,12 +375,15 @@ namespace Mosiac.UX.UXControls
             // 
             // label10
             // 
-            label10.AutoSize = true;
-            label10.Location = new System.Drawing.Point(889, 11);
+            label10.BackColor = System.Drawing.Color.DodgerBlue;
+            label10.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            label10.Location = new System.Drawing.Point(889, 6);
             label10.Name = "label10";
-            label10.Size = new System.Drawing.Size(95, 15);
+            label10.Padding = new System.Windows.Forms.Padding(2);
+            label10.Size = new System.Drawing.Size(95, 20);
             label10.TabIndex = 2;
             label10.Text = "Inventory Added";
+            label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label11
             // 
@@ -345,43 +396,52 @@ namespace Mosiac.UX.UXControls
             // 
             // label9
             // 
-            label9.AutoSize = true;
-            label9.Location = new System.Drawing.Point(745, 11);
+            label9.BackColor = System.Drawing.Color.DodgerBlue;
+            label9.ForeColor = System.Drawing.SystemColors.Control;
+            label9.Location = new System.Drawing.Point(735, 6);
             label9.Name = "label9";
-            label9.Size = new System.Drawing.Size(83, 15);
+            label9.Padding = new System.Windows.Forms.Padding(2);
+            label9.Size = new System.Drawing.Size(93, 20);
             label9.TabIndex = 2;
             label9.Text = "Qnty Received";
             // 
             // label8
             // 
-            label8.AutoSize = true;
-            label8.Location = new System.Drawing.Point(634, 11);
+            label8.BackColor = System.Drawing.Color.DodgerBlue;
+            label8.ForeColor = System.Drawing.Color.White;
+            label8.Location = new System.Drawing.Point(610, 6);
             label8.Name = "label8";
-            label8.Size = new System.Drawing.Size(68, 15);
+            label8.Padding = new System.Windows.Forms.Padding(2);
+            label8.Size = new System.Drawing.Size(119, 21);
             label8.TabIndex = 2;
             label8.Text = "Date Stamp";
+            label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label7
             // 
-            label7.AutoSize = true;
-            label7.Location = new System.Drawing.Point(126, 12);
+            label7.BackColor = System.Drawing.Color.DodgerBlue;
+            label7.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            label7.Location = new System.Drawing.Point(126, 6);
             label7.Name = "label7";
-            label7.Size = new System.Drawing.Size(67, 15);
+            label7.Padding = new System.Windows.Forms.Padding(2);
+            label7.Size = new System.Drawing.Size(478, 21);
             label7.TabIndex = 2;
             label7.Text = "Description";
             // 
             // label6
             // 
-            label6.AutoSize = true;
-            label6.Location = new System.Drawing.Point(24, 12);
+            label6.BackColor = System.Drawing.Color.DodgerBlue;
+            label6.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            label6.Location = new System.Drawing.Point(24, 6);
             label6.Name = "label6";
-            label6.Size = new System.Drawing.Size(78, 15);
+            label6.Padding = new System.Windows.Forms.Padding(2);
+            label6.Size = new System.Drawing.Size(96, 21);
             label6.TabIndex = 2;
             label6.Text = "TransactionID";
             // 
             // btnCancel
             // 
-            btnCancel.Location = new System.Drawing.Point(768, 77);
+            btnCancel.Location = new System.Drawing.Point(768, 149);
             btnCancel.Name = "btnCancel";
             btnCancel.Size = new System.Drawing.Size(105, 27);
             btnCancel.TabIndex = 1;
@@ -390,7 +450,7 @@ namespace Mosiac.UX.UXControls
             // 
             // btnOK
             // 
-            btnOK.Location = new System.Drawing.Point(879, 77);
+            btnOK.Location = new System.Drawing.Point(879, 149);
             btnOK.Name = "btnOK";
             btnOK.Size = new System.Drawing.Size(105, 27);
             btnOK.TabIndex = 1;
@@ -448,7 +508,7 @@ namespace Mosiac.UX.UXControls
             toolStrip1.Location = new System.Drawing.Point(6, 6);
             toolStrip1.Margin = new System.Windows.Forms.Padding(6, 2, 2, 6);
             toolStrip1.Name = "toolStrip1";
-            toolStrip1.Size = new System.Drawing.Size(996, 25);
+            toolStrip1.Size = new System.Drawing.Size(1004, 25);
             toolStrip1.TabIndex = 0;
             toolStrip1.Text = "toolStrip1";
             // 
@@ -483,9 +543,11 @@ namespace Mosiac.UX.UXControls
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             Controls.Add(splitContainer1);
             Controls.Add(groupBox2);
+            MaximumSize = new System.Drawing.Size(1042, 830);
+            MinimumSize = new System.Drawing.Size(1042, 720);
             Name = "OrderReciept";
             Padding = new System.Windows.Forms.Padding(12);
-            Size = new System.Drawing.Size(1105, 703);
+            Size = new System.Drawing.Size(1042, 720);
             groupBox2.ResumeLayout(false);
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
@@ -542,5 +604,9 @@ namespace Mosiac.UX.UXControls
         private System.Windows.Forms.ToolStripComboBox tsPrinterChoice;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ComboBox cbxInventoryLocation;
+        private System.Windows.Forms.TextBox txtIventoryNote;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label13;
     }
 }
