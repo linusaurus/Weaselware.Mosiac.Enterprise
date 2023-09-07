@@ -39,6 +39,8 @@ public partial class OrderReceiptItems
 
     public decimal? InventoryAmount { get; set; }
 
+    public virtual Inventory Inventory { get; set; }
+
     public bool? Pushed { get; set; }
 
     public virtual OrderReciept OrderReceipt { get; set; }

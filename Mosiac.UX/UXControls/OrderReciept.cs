@@ -137,14 +137,14 @@ namespace Mosiac.UX.UXControls
                         int index = cbxInventoryLocation.FindString(_currentInventory.LocationNavigation.LocationName.ToString());
                         cbxInventoryLocation.SelectedIndex = index;
                     }
-                    
+
                     bsInventory.DataSource = inventoryWrapper;
                     BindInventory(bsInventory);
                 }
             }
         }
         /// <summary>
-        /// Print 
+        /// Print the stock label
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -184,9 +184,9 @@ namespace Mosiac.UX.UXControls
                     if (rowItem != null)
                     {
                         StockTagDto ts = orderReceiptRepository.GetStockTag(rowItem.OrderReceiptLineID);
-                
+
                         ThermalLabel tLabel = LabelEngine.GenerateLargeStockTag(ts);
-                       
+
                         pj.Copies = 1; // set copies
                         pj.PrintOrientation = PrintOrientation.Portrait; //set orientation
                         pj.ThermalLabel = tLabel;

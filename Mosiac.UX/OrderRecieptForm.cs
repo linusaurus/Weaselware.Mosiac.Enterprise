@@ -107,7 +107,7 @@ namespace Mosiac.UX
                     this.Close();
                     break;
                 case "tsPrintLabels":
-                    NotificationService.SendNotificaion("rich@designsynthesis.net", receiptDto);
+                   // NotificationService.SendNotificaion("rich@designsynthesis.net", receiptDto);
                     break;
                 default:
                     break;

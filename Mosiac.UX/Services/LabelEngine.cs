@@ -55,7 +55,7 @@ namespace Mosiac.UX.Services
 
 
             //Define a **BarcodeItem** object for encoding Code 39 symbology
-            BarcodeItem bc1 = new BarcodeItem(0.25, 0.85, 1.5, .375, BarcodeSymbology.Code39, dto.PartID.ToString());
+            BarcodeItem bc1 = new BarcodeItem(0.25, 0.85, 1.5, .375, BarcodeSymbology.Code39, "P" + dto.PartID.ToString());
             bc1.AddChecksum = false;
             bc1.CodeAlignment = BarcodeTextAlignment.BelowCenter;
             bc1.BarWidth = 0.01;
