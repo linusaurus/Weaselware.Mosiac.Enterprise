@@ -27,7 +27,7 @@ public partial class OrderReceiptItems
 
     public virtual OrderReciept OrderReceipt { get; set; }
 
-   
+
     public virtual UnitOfMeasure UnitOfMeasure { get; set; }
 
   

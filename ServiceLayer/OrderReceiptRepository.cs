@@ -406,17 +406,17 @@ namespace ServiceLayer
             int lineid = orderReceiptLineID;
 
             StockTagDto dto = new StockTagDto();
-   
-                //dto = con.QueryFirst<StockTagDto>("select ol.PurchaseOrderID,ol.OrderReceiptLineID,ol.LineID,i.StockTransactionID ,i.Location as [LocationName]," +
-                //    "ol.InventoryAmount,CONVERT(CHAR,rc.ReceiptDate,1) AS [ReceiptDate], ol.Description, j.jobname, po.JobID,ol.QuantityReceived,e.firstname " +
-                //    "FROM OrderReceiptItems ol JOIN OrderReciept rc ON ol.OrderReceiptID = rc.OrderReceiptID " +
-                //    "JOIN PurchaseOrder po ON ol.PurchaseOrderID = po.PurchaseOrderID JOIN Job j ON ol.JobID = j.jobID "+
-                //    "JOIN Location lo ol.LocationID = lo.LocationID" + 
-                //    "JOIN Employee e ON rc.EmployeeID = e.employeeID JOIN Inventory i ON ol.LineID = i.LineID where ol.OrderReceiptLineID = @id", new {id = lineid});
 
-             //var result = _ctx.OrderReceiptItems.Include(i => i.Inventory).Where(n => n.LineID == lineid);
-            
-  
+           
+           dto= con.QueryFirst<StockTagDto>(" select ol.PurchaseOrderID,ol.OrderReceiptLineID,ol.LineID,i.StockTransactionID ,l.LocationName as [LocationName],"+
+               " ol.InventoryAmount,CONVERT(CHAR, rc.ReceiptDate, 1) AS[ReceiptDate], ol.Description, j.jobname, po.JobID,ol.QuantityReceived,e.firstname " +
+               " FROM OrderReceiptItems ol JOIN OrderReciept rc ON ol.OrderReceiptID = rc.OrderReceiptID " +
+               " JOIN PurchaseOrder po ON ol.PurchaseOrderID = po.PurchaseOrderID JOIN Job j ON ol.JobID = j.jobID " +
+               " JOIN Employee e ON rc.EmployeeID = e.employeeID " +
+               " JOIN Inventory i ON ol.LineID = i.LineID " +
+               " JOIN[Location] l ON i.LocationID = l.LocationID " +
+               " where ol.OrderReceiptLineID = @id ", new { id = lineid });
+
             return dto;
         }
         public List<OrderReceiptHistoryDto> ReceiptHistory(int orderState)
