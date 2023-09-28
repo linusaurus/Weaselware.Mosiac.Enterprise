@@ -91,7 +91,6 @@ namespace Mosiac.UX.UXControls
             tsbOrderReciept.Name = "tsbOrderReciept";
             tsbOrderReciept.Size = new System.Drawing.Size(155, 33);
             tsbOrderReciept.Text = "Receive Selected Order";
-            tsbOrderReciept.Click += tsbOrderReciept_Click;
             // 
             // toolStripSeparator1
             // 

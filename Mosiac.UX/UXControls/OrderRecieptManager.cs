@@ -382,9 +382,6 @@ namespace Mosiac.UX.UXControls
 
         }
 
-        private void tsbOrderReciept_Click(object sender, EventArgs e)
-        {
-
-        }
+     
     }
 }

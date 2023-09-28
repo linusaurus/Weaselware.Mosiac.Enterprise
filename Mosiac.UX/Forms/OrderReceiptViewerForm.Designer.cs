@@ -30,57 +30,54 @@ namespace Mosiac.UX.Forms
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OrderReceiptViewerForm));
-            this.tsbClose = new System.Windows.Forms.ToolStrip();
-            this.tsClose = new System.Windows.Forms.ToolStripButton();
-            this.tsbPrint = new System.Windows.Forms.ToolStripButton();
-            this.tsbClose.SuspendLayout();
-            this.SuspendLayout();
+            tsbClose = new System.Windows.Forms.ToolStrip();
+            tsClose = new System.Windows.Forms.ToolStripButton();
+            tsbPrint = new System.Windows.Forms.ToolStripButton();
+            tsbClose.SuspendLayout();
+            SuspendLayout();
             // 
             // tsbClose
             // 
-            this.tsbClose.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.tsbClose.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsClose,
-            this.tsbPrint});
-            this.tsbClose.Location = new System.Drawing.Point(0, 612);
-            this.tsbClose.Name = "tsbClose";
-            this.tsbClose.Size = new System.Drawing.Size(1016, 25);
-            this.tsbClose.TabIndex = 0;
-            this.tsbClose.Text = "toolStrip1";
-            this.tsbClose.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.tsbClose_ItemClicked);
+            tsbClose.Dock = System.Windows.Forms.DockStyle.Bottom;
+            tsbClose.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { tsClose, tsbPrint });
+            tsbClose.Location = new System.Drawing.Point(0, 756);
+            tsbClose.Name = "tsbClose";
+            tsbClose.Size = new System.Drawing.Size(1016, 25);
+            tsbClose.TabIndex = 0;
+            tsbClose.Text = "toolStrip1";
+            tsbClose.ItemClicked += tsbClose_ItemClicked;
             // 
             // tsClose
             // 
-            this.tsClose.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.tsClose.Image = ((System.Drawing.Image)(resources.GetObject("tsClose.Image")));
-            this.tsClose.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsClose.Name = "tsClose";
-            this.tsClose.Size = new System.Drawing.Size(40, 22);
-            this.tsClose.Text = "Close";
+            tsClose.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            tsClose.Image = (System.Drawing.Image)resources.GetObject("tsClose.Image");
+            tsClose.ImageTransparentColor = System.Drawing.Color.Magenta;
+            tsClose.Name = "tsClose";
+            tsClose.Size = new System.Drawing.Size(40, 22);
+            tsClose.Text = "Close";
             // 
             // tsbPrint
             // 
-            this.tsbPrint.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.tsbPrint.Image = ((System.Drawing.Image)(resources.GetObject("tsbPrint.Image")));
-            this.tsbPrint.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbPrint.Name = "tsbPrint";
-            this.tsbPrint.Size = new System.Drawing.Size(36, 22);
-            this.tsbPrint.Text = "Print";
+            tsbPrint.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            tsbPrint.Image = (System.Drawing.Image)resources.GetObject("tsbPrint.Image");
+            tsbPrint.ImageTransparentColor = System.Drawing.Color.Magenta;
+            tsbPrint.Name = "tsbPrint";
+            tsbPrint.Size = new System.Drawing.Size(36, 22);
+            tsbPrint.Text = "Print";
             // 
             // OrderReceiptViewerForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1016, 637);
-            this.Controls.Add(this.tsbClose);
-            this.Name = "OrderReceiptViewerForm";
-            this.Text = "OrderReceiptViewerForm";
-            this.Load += new System.EventHandler(this.OrderReceiptViewerForm_Load);
-            this.tsbClose.ResumeLayout(false);
-            this.tsbClose.PerformLayout();
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            ClientSize = new System.Drawing.Size(1016, 781);
+            Controls.Add(tsbClose);
+            Name = "OrderReceiptViewerForm";
+            Text = "OrderReceiptViewerForm";
+            Load += OrderReceiptViewerForm_Load;
+            tsbClose.ResumeLayout(false);
+            tsbClose.PerformLayout();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion

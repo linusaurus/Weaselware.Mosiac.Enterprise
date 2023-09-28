@@ -24,7 +24,7 @@ namespace Mosiac.UX.Forms
         {
             switch (e.ClickedItem.Name)
             {
-                
+
                 default:
                     break;
             }

@@ -245,23 +245,23 @@ namespace ServiceLayer
         }
 
         // Return data fro printing a complete stock tag
-        public OrderReceiptDto GetOrderReceipt(int orderReceiptID, bool IncludeCompleted)
+        public OrderReceiptDto GetOrderReceipt(int ID, bool IncludeCompleted)
         {
             OrderReceiptDto dto = new OrderReceiptDto();
             OrderReceiptMapper mapper = new OrderReceiptMapper();
 
             if (IncludeCompleted)
             {
-               var or = _ctx.OrderReciept.Include(x => x.PurchaseOrder)
+                var or = _ctx.OrderReciept.Include(x => x.PurchaseOrder)
                 .Include(l => l.OrderReceiptItems).ThenInclude(o => o.UnitOfMeasure)
-                .Include(e => e.Employee).Where(p => p.OrderReceiptID == orderReceiptID).First();
+                .Include(e => e.Employee).Where(p => p.OrderReceiptID == ID).First();
                 mapper.Map(or, dto);
             }
             else
             {
                 var or = _ctx.OrderReciept.Include(x => x.PurchaseOrder)
                 .Include(l => l.OrderReceiptItems.Where(l => l.IsComplete.Value == false)).ThenInclude(o => o.UnitOfMeasure)
-                .Include(e => e.Employee).Where(p => p.OrderReceiptID == orderReceiptID).First();
+                .Include(e => e.Employee).Where(p => p.OrderReceiptID == ID).First();
                 mapper.Map(or, dto);
             }
    
@@ -414,7 +414,7 @@ namespace ServiceLayer
                 //    "JOIN Location lo ol.LocationID = lo.LocationID" + 
                 //    "JOIN Employee e ON rc.EmployeeID = e.employeeID JOIN Inventory i ON ol.LineID = i.LineID where ol.OrderReceiptLineID = @id", new {id = lineid});
 
-             var result = _ctx.OrderReceiptItems.Include(i => i.Inventory).Where(n => n.LineID == lineid);
+             //var result = _ctx.OrderReceiptItems.Include(i => i.Inventory).Where(n => n.LineID == lineid);
             
   
             return dto;

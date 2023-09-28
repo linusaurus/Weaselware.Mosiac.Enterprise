@@ -61,7 +61,7 @@ namespace Mosiac.UX.UXControls
 
             cbxInventoryLocation.DataSource = inventoryService.GetLocations();
             cbxInventoryLocation.DisplayMember = "LocationName";
-            cbxInventoryLocation.ValueMember = "LocationName";
+            cbxInventoryLocation.ValueMember = "LocationID";
 
             LoadPrinterSelections();
         }
@@ -107,6 +107,7 @@ namespace Mosiac.UX.UXControls
             txtQntyRecieved.DataBindings.Clear();
             txtInventoryAmount.DataBindings.Clear();
             txtIventoryNote.DataBindings.Clear();
+            cbxInventoryLocation.DataBindings.Clear();
 
             // Bind the datasource
             if (bs.Current != null)
@@ -117,6 +118,7 @@ namespace Mosiac.UX.UXControls
                 txtQntyRecieved.DataBindings.Add("Text", bs, "QntyReceived");
                 txtInventoryAmount.DataBindings.Add("Text", bs, "InventoryAmount", true, DataSourceUpdateMode.OnPropertyChanged);
                 txtIventoryNote.DataBindings.Add("Text", bs, "Note", true, DataSourceUpdateMode.OnPropertyChanged);
+
             }
 
         }
@@ -134,9 +136,12 @@ namespace Mosiac.UX.UXControls
                     inventoryWrapper = new InventoryWrapper(_currentInventory);
                     if (_currentInventory.LocationID != null)
                     {
-                        int index = cbxInventoryLocation.FindString(_currentInventory.LocationNavigation.LocationName.ToString());
-                        cbxInventoryLocation.SelectedIndex = index;
+                        //int index = cbxInventoryLocation.FindString(_currentInventory.LocationNavigation.LocationName.ToString());
+                        //cbxInventoryLocation.SelectedIndex = index;
                     }
+                    cbxInventoryLocation.DataBindings.Clear();
+                    cbxInventoryLocation.DataBindings.Add("SelectedValue", _currentInventory, "LocationID", true, DataSourceUpdateMode.OnPropertyChanged);
+                    //_currentInventory.LocationID = null;
 
                     bsInventory.DataSource = inventoryWrapper;
                     BindInventory(bsInventory);
@@ -234,6 +239,7 @@ namespace Mosiac.UX.UXControls
                 it.InventoryAmount = item.QntyToInventory;
                 it.Balance = item.QntyBalance;
                 it.Description = item.Description;
+
                 mosaicContext.OrderReceiptItems.Update(it);
 
             }

@@ -47,7 +47,7 @@ namespace Mosiac.UX
             Mediator.GetInstance().OrderOpen += Main_OrderOpen;
             string version = Assembly.GetExecutingAssembly().GetName().Version.ToString();
             this.Text = "Mosaic - [Production] " + version;
-  
+            
 
         }
 

@@ -9,16 +9,14 @@ namespace DataLayer.Data;
 
 public partial class MosaicContext : DbContext
 {
-    private string _mosiacConnection;
-
+    private readonly string _connectionString;
+    public MosaicContext(string connectionString)
+    {
+        _connectionString = connectionString;
+    }
     public MosaicContext(DbContextOptions<MosaicContext> options)
         : base(options)
     {
-    }
-
-    public MosaicContext(string mosiacConnection)
-    {
-        _mosiacConnection = mosiacConnection;
     }
 
     public virtual DbSet<Asset> Asset { get; set; }
@@ -102,12 +100,11 @@ public partial class MosaicContext : DbContext
     public virtual DbSet<WorkOrder> WorkOrder { get; set; }
 
     public virtual DbSet<WorkOrderRouting> WorkOrderRouting { get; set; }
-
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         if (!optionsBuilder.IsConfigured)
         {
-            optionsBuilder.UseSqlServer(_mosiacConnection);
+            optionsBuilder.UseSqlServer(_connectionString);
         }
     }
 
@@ -361,6 +358,7 @@ public partial class MosaicContext : DbContext
                 .HasColumnType("date");
             entity.Property(e => e.Description).HasMaxLength(512);
             entity.Property(e => e.InventoryAmount).HasColumnType("decimal(18, 4)");
+            entity.Property(e => e.Location).HasMaxLength(120);
             entity.Property(e => e.Note).HasMaxLength(240);
             entity.Property(e => e.QntyOrdered)
                 .HasDefaultValueSql("((0.0))")
@@ -498,36 +496,50 @@ public partial class MosaicContext : DbContext
             entity.HasKey(e => e.OrderReceiptLineID);
 
             entity.Property(e => e.Balance).HasColumnType("decimal(18, 4)");
+
             entity.Property(e => e.Description).HasMaxLength(1250);
+
             entity.Property(e => e.Extended).HasColumnType("decimal(18, 2)");
+
             entity.Property(e => e.InventoryAmount).HasColumnType("decimal(18, 4)");
+
             entity.Property(e => e.Note).HasMaxLength(240);
+
             entity.Property(e => e.Price).HasColumnType("decimal(18, 2)");
+
             entity.Property(e => e.QuantityOrdered).HasColumnType("decimal(18, 4)");
+
             entity.Property(e => e.QuantityReceived).HasColumnType("decimal(18, 4)");
 
-            entity.HasOne(d => d.OrderReceipt).WithMany(p => p.OrderReceiptItems)
+            entity.HasOne(d => d.OrderReceipt)
+                .WithMany(p => p.OrderReceiptItems)
                 .HasForeignKey(d => d.OrderReceiptID)
                 .HasConstraintName("FK_OrderReceiptItems_OrderReciept");
 
-            entity.HasOne(d => d.UnitOfMeasure).WithMany(p => p.OrderReceiptItems)
+            entity.HasOne(d => d.UnitOfMeasure)
+                .WithMany(p => p.OrderReceiptItems)
                 .HasForeignKey(d => d.UnitOfMeasureID)
                 .HasConstraintName("FK_OrderReceiptItems_UnitOfMeasure");
         });
 
         modelBuilder.Entity<OrderReciept>(entity =>
         {
-            entity.HasKey(e => e.OrderReceiptID).HasName("PK_Reciept");
+            entity.HasKey(e => e.OrderReceiptID)
+                     .HasName("PK_Reciept");
 
             entity.Property(e => e.ReceiptDate).HasColumnType("date");
 
-            entity.HasOne(d => d.Employee).WithMany(p => p.OrderReciept)
+            entity.HasOne(d => d.Employee)
+                .WithMany(p => p.OrderReciept)
                 .HasForeignKey(d => d.EmployeeID)
                 .HasConstraintName("FK_OrderReciept_Employee");
 
-            entity.HasOne(d => d.PurchaseOrder).WithMany(p => p.OrderReciept)
+            entity.HasOne(d => d.PurchaseOrder)
+                .WithMany(p => p.OrderReciept)
                 .HasForeignKey(d => d.PurchaseOrderID)
                 .HasConstraintName("FK_OrderReciept_PurchaseOrder");
+
+
         });
 
         modelBuilder.Entity<OrderState>(entity =>

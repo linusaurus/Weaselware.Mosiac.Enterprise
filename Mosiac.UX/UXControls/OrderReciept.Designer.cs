@@ -238,7 +238,7 @@ namespace Mosiac.UX.UXControls
             dgReceiptItems.Name = "dgReceiptItems";
             dgReceiptItems.RowTemplate.Height = 25;
             dgReceiptItems.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            dgReceiptItems.Size = new System.Drawing.Size(1008, 299);
+            dgReceiptItems.Size = new System.Drawing.Size(1008, 359);
             dgReceiptItems.TabIndex = 4;
             dgReceiptItems.SelectionChanged += dgReceiptItems_SelectionChanged;
             // 
@@ -258,8 +258,8 @@ namespace Mosiac.UX.UXControls
             splitContainer1.Panel2.Controls.Add(panel2);
             splitContainer1.Panel2.Controls.Add(toolStrip1);
             splitContainer1.Panel2.Padding = new System.Windows.Forms.Padding(6);
-            splitContainer1.Size = new System.Drawing.Size(1016, 540);
-            splitContainer1.SplitterDistance = 299;
+            splitContainer1.Size = new System.Drawing.Size(1016, 650);
+            splitContainer1.SplitterDistance = 359;
             splitContainer1.TabIndex = 5;
             // 
             // panel2
@@ -288,7 +288,7 @@ namespace Mosiac.UX.UXControls
             panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             panel2.Location = new System.Drawing.Point(6, 31);
             panel2.Name = "panel2";
-            panel2.Size = new System.Drawing.Size(1004, 200);
+            panel2.Size = new System.Drawing.Size(1004, 250);
             panel2.TabIndex = 1;
             // 
             // label14
@@ -544,10 +544,10 @@ namespace Mosiac.UX.UXControls
             Controls.Add(splitContainer1);
             Controls.Add(groupBox2);
             MaximumSize = new System.Drawing.Size(1042, 830);
-            MinimumSize = new System.Drawing.Size(1042, 720);
+            MinimumSize = new System.Drawing.Size(1042, 820);
             Name = "OrderReciept";
             Padding = new System.Windows.Forms.Padding(12);
-            Size = new System.Drawing.Size(1042, 720);
+            Size = new System.Drawing.Size(1042, 830);
             groupBox2.ResumeLayout(false);
             panel1.ResumeLayout(false);
             panel1.PerformLayout();

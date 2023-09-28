@@ -227,6 +227,7 @@ namespace Mosiac.UX.UXControls
             {
                 _purchaseOrder = _orderService.GetOrderByID(orderDTO.PurchaseOrderID);
                 _purchaseOrder.TaxRate = _purchaseOrder.Supplier.TaxRate;
+
                 if (_purchaseOrder.OrderState == 2 || _purchaseOrder.Recieved == true)
                 {
                     LockOrderUX();
