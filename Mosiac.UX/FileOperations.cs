@@ -11,13 +11,15 @@ using ServiceLayer.Mappers;
 using ServiceLayer.Models;
 using DataLayer.Entity;
 using System.Windows.Markup;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 
 namespace Mosiac.UX
 {
     public class FileOperations
     {
-        //private static string ConnStr = @"Server = 192.168.10.51; database = Mosaic; Integrated Security = SSPI";
+       //---private static string ConnStr = "Data Source=RICHARD-PC;database = Mosaic; Integrated Security = True;Trust Server Certificate=true";
+       //---this is the right shared connection string for both Filestream and normal access, Filestream level must be set to 2
         private static string ConnStr = Mosiac.UX.Properties.Settings.Default.MosiacConnection;
         
         private static string cn = ConnStr.Substring(0, 68);
@@ -28,7 +30,6 @@ namespace Mosiac.UX
                 FileName = path,
                 UseShellExecute = true,
                 Verb = "open"
-
             };
             using (var proc = Process.Start(psi)) { }
 

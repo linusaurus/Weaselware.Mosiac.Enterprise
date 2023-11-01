@@ -7,10 +7,6 @@ namespace DataLayer.Entity;
 
 public partial class OrderReciept
 {
-    public OrderReciept()
-    {
-        OrderReceiptItems = new HashSet<OrderReceiptItems>();
-    }
     public int OrderReceiptID { get; set; }
 
     public int? EmployeeID { get; set; }
@@ -21,9 +17,9 @@ public partial class OrderReciept
 
     public bool? IsOrderComplete { get; set; }
 
-    public virtual Employee Employee { get; set; }
+    public Employee Employee { get; set; }
 
-    public ICollection<OrderReceiptItems> OrderReceiptItems { get; set; }
+    public PurchaseOrder PurchaseOrder { get; set; }
 
-    public virtual PurchaseOrder PurchaseOrder { get; set; }
+    public virtual ICollection<OrderReceiptItems> OrderReceiptItems { get; set; } = new List<OrderReceiptItems>();
 }

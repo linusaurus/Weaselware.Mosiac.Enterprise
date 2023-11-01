@@ -19,11 +19,9 @@ public partial class Asset
 
     public int? ManuID { get; set; }
 
-    public int? AssetClass { get; set; }
+    public int? AssetClassID { get; set; }
 
-    public decimal? Price { get; set; }
-
-    public string Location { get; set; }
+    public decimal? PurchasePrice { get; set; }
 
     public int? SupplierID { get; set; }
 
@@ -40,4 +38,8 @@ public partial class Asset
     public string Tag { get; set; }
 
     public string SerialNumber { get; set; }
+
+    public int? LocationID { get; set; }
+
+    public virtual AssetClass AssetNavigation { get; set; }
 }

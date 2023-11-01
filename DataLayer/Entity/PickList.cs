@@ -31,6 +31,8 @@ public partial class PickList
 
     public virtual Employee Employee { get; set; }
 
+    
+
     public virtual Job Job { get; set; }
 
     public virtual ICollection<PickListItem> PickListItem { get; set; } = new List<PickListItem>();

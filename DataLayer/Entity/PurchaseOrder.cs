@@ -63,9 +63,9 @@ public partial class PurchaseOrder
 
     public virtual Job Job { get; set; }
 
-    public virtual ICollection<OrderFee> OrderFee { get; set; } = new List<OrderFee>();
+    public virtual ICollection<OrderReciept> OrderReciepts { get; set; }
 
-    public virtual ICollection<OrderReciept> OrderReciept { get; set; } = new List<OrderReciept>();
+    public virtual ICollection<OrderFee> OrderFee { get; set; } = new List<OrderFee>();
 
     public virtual ICollection<PurchaseLineItem> PurchaseLineItem { get; set; } = new List<PurchaseLineItem>();
 

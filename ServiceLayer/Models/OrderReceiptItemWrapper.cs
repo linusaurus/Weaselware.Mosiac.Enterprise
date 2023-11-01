@@ -89,11 +89,11 @@ namespace ServiceLayer.Models
             get => this.orderReceiptItems.Note; 
             set => SetProperty(orderReceiptItems.Note, value, orderReceiptItems, (u, n) => u.Note = n);
         }
-        public decimal? InventoryAmount
-        {
-            get => this.orderReceiptItems.InventoryAmount;
-            set=> SetProperty(orderReceiptItems.InventoryAmount, value, orderReceiptItems, (u, n) => u.InventoryAmount = n);
-        }
+        //public decimal? InventoryAmount
+        //{
+        //    get => this.orderReceiptItems.InventoryAmount;
+        //    set=> SetProperty(orderReceiptItems.InventoryAmount, value, orderReceiptItems, (u, n) => u.InventoryAmount = n);
+        //}
         public bool? Pushed
         {
             get => this.orderReceiptItems.Pushed;

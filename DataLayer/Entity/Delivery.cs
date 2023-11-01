@@ -19,6 +19,8 @@ public partial class Delivery
 
     public DateTime? TimeStamp { get; set; }
 
+    public virtual Destination DeliveryNavigation { get; set; }
+
     public virtual Job Job { get; set; }
 
     public virtual PickList PickList { get; set; }

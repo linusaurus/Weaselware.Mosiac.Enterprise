@@ -900,13 +900,11 @@ namespace Mosiac.UX.UXControls
                         DateStamp = DateTime.Now,
                         PartID = e.PartID,
                         JobID = 1,
-                        QntyOrdered = 0.0m,
-                        QntyReceived = 0.0m,
                         Description = e.ItemDescription,
                       //  LocationID = e.Location,
                         EmpID = Globals.CurrentLoggedUserID,
                         InventoryAmount = e.StockOnHand,
-                        TransActionType = 4
+                        TransactionType = 4
 
                     };
                     // add the new inventory item to the exportable list-->

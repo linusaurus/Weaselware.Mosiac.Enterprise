@@ -10,6 +10,8 @@ namespace DataLayer.Data;
 public partial class MosaicContext : DbContext
 {
     private readonly string _connectionString;
+
+
     public MosaicContext(string connectionString)
     {
         _connectionString = connectionString;
@@ -17,9 +19,12 @@ public partial class MosaicContext : DbContext
     public MosaicContext(DbContextOptions<MosaicContext> options)
         : base(options)
     {
+        
     }
 
     public virtual DbSet<Asset> Asset { get; set; }
+
+    public virtual DbSet<AssetClass> AssetClass { get; set; }
 
     public virtual DbSet<Attachment> Attachment { get; set; }
 
@@ -39,15 +44,13 @@ public partial class MosaicContext : DbContext
 
     public virtual DbSet<Destination> Destination { get; set; }
 
-    public virtual DbSet<Document> Document { get; set; }
-
     public virtual DbSet<Employee> Employee { get; set; }
 
     public virtual DbSet<Inventory> Inventory { get; set; }
 
     public virtual DbSet<Job> Job { get; set; }
 
-    public virtual DbSet<JobSite> JobSite { get; set; }
+    public virtual DbSet<LaborTask> LaborTask { get; set; }
 
     public virtual DbSet<Location> Location { get; set; }
 
@@ -91,15 +94,16 @@ public partial class MosaicContext : DbContext
 
     public virtual DbSet<Supplier> Supplier { get; set; }
 
+    public virtual DbSet<ToolCheckOut> ToolCheckOut { get; set; }
+
     public virtual DbSet<TransActionType> TransActionType { get; set; }
 
     public virtual DbSet<UnitOfMeasure> UnitOfMeasure { get; set; }
 
-    public virtual DbSet<WorkCenter> WorkCenter { get; set; }
-
     public virtual DbSet<WorkOrder> WorkOrder { get; set; }
 
     public virtual DbSet<WorkOrderRouting> WorkOrderRouting { get; set; }
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         if (!optionsBuilder.IsConfigured)
@@ -108,24 +112,34 @@ public partial class MosaicContext : DbContext
         }
     }
 
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Asset>(entity =>
         {
+            entity.Property(e => e.AssetID).ValueGeneratedOnAdd();
             entity.Property(e => e.AddedBy).HasMaxLength(60);
             entity.Property(e => e.AssetDescription).HasMaxLength(512);
             entity.Property(e => e.AssetName).HasMaxLength(120);
-            entity.Property(e => e.Location)
-                .HasMaxLength(10)
-                .IsFixedLength();
             entity.Property(e => e.ManuPartNum)
                 .HasMaxLength(120)
                 .IsFixedLength();
             entity.Property(e => e.ModifiedBy).HasMaxLength(60);
-            entity.Property(e => e.Price).HasColumnType("decimal(18, 4)");
             entity.Property(e => e.PurchaseDate).HasColumnType("date");
+            entity.Property(e => e.PurchasePrice).HasColumnType("decimal(18, 4)");
             entity.Property(e => e.SerialNumber).HasMaxLength(75);
             entity.Property(e => e.Tag).HasMaxLength(50);
+
+            entity.HasOne(d => d.AssetNavigation).WithOne(p => p.Asset)
+                .HasForeignKey<Asset>(d => d.AssetID)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_Asset_AssetClass");
+        });
+
+        modelBuilder.Entity<AssetClass>(entity =>
+        {
+            entity.Property(e => e.AssetClassID).ValueGeneratedNever();
+            entity.Property(e => e.AssetClassName).HasMaxLength(50);
         });
 
         modelBuilder.Entity<Attachment>(entity =>
@@ -257,7 +271,13 @@ public partial class MosaicContext : DbContext
         {
             entity.HasKey(e => e.DeliveryID).HasName("PK_Delivery_1");
 
+            entity.Property(e => e.DeliveryID).ValueGeneratedOnAdd();
             entity.Property(e => e.TimeStamp).HasColumnType("datetime");
+
+            entity.HasOne(d => d.DeliveryNavigation).WithOne(p => p.Delivery)
+                .HasForeignKey<Delivery>(d => d.DeliveryID)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_Delivery_Destination");
 
             entity.HasOne(d => d.Job).WithMany(p => p.Delivery)
                 .HasForeignKey(d => d.JobID)
@@ -301,29 +321,6 @@ public partial class MosaicContext : DbContext
                 .IsUnicode(false);
         });
 
-        modelBuilder.Entity<Document>(entity =>
-        {
-            entity.HasKey(e => e.DocID).HasName("PK_DocumentDescriptor");
-
-            entity.Property(e => e.Creator)
-                .HasMaxLength(50)
-                .IsUnicode(false);
-            entity.Property(e => e.DateCreated).HasColumnType("datetime");
-            entity.Property(e => e.DateModified).HasColumnType("datetime");
-            entity.Property(e => e.Description)
-                .HasMaxLength(75)
-                .IsUnicode(false);
-            entity.Property(e => e.DocumentPath)
-                .HasMaxLength(75)
-                .IsUnicode(false);
-            entity.Property(e => e.DocumentView)
-                .HasMaxLength(50)
-                .IsUnicode(false);
-            entity.Property(e => e.Modifier)
-                .HasMaxLength(50)
-                .IsUnicode(false);
-        });
-
         modelBuilder.Entity<Employee>(entity =>
         {
             entity.HasKey(e => e.employeeID).HasName("PK_emps");
@@ -355,29 +352,21 @@ public partial class MosaicContext : DbContext
 
             entity.Property(e => e.DateStamp)
                 .HasDefaultValueSql("(getdate())")
-                .HasColumnType("date");
+                .HasColumnType("datetime");
             entity.Property(e => e.Description).HasMaxLength(512);
             entity.Property(e => e.InventoryAmount).HasColumnType("decimal(18, 4)");
-            entity.Property(e => e.Location).HasMaxLength(120);
             entity.Property(e => e.Note).HasMaxLength(240);
-            entity.Property(e => e.QntyOrdered)
-                .HasDefaultValueSql("((0.0))")
-                .HasColumnType("decimal(18, 4)");
-            entity.Property(e => e.QntyReceived).HasColumnType("decimal(18, 4)");
-            entity.Property(e => e.TransactionReference)
-                .HasMaxLength(10)
-                .IsFixedLength();
 
             entity.HasOne(d => d.Emp).WithMany(p => p.Inventory)
                 .HasForeignKey(d => d.EmpID)
                 .HasConstraintName("FK_Inventory_Employee");
 
-            entity.HasOne(d => d.LocationNavigation).WithMany(p => p.Inventory)
+            entity.HasOne(d => d.Location).WithMany(p => p.Inventory)
                 .HasForeignKey(d => d.LocationID)
                 .HasConstraintName("FK_Inventory_Location");
 
-            entity.HasOne(d => d.TransActionTypeNavigation).WithMany(p => p.Inventory)
-                .HasForeignKey(d => d.TransActionType)
+            entity.HasOne(d => d.TransactionTypeNavigation).WithMany(p => p.Inventory)
+                .HasForeignKey(d => d.TransactionType)
                 .HasConstraintName("FK_Inventory_TransActionType");
 
             entity.HasOne(d => d.UnitOfMeasure).WithMany(p => p.Inventory)
@@ -406,12 +395,25 @@ public partial class MosaicContext : DbContext
             entity.Property(e => e.structurelevel).HasDefaultValueSql("((0))");
         });
 
-        modelBuilder.Entity<JobSite>(entity =>
+        modelBuilder.Entity<LaborTask>(entity =>
         {
-            entity.Property(e => e.City).HasMaxLength(50);
-            entity.Property(e => e.State).HasMaxLength(50);
-            entity.Property(e => e.StreetAddress).HasMaxLength(50);
-            entity.Property(e => e.Zip).HasMaxLength(50);
+            entity.HasKey(e => e.TaskCode).HasName("PK_Task");
+
+            entity.Property(e => e.TaskCode).ValueGeneratedNever();
+            entity.Property(e => e.ActualTime).HasColumnType("decimal(18, 2)");
+            entity.Property(e => e.CostCalculation)
+                .HasMaxLength(60)
+                .IsFixedLength();
+            entity.Property(e => e.EstimatedTime).HasColumnType("decimal(18, 2)");
+            entity.Property(e => e.MarkUp).HasColumnType("decimal(18, 2)");
+            entity.Property(e => e.Rate).HasColumnType("decimal(18, 2)");
+            entity.Property(e => e.TaskDescription)
+                .HasMaxLength(240)
+                .IsUnicode(false);
+            entity.Property(e => e.TaskName)
+                .HasMaxLength(50)
+                .IsUnicode(false);
+            entity.Property(e => e.Total).HasColumnType("decimal(18, 4)");
         });
 
         modelBuilder.Entity<Location>(entity =>
@@ -496,50 +498,27 @@ public partial class MosaicContext : DbContext
             entity.HasKey(e => e.OrderReceiptLineID);
 
             entity.Property(e => e.Balance).HasColumnType("decimal(18, 4)");
-
             entity.Property(e => e.Description).HasMaxLength(1250);
-
             entity.Property(e => e.Extended).HasColumnType("decimal(18, 2)");
-
-            entity.Property(e => e.InventoryAmount).HasColumnType("decimal(18, 4)");
-
             entity.Property(e => e.Note).HasMaxLength(240);
-
             entity.Property(e => e.Price).HasColumnType("decimal(18, 2)");
-
             entity.Property(e => e.QuantityOrdered).HasColumnType("decimal(18, 4)");
-
             entity.Property(e => e.QuantityReceived).HasColumnType("decimal(18, 4)");
 
-            entity.HasOne(d => d.OrderReceipt)
-                .WithMany(p => p.OrderReceiptItems)
+            entity.HasOne(d => d.OrderReceipt).WithMany(p => p.OrderReceiptItems)
                 .HasForeignKey(d => d.OrderReceiptID)
                 .HasConstraintName("FK_OrderReceiptItems_OrderReciept");
 
-            entity.HasOne(d => d.UnitOfMeasure)
-                .WithMany(p => p.OrderReceiptItems)
+            entity.HasOne(d => d.UnitOfMeasure).WithMany(p => p.OrderReceiptItems)
                 .HasForeignKey(d => d.UnitOfMeasureID)
                 .HasConstraintName("FK_OrderReceiptItems_UnitOfMeasure");
         });
 
         modelBuilder.Entity<OrderReciept>(entity =>
         {
-            entity.HasKey(e => e.OrderReceiptID)
-                     .HasName("PK_Reciept");
+            entity.HasKey(e => e.OrderReceiptID).HasName("PK_Reciept");
 
             entity.Property(e => e.ReceiptDate).HasColumnType("date");
-
-            entity.HasOne(d => d.Employee)
-                .WithMany(p => p.OrderReciept)
-                .HasForeignKey(d => d.EmployeeID)
-                .HasConstraintName("FK_OrderReciept_Employee");
-
-            entity.HasOne(d => d.PurchaseOrder)
-                .WithMany(p => p.OrderReciept)
-                .HasForeignKey(d => d.PurchaseOrderID)
-                .HasConstraintName("FK_OrderReciept_PurchaseOrder");
-
-
         });
 
         modelBuilder.Entity<OrderState>(entity =>
@@ -563,10 +542,6 @@ public partial class MosaicContext : DbContext
             entity.Property(e => e.ItemName)
                 .HasMaxLength(120)
                 .HasDefaultValueSql("(' ')");
-            entity.Property(e => e.Location)
-                .HasMaxLength(10)
-                .HasDefaultValueSql("(' ')")
-                .IsFixedLength();
             entity.Property(e => e.LocationID).HasDefaultValueSql("((5))");
             entity.Property(e => e.ManuPartNum)
                 .HasMaxLength(120)
@@ -597,7 +572,7 @@ public partial class MosaicContext : DbContext
                 .HasDefaultValueSql("((0.0))")
                 .HasColumnType("decimal(18, 4)");
 
-            entity.HasOne(d => d.LocationNavigation).WithMany(p => p.Part)
+            entity.HasOne(d => d.Location).WithMany(p => p.Part)
                 .HasForeignKey(d => d.LocationID)
                 .HasConstraintName("FK_Part_Location");
 
@@ -608,20 +583,6 @@ public partial class MosaicContext : DbContext
             entity.HasOne(d => d.UnitOfMeasure).WithMany(p => p.Part)
                 .HasForeignKey(d => d.UnitOfMeasureID)
                 .HasConstraintName("FK_Part_UnitOfMeasure");
-
-            entity.HasMany(d => d.Doc).WithMany(p => p.Part)
-                .UsingEntity<Dictionary<string, object>>(
-                    "DocumentParts",
-                    r => r.HasOne<Document>().WithMany()
-                        .HasForeignKey("DocID")
-                        .HasConstraintName("FK_DocumentParts_Document1"),
-                    l => l.HasOne<Part>().WithMany()
-                        .HasForeignKey("PartID")
-                        .HasConstraintName("FK_DocumentParts_Part"),
-                    j =>
-                    {
-                        j.HasKey("PartID", "DocID");
-                    });
         });
 
         modelBuilder.Entity<PartCategory>(entity =>
@@ -647,10 +608,6 @@ public partial class MosaicContext : DbContext
             entity.HasKey(e => e.PickListID).HasName("PK_Delivery");
 
             entity.Property(e => e.DateStamp).HasColumnType("datetime");
-
-            entity.HasOne(d => d.Destination).WithMany(p => p.PickList)
-                .HasForeignKey(d => d.DestinationID)
-                .HasConstraintName("FK_PickList_Destination");
 
             entity.HasOne(d => d.Employee).WithMany(p => p.PickList)
                 .HasForeignKey(d => d.EmployeeID)
@@ -890,6 +847,11 @@ public partial class MosaicContext : DbContext
                 .HasDefaultValueSql("(' ')");
         });
 
+        modelBuilder.Entity<ToolCheckOut>(entity =>
+        {
+            entity.Property(e => e.TimeStamp).HasColumnType("datetime");
+        });
+
         modelBuilder.Entity<TransActionType>(entity =>
         {
             entity.HasKey(e => e.TransactionsTypeID);
@@ -900,15 +862,6 @@ public partial class MosaicContext : DbContext
         modelBuilder.Entity<UnitOfMeasure>(entity =>
         {
             entity.Property(e => e.UnitName).HasMaxLength(50);
-        });
-
-        modelBuilder.Entity<WorkCenter>(entity =>
-        {
-            entity.Property(e => e.Availabilty).HasColumnType("decimal(18, 2)");
-            entity.Property(e => e.CostRate).HasColumnType("decimal(18, 2)");
-            entity.Property(e => e.WorkCenterName)
-                .HasMaxLength(75)
-                .IsUnicode(false);
         });
 
         modelBuilder.Entity<WorkOrder>(entity =>

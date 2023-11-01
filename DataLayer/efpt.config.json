@@ -20,6 +20,10 @@
          "ObjectType": 0
       },
       {
+         "Name": "[dbo].[AssetClass]",
+         "ObjectType": 0
+      },
+      {
          "Name": "[dbo].[Attachment]",
          "ObjectType": 0
       },
@@ -56,14 +60,6 @@
          "ObjectType": 0
       },
       {
-         "Name": "[dbo].[Document]",
-         "ObjectType": 0
-      },
-      {
-         "Name": "[dbo].[DocumentParts]",
-         "ObjectType": 0
-      },
-      {
          "Name": "[dbo].[Employee]",
          "ObjectType": 0
       },
@@ -76,7 +72,7 @@
          "ObjectType": 0
       },
       {
-         "Name": "[dbo].[JobSite]",
+         "Name": "[dbo].[LaborTask]",
          "ObjectType": 0
       },
       {
@@ -164,15 +160,15 @@
          "ObjectType": 0
       },
       {
+         "Name": "[dbo].[ToolCheckOut]",
+         "ObjectType": 0
+      },
+      {
          "Name": "[dbo].[TransActionType]",
          "ObjectType": 0
       },
       {
          "Name": "[dbo].[UnitOfMeasure]",
-         "ObjectType": 0
-      },
-      {
-         "Name": "[dbo].[WorkCenter]",
          "ObjectType": 0
       },
       {
@@ -184,7 +180,7 @@
          "ObjectType": 0
       }
    ],
-   "UiHint": "DBSERVER.Mosaic",
+   "UiHint": "richard-pc.Mosaic.dbo",
    "UncountableWords": null,
    "UseBoolPropertiesWithoutDefaultSql": false,
    "UseDatabaseNames": true,
@@ -197,6 +193,7 @@
    "UseLegacyPluralizer": false,
    "UseManyToManyEntity": false,
    "UseNoDefaultConstructor": false,
+   "UseNoNavigations": false,
    "UseNoObjectFilter": false,
    "UseNodaTime": false,
    "UseNullableReferences": false,

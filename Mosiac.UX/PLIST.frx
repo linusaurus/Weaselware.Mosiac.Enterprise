@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Report ScriptLanguage="CSharp" ReportInfo.Created="06/15/2022 14:54:27" ReportInfo.Modified="07/19/2022 16:46:29" ReportInfo.CreatorVersion="2021.2.8.0">
+<Report ScriptLanguage="CSharp" ReportInfo.Created="06/15/2022 14:54:27" ReportInfo.Modified="11/01/2023 11:24:59" ReportInfo.CreatorVersion="2023.2.0.0">
   <Dictionary>
-    <MsSqlDataConnection Name="Connection1" ConnectionString="rijcmlqawaLeIiT/AzZ3f/LYzpStQbcx9rG31aCBdviXOjDPRrTY/kiIPKjmQ4KbFv4qW7UuYTUIAjtBOmzAADWks+Iv92iVUeFZvk47M2wtlsj6RZz+QtY+WsA++aeTHBNdAxCozwMovShiPaynFjueGo5Mu/9KOOU/+GV42NF71Bv0mHEE1E1TcFs3v8ek1ncQcNe">
+    <MsSqlDataConnection Name="Connection1" ConnectionString="rijcmlq8eq8b7kpNdbjQzeg8LzyRfEOF1bQeCHJOC0PqPYW0vTeCbvBSdIFUf90UmNMu24t6QB8XFWxtmz4EzksnO4AVz61gRa+77XqWoj+m7ZX5AGuYExFVQgiCcyjzIHzq6YEYczPy1wgwXTfBZ57zeW2MSVZa1Awkh7Wtru+TlaxQTg5Khsxfw7o/yyUs8ntjops">
       <TableDataSource Name="View_11" DataType="System.Int32" Enabled="true" TableName="View_1" SelectCommand="use [Mosaic]&#13;&#10;&#13;&#10;SELECT        dbo.PickList.PickListID, dbo.PickList.DateStamp, dbo.PickList.JobID, dbo.PickList.EmployeeID, dbo.PickList.ItemCount, dbo.PickList.DeliveryDate AS JobSiteID, dbo.PickList.Delivered AS DeliveryDate, &#13;&#10;                         dbo.PickList.Submitted AS Delivered, dbo.PickList.DestinationID AS Submitted, dbo.Job.jobname, dbo.Job.jobdesc, dbo.Employee.firstname, dbo.Employee.lastname, dbo.PickListItem.PickListItemID, &#13;&#10;                         dbo.PickListItem.Description, dbo.PickListItem.ProductID, dbo.PickListItem.SubAssemblyID, dbo.PickListItem.Onboard, dbo.PickListItem.PartID, dbo.PickListItem.Qnty, dbo.PickListItem.Delivered AS Expr1, &#13;&#10;                         dbo.PickListItem.StockTransActionID, dbo.Destination.DestinationName, dbo.Destination.Attn, dbo.Destination.Address, dbo.Destination.City, dbo.Destination.State, dbo.Destination.Zip&#13;&#10;FROM            dbo.PickList JOIN&#13;&#10;                         dbo.PickListItem ON dbo.PickList.PickListID = dbo.PickListItem.PickListID INNER JOIN&#13;&#10;                         dbo.Job ON dbo.PickList.JobID = dbo.Job.jobID INNER JOIN&#13;&#10;                         dbo.Employee ON dbo.PickList.EmployeeID = dbo.Employee.employeeID INNER JOIN&#13;&#10;                         dbo.Destination ON dbo.PickList.DestinationID = dbo.Destination.DestinationID&#13;&#10;						 where PickList.PickListID = @ID">
         <Column Name="PickListID" DataType="System.Int32"/>
         <Column Name="DateStamp" DataType="System.DateTime"/>
@@ -34,7 +34,7 @@
         <CommandParameter Name="ID" DataType="8" Expression="[ID]" DefaultValue="593"/>
       </TableDataSource>
     </MsSqlDataConnection>
-    <Parameter Name="ID" DataType="System.String"/>
+    <Parameter Name="ID" DataType="System.String" AsString=""/>
   </Dictionary>
   <ReportPage Name="Page1" PaperWidth="215.9" PaperHeight="279.4" RawPaperSize="1" LeftMargin="10.01" TopMargin="10.01" RightMargin="10.01" BottomMargin="10.01" Watermark.Font="Arial, 60pt">
     <ReportTitleBand Name="ReportTitle1" Width="740.43" Height="151.6">
@@ -51,7 +51,7 @@
       <LineObject Name="Line7" Left="4.8" Top="72" Height="62.4"/>
       <BarcodeObject Name="Barcode1" Left="561.6" Top="81.6" Width="148" Height="56.8" AutoSize="false" Text="[View_11.JobID]-[View_11.PickListID]" AllowExpressions="true"/>
     </ReportTitleBand>
-    <PageHeaderBand Name="PageHeader1" Top="154.27" Width="740.43" Height="185.2">
+    <PageHeaderBand Name="PageHeader1" Top="154.93" Width="740.43" Height="185.2">
       <TextObject Name="Text3" Left="4.8" Width="436.8" Height="28.8" Border.Color="LightCoral" Fill.Color="Black" Text="Job : [View_11.jobname]" VertAlign="Center" Font="Arial, 12pt" TextFill.Color="White"/>
       <TextObject Name="Text1" Left="441.6" Width="268.8" Height="28.8" Fill.Color="Black" Text="#  [View_11.PickListID]" HorzAlign="Right" VertAlign="Center" Font="Arial, 16pt" TextFill.Color="White"/>
       <TextObject Name="Text9" Left="14.4" Top="38.4" Width="292.8" Height="19.2" Text="Date : [View_11.DateStamp]&#13;&#10;&#13;&#10;" AutoWidth="true" Font="Arial, 10pt">
@@ -72,14 +72,14 @@
       <TextObject Name="Text25" Left="14.4" Top="62.4" Width="292.8" Height="19.2" Text="Prepared by : [View_11.firstname] [View_11.lastname]" Font="Arial, 10pt"/>
       <LineObject Name="Line6" Left="4.8" Top="38.4" Height="67.2"/>
     </PageHeaderBand>
-    <DataBand Name="Data1" Top="342.13" Width="740.43" Height="19.2" CanGrow="true" DataSource="View_11">
+    <DataBand Name="Data1" Top="343.47" Width="740.43" Height="19.2" CanGrow="true" DataSource="View_11">
       <TextObject Name="Text10" Left="4.8" Width="76.8" Height="19.2" Text="[View_11.PickListID]-[View_11.PickListItemID]" Font="Arial, 9pt"/>
       <TextObject Name="Text11" Left="81.6" Width="67.2" Height="19.2" Text="[View_11.PartID]" HorzAlign="Center" Font="Arial, 9pt"/>
       <TextObject Name="Text12" Left="158.4" Width="48" Height="19.2" Text="[View_11.Qnty]" Format="Number" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" WordWrap="false" Font="Arial, 9pt" Trimming="EllipsisCharacter"/>
       <TextObject Name="Text13" Left="220.8" Width="446.4" Height="19.2" GrowToBottom="true" Text="[View_11.Description]" Font="Arial, 9pt"/>
       <CheckBoxObject Name="CheckBox1" Left="686.4" Width="19.2" Height="19.2" DataColumn="View_11.Onboard"/>
     </DataBand>
-    <PageFooterBand Name="PageFooter1" Top="364" Width="740.43" Height="43.2">
+    <PageFooterBand Name="PageFooter1" Top="366" Width="740.43" Height="43.2">
       <TextObject Name="Text18" Left="9.6" Top="9.6" Width="105.6" Height="19.2" Text="RECEIVED BY " Font="Arial, 10pt"/>
       <LineObject Name="Line4" Left="120" Top="28.8" Width="307.2"/>
     </PageFooterBand>

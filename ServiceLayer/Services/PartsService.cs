@@ -289,21 +289,8 @@ namespace ServiceLayer
         /// <returns></returns>
        
 
-        public void DeleteResource(Document document, Part part)
-        {          
-            
-        }
-
-        public void AddResource(Document document, Part part)
-        {
-            //if(document.DocId == 0)
-            //{
-            //    _context.Document.Add(document);
-            //    _context.SaveChanges();
-            //}
-            //part.DocumentParts.Add(new DocumentParts { PartId = part.PartID, DocId = document.DocId });
-            //_context.SaveChanges();
-        }
+      
+      
 
         public Part Add(Part part)
         {

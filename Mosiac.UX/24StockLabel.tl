@@ -2,7 +2,7 @@
 <ThermalLabel Version="11.0" Width="4" Height="1.5" GapLength="0.125" MarkLength="0" OffsetLength="0" UnitType="Inch" LabelsPerRow="1" LabelsHorizontalGapLength="0" IsContinuous="False" PrintSpeed="" PrintMirror="False" CutAfterPrinting="False" BatchCut="1">
   <Items>
     <RectangleShapeItem X="0.0625" Y="0.0426" Locked="True" Width="3.8864" Height="1.3948" StrokeThickness="0.03" CornerRadius="0.03" />
-    <TextItem X="0.1657" Y="0.15" DataField="jobname" Width="2.1033" Height="0.4655" Font="Adobe Gothic Std,10,Point,,,False,90,,CP850" TextAlignment="Center" />
+    <TextItem X="0.1657" Y="0.15" DataField="jobname" Expression="Left_x0028__x005B_DataFields_x0021_jobname_x005D__x002C__x0020_18_x0029_" Width="2.1033" Height="0.5769" Font="Adobe Gothic Std,32,Point,,,False,90,,CP850" />
     <BarcodeItem X="2.3717" Y="0.1027" DataField="StockTransactionID" Width="1.4981" Height="0.3535" Symbology="Code39" Code="" AddChecksum="False" BarcodeAlignment="MiddleCenter" BarHeight="0.25" DisplayChecksum="False" DisplayCode="False" DisplayStartStopChar="False" Font="NativePrinterFontA,5,Point,,,False,90,,CP850" QuietZone="0" TextFont="NativePrinterFontA,10,Point,,,False,90,,CP850" MaxiCodeDrawPixelBasedSymbol="True" DotCodeAspectRatio="" />
     <LineShapeItem X="2.3366" Y="0.0469" Width="0.02" Height="0.7392" StrokeThickness="0.02" Orientation="Vertical" />
     <LineShapeItem X="0.0741" Y="0.7809" Width="3.8552" Height="0.0047" StrokeThickness="0.02" Orientation="DiagonalUp" />

@@ -29,8 +29,6 @@ public partial class Employee
 
     public virtual ICollection<Inventory> Inventory { get; set; } = new List<Inventory>();
 
-    public virtual ICollection<OrderReciept> OrderReciept { get; set; } = new List<OrderReciept>();
-
     public virtual ICollection<PickList> PickList { get; set; } = new List<PickList>();
 
     public virtual ICollection<PurchaseOrder> PurchaseOrder { get; set; } = new List<PurchaseOrder>();

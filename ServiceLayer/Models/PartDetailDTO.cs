@@ -231,7 +231,7 @@ namespace ServiceLayer.Models
 
       
 
-        public List<Document> Documents { get; set; } = new List<Document>();
+      
 
         public List<ResourceDto> Resources { get; set; } = new List<ResourceDto>();
 

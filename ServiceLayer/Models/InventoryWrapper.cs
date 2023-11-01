@@ -28,11 +28,11 @@ namespace ServiceLayer.Models
             }
             set => SetProperty(inventory.StockTransactionID, value, inventory, (u, n) => u.StockTransactionID = n);
         }
-        public int? OrderReceiptID
-        {
-            get => this.inventory.OrderReceiptID;
-            set => SetProperty(inventory.OrderReceiptID, value, inventory, (u, n) => u.OrderReceiptID = n);
-        }
+        //public int? OrderReceiptID
+        //{
+        //    get => this.inventory.OrderReceiptID;
+        //    set => SetProperty(inventory.OrderReceiptID, value, inventory, (u, n) => u.OrderReceiptID = n);
+        //}
 
         public int? LineID
         {
@@ -66,11 +66,7 @@ namespace ServiceLayer.Models
             set => SetProperty(inventory.DateStamp, value, inventory, (u, n) => u.DateStamp = n);
         }
 
-        public decimal? QntyOrdered
-        {
-            get => inventory.QntyOrdered; 
-            set => SetProperty(inventory.QntyOrdered, value, inventory, (u, n) => u.QntyOrdered = n);
-        }
+       
 
         public string Note
         {
@@ -90,8 +86,8 @@ namespace ServiceLayer.Models
 
         public int? TransActionType
         {
-            get => inventory.TransActionType; 
-            set => SetProperty(inventory.TransActionType, value, inventory, (u, n) => u.TransActionType = n);
+            get => inventory.TransactionType; 
+            set => SetProperty(inventory.TransactionType, value, inventory, (u, n) => u.TransactionType = n);
         }
         public int? EmpID
         {
@@ -99,11 +95,7 @@ namespace ServiceLayer.Models
             set => SetProperty(inventory.EmpID, value, inventory, (u, n) => u.EmpID = n);
         }
 
-        public decimal? QntyReceived
-        {
-            get => inventory.QntyReceived; 
-            set => SetProperty(inventory.QntyReceived, value, inventory, (u, n) => u.QntyReceived = n);
-        }
+      
         public decimal? InventoryAmount
         {
             get => inventory.InventoryAmount; 

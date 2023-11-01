@@ -42,13 +42,13 @@ namespace ServiceLayer
         {
             OrderReceiptDto newReciept;
             // Grab to Purchase Order
-            PurchaseOrder po = _ctx.PurchaseOrder.AsNoTracking().Include(j => j.Job).Include(p => p.PurchaseLineItem).ThenInclude(u => u.UnitOfMeasure).Include(x => x.OrderReciept)
+            PurchaseOrder po = _ctx.PurchaseOrder.AsNoTracking().Include(j => j.Job).Include(p => p.PurchaseLineItem).ThenInclude(u => u.UnitOfMeasure).Include(x => x.OrderReciepts)
                                    .Include(e => e.Supplier).Where(o => o.PurchaseOrderID == purchaserOrderID).FirstOrDefault();
             
             // Test for existing Order Receipt-if true that one exist, retrieve it and copy into new receipt
-            if (po.OrderReciept.Any())
+            if (po.OrderReciepts.Any())
             {
-                newReciept = GetOrderReceipt(po.OrderReciept.FirstOrDefault().OrderReceiptID, true);
+                newReciept = GetOrderReceipt(po.OrderReciepts.FirstOrDefault().OrderReceiptID, true);
             }
             else
             {
@@ -339,7 +339,7 @@ namespace ServiceLayer
                 detail.QuantityReceived = detailDTO.QntyReceived;
                 detail.Balance = detailDTO.QntyBalance;
                 detail.IsComplete = detailDTO.ItemsRecievedComplete;
-                detail.InventoryAmount = detailDTO.QntyToInventory;
+              
                
                 if (detailDTO.QntyToInventory == detailDTO.QntyReceived)
                 {
@@ -380,12 +380,9 @@ namespace ServiceLayer
                     inv.EmpID = orderReciept.EmployeeID;
                     inv.JobID = item.JobID;
                     inv.LineID = item.LineID;
-                    inv.OrderReceiptID = orderReciept.OrderReceiptID;
                     inv.PartID = item.PartID;
-                    inv.QntyOrdered = item.QntyOrdered;
-                    inv.QntyReceived = item.QntyReceived;
                     inv.UnitOfMeasureID = item.UiD;
-                    inv.TransActionType = 1;
+                    inv.TransactionType = 1;
                     inv.InventoryAmount = item.QntyToInventory;
 
                     _ctx.Inventory.Add(inv);

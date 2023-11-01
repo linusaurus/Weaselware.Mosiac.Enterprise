@@ -40,14 +40,14 @@ namespace ServiceLayer
         {
             if (transActionfilterID == 0)
             {
-                var result = _ctx.Inventory.Include(t => t.TransActionTypeNavigation).Include(e => e.Emp).Include(u => u.UnitOfMeasure).AsNoTracking().Where(p => p.PartID == partID).Select(dto => new PartTransactionListDto
+                var result = _ctx.Inventory.Include(t => t.TransactionType).Include(e => e.Emp).Include(u => u.UnitOfMeasure).AsNoTracking().Where(p => p.PartID == partID).Select(dto => new PartTransactionListDto
                 {
                     StockTransactionId = dto.StockTransactionID,
                     PartID = dto.PartID.GetValueOrDefault(),
-                    Location = dto.LocationNavigation.LocationName,
+                    Location = dto.Location.LocationName,
                     DateStamp = dto.DateStamp.GetValueOrDefault(),
                     Amount = dto.InventoryAmount.GetValueOrDefault(),
-                    TransActionName = dto.TransActionTypeNavigation.TransactionTypeName.Trim(),
+                    TransActionName = dto.TransactionTypeNavigation.TransactionTypeName.Trim(),
                     EmployeeName = dto.Emp.firstname + " " + dto.Emp.lastname,
                     Unit = dto.UnitOfMeasure.UnitName
 
@@ -57,14 +57,14 @@ namespace ServiceLayer
             }
             else
             {
-                var result = _ctx.Inventory.Include(t => t.TransActionTypeNavigation).Include(e => e.Emp).Include(u => u.UnitOfMeasure).AsNoTracking().Where(p => p.PartID == partID).Where(f => f.TransActionType==transActionfilterID).Select(dto => new PartTransactionListDto
+                var result = _ctx.Inventory.Include(t => t.TransactionType).Include(e => e.Emp).Include(u => u.UnitOfMeasure).AsNoTracking().Where(p => p.PartID == partID).Where(f => f.TransactionType==transActionfilterID).Select(dto => new PartTransactionListDto
                 {
                     StockTransactionId = dto.StockTransactionID,
                     PartID = dto.PartID.GetValueOrDefault(),
-                    Location = dto.LocationNavigation.LocationName,
+                    Location = dto.Location.LocationName,
                     DateStamp = dto.DateStamp.GetValueOrDefault(),
                     Amount = dto.InventoryAmount.GetValueOrDefault(),
-                    TransActionName = dto.TransActionTypeNavigation.TransactionTypeName.Trim(),
+                    TransActionName = dto.TransactionTypeNavigation.TransactionTypeName.Trim(),
                     EmployeeName = String.Format("{0} {1}", dto.Emp.firstname,dto.Emp.lastname),
                     Unit= dto.UnitOfMeasure.UnitName
 
@@ -102,7 +102,7 @@ namespace ServiceLayer
                // adjustment.Location = thePart.Location;
                 adjustment.EmpID = 8;
                 adjustment.JobID= 1;
-                adjustment.TransActionType = 4;
+                adjustment.TransactionType = 4;
                 _ctx.Inventory.Add(adjustment);
             }
             _ctx.SaveChanges();
@@ -144,7 +144,7 @@ namespace ServiceLayer
            
                 return  _ctx.Part.AsNoTracking().Include(m => m.Manu).Include(u => u.UnitOfMeasure).Where(p => p.LocationID==locationID).Select(dto => new PartsLocationDto
                 {
-                    Location = dto.LocationNavigation.LocationName,
+                    Location = dto.Location.LocationName,
                     ItemDescription = dto.ItemDescription,
                     PartID = dto.PartID,
                     Manufacturer = dto.Manu.Manufacturer,
@@ -175,10 +175,8 @@ namespace ServiceLayer
                     newInventoryItem.InventoryAmount = reviseStockValue;
                     newInventoryItem.Description= item.Description;
                     newInventoryItem.LocationID = item.LocationID;
-                    newInventoryItem.UnitOfMeasureID = part.UnitOfMeasureID;
-                    newInventoryItem.QntyReceived = item.QntyReceived;
-                    newInventoryItem.QntyOrdered = item.QntyOrdered;
-                    newInventoryItem.TransActionType = 4;//amend
+                    newInventoryItem.UnitOfMeasureID = part.UnitOfMeasureID;                 
+                    newInventoryItem.TransactionType= 4;//amend
                     newInventoryItem.EmpID = user;
                     newInventoryItem.DateStamp = item.DateStamp;
                     newInventoryItem.Note = item.Note;

@@ -115,7 +115,7 @@ namespace Mosiac.UX.UXControls
                 txtTransactionID.DataBindings.Add("Text", bs, "StockTransactionID");
                 txtDescription.DataBindings.Add("Text", bs, "Description");
                 txtDateStamp.DataBindings.Add("Text", bs, "DateStamp", true, DataSourceUpdateMode.OnPropertyChanged, "", "d");
-                txtQntyRecieved.DataBindings.Add("Text", bs, "QntyReceived");
+               // txtQntyRecieved.DataBindings.Add("Text", bs, "QntyReceived");
                 txtInventoryAmount.DataBindings.Add("Text", bs, "InventoryAmount", true, DataSourceUpdateMode.OnPropertyChanged);
                 txtIventoryNote.DataBindings.Add("Text", bs, "Note", true, DataSourceUpdateMode.OnPropertyChanged);
 
@@ -214,7 +214,7 @@ namespace Mosiac.UX.UXControls
             {
                 if (int.TryParse(tb.Text, out multi))
                 {
-                    ((InventoryWrapper)bsInventory.Current).InventoryAmount = ((InventoryWrapper)bsInventory.Current).QntyReceived * multi;
+                    ((InventoryWrapper)bsInventory.Current).InventoryAmount = ((InventoryWrapper)bsInventory.Current).InventoryAmount * multi;
                     bsInventory.ResetBindings(true);
                     //BindInventory(bsInventory);
                 }
@@ -236,7 +236,6 @@ namespace Mosiac.UX.UXControls
                 it.Extended = item.Extended;
                 it.QuantityOrdered = item.QntyOrdered;
                 it.QuantityReceived = item.QntyReceived;
-                it.InventoryAmount = item.QntyToInventory;
                 it.Balance = item.QntyBalance;
                 it.Description = item.Description;
 
@@ -273,7 +272,7 @@ namespace Mosiac.UX.UXControls
         private void button2_Click(object sender, EventArgs e)
         {
             var inv = _currentInventory;
-            int receiptID = _currentInventory.OrderReceiptID.GetValueOrDefault();
+            int receiptID = _currentInventory.TransactionReference.GetValueOrDefault();
             int poID = mosaicContext.OrderReciept.Find(receiptID).PurchaseOrderID.GetValueOrDefault();
             DataLayer.Entity.OrderReciept recp = mosaicContext.OrderReciept.Find(receiptID);
             if (recp != null)
@@ -282,11 +281,11 @@ namespace Mosiac.UX.UXControls
                 mosaicContext.Remove(recp);
                 mosaicContext.RemoveRange(recp.OrderReceiptItems);
                 PurchaseOrder po = mosaicContext.PurchaseOrder.Find(poID);
-                po.OrderReciept = null;
+                po.OrderReciepts = null;
                 po.RecievedDate = null;
                 po.OrderState = 1;
                 po.Recieved = false;
-                List<Inventory> inventroy = mosaicContext.Inventory.Where(m => m.OrderReceiptID == receiptID).ToList();
+                List<Inventory> inventroy = mosaicContext.Inventory.Where(m => m.TransactionReference == receiptID).ToList();
                 if (inventroy != null)
                 {
                     mosaicContext.RemoveRange(inventroy);
@@ -301,8 +300,8 @@ namespace Mosiac.UX.UXControls
         private void cbxInventoryLocation_SelectedIndexChanged(object sender, EventArgs e)
         {
             ComboBox cb = (ComboBox)sender;
-            if (_currentInventory != null) { _currentInventory.LocationID = ((Location)cb.SelectedItem).LocationID; }
-            mosaicContext.SaveChanges();
+            //if (_currentInventory != null) { _currentInventory.LocationID = ((Location)cb.SelectedItem).LocationID; }
+            //mosaicContext.SaveChanges();
         }
     }
 

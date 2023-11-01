@@ -206,8 +206,14 @@ namespace Mosiac.UX.UXControls
                     // this is updating the stale Picklist object
                     bsPicks.EndEdit();
                     bsPickItems.EndEdit();
-                    var result = await _stockService.CreateOrUpdate(activePickList);
-                    activePickList = result;
+                  
+                    if (((PickListDto)bsPicks.Current).PickListID != default  )
+                    {
+                         var   result = await _stockService.CreateOrUpdate(activePickList);
+                        activePickList = result;
+                    }
+                  
+                    
                     bsPicks.DataSource = activePickList;
                     bsPickItems.DataSource = bsPicks;
                     bsPickItems.DataMember = "PickListItems";
@@ -249,7 +255,7 @@ namespace Mosiac.UX.UXControls
                     {
                         JobID = _selectedJobDto.JobID,
                         EmployeeID = Mosiac.UX.Services.Globals.CurrentLoggedUserID,
-                        DateStamp = DateTime.Today,
+                        DateStamp = DateTime.Now,
                         Job = job
                     };
                     PickListDto dto = new PickListDto();

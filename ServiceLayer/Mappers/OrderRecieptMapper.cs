@@ -43,7 +43,7 @@ namespace ServiceLayer.Mappers
                 destination.QntyOrdered = source.QuantityOrdered.GetValueOrDefault();
                 destination.QntyReceived = source.QuantityReceived.GetValueOrDefault();
                 destination.QntyBalance = source.Balance.GetValueOrDefault();
-                destination.QntyToInventory = source.InventoryAmount.GetValueOrDefault();
+               // destination.QntyToInventory = source.InventoryAmount.GetValueOrDefault();
                 destination.Extended = source.Extended.GetValueOrDefault();
                 destination.Note = source.Note;
 

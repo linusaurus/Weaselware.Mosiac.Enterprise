@@ -21,5 +21,5 @@ public partial class Destination
 
     public string Zip { get; set; }
 
-    public virtual ICollection<PickList> PickList { get; set; } = new List<PickList>();
+    public virtual Delivery Delivery { get; set; }
 }

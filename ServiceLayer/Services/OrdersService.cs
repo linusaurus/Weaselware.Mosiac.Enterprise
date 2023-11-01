@@ -282,9 +282,8 @@ namespace ServiceLayer {
                 inv.JobID = order.JobID;
                 inv.LineID = item.LineID;
                 //inv.Location = string.Empty;
-                inv.OrderReceiptID = oreciept.OrderReceiptID;
-                inv.UnitOfMeasureID = item.UnitOfMeasureID ?? 1;
-                inv.QntyOrdered = item.Qnty ?? 0;      
+                inv.TransactionReference = oreciept.OrderReceiptID;
+                inv.UnitOfMeasureID = item.UnitOfMeasureID ?? 1;     
                 item.Recieved = true;
                 item.OrderReceiptID = oreciept.OrderReceiptID;
                 inv.PartID = item.PartID ?? null;

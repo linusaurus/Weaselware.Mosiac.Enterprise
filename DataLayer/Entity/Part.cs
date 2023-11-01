@@ -25,8 +25,6 @@ public partial class Part
 
     public int? UnitOfMeasureID { get; set; }
 
-    public string Location { get; set; }
-
     public decimal? Weight { get; set; }
 
     public decimal? Waste { get; set; }
@@ -59,13 +57,11 @@ public partial class Part
 
     public int? Count { get; set; }
 
-    public virtual Location LocationNavigation { get; set; }
+    public virtual Location Location { get; set; }
 
     public virtual Manu Manu { get; set; }
 
     public virtual ICollection<Resource> Resource { get; set; } = new List<Resource>();
 
     public virtual UnitOfMeasure UnitOfMeasure { get; set; }
-
-    public virtual ICollection<Document> Doc { get; set; } = new List<Document>();
 }
