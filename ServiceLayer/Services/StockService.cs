@@ -86,6 +86,23 @@ namespace ServiceLayer
             return resultList;
         }
 
+        public List<PickListDto> GetMyPicks(int empID)
+        {
+            var result = _ctx.PickList.AsNoTracking().Include(i => i.PickListItem).Include(d => d.Destination).Include(j => j.Job)
+                .Include(e => e.Employee).Where(f => f.EmployeeID == empID).ToList();
+
+            List<PickListDto> resultList = new List<PickListDto>();
+
+            foreach (var pick in result)
+            {
+                PickListDto dto = new PickListDto();
+                pickListMapper.Map(pick, dto);
+                resultList.Add(dto);
+            }
+
+            return resultList;
+        }
+
         // PointOfUse inventory reduction using partnumber or StockTag
         public async void PullPart(string partid, decimal qnty,int empID,int jobid)
         {

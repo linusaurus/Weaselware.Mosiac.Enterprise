@@ -53,12 +53,14 @@ namespace Mosiac.UX.UXControls
             // Constuct the two grids
             Grids.BuildPlistGrid(dgvDeliveries);
             Grids.BuildScannedPartGrid(dgvPickListItems);
-
+            Grids.BuildPlistGrid(dgvMyDelieveries); 
+            //------------------------------------------------------------------------
             lbJobList.SelectedIndexChanged += LbJobList_SelectedIndexChanged;
             bsPickItems.ListChanged += BsPickItems_ListChanged;
             bsPicks.ListChanged += BsPicks_ListChanged;
             bsPickItems.AddingNew += BsPickItems_AddingNew;
-
+            dgvMyDelieveries.SelectionChanged += DgvMyDelieveries_SelectionChanged;
+            //------------------------------------------------------------------------
             // Reload last job selected --
             if (Mosiac.UX.Properties.Settings.Default.LastJobSearched.Length > 0)
             {
@@ -68,12 +70,28 @@ namespace Mosiac.UX.UXControls
 
             }
 
+        
+
+
+        }
+
+        private void DgvMyDelieveries_SelectionChanged(object sender, EventArgs e)
+        {
+            DataGridView dg = (DataGridView)sender;
+            selectedPickList = ((PickListDto)dg.CurrentRow.DataBoundItem);
+            activePickList = _stockService.GetPicklist(selectedPickList.PickListID);
+            selectedPickList = activePickList;
+            BindListHeader(activePickList);
+            bsPicks.DataSource = activePickList;
+            bsPickItems.DataSource = activePickList;
+            bsPickItems.DataMember = "PickListItems";
+            dgvPickListItems.DataSource = bsPickItems;
         }
 
         private void LoadMyDeliveries()
         {
-            bsMyDeliveries.DataSource = _deliveryService.GetMyDeliveries(Globals.CurrentLoggedUserID);
-            dgvDeliveries.DataSource = bsMyDeliveries;
+            // bsMyDeliveries.DataSource = _deliveryService.GetMyDeliveries(UserService.ActiveUserID);
+            dgvMyDelieveries.DataSource = _stockService.GetMyPicks(UserService.ActiveUserID);
         }
 
         private void BsPicks_ListChanged(object sender, ListChangedEventArgs e)
@@ -165,7 +183,6 @@ namespace Mosiac.UX.UXControls
                     bsPicks.DataSource = activePickList;
                     bsPickItems.DataSource = activePickList;
                     bsPickItems.DataMember = "PickListItems";
-
                     dgvPickListItems.DataSource = bsPickItems;
                 }
             }
@@ -206,14 +223,14 @@ namespace Mosiac.UX.UXControls
                     // this is updating the stale Picklist object
                     bsPicks.EndEdit();
                     bsPickItems.EndEdit();
-                  
-                    if (((PickListDto)bsPicks.Current).PickListID != default  )
+
+                    if (((PickListDto)bsPicks.Current).PickListID != default)
                     {
-                         var   result = await _stockService.CreateOrUpdate(activePickList);
+                        var result = await _stockService.CreateOrUpdate(activePickList);
                         activePickList = result;
                     }
-                  
-                    
+
+
                     bsPicks.DataSource = activePickList;
                     bsPickItems.DataSource = bsPicks;
                     bsPickItems.DataMember = "PickListItems";
@@ -239,7 +256,7 @@ namespace Mosiac.UX.UXControls
             }
         }
 
-        private void btnNewDellivery_Click(object sender, EventArgs e)
+        private void btnNewDellivery_Click(object sender, EventArgs e)		
         {
             AddNewPicklist();
         }
@@ -291,7 +308,7 @@ namespace Mosiac.UX.UXControls
         {
             CheckBox cb = (CheckBox)sender;
             if (cb.Checked)
-            { 
+            {
                 selectedPickList.Delivered = true;
                 selectedPickList.DeliveryDate = DateTime.Today;
             }
@@ -404,6 +421,16 @@ namespace Mosiac.UX.UXControls
             Mosiac.UX.Properties.Settings.Default.Save();
 
 
+        }
+
+        private void tbDeliversControl_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            TabControl tb = (TabControl)sender;
+            if (tb.SelectedTab.Name== "tbMyDeliveries")
+            {
+                LoadMyDeliveries();
+
+            }
         }
     }
 }

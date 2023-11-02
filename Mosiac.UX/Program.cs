@@ -4,7 +4,8 @@ using Microsoft.Extensions.Hosting;
 using Mosiac.UX.Services;
 using System;
 using System.Windows.Forms;
-
+using ServiceLayer;
+using ServiceLayer.Services;
 
 namespace Mosiac.UX
 {
@@ -23,6 +24,7 @@ namespace Mosiac.UX
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+           
 
 
 #if (DEBUG)
@@ -42,7 +44,8 @@ namespace Mosiac.UX
             mainForm.LoggedOnUserID = 8;
             Globals.CurrentLoggedUserID = 8;
             Globals.CurrentUserName = "Richard";
-            
+            UserService.ActiveUserID = 8;
+            UserService.ActiveUserName = "Richard";
             Application.Run(new Main());
 
 #else

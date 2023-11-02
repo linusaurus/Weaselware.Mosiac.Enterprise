@@ -6,6 +6,7 @@ using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using ServiceLayer.Models;
 using System.Threading.Tasks;
+using DataLayer.Entity;
 
 namespace ServiceLayer.Services
 {
@@ -19,10 +20,11 @@ namespace ServiceLayer.Services
         {
             _ctx = context;
         }
-
+     
         public List<MyDeliveriesListDto> GetMyDeliveries(int EmpID)
         {
-            
+
+           int pid = Services.UserService.ActiveUserID;
 
                 var result = _ctx.PickList.AsNoTracking().Include(j => j.Job).Include(e => e.Employee).Where(p => p.EmployeeID == EmpID).Select(d => new MyDeliveriesListDto
                 {
@@ -32,8 +34,7 @@ namespace ServiceLayer.Services
                     Pid = d.PickListID
 
                 }).ToList();
-       
-
+      
             return result;
         }
 

@@ -88,6 +88,7 @@
             tbDeliversControl.SelectedIndex = 0;
             tbDeliversControl.Size = new System.Drawing.Size(313, 468);
             tbDeliversControl.TabIndex = 5;
+            tbDeliversControl.SelectedIndexChanged += tbDeliversControl_SelectedIndexChanged;
             // 
             // tbJobPicks
             // 
