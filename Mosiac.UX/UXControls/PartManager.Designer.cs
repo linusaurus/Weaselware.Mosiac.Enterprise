@@ -406,6 +406,7 @@ namespace Mosiac.UX.UXControls
             toolStripButton3.Padding = new System.Windows.Forms.Padding(0, 0, 6, 0);
             toolStripButton3.Size = new System.Drawing.Size(34, 28);
             toolStripButton3.Text = "toolStripButton3";
+            toolStripButton3.ToolTipText = "Open Resource Cache";
             toolStripButton3.Click += btnOpenCache_Click;
             // 
             // toolStripButton4
@@ -421,13 +422,13 @@ namespace Mosiac.UX.UXControls
             // 
             // toolStripButton5
             // 
-            toolStripButton5.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             toolStripButton5.Image = Properties.Resources.outline_delete_black_24dp2;
             toolStripButton5.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             toolStripButton5.ImageTransparentColor = System.Drawing.Color.Magenta;
             toolStripButton5.Name = "toolStripButton5";
-            toolStripButton5.Size = new System.Drawing.Size(28, 28);
-            toolStripButton5.Text = "toolStripButton5";
+            toolStripButton5.Size = new System.Drawing.Size(119, 28);
+            toolStripButton5.Text = "Delete Resource";
+            toolStripButton5.ToolTipText = "Delete the Resource";
             toolStripButton5.Click += btnDeleteResource_Click;
             // 
             // toolStripButton6

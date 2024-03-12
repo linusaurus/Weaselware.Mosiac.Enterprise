@@ -317,7 +317,7 @@ namespace Mosiac.UX.UXControls
             if (_selectedResourceID != default)
             {
                 string conn = Mosiac.UX.Properties.Settings.Default.MosiacConnection;
-                FileOperations.GetResource(_selectedResourceID, Mosiac.UX.Properties.Settings.Default.MosiacConnection);
+                FileOperations.GetResource(_selectedResourceID, Mosiac.UX.Properties.Settings.Default.FileStreamConnection);
             }
         }
 
@@ -406,18 +406,28 @@ namespace Mosiac.UX.UXControls
         {
             if (_selectedResource != null)
             {
-                var delResource = _ctx.Resource.Find(_selectedResource.ResourceID);
-                _ctx.Resource.Remove(delResource);
-                _ctx.SaveChanges();
 
+                DialogResult dr = MessageBox.Show("Are you sure you want to delete the resource?",
+                      "Delete Resource", MessageBoxButtons.YesNo);
 
-                _partBeingEdited = partsService.Find(_partBeingEdited.PartID);
-                if (_partBeingEdited != null)
+                if (dr == DialogResult.Yes)
                 {
-                    bsPart.DataSource = _partBeingEdited;
-                    bsResource.DataSource = _partBeingEdited.Resource.ToList();
-                    dgResources.DataSource = _partBeingEdited.Resource.ToList();
+                    var delResource = _ctx.Resource.Find(_selectedResource.ResourceID);
+                    _ctx.Resource.Remove(delResource);
+                    _ctx.SaveChanges();
+
+
+                    _partBeingEdited = partsService.Find(_partBeingEdited.PartID);
+                    if (_partBeingEdited != null)
+                    {
+                        bsPart.DataSource = _partBeingEdited;
+                        bsResource.DataSource = _partBeingEdited.Resource.ToList();
+                        dgResources.DataSource = _partBeingEdited.Resource.ToList();
+                    }
+
                 }
+                
+              
 
             }
         }

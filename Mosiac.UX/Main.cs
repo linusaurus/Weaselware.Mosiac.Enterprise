@@ -438,6 +438,24 @@ namespace Mosiac.UX
                     }
 
                     break;
+
+                case "tsbTransmittals":
+
+                    TabPage dsTransmittalsPage = PageFactory.GetNewTabPage(_context, PageFactory.TabPageType.TransMittalsPage);
+                    dsTransmittalsPage.Name = "TransmittalsPage";
+                    dsTransmittalsPage.Dock = DockStyle.Fill;
+
+                    if (!MainTabControl.TabPages.ContainsKey("TransmittalsPage"))
+                    {
+                        MainTabControl.TabPages.Add(dsTransmittalsPage);
+                        MainTabControl.SelectedTab = dsTransmittalsPage;
+                    }
+                    else
+                    {
+                        if (MainTabControl.TabPages.ContainsKey("TransmittalsPage"))
+                        { MainTabControl.SelectTab("TransmittalsPage"); }
+                    }
+                    break;
                 default:
                     break;
 

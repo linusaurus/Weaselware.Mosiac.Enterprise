@@ -4,14 +4,14 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>net7.0-windows</TargetFramework>
     <UseWindowsForms>true</UseWindowsForms>
-    <AssemblyVersion>1.7.1.11</AssemblyVersion>
+    <AssemblyVersion>1.7.1.16</AssemblyVersion>
     <ApplicationIcon>mosaic-_1_.ico</ApplicationIcon>
-    <FileVersion>1.7.1.11</FileVersion>
+    <FileVersion>1.7.1.16</FileVersion>
     <Authors>Dick Danger</Authors>
     <Company>Weaselware</Company>
     <Product>Mosiac Enterprise</Product>
     <Version>1.7.1</Version>
-    <Copyright>Weaselware 2023</Copyright>
+    <Copyright>Weaselware 2024</Copyright>
     <StartupObject>Mosiac.UX.Program</StartupObject>
     <PackageIcon>mosaic (1).png</PackageIcon>
   </PropertyGroup>
@@ -36,7 +36,7 @@
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="7.0.0" />
     <PackageReference Include="MotorolaCoreScannerNetStandard" Version="1.1.5" />
     <PackageReference Include="Neodynamic.SDK.ThermalLabel.WindowsPrinting.NetCore" Version="11.0.22.1021" />
-    <PackageReference Include="SkiaSharp" Version="2.88.3" />
+    <PackageReference Include="SkiaSharp" Version="2.88.6" />
     <PackageReference Include="System.Composition.AttributedModel" Version="7.0.0" />
   </ItemGroup>
 
@@ -94,6 +94,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="App.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="StockTag.tl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

@@ -20,9 +20,11 @@ namespace Mosiac.UX
     {
        //---private static string ConnStr = "Data Source=RICHARD-PC;database = Mosaic; Integrated Security = True;Trust Server Certificate=true";
        //---this is the right shared connection string for both Filestream and normal access, Filestream level must be set to 2
-        private static string ConnStr = Mosiac.UX.Properties.Settings.Default.MosiacConnection;
-        
-        private static string cn = ConnStr.Substring(0, 68);
+        //private static string ConnStr = Mosiac.UX.Properties.Settings.Default.MosiacConnection;
+
+        private static string Cn = Mosiac.UX.Properties.Settings.Default.FileStreamConnection;
+
+       
         private static void OpenResource(string path)
         {
             ProcessStartInfo psi = new ProcessStartInfo
@@ -73,7 +75,7 @@ namespace Mosiac.UX
             }
         }
 
-        public static void GetResource(int resourceId, string conString)
+        public static void GetResource(int resourceId, string Cn)
         {
             
             const string SelectTSql = @"
@@ -92,7 +94,7 @@ namespace Mosiac.UX
             
             using (TransactionScope ts = new TransactionScope())
             {
-                using (SqlConnection conn = new SqlConnection(cn))
+                using (SqlConnection conn = new SqlConnection(Cn))
                 {
                     conn.Open();
                     using (SqlCommand cmd = new SqlCommand(SelectTSql, conn))
@@ -154,7 +156,7 @@ namespace Mosiac.UX
              //"INSERT INTO Resource(PartID, ResourceDescription,filesource)" +
              //" VALUES(@PartID, @Description, @filesource)";
 
-            using (SqlConnection conn = new SqlConnection(cn))
+            using (SqlConnection conn = new SqlConnection(Cn))
             {
                 conn.Open();
 
@@ -251,7 +253,7 @@ namespace Mosiac.UX
 
             using (TransactionScope ts = new TransactionScope())
             {
-                using (SqlConnection conn = new SqlConnection(cn))
+                using (SqlConnection conn = new SqlConnection(Cn))
                 {
                     conn.Open();
                     using (SqlCommand cmd = new SqlCommand(SelectTSql, conn))
@@ -331,7 +333,7 @@ namespace Mosiac.UX
 
            
 
-            using (SqlConnection conn = new SqlConnection(cn))
+            using (SqlConnection conn = new SqlConnection(Cn))
             {
                 conn.Open();
 
