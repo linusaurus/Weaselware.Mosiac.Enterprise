@@ -22,4 +22,6 @@ public partial class Destination
     public string Zip { get; set; }
 
     public virtual Delivery Delivery { get; set; }
+
+    public virtual ICollection<ToolCheckOut> ToolCheckOut { get; set; } = new List<ToolCheckOut>();
 }

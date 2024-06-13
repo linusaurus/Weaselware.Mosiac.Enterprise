@@ -17,9 +17,9 @@ public partial class OrderReciept
 
     public bool? IsOrderComplete { get; set; }
 
-    public Employee Employee { get; set; }
-
-    public PurchaseOrder PurchaseOrder { get; set; }
+    public virtual Employee Employee { get; set; }
 
     public virtual ICollection<OrderReceiptItems> OrderReceiptItems { get; set; } = new List<OrderReceiptItems>();
+
+    public virtual PurchaseOrder PurchaseOrder { get; set; }
 }

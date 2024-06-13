@@ -117,7 +117,7 @@ namespace ServiceLayer {
                                   {
                                       JobID = j.jobID,
                                       JobName = j.jobname
-                                  }).ToList();
+                                  }).OrderBy(g => g.JobName).ToList();
 
 
             return jobs;

@@ -19,11 +19,9 @@ public partial class Asset
 
     public int? ManuID { get; set; }
 
-    public int? AssetClassID { get; set; }
+    public int? AssetClass { get; set; }
 
-    public decimal? PurchasePrice { get; set; }
-
-    public int? SupplierID { get; set; }
+    public decimal? Price { get; set; }
 
     public string AddedBy { get; set; }
 
@@ -41,5 +39,9 @@ public partial class Asset
 
     public int? LocationID { get; set; }
 
-    public virtual AssetClass AssetNavigation { get; set; }
+    public int? AssetClassID { get; set; }
+
+    public virtual AssetClass AssetClassNavigation { get; set; }
+
+    public virtual ICollection<ToolCheckOut> ToolCheckOut { get; set; } = new List<ToolCheckOut>();
 }

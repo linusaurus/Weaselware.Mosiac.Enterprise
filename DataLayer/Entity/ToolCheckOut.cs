@@ -20,4 +20,10 @@ public partial class ToolCheckOut
     public bool? CheckedOut { get; set; }
 
     public bool? Lost { get; set; }
+
+    public virtual Asset Asset { get; set; }
+
+    public virtual Destination Destination { get; set; }
+
+    public virtual Employee Emp { get; set; }
 }

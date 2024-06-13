@@ -36,7 +36,8 @@ namespace Mosiac.UX
             AssemblyManagerControl,
             RecieveOrderControl,
             StockManagerPage,
-            TransMittalsPage
+            TransMittalsPage,
+            InventoryManager
         }
         
         public static TabPage GetNewTabPage(MosaicContext ctx,TabPageType pageType,int key = 0)
@@ -142,6 +143,16 @@ namespace Mosiac.UX
                         tab.Text = $"Transmittals";
                         tab.Name = "TransMittals";
                         TransmittalsContorl ctr = new TransmittalsContorl(ctx);
+                        ctr.Dock = DockStyle.Fill;
+                        tab.Controls.Add(ctr);
+
+                    }
+                    break;
+                case TabPageType.InventoryManager:
+                    {
+                        tab.Text = $"Inventory Manager";
+                        tab.Name = "Inventory";
+                        InventoryManagerControl ctr = new InventoryManagerControl(ctx);
                         ctr.Dock = DockStyle.Fill;
                         tab.Controls.Add(ctr);
 

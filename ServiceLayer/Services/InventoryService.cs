@@ -36,45 +36,36 @@ namespace ServiceLayer
             return result;
         }
 
-        public List<PartTransactionListDto> GetPartTransactions(int partID, int transActionfilterID = 0)
+        public Inventory FindLineItem(int lineId)
         {
-            if (transActionfilterID == 0)
+           return _ctx.Inventory.Where(c => c.LineID == lineId).FirstOrDefault();
+            
+        }
+
+        public List<PartTransactionListDto> GetPartTransactions(int partID)
+        {
+            if (partID != 0)
             {
-                var result = _ctx.Inventory.Include(t => t.TransactionType).Include(e => e.Emp).Include(u => u.UnitOfMeasure).AsNoTracking().Where(p => p.PartID == partID).Select(dto => new PartTransactionListDto
+                var result = _ctx.Inventory.Include(t => t.TransActionTypeNavigation).Include(e => e.Emp).Include(u => u.UnitOfMeasure).Include(p => p.Part).AsNoTracking().Where(p => p.PartID == partID).Select(dto => new PartTransactionListDto
                 {
                     StockTransactionId = dto.StockTransactionID,
                     PartID = dto.PartID.GetValueOrDefault(),
-                    Location = dto.Location.LocationName,
+                    Location = dto.Part.LocationNavigation.LocationName,
                     DateStamp = dto.DateStamp.GetValueOrDefault(),
                     Amount = dto.InventoryAmount.GetValueOrDefault(),
-                    TransActionName = dto.TransactionTypeNavigation.TransactionTypeName.Trim(),
+                    TransActionName = dto.TransActionTypeNavigation.TransactionTypeName.Trim(),
                     EmployeeName = dto.Emp.firstname + " " + dto.Emp.lastname,
                     Unit = dto.UnitOfMeasure.UnitName
 
                 }).ToList();
-                 return result;
-             
+
+                return result;
             }
             else
-            {
-                var result = _ctx.Inventory.Include(t => t.TransactionType).Include(e => e.Emp).Include(u => u.UnitOfMeasure).AsNoTracking().Where(p => p.PartID == partID).Where(f => f.TransactionType==transActionfilterID).Select(dto => new PartTransactionListDto
-                {
-                    StockTransactionId = dto.StockTransactionID,
-                    PartID = dto.PartID.GetValueOrDefault(),
-                    Location = dto.Location.LocationName,
-                    DateStamp = dto.DateStamp.GetValueOrDefault(),
-                    Amount = dto.InventoryAmount.GetValueOrDefault(),
-                    TransActionName = dto.TransactionTypeNavigation.TransactionTypeName.Trim(),
-                    EmployeeName = String.Format("{0} {1}", dto.Emp.firstname,dto.Emp.lastname),
-                    Unit= dto.UnitOfMeasure.UnitName
+                return null;
+            
 
-                }).ToList();
-                return result;
-
-
-            }
-  
-    }
+        }
        
         public void Dispose()
         {
@@ -99,12 +90,40 @@ namespace ServiceLayer
                 adjustment.InventoryAmount = changeValue;
                 adjustment.DateStamp = DateTime.Now;
                 adjustment.Description = thePart.ItemDescription;
-               // adjustment.Location = thePart.Location;
+                adjustment.LocationID = thePart.LocationID;
                 adjustment.EmpID = 8;
                 adjustment.JobID= 1;
-                adjustment.TransactionType = 4;
+                adjustment.UnitOfMeasureID = thePart.UnitOfMeasureID;
+                adjustment.TransActionType = 4;
+
                 _ctx.Inventory.Add(adjustment);
             }
+            _ctx.SaveChanges();
+        }
+
+        public void RollUp(int partID)
+        {
+            var thePart = _ctx.Part.Find(partID);
+            var currentValue = GetStockLevel(partID);
+           
+            if (currentValue != decimal.MinValue)
+            {
+                Inventory adjustment = new Inventory();
+                adjustment.PartID = partID;
+                adjustment.InventoryAmount = 0.0m;
+                adjustment.DateStamp = DateTime.Now;
+                adjustment.Description = "--[ROLLUP]--" + thePart.ItemDescription  ;
+                adjustment.LocationID = thePart.LocationID;
+                adjustment.EmpID = 8;
+                adjustment.JobID = 1;
+                adjustment.UnitOfMeasureID = thePart.UnitOfMeasureID;
+                adjustment.TransActionType = 4;
+                adjustment.Note = "<-- ROLLUP --->";
+
+                _ctx.Inventory.Add(adjustment);
+            }
+
+
             _ctx.SaveChanges();
         }
 
@@ -114,11 +133,13 @@ namespace ServiceLayer
 
             foreach (var item in partIDs)
             {
-                Inventory i = new Inventory() { StockTransactionID = item };
+                Inventory i = _ctx.Inventory.Find(item);
                 removed.Add(i);
             }
             _ctx.RemoveRange(removed);
             _ctx.SaveChanges();
+
+           
         }
 
         public IEnumerable<Location> GetLocations() 
@@ -144,7 +165,7 @@ namespace ServiceLayer
            
                 return  _ctx.Part.AsNoTracking().Include(m => m.Manu).Include(u => u.UnitOfMeasure).Where(p => p.LocationID==locationID).Select(dto => new PartsLocationDto
                 {
-                    Location = dto.Location.LocationName,
+                    Location = dto.Location,
                     ItemDescription = dto.ItemDescription,
                     PartID = dto.PartID,
                     Manufacturer = dto.Manu.Manufacturer,
@@ -176,7 +197,7 @@ namespace ServiceLayer
                     newInventoryItem.Description= item.Description;
                     newInventoryItem.LocationID = item.LocationID;
                     newInventoryItem.UnitOfMeasureID = part.UnitOfMeasureID;                 
-                    newInventoryItem.TransactionType= 4;//amend
+                    newInventoryItem.TransactionReferenceType= 4;//amend
                     newInventoryItem.EmpID = user;
                     newInventoryItem.DateStamp = item.DateStamp;
                     newInventoryItem.Note = item.Note;

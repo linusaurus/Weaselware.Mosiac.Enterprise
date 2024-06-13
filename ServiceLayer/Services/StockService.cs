@@ -118,8 +118,8 @@ namespace ServiceLayer
                 inventory.InventoryAmount = qnty * -1.0m;
                 inventory.JobID = jobid;
                 inventory.EmpID = empID;
-                inventory.LocationID = part.Location.LocationID;
-                inventory.TransactionType = 3;
+                inventory.LocationID = part.LocationID;
+                inventory.TransactionReferenceType = 3;
                 _ctx.Inventory.Add(inventory);
                 await _ctx.SaveChangesAsync();
             }
@@ -165,7 +165,7 @@ namespace ServiceLayer
             inventory.UnitOfMeasureID = part.UnitOfMeasureID.GetValueOrDefault();
             inventory.Description = part.ItemDescription;
             inventory.InventoryAmount = 0.0m;
-            inventory.TransactionType= 4;
+            inventory.TransactionReferenceType = 4;
            // inventory.Location = part.Location;
             inventory.EmpID = UserID;
             inventory.Note = "Rolled-Up";

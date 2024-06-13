@@ -168,6 +168,10 @@
          "ObjectType": 0
       },
       {
+         "Name": "[dbo].[Transmittal]",
+         "ObjectType": 0
+      },
+      {
          "Name": "[dbo].[UnitOfMeasure]",
          "ObjectType": 0
       },
@@ -180,12 +184,13 @@
          "ObjectType": 0
       }
    ],
-   "UiHint": "richard-pc.Mosaic.dbo",
+   "UiHint": "dbserver.Mosaic.dbo",
    "UncountableWords": null,
    "UseBoolPropertiesWithoutDefaultSql": false,
    "UseDatabaseNames": true,
    "UseDateOnlyTimeOnly": false,
    "UseDbContextSplitting": false,
+   "UseDecimalDataAnnotationForSprocResult": true,
    "UseFluentApiOnly": true,
    "UseHandleBars": false,
    "UseHierarchyId": false,
@@ -197,6 +202,7 @@
    "UseNoObjectFilter": false,
    "UseNodaTime": false,
    "UseNullableReferences": false,
+   "UsePrefixNavigationNaming": false,
    "UseSchemaFolders": false,
    "UseSchemaNamespaces": false,
    "UseSpatial": false,

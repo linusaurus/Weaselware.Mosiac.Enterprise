@@ -165,7 +165,7 @@ namespace Mosiac.UX.UXControls
         {
             if (selectedAttachment != null)
             {
-                FileOperations.GetAttachment(selectedAttachment.AttachmentID, Mosiac.UX.Properties.Settings.Default.MosiacConnection);
+                FileOperations.GetAttachment(selectedAttachment.AttachmentID, Mosiac.UX.Properties.Settings.Default.FileStreamConnection);
             }
         }
 

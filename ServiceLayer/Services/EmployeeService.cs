@@ -90,9 +90,9 @@ namespace ServiceLayer {
 
         public string FullName(int EmpID)
         {
-           var emp =  context.Employee.Find(EmpID);
-            return emp.firstname + " " + emp.lastname;
-            
+            //var emp =  context.Employee.Find(EmpID);
+            //return emp.firstname + " " + emp.lastname;
+            return "nobody";
         }
 
        

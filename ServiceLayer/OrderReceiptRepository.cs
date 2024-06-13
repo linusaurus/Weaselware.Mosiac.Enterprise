@@ -42,14 +42,14 @@ namespace ServiceLayer
         {
             OrderReceiptDto newReciept;
             // Grab to Purchase Order
-            PurchaseOrder po = _ctx.PurchaseOrder.AsNoTracking().Include(j => j.Job).Include(p => p.PurchaseLineItem).ThenInclude(u => u.UnitOfMeasure).Include(x => x.OrderReciepts)
+            PurchaseOrder po = _ctx.PurchaseOrder.AsNoTracking().Include(j => j.Job).Include(p => p.PurchaseLineItem).ThenInclude(u => u.UnitOfMeasure).Include(x => x.OrderReciept)
                                    .Include(e => e.Supplier).Where(o => o.PurchaseOrderID == purchaserOrderID).FirstOrDefault();
 
           
             // Test for existing Order Receipt-if true that one exist, retrieve it and copy into new receipt
-            if (po.OrderReciepts.Any())
+            if (po.OrderReciept.Any())
             {
-                newReciept = GetOrderReceipt(po.OrderReciepts.FirstOrDefault().OrderReceiptID, true);
+                newReciept = GetOrderReceipt(po.OrderReciept.FirstOrDefault().OrderReceiptID, true);
             }
             else
             {
@@ -385,7 +385,7 @@ namespace ServiceLayer
                     inv.LineID = item.LineID;
                     inv.PartID = item.PartID;
                     inv.UnitOfMeasureID = item.UiD;
-                    inv.TransactionType = 1;
+                    inv.TransactionReferenceType = item.StockTransaction;
                     inv.InventoryAmount = item.QntyToInventory;
 
                     _ctx.Inventory.Add(inv);
@@ -401,13 +401,15 @@ namespace ServiceLayer
             return orderReciept.OrderReceiptID;            
         }		
 
-
+   
+        ////TODO stock tag not fillinf all the field
+       
         public StockTagDto GetStockTag(int orderReceiptLineID)
         {
             int lineid = orderReceiptLineID;
             StockTagDto dto = new StockTagDto();
 
-           OrderReceiptItems result = _ctx.OrderReceiptItems.Find(lineid);
+           OrderReceiptItems result = _ctx.OrderReceiptItems.Include(j => j.Job).Include(p => p.PurchaseOrder).Include(e => e.OrderReceipt).Where(l => l.OrderReceiptLineID == orderReceiptLineID).FirstOrDefault();
 
             if (result != null)
             {
@@ -415,9 +417,12 @@ namespace ServiceLayer
                 dto.LineID = lineid;
                 dto.JobID = result.JobID.GetValueOrDefault();
                 dto.Description = result.Description;
-               
-
-                //dto.InventoryAmount = Quanity;
+                dto.jobname = result.Job.jobname;
+                dto.ReceiptDate = result.OrderReceipt.ReceiptDate.GetValueOrDefault().ToShortDateString();
+                dto.LocationName = "NA";
+                dto.StockTransactionID = result.LineID.GetValueOrDefault();
+                dto.firstname = result.OrderReceipt.Employee.firstname;
+                dto.InventoryAmount = result.QuantityReceived.GetValueOrDefault();
             }
           
 

@@ -86,8 +86,8 @@ namespace ServiceLayer.Models
 
         public int? TransActionType
         {
-            get => inventory.TransactionType; 
-            set => SetProperty(inventory.TransactionType, value, inventory, (u, n) => u.TransactionType = n);
+            get => inventory.TransactionReferenceType; 
+            set => SetProperty(inventory.TransactionReferenceType, value, inventory, (u, n) => u.TransactionReferenceType = n);
         }
         public int? EmpID
         {

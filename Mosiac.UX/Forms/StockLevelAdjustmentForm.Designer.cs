@@ -28,59 +28,58 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnCancel = new System.Windows.Forms.Button();
-            this.btnOK = new System.Windows.Forms.Button();
-            this.txtAdjustment = new System.Windows.Forms.TextBox();
-            this.SuspendLayout();
+            btnCancel = new System.Windows.Forms.Button();
+            btnOK = new System.Windows.Forms.Button();
+            txtAdjustment = new System.Windows.Forms.TextBox();
+            SuspendLayout();
             // 
             // btnCancel
             // 
-            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(177, 44);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(75, 23);
-            this.btnCancel.TabIndex = 0;
-            this.btnCancel.Text = "Cancel";
-            this.btnCancel.UseVisualStyleBackColor = true;
+            btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            btnCancel.Location = new System.Drawing.Point(182, 79);
+            btnCancel.Name = "btnCancel";
+            btnCancel.Size = new System.Drawing.Size(75, 23);
+            btnCancel.TabIndex = 0;
+            btnCancel.Text = "Cancel";
+            btnCancel.UseVisualStyleBackColor = true;
             // 
             // btnOK
             // 
-            this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnOK.Location = new System.Drawing.Point(258, 44);
-            this.btnOK.Name = "btnOK";
-            this.btnOK.Size = new System.Drawing.Size(75, 23);
-            this.btnOK.TabIndex = 0;
-            this.btnOK.Text = "Commit";
-            this.btnOK.UseVisualStyleBackColor = true;
+            btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
+            btnOK.Location = new System.Drawing.Point(263, 79);
+            btnOK.Name = "btnOK";
+            btnOK.Size = new System.Drawing.Size(75, 23);
+            btnOK.TabIndex = 0;
+            btnOK.Text = "Commit";
+            btnOK.UseVisualStyleBackColor = true;
             // 
             // txtAdjustment
             // 
-            this.txtAdjustment.Location = new System.Drawing.Point(28, 44);
-            this.txtAdjustment.Name = "txtAdjustment";
-            this.txtAdjustment.Size = new System.Drawing.Size(101, 23);
-            this.txtAdjustment.TabIndex = 1;
-            this.txtAdjustment.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtAdjustment.TextChanged += new System.EventHandler(this.txtAdjustment_TextChanged);
-            this.txtAdjustment.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtAdjustment_KeyPress);
+            txtAdjustment.Location = new System.Drawing.Point(12, 79);
+            txtAdjustment.Name = "txtAdjustment";
+            txtAdjustment.Size = new System.Drawing.Size(101, 23);
+            txtAdjustment.TabIndex = 1;
+            txtAdjustment.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            txtAdjustment.TextChanged += txtAdjustment_TextChanged;
+            txtAdjustment.KeyPress += txtAdjustment_KeyPress;
             // 
             // StockLevelAdjustmentForm
             // 
-            this.AcceptButton = this.btnOK;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(345, 79);
-            this.Controls.Add(this.txtAdjustment);
-            this.Controls.Add(this.btnOK);
-            this.Controls.Add(this.btnCancel);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Name = "StockLevelAdjustmentForm";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Adjust Inventory";
-            this.Load += new System.EventHandler(this.StockLevelAdjustmentForm_Load);
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AcceptButton = btnOK;
+            AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            CancelButton = btnCancel;
+            ClientSize = new System.Drawing.Size(350, 114);
+            Controls.Add(txtAdjustment);
+            Controls.Add(btnOK);
+            Controls.Add(btnCancel);
+            FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            Name = "StockLevelAdjustmentForm";
+            StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            Text = "Adjust Inventory";
+            Load += StockLevelAdjustmentForm_Load;
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion

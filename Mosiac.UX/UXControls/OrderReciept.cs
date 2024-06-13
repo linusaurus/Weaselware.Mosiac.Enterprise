@@ -272,7 +272,7 @@ namespace Mosiac.UX.UXControls
         private void button2_Click(object sender, EventArgs e)
         {
             var inv = _currentInventory;
-            int receiptID = _currentInventory.TransactionReference.GetValueOrDefault();
+            int receiptID = _currentInventory.OrderReceiptID.GetValueOrDefault();
             int poID = mosaicContext.OrderReciept.Find(receiptID).PurchaseOrderID.GetValueOrDefault();
             DataLayer.Entity.OrderReciept recp = mosaicContext.OrderReciept.Find(receiptID);
             if (recp != null)
@@ -281,11 +281,11 @@ namespace Mosiac.UX.UXControls
                 mosaicContext.Remove(recp);
                 mosaicContext.RemoveRange(recp.OrderReceiptItems);
                 PurchaseOrder po = mosaicContext.PurchaseOrder.Find(poID);
-                po.OrderReciepts = null;
+                po.OrderReciept = null;
                 po.RecievedDate = null;
                 po.OrderState = 1;
                 po.Recieved = false;
-                List<Inventory> inventroy = mosaicContext.Inventory.Where(m => m.TransactionReference == receiptID).ToList();
+                List<Inventory> inventroy = mosaicContext.Inventory.Where(m => m.TransactionReferenceType == receiptID).ToList();
                 if (inventroy != null)
                 {
                     mosaicContext.RemoveRange(inventroy);

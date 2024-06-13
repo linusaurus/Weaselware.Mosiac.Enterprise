@@ -31,6 +31,7 @@
             dataGridView1 = new System.Windows.Forms.DataGridView();
             button1 = new System.Windows.Forms.Button();
             label1 = new System.Windows.Forms.Label();
+            richTextBox1 = new System.Windows.Forms.RichTextBox();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -61,10 +62,19 @@
             label1.TabIndex = 2;
             label1.Text = "label1";
             // 
+            // richTextBox1
+            // 
+            richTextBox1.Location = new System.Drawing.Point(31, 145);
+            richTextBox1.Name = "richTextBox1";
+            richTextBox1.Size = new System.Drawing.Size(906, 96);
+            richTextBox1.TabIndex = 3;
+            richTextBox1.Text = "";
+            // 
             // Transmittal
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            Controls.Add(richTextBox1);
             Controls.Add(label1);
             Controls.Add(button1);
             Controls.Add(dataGridView1);
@@ -80,5 +90,6 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.RichTextBox richTextBox1;
     }
 }

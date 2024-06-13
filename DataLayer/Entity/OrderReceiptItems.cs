@@ -37,9 +37,14 @@ public partial class OrderReceiptItems
 
     public string Note { get; set; }
 
+    public decimal? InventoryAmount { get; set; }
+
     public bool? Pushed { get; set; }
 
+    public virtual Job Job { get; set; }
     public virtual OrderReciept OrderReceipt { get; set; }
+
+    public virtual PurchaseOrder PurchaseOrder { get; set; }
 
     public virtual UnitOfMeasure UnitOfMeasure { get; set; }
 }

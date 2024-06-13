@@ -27,11 +27,9 @@ public partial class PickList
 
     public virtual ICollection<Delivery> Delivery { get; set; } = new List<Delivery>();
 
-    public virtual Destination Destination { get; set; }
-
     public virtual Employee Employee { get; set; }
 
-    
+    public virtual Destination Destination { get; set; }
 
     public virtual Job Job { get; set; }
 

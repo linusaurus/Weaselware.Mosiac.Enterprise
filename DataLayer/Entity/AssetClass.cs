@@ -9,7 +9,7 @@ public partial class AssetClass
 {
     public int AssetClassID { get; set; }
 
-    public string AssetClassName { get; set; }
+    public string AssetClass1 { get; set; }
 
-    public virtual Asset Asset { get; set; }
+    public virtual ICollection<Asset> Asset { get; set; } = new List<Asset>();
 }

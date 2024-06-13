@@ -75,10 +75,10 @@ namespace Mosiac.UX.UXControls
             Grids.BuildPartSearchGrid(dgPartsSearch);
             Grids.BuildPartResourcesGrid(dgResources);
             Grids.BuildPartOrdersGrid(dgPartOrders);
-            Grids.BuildStockPartsGrid(dgvStockParts);
-            Grids.BuildPartsTransActionsGrid(dgTransactionsGrid);
-            Grids.BuildLocationsGrid(dgLocations);
-            Grids.BuildLocationPartsGrid(dgLocationParts);
+            //Grids.BuildStockPartsGrid(dgvStockParts);
+            //Grids.BuildPartsTransActionsGrid(dgTransactionsGrid);
+           // Grids.BuildLocationsGrid(dgLocations);
+            //Grids.BuildLocationPartsGrid(dgLocationParts);
             // -------------------------------------------
             manus = partsService.GetManus();
 
@@ -89,9 +89,9 @@ namespace Mosiac.UX.UXControls
             // Event Wiring ===========================================================================
             bsPart.ListChanged += BsPart_ListChanged;
             bsResource.ListChanged += BsResource_ListChanged;
-            dgTransactionsGrid.CellContentDoubleClick += DgTransactionsGrid_CellContentDoubleClick;
-            bsLocationParts.CurrentItemChanged += BsLocationParts_CurrentItemChanged;
-            bsLocationParts.ListChanged += BsLocationParts_ListChanged;
+            ////dgTransactionsGrid.CellContentDoubleClick += DgTransactionsGrid_CellContentDoubleClick;
+            //bsLocationParts.CurrentItemChanged += BsLocationParts_CurrentItemChanged;
+            //bsLocationParts.ListChanged += BsLocationParts_ListChanged;
 
             // ========================================================================================
 
@@ -488,7 +488,7 @@ namespace Mosiac.UX.UXControls
             dv = ListAsDataTable.DefaultView;
             dgPartsSearch.DataSource = dv;
         }
-
+        //TODO update part edit to show updated information changes inlist
         private void dgPartsSearch_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
 
@@ -538,7 +538,7 @@ namespace Mosiac.UX.UXControls
             if (_selectedResourceID != default)
             {
                 string conn = Mosiac.UX.Properties.Settings.Default.MosiacConnection;
-                FileOperations.GetResource(_selectedResourceID, Mosiac.UX.Properties.Settings.Default.MosiacConnection);
+                FileOperations.GetResource(_selectedResourceID, Mosiac.UX.Properties.Settings.Default.FileStreamConnection);
             }
 
         }
@@ -755,26 +755,26 @@ namespace Mosiac.UX.UXControls
 
         private void tsTransactions_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
-            switch (e.ClickedItem.Name)
-            {
-                case "tsbReceipts":
-                    dgTransactionsGrid.DataSource = InventoryService.GetPartTransactions(_selectedPartID, 1);
-                    break;
-                case "tsbAudits":
-                    dgTransactionsGrid.DataSource = InventoryService.GetPartTransactions(_selectedPartID, 4);
-                    break;
-                case "tsbPulls":
-                    dgTransactionsGrid.DataSource = InventoryService.GetPartTransactions(_selectedPartID, 3);
-                    break;
-                case "tsbAll":
-                    dgTransactionsGrid.DataSource = InventoryService.GetPartTransactions(_selectedPartID);
-                    break;
-                case "tsbRemoveSelected":
-                    dgTransactionsGrid.DataSource = InventoryService.GetPartTransactions(_selectedPartID);
-                    break;
-                default:
-                    break;
-            }
+            //switch (e.ClickedItem.Name)
+            //{
+            //    case "tsbReceipts":
+            //        dgTransactionsGrid.DataSource = InventoryService.GetPartTransactions(_selectedPartID, 1);
+            //        break;
+            //    case "tsbAudits":
+            //        dgTransactionsGrid.DataSource = InventoryService.GetPartTransactions(_selectedPartID, 4);
+            //        break;
+            //    case "tsbPulls":
+            //        dgTransactionsGrid.DataSource = InventoryService.GetPartTransactions(_selectedPartID, 3);
+            //        break;
+            //    case "tsbAll":
+            //        dgTransactionsGrid.DataSource = InventoryService.GetPartTransactions(_selectedPartID);
+            //        break;
+            //    case "tsbRemoveSelected":
+            //        dgTransactionsGrid.DataSource = InventoryService.GetPartTransactions(_selectedPartID);
+            //        break;
+            //    default:
+            //        break;
+            //}
         }
 
         private void button1_Click_2(object sender, EventArgs e)
@@ -914,7 +914,7 @@ namespace Mosiac.UX.UXControls
                       //  LocationID = e.Location,
                         EmpID = Globals.CurrentLoggedUserID,
                         InventoryAmount = e.StockOnHand,
-                        TransactionType = 4
+                        TransactionReferenceType = 4
 
                     };
                     // add the new inventory item to the exportable list-->

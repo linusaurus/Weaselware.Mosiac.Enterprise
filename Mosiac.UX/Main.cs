@@ -42,6 +42,9 @@ namespace Mosiac.UX
         {
             InitializeComponent();    
             // This should be the main contect wireup for everything else
+           // _context = new MosaicContext(Mosiac.UX.Properties.Settings.Default.MosiacConnection);
+
+
             _context = new MosaicContext(Mosiac.UX.Properties.Settings.Default.MosiacConnection);
             _ordersService = new OrdersService(_context);
             MainTabs = MainTabControl;
@@ -454,6 +457,23 @@ namespace Mosiac.UX
                     {
                         if (MainTabControl.TabPages.ContainsKey("TransmittalsPage"))
                         { MainTabControl.SelectTab("TransmittalsPage"); }
+                    }
+                    break;
+                case "tsInventoryManager":
+
+                    TabPage dsInventoryManagerPage = PageFactory.GetNewTabPage(_context, PageFactory.TabPageType.InventoryManager);
+                    dsInventoryManagerPage.Name = "InventoryManager";
+                    dsInventoryManagerPage.Dock = DockStyle.Fill;
+
+                    if (!MainTabControl.TabPages.ContainsKey("InventoryManager"))
+                    {
+                        MainTabControl.TabPages.Add(dsInventoryManagerPage);
+                        MainTabControl.SelectedTab = dsInventoryManagerPage;
+                    }
+                    else
+                    {
+                        if (MainTabControl.TabPages.ContainsKey("InventoryManager"))
+                        { MainTabControl.SelectTab("InventoryManager"); }
                     }
                     break;
                 default:
