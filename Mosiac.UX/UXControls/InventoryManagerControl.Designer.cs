@@ -714,6 +714,7 @@
             btnCheckout.TabIndex = 3;
             btnCheckout.Text = "Check Out Item";
             btnCheckout.UseVisualStyleBackColor = true;
+            btnCheckout.Click += btnCheckout_Click;
             // 
             // txtjDescription
             // 
@@ -774,6 +775,7 @@
             txtLineItemEntry.Name = "txtLineItemEntry";
             txtLineItemEntry.Size = new System.Drawing.Size(97, 23);
             txtLineItemEntry.TabIndex = 0;
+            txtLineItemEntry.Text = "56938";
             // 
             // InventoryManagerControl
             // 

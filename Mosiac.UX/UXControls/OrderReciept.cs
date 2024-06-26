@@ -132,7 +132,10 @@ namespace Mosiac.UX.UXControls
                 {
                     currentReceiptItem = (OrderRecieptLineItemDto)dvg.CurrentRow.DataBoundItem;
                     // Return the inventory transaction for the Reciept item --
+                    _currentInventory = mosaicContext.Inventory.Where(k => k.LineID == 61569).FirstOrDefault();
+
                     _currentInventory = mosaicContext.Inventory.Where(k => k.LineID == currentReceiptItem.LineID).FirstOrDefault();
+
                     inventoryWrapper = new InventoryWrapper(_currentInventory);
                     if (_currentInventory.LocationID != null)
                     {

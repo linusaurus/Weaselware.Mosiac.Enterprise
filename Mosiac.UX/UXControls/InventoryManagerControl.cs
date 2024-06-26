@@ -59,7 +59,7 @@ namespace Mosiac.UX.UXControls
             cbxUnit.ResetText();
             cbxUnit.SelectedIndex = -1;
 
-          
+
             BindPart(bsPart);
         }
 
@@ -90,7 +90,7 @@ namespace Mosiac.UX.UXControls
         private void LoadJobs()
         {
             jobs = jobsService.All();
-            
+
             cboCheckOutJobs.DataSource = jobs;
             cboCheckOutJobs.DisplayMember = "Jobname";
             cboCheckOutJobs.ValueMember = "JobID";
@@ -246,20 +246,21 @@ namespace Mosiac.UX.UXControls
 
             if (int.TryParse(txtLineItemEntry.Text, out labelLineID))
             {
-                Inventory inventory = _ctx.Inventory.Include(u => u.UnitOfMeasure)
+                Inventory inventory = _ctx.Inventory.Include(u => u.UnitOfMeasure).Include(j => j.Job).Include(o => o.GetOrderReciept)
                     .Where(l => l.LineID == labelLineID).FirstOrDefault();
                 if (inventory != null)
                 {
-                    BindLineItem(inventory);
+                    LoadLineItem(inventory);
                 }
             }
 
 
         }
 
-        private void BindLineItem(Inventory inventory)
+        private void LoadLineItem(Inventory inventory)
         {
             int orderRecieptId = inventory.OrderReceiptID.GetValueOrDefault();
+
             if (orderRecieptId != default)
             {
                 var order = _ctx.OrderReciept.Include(p => p.PurchaseOrder).ThenInclude(j => j.Job)
@@ -271,7 +272,7 @@ namespace Mosiac.UX.UXControls
                 txtjUnitOfMeasure.Text = inventory.UnitOfMeasure.UnitName;
                 txt2CheckOutUnits.Text = inventory.UnitOfMeasure.UnitName;
                 txt2StockReceived.Text = inventory.QntyReceived.GetValueOrDefault().ToString();
-                
+
             }
 
 
@@ -294,7 +295,8 @@ namespace Mosiac.UX.UXControls
         {
 
             TabPage tabPage = ((TabControl)sender).SelectedTab;
-            if (tabPage != null) {
+            if (tabPage != null)
+            {
                 if (tabPage.Name == "tbCheckOuts")
                 {
                     this.btnSetStockLevel.Enabled = false;
@@ -308,9 +310,16 @@ namespace Mosiac.UX.UXControls
                     this.btnPullStock.Enabled = true;
                     this.btnRollUp.Enabled = true;
                 }
-            
-            
+
+
             }
+        }
+  
+        ////TODO  check out part logic
+
+        private void btnCheckout_Click(object sender, EventArgs e)
+        {
+          var line =   inventoryService.FindLineItem(56982);
         }
     }
 }

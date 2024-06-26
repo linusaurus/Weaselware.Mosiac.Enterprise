@@ -97,6 +97,7 @@ namespace Mosiac.UX
             switch (e.ClickedItem.Name)
             {
                 case "tsSubmit":
+
                     Application.UseWaitCursor = true;
                     orderReceiptRepository.UpdateOrCreate(receiptDto);
                     Application.UseWaitCursor = false;

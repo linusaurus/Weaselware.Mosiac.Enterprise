@@ -303,15 +303,17 @@ namespace ServiceLayer
             if (orderReciept == null)
             {
                 orderReciept = new OrderReciept();
+                //Map properties
+                orderReciept.ReceiptDate = dto.ReceiptDate;
+                orderReciept.PurchaseOrderID = dto.PurchaseOrderID;
+                orderReciept.IsOrderComplete = dto.IsOrderComplete;
+                orderReciept.EmployeeID = dto.EmployeeId;
+
                 ctx.OrderReciept.Add(orderReciept);
                 ctx.SaveChanges();
             }
 
-            //Map properties
-            orderReciept.ReceiptDate = dto.ReceiptDate;
-            orderReciept.PurchaseOrderID = dto.PurchaseOrderID;
-            orderReciept.IsOrderComplete = dto.IsOrderComplete;
-            orderReciept.EmployeeID = dto.EmployeeId;
+
             
 
             //remove deleted details -
@@ -340,6 +342,7 @@ namespace ServiceLayer
                 detail.Extended = detailDTO.Extended;
                 detail.QuantityOrdered = detailDTO.QntyOrdered;
                 detail.QuantityReceived = detailDTO.QntyReceived;
+                detail.InventoryAmount = detailDTO.QntyToInventory;
                 detail.Balance = detailDTO.QntyBalance;
                 detail.IsComplete = detailDTO.ItemsRecievedComplete;
               
@@ -369,8 +372,6 @@ namespace ServiceLayer
                  po.OrderState = 2;
             }
 
-        
-
             // Push the Item to inventory -------------------------------
 
             foreach (var item in dto.OrderReceiptLineItems)
@@ -381,13 +382,20 @@ namespace ServiceLayer
                     inv.DateStamp = DateTime.Now;
                     inv.Description = item.Description;
                     inv.EmpID = orderReciept.EmployeeID;
+                    inv.QntyOrdered = item.QntyOrdered;
                     inv.JobID = item.JobID;
-                    inv.LineID = item.LineID;
+                    inv.LineID = item.LineID;                  
                     inv.PartID = item.PartID;
+                    inv.LocationID = 5;
                     inv.UnitOfMeasureID = item.UiD;
                     inv.TransactionReferenceType = item.StockTransaction;
+                    if (item.QntyToInventory == default)
+                    {
+                        inv.InventoryAmount = item.QntyOrdered;
+                    }
                     inv.InventoryAmount = item.QntyToInventory;
-
+                    inv.OrderReceiptID = orderReciept.OrderReceiptID;
+                    
                     _ctx.Inventory.Add(inv);
                 }
                 
@@ -395,7 +403,7 @@ namespace ServiceLayer
 
             int key = _ctx.PurchaseOrder.Find(dto.PurchaseOrderID).EmployeeID.GetValueOrDefault();
             var emp = _ctx.Employee.Find(key);
-            NotificationService.SendNotificaion(emp.EmployeeEmail, dto);
+            //NotificationService.SendNotificaion(emp.EmployeeEmail, dto);
             _ctx.SaveChanges();
             
             return orderReciept.OrderReceiptID;            

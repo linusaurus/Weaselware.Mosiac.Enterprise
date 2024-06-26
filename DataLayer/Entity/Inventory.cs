@@ -47,7 +47,12 @@ public partial class Inventory
 
     public virtual Location Location { get; set; }
 
+   
     public virtual Part Part { get; set; }
+
+    public virtual Job Job { get; set; }
+
+    public virtual OrderReciept GetOrderReciept { get; set; }
 
     public virtual TransActionType TransActionTypeNavigation { get; set; }
 

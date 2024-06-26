@@ -741,7 +741,7 @@ namespace Mosiac.UX.UXControls
 
             // OrderReceiptID Column --
             DataGridViewTextBoxColumn col_ID = new DataGridViewTextBoxColumn();
-            col_ID.HeaderText = "ID";
+            col_ID.HeaderText = "PO#";
             col_ID.DataPropertyName = "PurchaseOrderID";
             col_ID.Width = 55;
 
