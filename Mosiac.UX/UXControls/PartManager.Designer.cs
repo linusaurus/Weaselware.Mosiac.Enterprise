@@ -47,6 +47,7 @@ namespace Mosiac.UX.UXControls
             tabPartDetail = new TabControl();
             tabResourceManager = new TabPage();
             splitContainer1 = new SplitContainer();
+            txtFileSource = new TextBox();
             panel2 = new Panel();
             propertyGrid1 = new PropertyGrid();
             toolStrip1 = new ToolStrip();
@@ -96,6 +97,8 @@ namespace Mosiac.UX.UXControls
             tsLocationPartsToolBar = new ToolStrip();
             tsbSaveLocationParts = new ToolStripButton();
             dgLocationParts = new DataGridView();
+            btnShowFile = new Button();
+            panel4 = new Panel();
             ((System.ComponentModel.ISupportInitialize)dgPartsSearch).BeginInit();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgResources).BeginInit();
@@ -138,6 +141,7 @@ namespace Mosiac.UX.UXControls
             tsLocationMenu.SuspendLayout();
             tsLocationPartsToolBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgLocationParts).BeginInit();
+            panel4.SuspendLayout();
             SuspendLayout();
             // 
             // txtSearch
@@ -159,7 +163,7 @@ namespace Mosiac.UX.UXControls
             dgPartsSearch.Location = new Point(6, 6);
             dgPartsSearch.Name = "dgPartsSearch";
             dgPartsSearch.ReadOnly = true;
-            dgPartsSearch.Size = new Size(833, 531);
+            dgPartsSearch.Size = new Size(850, 531);
             dgPartsSearch.TabIndex = 9;
             dgPartsSearch.VirtualMode = true;
             dgPartsSearch.CellMouseDoubleClick += dgPartsSearch_CellMouseDoubleClick;
@@ -179,7 +183,7 @@ namespace Mosiac.UX.UXControls
             panel1.Controls.Add(txtSearch);
             panel1.Location = new Point(10, 18);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1298, 45);
+            panel1.Size = new Size(1325, 45);
             panel1.TabIndex = 11;
             // 
             // btnSearch
@@ -212,7 +216,7 @@ namespace Mosiac.UX.UXControls
             btnOpenPart.FlatAppearance.BorderColor = Color.Red;
             btnOpenPart.FlatAppearance.BorderSize = 2;
             btnOpenPart.FlatStyle = FlatStyle.Flat;
-            btnOpenPart.Location = new Point(1117, 5);
+            btnOpenPart.Location = new Point(1144, 5);
             btnOpenPart.Name = "btnOpenPart";
             btnOpenPart.Size = new Size(65, 25);
             btnOpenPart.TabIndex = 17;
@@ -224,7 +228,7 @@ namespace Mosiac.UX.UXControls
             // txtPartIDLookup
             // 
             txtPartIDLookup.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            txtPartIDLookup.Location = new Point(1205, 6);
+            txtPartIDLookup.Location = new Point(1232, 6);
             txtPartIDLookup.Name = "txtPartIDLookup";
             txtPartIDLookup.Size = new Size(75, 23);
             txtPartIDLookup.TabIndex = 16;
@@ -234,7 +238,7 @@ namespace Mosiac.UX.UXControls
             // 
             ckbUseManufacturer.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             ckbUseManufacturer.AutoSize = true;
-            ckbUseManufacturer.Location = new Point(998, 8);
+            ckbUseManufacturer.Location = new Point(1025, 8);
             ckbUseManufacturer.Name = "ckbUseManufacturer";
             ckbUseManufacturer.Size = new Size(98, 19);
             ckbUseManufacturer.TabIndex = 14;
@@ -247,7 +251,7 @@ namespace Mosiac.UX.UXControls
             cboManu.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             cboManu.Enabled = false;
             cboManu.FormattingEnabled = true;
-            cboManu.Location = new Point(833, 5);
+            cboManu.Location = new Point(860, 5);
             cboManu.Name = "cboManu";
             cboManu.Size = new Size(159, 23);
             cboManu.TabIndex = 13;
@@ -257,9 +261,9 @@ namespace Mosiac.UX.UXControls
             // 
             dgResources.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgResources.Dock = DockStyle.Fill;
-            dgResources.Location = new Point(6, 6);
+            dgResources.Location = new Point(6, 45);
             dgResources.Name = "dgResources";
-            dgResources.Size = new Size(391, 255);
+            dgResources.Size = new Size(401, 216);
             dgResources.TabIndex = 8;
             dgResources.CellMouseDoubleClick += dgResources_CellMouseDoubleClick;
             dgResources.SelectionChanged += dgResources_SelectionChanged;
@@ -306,7 +310,7 @@ namespace Mosiac.UX.UXControls
             tabPartDetail.Location = new Point(6, 6);
             tabPartDetail.Name = "tabPartDetail";
             tabPartDetail.SelectedIndex = 0;
-            tabPartDetail.Size = new Size(417, 531);
+            tabPartDetail.Size = new Size(427, 531);
             tabPartDetail.TabIndex = 1;
             // 
             // tabResourceManager
@@ -316,7 +320,7 @@ namespace Mosiac.UX.UXControls
             tabResourceManager.Location = new Point(4, 24);
             tabResourceManager.Name = "tabResourceManager";
             tabResourceManager.Padding = new Padding(3);
-            tabResourceManager.Size = new Size(409, 503);
+            tabResourceManager.Size = new Size(419, 503);
             tabResourceManager.TabIndex = 0;
             tabResourceManager.Text = "Resource Manager";
             tabResourceManager.UseVisualStyleBackColor = true;
@@ -331,15 +335,24 @@ namespace Mosiac.UX.UXControls
             // splitContainer1.Panel1
             // 
             splitContainer1.Panel1.Controls.Add(dgResources);
+            splitContainer1.Panel1.Controls.Add(panel4);
             splitContainer1.Panel1.Padding = new Padding(6);
             // 
             // splitContainer1.Panel2
             // 
             splitContainer1.Panel2.Controls.Add(panel2);
             splitContainer1.Panel2.Padding = new Padding(6);
-            splitContainer1.Size = new Size(403, 466);
+            splitContainer1.Size = new Size(413, 466);
             splitContainer1.SplitterDistance = 267;
             splitContainer1.TabIndex = 16;
+            // 
+            // txtFileSource
+            // 
+            txtFileSource.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            txtFileSource.Location = new Point(6, 8);
+            txtFileSource.Name = "txtFileSource";
+            txtFileSource.Size = new Size(297, 23);
+            txtFileSource.TabIndex = 9;
             // 
             // panel2
             // 
@@ -349,7 +362,7 @@ namespace Mosiac.UX.UXControls
             panel2.Dock = DockStyle.Fill;
             panel2.Location = new Point(6, 6);
             panel2.Name = "panel2";
-            panel2.Size = new Size(391, 183);
+            panel2.Size = new Size(401, 183);
             panel2.TabIndex = 0;
             // 
             // propertyGrid1
@@ -358,7 +371,7 @@ namespace Mosiac.UX.UXControls
             propertyGrid1.Dock = DockStyle.Fill;
             propertyGrid1.Location = new Point(0, 0);
             propertyGrid1.Name = "propertyGrid1";
-            propertyGrid1.Size = new Size(389, 181);
+            propertyGrid1.Size = new Size(399, 181);
             propertyGrid1.TabIndex = 0;
             // 
             // toolStrip1
@@ -366,7 +379,7 @@ namespace Mosiac.UX.UXControls
             toolStrip1.Items.AddRange(new ToolStripItem[] { toolStripButton1, toolStripButton2, toolStripButton3, toolStripButton4, toolStripButton5, toolStripButton6 });
             toolStrip1.Location = new Point(3, 3);
             toolStrip1.Name = "toolStrip1";
-            toolStrip1.Size = new Size(403, 31);
+            toolStrip1.Size = new Size(413, 31);
             toolStrip1.TabIndex = 15;
             toolStrip1.Text = "toolStrip1";
             // 
@@ -472,7 +485,7 @@ namespace Mosiac.UX.UXControls
             tsResources.Location = new Point(10, 697);
             tsResources.Margin = new Padding(3);
             tsResources.Name = "tsResources";
-            tsResources.Size = new Size(1301, 25);
+            tsResources.Size = new Size(1328, 25);
             tsResources.TabIndex = 18;
             tsResources.Text = "toolStrip1";
             tsResources.ItemClicked += tsResources_ItemClicked_1;
@@ -494,7 +507,7 @@ namespace Mosiac.UX.UXControls
             btnPrintLabel.FlatAppearance.BorderColor = Color.Sienna;
             btnPrintLabel.FlatAppearance.BorderSize = 2;
             btnPrintLabel.FlatStyle = FlatStyle.Flat;
-            btnPrintLabel.Location = new Point(1169, 68);
+            btnPrintLabel.Location = new Point(1196, 68);
             btnPrintLabel.Name = "btnPrintLabel";
             btnPrintLabel.Size = new Size(139, 29);
             btnPrintLabel.TabIndex = 17;
@@ -518,8 +531,8 @@ namespace Mosiac.UX.UXControls
             // 
             spcPartsManager.Panel2.Controls.Add(tabPartDetail);
             spcPartsManager.Panel2.Padding = new Padding(6);
-            spcPartsManager.Size = new Size(1278, 543);
-            spcPartsManager.SplitterDistance = 845;
+            spcPartsManager.Size = new Size(1305, 543);
+            spcPartsManager.SplitterDistance = 862;
             spcPartsManager.TabIndex = 19;
             // 
             // tabPartManager
@@ -531,7 +544,7 @@ namespace Mosiac.UX.UXControls
             tabPartManager.Location = new Point(10, 107);
             tabPartManager.Name = "tabPartManager";
             tabPartManager.SelectedIndex = 0;
-            tabPartManager.Size = new Size(1298, 583);
+            tabPartManager.Size = new Size(1325, 583);
             tabPartManager.TabIndex = 20;
             tabPartManager.SelectedIndexChanged += tabPartManager_SelectedIndexChanged;
             // 
@@ -541,7 +554,7 @@ namespace Mosiac.UX.UXControls
             tabPartsManager.Location = new Point(4, 24);
             tabPartsManager.Name = "tabPartsManager";
             tabPartsManager.Padding = new Padding(6);
-            tabPartsManager.Size = new Size(1290, 555);
+            tabPartsManager.Size = new Size(1317, 555);
             tabPartsManager.TabIndex = 0;
             tabPartsManager.Text = "Part Manager";
             tabPartsManager.UseVisualStyleBackColor = true;
@@ -939,6 +952,27 @@ namespace Mosiac.UX.UXControls
             dgLocationParts.Size = new Size(952, 475);
             dgLocationParts.TabIndex = 0;
             // 
+            // btnShowFile
+            // 
+            btnShowFile.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnShowFile.Location = new Point(318, 7);
+            btnShowFile.Name = "btnShowFile";
+            btnShowFile.Size = new Size(69, 23);
+            btnShowFile.TabIndex = 10;
+            btnShowFile.Text = "Show";
+            btnShowFile.UseVisualStyleBackColor = true;
+            btnShowFile.Click += btnShowFile_Click;
+            // 
+            // panel4
+            // 
+            panel4.Controls.Add(txtFileSource);
+            panel4.Controls.Add(btnShowFile);
+            panel4.Dock = DockStyle.Top;
+            panel4.Location = new Point(6, 6);
+            panel4.Name = "panel4";
+            panel4.Size = new Size(401, 39);
+            panel4.TabIndex = 11;
+            // 
             // PartManager
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -953,7 +987,7 @@ namespace Mosiac.UX.UXControls
             MinimumSize = new Size(1095, 650);
             Name = "PartManager";
             Padding = new Padding(10);
-            Size = new Size(1321, 732);
+            Size = new Size(1348, 732);
             ((System.ComponentModel.ISupportInitialize)dgPartsSearch).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
@@ -1008,6 +1042,8 @@ namespace Mosiac.UX.UXControls
             tsLocationPartsToolBar.ResumeLayout(false);
             tsLocationPartsToolBar.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgLocationParts).EndInit();
+            panel4.ResumeLayout(false);
+            panel4.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -1095,5 +1131,8 @@ namespace Mosiac.UX.UXControls
         private System.Windows.Forms.ToolStripTextBox txtAreaFilter;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.Panel panel3;
+        private TextBox txtFileSource;
+        private Button btnShowFile;
+        private Panel panel4;
     }
 }

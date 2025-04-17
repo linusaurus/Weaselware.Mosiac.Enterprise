@@ -584,7 +584,7 @@ namespace Mosiac.UX.UXControls
             DataGridViewTextBoxColumn col_ID = new DataGridViewTextBoxColumn();
             col_ID.HeaderText = "ID";
             col_ID.DataPropertyName = "ResourceID";
-            col_ID.Width = 55;
+            col_ID.Width = 0;
 
             // Resource Description Column --
             DataGridViewTextBoxColumn col_Description = new DataGridViewTextBoxColumn();

@@ -4,14 +4,14 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>net9.0-windows7.0</TargetFramework>
     <UseWindowsForms>true</UseWindowsForms>
-    <AssemblyVersion>1.9.2.1</AssemblyVersion>
+    <AssemblyVersion>1.9.2.3</AssemblyVersion>
     <ApplicationIcon>mosaic-_1_.ico</ApplicationIcon>
     <FileVersion>1.7.1.10</FileVersion>
     <Authors>Dick Danger</Authors>
     <Company>Weaselware</Company>
     <Product>Mosiac Enterprise</Product>
     <Version>1.9.0</Version>
-    <Copyright>Weaselware 2023</Copyright>
+    <Copyright>Weaselware 2025</Copyright>
     <StartupObject>Mosiac.UX.Program</StartupObject>
     <PackageIcon>mosaic (1).png</PackageIcon>
   </PropertyGroup>

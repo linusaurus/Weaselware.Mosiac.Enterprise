@@ -204,7 +204,7 @@ namespace Mosiac.UX.UXControls
             }
 
         }
-       
+
         private void BindResource(BindingSource bs)
         {
             this.propertyGrid1.SelectedObject = bs.DataSource;
@@ -361,7 +361,9 @@ namespace Mosiac.UX.UXControls
                     if (dg.CurrentRow != null)
                     {
                         _selectedResourceID = (int)dg.CurrentRow.Cells[0].Value;
+
                         _selectedResource = (Resource)dg.CurrentRow.DataBoundItem;
+                        txtFileSource.Text = _selectedResource.filesource;
                         bsResource.DataSource = _selectedResource;
                         BindResource(bsResource);
                     }
@@ -744,7 +746,7 @@ namespace Mosiac.UX.UXControls
                         dgTransactionsGrid.DataSource = InventoryService.GetPartTransactions(_selectedPartID);
                         decimal stockLevel = InventoryService.GetStockLevel(_selectedPartID);
                         txtStockLevel.Text = String.Format("{0:.##}", stockLevel);
-                    
+
                     }
                 }
             }
@@ -801,7 +803,7 @@ namespace Mosiac.UX.UXControls
                     if (dg.SelectedRows.Count > 0)
                     {
                         row = dg.SelectedRows[0];
-                        _selectedPartID =((PartTransactionListDto) row.DataBoundItem).PartID;
+                        _selectedPartID = ((PartTransactionListDto)row.DataBoundItem).PartID;
 
                         // Use a null check to ensure DataBoundItem is not null
                         if (row.DataBoundItem is PartTransactionListDto DTO)
@@ -831,11 +833,11 @@ namespace Mosiac.UX.UXControls
             if (_selectedTransaction != default)
             {
                 Inventory result = _ctx.Inventory.Where(x => x.StockTransactionID == _selectedTransaction).FirstOrDefault();
-            
 
-            _ctx.Inventory.Remove(result);
-            _ctx.SaveChanges();
-             }
+
+                _ctx.Inventory.Remove(result);
+                _ctx.SaveChanges();
+            }
 
             dgTransactionsGrid.DataSource = InventoryService.GetPartTransactions(_selectedPartID);
             dgTransactionsGrid.Refresh();
@@ -990,7 +992,7 @@ namespace Mosiac.UX.UXControls
             StockLevelAdjustmentForm frm = new StockLevelAdjustmentForm();
             frm.Text = String.Format("Pull Stock # {0}", _selectedPartID.ToString());
 
-         //   int v = _selectedPart.PartID;
+            //   int v = _selectedPart.PartID;
             if (frm.ShowDialog() == DialogResult.OK)
             {
                 _stockService.PullPart(_selectedPartID.ToString(), frm.Adjustment, Globals.CurrentLoggedUserID, 1);
@@ -1003,10 +1005,10 @@ namespace Mosiac.UX.UXControls
         }
 
         //TODO: Add the ability to edit an inventory item
-    
+
         private void EditInventoryItem(object sender, EventArgs e)
         {
-           if (_selectedTransaction != default)
+            if (_selectedTransaction != default)
             {
                 Inventory iTrans = InventoryService.GetTransaction(_selectedTransaction);
                 EditInventoryEditForm frm = new EditInventoryEditForm(iTrans);
@@ -1020,7 +1022,29 @@ namespace Mosiac.UX.UXControls
                 }
 
             }
+
+        }
+        /// <summary>
+        /// TODO open and select file in folder
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnShowFile_Click(object sender, EventArgs e)
+        {
+            // suppose that we have a test.txt at E:\
+            string root = System.Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            string filePath = Path.Combine(root, "ResourceCache",_selectedResource.filesource);
            
+            if (!File.Exists(filePath))
+            {
+                return;
+            }
+
+            // combine the arguments together
+            // it doesn't matter if there is a space after ','
+            string argument = "/select, \"" + filePath + "\"";
+
+            System.Diagnostics.Process.Start("explorer.exe", argument);
         }
     }
 }
