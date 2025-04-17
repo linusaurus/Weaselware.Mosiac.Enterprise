@@ -18,6 +18,7 @@ using Mosiac.UX.Properties;
 using System.Reflection;
 using Neodynamic.SDK.Printing;
 using Mosiac.UX.Services;
+using System.Drawing.Text;
 
 namespace Mosiac.UX
 {
@@ -28,9 +29,11 @@ namespace Mosiac.UX
         int _loggedOnUserID;
         readonly OrdersService _ordersService;
        
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public TabControl MainTabs { get; set; }
-       
 
+
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public int LoggedOnUserID
         {
             get { return _loggedOnUserID; }
@@ -119,15 +122,7 @@ namespace Mosiac.UX
 
         #endregion
 
-        private void tsbPullStockOrder_Click(object sender, EventArgs e)
-        {
-
-            TabPage stockBillPage = PageFactory.GetNewTabPage(_context, PageFactory.TabPageType.StockBill);
-
-            MainTabControl.TabPages.Add(stockBillPage);
-            MainTabControl.SelectedTab = stockBillPage;
-
-        }
+       
 
         private void CloseActiveTab()
         {
@@ -168,14 +163,9 @@ namespace Mosiac.UX
             ToolStripButton tsb = (ToolStripButton)ts.GetItemAt(395, 792);
         }
 
-        private void tsbJobItems_OnClick(object sender, EventArgs e)
-        {
-            TabPage AssembliesTab = PageFactory.GetNewTabPage(_context, PageFactory.TabPageType.AssemblyManagerControl);
-            MainTabControl.TabPages.Add(AssembliesTab);
-            MainTabControl.SelectedTab = AssembliesTab;
-        }
+      
 
-       
+
 
         private void MainTabControl_DrawItem(object sender, DrawItemEventArgs e)
         {
@@ -259,11 +249,13 @@ namespace Mosiac.UX
                     {
                         MainTabControl.TabPages.Add(myOrdersTab);
                         MainTabControl.SelectedTab = myOrdersTab;
+                        SetToolbarSelectionItem("tsMyOrders");
                     }
                     else
                     {
                         if (MainTabControl.TabPages.ContainsKey("myordersTab"))
                         { MainTabControl.SelectTab("myordersTab"); }
+                       
                     }
 
                     break;
@@ -276,11 +268,13 @@ namespace Mosiac.UX
                     {
                         MainTabControl.TabPages.Add(suppliersManager);
                         MainTabControl.SelectedTab = suppliersManager;
+                       SetToolbarSelectionItem("tsSupplerOrders");
                     }
                     else
                     {
                         if (MainTabControl.TabPages.ContainsKey("SupplierOrders"))
-                        { MainTabControl.SelectTab("SupplierOrders"); }
+                        { MainTabControl.SelectTab("tsSupplerOrders"); }
+                     
                     }
                     break;
                  //-------------------------------------------------------------------------------------------------------
@@ -294,16 +288,38 @@ namespace Mosiac.UX
                     {
                         MainTabControl.TabPages.Add(OrderReceiptTab);
                         MainTabControl.SelectedTab = OrderReceiptTab;
+                        SetToolbarSelectionItem("tsbReceiveOrder");
                     }
                     else
                     {
                         if (MainTabControl.TabPages.ContainsKey("OrderReceiptTab"))
                         { MainTabControl.SelectTab("OrderReceiptTab"); }
+                       
                     }
 
 
                     break;
-               // Display the Order Receipts Surface ----+|+
+
+                case "tsbProducts":
+
+                    TabPage ProductsTab = PageFactory.GetNewTabPage(_context, PageFactory.TabPageType.ProductsPage);
+                    ProductsTab.Name = "ProductsTab";
+                    if (!MainTabControl.TabPages.ContainsKey("ProductsTab"))
+                    {
+                        MainTabControl.TabPages.Add(ProductsTab);
+                        MainTabControl.SelectedTab = ProductsTab;
+                       SetToolbarSelectionItem("tsbProducts");
+                    }
+                    else
+                    {
+                        if (MainTabControl.TabPages.ContainsKey("ProductsTab"))
+                        { MainTabControl.SelectTab("ProductsTab"); }
+                     
+                    }
+
+
+                    break;
+                // Display the Order Receipts Surface ----+|+
 
                 case "tsbReceipts":
                     TabPage OrderReceiptHistoryTab = PageFactory.GetNewTabPage(_context, PageFactory.TabPageType.OrderReceiptHistoryPage);
@@ -313,17 +329,19 @@ namespace Mosiac.UX
                     {
                         MainTabControl.TabPages.Add(OrderReceiptHistoryTab);
                         MainTabControl.SelectedTab = OrderReceiptHistoryTab;
+                        SetToolbarSelectionItem("tsbReceipts");
                     }
                     else
                     {
                         if (MainTabControl.TabPages.ContainsKey("OrderReceiptTab"))
                         { MainTabControl.SelectTab("OrderReceiptHistoryTab"); }
+                       
                     }
 
 
                     break;
 
-                 ///TODO  insert new part editor
+               
                 case "tsPartEditor":
 
                     TabPage partEditorPage = PageFactory.GetNewTabPage(_context, PageFactory.TabPageType.PartEditorPage); ;
@@ -333,11 +351,13 @@ namespace Mosiac.UX
                     {
                         MainTabControl.TabPages.Add(partEditorPage);
                         MainTabControl.SelectedTab = partEditorPage;
+                        SetToolbarSelectionItem("tsPartEditor");
                     }
                     else
                     {
                         if (MainTabControl.TabPages.ContainsKey("partEditorPage"))
                         { MainTabControl.SelectTab("partEditorPage"); }
+                        
                     }
 
                     break;
@@ -351,11 +371,15 @@ namespace Mosiac.UX
                     {
                         MainTabControl.TabPages.Add(jobOrdersPage);
                         MainTabControl.SelectedTab = jobOrdersPage;
+                       SetToolbarSelectionItem("tsbJobOrders");
+                      
+
                     }
                     else
                     {
                         if (MainTabControl.TabPages.ContainsKey("JobOrderPage"))
                         { MainTabControl.SelectTab("JobOrderPage"); }
+                       
 
                     }
                     break;
@@ -367,11 +391,13 @@ namespace Mosiac.UX
                     {
                         MainTabControl.TabPages.Add(jobsManagerPage);
                         MainTabControl.SelectedTab = jobsManagerPage;
+                        SetToolbarSelectionItem("tsJobsManager");
                     }
                     else
                     {
                         if (MainTabControl.TabPages.ContainsKey("JobsManagerPage"))
                         { MainTabControl.SelectTab("JobsManagerPage"); }
+                        SetToolbarSelectionItem("tsJobsManager");
 
                     }
 
@@ -386,11 +412,13 @@ namespace Mosiac.UX
                     {
                         MainTabControl.TabPages.Add(manufacturersPage);
                         MainTabControl.SelectedTab = manufacturersPage;
+                        SetToolbarSelectionItem("tsManufacturer");
                     }
                     else
                     {
                         if (MainTabControl.TabPages.ContainsKey("ManufacturerPage"))
                         { MainTabControl.SelectTab("ManufacturerPage"); }
+                        SetToolbarSelectionItem("tsManufacturer");
                     }
 
                     break;
@@ -407,11 +435,14 @@ namespace Mosiac.UX
                     {
                         MainTabControl.TabPages.Add(deliveriesPage);
                         MainTabControl.SelectedTab = deliveriesPage;
+                       SetToolbarSelectionItem("tsDeliveries");
+
                     }
                     else
                     {
                         if (MainTabControl.TabPages.ContainsKey("DeliveriesPage"))
                         { MainTabControl.SelectTab("DeliveriesPage"); }
+                        
                     }
 
                     break;
@@ -429,6 +460,7 @@ namespace Mosiac.UX
                     {
                         MainTabControl.TabPages.Add(dstockPage);
                         MainTabControl.SelectedTab = dstockPage;
+                        SetToolbarSelectionItem("tsStockPage");
                     }
                     else
                     {
@@ -441,7 +473,26 @@ namespace Mosiac.UX
                     break;
 
             }
+
+            
         }
-    
-}
+        private void ClearToolbarSelections()
+        {
+            foreach (ToolStripItem tsi in mainToolStrip.Items)
+            {
+                tsi.BackColor = System.Drawing.Color.Transparent;
+                tsi.Font = new System.Drawing.Font("Arial", 9, FontStyle.Regular);
+            }
+        }
+
+        private void SetToolbarSelectionItem(string itemName)
+        {
+            ClearToolbarSelections();
+            if (mainToolStrip.Items[itemName] is ToolStripItem tsi)
+            {
+                tsi.BackColor = System.Drawing.Color.PaleGoldenrod;
+                tsi.Font = new System.Drawing.Font("Arial", 9, FontStyle.Bold);
+            }
+        }
+    }
 }

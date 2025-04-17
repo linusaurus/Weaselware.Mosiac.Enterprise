@@ -18,6 +18,7 @@ namespace Mosiac.UX.Forms
         private JobsService jobService;
         private Job _selectedJob;
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public Job SelectedJob { get => _selectedJob; set => _selectedJob = value; }
 
         public SelectJobForm(MosaicContext context)

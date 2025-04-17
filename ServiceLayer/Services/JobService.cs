@@ -12,27 +12,29 @@ using ServiceLayer.Models;
 
 namespace ServiceLayer {
 
-    public class JobsService : IDisposable {
+    public class JobsService : IDisposable
+    {
+        private readonly MosaicContext _context; // Fixed IDE1006: Added '_' prefix and IDE0044: Made field readonly
 
-        private  MosaicContext context;
-
-        public JobsService(MosaicContext Context) {
-            
-            context = Context;
+        public JobsService(MosaicContext context)
+        {
+            _context = context;
         }
 
-        public bool Exist(int jobID) {
-
+        public bool Exist(int jobID)
+        {
             bool result = false;
-            if (context.Job.Any(c=> c.jobID == jobID))
-            { result = true;}
+            if (_context.Job.Any(c => c.jobID == jobID))
+            {
+                result = true;
+            }
 
             return result;
         }
 
         public async Task<List<JobListDto>> Search(string term)
         {
-            var jobs = await context.Job.AsNoTracking().Where(p => p.jobname.Contains(term))
+            var jobs = await _context.Job.AsNoTracking().Where(p => p.jobname.Contains(term))
                                     .Select(j => new JobListDto()
                                     {
                                         JobID = j.jobID,
@@ -42,76 +44,65 @@ namespace ServiceLayer {
             return jobs;
         }
 
-
-        public PurchaseOrder GetJob(int jobNumber) {
-
-            return context.PurchaseOrder.Where(c => c.PurchaseOrderID == jobNumber).FirstOrDefault();
+        public PurchaseOrder? GetJob(int jobNumber)
+        {
+            return _context.PurchaseOrder.Where(c => c.PurchaseOrderID == jobNumber).FirstOrDefault();
         }
 
-   
-        public List<PurchaseOrder> GetJobOrders(int jobNumber) {
-
-            return context.PurchaseOrder.Where(c => c.JobID == jobNumber).ToList();
+        public List<PurchaseOrder> GetJobOrders(int jobNumber)
+        {
+            return _context.PurchaseOrder.Where(c => c.JobID == jobNumber).ToList();
         }
 
-        /// <summary>
-        /// TODO  refactor to use lightweight DTO return object
-        /// </summary>
-        /// <param name="jobName"></param>
-        /// <returns></returns>
-        public List<Job> GetJobs(string jobName) {
-
-            return context.Job
+        public List<Job> GetJobs(string jobName)
+        {
+            return _context.Job
                 .Include(p => p.PurchaseOrder).ThenInclude(p => p.PurchaseLineItem)
                 .Where(c => c.jobname.StartsWith(jobName)).OrderByDescending(t => t.start_ts).Take(25).ToList();
         }
 
         public List<Job> GetAllJobs()
         {
-
-            return context.Job.AsNoTracking()
+            return _context.Job.AsNoTracking()
                 .Include(p => p.PurchaseOrder).ThenInclude(p => p.PurchaseLineItem).OrderByDescending(t => t.start_ts).ToList();
         }
 
-
-        public void Save() {
-
-            context.SaveChanges();
+        public void Save()
+        {
+            _context.SaveChanges();
         }
 
         public void Dispose()
         {
-            context.Dispose();
+            _context.Dispose();
         }
 
-        public Job Find(int jobNumber) 
+        public Job? Find(int jobNumber)
         {
-
-            return context.Job.Include(p => p.PurchaseOrder).Where(c => c.jobID == jobNumber).FirstOrDefault();
+            return _context.Job.Include(p => p.PurchaseOrder).Where(c => c.jobID == jobNumber).FirstOrDefault();
         }
-        public async Task<Job> FindAsync(int jobNumber)
-        {
 
-            return  await context.Job.Include(p => p.PurchaseOrder).Where(c => c.jobID == jobNumber).FirstOrDefaultAsync();
+        public async Task<Job?> FindAsync(int jobNumber)
+        {
+            return await _context.Job.Include(p => p.PurchaseOrder).Where(c => c.jobID == jobNumber).FirstOrDefaultAsync();
         }
 
         public List<JobListDto> Recent()
         {
-            var jobs = context.Job.AsNoTracking().OrderByDescending(p => p.jobID).Take(30)
+            var jobs = _context.Job.AsNoTracking().OrderByDescending(p => p.jobID).Take(30)
 
                                   .Select(j => new JobListDto()
                                   {
                                       JobID = j.jobID,
                                       JobName = j.jobname
                                   }).ToList();
-
 
             return jobs;
         }
 
         public List<JobListDto> All()
         {
-            var jobs = context.Job.AsNoTracking().OrderByDescending(p => p.jobID)
+            var jobs = _context.Job.AsNoTracking().OrderByDescending(p => p.jobID)
 
                                   .Select(j => new JobListDto()
                                   {
@@ -119,12 +110,7 @@ namespace ServiceLayer {
                                       JobName = j.jobname
                                   }).ToList();
 
-
             return jobs;
-
-
-
-
         }
     }
 }

@@ -24,6 +24,7 @@ namespace Mosiac.UX.Forms
             Bind();
         }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public Destination Destination { get => _destination; set => _destination = value; }
 
         private void Bind()

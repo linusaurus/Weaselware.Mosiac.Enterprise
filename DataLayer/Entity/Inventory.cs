@@ -17,7 +17,7 @@ public partial class Inventory
 
     public int? JobID { get; set; }
 
-    public string Location { get; set; }
+    //public string Location { get; set; }
 
     public int? ProductID { get; set; }
 

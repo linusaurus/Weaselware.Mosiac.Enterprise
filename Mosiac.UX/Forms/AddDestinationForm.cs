@@ -33,6 +33,7 @@ namespace Mosiac.UX.Forms
 
         }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public Destination SelectedDestination { get { return _selectedDestination; } set { _selectedDestination = value; } }
 
         private async void LoadDestinations()

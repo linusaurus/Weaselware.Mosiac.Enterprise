@@ -358,7 +358,7 @@ public partial class MosaicContext : DbContext
                 .HasColumnType("date");
             entity.Property(e => e.Description).HasMaxLength(512);
             entity.Property(e => e.InventoryAmount).HasColumnType("decimal(18, 4)");
-            entity.Property(e => e.Location).HasMaxLength(120);
+           // entity.Property(e => e.Location).HasMaxLength(120);
             entity.Property(e => e.Note).HasMaxLength(240);
             entity.Property(e => e.QntyOrdered)
                 .HasDefaultValueSql("((0.0))")

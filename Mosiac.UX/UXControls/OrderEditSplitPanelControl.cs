@@ -39,6 +39,7 @@ namespace Mosiac.UX.UXControls
         private OrderFeeControl orderFeeControl;
         private bool isDirty;
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public bool IsDirty
         {
             get { return isDirty; }
@@ -112,11 +113,7 @@ namespace Mosiac.UX.UXControls
             this.orderHeaderVerticalControl1.OnPrintHandler += OrderHeaderVerticalControl1_OnPrintHandler;
            
         }
-        /// <summary>
-        /// TODO
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+
         private void OrderHeaderVerticalControl1_OnSaveHandler(object sender, EventArgs e)
         {
             //orderDTO.Attachments = (AttachmentDto)bsAttachments.DataSource;
@@ -136,7 +133,7 @@ namespace Mosiac.UX.UXControls
         /// <param name="e"></param>
         private void OrderHeaderVerticalControl1_OnPrintHandler(object sender, EventArgs e)
         {        
-            ///TODO  add reporting function
+           
             if (orderDTO != null || orderDTO.PurchaseOrderID != default)
             {
                 FastReport.Report report = new FastReport.Report();
@@ -538,7 +535,7 @@ namespace Mosiac.UX.UXControls
             {  tsTooglePanels.Image = Mosiac.UX.Properties.Resources.round_keyboard_arrow_down_black_24dp;}
 
         }
-        ///TODO need to toggle this to show product for assoiciation with line items
+      
         private void tsToogleHeader_Click(object sender, EventArgs e)
         {                    
             splitContainerMain.Panel1Collapsed = !splitContainerMain.Panel1Collapsed;

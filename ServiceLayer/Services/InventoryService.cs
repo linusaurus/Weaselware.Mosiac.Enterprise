@@ -19,6 +19,15 @@ namespace ServiceLayer
         {
             _ctx = context;
         }
+
+        public Inventory? GetTransaction(int stockTransactionId)
+        {
+            // Use FirstOrDefault instead of Find, as Find is not available on IQueryable
+            Inventory? result = _ctx.Inventory
+                .Include(e => e.Emp).Include(u => u.UnitOfMeasure).Include(l => l.LocationNavigation).Include(t => t.TransActionTypeNavigation)
+                .FirstOrDefault(i => i.StockTransactionID == stockTransactionId);
+            return result;
+        }
         public  PickListDto? GetPickList(int pickListID)
         {
             var result = _ctx.PickList.Include(l => l.PickListItem).Include(e => e.Employee).AsNoTracking().Where(p => p.PickListID == pickListID).Select(dto => new PickListDto
@@ -99,7 +108,8 @@ namespace ServiceLayer
                 adjustment.InventoryAmount = changeValue;
                 adjustment.DateStamp = DateTime.Now;
                 adjustment.Description = thePart.ItemDescription;
-               // adjustment.Location = thePart.Location;
+                adjustment.LocationID = thePart?.LocationID ?? 5;
+                adjustment.UnitOfMeasureID = thePart?.UnitOfMeasureID ?? 1;
                 adjustment.EmpID = 8;
                 adjustment.JobID= 1;
                 adjustment.TransActionType = 4;

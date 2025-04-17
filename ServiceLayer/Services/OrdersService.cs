@@ -125,7 +125,7 @@ namespace ServiceLayer {
             return double.Parse("0.0775");
         }
        
-        // TODO This is the problem 
+     
   
         public PurchaseOrder GetOrderByID(int orderNum) {
 
@@ -363,7 +363,6 @@ namespace ServiceLayer {
                           " WHERE PurchaseOrderID IN " +
                           "(SELECT PurchaseOrderID FROM PurchaseOrder WHERE SupplierID = {0})";
 
-            ///TODO pass a parameter to the sql
             var result = context.PurchaseLineItem.FromSqlRaw(sql, id).Select(d => new SupplierLineItemDto
             {
                 Description = d.Description,
@@ -380,11 +379,7 @@ namespace ServiceLayer {
         {
           return context.UnitOfMeasure.AsNoTracking().ToList() ;
         }
-        /// <summary>
-        /// TODO this need to be much more expanded and use a composite Order DTO
-        /// </summary>
-        /// <param name="order"></param>
-        /// <returns></returns>
+       
         public PurchaseOrder Add(PurchaseOrder order)
         {
             context.PurchaseOrder.Add(order);
@@ -468,8 +463,7 @@ namespace ServiceLayer {
                 orderfee.Qnty = od.Qnty;
             });
 
-            //remove deleted attachments -
-            ///TODO  attachment loading is slow and delete only duplicates
+            
             order.Attachment
                 .Where(a => !orderDTO.Attachments.Any(attachDTO => attachDTO.AttachmentID == a.AttachmentID)).ToList()
                 .ForEach(deleted => ctx.Attachment.Remove(deleted));

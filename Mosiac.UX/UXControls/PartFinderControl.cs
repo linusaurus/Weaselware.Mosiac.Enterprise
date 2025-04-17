@@ -10,6 +10,7 @@ using ServiceLayer;
 using System.Data;
 using Mosiac.UX.Forms;
 using FastReport.DevComponents.DotNetBar;
+using System.ComponentModel;
 
 namespace Mosiac.UX.UXControls
 {
@@ -56,8 +57,12 @@ namespace Mosiac.UX.UXControls
         {
             public LineItemDto jobLineItem { get; set; }
         }
-        
+
         #endregion
+
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+
+       
 
         public Part SelectedPart { get => _selectedPart; set => _selectedPart = value; }
 

@@ -90,7 +90,9 @@ namespace Mosiac.UX
             this.ActiveControl = tbJobSelection;
         }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public int JobNumber { get; set; }
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public int SupplierID { get; set; }
 
 

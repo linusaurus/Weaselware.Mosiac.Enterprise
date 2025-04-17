@@ -29,206 +29,200 @@ namespace Mosiac.UX.UXControls
         /// </summary>
         private void InitializeComponent()
         {
-            this.splcJobMain = new System.Windows.Forms.SplitContainer();
-            this.dgJobOrders = new System.Windows.Forms.DataGridView();
-            this.splcJobProducts = new System.Windows.Forms.SplitContainer();
-            this.dgProducts = new System.Windows.Forms.DataGridView();
-            this.tbTabs = new System.Windows.Forms.TabControl();
-            this.tbSubAssemblies = new System.Windows.Forms.TabPage();
-            this.dgSubAssemblies = new System.Windows.Forms.DataGridView();
-            this.tbProductDocuments = new System.Windows.Forms.TabPage();
-            this.dgProductDocuments = new System.Windows.Forms.DataGridView();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.cboJobs = new System.Windows.Forms.ComboBox();
-            this.Job = new System.Windows.Forms.GroupBox();
-            ((System.ComponentModel.ISupportInitialize)(this.splcJobMain)).BeginInit();
-            this.splcJobMain.Panel1.SuspendLayout();
-            this.splcJobMain.Panel2.SuspendLayout();
-            this.splcJobMain.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgJobOrders)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.splcJobProducts)).BeginInit();
-            this.splcJobProducts.Panel1.SuspendLayout();
-            this.splcJobProducts.Panel2.SuspendLayout();
-            this.splcJobProducts.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgProducts)).BeginInit();
-            this.tbTabs.SuspendLayout();
-            this.tbSubAssemblies.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgSubAssemblies)).BeginInit();
-            this.tbProductDocuments.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgProductDocuments)).BeginInit();
-            this.Job.SuspendLayout();
-            this.SuspendLayout();
+            splcJobMain = new SplitContainer();
+            dgJobOrders = new DataGridView();
+            splcJobProducts = new SplitContainer();
+            dgProducts = new DataGridView();
+            tbTabs = new TabControl();
+            tbSubAssemblies = new TabPage();
+            dgSubAssemblies = new DataGridView();
+            tbProductDocuments = new TabPage();
+            dgProductDocuments = new DataGridView();
+            groupBox1 = new GroupBox();
+            cboJobs = new ComboBox();
+            Job = new GroupBox();
+            ((System.ComponentModel.ISupportInitialize)splcJobMain).BeginInit();
+            splcJobMain.Panel1.SuspendLayout();
+            splcJobMain.Panel2.SuspendLayout();
+            splcJobMain.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgJobOrders).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)splcJobProducts).BeginInit();
+            splcJobProducts.Panel1.SuspendLayout();
+            splcJobProducts.Panel2.SuspendLayout();
+            splcJobProducts.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgProducts).BeginInit();
+            tbTabs.SuspendLayout();
+            tbSubAssemblies.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgSubAssemblies).BeginInit();
+            tbProductDocuments.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgProductDocuments).BeginInit();
+            Job.SuspendLayout();
+            SuspendLayout();
             // 
             // splcJobMain
             // 
-            this.splcJobMain.Cursor = System.Windows.Forms.Cursors.VSplit;
-            this.splcJobMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splcJobMain.Location = new System.Drawing.Point(10, 120);
-            this.splcJobMain.Name = "splcJobMain";
+            splcJobMain.Cursor = Cursors.VSplit;
+            splcJobMain.Dock = DockStyle.Fill;
+            splcJobMain.Location = new Point(10, 120);
+            splcJobMain.Name = "splcJobMain";
             // 
             // splcJobMain.Panel1
             // 
-            this.splcJobMain.Panel1.Controls.Add(this.dgJobOrders);
-            this.splcJobMain.Panel1.Padding = new System.Windows.Forms.Padding(6);
+            splcJobMain.Panel1.Controls.Add(dgJobOrders);
+            splcJobMain.Panel1.Padding = new Padding(6);
             // 
             // splcJobMain.Panel2
             // 
-            this.splcJobMain.Panel2.Controls.Add(this.splcJobProducts);
-            this.splcJobMain.Size = new System.Drawing.Size(1055, 497);
-            this.splcJobMain.SplitterDistance = 350;
-            this.splcJobMain.TabIndex = 0;
+            splcJobMain.Panel2.Controls.Add(splcJobProducts);
+            splcJobMain.Size = new Size(1189, 598);
+            splcJobMain.SplitterDistance = 394;
+            splcJobMain.TabIndex = 0;
             // 
             // dgJobOrders
             // 
-            this.dgJobOrders.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgJobOrders.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgJobOrders.Location = new System.Drawing.Point(6, 6);
-            this.dgJobOrders.Name = "dgJobOrders";
-            this.dgJobOrders.RowTemplate.Height = 25;
-            this.dgJobOrders.Size = new System.Drawing.Size(338, 485);
-            this.dgJobOrders.TabIndex = 0;
+            dgJobOrders.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgJobOrders.Dock = DockStyle.Fill;
+            dgJobOrders.Location = new Point(6, 6);
+            dgJobOrders.Name = "dgJobOrders";
+            dgJobOrders.Size = new Size(382, 586);
+            dgJobOrders.TabIndex = 0;
             // 
             // splcJobProducts
             // 
-            this.splcJobProducts.Cursor = System.Windows.Forms.Cursors.HSplit;
-            this.splcJobProducts.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splcJobProducts.Location = new System.Drawing.Point(0, 0);
-            this.splcJobProducts.Name = "splcJobProducts";
-            this.splcJobProducts.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            splcJobProducts.Cursor = Cursors.HSplit;
+            splcJobProducts.Dock = DockStyle.Fill;
+            splcJobProducts.Location = new Point(0, 0);
+            splcJobProducts.Name = "splcJobProducts";
+            splcJobProducts.Orientation = Orientation.Horizontal;
             // 
             // splcJobProducts.Panel1
             // 
-            this.splcJobProducts.Panel1.Controls.Add(this.dgProducts);
+            splcJobProducts.Panel1.Controls.Add(dgProducts);
             // 
             // splcJobProducts.Panel2
             // 
-            this.splcJobProducts.Panel2.Controls.Add(this.tbTabs);
-            this.splcJobProducts.Size = new System.Drawing.Size(701, 497);
-            this.splcJobProducts.SplitterDistance = 161;
-            this.splcJobProducts.TabIndex = 0;
+            splcJobProducts.Panel2.Controls.Add(tbTabs);
+            splcJobProducts.Size = new Size(791, 598);
+            splcJobProducts.SplitterDistance = 193;
+            splcJobProducts.TabIndex = 0;
             // 
             // dgProducts
             // 
-            this.dgProducts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgProducts.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgProducts.Location = new System.Drawing.Point(0, 0);
-            this.dgProducts.Name = "dgProducts";
-            this.dgProducts.RowTemplate.Height = 25;
-            this.dgProducts.Size = new System.Drawing.Size(701, 161);
-            this.dgProducts.TabIndex = 0;
+            dgProducts.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgProducts.Dock = DockStyle.Fill;
+            dgProducts.Location = new Point(0, 0);
+            dgProducts.Name = "dgProducts";
+            dgProducts.Size = new Size(791, 193);
+            dgProducts.TabIndex = 0;
             // 
             // tbTabs
             // 
-            this.tbTabs.Controls.Add(this.tbSubAssemblies);
-            this.tbTabs.Controls.Add(this.tbProductDocuments);
-            this.tbTabs.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbTabs.Location = new System.Drawing.Point(0, 0);
-            this.tbTabs.Name = "tbTabs";
-            this.tbTabs.SelectedIndex = 0;
-            this.tbTabs.Size = new System.Drawing.Size(701, 332);
-            this.tbTabs.TabIndex = 1;
+            tbTabs.Controls.Add(tbSubAssemblies);
+            tbTabs.Controls.Add(tbProductDocuments);
+            tbTabs.Dock = DockStyle.Fill;
+            tbTabs.Location = new Point(0, 0);
+            tbTabs.Name = "tbTabs";
+            tbTabs.SelectedIndex = 0;
+            tbTabs.Size = new Size(791, 401);
+            tbTabs.TabIndex = 1;
             // 
             // tbSubAssemblies
             // 
-            this.tbSubAssemblies.Controls.Add(this.dgSubAssemblies);
-            this.tbSubAssemblies.Location = new System.Drawing.Point(4, 24);
-            this.tbSubAssemblies.Name = "tbSubAssemblies";
-            this.tbSubAssemblies.Padding = new System.Windows.Forms.Padding(3);
-            this.tbSubAssemblies.Size = new System.Drawing.Size(693, 304);
-            this.tbSubAssemblies.TabIndex = 0;
-            this.tbSubAssemblies.Text = "SubAssemblies";
-            this.tbSubAssemblies.UseVisualStyleBackColor = true;
+            tbSubAssemblies.Controls.Add(dgSubAssemblies);
+            tbSubAssemblies.Location = new Point(4, 24);
+            tbSubAssemblies.Name = "tbSubAssemblies";
+            tbSubAssemblies.Padding = new Padding(3);
+            tbSubAssemblies.Size = new Size(783, 373);
+            tbSubAssemblies.TabIndex = 0;
+            tbSubAssemblies.Text = "SubAssemblies";
+            tbSubAssemblies.UseVisualStyleBackColor = true;
             // 
             // dgSubAssemblies
             // 
-            this.dgSubAssemblies.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgSubAssemblies.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgSubAssemblies.Location = new System.Drawing.Point(3, 3);
-            this.dgSubAssemblies.Name = "dgSubAssemblies";
-            this.dgSubAssemblies.RowTemplate.Height = 25;
-            this.dgSubAssemblies.Size = new System.Drawing.Size(687, 298);
-            this.dgSubAssemblies.TabIndex = 0;
+            dgSubAssemblies.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgSubAssemblies.Dock = DockStyle.Fill;
+            dgSubAssemblies.Location = new Point(3, 3);
+            dgSubAssemblies.Name = "dgSubAssemblies";
+            dgSubAssemblies.Size = new Size(777, 367);
+            dgSubAssemblies.TabIndex = 0;
             // 
             // tbProductDocuments
             // 
-            this.tbProductDocuments.Controls.Add(this.dgProductDocuments);
-            this.tbProductDocuments.Location = new System.Drawing.Point(4, 24);
-            this.tbProductDocuments.Name = "tbProductDocuments";
-            this.tbProductDocuments.Padding = new System.Windows.Forms.Padding(3);
-            this.tbProductDocuments.Size = new System.Drawing.Size(693, 304);
-            this.tbProductDocuments.TabIndex = 1;
-            this.tbProductDocuments.Text = "Documents";
-            this.tbProductDocuments.UseVisualStyleBackColor = true;
+            tbProductDocuments.Controls.Add(dgProductDocuments);
+            tbProductDocuments.Location = new Point(4, 24);
+            tbProductDocuments.Name = "tbProductDocuments";
+            tbProductDocuments.Padding = new Padding(3);
+            tbProductDocuments.Size = new Size(693, 304);
+            tbProductDocuments.TabIndex = 1;
+            tbProductDocuments.Text = "Documents";
+            tbProductDocuments.UseVisualStyleBackColor = true;
             // 
             // dgProductDocuments
             // 
-            this.dgProductDocuments.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgProductDocuments.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgProductDocuments.Location = new System.Drawing.Point(3, 3);
-            this.dgProductDocuments.Name = "dgProductDocuments";
-            this.dgProductDocuments.RowTemplate.Height = 25;
-            this.dgProductDocuments.Size = new System.Drawing.Size(687, 298);
-            this.dgProductDocuments.TabIndex = 0;
+            dgProductDocuments.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgProductDocuments.Dock = DockStyle.Fill;
+            dgProductDocuments.Location = new Point(3, 3);
+            dgProductDocuments.Name = "dgProductDocuments";
+            dgProductDocuments.Size = new Size(687, 298);
+            dgProductDocuments.TabIndex = 0;
             // 
             // groupBox1
             // 
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.Location = new System.Drawing.Point(364, 14);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(700, 100);
-            this.groupBox1.TabIndex = 1;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Products";
+            groupBox1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            groupBox1.Location = new Point(364, 14);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Size = new Size(834, 100);
+            groupBox1.TabIndex = 1;
+            groupBox1.TabStop = false;
+            groupBox1.Text = "Products";
             // 
             // cboJobs
             // 
-            this.cboJobs.FormattingEnabled = true;
-            this.cboJobs.Location = new System.Drawing.Point(6, 22);
-            this.cboJobs.Name = "cboJobs";
-            this.cboJobs.Size = new System.Drawing.Size(320, 23);
-            this.cboJobs.TabIndex = 0;
-            this.cboJobs.SelectedIndexChanged += new System.EventHandler(this.cboJobs_SelectedIndexChanged);
+            cboJobs.FormattingEnabled = true;
+            cboJobs.Location = new Point(6, 22);
+            cboJobs.Name = "cboJobs";
+            cboJobs.Size = new Size(320, 23);
+            cboJobs.TabIndex = 0;
+            cboJobs.SelectedIndexChanged += cboJobs_SelectedIndexChanged;
             // 
             // Job
             // 
-            this.Job.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.Job.Controls.Add(this.cboJobs);
-            this.Job.Location = new System.Drawing.Point(10, 14);
-            this.Job.Name = "Job";
-            this.Job.Size = new System.Drawing.Size(349, 100);
-            this.Job.TabIndex = 2;
-            this.Job.TabStop = false;
-            this.Job.Text = "Job";
+            Job.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            Job.Controls.Add(cboJobs);
+            Job.Location = new Point(10, 14);
+            Job.Name = "Job";
+            Job.Size = new Size(483, 100);
+            Job.TabIndex = 2;
+            Job.TabStop = false;
+            Job.Text = "Job";
             // 
             // JobManager
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.Job);
-            this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.splcJobMain);
-            this.Name = "JobManager";
-            this.Padding = new System.Windows.Forms.Padding(10, 120, 10, 10);
-            this.Size = new System.Drawing.Size(1075, 627);
-            this.splcJobMain.Panel1.ResumeLayout(false);
-            this.splcJobMain.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splcJobMain)).EndInit();
-            this.splcJobMain.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgJobOrders)).EndInit();
-            this.splcJobProducts.Panel1.ResumeLayout(false);
-            this.splcJobProducts.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splcJobProducts)).EndInit();
-            this.splcJobProducts.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgProducts)).EndInit();
-            this.tbTabs.ResumeLayout(false);
-            this.tbSubAssemblies.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgSubAssemblies)).EndInit();
-            this.tbProductDocuments.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgProductDocuments)).EndInit();
-            this.Job.ResumeLayout(false);
-            this.ResumeLayout(false);
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(Job);
+            Controls.Add(groupBox1);
+            Controls.Add(splcJobMain);
+            Name = "JobManager";
+            Padding = new Padding(10, 120, 10, 10);
+            Size = new Size(1209, 728);
+            splcJobMain.Panel1.ResumeLayout(false);
+            splcJobMain.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)splcJobMain).EndInit();
+            splcJobMain.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dgJobOrders).EndInit();
+            splcJobProducts.Panel1.ResumeLayout(false);
+            splcJobProducts.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)splcJobProducts).EndInit();
+            splcJobProducts.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dgProducts).EndInit();
+            tbTabs.ResumeLayout(false);
+            tbSubAssemblies.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dgSubAssemblies).EndInit();
+            tbProductDocuments.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dgProductDocuments).EndInit();
+            Job.ResumeLayout(false);
+            ResumeLayout(false);
 
         }
 

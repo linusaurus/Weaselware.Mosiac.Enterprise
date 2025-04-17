@@ -33,6 +33,7 @@ namespace Mosiac.UX
             PartEditorPage,
             PartDetailEdit,
             PurchaseOrderPage,
+            ProductsPage,
             AssemblyManagerControl,
             RecieveOrderControl,
             StockManagerPage
@@ -74,6 +75,15 @@ namespace Mosiac.UX
                     jobsControl.Dock = DockStyle.Fill;
                     jobsTab.Controls.Add(jobsControl);
                     return jobsTab;
+                    break;
+
+                case TabPageType.ProductsPage:
+
+                    TabPage productsTab = new TabPage("Product Manager");
+                    ProductsControl productsControl = new ProductsControl(ctx);
+                    productsControl.Dock = DockStyle.Fill;
+                    productsTab.Controls.Add(productsControl);
+                    return productsTab;
                     break;
 
                 case TabPageType.OrderReceiptHistoryPage:

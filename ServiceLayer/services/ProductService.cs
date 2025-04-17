@@ -36,28 +36,19 @@ namespace ServiceLayer
            
         }
 
-        public List<ProductDto> GetProducts(int jobID)
+        public List<Product> GetProducts(int jobID)
         {
-            var product = ctx.Product.Include(r => r.SubAssembly).Where(p => p.JobID == jobID).Select(d => new ProductDto
-            {
-                ProductID = d.ProductID,
-                ProductionDate = d.ProductionDate.GetValueOrDefault(),
-                ArchDescription = d.ArchDescription,
-                JobID = d.JobID.GetValueOrDefault(),
-                UnitID = d.UnitID.GetValueOrDefault(),
-                UnitName = d.UnitName,
-                RoomName = d.RoomName,
-                W = d.W.GetValueOrDefault(),
-                D = d.D.GetValueOrDefault(),
-                H = d.H.GetValueOrDefault(),
-                Delivered = d.Delivered.GetValueOrDefault(),
-                DeliveryDate = d.DeliveredDate.GetValueOrDefault(),
-                Make = d.Make.GetValueOrDefault(),
-                NIC = d.NIC.GetValueOrDefault(),
- 
-            }).ToList() ;
+            var product = ctx.Product.Include(r => r.SubAssembly).Where(p => p.JobID == jobID).ToList() ;
 
             return product;
+        }
+
+        public List<SubAssembly> GetSubAssemblies(int productID)
+        {
+            // Assuming ctx.SubAssemblies is a DbSet or similar collection in MosaicContext
+            return ctx.SubAssembly
+                      .Where(sa => sa.ProductID == productID) 
+                      .ToList(); 
         }
 
         public Product AddUnit(Product unit)

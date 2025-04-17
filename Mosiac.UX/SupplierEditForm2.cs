@@ -11,7 +11,9 @@ namespace Mosiac.UX
         private readonly MosaicContext ctx;
        
         private SuppliersService _supplierService;
+#pragma warning disable WFO1000 // Missing code serialization configuration for property content
         public Supplier _supplierToEdit { get; set; }
+#pragma warning restore WFO1000 // Missing code serialization configuration for property content
 
         public SupplierEditForm2()
         {

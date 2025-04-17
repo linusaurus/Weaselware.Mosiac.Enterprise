@@ -98,7 +98,7 @@ namespace ServiceLayer
             int id;
             if (int.TryParse(partid,out id))
             {
-                result = _context.Part.AsNoTracking().Where(p => p.PartID == id).FirstOrDefault();
+                result = _context.Part.AsNoTracking().Include(l => l.LocationNavigation).Where(p => p.PartID == id).FirstOrDefault();
             }
             return result;
         }
@@ -275,19 +275,12 @@ namespace ServiceLayer
             return result;
         }
 
-        /// <summary>
-        /// TODO this should be moved to another repo of data service
-        /// </summary>
-        /// <returns></returns>
+  
         public List<Manu> Manufacturers()
         {
             return _context.Manu.ToList();
         }
-        /// <summary>
-        /// TODO this shuld be moved tomore general list data source
-        /// </summary>
-        /// <returns></returns>
-       
+
 
         public void DeleteResource(Document document, Part part)
         {          

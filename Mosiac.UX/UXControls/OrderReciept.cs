@@ -148,11 +148,7 @@ namespace Mosiac.UX.UXControls
                 }
             }
         }
-        /// <summary>
-        /// Print the stock label
-        /// TODO   fix sloppy printing
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+   
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
             PrinterSettings PrinterXmlData;

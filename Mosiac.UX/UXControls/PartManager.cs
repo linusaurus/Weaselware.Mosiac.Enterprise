@@ -1,24 +1,19 @@
-﻿using System.Collections.Generic;
+﻿using System.ComponentModel;
 using System.Data;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
+using System.Diagnostics;
+using System.Xml.Serialization;
+
 using DataLayer.Data;
 using DataLayer.Entity;
-using Microsoft.EntityFrameworkCore;
-using ServiceLayer;
-using ServiceLayer.Models;
-using ServiceLayer.Mappers;
-using System;
-using System.Diagnostics;
-using System.Drawing;
+
 using Mosiac.UX.Forms;
-using System.ComponentModel;
-using Neodynamic.SDK.Printing;
-using System.Xml.Serialization;
 using Mosiac.UX.Services;
-using System.Threading.Tasks;
+
+using Neodynamic.SDK.Printing;
+
+using ServiceLayer;
+using ServiceLayer.Mappers;
+using ServiceLayer.Models;
 
 namespace Mosiac.UX.UXControls
 {
@@ -33,7 +28,7 @@ namespace Mosiac.UX.UXControls
         private Part _partBeingEdited;
         private int _selectedResourceID;
         private Resource _selectedResource;
-        //private int _currentTransactionsFilter = 1;
+        private int _selectedTransaction;
         private int _selectedPartID;
         private Location _selectedLocation;
 
@@ -109,6 +104,8 @@ namespace Mosiac.UX.UXControls
                 {
                     int id = int.Parse(txtPartIDLookup.Text);
                     OpenPartbyNumber(id);
+                    _selectedPartID = id;
+
                 }
                 else
                 {
@@ -207,12 +204,16 @@ namespace Mosiac.UX.UXControls
             }
 
         }
-        //TODO  bind details
+       
         private void BindResource(BindingSource bs)
         {
             this.propertyGrid1.SelectedObject = bs.DataSource;
         }
-
+        /// <summary>
+        /// TODO this is incorrectly named, should update selected part correctly
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void dgAttachments_SelectionChanged(object sender, System.EventArgs e)
         {
             DataGridView dg = (DataGridView)sender;
@@ -224,6 +225,7 @@ namespace Mosiac.UX.UXControls
                     {
                         int i = (int)dg.CurrentRow.Cells[0].Value;
                         _partBeingEdited = partsService.Find(i);
+                        _selectedPartID = _partBeingEdited.PartID;
                         var resources = _partBeingEdited.Resource.ToList();
                         var orders = partsService.GetPartOrders(_partBeingEdited.PartID);
                         dgPartOrders.DataSource = orders;
@@ -724,7 +726,11 @@ namespace Mosiac.UX.UXControls
         #endregion
 
 
-
+        /// <summary>
+        /// TODO should clear the list if there are no transaction
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void dgvStockParts_SelectionChanged(object sender, EventArgs e)
         {
             DataGridView dg = (DataGridView)sender;
@@ -738,6 +744,7 @@ namespace Mosiac.UX.UXControls
                         dgTransactionsGrid.DataSource = InventoryService.GetPartTransactions(_selectedPartID);
                         decimal stockLevel = InventoryService.GetStockLevel(_selectedPartID);
                         txtStockLevel.Text = String.Format("{0:.##}", stockLevel);
+                    
                     }
                 }
             }
@@ -786,7 +793,7 @@ namespace Mosiac.UX.UXControls
         private void dgTransactionsGrid_SelectionChanged(object sender, EventArgs e)
         {
             DataGridView dg = (DataGridView)sender;
-            DataGridViewRow row; ;
+            DataGridViewRow row;
             if (dg.DataSource != null)
             {
                 if (dg.Rows.Count > 0)
@@ -794,9 +801,18 @@ namespace Mosiac.UX.UXControls
                     if (dg.SelectedRows.Count > 0)
                     {
                         row = dg.SelectedRows[0];
-                        _selectedPartID = (int)row.Cells[0].Value;
-                    }
+                        _selectedPartID =((PartTransactionListDto) row.DataBoundItem).PartID;
 
+                        // Use a null check to ensure DataBoundItem is not null
+                        if (row.DataBoundItem is PartTransactionListDto DTO)
+                        {
+                            _selectedTransaction = DTO.StockTransactionId;
+                        }
+                        else
+                        {
+                            _selectedTransaction = default; // Handle the case where DataBoundItem is null
+                        }
+                    }
                 }
             }
         }
@@ -812,22 +828,17 @@ namespace Mosiac.UX.UXControls
 
         private void tsbRemoveSelected_Click(object sender, EventArgs e)
         {
-            DataGridView dg = dgTransactionsGrid;
-            List<Inventory> removeList = new List<Inventory>();
-
-            if (dg.DataSource != null)
+            if (_selectedTransaction != default)
             {
-                if (dg.Rows.Count > 0)
-                {
-                    foreach (DataGridViewRow row in dg.SelectedRows)
-                    {
-                        removeList.Add(new Inventory() { StockTransactionID = (int)row.Cells[0].Value });
-                    }
-                }
-            }
-            _ctx.Inventory.RemoveRange(removeList);
+                Inventory result = _ctx.Inventory.Where(x => x.StockTransactionID == _selectedTransaction).FirstOrDefault();
+            
+
+            _ctx.Inventory.Remove(result);
             _ctx.SaveChanges();
+             }
+
             dgTransactionsGrid.DataSource = InventoryService.GetPartTransactions(_selectedPartID);
+            dgTransactionsGrid.Refresh();
         }
 
         private void DgTransactionsGrid_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -903,7 +914,7 @@ namespace Mosiac.UX.UXControls
                         QntyOrdered = 0.0m,
                         QntyReceived = 0.0m,
                         Description = e.ItemDescription,
-                      //  LocationID = e.Location,
+                        //  LocationID = e.Location,
                         EmpID = Globals.CurrentLoggedUserID,
                         InventoryAmount = e.StockOnHand,
                         TransActionType = 4
@@ -968,14 +979,18 @@ namespace Mosiac.UX.UXControls
             }
 
         }
-
+        /// <summary>
+        /// TODO : Add the ability to pull stock from a part
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnPullStock_Click(object sender, EventArgs e)
         {
             // Set the Stock Level  ----
             StockLevelAdjustmentForm frm = new StockLevelAdjustmentForm();
             frm.Text = String.Format("Pull Stock # {0}", _selectedPartID.ToString());
 
-
+         //   int v = _selectedPart.PartID;
             if (frm.ShowDialog() == DialogResult.OK)
             {
                 _stockService.PullPart(_selectedPartID.ToString(), frm.Adjustment, Globals.CurrentLoggedUserID, 1);
@@ -985,6 +1000,27 @@ namespace Mosiac.UX.UXControls
 
 
             txtStockLevel.Text = String.Format("{0:.##}", InventoryService.GetStockLevel(_selectedPartID));
+        }
+
+        //TODO: Add the ability to edit an inventory item
+    
+        private void EditInventoryItem(object sender, EventArgs e)
+        {
+           if (_selectedTransaction != default)
+            {
+                Inventory iTrans = InventoryService.GetTransaction(_selectedTransaction);
+                EditInventoryEditForm frm = new EditInventoryEditForm(iTrans);
+                if (frm.ShowDialog() == DialogResult.OK)
+                {
+                    if (_selectedTransaction != default)
+                    {
+
+                    }
+
+                }
+
+            }
+           
         }
     }
 }

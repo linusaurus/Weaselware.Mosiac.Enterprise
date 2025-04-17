@@ -23,6 +23,7 @@ namespace Mosiac.UX
 
 
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public Manu Manu
         {
             get { return _manu; }

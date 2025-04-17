@@ -17,11 +17,11 @@ namespace ServiceLayer.Models
         private int stockBillID;
         private int jobID;
         private DateTime dateStamp;
-        private string description;
+        private string? description;
         private decimal qntyOrdered;
         private decimal qntyRecieved;
         private int transActionType;
-        private string transActionName;
+        private string? transActionName;
 
         public int StockBillID
         {

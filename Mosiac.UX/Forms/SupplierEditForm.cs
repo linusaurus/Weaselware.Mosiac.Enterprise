@@ -17,6 +17,9 @@ namespace Mosiac.UX.Forms
         private readonly MosaicContext ctx;
         private BindingSource bsSupplier = new BindingSource();
         private SuppliersService _supplierService;
+
+
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public Supplier _supplierToEdit { get; set; }
 
         public SupplierEditForm(SuppliersService suppliersService, int supplierID)

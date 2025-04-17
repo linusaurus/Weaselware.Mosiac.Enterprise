@@ -30,72 +30,72 @@ namespace Mosiac.UX.UXControls
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PartManager));
-            txtSearch = new System.Windows.Forms.TextBox();
-            dgPartsSearch = new System.Windows.Forms.DataGridView();
-            panel1 = new System.Windows.Forms.Panel();
-            btnSearch = new System.Windows.Forms.Button();
-            txtSecondTerm = new System.Windows.Forms.TextBox();
-            txtThirdTerm = new System.Windows.Forms.TextBox();
-            btnOpenPart = new System.Windows.Forms.Button();
-            txtPartIDLookup = new System.Windows.Forms.TextBox();
-            ckbUseManufacturer = new System.Windows.Forms.CheckBox();
-            cboManu = new System.Windows.Forms.ComboBox();
-            dgResources = new System.Windows.Forms.DataGridView();
-            dgPartOrders = new System.Windows.Forms.DataGridView();
-            btnNewPart = new System.Windows.Forms.Button();
-            btnSave = new System.Windows.Forms.Button();
-            tabPartDetail = new System.Windows.Forms.TabControl();
-            tabResourceManager = new System.Windows.Forms.TabPage();
-            splitContainer1 = new System.Windows.Forms.SplitContainer();
-            panel2 = new System.Windows.Forms.Panel();
-            propertyGrid1 = new System.Windows.Forms.PropertyGrid();
-            toolStrip1 = new System.Windows.Forms.ToolStrip();
-            toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            toolStripButton2 = new System.Windows.Forms.ToolStripButton();
-            toolStripButton3 = new System.Windows.Forms.ToolStripButton();
-            toolStripButton4 = new System.Windows.Forms.ToolStripButton();
-            toolStripButton5 = new System.Windows.Forms.ToolStripButton();
-            toolStripButton6 = new System.Windows.Forms.ToolStripButton();
-            tabOrderHistory = new System.Windows.Forms.TabPage();
-            btnShowAll = new System.Windows.Forms.Button();
-            tsResources = new System.Windows.Forms.ToolStrip();
-            tsbCollapsePanel = new System.Windows.Forms.ToolStripButton();
-            btnPrintLabel = new System.Windows.Forms.Button();
-            spcPartsManager = new System.Windows.Forms.SplitContainer();
-            tabPartManager = new System.Windows.Forms.TabControl();
-            tabPartsManager = new System.Windows.Forms.TabPage();
-            tabStockTransactions = new System.Windows.Forms.TabPage();
-            splitContainer2 = new System.Windows.Forms.SplitContainer();
-            dgvStockParts = new System.Windows.Forms.DataGridView();
-            toolStrip2 = new System.Windows.Forms.ToolStrip();
-            spcTransactionDetails = new System.Windows.Forms.SplitContainer();
-            dgTransactionsGrid = new System.Windows.Forms.DataGridView();
-            tsTransactions = new System.Windows.Forms.ToolStrip();
-            tsbReceipts = new System.Windows.Forms.ToolStripButton();
-            tsbAudits = new System.Windows.Forms.ToolStripButton();
-            tsbPulls = new System.Windows.Forms.ToolStripButton();
-            tsbAll = new System.Windows.Forms.ToolStripButton();
-            tsbRemoveSelected = new System.Windows.Forms.ToolStripButton();
-            toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            tsbEditSelected = new System.Windows.Forms.ToolStripButton();
-            panel3 = new System.Windows.Forms.Panel();
-            btnPullStock = new System.Windows.Forms.Button();
-            txtStockLevel = new System.Windows.Forms.TextBox();
-            btnRollup = new System.Windows.Forms.Button();
-            label1 = new System.Windows.Forms.Label();
-            button1 = new System.Windows.Forms.Button();
-            tabLocations = new System.Windows.Forms.TabPage();
-            spcLocations = new System.Windows.Forms.SplitContainer();
-            dgLocations = new System.Windows.Forms.DataGridView();
-            tsLocationMenu = new System.Windows.Forms.ToolStrip();
-            tsbNew = new System.Windows.Forms.ToolStripButton();
-            tsbEdit = new System.Windows.Forms.ToolStripButton();
-            tsbFilter = new System.Windows.Forms.ToolStripButton();
-            toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            txtAreaFilter = new System.Windows.Forms.ToolStripTextBox();
-            tsLocationPartsToolBar = new System.Windows.Forms.ToolStrip();
-            tsbSaveLocationParts = new System.Windows.Forms.ToolStripButton();
-            dgLocationParts = new System.Windows.Forms.DataGridView();
+            txtSearch = new TextBox();
+            dgPartsSearch = new DataGridView();
+            panel1 = new Panel();
+            btnSearch = new Button();
+            txtSecondTerm = new TextBox();
+            txtThirdTerm = new TextBox();
+            btnOpenPart = new Button();
+            txtPartIDLookup = new TextBox();
+            ckbUseManufacturer = new CheckBox();
+            cboManu = new ComboBox();
+            dgResources = new DataGridView();
+            dgPartOrders = new DataGridView();
+            btnNewPart = new Button();
+            btnSave = new Button();
+            tabPartDetail = new TabControl();
+            tabResourceManager = new TabPage();
+            splitContainer1 = new SplitContainer();
+            panel2 = new Panel();
+            propertyGrid1 = new PropertyGrid();
+            toolStrip1 = new ToolStrip();
+            toolStripButton1 = new ToolStripButton();
+            toolStripButton2 = new ToolStripButton();
+            toolStripButton3 = new ToolStripButton();
+            toolStripButton4 = new ToolStripButton();
+            toolStripButton5 = new ToolStripButton();
+            toolStripButton6 = new ToolStripButton();
+            tabOrderHistory = new TabPage();
+            btnShowAll = new Button();
+            tsResources = new ToolStrip();
+            tsbCollapsePanel = new ToolStripButton();
+            btnPrintLabel = new Button();
+            spcPartsManager = new SplitContainer();
+            tabPartManager = new TabControl();
+            tabPartsManager = new TabPage();
+            tabStockTransactions = new TabPage();
+            splitContainer2 = new SplitContainer();
+            dgvStockParts = new DataGridView();
+            toolStrip2 = new ToolStrip();
+            spcTransactionDetails = new SplitContainer();
+            dgTransactionsGrid = new DataGridView();
+            tsTransactions = new ToolStrip();
+            tsbReceipts = new ToolStripButton();
+            tsbAudits = new ToolStripButton();
+            tsbPulls = new ToolStripButton();
+            tsbAll = new ToolStripButton();
+            tsbRemoveSelected = new ToolStripButton();
+            toolStripSeparator1 = new ToolStripSeparator();
+            tsbEditSelected = new ToolStripButton();
+            panel3 = new Panel();
+            btnPullStock = new Button();
+            txtStockLevel = new TextBox();
+            btnRollup = new Button();
+            label1 = new Label();
+            button1 = new Button();
+            tabLocations = new TabPage();
+            spcLocations = new SplitContainer();
+            dgLocations = new DataGridView();
+            tsLocationMenu = new ToolStrip();
+            tsbNew = new ToolStripButton();
+            tsbEdit = new ToolStripButton();
+            tsbFilter = new ToolStripButton();
+            toolStripSeparator2 = new ToolStripSeparator();
+            txtAreaFilter = new ToolStripTextBox();
+            tsLocationPartsToolBar = new ToolStrip();
+            tsbSaveLocationParts = new ToolStripButton();
+            dgLocationParts = new DataGridView();
             ((System.ComponentModel.ISupportInitialize)dgPartsSearch).BeginInit();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgResources).BeginInit();
@@ -142,10 +142,10 @@ namespace Mosiac.UX.UXControls
             // 
             // txtSearch
             // 
-            txtSearch.Location = new System.Drawing.Point(6, 6);
+            txtSearch.Location = new Point(6, 6);
             txtSearch.Name = "txtSearch";
             txtSearch.PlaceholderText = "Enter Search ....";
-            txtSearch.Size = new System.Drawing.Size(173, 23);
+            txtSearch.Size = new Size(173, 23);
             txtSearch.TabIndex = 1;
             txtSearch.TextChanged += txtSearch_TextChanged;
             txtSearch.MouseDoubleClick += txtSearch_MouseDoubleClick;
@@ -154,13 +154,12 @@ namespace Mosiac.UX.UXControls
             // 
             dgPartsSearch.AllowUserToAddRows = false;
             dgPartsSearch.AllowUserToDeleteRows = false;
-            dgPartsSearch.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgPartsSearch.Dock = System.Windows.Forms.DockStyle.Fill;
-            dgPartsSearch.Location = new System.Drawing.Point(6, 6);
+            dgPartsSearch.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgPartsSearch.Dock = DockStyle.Fill;
+            dgPartsSearch.Location = new Point(6, 6);
             dgPartsSearch.Name = "dgPartsSearch";
             dgPartsSearch.ReadOnly = true;
-            dgPartsSearch.RowTemplate.Height = 25;
-            dgPartsSearch.Size = new System.Drawing.Size(833, 531);
+            dgPartsSearch.Size = new Size(833, 531);
             dgPartsSearch.TabIndex = 9;
             dgPartsSearch.VirtualMode = true;
             dgPartsSearch.CellMouseDoubleClick += dgPartsSearch_CellMouseDoubleClick;
@@ -168,8 +167,8 @@ namespace Mosiac.UX.UXControls
             // 
             // panel1
             // 
-            panel1.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
-            panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            panel1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            panel1.BorderStyle = BorderStyle.FixedSingle;
             panel1.Controls.Add(btnSearch);
             panel1.Controls.Add(txtSecondTerm);
             panel1.Controls.Add(txtThirdTerm);
@@ -178,16 +177,16 @@ namespace Mosiac.UX.UXControls
             panel1.Controls.Add(ckbUseManufacturer);
             panel1.Controls.Add(cboManu);
             panel1.Controls.Add(txtSearch);
-            panel1.Location = new System.Drawing.Point(10, 18);
+            panel1.Location = new Point(10, 18);
             panel1.Name = "panel1";
-            panel1.Size = new System.Drawing.Size(1298, 45);
+            panel1.Size = new Size(1298, 45);
             panel1.TabIndex = 11;
             // 
             // btnSearch
             // 
-            btnSearch.Location = new System.Drawing.Point(417, 6);
+            btnSearch.Location = new Point(417, 6);
             btnSearch.Name = "btnSearch";
-            btnSearch.Size = new System.Drawing.Size(91, 23);
+            btnSearch.Size = new Size(91, 23);
             btnSearch.TabIndex = 19;
             btnSearch.Text = "Search";
             btnSearch.UseVisualStyleBackColor = true;
@@ -195,27 +194,27 @@ namespace Mosiac.UX.UXControls
             // 
             // txtSecondTerm
             // 
-            txtSecondTerm.Location = new System.Drawing.Point(199, 6);
+            txtSecondTerm.Location = new Point(199, 6);
             txtSecondTerm.Name = "txtSecondTerm";
-            txtSecondTerm.Size = new System.Drawing.Size(100, 23);
+            txtSecondTerm.Size = new Size(100, 23);
             txtSecondTerm.TabIndex = 2;
             // 
             // txtThirdTerm
             // 
-            txtThirdTerm.Location = new System.Drawing.Point(306, 6);
+            txtThirdTerm.Location = new Point(306, 6);
             txtThirdTerm.Name = "txtThirdTerm";
-            txtThirdTerm.Size = new System.Drawing.Size(100, 23);
+            txtThirdTerm.Size = new Size(100, 23);
             txtThirdTerm.TabIndex = 3;
             // 
             // btnOpenPart
             // 
-            btnOpenPart.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
-            btnOpenPart.FlatAppearance.BorderColor = System.Drawing.Color.Red;
+            btnOpenPart.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnOpenPart.FlatAppearance.BorderColor = Color.Red;
             btnOpenPart.FlatAppearance.BorderSize = 2;
-            btnOpenPart.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            btnOpenPart.Location = new System.Drawing.Point(1117, 5);
+            btnOpenPart.FlatStyle = FlatStyle.Flat;
+            btnOpenPart.Location = new Point(1117, 5);
             btnOpenPart.Name = "btnOpenPart";
-            btnOpenPart.Size = new System.Drawing.Size(65, 25);
+            btnOpenPart.Size = new Size(65, 25);
             btnOpenPart.TabIndex = 17;
             btnOpenPart.Text = "PartID";
             btnOpenPart.UseVisualStyleBackColor = true;
@@ -224,20 +223,20 @@ namespace Mosiac.UX.UXControls
             // 
             // txtPartIDLookup
             // 
-            txtPartIDLookup.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
-            txtPartIDLookup.Location = new System.Drawing.Point(1205, 6);
+            txtPartIDLookup.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            txtPartIDLookup.Location = new Point(1205, 6);
             txtPartIDLookup.Name = "txtPartIDLookup";
-            txtPartIDLookup.Size = new System.Drawing.Size(75, 23);
+            txtPartIDLookup.Size = new Size(75, 23);
             txtPartIDLookup.TabIndex = 16;
-            txtPartIDLookup.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            txtPartIDLookup.TextAlign = HorizontalAlignment.Center;
             // 
             // ckbUseManufacturer
             // 
-            ckbUseManufacturer.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
+            ckbUseManufacturer.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             ckbUseManufacturer.AutoSize = true;
-            ckbUseManufacturer.Location = new System.Drawing.Point(998, 8);
+            ckbUseManufacturer.Location = new Point(998, 8);
             ckbUseManufacturer.Name = "ckbUseManufacturer";
-            ckbUseManufacturer.Size = new System.Drawing.Size(98, 19);
+            ckbUseManufacturer.Size = new Size(98, 19);
             ckbUseManufacturer.TabIndex = 14;
             ckbUseManufacturer.Text = "Manufacturer";
             ckbUseManufacturer.UseVisualStyleBackColor = true;
@@ -245,47 +244,45 @@ namespace Mosiac.UX.UXControls
             // 
             // cboManu
             // 
-            cboManu.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
+            cboManu.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             cboManu.Enabled = false;
             cboManu.FormattingEnabled = true;
-            cboManu.Location = new System.Drawing.Point(833, 5);
+            cboManu.Location = new Point(833, 5);
             cboManu.Name = "cboManu";
-            cboManu.Size = new System.Drawing.Size(159, 23);
+            cboManu.Size = new Size(159, 23);
             cboManu.TabIndex = 13;
             cboManu.SelectedIndexChanged += cboManu_SelectedIndexChanged;
             // 
             // dgResources
             // 
-            dgResources.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgResources.Dock = System.Windows.Forms.DockStyle.Fill;
-            dgResources.Location = new System.Drawing.Point(6, 6);
+            dgResources.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgResources.Dock = DockStyle.Fill;
+            dgResources.Location = new Point(6, 6);
             dgResources.Name = "dgResources";
-            dgResources.RowTemplate.Height = 25;
-            dgResources.Size = new System.Drawing.Size(391, 255);
+            dgResources.Size = new Size(391, 255);
             dgResources.TabIndex = 8;
             dgResources.CellMouseDoubleClick += dgResources_CellMouseDoubleClick;
             dgResources.SelectionChanged += dgResources_SelectionChanged;
             // 
             // dgPartOrders
             // 
-            dgPartOrders.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgPartOrders.Dock = System.Windows.Forms.DockStyle.Fill;
-            dgPartOrders.Location = new System.Drawing.Point(6, 6);
+            dgPartOrders.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgPartOrders.Dock = DockStyle.Fill;
+            dgPartOrders.Location = new Point(6, 6);
             dgPartOrders.Name = "dgPartOrders";
-            dgPartOrders.RowTemplate.Height = 25;
-            dgPartOrders.Size = new System.Drawing.Size(397, 491);
+            dgPartOrders.Size = new Size(397, 491);
             dgPartOrders.TabIndex = 13;
             dgPartOrders.CellMouseDoubleClick += dgPartOrders_CellMouseDoubleClick;
             // 
             // btnNewPart
             // 
             btnNewPart.AutoSize = true;
-            btnNewPart.FlatAppearance.BorderColor = System.Drawing.Color.Sienna;
+            btnNewPart.FlatAppearance.BorderColor = Color.Sienna;
             btnNewPart.FlatAppearance.BorderSize = 2;
-            btnNewPart.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            btnNewPart.Location = new System.Drawing.Point(176, 70);
+            btnNewPart.FlatStyle = FlatStyle.Flat;
+            btnNewPart.Location = new Point(176, 70);
             btnNewPart.Name = "btnNewPart";
-            btnNewPart.Size = new System.Drawing.Size(122, 29);
+            btnNewPart.Size = new Size(122, 29);
             btnNewPart.TabIndex = 15;
             btnNewPart.Text = "New Part";
             btnNewPart.UseVisualStyleBackColor = true;
@@ -293,9 +290,9 @@ namespace Mosiac.UX.UXControls
             // 
             // btnSave
             // 
-            btnSave.Location = new System.Drawing.Point(10, 69);
+            btnSave.Location = new Point(10, 69);
             btnSave.Name = "btnSave";
-            btnSave.Size = new System.Drawing.Size(122, 32);
+            btnSave.Size = new Size(122, 32);
             btnSave.TabIndex = 15;
             btnSave.Text = "Save Changes";
             btnSave.UseVisualStyleBackColor = true;
@@ -305,150 +302,151 @@ namespace Mosiac.UX.UXControls
             // 
             tabPartDetail.Controls.Add(tabResourceManager);
             tabPartDetail.Controls.Add(tabOrderHistory);
-            tabPartDetail.Dock = System.Windows.Forms.DockStyle.Fill;
-            tabPartDetail.Location = new System.Drawing.Point(6, 6);
+            tabPartDetail.Dock = DockStyle.Fill;
+            tabPartDetail.Location = new Point(6, 6);
             tabPartDetail.Name = "tabPartDetail";
             tabPartDetail.SelectedIndex = 0;
-            tabPartDetail.Size = new System.Drawing.Size(417, 531);
+            tabPartDetail.Size = new Size(417, 531);
             tabPartDetail.TabIndex = 1;
             // 
             // tabResourceManager
             // 
             tabResourceManager.Controls.Add(splitContainer1);
             tabResourceManager.Controls.Add(toolStrip1);
-            tabResourceManager.Location = new System.Drawing.Point(4, 24);
+            tabResourceManager.Location = new Point(4, 24);
             tabResourceManager.Name = "tabResourceManager";
-            tabResourceManager.Padding = new System.Windows.Forms.Padding(3);
-            tabResourceManager.Size = new System.Drawing.Size(409, 503);
+            tabResourceManager.Padding = new Padding(3);
+            tabResourceManager.Size = new Size(409, 503);
             tabResourceManager.TabIndex = 0;
             tabResourceManager.Text = "Resource Manager";
             tabResourceManager.UseVisualStyleBackColor = true;
             // 
             // splitContainer1
             // 
-            splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            splitContainer1.Location = new System.Drawing.Point(3, 34);
+            splitContainer1.Dock = DockStyle.Fill;
+            splitContainer1.Location = new Point(3, 34);
             splitContainer1.Name = "splitContainer1";
-            splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            splitContainer1.Orientation = Orientation.Horizontal;
             // 
             // splitContainer1.Panel1
             // 
             splitContainer1.Panel1.Controls.Add(dgResources);
-            splitContainer1.Panel1.Padding = new System.Windows.Forms.Padding(6);
+            splitContainer1.Panel1.Padding = new Padding(6);
             // 
             // splitContainer1.Panel2
             // 
             splitContainer1.Panel2.Controls.Add(panel2);
-            splitContainer1.Panel2.Padding = new System.Windows.Forms.Padding(6);
-            splitContainer1.Size = new System.Drawing.Size(403, 466);
+            splitContainer1.Panel2.Padding = new Padding(6);
+            splitContainer1.Size = new Size(403, 466);
             splitContainer1.SplitterDistance = 267;
             splitContainer1.TabIndex = 16;
             // 
             // panel2
             // 
-            panel2.BackColor = System.Drawing.Color.Gainsboro;
-            panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            panel2.BackColor = Color.Gainsboro;
+            panel2.BorderStyle = BorderStyle.FixedSingle;
             panel2.Controls.Add(propertyGrid1);
-            panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            panel2.Location = new System.Drawing.Point(6, 6);
+            panel2.Dock = DockStyle.Fill;
+            panel2.Location = new Point(6, 6);
             panel2.Name = "panel2";
-            panel2.Size = new System.Drawing.Size(391, 183);
+            panel2.Size = new Size(391, 183);
             panel2.TabIndex = 0;
             // 
             // propertyGrid1
             // 
-            propertyGrid1.Dock = System.Windows.Forms.DockStyle.Fill;
-            propertyGrid1.Location = new System.Drawing.Point(0, 0);
+            propertyGrid1.BackColor = Color.Gainsboro;
+            propertyGrid1.Dock = DockStyle.Fill;
+            propertyGrid1.Location = new Point(0, 0);
             propertyGrid1.Name = "propertyGrid1";
-            propertyGrid1.Size = new System.Drawing.Size(389, 181);
+            propertyGrid1.Size = new Size(389, 181);
             propertyGrid1.TabIndex = 0;
             // 
             // toolStrip1
             // 
-            toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { toolStripButton1, toolStripButton2, toolStripButton3, toolStripButton4, toolStripButton5, toolStripButton6 });
-            toolStrip1.Location = new System.Drawing.Point(3, 3);
+            toolStrip1.Items.AddRange(new ToolStripItem[] { toolStripButton1, toolStripButton2, toolStripButton3, toolStripButton4, toolStripButton5, toolStripButton6 });
+            toolStrip1.Location = new Point(3, 3);
             toolStrip1.Name = "toolStrip1";
-            toolStrip1.Size = new System.Drawing.Size(403, 31);
+            toolStrip1.Size = new Size(403, 31);
             toolStrip1.TabIndex = 15;
             toolStrip1.Text = "toolStrip1";
             // 
             // toolStripButton1
             // 
-            toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            toolStripButton1.DisplayStyle = ToolStripItemDisplayStyle.Image;
             toolStripButton1.Image = Properties.Resources.round_add_circle_outline_black_24dp1;
-            toolStripButton1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            toolStripButton1.ImageScaling = ToolStripItemImageScaling.None;
+            toolStripButton1.ImageTransparentColor = Color.Magenta;
             toolStripButton1.Name = "toolStripButton1";
-            toolStripButton1.Padding = new System.Windows.Forms.Padding(0, 0, 4, 0);
-            toolStripButton1.Size = new System.Drawing.Size(32, 28);
+            toolStripButton1.Padding = new Padding(0, 0, 4, 0);
+            toolStripButton1.Size = new Size(32, 28);
             toolStripButton1.Text = "tsbOpenResource";
             toolStripButton1.Click += btnNewResource_Click;
             // 
             // toolStripButton2
             // 
-            toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            toolStripButton2.DisplayStyle = ToolStripItemDisplayStyle.Image;
             toolStripButton2.Image = Properties.Resources.baseline_launch_black_24dp;
-            toolStripButton2.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            toolStripButton2.ImageScaling = ToolStripItemImageScaling.None;
+            toolStripButton2.ImageTransparentColor = Color.Magenta;
             toolStripButton2.Name = "toolStripButton2";
-            toolStripButton2.Padding = new System.Windows.Forms.Padding(0, 0, 4, 0);
-            toolStripButton2.Size = new System.Drawing.Size(32, 28);
+            toolStripButton2.Padding = new Padding(0, 0, 4, 0);
+            toolStripButton2.Size = new Size(32, 28);
             toolStripButton2.Text = "toolStripButton2";
             toolStripButton2.Click += btnOpenResource_Click;
             // 
             // toolStripButton3
             // 
-            toolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            toolStripButton3.DisplayStyle = ToolStripItemDisplayStyle.Image;
             toolStripButton3.Image = Properties.Resources.baseline_get_app_black_24dp;
-            toolStripButton3.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
+            toolStripButton3.ImageScaling = ToolStripItemImageScaling.None;
+            toolStripButton3.ImageTransparentColor = Color.Magenta;
             toolStripButton3.Name = "toolStripButton3";
-            toolStripButton3.Padding = new System.Windows.Forms.Padding(0, 0, 6, 0);
-            toolStripButton3.Size = new System.Drawing.Size(34, 28);
+            toolStripButton3.Padding = new Padding(0, 0, 6, 0);
+            toolStripButton3.Size = new Size(34, 28);
             toolStripButton3.Text = "toolStripButton3";
             toolStripButton3.Click += btnOpenCache_Click;
             // 
             // toolStripButton4
             // 
-            toolStripButton4.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            toolStripButton4.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            toolStripButton4.Alignment = ToolStripItemAlignment.Right;
+            toolStripButton4.DisplayStyle = ToolStripItemDisplayStyle.Image;
             toolStripButton4.Image = Properties.Resources.baseline_clear_black_24dp;
-            toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
+            toolStripButton4.ImageTransparentColor = Color.Magenta;
             toolStripButton4.Name = "toolStripButton4";
-            toolStripButton4.Size = new System.Drawing.Size(23, 28);
+            toolStripButton4.Size = new Size(23, 28);
             toolStripButton4.Text = "toolStripButton4";
             toolStripButton4.Click += btnClearCache_Click;
             // 
             // toolStripButton5
             // 
-            toolStripButton5.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            toolStripButton5.DisplayStyle = ToolStripItemDisplayStyle.Image;
             toolStripButton5.Image = Properties.Resources.outline_delete_black_24dp2;
-            toolStripButton5.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            toolStripButton5.ImageTransparentColor = System.Drawing.Color.Magenta;
+            toolStripButton5.ImageScaling = ToolStripItemImageScaling.None;
+            toolStripButton5.ImageTransparentColor = Color.Magenta;
             toolStripButton5.Name = "toolStripButton5";
-            toolStripButton5.Size = new System.Drawing.Size(28, 28);
+            toolStripButton5.Size = new Size(28, 28);
             toolStripButton5.Text = "toolStripButton5";
             toolStripButton5.Click += btnDeleteResource_Click;
             // 
             // toolStripButton6
             // 
-            toolStripButton6.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            toolStripButton6.BackColor = System.Drawing.Color.PapayaWhip;
-            toolStripButton6.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            toolStripButton6.Image = (System.Drawing.Image)resources.GetObject("toolStripButton6.Image");
-            toolStripButton6.ImageTransparentColor = System.Drawing.Color.Magenta;
+            toolStripButton6.Alignment = ToolStripItemAlignment.Right;
+            toolStripButton6.BackColor = Color.PapayaWhip;
+            toolStripButton6.DisplayStyle = ToolStripItemDisplayStyle.Text;
+            toolStripButton6.Image = (Image)resources.GetObject("toolStripButton6.Image");
+            toolStripButton6.ImageTransparentColor = Color.Magenta;
             toolStripButton6.Name = "toolStripButton6";
-            toolStripButton6.Size = new System.Drawing.Size(100, 28);
+            toolStripButton6.Size = new Size(100, 28);
             toolStripButton6.Text = "Update Resource";
             toolStripButton6.Click += button1_Click_1;
             // 
             // tabOrderHistory
             // 
             tabOrderHistory.Controls.Add(dgPartOrders);
-            tabOrderHistory.Location = new System.Drawing.Point(4, 24);
+            tabOrderHistory.Location = new Point(4, 24);
             tabOrderHistory.Name = "tabOrderHistory";
-            tabOrderHistory.Padding = new System.Windows.Forms.Padding(6);
-            tabOrderHistory.Size = new System.Drawing.Size(409, 503);
+            tabOrderHistory.Padding = new Padding(6);
+            tabOrderHistory.Size = new Size(409, 503);
             tabOrderHistory.TabIndex = 1;
             tabOrderHistory.Text = "Part Order History";
             tabOrderHistory.UseVisualStyleBackColor = true;
@@ -456,12 +454,12 @@ namespace Mosiac.UX.UXControls
             // btnShowAll
             // 
             btnShowAll.AutoSize = true;
-            btnShowAll.FlatAppearance.BorderColor = System.Drawing.Color.Sienna;
+            btnShowAll.FlatAppearance.BorderColor = Color.Sienna;
             btnShowAll.FlatAppearance.BorderSize = 2;
-            btnShowAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            btnShowAll.Location = new System.Drawing.Point(304, 70);
+            btnShowAll.FlatStyle = FlatStyle.Flat;
+            btnShowAll.Location = new Point(304, 70);
             btnShowAll.Name = "btnShowAll";
-            btnShowAll.Size = new System.Drawing.Size(110, 29);
+            btnShowAll.Size = new Size(110, 29);
             btnShowAll.TabIndex = 17;
             btnShowAll.Text = "Show All";
             btnShowAll.UseVisualStyleBackColor = true;
@@ -469,36 +467,36 @@ namespace Mosiac.UX.UXControls
             // 
             // tsResources
             // 
-            tsResources.Dock = System.Windows.Forms.DockStyle.Bottom;
-            tsResources.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { tsbCollapsePanel });
-            tsResources.Location = new System.Drawing.Point(10, 697);
-            tsResources.Margin = new System.Windows.Forms.Padding(3);
+            tsResources.Dock = DockStyle.Bottom;
+            tsResources.Items.AddRange(new ToolStripItem[] { tsbCollapsePanel });
+            tsResources.Location = new Point(10, 697);
+            tsResources.Margin = new Padding(3);
             tsResources.Name = "tsResources";
-            tsResources.Size = new System.Drawing.Size(1301, 25);
+            tsResources.Size = new Size(1301, 25);
             tsResources.TabIndex = 18;
             tsResources.Text = "toolStrip1";
             tsResources.ItemClicked += tsResources_ItemClicked_1;
             // 
             // tsbCollapsePanel
             // 
-            tsbCollapsePanel.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            tsbCollapsePanel.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            tsbCollapsePanel.Alignment = ToolStripItemAlignment.Right;
+            tsbCollapsePanel.DisplayStyle = ToolStripItemDisplayStyle.Image;
             tsbCollapsePanel.Image = Properties.Resources.round_keyboard_arrow_down_black_24dp;
-            tsbCollapsePanel.ImageTransparentColor = System.Drawing.Color.Magenta;
+            tsbCollapsePanel.ImageTransparentColor = Color.Magenta;
             tsbCollapsePanel.Name = "tsbCollapsePanel";
-            tsbCollapsePanel.Size = new System.Drawing.Size(23, 22);
+            tsbCollapsePanel.Size = new Size(23, 22);
             tsbCollapsePanel.Text = "toolStripButton3";
             // 
             // btnPrintLabel
             // 
-            btnPrintLabel.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
+            btnPrintLabel.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnPrintLabel.AutoSize = true;
-            btnPrintLabel.FlatAppearance.BorderColor = System.Drawing.Color.Sienna;
+            btnPrintLabel.FlatAppearance.BorderColor = Color.Sienna;
             btnPrintLabel.FlatAppearance.BorderSize = 2;
-            btnPrintLabel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            btnPrintLabel.Location = new System.Drawing.Point(1169, 68);
+            btnPrintLabel.FlatStyle = FlatStyle.Flat;
+            btnPrintLabel.Location = new Point(1169, 68);
             btnPrintLabel.Name = "btnPrintLabel";
-            btnPrintLabel.Size = new System.Drawing.Size(139, 29);
+            btnPrintLabel.Size = new Size(139, 29);
             btnPrintLabel.TabIndex = 17;
             btnPrintLabel.Text = "Print Label";
             btnPrintLabel.UseVisualStyleBackColor = true;
@@ -506,44 +504,44 @@ namespace Mosiac.UX.UXControls
             // 
             // spcPartsManager
             // 
-            spcPartsManager.Dock = System.Windows.Forms.DockStyle.Fill;
-            spcPartsManager.Location = new System.Drawing.Point(6, 6);
+            spcPartsManager.Dock = DockStyle.Fill;
+            spcPartsManager.Location = new Point(6, 6);
             spcPartsManager.Name = "spcPartsManager";
             // 
             // spcPartsManager.Panel1
             // 
             spcPartsManager.Panel1.Controls.Add(dgPartsSearch);
-            spcPartsManager.Panel1.Padding = new System.Windows.Forms.Padding(6);
+            spcPartsManager.Panel1.Padding = new Padding(6);
             spcPartsManager.Panel1MinSize = 300;
             // 
             // spcPartsManager.Panel2
             // 
             spcPartsManager.Panel2.Controls.Add(tabPartDetail);
-            spcPartsManager.Panel2.Padding = new System.Windows.Forms.Padding(6);
-            spcPartsManager.Size = new System.Drawing.Size(1278, 543);
+            spcPartsManager.Panel2.Padding = new Padding(6);
+            spcPartsManager.Size = new Size(1278, 543);
             spcPartsManager.SplitterDistance = 845;
             spcPartsManager.TabIndex = 19;
             // 
             // tabPartManager
             // 
-            tabPartManager.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            tabPartManager.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             tabPartManager.Controls.Add(tabPartsManager);
             tabPartManager.Controls.Add(tabStockTransactions);
             tabPartManager.Controls.Add(tabLocations);
-            tabPartManager.Location = new System.Drawing.Point(10, 107);
+            tabPartManager.Location = new Point(10, 107);
             tabPartManager.Name = "tabPartManager";
             tabPartManager.SelectedIndex = 0;
-            tabPartManager.Size = new System.Drawing.Size(1298, 583);
+            tabPartManager.Size = new Size(1298, 583);
             tabPartManager.TabIndex = 20;
             tabPartManager.SelectedIndexChanged += tabPartManager_SelectedIndexChanged;
             // 
             // tabPartsManager
             // 
             tabPartsManager.Controls.Add(spcPartsManager);
-            tabPartsManager.Location = new System.Drawing.Point(4, 24);
+            tabPartsManager.Location = new Point(4, 24);
             tabPartsManager.Name = "tabPartsManager";
-            tabPartsManager.Padding = new System.Windows.Forms.Padding(6);
-            tabPartsManager.Size = new System.Drawing.Size(1290, 555);
+            tabPartsManager.Padding = new Padding(6);
+            tabPartsManager.Size = new Size(1290, 555);
             tabPartsManager.TabIndex = 0;
             tabPartsManager.Text = "Part Manager";
             tabPartsManager.UseVisualStyleBackColor = true;
@@ -551,31 +549,31 @@ namespace Mosiac.UX.UXControls
             // tabStockTransactions
             // 
             tabStockTransactions.Controls.Add(splitContainer2);
-            tabStockTransactions.Location = new System.Drawing.Point(4, 24);
+            tabStockTransactions.Location = new Point(4, 24);
             tabStockTransactions.Name = "tabStockTransactions";
-            tabStockTransactions.Padding = new System.Windows.Forms.Padding(6);
-            tabStockTransactions.Size = new System.Drawing.Size(1290, 555);
+            tabStockTransactions.Padding = new Padding(6);
+            tabStockTransactions.Size = new Size(1290, 555);
             tabStockTransactions.TabIndex = 1;
             tabStockTransactions.Text = "Stock Transactions";
             tabStockTransactions.UseVisualStyleBackColor = true;
             // 
             // splitContainer2
             // 
-            splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
-            splitContainer2.Location = new System.Drawing.Point(6, 6);
+            splitContainer2.Dock = DockStyle.Fill;
+            splitContainer2.Location = new Point(6, 6);
             splitContainer2.Name = "splitContainer2";
             // 
             // splitContainer2.Panel1
             // 
             splitContainer2.Panel1.Controls.Add(dgvStockParts);
             splitContainer2.Panel1.Controls.Add(toolStrip2);
-            splitContainer2.Panel1.Padding = new System.Windows.Forms.Padding(6);
+            splitContainer2.Panel1.Padding = new Padding(6);
             // 
             // splitContainer2.Panel2
             // 
             splitContainer2.Panel2.Controls.Add(spcTransactionDetails);
-            splitContainer2.Panel2.Padding = new System.Windows.Forms.Padding(6);
-            splitContainer2.Size = new System.Drawing.Size(1278, 543);
+            splitContainer2.Panel2.Padding = new Padding(6);
+            splitContainer2.Size = new Size(1278, 543);
             splitContainer2.SplitterDistance = 437;
             splitContainer2.TabIndex = 0;
             // 
@@ -583,68 +581,67 @@ namespace Mosiac.UX.UXControls
             // 
             dgvStockParts.AllowUserToAddRows = false;
             dgvStockParts.AllowUserToDeleteRows = false;
-            dgvStockParts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvStockParts.Dock = System.Windows.Forms.DockStyle.Fill;
-            dgvStockParts.Location = new System.Drawing.Point(6, 31);
-            dgvStockParts.Margin = new System.Windows.Forms.Padding(3, 12, 3, 3);
+            dgvStockParts.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvStockParts.Dock = DockStyle.Fill;
+            dgvStockParts.Location = new Point(6, 31);
+            dgvStockParts.Margin = new Padding(3, 12, 3, 3);
             dgvStockParts.Name = "dgvStockParts";
             dgvStockParts.ReadOnly = true;
-            dgvStockParts.RowTemplate.Height = 25;
-            dgvStockParts.Size = new System.Drawing.Size(425, 506);
+            dgvStockParts.Size = new Size(425, 506);
             dgvStockParts.TabIndex = 0;
             dgvStockParts.SelectionChanged += dgvStockParts_SelectionChanged;
             // 
             // toolStrip2
             // 
-            toolStrip2.Location = new System.Drawing.Point(6, 6);
-            toolStrip2.Margin = new System.Windows.Forms.Padding(0, 0, 0, 12);
+            toolStrip2.Location = new Point(6, 6);
+            toolStrip2.Margin = new Padding(0, 0, 0, 12);
             toolStrip2.Name = "toolStrip2";
-            toolStrip2.Size = new System.Drawing.Size(425, 25);
+            toolStrip2.Size = new Size(425, 25);
             toolStrip2.TabIndex = 1;
             toolStrip2.Text = "toolStrip2";
             // 
             // spcTransactionDetails
             // 
-            spcTransactionDetails.Dock = System.Windows.Forms.DockStyle.Fill;
-            spcTransactionDetails.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
-            spcTransactionDetails.Location = new System.Drawing.Point(6, 6);
+            spcTransactionDetails.Dock = DockStyle.Fill;
+            spcTransactionDetails.FixedPanel = FixedPanel.Panel2;
+            spcTransactionDetails.Location = new Point(6, 6);
             spcTransactionDetails.Name = "spcTransactionDetails";
-            spcTransactionDetails.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            spcTransactionDetails.Orientation = Orientation.Horizontal;
             // 
             // spcTransactionDetails.Panel1
             // 
             spcTransactionDetails.Panel1.Controls.Add(dgTransactionsGrid);
             spcTransactionDetails.Panel1.Controls.Add(tsTransactions);
-            spcTransactionDetails.Panel1.Padding = new System.Windows.Forms.Padding(6);
+            spcTransactionDetails.Panel1.Padding = new Padding(6);
             // 
             // spcTransactionDetails.Panel2
             // 
             spcTransactionDetails.Panel2.Controls.Add(panel3);
-            spcTransactionDetails.Size = new System.Drawing.Size(825, 531);
+            spcTransactionDetails.Size = new Size(825, 531);
             spcTransactionDetails.SplitterDistance = 462;
             spcTransactionDetails.TabIndex = 0;
             // 
             // dgTransactionsGrid
             // 
-            dgTransactionsGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgTransactionsGrid.Dock = System.Windows.Forms.DockStyle.Fill;
-            dgTransactionsGrid.Location = new System.Drawing.Point(6, 37);
-            dgTransactionsGrid.Margin = new System.Windows.Forms.Padding(3, 6, 3, 3);
+            dgTransactionsGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgTransactionsGrid.Dock = DockStyle.Fill;
+            dgTransactionsGrid.Location = new Point(6, 37);
+            dgTransactionsGrid.Margin = new Padding(3, 6, 3, 3);
             dgTransactionsGrid.Name = "dgTransactionsGrid";
-            dgTransactionsGrid.RowTemplate.Height = 25;
-            dgTransactionsGrid.Size = new System.Drawing.Size(813, 419);
+            dgTransactionsGrid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgTransactionsGrid.Size = new Size(813, 419);
             dgTransactionsGrid.TabIndex = 1;
             dgTransactionsGrid.RowStateChanged += dgTransactionsGrid_RowStateChanged;
             dgTransactionsGrid.SelectionChanged += dgTransactionsGrid_SelectionChanged;
             // 
             // tsTransactions
             // 
-            tsTransactions.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { tsbReceipts, tsbAudits, tsbPulls, tsbAll, tsbRemoveSelected, toolStripSeparator1, tsbEditSelected });
-            tsTransactions.Location = new System.Drawing.Point(6, 6);
-            tsTransactions.Margin = new System.Windows.Forms.Padding(0, 0, 0, 6);
+            tsTransactions.Items.AddRange(new ToolStripItem[] { tsbReceipts, tsbAudits, tsbPulls, tsbAll, tsbRemoveSelected, toolStripSeparator1, tsbEditSelected });
+            tsTransactions.Location = new Point(6, 6);
+            tsTransactions.Margin = new Padding(0, 0, 0, 6);
             tsTransactions.Name = "tsTransactions";
-            tsTransactions.Padding = new System.Windows.Forms.Padding(0, 0, 1, 8);
-            tsTransactions.Size = new System.Drawing.Size(813, 31);
+            tsTransactions.Padding = new Padding(0, 0, 1, 8);
+            tsTransactions.Size = new Size(813, 31);
             tsTransactions.TabIndex = 0;
             tsTransactions.Text = "toolStrip2";
             tsTransactions.ItemClicked += tsTransactions_ItemClicked;
@@ -652,107 +649,108 @@ namespace Mosiac.UX.UXControls
             // tsbReceipts
             // 
             tsbReceipts.AutoSize = false;
-            tsbReceipts.BackColor = System.Drawing.Color.Gainsboro;
-            tsbReceipts.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            tsbReceipts.Image = (System.Drawing.Image)resources.GetObject("tsbReceipts.Image");
-            tsbReceipts.ImageTransparentColor = System.Drawing.Color.Magenta;
-            tsbReceipts.Margin = new System.Windows.Forms.Padding(4, 1, 4, 2);
+            tsbReceipts.BackColor = Color.Gainsboro;
+            tsbReceipts.DisplayStyle = ToolStripItemDisplayStyle.Text;
+            tsbReceipts.Image = (Image)resources.GetObject("tsbReceipts.Image");
+            tsbReceipts.ImageTransparentColor = Color.Magenta;
+            tsbReceipts.Margin = new Padding(4, 1, 4, 2);
             tsbReceipts.Name = "tsbReceipts";
-            tsbReceipts.Padding = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            tsbReceipts.Size = new System.Drawing.Size(67, 19);
+            tsbReceipts.Padding = new Padding(6, 0, 6, 0);
+            tsbReceipts.Size = new Size(67, 19);
             tsbReceipts.Text = "Receipts";
             // 
             // tsbAudits
             // 
             tsbAudits.AutoSize = false;
-            tsbAudits.BackColor = System.Drawing.Color.Gainsboro;
-            tsbAudits.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            tsbAudits.Image = (System.Drawing.Image)resources.GetObject("tsbAudits.Image");
-            tsbAudits.ImageTransparentColor = System.Drawing.Color.Magenta;
-            tsbAudits.Margin = new System.Windows.Forms.Padding(0, 1, 4, 2);
+            tsbAudits.BackColor = Color.Gainsboro;
+            tsbAudits.DisplayStyle = ToolStripItemDisplayStyle.Text;
+            tsbAudits.Image = (Image)resources.GetObject("tsbAudits.Image");
+            tsbAudits.ImageTransparentColor = Color.Magenta;
+            tsbAudits.Margin = new Padding(0, 1, 4, 2);
             tsbAudits.Name = "tsbAudits";
-            tsbAudits.Padding = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            tsbAudits.Size = new System.Drawing.Size(90, 19);
+            tsbAudits.Padding = new Padding(6, 0, 6, 0);
+            tsbAudits.Size = new Size(90, 19);
             tsbAudits.Text = "Adjustments";
             // 
             // tsbPulls
             // 
             tsbPulls.AutoSize = false;
-            tsbPulls.BackColor = System.Drawing.Color.Gainsboro;
-            tsbPulls.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            tsbPulls.Image = (System.Drawing.Image)resources.GetObject("tsbPulls.Image");
-            tsbPulls.ImageTransparentColor = System.Drawing.Color.Magenta;
-            tsbPulls.Margin = new System.Windows.Forms.Padding(0, 1, 4, 2);
+            tsbPulls.BackColor = Color.Gainsboro;
+            tsbPulls.DisplayStyle = ToolStripItemDisplayStyle.Text;
+            tsbPulls.Image = (Image)resources.GetObject("tsbPulls.Image");
+            tsbPulls.ImageTransparentColor = Color.Magenta;
+            tsbPulls.Margin = new Padding(0, 1, 4, 2);
             tsbPulls.Name = "tsbPulls";
-            tsbPulls.Padding = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            tsbPulls.Size = new System.Drawing.Size(90, 19);
+            tsbPulls.Padding = new Padding(6, 0, 6, 0);
+            tsbPulls.Size = new Size(90, 19);
             tsbPulls.Text = "Pull Stock";
             // 
             // tsbAll
             // 
             tsbAll.AutoSize = false;
-            tsbAll.BackColor = System.Drawing.Color.Moccasin;
-            tsbAll.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            tsbAll.Image = (System.Drawing.Image)resources.GetObject("tsbAll.Image");
-            tsbAll.ImageTransparentColor = System.Drawing.Color.Magenta;
+            tsbAll.BackColor = Color.Moccasin;
+            tsbAll.DisplayStyle = ToolStripItemDisplayStyle.Text;
+            tsbAll.Image = (Image)resources.GetObject("tsbAll.Image");
+            tsbAll.ImageTransparentColor = Color.Magenta;
             tsbAll.Name = "tsbAll";
-            tsbAll.Padding = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            tsbAll.Size = new System.Drawing.Size(60, 19);
+            tsbAll.Padding = new Padding(6, 0, 6, 0);
+            tsbAll.Size = new Size(60, 19);
             tsbAll.Text = "All";
             // 
             // tsbRemoveSelected
             // 
-            tsbRemoveSelected.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            tsbRemoveSelected.Alignment = ToolStripItemAlignment.Right;
             tsbRemoveSelected.AutoSize = false;
-            tsbRemoveSelected.BackColor = System.Drawing.Color.LightBlue;
-            tsbRemoveSelected.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            tsbRemoveSelected.Image = (System.Drawing.Image)resources.GetObject("tsbRemoveSelected.Image");
-            tsbRemoveSelected.ImageTransparentColor = System.Drawing.Color.Magenta;
+            tsbRemoveSelected.BackColor = Color.LightBlue;
+            tsbRemoveSelected.DisplayStyle = ToolStripItemDisplayStyle.Text;
+            tsbRemoveSelected.Image = (Image)resources.GetObject("tsbRemoveSelected.Image");
+            tsbRemoveSelected.ImageTransparentColor = Color.Magenta;
             tsbRemoveSelected.Name = "tsbRemoveSelected";
-            tsbRemoveSelected.Padding = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            tsbRemoveSelected.Size = new System.Drawing.Size(113, 19);
+            tsbRemoveSelected.Padding = new Padding(6, 0, 6, 0);
+            tsbRemoveSelected.Size = new Size(113, 19);
             tsbRemoveSelected.Text = "Remove Selected";
             tsbRemoveSelected.Click += tsbRemoveSelected_Click;
             // 
             // toolStripSeparator1
             // 
             toolStripSeparator1.Name = "toolStripSeparator1";
-            toolStripSeparator1.Size = new System.Drawing.Size(6, 23);
+            toolStripSeparator1.Size = new Size(6, 23);
             // 
             // tsbEditSelected
             // 
-            tsbEditSelected.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            tsbEditSelected.BackColor = System.Drawing.Color.Black;
-            tsbEditSelected.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            tsbEditSelected.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            tsbEditSelected.Image = (System.Drawing.Image)resources.GetObject("tsbEditSelected.Image");
-            tsbEditSelected.ImageTransparentColor = System.Drawing.Color.Magenta;
-            tsbEditSelected.Margin = new System.Windows.Forms.Padding(2, 1, 2, 2);
+            tsbEditSelected.Alignment = ToolStripItemAlignment.Right;
+            tsbEditSelected.BackColor = Color.Black;
+            tsbEditSelected.DisplayStyle = ToolStripItemDisplayStyle.Text;
+            tsbEditSelected.ForeColor = SystemColors.ControlLightLight;
+            tsbEditSelected.Image = (Image)resources.GetObject("tsbEditSelected.Image");
+            tsbEditSelected.ImageTransparentColor = Color.Magenta;
+            tsbEditSelected.Margin = new Padding(2, 1, 2, 2);
             tsbEditSelected.Name = "tsbEditSelected";
-            tsbEditSelected.Padding = new System.Windows.Forms.Padding(12, 0, 6, 0);
-            tsbEditSelected.Size = new System.Drawing.Size(96, 20);
+            tsbEditSelected.Padding = new Padding(12, 0, 6, 0);
+            tsbEditSelected.Size = new Size(96, 20);
             tsbEditSelected.Text = "Edit Selected";
+            tsbEditSelected.Click += EditInventoryItem;
             // 
             // panel3
             // 
-            panel3.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            panel3.BackColor = SystemColors.ActiveCaption;
+            panel3.BorderStyle = BorderStyle.FixedSingle;
             panel3.Controls.Add(btnPullStock);
             panel3.Controls.Add(txtStockLevel);
             panel3.Controls.Add(btnRollup);
             panel3.Controls.Add(label1);
             panel3.Controls.Add(button1);
-            panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            panel3.Location = new System.Drawing.Point(0, 0);
+            panel3.Dock = DockStyle.Fill;
+            panel3.Location = new Point(0, 0);
             panel3.Name = "panel3";
-            panel3.Size = new System.Drawing.Size(825, 65);
+            panel3.Size = new Size(825, 65);
             panel3.TabIndex = 3;
             // 
             // btnPullStock
             // 
-            btnPullStock.Location = new System.Drawing.Point(143, 22);
+            btnPullStock.Location = new Point(143, 22);
             btnPullStock.Name = "btnPullStock";
-            btnPullStock.Size = new System.Drawing.Size(119, 25);
+            btnPullStock.Size = new Size(119, 25);
             btnPullStock.TabIndex = 2;
             btnPullStock.Text = "Pull Stock";
             btnPullStock.UseVisualStyleBackColor = true;
@@ -760,21 +758,21 @@ namespace Mosiac.UX.UXControls
             // 
             // txtStockLevel
             // 
-            txtStockLevel.Location = new System.Drawing.Point(287, 24);
+            txtStockLevel.Location = new Point(287, 24);
             txtStockLevel.Name = "txtStockLevel";
             txtStockLevel.ReadOnly = true;
-            txtStockLevel.Size = new System.Drawing.Size(113, 23);
+            txtStockLevel.Size = new Size(113, 23);
             txtStockLevel.TabIndex = 0;
-            txtStockLevel.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            txtStockLevel.TextAlign = HorizontalAlignment.Center;
             // 
             // btnRollup
             // 
-            btnRollup.BackColor = System.Drawing.Color.Black;
-            btnRollup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            btnRollup.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            btnRollup.Location = new System.Drawing.Point(433, 22);
+            btnRollup.BackColor = Color.Black;
+            btnRollup.FlatStyle = FlatStyle.Flat;
+            btnRollup.ForeColor = SystemColors.ControlLightLight;
+            btnRollup.Location = new Point(619, 24);
             btnRollup.Name = "btnRollup";
-            btnRollup.Size = new System.Drawing.Size(119, 25);
+            btnRollup.Size = new Size(119, 25);
             btnRollup.TabIndex = 2;
             btnRollup.Text = "Roll Up";
             btnRollup.UseVisualStyleBackColor = false;
@@ -783,17 +781,17 @@ namespace Mosiac.UX.UXControls
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new System.Drawing.Point(316, 12);
+            label1.Location = new Point(314, 6);
             label1.Name = "label1";
-            label1.Size = new System.Drawing.Size(66, 15);
+            label1.Size = new Size(66, 15);
             label1.TabIndex = 1;
             label1.Text = "Stock Level";
             // 
             // button1
             // 
-            button1.Location = new System.Drawing.Point(18, 22);
+            button1.Location = new Point(18, 22);
             button1.Name = "button1";
-            button1.Size = new System.Drawing.Size(119, 25);
+            button1.Size = new Size(119, 25);
             button1.TabIndex = 2;
             button1.Text = "Set Level";
             button1.UseVisualStyleBackColor = true;
@@ -802,34 +800,34 @@ namespace Mosiac.UX.UXControls
             // tabLocations
             // 
             tabLocations.Controls.Add(spcLocations);
-            tabLocations.Location = new System.Drawing.Point(4, 24);
+            tabLocations.Location = new Point(4, 24);
             tabLocations.Name = "tabLocations";
-            tabLocations.Padding = new System.Windows.Forms.Padding(12);
-            tabLocations.Size = new System.Drawing.Size(1290, 555);
+            tabLocations.Padding = new Padding(12);
+            tabLocations.Size = new Size(1290, 555);
             tabLocations.TabIndex = 2;
             tabLocations.Text = "Stock Locations";
             tabLocations.UseVisualStyleBackColor = true;
             // 
             // spcLocations
             // 
-            spcLocations.Dock = System.Windows.Forms.DockStyle.Fill;
-            spcLocations.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
-            spcLocations.Location = new System.Drawing.Point(12, 12);
+            spcLocations.Dock = DockStyle.Fill;
+            spcLocations.FixedPanel = FixedPanel.Panel1;
+            spcLocations.Location = new Point(12, 12);
             spcLocations.Name = "spcLocations";
             // 
             // spcLocations.Panel1
             // 
             spcLocations.Panel1.Controls.Add(dgLocations);
             spcLocations.Panel1.Controls.Add(tsLocationMenu);
-            spcLocations.Panel1.Padding = new System.Windows.Forms.Padding(12);
+            spcLocations.Panel1.Padding = new Padding(12);
             // 
             // spcLocations.Panel2
             // 
             spcLocations.Panel2.Controls.Add(tsLocationPartsToolBar);
             spcLocations.Panel2.Controls.Add(dgLocationParts);
-            spcLocations.Panel2.Margin = new System.Windows.Forms.Padding(0, 0, 0, 12);
-            spcLocations.Panel2.Padding = new System.Windows.Forms.Padding(12);
-            spcLocations.Size = new System.Drawing.Size(1266, 531);
+            spcLocations.Panel2.Margin = new Padding(0, 0, 0, 12);
+            spcLocations.Panel2.Padding = new Padding(12);
+            spcLocations.Size = new Size(1266, 531);
             spcLocations.SplitterDistance = 280;
             spcLocations.TabIndex = 0;
             // 
@@ -837,24 +835,23 @@ namespace Mosiac.UX.UXControls
             // 
             dgLocations.AllowUserToAddRows = false;
             dgLocations.AllowUserToDeleteRows = false;
-            dgLocations.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgLocations.Dock = System.Windows.Forms.DockStyle.Fill;
-            dgLocations.Location = new System.Drawing.Point(12, 44);
-            dgLocations.Margin = new System.Windows.Forms.Padding(3, 12, 3, 3);
+            dgLocations.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgLocations.Dock = DockStyle.Fill;
+            dgLocations.Location = new Point(12, 44);
+            dgLocations.Margin = new Padding(3, 12, 3, 3);
             dgLocations.Name = "dgLocations";
-            dgLocations.RowTemplate.Height = 25;
-            dgLocations.Size = new System.Drawing.Size(256, 475);
+            dgLocations.Size = new Size(256, 475);
             dgLocations.TabIndex = 1;
             dgLocations.SelectionChanged += dgLocations_SelectionChanged;
             // 
             // tsLocationMenu
             // 
-            tsLocationMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { tsbNew, tsbEdit, tsbFilter, toolStripSeparator2, txtAreaFilter });
-            tsLocationMenu.Location = new System.Drawing.Point(12, 12);
-            tsLocationMenu.Margin = new System.Windows.Forms.Padding(0, 0, 0, 12);
+            tsLocationMenu.Items.AddRange(new ToolStripItem[] { tsbNew, tsbEdit, tsbFilter, toolStripSeparator2, txtAreaFilter });
+            tsLocationMenu.Location = new Point(12, 12);
+            tsLocationMenu.Margin = new Padding(0, 0, 0, 12);
             tsLocationMenu.Name = "tsLocationMenu";
-            tsLocationMenu.Padding = new System.Windows.Forms.Padding(2);
-            tsLocationMenu.Size = new System.Drawing.Size(256, 32);
+            tsLocationMenu.Padding = new Padding(2);
+            tsLocationMenu.Size = new Size(256, 32);
             tsLocationMenu.TabIndex = 0;
             tsLocationMenu.Text = "toolStrip3";
             tsLocationMenu.ItemClicked += tsLocationMenu_ItemClicked;
@@ -862,91 +859,90 @@ namespace Mosiac.UX.UXControls
             // tsbNew
             // 
             tsbNew.AutoSize = false;
-            tsbNew.BackColor = System.Drawing.Color.PowderBlue;
-            tsbNew.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            tsbNew.Image = (System.Drawing.Image)resources.GetObject("tsbNew.Image");
-            tsbNew.ImageTransparentColor = System.Drawing.Color.Magenta;
-            tsbNew.Margin = new System.Windows.Forms.Padding(4, 1, 4, 2);
+            tsbNew.BackColor = Color.PowderBlue;
+            tsbNew.DisplayStyle = ToolStripItemDisplayStyle.Text;
+            tsbNew.Image = (Image)resources.GetObject("tsbNew.Image");
+            tsbNew.ImageTransparentColor = Color.Magenta;
+            tsbNew.Margin = new Padding(4, 1, 4, 2);
             tsbNew.Name = "tsbNew";
-            tsbNew.Padding = new System.Windows.Forms.Padding(3);
-            tsbNew.Size = new System.Drawing.Size(41, 25);
+            tsbNew.Padding = new Padding(3);
+            tsbNew.Size = new Size(41, 25);
             tsbNew.Text = "All";
             // 
             // tsbEdit
             // 
             tsbEdit.AutoSize = false;
-            tsbEdit.BackColor = System.Drawing.Color.Wheat;
-            tsbEdit.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            tsbEdit.Image = (System.Drawing.Image)resources.GetObject("tsbEdit.Image");
-            tsbEdit.ImageTransparentColor = System.Drawing.Color.Magenta;
-            tsbEdit.Margin = new System.Windows.Forms.Padding(0, 1, 4, 2);
+            tsbEdit.BackColor = Color.Wheat;
+            tsbEdit.DisplayStyle = ToolStripItemDisplayStyle.Text;
+            tsbEdit.Image = (Image)resources.GetObject("tsbEdit.Image");
+            tsbEdit.ImageTransparentColor = Color.Magenta;
+            tsbEdit.Margin = new Padding(0, 1, 4, 2);
             tsbEdit.Name = "tsbEdit";
-            tsbEdit.Padding = new System.Windows.Forms.Padding(0, 0, 4, 0);
-            tsbEdit.Size = new System.Drawing.Size(31, 25);
+            tsbEdit.Padding = new Padding(0, 0, 4, 0);
+            tsbEdit.Size = new Size(31, 25);
             tsbEdit.Text = "Edit";
             // 
             // tsbFilter
             // 
             tsbFilter.AutoSize = false;
-            tsbFilter.BackColor = System.Drawing.Color.Black;
-            tsbFilter.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            tsbFilter.ForeColor = System.Drawing.SystemColors.Control;
-            tsbFilter.Image = (System.Drawing.Image)resources.GetObject("tsbFilter.Image");
-            tsbFilter.ImageTransparentColor = System.Drawing.Color.Magenta;
+            tsbFilter.BackColor = Color.Black;
+            tsbFilter.DisplayStyle = ToolStripItemDisplayStyle.Text;
+            tsbFilter.ForeColor = SystemColors.Control;
+            tsbFilter.Image = (Image)resources.GetObject("tsbFilter.Image");
+            tsbFilter.ImageTransparentColor = Color.Magenta;
             tsbFilter.Name = "tsbFilter";
-            tsbFilter.Size = new System.Drawing.Size(44, 25);
+            tsbFilter.Size = new Size(44, 25);
             tsbFilter.Text = "Filter";
             // 
             // toolStripSeparator2
             // 
             toolStripSeparator2.Name = "toolStripSeparator2";
-            toolStripSeparator2.Size = new System.Drawing.Size(6, 28);
+            toolStripSeparator2.Size = new Size(6, 28);
             // 
             // txtAreaFilter
             // 
             txtAreaFilter.AutoSize = false;
-            txtAreaFilter.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            txtAreaFilter.Margin = new Padding(4, 0, 4, 0);
             txtAreaFilter.Name = "txtAreaFilter";
-            txtAreaFilter.Size = new System.Drawing.Size(50, 23);
-            txtAreaFilter.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            txtAreaFilter.Size = new Size(50, 23);
+            txtAreaFilter.TextBoxTextAlign = HorizontalAlignment.Center;
             // 
             // tsLocationPartsToolBar
             // 
-            tsLocationPartsToolBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { tsbSaveLocationParts });
-            tsLocationPartsToolBar.Location = new System.Drawing.Point(12, 12);
+            tsLocationPartsToolBar.Items.AddRange(new ToolStripItem[] { tsbSaveLocationParts });
+            tsLocationPartsToolBar.Location = new Point(12, 12);
             tsLocationPartsToolBar.Name = "tsLocationPartsToolBar";
-            tsLocationPartsToolBar.Size = new System.Drawing.Size(958, 25);
+            tsLocationPartsToolBar.Size = new Size(958, 25);
             tsLocationPartsToolBar.TabIndex = 1;
             tsLocationPartsToolBar.Text = "toolStrip4";
             tsLocationPartsToolBar.ItemClicked += tsLocationPartsToolBar_ItemClicked;
             // 
             // tsbSaveLocationParts
             // 
-            tsbSaveLocationParts.BackColor = System.Drawing.Color.Gainsboro;
-            tsbSaveLocationParts.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            tsbSaveLocationParts.Image = (System.Drawing.Image)resources.GetObject("tsbSaveLocationParts.Image");
-            tsbSaveLocationParts.ImageTransparentColor = System.Drawing.Color.Magenta;
+            tsbSaveLocationParts.BackColor = Color.Gainsboro;
+            tsbSaveLocationParts.DisplayStyle = ToolStripItemDisplayStyle.Text;
+            tsbSaveLocationParts.Image = (Image)resources.GetObject("tsbSaveLocationParts.Image");
+            tsbSaveLocationParts.ImageTransparentColor = Color.Magenta;
             tsbSaveLocationParts.Name = "tsbSaveLocationParts";
-            tsbSaveLocationParts.Size = new System.Drawing.Size(84, 22);
+            tsbSaveLocationParts.Size = new Size(84, 22);
             tsbSaveLocationParts.Text = "Save Changes";
             // 
             // dgLocationParts
             // 
             dgLocationParts.AllowUserToAddRows = false;
             dgLocationParts.AllowUserToDeleteRows = false;
-            dgLocationParts.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
-            dgLocationParts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgLocationParts.Location = new System.Drawing.Point(15, 44);
+            dgLocationParts.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            dgLocationParts.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgLocationParts.Location = new Point(15, 44);
             dgLocationParts.Name = "dgLocationParts";
-            dgLocationParts.RowTemplate.Height = 25;
-            dgLocationParts.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            dgLocationParts.Size = new System.Drawing.Size(952, 475);
+            dgLocationParts.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgLocationParts.Size = new Size(952, 475);
             dgLocationParts.TabIndex = 0;
             // 
             // PartManager
             // 
-            AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(tabPartManager);
             Controls.Add(tsResources);
             Controls.Add(btnPrintLabel);
@@ -954,10 +950,10 @@ namespace Mosiac.UX.UXControls
             Controls.Add(btnSave);
             Controls.Add(btnNewPart);
             Controls.Add(panel1);
-            MinimumSize = new System.Drawing.Size(1095, 650);
+            MinimumSize = new Size(1095, 650);
             Name = "PartManager";
-            Padding = new System.Windows.Forms.Padding(10);
-            Size = new System.Drawing.Size(1321, 732);
+            Padding = new Padding(10);
+            Size = new Size(1321, 732);
             ((System.ComponentModel.ISupportInitialize)dgPartsSearch).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
