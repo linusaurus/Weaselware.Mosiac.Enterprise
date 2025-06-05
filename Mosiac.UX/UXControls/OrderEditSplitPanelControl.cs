@@ -139,6 +139,7 @@ namespace Mosiac.UX.UXControls
                 FastReport.Report report = new FastReport.Report();
                 report.Load($"{ Application.StartupPath}/testreport.frx");
                 report.SetParameterValue("ponumber", orderDTO.PurchaseOrderID);
+                report.SetParameterValue("HideJobname", this.ckbHideJobName.Checked);
                 report.Show();
             }
         }

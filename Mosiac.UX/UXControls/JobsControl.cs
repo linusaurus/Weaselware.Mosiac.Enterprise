@@ -51,6 +51,7 @@ namespace Mosiac.UX.UXControls
             lbJobsList.SelectedIndexChanged += LbJobsList_SelectedIndexChanged;
             dgvJobOrders.SelectionChanged += DgvJobOrders_SelectionChanged;
             dgvJobOrders.MouseDoubleClick += DgvJobOrders_MouseDoubleClick;
+            dgvJobOrders.SelectionMode  = DataGridViewSelectionMode.FullRowSelect;
             // ------------------------------------------------------
 
             dgvJobDeliveries.CellValueChanged += DgvJobDeliveries_CellValueChanged;

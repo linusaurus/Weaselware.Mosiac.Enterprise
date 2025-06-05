@@ -4,7 +4,7 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>net9.0-windows7.0</TargetFramework>
     <UseWindowsForms>true</UseWindowsForms>
-    <AssemblyVersion>1.9.2.3</AssemblyVersion>
+    <AssemblyVersion>1.9.5.4</AssemblyVersion>
     <ApplicationIcon>mosaic-_1_.ico</ApplicationIcon>
     <FileVersion>1.7.1.10</FileVersion>
     <Authors>Dick Danger</Authors>
@@ -33,7 +33,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="FastReport.Net.Demo" Version="2025.2.0" />
+    <PackageReference Include="FastReport.Net" Version="2025.2.2" />
     <PackageReference Include="FluentEmail.Smtp" Version="3.0.2" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.4" />
     <PackageReference Include="MotorolaCoreScannerNetStandard" Version="1.1.6" />

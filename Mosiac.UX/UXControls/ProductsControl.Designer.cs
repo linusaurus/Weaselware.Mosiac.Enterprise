@@ -1,4 +1,7 @@
-﻿namespace Mosiac.UX.UXControls
+﻿using System.Drawing;
+using System.Windows.Forms;
+
+namespace Mosiac.UX.UXControls
 {
     partial class ProductsControl
     {
@@ -42,6 +45,7 @@
             tsProductToolStrip = new ToolStrip();
             toolStripButton1 = new ToolStripButton();
             tslActiveJob = new ToolStripLabel();
+            tsbSaveProducts = new ToolStripButton();
             ((System.ComponentModel.ISupportInitialize)spcMain).BeginInit();
             spcMain.Panel1.SuspendLayout();
             spcMain.Panel2.SuspendLayout();
@@ -179,7 +183,7 @@
             // 
             // tsProductToolStrip
             // 
-            tsProductToolStrip.Items.AddRange(new ToolStripItem[] { toolStripButton1, tslActiveJob });
+            tsProductToolStrip.Items.AddRange(new ToolStripItem[] { toolStripButton1, tslActiveJob, tsbSaveProducts });
             tsProductToolStrip.Location = new Point(10, 10);
             tsProductToolStrip.Name = "tsProductToolStrip";
             tsProductToolStrip.Size = new Size(850, 25);
@@ -203,6 +207,19 @@
             tslActiveJob.Name = "tslActiveJob";
             tslActiveJob.Size = new Size(61, 22);
             tslActiveJob.Text = "Active Job";
+            // 
+            // tsbSaveProducts
+            // 
+            tsbSaveProducts.AutoSize = false;
+            tsbSaveProducts.DisplayStyle = ToolStripItemDisplayStyle.Text;
+            tsbSaveProducts.Image = (Image)resources.GetObject("tsbSaveProducts.Image");
+            tsbSaveProducts.ImageScaling = ToolStripItemImageScaling.None;
+            tsbSaveProducts.ImageTransparentColor = Color.Magenta;
+            tsbSaveProducts.Margin = new Padding(10, 1, 0, 2);
+            tsbSaveProducts.Name = "tsbSaveProducts";
+            tsbSaveProducts.Size = new Size(75, 22);
+            tsbSaveProducts.Text = "Save";
+            tsbSaveProducts.Click += tsbSaveProducts_Click;
             // 
             // ProductsControl
             // 
@@ -248,5 +265,6 @@
         private Panel panel2;
         private Panel JobSearchBottomPanel;
         private ToolStripLabel tslActiveJob;
+        private ToolStripButton tsbSaveProducts;
     }
 }

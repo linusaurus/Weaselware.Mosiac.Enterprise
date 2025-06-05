@@ -1,6 +1,12 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
+using System.Drawing;
+using System.IO;
+using System.Linq;
+using System.Windows.Forms;
 using System.Xml.Serialization;
 
 using DataLayer.Data;
@@ -644,7 +650,7 @@ namespace Mosiac.UX.UXControls
 
                 PrinterSettings XmlData;
                 var fileName = Path.Combine(Environment.GetFolderPath(
-                                Environment.SpecialFolder.ApplicationData), "Wml.xml");
+                                Environment.SpecialFolder.ApplicationData), "ZDesigner TLP 2824.xml");
                 // if the settings file doesn't exist-re-create them
                 if (!File.Exists(fileName))
                 {

@@ -22,7 +22,7 @@ namespace ServiceLayer {
            
 
             String userName = "designsynthesis.notifications@gmail.com";
-            String password = "wygmdjkullhfnkji";
+            String password = "nhbs bejm kcrq kqlo";
 
 
             var smtp = new SmtpClient

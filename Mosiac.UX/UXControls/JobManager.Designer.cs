@@ -1,4 +1,7 @@
 ﻿
+using System.Drawing;
+using System.Windows.Forms;
+
 namespace Mosiac.UX.UXControls
 {
     partial class JobManager

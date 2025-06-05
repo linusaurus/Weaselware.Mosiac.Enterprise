@@ -131,6 +131,10 @@ namespace ServiceLayer
            
             
         }
-       
+
+        public void Save()
+        {
+            ctx.SaveChanges();
+        }
     }
 }

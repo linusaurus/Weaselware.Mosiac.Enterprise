@@ -1,4 +1,8 @@
-﻿namespace Mosiac.UX.Forms
+﻿using System.Drawing;
+//using System.Windows.Controls;
+using System.Windows.Forms;
+
+namespace Mosiac.UX.Forms
 {
     partial class EditInventoryEditForm
     {
@@ -318,7 +322,7 @@
         private TextBox txtEmployee;
         private TextBox txtDate;
         private TextBox txtLineId;
-        private TextBox txtPartID;
+        private System.Windows.Forms.TextBox txtPartID;
         private Label label1;
         private Label label2;
         private Label label3;
@@ -329,7 +333,7 @@
         private TextBox txtUnitOfMeasure;
         private TextBox txtLocation;
         private TextBox txtTransactionType;
-        private Label label8;
+        private System.Windows.Forms.Label label8;
         private Label label9;
         private TextBox txtInventoryAmount;
         private Label label10;

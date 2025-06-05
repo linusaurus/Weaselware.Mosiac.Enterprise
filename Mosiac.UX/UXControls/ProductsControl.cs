@@ -9,8 +9,11 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DataLayer.Data;
 using DataLayer.Entity;
+using Motorola.Snapi.Commands;
+
 using ServiceLayer;
 using ServiceLayer.Models;
+using Mosiac.UX.UIActions;
 
 namespace Mosiac.UX.UXControls
 {
@@ -19,7 +22,9 @@ namespace Mosiac.UX.UXControls
         private readonly MosaicContext _context;
         private readonly ProductService _productService;
         private readonly JobsService _jobService;
-        private readonly PartsService partsService;
+        private readonly PartsService _partsService;
+        private readonly BindingSource _productBindingSource = new BindingSource();
+        private readonly BindingSource _subassemblyBindingSource = new BindingSource();
 
         private Job _selectedJob = null!; // Marked as readonly to fix IDE0044  
         private JobListDto _SelectedJobDTO = null!;
@@ -32,19 +37,53 @@ namespace Mosiac.UX.UXControls
             _context = context;
             _jobService = new JobsService(_context);
             _productService = new ProductService(_context);
-            partsService = new PartsService(_context);
+            _partsService = new PartsService(_context);
             if (Mosiac.UX.Properties.Settings.Default.ActiveJob != 0)
             {
                 var products = _productService.GetProducts(Mosiac.UX.Properties.Settings.Default.ActiveJob);
                 _selectedJob = _context.Job.Find(Mosiac.UX.Properties.Settings.Default.ActiveJob);
-                dgProductsAssemblies.DataSource = products;
+                _productBindingSource.DataSource = products;
+                //Bind the data source to the DataGridView
+           
+                dgProductsAssemblies.DataSource = _productBindingSource;
+                _productBindingSource.ListChanged += _productBindingSource_ListChanged;
+
+                _subassemblyBindingSource.DataSource = _productBindingSource;
+                _subassemblyBindingSource.DataMember = "SubAssembly";
+
+                dgProductSubAssemblies.DataSource = _subassemblyBindingSource;
+                _subassemblyBindingSource.ListChanged += _subassemblyBindingSource_ListChanged;
+
                 tslActiveJob.Text = _selectedJob.jobname; // Assign the selected product to the field
                 spcMain.Panel1Collapsed = true;
 
             }
-           // cboSelectJob.Items.Clear();
-           // cboSelectJob.DataSource = _jobService.Recent();
-           // cboSelectJob.DisplayMember = "JobName";
+            // cboSelectJob.Items.Clear();
+            // cboSelectJob.DataSource = _jobService.Recent();
+            // cboSelectJob.DisplayMember = "JobName";
+        }
+
+        private void _subassemblyBindingSource_ListChanged(object? sender, ListChangedEventArgs e)
+        {
+            BindingSource bs = (BindingSource)sender;
+            if (e.ListChangedType == ListChangedType.ItemChanged)
+            { UIactions.CheckForDirtyState(e, this.tsbSaveProducts); }
+            if (e.ListChangedType == ListChangedType.ItemDeleted)
+            {
+                { UIactions.CheckForDirtyState(e, this.tsbSaveProducts); }
+            }
+        }
+
+        private void _productBindingSource_ListChanged(object? sender, ListChangedEventArgs e)
+        {
+            BindingSource bs = (BindingSource)sender;
+            if (e.ListChangedType == ListChangedType.ItemChanged)
+            { UIactions.CheckForDirtyState(e, this.tsbSaveProducts); }
+            if (e.ListChangedType == ListChangedType.ItemDeleted)
+            {
+                { UIactions.CheckForDirtyState(e, this.tsbSaveProducts); }
+            }
+
         }
 
         private void cboSelectJob_SelectedIndexChanged(object sender, EventArgs e)
@@ -66,7 +105,7 @@ namespace Mosiac.UX.UXControls
                 if (product != null)
                 {
                     _selectedProductDto = product; // Now allowed since readonly was removed  
-                    dgProductSubAssemblies.DataSource = null; // Clear the sub-assemblies data source before loading new data
+                   // dgProductSubAssemblies.DataSource = null; // Clear the sub-assemblies data source before loading new data
                     spcMain.Panel1Collapsed = true;
                     // var subAssemblies = _productService.GetSubAssemblies(product.ProductID);
                     // dgSubAssembly.DataSource = subAssemblies;
@@ -167,10 +206,17 @@ namespace Mosiac.UX.UXControls
                 if (product != null)
                 {
                     ///tslActiveJob.Text = product.UnitName; // Assign the selected product to the field
-                    var subAssemblies = _productService.GetSubAssemblies(product.ProductID);
-                    dgProductSubAssemblies.DataSource = subAssemblies;
+                   // var subAssemblies = _productService.GetSubAssemblies(product.ProductID);
+                   // dgProductSubAssemblies.DataSource = subAssemblies;
                 }
             }
+        }
+
+        private void tsbSaveProducts_Click(object sender, EventArgs e)
+        {
+            // Ensure that the CheckForDirtyState method is called with a non-null argument
+            var listChangedEventArgs = new ListChangedEventArgs(ListChangedType.Reset, -1);
+            UIActions.UIactions.ToogleButtonStyle(false,tsbSaveProducts );
         }
     }
 }

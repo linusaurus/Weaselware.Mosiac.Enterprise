@@ -382,12 +382,17 @@ namespace ServiceLayer
                     inv.LineID = item.LineID;
                     inv.OrderReceiptID = orderReciept.OrderReceiptID;
                     inv.PartID = item.PartID;
+                    if (item.PartID != default || item.PartID != 0)
+                    {
+                        int locationID = ctx.Part.Find(item.PartID).LocationID.GetValueOrDefault();
+                        inv.LocationID = locationID;
+                    }
                     inv.QntyOrdered = item.QntyOrdered;
                     inv.QntyReceived = item.QntyReceived;
                     inv.UnitOfMeasureID = item.UiD;
                     inv.TransActionType = 1;
                     inv.InventoryAmount = item.QntyToInventory;
-
+                    if (inv.LocationID is null) inv.LocationID = 5; // default to the generic non-assigned location
                     _ctx.Inventory.Add(inv);
                 }
                 

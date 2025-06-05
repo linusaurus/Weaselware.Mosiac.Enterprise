@@ -148,7 +148,7 @@ namespace Mosiac.UX.UXControls
                 }
             }
         }
-   
+        //Print stock label
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
             PrinterSettings PrinterXmlData;
