@@ -11,28 +11,22 @@ using DataLayer.Data;
 
 namespace Mosiac.UX.Forms
 {
-    public partial class StockLevelAdjustmentForm : Form
+    public partial class StockLevelAdjustment : Form
     {
-        private readonly MosaicContext _ctx;
+       
         public decimal Adjustment = decimal.Zero;
-        public int? JobId => _jobId;
-        private int? _jobId = null;
+    
         
 
-        public StockLevelAdjustmentForm(DataLayer.Data.MosaicContext ctx)
+        public StockLevelAdjustment()
         {
             InitializeComponent();
             txtAdjustment.Text = "0.00";
-            _ctx = ctx;
-            listBox1.SelectedValueChanged += ListBox1_SelectedValueChanged; 
+            
 
         }
 
-        private void ListBox1_SelectedValueChanged(object sender, EventArgs e)
-        {
-            _jobId = (int?)listBox1.SelectedValue;
-            txtSelectedJob.Text = _jobId.ToString();
-        }
+       
 
         private void StockLevelAdjustmentForm_Load(object sender, EventArgs e)
         {
@@ -60,13 +54,6 @@ namespace Mosiac.UX.Forms
             Adjustment = Convert.ToDecimal(txtAdjustment.Text);
         }
 
-        private void txtJobSearch_TextChanged(object sender, EventArgs e)
-        {
-            var jobs = _ctx.Job.Where(j => j.jobname.Contains(txtJobSearch.Text)).ToList();
-            listBox1.DisplayMember = "jobname";
-            listBox1.ValueMember = "jobid";
-            this.listBox1.DataSource = jobs;
-           
-        }
+       
     }
 }

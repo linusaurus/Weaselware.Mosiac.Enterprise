@@ -630,7 +630,7 @@ namespace ServiceLayer
 
         }
 
-        public async Task<List<PartFastSearchDto>> SearchManuPartQueryAsync(string term)
+        public List<PartFastSearchDto>  SearchManuPartQuery(string term)
         {
             var query = _context.Part.Include(m => m.Manu).Select(f => f);
             query = query.AsNoTracking().Where(p => p.ManuPartNum.Contains(term));
@@ -646,7 +646,7 @@ namespace ServiceLayer
 
             });
 
-            return await result.ToListAsync();
+            return  result.ToList();
         }
     }
 }

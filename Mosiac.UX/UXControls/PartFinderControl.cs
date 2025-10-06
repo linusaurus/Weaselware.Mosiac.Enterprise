@@ -128,11 +128,11 @@ namespace Mosiac.UX.UXControls
             string term = txtMaunPart.Text;
             if (txtMaunPart.Text.Length > 0)
             {
-                var partsList = await partsService.SearchManuPartQueryAsync(term);
+                //var partsList = await partsService.SearchManuPartQueryAsync(term);
 
-                ListAsDataTable = Grids.BuildDataTable<PartFastSearchDto>(partsList);
-                dv = ListAsDataTable.DefaultView;
-                dgvPartsSearchResults.DataSource = dv;
+                //ListAsDataTable = Grids.BuildDataTable<PartFastSearchDto>(partsList);
+                //dv = ListAsDataTable.DefaultView;
+                //dgvPartsSearchResults.DataSource = dv;
             }
             else
             {

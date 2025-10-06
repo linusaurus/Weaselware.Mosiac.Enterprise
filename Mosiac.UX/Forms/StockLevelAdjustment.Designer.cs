@@ -1,6 +1,6 @@
 ﻿namespace Mosiac.UX.Forms
 {
-    partial class StockLevelAdjustmentForm
+    partial class StockLevelAdjustment
     {
         /// <summary>
         /// Required designer variable.
@@ -31,19 +31,15 @@
             btnCancel = new System.Windows.Forms.Button();
             btnOK = new System.Windows.Forms.Button();
             txtAdjustment = new System.Windows.Forms.TextBox();
-            txtJobSearch = new System.Windows.Forms.TextBox();
-            listBox1 = new System.Windows.Forms.ListBox();
             label1 = new System.Windows.Forms.Label();
-            label2 = new System.Windows.Forms.Label();
-            txtSelectedJob = new System.Windows.Forms.TextBox();
             SuspendLayout();
             // 
             // btnCancel
             // 
             btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            btnCancel.Location = new System.Drawing.Point(254, 106);
+            btnCancel.Location = new System.Drawing.Point(149, 53);
             btnCancel.Name = "btnCancel";
-            btnCancel.Size = new System.Drawing.Size(101, 29);
+            btnCancel.Size = new System.Drawing.Size(101, 37);
             btnCancel.TabIndex = 0;
             btnCancel.Text = "Cancel";
             btnCancel.UseVisualStyleBackColor = true;
@@ -51,16 +47,16 @@
             // btnOK
             // 
             btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
-            btnOK.Location = new System.Drawing.Point(254, 141);
+            btnOK.Location = new System.Drawing.Point(256, 53);
             btnOK.Name = "btnOK";
-            btnOK.Size = new System.Drawing.Size(101, 54);
+            btnOK.Size = new System.Drawing.Size(101, 37);
             btnOK.TabIndex = 0;
             btnOK.Text = "Commit";
             btnOK.UseVisualStyleBackColor = true;
             // 
             // txtAdjustment
             // 
-            txtAdjustment.Location = new System.Drawing.Point(254, 27);
+            txtAdjustment.Location = new System.Drawing.Point(12, 34);
             txtAdjustment.Name = "txtAdjustment";
             txtAdjustment.Size = new System.Drawing.Size(101, 23);
             txtAdjustment.TabIndex = 1;
@@ -68,68 +64,31 @@
             txtAdjustment.TextChanged += txtAdjustment_TextChanged;
             txtAdjustment.KeyPress += txtAdjustment_KeyPress;
             // 
-            // txtJobSearch
-            // 
-            txtJobSearch.Location = new System.Drawing.Point(12, 27);
-            txtJobSearch.Name = "txtJobSearch";
-            txtJobSearch.Size = new System.Drawing.Size(219, 23);
-            txtJobSearch.TabIndex = 2;
-            txtJobSearch.TextChanged += txtJobSearch_TextChanged;
-            // 
-            // listBox1
-            // 
-            listBox1.FormattingEnabled = true;
-            listBox1.Location = new System.Drawing.Point(12, 56);
-            listBox1.Name = "listBox1";
-            listBox1.Size = new System.Drawing.Size(219, 139);
-            listBox1.TabIndex = 4;
-            // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new System.Drawing.Point(276, 9);
+            label1.Location = new System.Drawing.Point(33, 16);
             label1.Name = "label1";
             label1.Size = new System.Drawing.Size(51, 15);
             label1.TabIndex = 5;
             label1.Text = "Amount";
             // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new System.Drawing.Point(12, 9);
-            label2.Name = "label2";
-            label2.Size = new System.Drawing.Size(68, 15);
-            label2.TabIndex = 5;
-            label2.Text = "Search Jobs";
-            // 
-            // txtSelectedJob
-            // 
-            txtSelectedJob.Location = new System.Drawing.Point(254, 56);
-            txtSelectedJob.Name = "txtSelectedJob";
-            txtSelectedJob.Size = new System.Drawing.Size(99, 23);
-            txtSelectedJob.TabIndex = 6;
-            txtSelectedJob.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // StockLevelAdjustmentForm
+            // StockLevelAdjustment
             // 
             AcceptButton = btnOK;
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             CancelButton = btnCancel;
-            ClientSize = new System.Drawing.Size(377, 207);
+            ClientSize = new System.Drawing.Size(377, 102);
             ControlBox = false;
-            Controls.Add(txtSelectedJob);
-            Controls.Add(label2);
             Controls.Add(label1);
-            Controls.Add(listBox1);
-            Controls.Add(txtJobSearch);
             Controls.Add(txtAdjustment);
             Controls.Add(btnOK);
             Controls.Add(btnCancel);
             FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            Name = "StockLevelAdjustmentForm";
+            Name = "StockLevelAdjustment";
             StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            Text = "Adjust Inventory";
+            Text = "Set Stock Level";
             Load += StockLevelAdjustmentForm_Load;
             ResumeLayout(false);
             PerformLayout();
@@ -141,10 +100,6 @@
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnOK;
         private System.Windows.Forms.TextBox txtAdjustment;
-        private System.Windows.Forms.TextBox txtJobSearch;
-        private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txtSelectedJob;
     }
 }

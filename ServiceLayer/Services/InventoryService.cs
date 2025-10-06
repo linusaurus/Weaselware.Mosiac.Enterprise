@@ -10,6 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using System.ComponentModel;
 using System.Runtime.InteropServices;
 
+
 namespace ServiceLayer
 {
     public class InventoryService : IDisposable
@@ -95,7 +96,7 @@ namespace ServiceLayer
            return  _ctx.Inventory.AsNoTracking().Where(t => t.PartID== i).Sum(s => s.InventoryAmount.GetValueOrDefault());
         }
 
-        public void SetStockLevel(int  partID, decimal  newValue)
+        public void SetStockLevel(int  partID, decimal  newValue,int user)
         {
             var thePart = _ctx.Part.Find(partID);
             var currentValue = GetStockLevel(partID);
@@ -110,7 +111,7 @@ namespace ServiceLayer
                 adjustment.Description = thePart.ItemDescription;
                 adjustment.LocationID = thePart?.LocationID ?? 5;
                 adjustment.UnitOfMeasureID = thePart?.UnitOfMeasureID ?? 1;
-                adjustment.EmpID = 8;
+                adjustment.EmpID =user;
                 adjustment.JobID= 1;
                 adjustment.TransActionType = 4;
                 _ctx.Inventory.Add(adjustment);

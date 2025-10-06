@@ -1,4 +1,14 @@
-﻿using System;
+﻿using DataLayer.Data;
+using DataLayer.Entity;
+//using FastReport.DevComponents.DotNetBar;
+using Microsoft.IdentityModel.Tokens;
+using Mosiac.UX.Forms;
+using Mosiac.UX.Services;
+using Neodynamic.SDK.Printing;
+using ServiceLayer;
+using ServiceLayer.Mappers;
+using ServiceLayer.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -6,20 +16,9 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Serialization;
-
-using DataLayer.Data;
-using DataLayer.Entity;
-
-using Mosiac.UX.Forms;
-using Mosiac.UX.Services;
-
-using Neodynamic.SDK.Printing;
-
-using ServiceLayer;
-using ServiceLayer.Mappers;
-using ServiceLayer.Models;
 
 namespace Mosiac.UX.UXControls
 {
@@ -785,11 +784,12 @@ namespace Mosiac.UX.UXControls
         private void button1_Click_2(object sender, EventArgs e)
         {
             // Set the Stock Level  ----
-            StockLevelAdjustmentForm frm = new StockLevelAdjustmentForm();
+            StockLevelAdjustment frm = new StockLevelAdjustment();
             frm.Text = String.Format("Set Stock Level # {0}", _selectedPartID.ToString());
+
             if (frm.ShowDialog() == DialogResult.OK)
             {
-                InventoryService.SetStockLevel(_selectedPartID, frm.Adjustment);
+                InventoryService.SetStockLevel(_selectedPartID, frm.Adjustment, Globals.CurrentLoggedUserID);
                 dgTransactionsGrid.DataSource = InventoryService.GetPartTransactions(_selectedPartID);
 
             }
@@ -995,13 +995,13 @@ namespace Mosiac.UX.UXControls
         private void btnPullStock_Click(object sender, EventArgs e)
         {
             // Set the Stock Level  ----
-            StockLevelAdjustmentForm frm = new StockLevelAdjustmentForm();
+            StockLevelAdjustmentForm frm = new StockLevelAdjustmentForm(_ctx);
             frm.Text = String.Format("Pull Stock # {0}", _selectedPartID.ToString());
 
             //   int v = _selectedPart.PartID;
             if (frm.ShowDialog() == DialogResult.OK)
             {
-                _stockService.PullPart(_selectedPartID.ToString(), frm.Adjustment, Globals.CurrentLoggedUserID, 1);
+                _stockService.PullPart(_selectedPartID.ToString(), frm.Adjustment, Globals.CurrentLoggedUserID, frm.JobId.Value);
                 dgTransactionsGrid.DataSource = InventoryService.GetPartTransactions(_selectedPartID);
 
             }
@@ -1039,8 +1039,8 @@ namespace Mosiac.UX.UXControls
         {
             // suppose that we have a test.txt at E:\
             string root = System.Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-            string filePath = Path.Combine(root, "ResourceCache",_selectedResource.filesource);
-           
+            string filePath = Path.Combine(root, "ResourceCache", _selectedResource.filesource);
+
             if (!File.Exists(filePath))
             {
                 return;
@@ -1051,6 +1051,25 @@ namespace Mosiac.UX.UXControls
             string argument = "/select, \"" + filePath + "\"";
 
             System.Diagnostics.Process.Start("explorer.exe", argument);
+        }
+
+        private  void lbManuSearch_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        
+
+        private void btnSearchMparts_Click(object sender, EventArgs e)
+        {
+            if (!txtManuPartSearch.Text.IsNullOrEmpty())
+            {
+               partsList = partsService.SearchManuPartQuery(txtManuPartSearch.Text);
+
+                ListAsDataTable = Grids.BuildDataTable<PartFastSearchDto>(partsList);
+                dv = ListAsDataTable.DefaultView;
+                dgPartsSearch.DataSource = dv;
+            }
         }
     }
 }

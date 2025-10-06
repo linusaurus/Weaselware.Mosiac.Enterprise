@@ -43,6 +43,8 @@ namespace Mosiac.UX.UXControls
             txtPartIDLookup = new TextBox();
             ckbUseManufacturer = new CheckBox();
             cboManu = new ComboBox();
+            lbManuSearch = new Label();
+            txtManuPartSearch = new TextBox();
             dgResources = new DataGridView();
             dgPartOrders = new DataGridView();
             btnNewPart = new Button();
@@ -102,6 +104,7 @@ namespace Mosiac.UX.UXControls
             tsLocationPartsToolBar = new ToolStrip();
             tsbSaveLocationParts = new ToolStripButton();
             dgLocationParts = new DataGridView();
+            btnSearchMparts = new Button();
             ((System.ComponentModel.ISupportInitialize)dgPartsSearch).BeginInit();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgResources).BeginInit();
@@ -259,6 +262,20 @@ namespace Mosiac.UX.UXControls
             cboManu.Size = new Size(159, 23);
             cboManu.TabIndex = 13;
             cboManu.SelectedIndexChanged += cboManu_SelectedIndexChanged;
+            // 
+            // lbManuSearch
+            // 
+            lbManuSearch.Location = new Point(0, 0);
+            lbManuSearch.Name = "lbManuSearch";
+            lbManuSearch.Size = new Size(100, 23);
+            lbManuSearch.TabIndex = 21;
+            // 
+            // txtManuPartSearch
+            // 
+            txtManuPartSearch.Location = new Point(702, 78);
+            txtManuPartSearch.Name = "txtManuPartSearch";
+            txtManuPartSearch.Size = new Size(130, 23);
+            txtManuPartSearch.TabIndex = 20;
             // 
             // dgResources
             // 
@@ -980,10 +997,23 @@ namespace Mosiac.UX.UXControls
             dgLocationParts.Size = new Size(979, 475);
             dgLocationParts.TabIndex = 0;
             // 
+            // btnSearchMparts
+            // 
+            btnSearchMparts.Location = new Point(582, 78);
+            btnSearchMparts.Name = "btnSearchMparts";
+            btnSearchMparts.Size = new Size(114, 23);
+            btnSearchMparts.TabIndex = 22;
+            btnSearchMparts.Text = "Find Manu Part";
+            btnSearchMparts.UseVisualStyleBackColor = true;
+            btnSearchMparts.Click += btnSearchMparts_Click;
+            // 
             // PartManager
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(btnSearchMparts);
+            Controls.Add(txtManuPartSearch);
+            Controls.Add(lbManuSearch);
             Controls.Add(tabPartManager);
             Controls.Add(tsResources);
             Controls.Add(btnPrintLabel);
@@ -1141,5 +1171,8 @@ namespace Mosiac.UX.UXControls
         private TextBox txtFileSource;
         private Button btnShowFile;
         private Panel panel4;
+        private TextBox txtManuPartSearch;
+        private Label lbManuSearch;
+        private Button btnSearchMparts;
     }
 }
