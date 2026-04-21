@@ -310,6 +310,11 @@ namespace Mosiac.UX.UXControls
             path += @"\ResourceCache\";
             path += dto.filesource;
             File.WriteAllBytes(path, dto.ResourceFile);
+            if (Path.GetExtension(path) == ".link")
+            {
+                MessageBox.Show("File is empty, cannot open");
+                return;
+            }
             ProcessStartInfo psi = new ProcessStartInfo
             {
                 FileName = path,
@@ -318,7 +323,7 @@ namespace Mosiac.UX.UXControls
             };
             using (var proc = Process.Start(psi)) { }
         }
-
+        //TODO Open Resource on double click
         private void btnOpenResource_Click(object sender, EventArgs e)
         {
             if (_selectedResourceID != default)
@@ -1053,23 +1058,29 @@ namespace Mosiac.UX.UXControls
             System.Diagnostics.Process.Start("explorer.exe", argument);
         }
 
-        private  void lbManuSearch_Click(object sender, EventArgs e)
+        private void lbManuSearch_Click(object sender, EventArgs e)
         {
 
         }
 
-        
+
 
         private void btnSearchMparts_Click(object sender, EventArgs e)
         {
             if (!txtManuPartSearch.Text.IsNullOrEmpty())
             {
-               partsList = partsService.SearchManuPartQuery(txtManuPartSearch.Text);
+                partsList = partsService.SearchManuPartQuery(txtManuPartSearch.Text);
 
                 ListAsDataTable = Grids.BuildDataTable<PartFastSearchDto>(partsList);
                 dv = ListAsDataTable.DefaultView;
                 dgPartsSearch.DataSource = dv;
             }
+        }
+
+        private void tsbWebLink_Click(object sender, EventArgs e)
+        {
+            CreateWebLinkForm createWebLinkForm = new CreateWebLinkForm(_selectedPartID);
+            createWebLinkForm.ShowDialog();
         }
     }
 }

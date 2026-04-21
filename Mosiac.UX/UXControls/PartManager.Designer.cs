@@ -59,6 +59,7 @@ namespace Mosiac.UX.UXControls
             propertyGrid1 = new PropertyGrid();
             toolStrip1 = new ToolStrip();
             toolStripButton1 = new ToolStripButton();
+            tsbWebLink = new ToolStripButton();
             toolStripButton2 = new ToolStripButton();
             toolStripButton3 = new ToolStripButton();
             toolStripButton4 = new ToolStripButton();
@@ -417,7 +418,7 @@ namespace Mosiac.UX.UXControls
             // 
             // toolStrip1
             // 
-            toolStrip1.Items.AddRange(new ToolStripItem[] { toolStripButton1, toolStripButton2, toolStripButton3, toolStripButton4, toolStripButton5, toolStripButton6 });
+            toolStrip1.Items.AddRange(new ToolStripItem[] { toolStripButton1, tsbWebLink, toolStripButton2, toolStripButton3, toolStripButton4, toolStripButton5, toolStripButton6 });
             toolStrip1.Location = new Point(3, 3);
             toolStrip1.Name = "toolStrip1";
             toolStrip1.Size = new Size(413, 31);
@@ -436,6 +437,17 @@ namespace Mosiac.UX.UXControls
             toolStripButton1.Text = "tsbOpenResource";
             toolStripButton1.ToolTipText = "Add a Resource";
             toolStripButton1.Click += btnNewResource_Click;
+            // 
+            // tsbWebLink
+            // 
+            tsbWebLink.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            tsbWebLink.Image = (Image)resources.GetObject("tsbWebLink.Image");
+            tsbWebLink.ImageScaling = ToolStripItemImageScaling.None;
+            tsbWebLink.ImageTransparentColor = Color.Magenta;
+            tsbWebLink.Name = "tsbWebLink";
+            tsbWebLink.Size = new Size(28, 28);
+            tsbWebLink.Text = "toolStripButton7";
+            tsbWebLink.Click += tsbWebLink_Click;
             // 
             // toolStripButton2
             // 
@@ -1174,5 +1186,6 @@ namespace Mosiac.UX.UXControls
         private TextBox txtManuPartSearch;
         private Label lbManuSearch;
         private Button btnSearchMparts;
+        private ToolStripButton tsbWebLink;
     }
 }

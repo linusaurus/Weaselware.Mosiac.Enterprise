@@ -20,7 +20,7 @@ namespace Mosiac.UX.Forms
 
         // Error Providers --->
         private ErrorProvider DescriptionErrorProvider;
-       // private ErrorProvider sourceFileErrorProvider;
+        // private ErrorProvider sourceFileErrorProvider;
 
         public CreateAttachmentForm(int purchaseOrderID)
         {
@@ -28,7 +28,7 @@ namespace Mosiac.UX.Forms
             bsAttachment.DataSource = newAttachmentDto;
             newAttachmentDto.PurchaseOrderID = purchaseOrderID;
             this.Text = $"Add Document #Order: {newAttachmentDto.PurchaseOrderID}";
-            
+
             BindAttachment(bsAttachment);
             bsAttachment.ListChanged += BsAttachment_ListChanged;
         }
@@ -66,10 +66,10 @@ namespace Mosiac.UX.Forms
         {
             if (newAttachmentDto.IsValid())
             {
-               int k =  FileOperations.InsertOrderAttachment(newAttachmentDto.PurchaseOrderID,
-                    newAttachmentDto.AttachmentDescription, newAttachmentDto.FileSize, info);
+                int k = FileOperations.InsertOrderAttachment(newAttachmentDto.PurchaseOrderID,
+                     newAttachmentDto.AttachmentDescription, newAttachmentDto.FileSize, info);
                 newAttachmentDto.AttachmentID = k;
-                
+
             }
             else
             {
@@ -118,6 +118,12 @@ namespace Mosiac.UX.Forms
             {
                 return;
             }
+        }
+
+        private void btnWebLink_Click(object sender, EventArgs e)
+        {
+            AutoValidate = AutoValidate.Disable;
+            
         }
     }
 }

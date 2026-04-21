@@ -30,154 +30,154 @@ namespace Mosiac.UX.Forms
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CreateAttachmentForm));
-            this.btnSave = new System.Windows.Forms.Button();
-            this.btnCancel = new System.Windows.Forms.Button();
-            this.txtAttachmentDescription = new System.Windows.Forms.TextBox();
-            this.txtSourceFile = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.btnBrowse = new System.Windows.Forms.Button();
-            this.txtFileSize = new System.Windows.Forms.TextBox();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.SuspendLayout();
+            btnSave = new System.Windows.Forms.Button();
+            btnCancel = new System.Windows.Forms.Button();
+            txtAttachmentDescription = new System.Windows.Forms.TextBox();
+            txtSourceFile = new System.Windows.Forms.TextBox();
+            label3 = new System.Windows.Forms.Label();
+            label1 = new System.Windows.Forms.Label();
+            btnBrowse = new System.Windows.Forms.Button();
+            txtFileSize = new System.Windows.Forms.TextBox();
+            panel1 = new System.Windows.Forms.Panel();
+            label2 = new System.Windows.Forms.Label();
+            pictureBox1 = new System.Windows.Forms.PictureBox();
+            panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            SuspendLayout();
             // 
             // btnSave
             // 
-            this.btnSave.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnSave.Enabled = false;
-            this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSave.Location = new System.Drawing.Point(300, 130);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(79, 32);
-            this.btnSave.TabIndex = 0;
-            this.btnSave.Text = "Save";
-            this.btnSave.UseVisualStyleBackColor = true;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            btnSave.DialogResult = System.Windows.Forms.DialogResult.OK;
+            btnSave.Enabled = false;
+            btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            btnSave.Location = new System.Drawing.Point(300, 155);
+            btnSave.Name = "btnSave";
+            btnSave.Size = new System.Drawing.Size(79, 32);
+            btnSave.TabIndex = 0;
+            btnSave.Text = "Save";
+            btnSave.UseVisualStyleBackColor = true;
+            btnSave.Click += btnSave_Click;
             // 
             // btnCancel
             // 
-            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCancel.Location = new System.Drawing.Point(219, 130);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(75, 32);
-            this.btnCancel.TabIndex = 0;
-            this.btnCancel.Text = "Cancel";
-            this.btnCancel.UseVisualStyleBackColor = true;
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            btnCancel.Location = new System.Drawing.Point(219, 155);
+            btnCancel.Name = "btnCancel";
+            btnCancel.Size = new System.Drawing.Size(75, 32);
+            btnCancel.TabIndex = 0;
+            btnCancel.Text = "Cancel";
+            btnCancel.UseVisualStyleBackColor = true;
+            btnCancel.Click += btnCancel_Click;
             // 
             // txtAttachmentDescription
             // 
-            this.txtAttachmentDescription.Location = new System.Drawing.Point(12, 69);
-            this.txtAttachmentDescription.Name = "txtAttachmentDescription";
-            this.txtAttachmentDescription.PlaceholderText = "  Enter description.....";
-            this.txtAttachmentDescription.Size = new System.Drawing.Size(367, 23);
-            this.txtAttachmentDescription.TabIndex = 1;
+            txtAttachmentDescription.Location = new System.Drawing.Point(12, 69);
+            txtAttachmentDescription.Name = "txtAttachmentDescription";
+            txtAttachmentDescription.PlaceholderText = "  Enter description.....";
+            txtAttachmentDescription.Size = new System.Drawing.Size(367, 23);
+            txtAttachmentDescription.TabIndex = 1;
             // 
             // txtSourceFile
             // 
-            this.txtSourceFile.Location = new System.Drawing.Point(87, 98);
-            this.txtSourceFile.Name = "txtSourceFile";
-            this.txtSourceFile.ReadOnly = true;
-            this.txtSourceFile.Size = new System.Drawing.Size(216, 23);
-            this.txtSourceFile.TabIndex = 2;
+            txtSourceFile.Location = new System.Drawing.Point(87, 123);
+            txtSourceFile.Name = "txtSourceFile";
+            txtSourceFile.ReadOnly = true;
+            txtSourceFile.Size = new System.Drawing.Size(216, 23);
+            txtSourceFile.TabIndex = 2;
             // 
             // label3
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 130);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(73, 15);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "File Size (KB)";
+            label3.AutoSize = true;
+            label3.Location = new System.Drawing.Point(12, 155);
+            label3.Name = "label3";
+            label3.Size = new System.Drawing.Size(73, 15);
+            label3.TabIndex = 4;
+            label3.Text = "File Size (KB)";
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(17, 102);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(64, 15);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "Source File";
+            label1.AutoSize = true;
+            label1.Location = new System.Drawing.Point(17, 127);
+            label1.Name = "label1";
+            label1.Size = new System.Drawing.Size(64, 15);
+            label1.TabIndex = 5;
+            label1.Text = "Source File";
             // 
             // btnBrowse
             // 
-            this.btnBrowse.Location = new System.Drawing.Point(309, 98);
-            this.btnBrowse.Name = "btnBrowse";
-            this.btnBrowse.Size = new System.Drawing.Size(70, 23);
-            this.btnBrowse.TabIndex = 6;
-            this.btnBrowse.Text = "Browse...";
-            this.btnBrowse.UseVisualStyleBackColor = true;
-            this.btnBrowse.Click += new System.EventHandler(this.button3_Click);
+            btnBrowse.Location = new System.Drawing.Point(309, 123);
+            btnBrowse.Name = "btnBrowse";
+            btnBrowse.Size = new System.Drawing.Size(70, 23);
+            btnBrowse.TabIndex = 6;
+            btnBrowse.Text = "Browse...";
+            btnBrowse.UseVisualStyleBackColor = true;
+            btnBrowse.Click += button3_Click;
             // 
             // txtFileSize
             // 
-            this.txtFileSize.Location = new System.Drawing.Point(87, 127);
-            this.txtFileSize.Name = "txtFileSize";
-            this.txtFileSize.ReadOnly = true;
-            this.txtFileSize.Size = new System.Drawing.Size(108, 23);
-            this.txtFileSize.TabIndex = 7;
+            txtFileSize.Location = new System.Drawing.Point(87, 152);
+            txtFileSize.Name = "txtFileSize";
+            txtFileSize.ReadOnly = true;
+            txtFileSize.Size = new System.Drawing.Size(108, 23);
+            txtFileSize.TabIndex = 7;
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.pictureBox1);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(391, 54);
-            this.panel1.TabIndex = 8;
+            panel1.Controls.Add(label2);
+            panel1.Controls.Add(pictureBox1);
+            panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            panel1.Location = new System.Drawing.Point(0, 0);
+            panel1.Name = "panel1";
+            panel1.Size = new System.Drawing.Size(486, 54);
+            panel1.TabIndex = 8;
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
-            this.label2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(285, 19);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(94, 21);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Attach a File";
+            label2.AutoSize = true;
+            label2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            label2.Font = new System.Drawing.Font("Segoe UI", 12F);
+            label2.Location = new System.Drawing.Point(369, 20);
+            label2.Name = "label2";
+            label2.Size = new System.Drawing.Size(94, 21);
+            label2.TabIndex = 1;
+            label2.Text = "Attach a File";
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(12, 3);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(50, 48);
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
+            pictureBox1.Image = (System.Drawing.Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new System.Drawing.Point(12, 3);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new System.Drawing.Size(50, 48);
+            pictureBox1.TabIndex = 0;
+            pictureBox1.TabStop = false;
             // 
             // CreateAttachmentForm
             // 
-            this.AcceptButton = this.btnSave;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(391, 175);
-            this.ControlBox = false;
-            this.Controls.Add(this.panel1);
-            this.Controls.Add(this.txtFileSize);
-            this.Controls.Add(this.btnBrowse);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.txtSourceFile);
-            this.Controls.Add(this.txtAttachmentDescription);
-            this.Controls.Add(this.btnCancel);
-            this.Controls.Add(this.btnSave);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Name = "CreateAttachmentForm";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Add Document =";
-            this.Load += new System.EventHandler(this.CreateAttachmentForm_Load);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            AcceptButton = btnSave;
+            AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            ClientSize = new System.Drawing.Size(486, 212);
+            ControlBox = false;
+            Controls.Add(panel1);
+            Controls.Add(txtFileSize);
+            Controls.Add(btnBrowse);
+            Controls.Add(label3);
+            Controls.Add(label1);
+            Controls.Add(txtSourceFile);
+            Controls.Add(txtAttachmentDescription);
+            Controls.Add(btnCancel);
+            Controls.Add(btnSave);
+            FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            Name = "CreateAttachmentForm";
+            StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            Text = "Add Document =";
+            Load += CreateAttachmentForm_Load;
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
 
         }
 

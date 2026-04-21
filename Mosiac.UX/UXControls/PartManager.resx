@@ -121,6 +121,15 @@
     <value>133, 17</value>
   </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="tsbWebLink.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACZSURBVEhL7ZCxCoRADETnH+QqQTmwsBH8ZfvDnxMFRVAW
+        diE3JLp3aCHsg2kyk4QESCQeSQVgArApCnDdaQRQiozKR2mMXRDUidwXrQhlbEbwEv3qJas3czZ+4O1n
+        DGw4+A1ct8RYddPggSyZOWTxIfV/J0QtaESwYPOEqAWOXnkBvyPAHsukBjArDdzEHutSbhkqef6CxP/s
+        Dpln8ljqFYMAAAAASUVORK5CYII=
+</value>
+  </data>
   <data name="toolStripButton6.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8

@@ -1,15 +1,16 @@
-﻿using System;
-using System.Transactions;
-using System.Data.SqlClient;
-using System.Data;
-using System.Data.SqlTypes;
-using System.IO;
-using System.Diagnostics;
+﻿using Boxed.Mapping;
+using DataLayer.Entity;
 using Microsoft.Win32.SafeHandles;
-using Boxed.Mapping;
+using Motorola.Snapi.Attributes;
 using ServiceLayer.Mappers;
 using ServiceLayer.Models;
-using DataLayer.Entity;
+using System;
+using System.Data;
+using System.Data.SqlClient;
+using System.Data.SqlTypes;
+using System.Diagnostics;
+using System.IO;
+using System.Transactions;
 using System.Windows.Markup;
 
 
@@ -23,15 +24,30 @@ namespace Mosiac.UX
         private static string cn = ConnStr.Substring(0, 68);
         private static void OpenResource(string path)
         {
-            ProcessStartInfo psi = new ProcessStartInfo
+            if (Path.GetExtension(path) == ".link")
             {
-                FileName = path,
-                UseShellExecute = true,
-                Verb = "open"
+                string link = File.ReadAllText(path);
+                ProcessStartInfo pi = new ProcessStartInfo(link)
+                {
+                   
+                    UseShellExecute = true,
+                    Verb = "open"
 
-            };
-            using (var proc = Process.Start(psi)) { }
+                };
+                using (var proc = Process.Start(pi)) { }
+            }
+            else
+            { 
 
+                ProcessStartInfo psi = new ProcessStartInfo
+                {
+                    FileName = path,
+                    UseShellExecute = true,
+                    Verb = "open"
+
+                };
+                using (var proc = Process.Start(psi)) { }
+            }
 
         }
 
@@ -178,6 +194,51 @@ namespace Mosiac.UX
                     }
 
                     SaveResourceFile(resourceID, filename.FullName, txn);
+                    txn.Commit();
+                }
+
+                conn.Close();
+            }
+        }
+
+
+
+        public static void InsertPartWebLink(int partID, string resourcedDesc, string filesize, string Url)
+        {
+            int resourceID = 0;
+            const string InsertCmd = "Resource_INSERT";
+
+            //"INSERT INTO Resource(PartID, ResourceDescription,filesource)" +
+            //" VALUES(@PartID, @Description, @filesource)";
+            string filePath = Path.Combine(System.Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), partID.ToString() + ".link");
+            string textToWrite = Url;  //filename.ToString();
+            File.WriteAllText(filePath, textToWrite);
+
+            using (SqlConnection conn = new SqlConnection(cn))
+            {
+                conn.Open();
+
+                using (SqlTransaction txn = conn.BeginTransaction())
+                {
+                    using (SqlCommand cmd = new SqlCommand(InsertCmd, conn, txn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+
+                        cmd.Parameters.Add("@partID", SqlDbType.Int).Value = partID;
+                        cmd.Parameters.Add("@resourcedescription", SqlDbType.VarChar).Value = resourcedDesc;
+                        cmd.Parameters.Add("@filename", SqlDbType.VarChar).Value = new FileInfo(filePath).Name;
+                        cmd.Parameters.Add("@filesize", SqlDbType.VarChar).Value = File.ReadAllText(filePath).Length.ToString();
+
+                        SqlParameter param = new SqlParameter("@resourceId", SqlDbType.Int);
+                        param.Direction = ParameterDirection.Output;
+                        cmd.Parameters.Add(param);
+
+
+                        cmd.ExecuteNonQuery();
+                        resourceID = (int)cmd.Parameters["@resourceId"].Value;
+                    }
+
+                    SaveResourceFile(resourceID, filePath, txn);
                     txn.Commit();
                 }
 

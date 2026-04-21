@@ -27,606 +27,606 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.txtJobName = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.txtZip = new System.Windows.Forms.TextBox();
-            this.txtState = new System.Windows.Forms.TextBox();
-            this.txtCity = new System.Windows.Forms.TextBox();
-            this.txtSupplierAddress = new System.Windows.Forms.TextBox();
-            this.txtSupplierName = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.txtPurchaser = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.txtAttention = new System.Windows.Forms.TextBox();
-            this.txtMemo = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.txtOtherFees = new System.Windows.Forms.TextBox();
-            this.NetTotalLabel = new System.Windows.Forms.Label();
-            this.cbTaxable = new System.Windows.Forms.CheckBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.POLabel = new System.Windows.Forms.Label();
-            this.txtSubTotal = new System.Windows.Forms.TextBox();
-            this.txtOrderTotal = new System.Windows.Forms.TextBox();
-            this.txtTax = new System.Windows.Forms.TextBox();
-            this.txtOrderDate = new System.Windows.Forms.TextBox();
-            this.txtOrderNumber = new System.Windows.Forms.TextBox();
-            this.txtTaxRate = new System.Windows.Forms.TextBox();
-            this.lbTaxRate = new System.Windows.Forms.Label();
-            this.gbCOst = new System.Windows.Forms.GroupBox();
-            this.gbSpecialnstruction = new System.Windows.Forms.GroupBox();
-            this.gbDetails = new System.Windows.Forms.GroupBox();
-            this.btnJobChange = new System.Windows.Forms.Button();
-            this.txtAccountNumber = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.btnEditSupplier = new System.Windows.Forms.Button();
-            this.btnSave = new System.Windows.Forms.Button();
-            this.btnPrint = new System.Windows.Forms.Button();
-            this.mtxtPhone = new System.Windows.Forms.MaskedTextBox();
-            this.mtxtFax = new System.Windows.Forms.MaskedTextBox();
-            this.btnChangeSupplier = new System.Windows.Forms.Button();
-            this.btnCancelOrder = new System.Windows.Forms.Button();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.label7 = new System.Windows.Forms.Label();
-            this.gbCOst.SuspendLayout();
-            this.gbSpecialnstruction.SuspendLayout();
-            this.gbDetails.SuspendLayout();
-            this.SuspendLayout();
+            txtJobName = new System.Windows.Forms.TextBox();
+            label2 = new System.Windows.Forms.Label();
+            label1 = new System.Windows.Forms.Label();
+            txtZip = new System.Windows.Forms.TextBox();
+            txtState = new System.Windows.Forms.TextBox();
+            txtCity = new System.Windows.Forms.TextBox();
+            txtSupplierAddress = new System.Windows.Forms.TextBox();
+            txtSupplierName = new System.Windows.Forms.TextBox();
+            label5 = new System.Windows.Forms.Label();
+            txtPurchaser = new System.Windows.Forms.TextBox();
+            label6 = new System.Windows.Forms.Label();
+            txtAttention = new System.Windows.Forms.TextBox();
+            txtMemo = new System.Windows.Forms.TextBox();
+            label10 = new System.Windows.Forms.Label();
+            txtOtherFees = new System.Windows.Forms.TextBox();
+            NetTotalLabel = new System.Windows.Forms.Label();
+            cbTaxable = new System.Windows.Forms.CheckBox();
+            label8 = new System.Windows.Forms.Label();
+            label4 = new System.Windows.Forms.Label();
+            POLabel = new System.Windows.Forms.Label();
+            txtSubTotal = new System.Windows.Forms.TextBox();
+            txtOrderTotal = new System.Windows.Forms.TextBox();
+            txtTax = new System.Windows.Forms.TextBox();
+            txtOrderDate = new System.Windows.Forms.TextBox();
+            txtOrderNumber = new System.Windows.Forms.TextBox();
+            txtTaxRate = new System.Windows.Forms.TextBox();
+            lbTaxRate = new System.Windows.Forms.Label();
+            gbCOst = new System.Windows.Forms.GroupBox();
+            gbSpecialnstruction = new System.Windows.Forms.GroupBox();
+            gbDetails = new System.Windows.Forms.GroupBox();
+            dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            btnJobChange = new System.Windows.Forms.Button();
+            label7 = new System.Windows.Forms.Label();
+            txtAccountNumber = new System.Windows.Forms.TextBox();
+            label3 = new System.Windows.Forms.Label();
+            button1 = new System.Windows.Forms.Button();
+            btnEditSupplier = new System.Windows.Forms.Button();
+            btnSave = new System.Windows.Forms.Button();
+            btnPrint = new System.Windows.Forms.Button();
+            mtxtPhone = new System.Windows.Forms.MaskedTextBox();
+            mtxtFax = new System.Windows.Forms.MaskedTextBox();
+            btnChangeSupplier = new System.Windows.Forms.Button();
+            btnCancelOrder = new System.Windows.Forms.Button();
+            gbCOst.SuspendLayout();
+            gbSpecialnstruction.SuspendLayout();
+            gbDetails.SuspendLayout();
+            SuspendLayout();
             // 
             // txtJobName
             // 
-            this.txtJobName.Location = new System.Drawing.Point(16, 22);
-            this.txtJobName.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.txtJobName.Name = "txtJobName";
-            this.txtJobName.ReadOnly = true;
-            this.txtJobName.Size = new System.Drawing.Size(265, 23);
-            this.txtJobName.TabIndex = 19;
-            this.txtJobName.Tag = "lock";
+            txtJobName.Location = new System.Drawing.Point(16, 22);
+            txtJobName.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            txtJobName.Name = "txtJobName";
+            txtJobName.ReadOnly = true;
+            txtJobName.Size = new System.Drawing.Size(265, 23);
+            txtJobName.TabIndex = 19;
+            txtJobName.Tag = "lock";
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(212, 125);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(25, 15);
-            this.label2.TabIndex = 17;
-            this.label2.Text = "Fax";
+            label2.AutoSize = true;
+            label2.Location = new System.Drawing.Point(212, 125);
+            label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            label2.Name = "label2";
+            label2.Size = new System.Drawing.Size(24, 15);
+            label2.TabIndex = 17;
+            label2.Text = "Fax";
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(28, 125);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(48, 15);
-            this.label1.TabIndex = 18;
-            this.label1.Text = "Phone#";
+            label1.AutoSize = true;
+            label1.Location = new System.Drawing.Point(28, 125);
+            label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            label1.Name = "label1";
+            label1.Size = new System.Drawing.Size(48, 15);
+            label1.TabIndex = 18;
+            label1.Text = "Phone#";
             // 
             // txtZip
             // 
-            this.txtZip.Location = new System.Drawing.Point(254, 94);
-            this.txtZip.Margin = new System.Windows.Forms.Padding(2);
-            this.txtZip.Name = "txtZip";
-            this.txtZip.ReadOnly = true;
-            this.txtZip.Size = new System.Drawing.Size(109, 23);
-            this.txtZip.TabIndex = 11;
-            this.txtZip.Tag = "lock";
-            this.txtZip.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            txtZip.Location = new System.Drawing.Point(254, 94);
+            txtZip.Margin = new System.Windows.Forms.Padding(2);
+            txtZip.Name = "txtZip";
+            txtZip.ReadOnly = true;
+            txtZip.Size = new System.Drawing.Size(109, 23);
+            txtZip.TabIndex = 11;
+            txtZip.Tag = "lock";
+            txtZip.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtState
             // 
-            this.txtState.Location = new System.Drawing.Point(206, 94);
-            this.txtState.Margin = new System.Windows.Forms.Padding(2);
-            this.txtState.Name = "txtState";
-            this.txtState.ReadOnly = true;
-            this.txtState.Size = new System.Drawing.Size(42, 23);
-            this.txtState.TabIndex = 13;
-            this.txtState.Tag = "lock";
-            this.txtState.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            txtState.Location = new System.Drawing.Point(206, 94);
+            txtState.Margin = new System.Windows.Forms.Padding(2);
+            txtState.Name = "txtState";
+            txtState.ReadOnly = true;
+            txtState.Size = new System.Drawing.Size(42, 23);
+            txtState.TabIndex = 13;
+            txtState.Tag = "lock";
+            txtState.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtCity
             // 
-            this.txtCity.Location = new System.Drawing.Point(21, 94);
-            this.txtCity.Margin = new System.Windows.Forms.Padding(2);
-            this.txtCity.Name = "txtCity";
-            this.txtCity.ReadOnly = true;
-            this.txtCity.Size = new System.Drawing.Size(180, 23);
-            this.txtCity.TabIndex = 14;
-            this.txtCity.Tag = "lock";
+            txtCity.Location = new System.Drawing.Point(21, 94);
+            txtCity.Margin = new System.Windows.Forms.Padding(2);
+            txtCity.Name = "txtCity";
+            txtCity.ReadOnly = true;
+            txtCity.Size = new System.Drawing.Size(180, 23);
+            txtCity.TabIndex = 14;
+            txtCity.Tag = "lock";
             // 
             // txtSupplierAddress
             // 
-            this.txtSupplierAddress.Location = new System.Drawing.Point(21, 67);
-            this.txtSupplierAddress.Margin = new System.Windows.Forms.Padding(2);
-            this.txtSupplierAddress.Name = "txtSupplierAddress";
-            this.txtSupplierAddress.ReadOnly = true;
-            this.txtSupplierAddress.Size = new System.Drawing.Size(342, 23);
-            this.txtSupplierAddress.TabIndex = 15;
-            this.txtSupplierAddress.Tag = "lock";
+            txtSupplierAddress.Location = new System.Drawing.Point(21, 67);
+            txtSupplierAddress.Margin = new System.Windows.Forms.Padding(2);
+            txtSupplierAddress.Name = "txtSupplierAddress";
+            txtSupplierAddress.ReadOnly = true;
+            txtSupplierAddress.Size = new System.Drawing.Size(342, 23);
+            txtSupplierAddress.TabIndex = 15;
+            txtSupplierAddress.Tag = "lock";
             // 
             // txtSupplierName
             // 
-            this.txtSupplierName.Location = new System.Drawing.Point(21, 39);
-            this.txtSupplierName.Margin = new System.Windows.Forms.Padding(2);
-            this.txtSupplierName.Name = "txtSupplierName";
-            this.txtSupplierName.ReadOnly = true;
-            this.txtSupplierName.Size = new System.Drawing.Size(342, 23);
-            this.txtSupplierName.TabIndex = 16;
-            this.txtSupplierName.Tag = "lock";
+            txtSupplierName.Location = new System.Drawing.Point(21, 39);
+            txtSupplierName.Margin = new System.Windows.Forms.Padding(2);
+            txtSupplierName.Name = "txtSupplierName";
+            txtSupplierName.ReadOnly = true;
+            txtSupplierName.Size = new System.Drawing.Size(342, 23);
+            txtSupplierName.TabIndex = 16;
+            txtSupplierName.Tag = "lock";
             // 
             // label5
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(15, 80);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(59, 15);
-            this.label5.TabIndex = 21;
-            this.label5.Text = "Purchaser";
+            label5.AutoSize = true;
+            label5.Location = new System.Drawing.Point(15, 80);
+            label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            label5.Name = "label5";
+            label5.Size = new System.Drawing.Size(59, 15);
+            label5.TabIndex = 21;
+            label5.Text = "Purchaser";
             // 
             // txtPurchaser
             // 
-            this.txtPurchaser.Location = new System.Drawing.Point(75, 78);
-            this.txtPurchaser.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.txtPurchaser.Name = "txtPurchaser";
-            this.txtPurchaser.Size = new System.Drawing.Size(85, 23);
-            this.txtPurchaser.TabIndex = 20;
-            this.txtPurchaser.Tag = "lock";
-            this.txtPurchaser.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            txtPurchaser.Location = new System.Drawing.Point(75, 78);
+            txtPurchaser.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            txtPurchaser.Name = "txtPurchaser";
+            txtPurchaser.Size = new System.Drawing.Size(85, 23);
+            txtPurchaser.TabIndex = 20;
+            txtPurchaser.Tag = "lock";
+            txtPurchaser.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label6
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(168, 81);
-            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(30, 15);
-            this.label6.TabIndex = 23;
-            this.label6.Text = "Attn";
+            label6.AutoSize = true;
+            label6.Location = new System.Drawing.Point(168, 81);
+            label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            label6.Name = "label6";
+            label6.Size = new System.Drawing.Size(30, 15);
+            label6.TabIndex = 23;
+            label6.Text = "Attn";
             // 
             // txtAttention
             // 
-            this.txtAttention.Location = new System.Drawing.Point(207, 78);
-            this.txtAttention.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.txtAttention.Name = "txtAttention";
-            this.txtAttention.Size = new System.Drawing.Size(135, 23);
-            this.txtAttention.TabIndex = 22;
-            this.txtAttention.Tag = "lock";
-            this.txtAttention.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            txtAttention.Location = new System.Drawing.Point(207, 78);
+            txtAttention.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            txtAttention.Name = "txtAttention";
+            txtAttention.Size = new System.Drawing.Size(135, 23);
+            txtAttention.TabIndex = 22;
+            txtAttention.Tag = "lock";
+            txtAttention.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtMemo
             // 
-            this.txtMemo.Location = new System.Drawing.Point(8, 20);
-            this.txtMemo.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.txtMemo.Multiline = true;
-            this.txtMemo.Name = "txtMemo";
-            this.txtMemo.Size = new System.Drawing.Size(329, 53);
-            this.txtMemo.TabIndex = 25;
-            this.txtMemo.Tag = "lock";
+            txtMemo.Location = new System.Drawing.Point(8, 20);
+            txtMemo.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            txtMemo.Multiline = true;
+            txtMemo.Name = "txtMemo";
+            txtMemo.Size = new System.Drawing.Size(329, 53);
+            txtMemo.TabIndex = 25;
+            txtMemo.Tag = "lock";
             // 
             // label10
             // 
-            this.label10.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(114, 67);
-            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(92, 15);
-            this.label10.TabIndex = 27;
-            this.label10.Text = "Other Cost/Fees";
+            label10.Anchor = System.Windows.Forms.AnchorStyles.None;
+            label10.AutoSize = true;
+            label10.Location = new System.Drawing.Point(114, 113);
+            label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            label10.Name = "label10";
+            label10.Size = new System.Drawing.Size(92, 15);
+            label10.TabIndex = 27;
+            label10.Text = "Other Cost/Fees";
             // 
             // txtOtherFees
             // 
-            this.txtOtherFees.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtOtherFees.Location = new System.Drawing.Point(221, 64);
-            this.txtOtherFees.Margin = new System.Windows.Forms.Padding(2);
-            this.txtOtherFees.Name = "txtOtherFees";
-            this.txtOtherFees.ReadOnly = true;
-            this.txtOtherFees.Size = new System.Drawing.Size(116, 23);
-            this.txtOtherFees.TabIndex = 26;
-            this.txtOtherFees.Tag = "lock";
-            this.txtOtherFees.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            txtOtherFees.Anchor = System.Windows.Forms.AnchorStyles.None;
+            txtOtherFees.Location = new System.Drawing.Point(221, 110);
+            txtOtherFees.Margin = new System.Windows.Forms.Padding(2);
+            txtOtherFees.Name = "txtOtherFees";
+            txtOtherFees.ReadOnly = true;
+            txtOtherFees.Size = new System.Drawing.Size(116, 23);
+            txtOtherFees.TabIndex = 26;
+            txtOtherFees.Tag = "lock";
+            txtOtherFees.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // NetTotalLabel
             // 
-            this.NetTotalLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.NetTotalLabel.AutoSize = true;
-            this.NetTotalLabel.Location = new System.Drawing.Point(112, 15);
-            this.NetTotalLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.NetTotalLabel.Name = "NetTotalLabel";
-            this.NetTotalLabel.Size = new System.Drawing.Size(89, 15);
-            this.NetTotalLabel.TabIndex = 37;
-            this.NetTotalLabel.Text = "Line Items Total";
+            NetTotalLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
+            NetTotalLabel.AutoSize = true;
+            NetTotalLabel.Location = new System.Drawing.Point(112, 36);
+            NetTotalLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            NetTotalLabel.Name = "NetTotalLabel";
+            NetTotalLabel.Size = new System.Drawing.Size(90, 15);
+            NetTotalLabel.TabIndex = 37;
+            NetTotalLabel.Text = "Line Items Total";
             // 
             // cbTaxable
             // 
-            this.cbTaxable.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.cbTaxable.AutoSize = true;
-            this.cbTaxable.Checked = true;
-            this.cbTaxable.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbTaxable.Location = new System.Drawing.Point(21, 90);
-            this.cbTaxable.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.cbTaxable.Name = "cbTaxable";
-            this.cbTaxable.Size = new System.Drawing.Size(65, 19);
-            this.cbTaxable.TabIndex = 36;
-            this.cbTaxable.Tag = "lock";
-            this.cbTaxable.Text = "Taxable";
-            this.cbTaxable.UseVisualStyleBackColor = true;
+            cbTaxable.Anchor = System.Windows.Forms.AnchorStyles.None;
+            cbTaxable.AutoSize = true;
+            cbTaxable.Checked = true;
+            cbTaxable.CheckState = System.Windows.Forms.CheckState.Checked;
+            cbTaxable.Location = new System.Drawing.Point(21, 136);
+            cbTaxable.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            cbTaxable.Name = "cbTaxable";
+            cbTaxable.Size = new System.Drawing.Size(65, 19);
+            cbTaxable.TabIndex = 36;
+            cbTaxable.Tag = "lock";
+            cbTaxable.Text = "Taxable";
+            cbTaxable.UseVisualStyleBackColor = true;
             // 
             // label8
             // 
-            this.label8.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(135, 94);
-            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(65, 15);
-            this.label8.TabIndex = 33;
-            this.label8.Text = "Order Total";
+            label8.Anchor = System.Windows.Forms.AnchorStyles.None;
+            label8.AutoSize = true;
+            label8.Location = new System.Drawing.Point(135, 140);
+            label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            label8.Name = "label8";
+            label8.Size = new System.Drawing.Size(66, 15);
+            label8.TabIndex = 33;
+            label8.Text = "Order Total";
             // 
             // label4
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(167, 53);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(31, 15);
-            this.label4.TabIndex = 34;
-            this.label4.Text = "Date";
+            label4.AutoSize = true;
+            label4.Location = new System.Drawing.Point(167, 53);
+            label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            label4.Name = "label4";
+            label4.Size = new System.Drawing.Size(31, 15);
+            label4.TabIndex = 34;
+            label4.Text = "Date";
             // 
             // POLabel
             // 
-            this.POLabel.AutoSize = true;
-            this.POLabel.Location = new System.Drawing.Point(14, 53);
-            this.POLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.POLabel.Name = "POLabel";
-            this.POLabel.Size = new System.Drawing.Size(30, 15);
-            this.POLabel.TabIndex = 35;
-            this.POLabel.Text = "PO#";
+            POLabel.AutoSize = true;
+            POLabel.Location = new System.Drawing.Point(14, 53);
+            POLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            POLabel.Name = "POLabel";
+            POLabel.Size = new System.Drawing.Size(30, 15);
+            POLabel.TabIndex = 35;
+            POLabel.Text = "PO#";
             // 
             // txtSubTotal
             // 
-            this.txtSubTotal.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtSubTotal.Location = new System.Drawing.Point(221, 11);
-            this.txtSubTotal.Margin = new System.Windows.Forms.Padding(2);
-            this.txtSubTotal.Name = "txtSubTotal";
-            this.txtSubTotal.ReadOnly = true;
-            this.txtSubTotal.Size = new System.Drawing.Size(116, 23);
-            this.txtSubTotal.TabIndex = 28;
-            this.txtSubTotal.Tag = "lock";
-            this.txtSubTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            txtSubTotal.Anchor = System.Windows.Forms.AnchorStyles.None;
+            txtSubTotal.Location = new System.Drawing.Point(221, 32);
+            txtSubTotal.Margin = new System.Windows.Forms.Padding(2);
+            txtSubTotal.Name = "txtSubTotal";
+            txtSubTotal.ReadOnly = true;
+            txtSubTotal.Size = new System.Drawing.Size(116, 23);
+            txtSubTotal.TabIndex = 28;
+            txtSubTotal.Tag = "lock";
+            txtSubTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtOrderTotal
             // 
-            this.txtOrderTotal.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtOrderTotal.Location = new System.Drawing.Point(221, 91);
-            this.txtOrderTotal.Margin = new System.Windows.Forms.Padding(2);
-            this.txtOrderTotal.Name = "txtOrderTotal";
-            this.txtOrderTotal.ReadOnly = true;
-            this.txtOrderTotal.Size = new System.Drawing.Size(116, 23);
-            this.txtOrderTotal.TabIndex = 29;
-            this.txtOrderTotal.Tag = "lock";
-            this.txtOrderTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            txtOrderTotal.Anchor = System.Windows.Forms.AnchorStyles.None;
+            txtOrderTotal.Location = new System.Drawing.Point(221, 137);
+            txtOrderTotal.Margin = new System.Windows.Forms.Padding(2);
+            txtOrderTotal.Name = "txtOrderTotal";
+            txtOrderTotal.ReadOnly = true;
+            txtOrderTotal.Size = new System.Drawing.Size(116, 23);
+            txtOrderTotal.TabIndex = 29;
+            txtOrderTotal.Tag = "lock";
+            txtOrderTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtTax
             // 
-            this.txtTax.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtTax.Location = new System.Drawing.Point(221, 37);
-            this.txtTax.Margin = new System.Windows.Forms.Padding(2);
-            this.txtTax.Name = "txtTax";
-            this.txtTax.ReadOnly = true;
-            this.txtTax.Size = new System.Drawing.Size(116, 23);
-            this.txtTax.TabIndex = 30;
-            this.txtTax.Tag = "lock";
-            this.txtTax.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            txtTax.Anchor = System.Windows.Forms.AnchorStyles.None;
+            txtTax.Location = new System.Drawing.Point(221, 83);
+            txtTax.Margin = new System.Windows.Forms.Padding(2);
+            txtTax.Name = "txtTax";
+            txtTax.ReadOnly = true;
+            txtTax.Size = new System.Drawing.Size(116, 23);
+            txtTax.TabIndex = 30;
+            txtTax.Tag = "lock";
+            txtTax.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtOrderDate
             // 
-            this.txtOrderDate.Location = new System.Drawing.Point(207, 49);
-            this.txtOrderDate.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.txtOrderDate.Name = "txtOrderDate";
-            this.txtOrderDate.Size = new System.Drawing.Size(135, 23);
-            this.txtOrderDate.TabIndex = 31;
-            this.txtOrderDate.Tag = "lock";
-            this.txtOrderDate.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            txtOrderDate.Location = new System.Drawing.Point(207, 49);
+            txtOrderDate.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            txtOrderDate.Name = "txtOrderDate";
+            txtOrderDate.Size = new System.Drawing.Size(135, 23);
+            txtOrderDate.TabIndex = 31;
+            txtOrderDate.Tag = "lock";
+            txtOrderDate.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtOrderNumber
             // 
-            this.txtOrderNumber.Location = new System.Drawing.Point(75, 49);
-            this.txtOrderNumber.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.txtOrderNumber.Name = "txtOrderNumber";
-            this.txtOrderNumber.Size = new System.Drawing.Size(85, 23);
-            this.txtOrderNumber.TabIndex = 32;
-            this.txtOrderNumber.Tag = "lock";
-            this.txtOrderNumber.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            txtOrderNumber.Location = new System.Drawing.Point(75, 49);
+            txtOrderNumber.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            txtOrderNumber.Name = "txtOrderNumber";
+            txtOrderNumber.Size = new System.Drawing.Size(85, 23);
+            txtOrderNumber.TabIndex = 32;
+            txtOrderNumber.Tag = "lock";
+            txtOrderNumber.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtTaxRate
             // 
-            this.txtTaxRate.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtTaxRate.Location = new System.Drawing.Point(149, 37);
-            this.txtTaxRate.Margin = new System.Windows.Forms.Padding(2);
-            this.txtTaxRate.Name = "txtTaxRate";
-            this.txtTaxRate.ReadOnly = true;
-            this.txtTaxRate.Size = new System.Drawing.Size(59, 23);
-            this.txtTaxRate.TabIndex = 38;
-            this.txtTaxRate.Tag = "lock";
-            this.txtTaxRate.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            txtTaxRate.Anchor = System.Windows.Forms.AnchorStyles.None;
+            txtTaxRate.Location = new System.Drawing.Point(149, 83);
+            txtTaxRate.Margin = new System.Windows.Forms.Padding(2);
+            txtTaxRate.Name = "txtTaxRate";
+            txtTaxRate.ReadOnly = true;
+            txtTaxRate.Size = new System.Drawing.Size(59, 23);
+            txtTaxRate.TabIndex = 38;
+            txtTaxRate.Tag = "lock";
+            txtTaxRate.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // lbTaxRate
             // 
-            this.lbTaxRate.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.lbTaxRate.AutoSize = true;
-            this.lbTaxRate.Location = new System.Drawing.Point(93, 40);
-            this.lbTaxRate.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lbTaxRate.Name = "lbTaxRate";
-            this.lbTaxRate.Size = new System.Drawing.Size(50, 15);
-            this.lbTaxRate.TabIndex = 39;
-            this.lbTaxRate.Text = "Tax Rate";
+            lbTaxRate.Anchor = System.Windows.Forms.AnchorStyles.None;
+            lbTaxRate.AutoSize = true;
+            lbTaxRate.Location = new System.Drawing.Point(93, 86);
+            lbTaxRate.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            lbTaxRate.Name = "lbTaxRate";
+            lbTaxRate.Size = new System.Drawing.Size(50, 15);
+            lbTaxRate.TabIndex = 39;
+            lbTaxRate.Text = "Tax Rate";
             // 
             // gbCOst
             // 
-            this.gbCOst.BackColor = System.Drawing.Color.Transparent;
-            this.gbCOst.Controls.Add(this.txtSubTotal);
-            this.gbCOst.Controls.Add(this.lbTaxRate);
-            this.gbCOst.Controls.Add(this.txtOtherFees);
-            this.gbCOst.Controls.Add(this.txtTaxRate);
-            this.gbCOst.Controls.Add(this.label10);
-            this.gbCOst.Controls.Add(this.NetTotalLabel);
-            this.gbCOst.Controls.Add(this.txtTax);
-            this.gbCOst.Controls.Add(this.cbTaxable);
-            this.gbCOst.Controls.Add(this.txtOrderTotal);
-            this.gbCOst.Controls.Add(this.label8);
-            this.gbCOst.Location = new System.Drawing.Point(21, 452);
-            this.gbCOst.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.gbCOst.Name = "gbCOst";
-            this.gbCOst.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.gbCOst.Size = new System.Drawing.Size(355, 129);
-            this.gbCOst.TabIndex = 40;
-            this.gbCOst.TabStop = false;
-            this.gbCOst.Text = "Cost Summary";
-            this.gbCOst.Enter += new System.EventHandler(this.gbCOst_Enter);
+            gbCOst.BackColor = System.Drawing.Color.Transparent;
+            gbCOst.Controls.Add(txtSubTotal);
+            gbCOst.Controls.Add(lbTaxRate);
+            gbCOst.Controls.Add(txtOtherFees);
+            gbCOst.Controls.Add(txtTaxRate);
+            gbCOst.Controls.Add(label10);
+            gbCOst.Controls.Add(NetTotalLabel);
+            gbCOst.Controls.Add(txtTax);
+            gbCOst.Controls.Add(cbTaxable);
+            gbCOst.Controls.Add(txtOrderTotal);
+            gbCOst.Controls.Add(label8);
+            gbCOst.Location = new System.Drawing.Point(21, 452);
+            gbCOst.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            gbCOst.Name = "gbCOst";
+            gbCOst.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            gbCOst.Size = new System.Drawing.Size(355, 171);
+            gbCOst.TabIndex = 40;
+            gbCOst.TabStop = false;
+            gbCOst.Text = "Cost Summary";
+            gbCOst.Enter += gbCOst_Enter;
             // 
             // gbSpecialnstruction
             // 
-            this.gbSpecialnstruction.Controls.Add(this.txtMemo);
-            this.gbSpecialnstruction.Location = new System.Drawing.Point(22, 362);
-            this.gbSpecialnstruction.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.gbSpecialnstruction.Name = "gbSpecialnstruction";
-            this.gbSpecialnstruction.Padding = new System.Windows.Forms.Padding(7);
-            this.gbSpecialnstruction.Size = new System.Drawing.Size(354, 84);
-            this.gbSpecialnstruction.TabIndex = 41;
-            this.gbSpecialnstruction.TabStop = false;
-            this.gbSpecialnstruction.Text = "Special Instruction";
+            gbSpecialnstruction.Controls.Add(txtMemo);
+            gbSpecialnstruction.Location = new System.Drawing.Point(22, 362);
+            gbSpecialnstruction.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            gbSpecialnstruction.Name = "gbSpecialnstruction";
+            gbSpecialnstruction.Padding = new System.Windows.Forms.Padding(7);
+            gbSpecialnstruction.Size = new System.Drawing.Size(354, 84);
+            gbSpecialnstruction.TabIndex = 41;
+            gbSpecialnstruction.TabStop = false;
+            gbSpecialnstruction.Text = "Special Instruction";
             // 
             // gbDetails
             // 
-            this.gbDetails.Controls.Add(this.dateTimePicker1);
-            this.gbDetails.Controls.Add(this.btnJobChange);
-            this.gbDetails.Controls.Add(this.txtOrderDate);
-            this.gbDetails.Controls.Add(this.txtPurchaser);
-            this.gbDetails.Controls.Add(this.label7);
-            this.gbDetails.Controls.Add(this.label5);
-            this.gbDetails.Controls.Add(this.label4);
-            this.gbDetails.Controls.Add(this.txtAttention);
-            this.gbDetails.Controls.Add(this.txtJobName);
-            this.gbDetails.Controls.Add(this.POLabel);
-            this.gbDetails.Controls.Add(this.label6);
-            this.gbDetails.Controls.Add(this.txtOrderNumber);
-            this.gbDetails.Location = new System.Drawing.Point(21, 210);
-            this.gbDetails.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.gbDetails.Name = "gbDetails";
-            this.gbDetails.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.gbDetails.Size = new System.Drawing.Size(354, 146);
-            this.gbDetails.TabIndex = 42;
-            this.gbDetails.TabStop = false;
-            this.gbDetails.Text = "Order Details";
-            // 
-            // btnJobChange
-            // 
-            this.btnJobChange.Location = new System.Drawing.Point(284, 21);
-            this.btnJobChange.Name = "btnJobChange";
-            this.btnJobChange.Size = new System.Drawing.Size(58, 25);
-            this.btnJobChange.TabIndex = 36;
-            this.btnJobChange.Tag = "lock";
-            this.btnJobChange.Text = "Edit";
-            this.btnJobChange.UseVisualStyleBackColor = true;
-            this.btnJobChange.Click += new System.EventHandler(this.btnJobChange_Click);
-            // 
-            // txtAccountNumber
-            // 
-            this.txtAccountNumber.Location = new System.Drawing.Point(96, 150);
-            this.txtAccountNumber.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.txtAccountNumber.Name = "txtAccountNumber";
-            this.txtAccountNumber.Size = new System.Drawing.Size(262, 23);
-            this.txtAccountNumber.TabIndex = 43;
-            this.txtAccountNumber.Tag = "lock";
-            this.txtAccountNumber.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(29, 154);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(53, 15);
-            this.label3.TabIndex = 44;
-            this.label3.Text = "Acct. No";
-            // 
-            // button1
-            // 
-            this.button1.Enabled = false;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Location = new System.Drawing.Point(23, 587);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(90, 33);
-            this.button1.TabIndex = 47;
-            this.button1.Tag = "lock";
-            this.button1.Text = "Clone";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // btnEditSupplier
-            // 
-            this.btnEditSupplier.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.btnEditSupplier.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEditSupplier.Image = global::Mosiac.UX.Properties.Resources.outline_message_black_24dp2;
-            this.btnEditSupplier.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEditSupplier.Location = new System.Drawing.Point(225, 177);
-            this.btnEditSupplier.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.btnEditSupplier.Name = "btnEditSupplier";
-            this.btnEditSupplier.Size = new System.Drawing.Size(133, 31);
-            this.btnEditSupplier.TabIndex = 48;
-            this.btnEditSupplier.Tag = "lock";
-            this.btnEditSupplier.Text = "Edit Supplier";
-            this.btnEditSupplier.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnEditSupplier.UseVisualStyleBackColor = true;
-            this.btnEditSupplier.Click += new System.EventHandler(this.btnEditSupplier_Click);
-            // 
-            // btnSave
-            // 
-            this.btnSave.Enabled = false;
-            this.btnSave.FlatAppearance.BorderSize = 2;
-            this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSave.Image = global::Mosiac.UX.Properties.Resources.baseline_save_black_24dp1;
-            this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(212, 587);
-            this.btnSave.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(149, 33);
-            this.btnSave.TabIndex = 46;
-            this.btnSave.Tag = "lock";
-            this.btnSave.Text = "Save Changes";
-            this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnSave.UseVisualStyleBackColor = true;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            // 
-            // btnPrint
-            // 
-            this.btnPrint.FlatAppearance.BorderSize = 2;
-            this.btnPrint.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPrint.Image = global::Mosiac.UX.Properties.Resources.round_print_black_24dp;
-            this.btnPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnPrint.Location = new System.Drawing.Point(121, 587);
-            this.btnPrint.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Size = new System.Drawing.Size(83, 33);
-            this.btnPrint.TabIndex = 45;
-            this.btnPrint.Text = "Print";
-            this.btnPrint.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnPrint.UseVisualStyleBackColor = true;
-            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
-            // 
-            // mtxtPhone
-            // 
-            this.mtxtPhone.Location = new System.Drawing.Point(104, 122);
-            this.mtxtPhone.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.mtxtPhone.Mask = "(999) 000-0000";
-            this.mtxtPhone.Name = "mtxtPhone";
-            this.mtxtPhone.ReadOnly = true;
-            this.mtxtPhone.Size = new System.Drawing.Size(96, 23);
-            this.mtxtPhone.TabIndex = 49;
-            this.mtxtPhone.Tag = "lock";
-            // 
-            // mtxtFax
-            // 
-            this.mtxtFax.Location = new System.Drawing.Point(254, 122);
-            this.mtxtFax.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.mtxtFax.Mask = "(999) 000-0000";
-            this.mtxtFax.Name = "mtxtFax";
-            this.mtxtFax.ReadOnly = true;
-            this.mtxtFax.Size = new System.Drawing.Size(109, 23);
-            this.mtxtFax.TabIndex = 50;
-            this.mtxtFax.Tag = "lock";
-            // 
-            // btnChangeSupplier
-            // 
-            this.btnChangeSupplier.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.btnChangeSupplier.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnChangeSupplier.Image = global::Mosiac.UX.Properties.Resources.outline_published_with_changes_black_24dp1;
-            this.btnChangeSupplier.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnChangeSupplier.Location = new System.Drawing.Point(83, 177);
-            this.btnChangeSupplier.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.btnChangeSupplier.Name = "btnChangeSupplier";
-            this.btnChangeSupplier.Size = new System.Drawing.Size(133, 31);
-            this.btnChangeSupplier.TabIndex = 51;
-            this.btnChangeSupplier.Tag = "lock";
-            this.btnChangeSupplier.Text = "Switch Supplier";
-            this.btnChangeSupplier.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnChangeSupplier.UseVisualStyleBackColor = true;
-            this.btnChangeSupplier.Click += new System.EventHandler(this.btnChangeSupplier_Click);
-            // 
-            // btnCancelOrder
-            // 
-            this.btnCancelOrder.Location = new System.Drawing.Point(21, 4);
-            this.btnCancelOrder.Name = "btnCancelOrder";
-            this.btnCancelOrder.Size = new System.Drawing.Size(92, 27);
-            this.btnCancelOrder.TabIndex = 52;
-            this.btnCancelOrder.Tag = "lock";
-            this.btnCancelOrder.Text = "Cancel Order";
-            this.btnCancelOrder.UseVisualStyleBackColor = true;
-            this.btnCancelOrder.Click += new System.EventHandler(this.btnCancelOrder_Click);
+            gbDetails.Controls.Add(dateTimePicker1);
+            gbDetails.Controls.Add(btnJobChange);
+            gbDetails.Controls.Add(txtOrderDate);
+            gbDetails.Controls.Add(txtPurchaser);
+            gbDetails.Controls.Add(label7);
+            gbDetails.Controls.Add(label5);
+            gbDetails.Controls.Add(label4);
+            gbDetails.Controls.Add(txtAttention);
+            gbDetails.Controls.Add(txtJobName);
+            gbDetails.Controls.Add(POLabel);
+            gbDetails.Controls.Add(label6);
+            gbDetails.Controls.Add(txtOrderNumber);
+            gbDetails.Location = new System.Drawing.Point(21, 210);
+            gbDetails.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            gbDetails.Name = "gbDetails";
+            gbDetails.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            gbDetails.Size = new System.Drawing.Size(354, 146);
+            gbDetails.TabIndex = 42;
+            gbDetails.TabStop = false;
+            gbDetails.Text = "Order Details";
             // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker1.Location = new System.Drawing.Point(207, 107);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(135, 23);
-            this.dateTimePicker1.TabIndex = 37;
+            dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            dateTimePicker1.Location = new System.Drawing.Point(207, 107);
+            dateTimePicker1.Name = "dateTimePicker1";
+            dateTimePicker1.Size = new System.Drawing.Size(135, 23);
+            dateTimePicker1.TabIndex = 37;
+            // 
+            // btnJobChange
+            // 
+            btnJobChange.Location = new System.Drawing.Point(284, 21);
+            btnJobChange.Name = "btnJobChange";
+            btnJobChange.Size = new System.Drawing.Size(58, 25);
+            btnJobChange.TabIndex = 36;
+            btnJobChange.Tag = "lock";
+            btnJobChange.Text = "Edit";
+            btnJobChange.UseVisualStyleBackColor = true;
+            btnJobChange.Click += btnJobChange_Click;
             // 
             // label7
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(75, 113);
-            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(82, 15);
-            this.label7.TabIndex = 21;
-            this.label7.Text = "Expected Date";
+            label7.AutoSize = true;
+            label7.Location = new System.Drawing.Point(75, 113);
+            label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            label7.Name = "label7";
+            label7.Size = new System.Drawing.Size(81, 15);
+            label7.TabIndex = 21;
+            label7.Text = "Expected Date";
+            // 
+            // txtAccountNumber
+            // 
+            txtAccountNumber.Location = new System.Drawing.Point(96, 150);
+            txtAccountNumber.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            txtAccountNumber.Name = "txtAccountNumber";
+            txtAccountNumber.Size = new System.Drawing.Size(262, 23);
+            txtAccountNumber.TabIndex = 43;
+            txtAccountNumber.Tag = "lock";
+            txtAccountNumber.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new System.Drawing.Point(29, 154);
+            label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            label3.Name = "label3";
+            label3.Size = new System.Drawing.Size(53, 15);
+            label3.TabIndex = 44;
+            label3.Text = "Acct. No";
+            // 
+            // button1
+            // 
+            button1.Enabled = false;
+            button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            button1.Location = new System.Drawing.Point(23, 629);
+            button1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            button1.Name = "button1";
+            button1.Size = new System.Drawing.Size(90, 33);
+            button1.TabIndex = 47;
+            button1.Tag = "lock";
+            button1.Text = "Clone";
+            button1.UseVisualStyleBackColor = true;
+            // 
+            // btnEditSupplier
+            // 
+            btnEditSupplier.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            btnEditSupplier.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            btnEditSupplier.Image = Properties.Resources.outline_message_black_24dp2;
+            btnEditSupplier.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            btnEditSupplier.Location = new System.Drawing.Point(225, 177);
+            btnEditSupplier.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            btnEditSupplier.Name = "btnEditSupplier";
+            btnEditSupplier.Size = new System.Drawing.Size(133, 31);
+            btnEditSupplier.TabIndex = 48;
+            btnEditSupplier.Tag = "lock";
+            btnEditSupplier.Text = "Edit Supplier";
+            btnEditSupplier.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            btnEditSupplier.UseVisualStyleBackColor = true;
+            btnEditSupplier.Click += btnEditSupplier_Click;
+            // 
+            // btnSave
+            // 
+            btnSave.Enabled = false;
+            btnSave.FlatAppearance.BorderSize = 2;
+            btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            btnSave.Image = Properties.Resources.baseline_save_black_24dp1;
+            btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            btnSave.Location = new System.Drawing.Point(223, 629);
+            btnSave.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            btnSave.Name = "btnSave";
+            btnSave.Size = new System.Drawing.Size(149, 33);
+            btnSave.TabIndex = 46;
+            btnSave.Tag = "lock";
+            btnSave.Text = "Save Changes";
+            btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            btnSave.UseVisualStyleBackColor = true;
+            btnSave.Click += btnSave_Click;
+            // 
+            // btnPrint
+            // 
+            btnPrint.FlatAppearance.BorderSize = 2;
+            btnPrint.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            btnPrint.Image = Properties.Resources.round_print_black_24dp;
+            btnPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            btnPrint.Location = new System.Drawing.Point(121, 629);
+            btnPrint.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            btnPrint.Name = "btnPrint";
+            btnPrint.Size = new System.Drawing.Size(83, 33);
+            btnPrint.TabIndex = 45;
+            btnPrint.Text = "Print";
+            btnPrint.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            btnPrint.UseVisualStyleBackColor = true;
+            btnPrint.Click += btnPrint_Click;
+            // 
+            // mtxtPhone
+            // 
+            mtxtPhone.Location = new System.Drawing.Point(104, 122);
+            mtxtPhone.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            mtxtPhone.Mask = "(999) 000-0000";
+            mtxtPhone.Name = "mtxtPhone";
+            mtxtPhone.ReadOnly = true;
+            mtxtPhone.Size = new System.Drawing.Size(96, 23);
+            mtxtPhone.TabIndex = 49;
+            mtxtPhone.Tag = "lock";
+            // 
+            // mtxtFax
+            // 
+            mtxtFax.Location = new System.Drawing.Point(254, 122);
+            mtxtFax.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            mtxtFax.Mask = "(999) 000-0000";
+            mtxtFax.Name = "mtxtFax";
+            mtxtFax.ReadOnly = true;
+            mtxtFax.Size = new System.Drawing.Size(109, 23);
+            mtxtFax.TabIndex = 50;
+            mtxtFax.Tag = "lock";
+            // 
+            // btnChangeSupplier
+            // 
+            btnChangeSupplier.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            btnChangeSupplier.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            btnChangeSupplier.Image = Properties.Resources.outline_published_with_changes_black_24dp1;
+            btnChangeSupplier.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            btnChangeSupplier.Location = new System.Drawing.Point(83, 177);
+            btnChangeSupplier.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            btnChangeSupplier.Name = "btnChangeSupplier";
+            btnChangeSupplier.Size = new System.Drawing.Size(133, 31);
+            btnChangeSupplier.TabIndex = 51;
+            btnChangeSupplier.Tag = "lock";
+            btnChangeSupplier.Text = "Switch Supplier";
+            btnChangeSupplier.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            btnChangeSupplier.UseVisualStyleBackColor = true;
+            btnChangeSupplier.Click += btnChangeSupplier_Click;
+            // 
+            // btnCancelOrder
+            // 
+            btnCancelOrder.Location = new System.Drawing.Point(21, 4);
+            btnCancelOrder.Name = "btnCancelOrder";
+            btnCancelOrder.Size = new System.Drawing.Size(92, 27);
+            btnCancelOrder.TabIndex = 52;
+            btnCancelOrder.Tag = "lock";
+            btnCancelOrder.Text = "Cancel Order";
+            btnCancelOrder.UseVisualStyleBackColor = true;
+            btnCancelOrder.Click += btnCancelOrder_Click;
             // 
             // OrderHeaderVerticalControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoScroll = true;
-            this.Controls.Add(this.btnCancelOrder);
-            this.Controls.Add(this.btnChangeSupplier);
-            this.Controls.Add(this.mtxtFax);
-            this.Controls.Add(this.mtxtPhone);
-            this.Controls.Add(this.btnEditSupplier);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.btnSave);
-            this.Controls.Add(this.btnPrint);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.txtAccountNumber);
-            this.Controls.Add(this.gbDetails);
-            this.Controls.Add(this.gbSpecialnstruction);
-            this.Controls.Add(this.gbCOst);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.txtZip);
-            this.Controls.Add(this.txtState);
-            this.Controls.Add(this.txtCity);
-            this.Controls.Add(this.txtSupplierAddress);
-            this.Controls.Add(this.txtSupplierName);
-            this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.MinimumSize = new System.Drawing.Size(379, 0);
-            this.Name = "OrderHeaderVerticalControl";
-            this.Padding = new System.Windows.Forms.Padding(7);
-            this.Size = new System.Drawing.Size(399, 724);
-            this.Tag = "lock";
-            this.Load += new System.EventHandler(this.OrderHeaderVerticalControl_Load);
-            this.gbCOst.ResumeLayout(false);
-            this.gbCOst.PerformLayout();
-            this.gbSpecialnstruction.ResumeLayout(false);
-            this.gbSpecialnstruction.PerformLayout();
-            this.gbDetails.ResumeLayout(false);
-            this.gbDetails.PerformLayout();
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            AutoScroll = true;
+            Controls.Add(btnCancelOrder);
+            Controls.Add(btnChangeSupplier);
+            Controls.Add(mtxtFax);
+            Controls.Add(mtxtPhone);
+            Controls.Add(btnEditSupplier);
+            Controls.Add(button1);
+            Controls.Add(btnSave);
+            Controls.Add(btnPrint);
+            Controls.Add(label3);
+            Controls.Add(txtAccountNumber);
+            Controls.Add(gbDetails);
+            Controls.Add(gbSpecialnstruction);
+            Controls.Add(gbCOst);
+            Controls.Add(label2);
+            Controls.Add(label1);
+            Controls.Add(txtZip);
+            Controls.Add(txtState);
+            Controls.Add(txtCity);
+            Controls.Add(txtSupplierAddress);
+            Controls.Add(txtSupplierName);
+            Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            MinimumSize = new System.Drawing.Size(379, 0);
+            Name = "OrderHeaderVerticalControl";
+            Padding = new System.Windows.Forms.Padding(7);
+            Size = new System.Drawing.Size(399, 724);
+            Tag = "lock";
+            Load += OrderHeaderVerticalControl_Load;
+            gbCOst.ResumeLayout(false);
+            gbCOst.PerformLayout();
+            gbSpecialnstruction.ResumeLayout(false);
+            gbSpecialnstruction.PerformLayout();
+            gbDetails.ResumeLayout(false);
+            gbDetails.PerformLayout();
+            ResumeLayout(false);
+            PerformLayout();
 
         }
 

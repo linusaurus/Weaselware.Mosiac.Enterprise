@@ -1,7 +1,7 @@
 ﻿
 namespace Mosiac.UX.Forms
 {
-    partial class CreateWebLinkForm
+    partial class CreateResourceForm
     {
         /// <summary>
         /// Required designer variable.
@@ -33,26 +33,26 @@ namespace Mosiac.UX.Forms
             btnSave = new System.Windows.Forms.Button();
             btnCancel = new System.Windows.Forms.Button();
             txtSourceFile = new System.Windows.Forms.TextBox();
-            label3 = new System.Windows.Forms.Label();
+            btnBrowse = new System.Windows.Forms.Button();
             label1 = new System.Windows.Forms.Label();
+            txtFileSize = new System.Windows.Forms.TextBox();
+            label3 = new System.Windows.Forms.Label();
             SuspendLayout();
             // 
             // txtResourceDescription
             // 
-            txtResourceDescription.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            txtResourceDescription.Location = new System.Drawing.Point(33, 40);
+            txtResourceDescription.Location = new System.Drawing.Point(12, 12);
             txtResourceDescription.Name = "txtResourceDescription";
-            txtResourceDescription.Size = new System.Drawing.Size(350, 23);
+            txtResourceDescription.PlaceholderText = "  Enter a Resource Description";
+            txtResourceDescription.Size = new System.Drawing.Size(394, 23);
             txtResourceDescription.TabIndex = 0;
-            txtResourceDescription.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            txtResourceDescription.WordWrap = false;
             // 
             // btnSave
             // 
             btnSave.DialogResult = System.Windows.Forms.DialogResult.OK;
-            btnSave.Location = new System.Drawing.Point(305, 149);
+            btnSave.Location = new System.Drawing.Point(318, 88);
             btnSave.Name = "btnSave";
-            btnSave.Size = new System.Drawing.Size(78, 34);
+            btnSave.Size = new System.Drawing.Size(75, 23);
             btnSave.TabIndex = 1;
             btnSave.Text = "Save";
             btnSave.UseVisualStyleBackColor = true;
@@ -62,9 +62,9 @@ namespace Mosiac.UX.Forms
             // 
             btnCancel.CausesValidation = false;
             btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            btnCancel.Location = new System.Drawing.Point(207, 149);
+            btnCancel.Location = new System.Drawing.Point(237, 88);
             btnCancel.Name = "btnCancel";
-            btnCancel.Size = new System.Drawing.Size(92, 34);
+            btnCancel.Size = new System.Drawing.Size(75, 23);
             btnCancel.TabIndex = 1;
             btnCancel.Text = "Cancel";
             btnCancel.UseVisualStyleBackColor = true;
@@ -72,53 +72,65 @@ namespace Mosiac.UX.Forms
             // 
             // txtSourceFile
             // 
-            txtSourceFile.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            txtSourceFile.Location = new System.Drawing.Point(33, 108);
+            txtSourceFile.Location = new System.Drawing.Point(91, 56);
             txtSourceFile.Name = "txtSourceFile";
-            txtSourceFile.Size = new System.Drawing.Size(350, 23);
+            txtSourceFile.Size = new System.Drawing.Size(234, 23);
             txtSourceFile.TabIndex = 0;
             // 
-            // label3
+            // btnBrowse
             // 
-            label3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            label3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            label3.Location = new System.Drawing.Point(33, 9);
-            label3.Name = "label3";
-            label3.Padding = new System.Windows.Forms.Padding(2);
-            label3.Size = new System.Drawing.Size(350, 25);
-            label3.TabIndex = 3;
-            label3.Text = "Description";
-            label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            btnBrowse.Location = new System.Drawing.Point(331, 56);
+            btnBrowse.Name = "btnBrowse";
+            btnBrowse.Size = new System.Drawing.Size(75, 23);
+            btnBrowse.TabIndex = 2;
+            btnBrowse.Text = "Browse...";
+            btnBrowse.UseVisualStyleBackColor = true;
+            btnBrowse.Click += btnBrowse_Click;
             // 
             // label1
             // 
-            label1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            label1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            label1.Location = new System.Drawing.Point(33, 80);
+            label1.AutoSize = true;
+            label1.Location = new System.Drawing.Point(21, 59);
             label1.Name = "label1";
-            label1.Padding = new System.Windows.Forms.Padding(2);
-            label1.Size = new System.Drawing.Size(350, 25);
+            label1.Size = new System.Drawing.Size(64, 15);
             label1.TabIndex = 3;
-            label1.Text = "Hypelink path";
-            label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            label1.Text = "Source File";
             // 
-            // CreateWebLinkForm
+            // txtFileSize
+            // 
+            txtFileSize.Location = new System.Drawing.Point(91, 85);
+            txtFileSize.Name = "txtFileSize";
+            txtFileSize.Size = new System.Drawing.Size(90, 23);
+            txtFileSize.TabIndex = 0;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new System.Drawing.Point(12, 88);
+            label3.Name = "label3";
+            label3.Size = new System.Drawing.Size(73, 15);
+            label3.TabIndex = 3;
+            label3.Text = "File Size (KB)";
+            // 
+            // CreateResourceForm
             // 
             AcceptButton = btnSave;
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             CancelButton = btnCancel;
             CausesValidation = false;
-            ClientSize = new System.Drawing.Size(433, 195);
+            ClientSize = new System.Drawing.Size(424, 127);
             ControlBox = false;
-            Controls.Add(label1);
             Controls.Add(label3);
+            Controls.Add(label1);
+            Controls.Add(btnBrowse);
             Controls.Add(btnCancel);
             Controls.Add(btnSave);
+            Controls.Add(txtFileSize);
             Controls.Add(txtSourceFile);
             Controls.Add(txtResourceDescription);
             FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            Name = "CreateWebLinkForm";
+            Name = "CreateResourceForm";
             StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             Text = "Add Resource";
             Activated += CreateResourceForm_Activated;
@@ -134,7 +146,9 @@ namespace Mosiac.UX.Forms
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.TextBox txtSourceFile;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button btnBrowse;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txtFileSize;
+        private System.Windows.Forms.Label label3;
     }
 }

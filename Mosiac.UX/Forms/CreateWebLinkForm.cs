@@ -12,7 +12,7 @@ using Mosiac.UX.Helpers;
 
 namespace Mosiac.UX.Forms
 {
-    public partial class CreateWebLinkForm : Form
+    public partial class CreateResourceForm : Form
     {
         private ResourceDto resourseDto = new ResourceDto();
         BindingSource bsResource = new BindingSource();
@@ -23,7 +23,7 @@ namespace Mosiac.UX.Forms
         private ErrorProvider sourceFileErrorProvider;
         private bool isWebLink = false;
 
-        public CreateWebLinkForm(int partID)
+        public CreateResourceForm(int partID)
         {
             InitializeComponent();
             resourseDto.PartID = partID;
@@ -75,11 +75,11 @@ namespace Mosiac.UX.Forms
         {
             txtResourceDescription.DataBindings.Clear();
             txtSourceFile.DataBindings.Clear();
-            
+            txtFileSize.DataBindings.Clear();
 
             txtResourceDescription.DataBindings.Add("Text", bs, "ResourceDescription", true, DataSourceUpdateMode.OnPropertyChanged);
             txtSourceFile.DataBindings.Add("Text", bs, "FileSource", true, DataSourceUpdateMode.OnPropertyChanged);
-          
+            txtFileSize.DataBindings.Add("Text", bs, "Filesize", true, DataSourceUpdateMode.OnPropertyChanged);
 
         }
         /// <summary>
@@ -91,7 +91,7 @@ namespace Mosiac.UX.Forms
         {
             if (resourseDto.IsValid())
             {
-                FileOperations.InsertPartWebLink(resourseDto.PartID, resourseDto.ResourceDescription, resourseDto.Filesource, txtSourceFile.Text);
+                FileOperations.InsertPartResource(resourseDto.PartID, resourseDto.ResourceDescription, resourseDto.Filesize, info);
             }
             else
             {
@@ -100,7 +100,20 @@ namespace Mosiac.UX.Forms
 
         }
 
-     
+        private void btnBrowse_Click(object sender, EventArgs e)
+        {
+            info = FileDialogHelpers.GetFile();
+            if (info != null)
+            {
+                resourseDto.Filesize = FileHelperService.GetSizeInMemory(info.Length);
+                resourseDto.Filesource = info.Name;
+            }
+            else
+            {
+                return;
+            }
+
+        }
 
 
         // Create and set the ErrorProvider for each data entry control.
@@ -141,7 +154,7 @@ namespace Mosiac.UX.Forms
         private void btnWebLink_Click(object sender, EventArgs e)
         {
             AutoValidate = AutoValidate.Disable;
-          
+            btnBrowse.Enabled = false;
             isWebLink = true;
             txtSourceFile.ReadOnly = false;
             resourseDto.Filesource = txtSourceFile.Text;
